@@ -21,12 +21,12 @@ import json
 
 from typing import Optional
 from pydantic import BaseModel, Field, StrictStr
-from openapi_client.models.aesthetics import Aesthetics
-from openapi_client.models.allocation_cloud import AllocationCloud
-from openapi_client.models.auth0_user_metadata import Auth0UserMetadata
-from openapi_client.models.embedded_model_schema import EmbeddedModelSchema
-from openapi_client.models.external_providers import ExternalProviders
-from openapi_client.models.grouped_timestamp import GroupedTimestamp
+from pieces_client.models.aesthetics import Aesthetics
+from pieces_client.models.allocation_cloud import AllocationCloud
+from pieces_client.models.auth0_user_metadata import Auth0UserMetadata
+from pieces_client.models.embedded_model_schema import EmbeddedModelSchema
+from pieces_client.models.external_providers import ExternalProviders
+from pieces_client.models.grouped_timestamp import GroupedTimestamp
 
 class UserProfile(BaseModel):
     """

@@ -21,8 +21,8 @@ import json
 
 from typing import Optional
 from pydantic import BaseModel, Field, StrictStr
-from openapi_client.models.embedded_model_schema import EmbeddedModelSchema
-from openapi_client.models.model import Model
+from pieces_client.models.embedded_model_schema import EmbeddedModelSchema
+from pieces_client.models.model import Model
 
 class FlattenedOCRAnalysis(BaseModel):
     """
@@ -93,6 +93,6 @@ class FlattenedOCRAnalysis(BaseModel):
         })
         return _obj
 
-from openapi_client.models.referenced_format import ReferencedFormat
+from pieces_client.models.referenced_format import ReferencedFormat
 FlattenedOCRAnalysis.update_forward_refs()
 

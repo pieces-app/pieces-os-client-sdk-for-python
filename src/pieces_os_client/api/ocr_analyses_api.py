@@ -24,11 +24,11 @@ from pydantic import Field, StrictBool
 
 from typing import Optional
 
-from openapi_client.models.ocr_analyses import OCRAnalyses
+from pieces_client.models.ocr_analyses import OCRAnalyses
 
-from openapi_client.api_client import ApiClient
-from openapi_client.api_response import ApiResponse
-from openapi_client.exceptions import (  # noqa: F401
+from pieces_client.api_client import ApiClient
+from pieces_client.api_response import ApiResponse
+from pieces_client.exceptions import (  # noqa: F401
     ApiTypeError,
     ApiValueError
 )

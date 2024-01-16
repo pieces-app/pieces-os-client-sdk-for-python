@@ -21,9 +21,9 @@ import json
 
 from typing import Optional
 from pydantic import BaseModel, Field
-from openapi_client.models.embedded_model_schema import EmbeddedModelSchema
-from openapi_client.models.person_basic_type import PersonBasicType
-from openapi_client.models.user_profile import UserProfile
+from pieces_client.models.embedded_model_schema import EmbeddedModelSchema
+from pieces_client.models.person_basic_type import PersonBasicType
+from pieces_client.models.user_profile import UserProfile
 
 class PersonType(BaseModel):
     """

@@ -21,9 +21,9 @@ import json
 
 from typing import Optional
 from pydantic import BaseModel, Field, StrictBool, StrictStr
-from openapi_client.models.anchor_type_enum import AnchorTypeEnum
-from openapi_client.models.embedded_model_schema import EmbeddedModelSchema
-from openapi_client.models.platform_enum import PlatformEnum
+from pieces_client.models.anchor_type_enum import AnchorTypeEnum
+from pieces_client.models.embedded_model_schema import EmbeddedModelSchema
+from pieces_client.models.platform_enum import PlatformEnum
 
 class SeededAnchorPoint(BaseModel):
     """

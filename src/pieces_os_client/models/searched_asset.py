@@ -21,9 +21,9 @@ import json
 
 from typing import Optional, Union
 from pydantic import BaseModel, Field, StrictBool, StrictFloat, StrictInt, StrictStr
-from openapi_client.models.asset import Asset
-from openapi_client.models.embedded_model_schema import EmbeddedModelSchema
-from openapi_client.models.searched_match_enum import SearchedMatchEnum
+from pieces_client.models.asset import Asset
+from pieces_client.models.embedded_model_schema import EmbeddedModelSchema
+from pieces_client.models.searched_match_enum import SearchedMatchEnum
 
 class SearchedAsset(BaseModel):
     """

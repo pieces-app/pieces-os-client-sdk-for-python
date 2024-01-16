@@ -21,8 +21,8 @@ import json
 
 from typing import List, Optional, Union
 from pydantic import BaseModel, Field, StrictFloat, StrictInt, conlist
-from openapi_client.models.grouped_timestamp import GroupedTimestamp
-from openapi_client.models.model import Model
+from pieces_client.models.grouped_timestamp import GroupedTimestamp
+from pieces_client.models.model import Model
 
 class Embedding(BaseModel):
     """

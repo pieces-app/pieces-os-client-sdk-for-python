@@ -21,9 +21,9 @@ import json
 
 from typing import Optional
 from pydantic import BaseModel, Field
-from openapi_client.models.embedded_model_schema import EmbeddedModelSchema
-from openapi_client.models.tlp_code_fragment_suggested_reuse import TLPCodeFragmentSuggestedReuse
-from openapi_client.models.tlp_code_fragment_suggested_save import TLPCodeFragmentSuggestedSave
+from pieces_client.models.embedded_model_schema import EmbeddedModelSchema
+from pieces_client.models.tlp_code_fragment_suggested_reuse import TLPCodeFragmentSuggestedReuse
+from pieces_client.models.tlp_code_fragment_suggested_save import TLPCodeFragmentSuggestedSave
 
 class TLPCodeSnippetSuggestedInteractions(BaseModel):
     """

@@ -21,11 +21,11 @@ import json
 
 from typing import List, Optional
 from pydantic import BaseModel, Field, StrictStr, conlist
-from openapi_client.models.access_enum import AccessEnum
-from openapi_client.models.asset import Asset
-from openapi_client.models.assets import Assets
-from openapi_client.models.embedded_model_schema import EmbeddedModelSchema
-from openapi_client.models.seeded_user import SeededUser
+from pieces_client.models.access_enum import AccessEnum
+from pieces_client.models.asset import Asset
+from pieces_client.models.assets import Assets
+from pieces_client.models.embedded_model_schema import EmbeddedModelSchema
+from pieces_client.models.seeded_user import SeededUser
 
 class SeededShare(BaseModel):
     """

@@ -21,12 +21,12 @@ import json
 
 from typing import List, Optional
 from pydantic import BaseModel, Field, StrictStr, conlist
-from openapi_client.models.embedded_model_schema import EmbeddedModelSchema
-from openapi_client.models.mechanism_enum import MechanismEnum
-from openapi_client.models.person_access import PersonAccess
-from openapi_client.models.person_model import PersonModel
-from openapi_client.models.person_type import PersonType
-from openapi_client.models.seeded_annotation import SeededAnnotation
+from pieces_client.models.embedded_model_schema import EmbeddedModelSchema
+from pieces_client.models.mechanism_enum import MechanismEnum
+from pieces_client.models.person_access import PersonAccess
+from pieces_client.models.person_model import PersonModel
+from pieces_client.models.person_type import PersonType
+from pieces_client.models.seeded_annotation import SeededAnnotation
 
 class SeededPerson(BaseModel):
     """

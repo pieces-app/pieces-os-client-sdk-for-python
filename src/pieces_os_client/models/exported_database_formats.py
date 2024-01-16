@@ -21,8 +21,8 @@ import json
 
 from typing import List, Optional
 from pydantic import BaseModel, Field, conlist
-from openapi_client.models.embedded_model_schema import EmbeddedModelSchema
-from openapi_client.models.exported_database_format import ExportedDatabaseFormat
+from pieces_client.models.embedded_model_schema import EmbeddedModelSchema
+from pieces_client.models.exported_database_format import ExportedDatabaseFormat
 
 class ExportedDatabaseFormats(BaseModel):
     """

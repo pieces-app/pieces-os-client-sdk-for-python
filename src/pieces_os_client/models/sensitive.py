@@ -21,14 +21,14 @@ import json
 
 from typing import Optional
 from pydantic import BaseModel, Field, StrictInt, StrictStr
-from openapi_client.models.embedded_model_schema import EmbeddedModelSchema
-from openapi_client.models.flattened_asset import FlattenedAsset
-from openapi_client.models.grouped_timestamp import GroupedTimestamp
-from openapi_client.models.mechanism_enum import MechanismEnum
-from openapi_client.models.score import Score
-from openapi_client.models.sensitive_category_enum import SensitiveCategoryEnum
-from openapi_client.models.sensitive_metadata import SensitiveMetadata
-from openapi_client.models.sensitive_severity_enum import SensitiveSeverityEnum
+from pieces_client.models.embedded_model_schema import EmbeddedModelSchema
+from pieces_client.models.flattened_asset import FlattenedAsset
+from pieces_client.models.grouped_timestamp import GroupedTimestamp
+from pieces_client.models.mechanism_enum import MechanismEnum
+from pieces_client.models.score import Score
+from pieces_client.models.sensitive_category_enum import SensitiveCategoryEnum
+from pieces_client.models.sensitive_metadata import SensitiveMetadata
+from pieces_client.models.sensitive_severity_enum import SensitiveSeverityEnum
 
 class Sensitive(BaseModel):
     """

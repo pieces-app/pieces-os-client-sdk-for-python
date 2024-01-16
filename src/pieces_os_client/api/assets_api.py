@@ -24,21 +24,21 @@ from pydantic import Field, StrictBool, StrictStr
 
 from typing import Optional
 
-from openapi_client.models.asset import Asset
-from openapi_client.models.assets import Assets
-from openapi_client.models.assets_search_with_filters_input import AssetsSearchWithFiltersInput
-from openapi_client.models.assets_search_with_filters_output import AssetsSearchWithFiltersOutput
-from openapi_client.models.flattened_assets import FlattenedAssets
-from openapi_client.models.formats import Formats
-from openapi_client.models.pseudo_assets import PseudoAssets
-from openapi_client.models.searched_assets import SearchedAssets
-from openapi_client.models.seed import Seed
-from openapi_client.models.seeded_assets_recommendation import SeededAssetsRecommendation
-from openapi_client.models.streamed_identifiers import StreamedIdentifiers
+from pieces_client.models.asset import Asset
+from pieces_client.models.assets import Assets
+from pieces_client.models.assets_search_with_filters_input import AssetsSearchWithFiltersInput
+from pieces_client.models.assets_search_with_filters_output import AssetsSearchWithFiltersOutput
+from pieces_client.models.flattened_assets import FlattenedAssets
+from pieces_client.models.formats import Formats
+from pieces_client.models.pseudo_assets import PseudoAssets
+from pieces_client.models.searched_assets import SearchedAssets
+from pieces_client.models.seed import Seed
+from pieces_client.models.seeded_assets_recommendation import SeededAssetsRecommendation
+from pieces_client.models.streamed_identifiers import StreamedIdentifiers
 
-from openapi_client.api_client import ApiClient
-from openapi_client.api_response import ApiResponse
-from openapi_client.exceptions import (  # noqa: F401
+from pieces_client.api_client import ApiClient
+from pieces_client.api_response import ApiResponse
+from pieces_client.exceptions import (  # noqa: F401
     ApiTypeError,
     ApiValueError
 )

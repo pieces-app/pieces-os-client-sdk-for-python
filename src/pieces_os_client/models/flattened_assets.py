@@ -21,8 +21,8 @@ import json
 
 from typing import Dict, List, Optional
 from pydantic import BaseModel, Field, StrictInt, conlist
-from openapi_client.models.embedded_model_schema import EmbeddedModelSchema
-from openapi_client.models.score import Score
+from pieces_client.models.embedded_model_schema import EmbeddedModelSchema
+from pieces_client.models.score import Score
 
 class FlattenedAssets(BaseModel):
     """
@@ -90,6 +90,6 @@ class FlattenedAssets(BaseModel):
         })
         return _obj
 
-from openapi_client.models.referenced_asset import ReferencedAsset
+from pieces_client.models.referenced_asset import ReferencedAsset
 FlattenedAssets.update_forward_refs()
 

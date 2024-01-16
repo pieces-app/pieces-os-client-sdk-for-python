@@ -21,13 +21,13 @@ from pydantic import validate_arguments, ValidationError
 
 from typing import Optional
 
-from openapi_client.models.allocation_cloud import AllocationCloud
-from openapi_client.models.allocations import Allocations
-from openapi_client.models.user_profile import UserProfile
+from pieces_client.models.allocation_cloud import AllocationCloud
+from pieces_client.models.allocations import Allocations
+from pieces_client.models.user_profile import UserProfile
 
-from openapi_client.api_client import ApiClient
-from openapi_client.api_response import ApiResponse
-from openapi_client.exceptions import (  # noqa: F401
+from pieces_client.api_client import ApiClient
+from pieces_client.api_response import ApiResponse
+from pieces_client.exceptions import (  # noqa: F401
     ApiTypeError,
     ApiValueError
 )

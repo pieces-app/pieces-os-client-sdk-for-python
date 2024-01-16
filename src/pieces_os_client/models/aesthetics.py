@@ -21,9 +21,9 @@ import json
 
 from typing import Optional
 from pydantic import BaseModel, Field
-from openapi_client.models.embedded_model_schema import EmbeddedModelSchema
-from openapi_client.models.font import Font
-from openapi_client.models.theme import Theme
+from pieces_client.models.embedded_model_schema import EmbeddedModelSchema
+from pieces_client.models.font import Font
+from pieces_client.models.theme import Theme
 
 class Aesthetics(BaseModel):
     """

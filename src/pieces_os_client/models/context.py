@@ -21,10 +21,10 @@ import json
 
 from typing import Optional
 from pydantic import BaseModel, Field, StrictStr
-from openapi_client.models.application import Application
-from openapi_client.models.embedded_model_schema import EmbeddedModelSchema
-from openapi_client.models.health import Health
-from openapi_client.models.user_profile import UserProfile
+from pieces_client.models.application import Application
+from pieces_client.models.embedded_model_schema import EmbeddedModelSchema
+from pieces_client.models.health import Health
+from pieces_client.models.user_profile import UserProfile
 
 class Context(BaseModel):
     """

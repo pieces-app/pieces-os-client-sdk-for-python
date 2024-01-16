@@ -21,7 +21,7 @@ import json
 
 from typing import Optional
 from pydantic import BaseModel, Field, StrictStr
-from openapi_client.models.embedded_model_schema import EmbeddedModelSchema
+from pieces_client.models.embedded_model_schema import EmbeddedModelSchema
 
 class ReferencedAsset(BaseModel):
     """
@@ -80,6 +80,6 @@ class ReferencedAsset(BaseModel):
         })
         return _obj
 
-from openapi_client.models.flattened_asset import FlattenedAsset
+from pieces_client.models.flattened_asset import FlattenedAsset
 ReferencedAsset.update_forward_refs()
 

@@ -21,8 +21,8 @@ import json
 
 from typing import Dict, Optional
 from pydantic import BaseModel, Field, StrictStr
-from openapi_client.models.embedded_model_schema import EmbeddedModelSchema
-from openapi_client.models.persons import Persons
+from pieces_client.models.embedded_model_schema import EmbeddedModelSchema
+from pieces_client.models.persons import Persons
 
 class QGPTPersonsRelatedOutput(BaseModel):
     """

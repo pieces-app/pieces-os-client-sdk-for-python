@@ -21,7 +21,7 @@ import json
 
 from typing import Optional
 from pydantic import BaseModel, Field, StrictStr
-from openapi_client.models.embedded_model_schema import EmbeddedModelSchema
+from pieces_client.models.embedded_model_schema import EmbeddedModelSchema
 
 class FlattenedImageAnalysis(BaseModel):
     """
@@ -82,6 +82,6 @@ class FlattenedImageAnalysis(BaseModel):
         })
         return _obj
 
-from openapi_client.models.flattened_ocr_analysis import FlattenedOCRAnalysis
+from pieces_client.models.flattened_ocr_analysis import FlattenedOCRAnalysis
 FlattenedImageAnalysis.update_forward_refs()
 

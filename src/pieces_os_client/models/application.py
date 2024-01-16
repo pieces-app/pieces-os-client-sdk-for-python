@@ -21,12 +21,12 @@ import json
 
 from typing import Optional
 from pydantic import BaseModel, Field, StrictBool, StrictStr
-from openapi_client.models.application_name_enum import ApplicationNameEnum
-from openapi_client.models.capabilities_enum import CapabilitiesEnum
-from openapi_client.models.embedded_model_schema import EmbeddedModelSchema
-from openapi_client.models.mechanism_enum import MechanismEnum
-from openapi_client.models.platform_enum import PlatformEnum
-from openapi_client.models.privacy_enum import PrivacyEnum
+from pieces_client.models.application_name_enum import ApplicationNameEnum
+from pieces_client.models.capabilities_enum import CapabilitiesEnum
+from pieces_client.models.embedded_model_schema import EmbeddedModelSchema
+from pieces_client.models.mechanism_enum import MechanismEnum
+from pieces_client.models.platform_enum import PlatformEnum
+from pieces_client.models.privacy_enum import PrivacyEnum
 
 class Application(BaseModel):
     """

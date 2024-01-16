@@ -24,12 +24,12 @@ from pydantic import Field
 
 from typing import Optional
 
-from openapi_client.models.asset import Asset
-from openapi_client.models.seeded_mac_os_asset import SeededMacOSAsset
+from pieces_client.models.asset import Asset
+from pieces_client.models.seeded_mac_os_asset import SeededMacOSAsset
 
-from openapi_client.api_client import ApiClient
-from openapi_client.api_response import ApiResponse
-from openapi_client.exceptions import (  # noqa: F401
+from pieces_client.api_client import ApiClient
+from pieces_client.api_response import ApiResponse
+from pieces_client.exceptions import (  # noqa: F401
     ApiTypeError,
     ApiValueError
 )

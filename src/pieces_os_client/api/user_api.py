@@ -24,13 +24,13 @@ from pydantic import Field
 
 from typing import Optional
 
-from openapi_client.models.auth0_user import Auth0User
-from openapi_client.models.returned_user_profile import ReturnedUserProfile
-from openapi_client.models.user_profile import UserProfile
+from pieces_client.models.auth0_user import Auth0User
+from pieces_client.models.returned_user_profile import ReturnedUserProfile
+from pieces_client.models.user_profile import UserProfile
 
-from openapi_client.api_client import ApiClient
-from openapi_client.api_response import ApiResponse
-from openapi_client.exceptions import (  # noqa: F401
+from pieces_client.api_client import ApiClient
+from pieces_client.api_response import ApiResponse
+from pieces_client.exceptions import (  # noqa: F401
     ApiTypeError,
     ApiValueError
 )

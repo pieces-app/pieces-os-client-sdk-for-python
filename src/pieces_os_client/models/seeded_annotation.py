@@ -21,10 +21,10 @@ import json
 
 from typing import Optional
 from pydantic import BaseModel, Field, StrictBool, StrictStr
-from openapi_client.models.annotation_type_enum import AnnotationTypeEnum
-from openapi_client.models.embedded_model_schema import EmbeddedModelSchema
-from openapi_client.models.flattened_conversation_messages import FlattenedConversationMessages
-from openapi_client.models.mechanism_enum import MechanismEnum
+from pieces_client.models.annotation_type_enum import AnnotationTypeEnum
+from pieces_client.models.embedded_model_schema import EmbeddedModelSchema
+from pieces_client.models.flattened_conversation_messages import FlattenedConversationMessages
+from pieces_client.models.mechanism_enum import MechanismEnum
 
 class SeededAnnotation(BaseModel):
     """

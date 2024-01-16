@@ -21,8 +21,8 @@ import json
 
 
 from pydantic import BaseModel, Field, StrictStr
-from openapi_client.models.file_format import FileFormat
-from openapi_client.models.grouped_timestamp import GroupedTimestamp
+from pieces_client.models.file_format import FileFormat
+from pieces_client.models.grouped_timestamp import GroupedTimestamp
 
 class ExportedAsset(BaseModel):
     """

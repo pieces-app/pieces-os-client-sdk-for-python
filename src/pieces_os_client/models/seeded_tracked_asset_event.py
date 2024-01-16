@@ -21,8 +21,8 @@ import json
 
 from typing import Optional
 from pydantic import BaseModel, Field
-from openapi_client.models.embedded_model_schema import EmbeddedModelSchema
-from openapi_client.models.tracked_asset_event_identifier_description_pairs import TrackedAssetEventIdentifierDescriptionPairs
+from pieces_client.models.embedded_model_schema import EmbeddedModelSchema
+from pieces_client.models.tracked_asset_event_identifier_description_pairs import TrackedAssetEventIdentifierDescriptionPairs
 
 class SeededTrackedAssetEvent(BaseModel):
     """
@@ -89,7 +89,7 @@ class SeededTrackedAssetEvent(BaseModel):
         })
         return _obj
 
-from openapi_client.models.referenced_asset import ReferencedAsset
-from openapi_client.models.tracked_asset_event_metadata import TrackedAssetEventMetadata
+from pieces_client.models.referenced_asset import ReferencedAsset
+from pieces_client.models.tracked_asset_event_metadata import TrackedAssetEventMetadata
 SeededTrackedAssetEvent.update_forward_refs()
 

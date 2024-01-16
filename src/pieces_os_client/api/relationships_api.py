@@ -19,11 +19,11 @@ import warnings
 
 from pydantic import validate_arguments, ValidationError
 
-from openapi_client.models.relationships import Relationships
+from pieces_client.models.relationships import Relationships
 
-from openapi_client.api_client import ApiClient
-from openapi_client.api_response import ApiResponse
-from openapi_client.exceptions import (  # noqa: F401
+from pieces_client.api_client import ApiClient
+from pieces_client.api_response import ApiResponse
+from pieces_client.exceptions import (  # noqa: F401
     ApiTypeError,
     ApiValueError
 )

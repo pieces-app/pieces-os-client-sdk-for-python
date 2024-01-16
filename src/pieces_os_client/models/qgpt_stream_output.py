@@ -21,10 +21,10 @@ import json
 
 from typing import Optional, Union
 from pydantic import BaseModel, Field, StrictFloat, StrictInt, StrictStr
-from openapi_client.models.qgpt_agent_routes import QGPTAgentRoutes
-from openapi_client.models.qgpt_question_output import QGPTQuestionOutput
-from openapi_client.models.qgpt_relevance_output import QGPTRelevanceOutput
-from openapi_client.models.qgpt_stream_enum import QGPTStreamEnum
+from pieces_client.models.qgpt_agent_routes import QGPTAgentRoutes
+from pieces_client.models.qgpt_question_output import QGPTQuestionOutput
+from pieces_client.models.qgpt_relevance_output import QGPTRelevanceOutput
+from pieces_client.models.qgpt_stream_enum import QGPTStreamEnum
 
 class QGPTStreamOutput(BaseModel):
     """

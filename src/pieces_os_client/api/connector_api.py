@@ -24,17 +24,17 @@ from pydantic import Field, StrictBool, StrictStr
 
 from typing import Optional
 
-from openapi_client.models.context import Context
-from openapi_client.models.reaction import Reaction
-from openapi_client.models.seeded_connector_asset import SeededConnectorAsset
-from openapi_client.models.seeded_connector_connection import SeededConnectorConnection
-from openapi_client.models.seeded_connector_creation import SeededConnectorCreation
-from openapi_client.models.seeded_connector_tracking import SeededConnectorTracking
-from openapi_client.models.suggestion import Suggestion
+from pieces_client.models.context import Context
+from pieces_client.models.reaction import Reaction
+from pieces_client.models.seeded_connector_asset import SeededConnectorAsset
+from pieces_client.models.seeded_connector_connection import SeededConnectorConnection
+from pieces_client.models.seeded_connector_creation import SeededConnectorCreation
+from pieces_client.models.seeded_connector_tracking import SeededConnectorTracking
+from pieces_client.models.suggestion import Suggestion
 
-from openapi_client.api_client import ApiClient
-from openapi_client.api_response import ApiResponse
-from openapi_client.exceptions import (  # noqa: F401
+from pieces_client.api_client import ApiClient
+from pieces_client.api_response import ApiResponse
+from pieces_client.exceptions import (  # noqa: F401
     ApiTypeError,
     ApiValueError
 )

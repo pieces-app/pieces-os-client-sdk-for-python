@@ -21,10 +21,10 @@ import json
 
 from typing import Optional
 from pydantic import BaseModel, Field
-from openapi_client.models.embedded_model_schema import EmbeddedModelSchema
-from openapi_client.models.graphical_image_processing import GraphicalImageProcessing
-from openapi_client.models.graphical_ocr_processing import GraphicalOCRProcessing
-from openapi_client.models.graphical_svg_statistics import GraphicalSVGStatistics
+from pieces_client.models.embedded_model_schema import EmbeddedModelSchema
+from pieces_client.models.graphical_image_processing import GraphicalImageProcessing
+from pieces_client.models.graphical_ocr_processing import GraphicalOCRProcessing
+from pieces_client.models.graphical_svg_statistics import GraphicalSVGStatistics
 
 class GraphicalMachineLearningProcessingEvent(BaseModel):
     """

@@ -72,6 +72,6 @@ class SeededTrackedAssetsEventMetadata(BaseModel):
         })
         return _obj
 
-from openapi_client.models.tracked_assets_event_search_metadata import TrackedAssetsEventSearchMetadata
+from pieces_client.models.tracked_assets_event_search_metadata import TrackedAssetsEventSearchMetadata
 SeededTrackedAssetsEventMetadata.update_forward_refs()
 

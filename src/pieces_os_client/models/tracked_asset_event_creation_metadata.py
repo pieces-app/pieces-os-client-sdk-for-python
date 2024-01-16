@@ -21,9 +21,9 @@ import json
 
 from typing import Optional
 from pydantic import BaseModel, Field
-from openapi_client.models.embedded_model_schema import EmbeddedModelSchema
-from openapi_client.models.tracked_asset_event_creation_metadata_clipboard import TrackedAssetEventCreationMetadataClipboard
-from openapi_client.models.tracked_asset_event_creation_metadata_file import TrackedAssetEventCreationMetadataFile
+from pieces_client.models.embedded_model_schema import EmbeddedModelSchema
+from pieces_client.models.tracked_asset_event_creation_metadata_clipboard import TrackedAssetEventCreationMetadataClipboard
+from pieces_client.models.tracked_asset_event_creation_metadata_file import TrackedAssetEventCreationMetadataFile
 
 class TrackedAssetEventCreationMetadata(BaseModel):
     """

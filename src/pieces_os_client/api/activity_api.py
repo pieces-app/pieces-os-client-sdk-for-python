@@ -24,12 +24,12 @@ from pydantic import Field, StrictBool, StrictStr
 
 from typing import Optional
 
-from openapi_client.models.activity import Activity
-from openapi_client.models.flattened_activities import FlattenedActivities
+from pieces_client.models.activity import Activity
+from pieces_client.models.flattened_activities import FlattenedActivities
 
-from openapi_client.api_client import ApiClient
-from openapi_client.api_response import ApiResponse
-from openapi_client.exceptions import (  # noqa: F401
+from pieces_client.api_client import ApiClient
+from pieces_client.api_response import ApiResponse
+from pieces_client.exceptions import (  # noqa: F401
     ApiTypeError,
     ApiValueError
 )

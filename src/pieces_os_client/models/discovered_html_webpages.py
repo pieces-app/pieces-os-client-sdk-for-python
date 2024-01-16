@@ -21,8 +21,8 @@ import json
 
 from typing import List, Optional
 from pydantic import BaseModel, Field, StrictStr, conlist
-from openapi_client.models.discovered_html_webpage import DiscoveredHtmlWebpage
-from openapi_client.models.embedded_model_schema import EmbeddedModelSchema
+from pieces_client.models.discovered_html_webpage import DiscoveredHtmlWebpage
+from pieces_client.models.embedded_model_schema import EmbeddedModelSchema
 
 class DiscoveredHtmlWebpages(BaseModel):
     """

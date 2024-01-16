@@ -21,8 +21,8 @@ import json
 
 from typing import List, Optional
 from pydantic import BaseModel, Field, conlist
-from openapi_client.models.embedded_model_schema import EmbeddedModelSchema
-from openapi_client.models.score import Score
+from pieces_client.models.embedded_model_schema import EmbeddedModelSchema
+from pieces_client.models.score import Score
 
 class FlattenedSensitives(BaseModel):
     """
@@ -88,6 +88,6 @@ class FlattenedSensitives(BaseModel):
         })
         return _obj
 
-from openapi_client.models.referenced_sensitive import ReferencedSensitive
+from pieces_client.models.referenced_sensitive import ReferencedSensitive
 FlattenedSensitives.update_forward_refs()
 

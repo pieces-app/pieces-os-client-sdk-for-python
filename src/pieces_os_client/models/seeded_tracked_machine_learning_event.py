@@ -21,9 +21,9 @@ import json
 
 from typing import Optional
 from pydantic import BaseModel, Field
-from openapi_client.models.embedded_model_schema import EmbeddedModelSchema
-from openapi_client.models.graphical_machine_learning_processing_event import GraphicalMachineLearningProcessingEvent
-from openapi_client.models.tlp_machine_learning_processing_event import TLPMachineLearningProcessingEvent
+from pieces_client.models.embedded_model_schema import EmbeddedModelSchema
+from pieces_client.models.graphical_machine_learning_processing_event import GraphicalMachineLearningProcessingEvent
+from pieces_client.models.tlp_machine_learning_processing_event import TLPMachineLearningProcessingEvent
 
 class SeededTrackedMachineLearningEvent(BaseModel):
     """

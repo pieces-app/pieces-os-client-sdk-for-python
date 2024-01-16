@@ -21,11 +21,11 @@ import json
 
 from typing import List, Optional
 from pydantic import BaseModel, Field, StrictStr, conlist
-from openapi_client.models.embedded_model_schema import EmbeddedModelSchema
-from openapi_client.models.flattened_assets import FlattenedAssets
-from openapi_client.models.flattened_conversation_messages import FlattenedConversationMessages
-from openapi_client.models.qgpt_relevance_input_options import QGPTRelevanceInputOptions
-from openapi_client.models.seeds import Seeds
+from pieces_client.models.embedded_model_schema import EmbeddedModelSchema
+from pieces_client.models.flattened_assets import FlattenedAssets
+from pieces_client.models.flattened_conversation_messages import FlattenedConversationMessages
+from pieces_client.models.qgpt_relevance_input_options import QGPTRelevanceInputOptions
+from pieces_client.models.seeds import Seeds
 
 class QGPTRelevanceInput(BaseModel):
     """

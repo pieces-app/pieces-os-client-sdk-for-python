@@ -21,14 +21,14 @@ import json
 
 from typing import Optional
 from pydantic import BaseModel, Field, StrictStr
-from openapi_client.models.access_enum import AccessEnum
-from openapi_client.models.accessors import Accessors
-from openapi_client.models.distributions import Distributions
-from openapi_client.models.embedded_model_schema import EmbeddedModelSchema
-from openapi_client.models.flattened_asset import FlattenedAsset
-from openapi_client.models.flattened_assets import FlattenedAssets
-from openapi_client.models.grouped_timestamp import GroupedTimestamp
-from openapi_client.models.score import Score
+from pieces_client.models.access_enum import AccessEnum
+from pieces_client.models.accessors import Accessors
+from pieces_client.models.distributions import Distributions
+from pieces_client.models.embedded_model_schema import EmbeddedModelSchema
+from pieces_client.models.flattened_asset import FlattenedAsset
+from pieces_client.models.flattened_assets import FlattenedAssets
+from pieces_client.models.grouped_timestamp import GroupedTimestamp
+from pieces_client.models.score import Score
 
 class Share(BaseModel):
     """

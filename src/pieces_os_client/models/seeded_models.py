@@ -21,8 +21,8 @@ import json
 
 from typing import List, Optional
 from pydantic import BaseModel, Field, conlist
-from openapi_client.models.embedded_model_schema import EmbeddedModelSchema
-from openapi_client.models.seeded_model import SeededModel
+from pieces_client.models.embedded_model_schema import EmbeddedModelSchema
+from pieces_client.models.seeded_model import SeededModel
 
 class SeededModels(BaseModel):
     """

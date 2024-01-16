@@ -21,10 +21,10 @@ import json
 
 from typing import Optional
 from pydantic import BaseModel, Field, StrictBool, StrictStr
-from openapi_client.models.anchor_type_enum import AnchorTypeEnum
-from openapi_client.models.embedded_model_schema import EmbeddedModelSchema
-from openapi_client.models.grouped_timestamp import GroupedTimestamp
-from openapi_client.models.score import Score
+from pieces_client.models.anchor_type_enum import AnchorTypeEnum
+from pieces_client.models.embedded_model_schema import EmbeddedModelSchema
+from pieces_client.models.grouped_timestamp import GroupedTimestamp
+from pieces_client.models.score import Score
 
 class FlattenedAnchor(BaseModel):
     """
@@ -124,9 +124,9 @@ class FlattenedAnchor(BaseModel):
         })
         return _obj
 
-from openapi_client.models.flattened_anchor_points import FlattenedAnchorPoints
-from openapi_client.models.flattened_annotations import FlattenedAnnotations
-from openapi_client.models.flattened_assets import FlattenedAssets
-from openapi_client.models.flattened_conversations import FlattenedConversations
+from pieces_client.models.flattened_anchor_points import FlattenedAnchorPoints
+from pieces_client.models.flattened_annotations import FlattenedAnnotations
+from pieces_client.models.flattened_assets import FlattenedAssets
+from pieces_client.models.flattened_conversations import FlattenedConversations
 FlattenedAnchor.update_forward_refs()
 

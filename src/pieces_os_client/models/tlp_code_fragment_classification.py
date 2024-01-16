@@ -21,9 +21,9 @@ import json
 
 from typing import Optional, Union
 from pydantic import BaseModel, Field, StrictFloat, StrictInt, StrictStr
-from openapi_client.models.embedded_model_schema import EmbeddedModelSchema
-from openapi_client.models.system_execution_information import SystemExecutionInformation
-from openapi_client.models.tlp_code_fragment_classification_metadata import TLPCodeFragmentClassificationMetadata
+from pieces_client.models.embedded_model_schema import EmbeddedModelSchema
+from pieces_client.models.system_execution_information import SystemExecutionInformation
+from pieces_client.models.tlp_code_fragment_classification_metadata import TLPCodeFragmentClassificationMetadata
 
 class TLPCodeFragmentClassification(BaseModel):
     """

@@ -21,8 +21,8 @@ import json
 
 from typing import Optional
 from pydantic import BaseModel, Field
-from openapi_client.models.embedded_model_schema import EmbeddedModelSchema
-from openapi_client.models.tracked_conversation_event_rename_metadata import TrackedConversationEventRenameMetadata
+from pieces_client.models.embedded_model_schema import EmbeddedModelSchema
+from pieces_client.models.tracked_conversation_event_rename_metadata import TrackedConversationEventRenameMetadata
 
 class TrackedConversationEventMetadata(BaseModel):
     """

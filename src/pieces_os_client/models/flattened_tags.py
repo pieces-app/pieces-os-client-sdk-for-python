@@ -21,8 +21,8 @@ import json
 
 from typing import Dict, List, Optional
 from pydantic import BaseModel, Field, StrictInt, conlist
-from openapi_client.models.embedded_model_schema import EmbeddedModelSchema
-from openapi_client.models.score import Score
+from pieces_client.models.embedded_model_schema import EmbeddedModelSchema
+from pieces_client.models.score import Score
 
 class FlattenedTags(BaseModel):
     """
@@ -90,6 +90,6 @@ class FlattenedTags(BaseModel):
         })
         return _obj
 
-from openapi_client.models.referenced_tag import ReferencedTag
+from pieces_client.models.referenced_tag import ReferencedTag
 FlattenedTags.update_forward_refs()
 

@@ -21,15 +21,15 @@ import json
 
 from typing import List, Optional
 from pydantic import BaseModel, Field, StrictStr, conlist
-from openapi_client.models.embedded_model_schema import EmbeddedModelSchema
-from openapi_client.models.mechanism_enum import MechanismEnum
-from openapi_client.models.seeded_anchor import SeededAnchor
-from openapi_client.models.seeded_annotation import SeededAnnotation
-from openapi_client.models.seeded_asset_sensitive import SeededAssetSensitive
-from openapi_client.models.seeded_asset_tag import SeededAssetTag
-from openapi_client.models.seeded_asset_website import SeededAssetWebsite
-from openapi_client.models.seeded_hint import SeededHint
-from openapi_client.models.seeded_person import SeededPerson
+from pieces_client.models.embedded_model_schema import EmbeddedModelSchema
+from pieces_client.models.mechanism_enum import MechanismEnum
+from pieces_client.models.seeded_anchor import SeededAnchor
+from pieces_client.models.seeded_annotation import SeededAnnotation
+from pieces_client.models.seeded_asset_sensitive import SeededAssetSensitive
+from pieces_client.models.seeded_asset_tag import SeededAssetTag
+from pieces_client.models.seeded_asset_website import SeededAssetWebsite
+from pieces_client.models.seeded_hint import SeededHint
+from pieces_client.models.seeded_person import SeededPerson
 
 class SeededAssetMetadata(BaseModel):
     """

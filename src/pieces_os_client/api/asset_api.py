@@ -24,18 +24,18 @@ from pydantic import Field, StrictBool, StrictStr
 
 from typing import Optional
 
-from openapi_client.models.activities import Activities
-from openapi_client.models.asset import Asset
-from openapi_client.models.asset_reclassification import AssetReclassification
-from openapi_client.models.conversations import Conversations
-from openapi_client.models.exported_asset import ExportedAsset
-from openapi_client.models.formats import Formats
-from openapi_client.models.seeded_accessor import SeededAccessor
-from openapi_client.models.seeded_score_increment import SeededScoreIncrement
+from pieces_client.models.activities import Activities
+from pieces_client.models.asset import Asset
+from pieces_client.models.asset_reclassification import AssetReclassification
+from pieces_client.models.conversations import Conversations
+from pieces_client.models.exported_asset import ExportedAsset
+from pieces_client.models.formats import Formats
+from pieces_client.models.seeded_accessor import SeededAccessor
+from pieces_client.models.seeded_score_increment import SeededScoreIncrement
 
-from openapi_client.api_client import ApiClient
-from openapi_client.api_response import ApiResponse
-from openapi_client.exceptions import (  # noqa: F401
+from pieces_client.api_client import ApiClient
+from pieces_client.api_response import ApiResponse
+from pieces_client.exceptions import (  # noqa: F401
     ApiTypeError,
     ApiValueError
 )

@@ -21,7 +21,7 @@ import json
 
 
 from pydantic import BaseModel, Field, StrictInt
-from openapi_client.models.embedded_model_schema_semantic_version_enum import EmbeddedModelSchemaSemanticVersionEnum
+from pieces_client.models.embedded_model_schema_semantic_version_enum import EmbeddedModelSchemaSemanticVersionEnum
 
 class EmbeddedModelSchema(BaseModel):
     """

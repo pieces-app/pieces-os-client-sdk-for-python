@@ -21,8 +21,8 @@ import json
 
 from typing import Optional
 from pydantic import BaseModel, Field
-from openapi_client.models.embedded_model_schema import EmbeddedModelSchema
-from openapi_client.models.graphical_image_descriptive_statistics import GraphicalImageDescriptiveStatistics
+from pieces_client.models.embedded_model_schema import EmbeddedModelSchema
+from pieces_client.models.graphical_image_descriptive_statistics import GraphicalImageDescriptiveStatistics
 
 class GraphicalImageStatistics(BaseModel):
     """

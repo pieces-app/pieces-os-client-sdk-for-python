@@ -21,7 +21,7 @@ import json
 
 from typing import List
 from pydantic import BaseModel, Field, conlist
-from openapi_client.models.seeded_asset_tag import SeededAssetTag
+from pieces_client.models.seeded_asset_tag import SeededAssetTag
 
 class SeededAssetTags(BaseModel):
     """

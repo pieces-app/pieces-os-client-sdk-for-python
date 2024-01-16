@@ -21,15 +21,15 @@ import json
 
 from typing import List, Optional
 from pydantic import BaseModel, Field, StrictBool, StrictStr, conlist
-from openapi_client.models.application import Application
-from openapi_client.models.conversation_type_enum import ConversationTypeEnum
-from openapi_client.models.embedded_model_schema import EmbeddedModelSchema
-from openapi_client.models.flattened_assets import FlattenedAssets
-from openapi_client.models.flattened_websites import FlattenedWebsites
-from openapi_client.models.referenced_model import ReferencedModel
-from openapi_client.models.seeded_anchor import SeededAnchor
-from openapi_client.models.seeded_annotation import SeededAnnotation
-from openapi_client.models.seeded_conversation_message import SeededConversationMessage
+from pieces_client.models.application import Application
+from pieces_client.models.conversation_type_enum import ConversationTypeEnum
+from pieces_client.models.embedded_model_schema import EmbeddedModelSchema
+from pieces_client.models.flattened_assets import FlattenedAssets
+from pieces_client.models.flattened_websites import FlattenedWebsites
+from pieces_client.models.referenced_model import ReferencedModel
+from pieces_client.models.seeded_anchor import SeededAnchor
+from pieces_client.models.seeded_annotation import SeededAnnotation
+from pieces_client.models.seeded_conversation_message import SeededConversationMessage
 
 class SeededConversation(BaseModel):
     """

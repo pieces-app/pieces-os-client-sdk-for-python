@@ -21,13 +21,13 @@ import json
 
 from typing import Optional
 from pydantic import BaseModel, Field
-from openapi_client.models.conversation_message_sentiment_enum import ConversationMessageSentimentEnum
-from openapi_client.models.embedded_model_schema import EmbeddedModelSchema
-from openapi_client.models.fragment_format import FragmentFormat
-from openapi_client.models.grouped_timestamp import GroupedTimestamp
-from openapi_client.models.model import Model
-from openapi_client.models.qgpt_conversation_message_role_enum import QGPTConversationMessageRoleEnum
-from openapi_client.models.referenced_conversation import ReferencedConversation
+from pieces_client.models.conversation_message_sentiment_enum import ConversationMessageSentimentEnum
+from pieces_client.models.embedded_model_schema import EmbeddedModelSchema
+from pieces_client.models.fragment_format import FragmentFormat
+from pieces_client.models.grouped_timestamp import GroupedTimestamp
+from pieces_client.models.model import Model
+from pieces_client.models.qgpt_conversation_message_role_enum import QGPTConversationMessageRoleEnum
+from pieces_client.models.referenced_conversation import ReferencedConversation
 
 class SeededConversationMessage(BaseModel):
     """

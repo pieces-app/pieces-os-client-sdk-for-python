@@ -24,15 +24,15 @@ from pydantic import Field, StrictStr
 
 from typing import Optional
 
-from openapi_client.models.model import Model
-from openapi_client.models.model_delete_cache_input import ModelDeleteCacheInput
-from openapi_client.models.model_delete_cache_output import ModelDeleteCacheOutput
-from openapi_client.models.models import Models
-from openapi_client.models.seeded_model import SeededModel
+from pieces_client.models.model import Model
+from pieces_client.models.model_delete_cache_input import ModelDeleteCacheInput
+from pieces_client.models.model_delete_cache_output import ModelDeleteCacheOutput
+from pieces_client.models.models import Models
+from pieces_client.models.seeded_model import SeededModel
 
-from openapi_client.api_client import ApiClient
-from openapi_client.api_response import ApiResponse
-from openapi_client.exceptions import (  # noqa: F401
+from pieces_client.api_client import ApiClient
+from pieces_client.api_response import ApiResponse
+from pieces_client.exceptions import (  # noqa: F401
     ApiTypeError,
     ApiValueError
 )

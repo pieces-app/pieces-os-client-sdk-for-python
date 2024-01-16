@@ -21,7 +21,7 @@ import json
 
 from typing import Optional
 from pydantic import BaseModel, Field
-from openapi_client.models.embedded_model_schema import EmbeddedModelSchema
+from pieces_client.models.embedded_model_schema import EmbeddedModelSchema
 
 class ConversationGrounding(BaseModel):
     """
@@ -78,6 +78,6 @@ class ConversationGrounding(BaseModel):
         })
         return _obj
 
-from openapi_client.models.flattened_conversation_messages import FlattenedConversationMessages
+from pieces_client.models.flattened_conversation_messages import FlattenedConversationMessages
 ConversationGrounding.update_forward_refs()
 

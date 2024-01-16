@@ -21,8 +21,8 @@ import json
 from datetime import datetime
 from typing import List, Optional
 from pydantic import BaseModel, Field, StrictBool, StrictInt, StrictStr, conlist
-from openapi_client.models.auth0_identity import Auth0Identity
-from openapi_client.models.auth0_user_metadata import Auth0UserMetadata
+from pieces_client.models.auth0_identity import Auth0Identity
+from pieces_client.models.auth0_user_metadata import Auth0UserMetadata
 
 class Auth0User(BaseModel):
     """

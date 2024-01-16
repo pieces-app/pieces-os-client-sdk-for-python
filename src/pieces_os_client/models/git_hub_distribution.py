@@ -21,8 +21,8 @@ import json
 
 from typing import Optional
 from pydantic import BaseModel, Field
-from openapi_client.models.embedded_model_schema import EmbeddedModelSchema
-from openapi_client.models.git_hub_gist_distribution import GitHubGistDistribution
+from pieces_client.models.embedded_model_schema import EmbeddedModelSchema
+from pieces_client.models.git_hub_gist_distribution import GitHubGistDistribution
 
 class GitHubDistribution(BaseModel):
     """

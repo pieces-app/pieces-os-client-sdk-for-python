@@ -21,9 +21,9 @@ import json
 
 from typing import Optional
 from pydantic import BaseModel, Field, StrictBool, StrictStr
-from openapi_client.models.asset_filters import AssetFilters
-from openapi_client.models.asset_search_space import AssetSearchSpace
-from openapi_client.models.embedded_model_schema import EmbeddedModelSchema
+from pieces_client.models.asset_filters import AssetFilters
+from pieces_client.models.asset_search_space import AssetSearchSpace
+from pieces_client.models.embedded_model_schema import EmbeddedModelSchema
 
 class AssetsSearchWithFiltersInput(BaseModel):
     """

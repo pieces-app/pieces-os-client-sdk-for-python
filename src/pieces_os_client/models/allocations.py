@@ -21,8 +21,8 @@ import json
 
 from typing import List, Optional
 from pydantic import BaseModel, Field, conlist
-from openapi_client.models.allocation_cloud import AllocationCloud
-from openapi_client.models.embedded_model_schema import EmbeddedModelSchema
+from pieces_client.models.allocation_cloud import AllocationCloud
+from pieces_client.models.embedded_model_schema import EmbeddedModelSchema
 
 class Allocations(BaseModel):
     """

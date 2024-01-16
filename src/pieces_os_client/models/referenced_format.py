@@ -21,7 +21,7 @@ import json
 
 from typing import Optional
 from pydantic import BaseModel, Field, StrictStr
-from openapi_client.models.embedded_model_schema import EmbeddedModelSchema
+from pieces_client.models.embedded_model_schema import EmbeddedModelSchema
 
 class ReferencedFormat(BaseModel):
     """
@@ -80,6 +80,6 @@ class ReferencedFormat(BaseModel):
         })
         return _obj
 
-from openapi_client.models.flattened_format import FlattenedFormat
+from pieces_client.models.flattened_format import FlattenedFormat
 ReferencedFormat.update_forward_refs()
 

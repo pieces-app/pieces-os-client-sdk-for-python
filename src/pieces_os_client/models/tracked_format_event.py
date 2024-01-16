@@ -21,10 +21,10 @@ import json
 
 from typing import Optional
 from pydantic import BaseModel, Field
-from openapi_client.models.embedded_model_schema import EmbeddedModelSchema
-from openapi_client.models.tracked_format import TrackedFormat
-from openapi_client.models.tracked_format_event_identifier_description_pairs import TrackedFormatEventIdentifierDescriptionPairs
-from openapi_client.models.tracked_format_event_metadata import TrackedFormatEventMetadata
+from pieces_client.models.embedded_model_schema import EmbeddedModelSchema
+from pieces_client.models.tracked_format import TrackedFormat
+from pieces_client.models.tracked_format_event_identifier_description_pairs import TrackedFormatEventIdentifierDescriptionPairs
+from pieces_client.models.tracked_format_event_metadata import TrackedFormatEventMetadata
 
 class TrackedFormatEvent(BaseModel):
     """

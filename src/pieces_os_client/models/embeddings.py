@@ -21,7 +21,7 @@ import json
 
 from typing import List
 from pydantic import BaseModel, Field, conlist
-from openapi_client.models.embedding import Embedding
+from pieces_client.models.embedding import Embedding
 
 class Embeddings(BaseModel):
     """

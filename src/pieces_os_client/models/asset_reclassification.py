@@ -21,9 +21,9 @@ import json
 
 from typing import Optional
 from pydantic import BaseModel, Field
-from openapi_client.models.asset import Asset
-from openapi_client.models.classification_specific_enum import ClassificationSpecificEnum
-from openapi_client.models.embedded_model_schema import EmbeddedModelSchema
+from pieces_client.models.asset import Asset
+from pieces_client.models.classification_specific_enum import ClassificationSpecificEnum
+from pieces_client.models.embedded_model_schema import EmbeddedModelSchema
 
 class AssetReclassification(BaseModel):
     """

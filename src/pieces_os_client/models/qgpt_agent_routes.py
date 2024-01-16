@@ -21,8 +21,8 @@ import json
 
 from typing import Optional
 from pydantic import BaseModel, Field
-from openapi_client.models.embedded_model_schema import EmbeddedModelSchema
-from openapi_client.models.qgpt_agent_related_routes import QGPTAgentRelatedRoutes
+from pieces_client.models.embedded_model_schema import EmbeddedModelSchema
+from pieces_client.models.qgpt_agent_related_routes import QGPTAgentRelatedRoutes
 
 class QGPTAgentRoutes(BaseModel):
     """

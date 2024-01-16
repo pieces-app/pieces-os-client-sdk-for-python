@@ -21,12 +21,12 @@ import json
 
 from typing import Optional
 from pydantic import BaseModel, Field, StrictStr
-from openapi_client.models.embedded_model_schema import EmbeddedModelSchema
-from openapi_client.models.grouped_timestamp import GroupedTimestamp
-from openapi_client.models.hint_type_enum import HintTypeEnum
-from openapi_client.models.mechanism_enum import MechanismEnum
-from openapi_client.models.referenced_model import ReferencedModel
-from openapi_client.models.score import Score
+from pieces_client.models.embedded_model_schema import EmbeddedModelSchema
+from pieces_client.models.grouped_timestamp import GroupedTimestamp
+from pieces_client.models.hint_type_enum import HintTypeEnum
+from pieces_client.models.mechanism_enum import MechanismEnum
+from pieces_client.models.referenced_model import ReferencedModel
+from pieces_client.models.score import Score
 
 class FlattenedHint(BaseModel):
     """
@@ -116,6 +116,6 @@ class FlattenedHint(BaseModel):
         })
         return _obj
 
-from openapi_client.models.referenced_asset import ReferencedAsset
+from pieces_client.models.referenced_asset import ReferencedAsset
 FlattenedHint.update_forward_refs()
 

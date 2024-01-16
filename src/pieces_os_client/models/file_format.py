@@ -21,9 +21,9 @@ import json
 
 from typing import Optional
 from pydantic import BaseModel, Field
-from openapi_client.models.embedded_model_schema import EmbeddedModelSchema
-from openapi_client.models.transferable_bytes import TransferableBytes
-from openapi_client.models.transferable_string import TransferableString
+from pieces_client.models.embedded_model_schema import EmbeddedModelSchema
+from pieces_client.models.transferable_bytes import TransferableBytes
+from pieces_client.models.transferable_string import TransferableString
 
 class FileFormat(BaseModel):
     """

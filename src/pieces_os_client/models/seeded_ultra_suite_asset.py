@@ -21,9 +21,9 @@ import json
 
 from typing import Optional
 from pydantic import BaseModel, Field, StrictStr
-from openapi_client.models.classification_specific_enum import ClassificationSpecificEnum
-from openapi_client.models.embedded_model_schema import EmbeddedModelSchema
-from openapi_client.models.seeded_format import SeededFormat
+from pieces_client.models.classification_specific_enum import ClassificationSpecificEnum
+from pieces_client.models.embedded_model_schema import EmbeddedModelSchema
+from pieces_client.models.seeded_format import SeededFormat
 
 class SeededUltraSuiteAsset(BaseModel):
     """

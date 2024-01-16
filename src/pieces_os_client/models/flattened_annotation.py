@@ -21,12 +21,12 @@ import json
 
 from typing import Optional
 from pydantic import BaseModel, Field, StrictBool, StrictStr
-from openapi_client.models.annotation_type_enum import AnnotationTypeEnum
-from openapi_client.models.embedded_model_schema import EmbeddedModelSchema
-from openapi_client.models.grouped_timestamp import GroupedTimestamp
-from openapi_client.models.mechanism_enum import MechanismEnum
-from openapi_client.models.referenced_model import ReferencedModel
-from openapi_client.models.score import Score
+from pieces_client.models.annotation_type_enum import AnnotationTypeEnum
+from pieces_client.models.embedded_model_schema import EmbeddedModelSchema
+from pieces_client.models.grouped_timestamp import GroupedTimestamp
+from pieces_client.models.mechanism_enum import MechanismEnum
+from pieces_client.models.referenced_model import ReferencedModel
+from pieces_client.models.score import Score
 
 class FlattenedAnnotation(BaseModel):
     """
@@ -140,10 +140,10 @@ class FlattenedAnnotation(BaseModel):
         })
         return _obj
 
-from openapi_client.models.flattened_conversation_messages import FlattenedConversationMessages
-from openapi_client.models.referenced_anchor import ReferencedAnchor
-from openapi_client.models.referenced_asset import ReferencedAsset
-from openapi_client.models.referenced_conversation import ReferencedConversation
-from openapi_client.models.referenced_person import ReferencedPerson
+from pieces_client.models.flattened_conversation_messages import FlattenedConversationMessages
+from pieces_client.models.referenced_anchor import ReferencedAnchor
+from pieces_client.models.referenced_asset import ReferencedAsset
+from pieces_client.models.referenced_conversation import ReferencedConversation
+from pieces_client.models.referenced_person import ReferencedPerson
 FlattenedAnnotation.update_forward_refs()
 

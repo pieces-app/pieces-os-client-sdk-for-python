@@ -21,8 +21,8 @@ import json
 
 from typing import Optional
 from pydantic import BaseModel, Field, StrictBool
-from openapi_client.models.assets import Assets
-from openapi_client.models.embedded_model_schema import EmbeddedModelSchema
+from pieces_client.models.assets import Assets
+from pieces_client.models.embedded_model_schema import EmbeddedModelSchema
 
 class ReuseSuggestion(BaseModel):
     """

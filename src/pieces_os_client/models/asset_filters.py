@@ -21,8 +21,8 @@ import json
 
 from typing import List, Optional
 from pydantic import BaseModel, Field, conlist
-from openapi_client.models.embedded_model_schema import EmbeddedModelSchema
-from openapi_client.models.filter_operation_type_enum import FilterOperationTypeEnum
+from pieces_client.models.embedded_model_schema import EmbeddedModelSchema
+from pieces_client.models.filter_operation_type_enum import FilterOperationTypeEnum
 
 class AssetFilters(BaseModel):
     """
@@ -85,6 +85,6 @@ class AssetFilters(BaseModel):
         })
         return _obj
 
-from openapi_client.models.asset_filter import AssetFilter
+from pieces_client.models.asset_filter import AssetFilter
 AssetFilters.update_forward_refs()
 

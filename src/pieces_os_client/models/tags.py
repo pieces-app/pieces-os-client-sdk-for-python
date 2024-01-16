@@ -21,9 +21,9 @@ import json
 
 from typing import Dict, List, Optional
 from pydantic import BaseModel, Field, StrictInt, conlist
-from openapi_client.models.embedded_model_schema import EmbeddedModelSchema
-from openapi_client.models.score import Score
-from openapi_client.models.tag import Tag
+from pieces_client.models.embedded_model_schema import EmbeddedModelSchema
+from pieces_client.models.score import Score
+from pieces_client.models.tag import Tag
 
 class Tags(BaseModel):
     """

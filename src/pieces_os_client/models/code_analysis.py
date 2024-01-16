@@ -21,9 +21,9 @@ import json
 
 from typing import Dict, List, Optional, Union
 from pydantic import BaseModel, Field, StrictFloat, StrictInt, StrictStr, conlist
-from openapi_client.models.classification_generic_enum import ClassificationGenericEnum
-from openapi_client.models.embedded_model_schema import EmbeddedModelSchema
-from openapi_client.models.model import Model
+from pieces_client.models.classification_generic_enum import ClassificationGenericEnum
+from pieces_client.models.embedded_model_schema import EmbeddedModelSchema
+from pieces_client.models.model import Model
 
 class CodeAnalysis(BaseModel):
     """

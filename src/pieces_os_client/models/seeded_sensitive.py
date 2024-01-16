@@ -21,11 +21,11 @@ import json
 
 from typing import Optional
 from pydantic import BaseModel, Field, StrictStr
-from openapi_client.models.embedded_model_schema import EmbeddedModelSchema
-from openapi_client.models.mechanism_enum import MechanismEnum
-from openapi_client.models.sensitive_category_enum import SensitiveCategoryEnum
-from openapi_client.models.sensitive_metadata import SensitiveMetadata
-from openapi_client.models.sensitive_severity_enum import SensitiveSeverityEnum
+from pieces_client.models.embedded_model_schema import EmbeddedModelSchema
+from pieces_client.models.mechanism_enum import MechanismEnum
+from pieces_client.models.sensitive_category_enum import SensitiveCategoryEnum
+from pieces_client.models.sensitive_metadata import SensitiveMetadata
+from pieces_client.models.sensitive_severity_enum import SensitiveSeverityEnum
 
 class SeededSensitive(BaseModel):
     """

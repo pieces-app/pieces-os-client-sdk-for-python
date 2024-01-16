@@ -21,9 +21,9 @@ import json
 
 from typing import Optional
 from pydantic import BaseModel, Field, StrictStr
-from openapi_client.models.embedded_model_schema import EmbeddedModelSchema
-from openapi_client.models.referenced_asset import ReferencedAsset
-from openapi_client.models.seed import Seed
+from pieces_client.models.embedded_model_schema import EmbeddedModelSchema
+from pieces_client.models.referenced_asset import ReferencedAsset
+from pieces_client.models.seed import Seed
 
 class RelevantQGPTSeed(BaseModel):
     """

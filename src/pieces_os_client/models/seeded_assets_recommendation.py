@@ -21,9 +21,9 @@ import json
 
 from typing import Optional
 from pydantic import BaseModel, Field
-from openapi_client.models.assets import Assets
-from openapi_client.models.embedded_model_schema import EmbeddedModelSchema
-from openapi_client.models.interacted_assets import InteractedAssets
+from pieces_client.models.assets import Assets
+from pieces_client.models.embedded_model_schema import EmbeddedModelSchema
+from pieces_client.models.interacted_assets import InteractedAssets
 
 class SeededAssetsRecommendation(BaseModel):
     """

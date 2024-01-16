@@ -21,11 +21,11 @@ import json
 
 from typing import Optional
 from pydantic import BaseModel, Field
-from openapi_client.models.embedded_model_schema import EmbeddedModelSchema
-from openapi_client.models.tlp_code_directory_analytics import TLPCodeDirectoryAnalytics
-from openapi_client.models.tlp_code_file_analytics import TLPCodeFileAnalytics
-from openapi_client.models.tlp_code_repository_analytics import TLPCodeRepositoryAnalytics
-from openapi_client.models.tlp_code_snippet_analytics import TLPCodeSnippetAnalytics
+from pieces_client.models.embedded_model_schema import EmbeddedModelSchema
+from pieces_client.models.tlp_code_directory_analytics import TLPCodeDirectoryAnalytics
+from pieces_client.models.tlp_code_file_analytics import TLPCodeFileAnalytics
+from pieces_client.models.tlp_code_repository_analytics import TLPCodeRepositoryAnalytics
+from pieces_client.models.tlp_code_snippet_analytics import TLPCodeSnippetAnalytics
 
 class TLPCodeProcessing(BaseModel):
     """

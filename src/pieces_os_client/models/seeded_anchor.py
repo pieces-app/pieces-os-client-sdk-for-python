@@ -21,10 +21,10 @@ import json
 
 from typing import List, Optional
 from pydantic import BaseModel, Field, StrictBool, StrictStr, conlist
-from openapi_client.models.anchor_type_enum import AnchorTypeEnum
-from openapi_client.models.embedded_model_schema import EmbeddedModelSchema
-from openapi_client.models.platform_enum import PlatformEnum
-from openapi_client.models.seeded_annotation import SeededAnnotation
+from pieces_client.models.anchor_type_enum import AnchorTypeEnum
+from pieces_client.models.embedded_model_schema import EmbeddedModelSchema
+from pieces_client.models.platform_enum import PlatformEnum
+from pieces_client.models.seeded_annotation import SeededAnnotation
 
 class SeededAnchor(BaseModel):
     """

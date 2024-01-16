@@ -24,14 +24,14 @@ from pydantic import Field, StrictStr
 
 from typing import Optional
 
-from openapi_client.models.embedded_model_schema import EmbeddedModelSchema
-from openapi_client.models.pkce import PKCE
-from openapi_client.models.seeded_pkce import SeededPKCE
-from openapi_client.models.tokenized_pkce import TokenizedPKCE
+from pieces_client.models.embedded_model_schema import EmbeddedModelSchema
+from pieces_client.models.pkce import PKCE
+from pieces_client.models.seeded_pkce import SeededPKCE
+from pieces_client.models.tokenized_pkce import TokenizedPKCE
 
-from openapi_client.api_client import ApiClient
-from openapi_client.api_response import ApiResponse
-from openapi_client.exceptions import (  # noqa: F401
+from pieces_client.api_client import ApiClient
+from pieces_client.api_response import ApiResponse
+from pieces_client.exceptions import (  # noqa: F401
     ApiTypeError,
     ApiValueError
 )

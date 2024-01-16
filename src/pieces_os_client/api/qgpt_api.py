@@ -24,21 +24,21 @@ from pydantic import Field, StrictBool
 
 from typing import Optional
 
-from openapi_client.models.qgpt_hints_input import QGPTHintsInput
-from openapi_client.models.qgpt_persons_related_input import QGPTPersonsRelatedInput
-from openapi_client.models.qgpt_persons_related_output import QGPTPersonsRelatedOutput
-from openapi_client.models.qgpt_question_input import QGPTQuestionInput
-from openapi_client.models.qgpt_question_output import QGPTQuestionOutput
-from openapi_client.models.qgpt_relevance_input import QGPTRelevanceInput
-from openapi_client.models.qgpt_relevance_output import QGPTRelevanceOutput
-from openapi_client.models.qgpt_reprompt_input import QGPTRepromptInput
-from openapi_client.models.qgpt_reprompt_output import QGPTRepromptOutput
-from openapi_client.models.qgpt_stream_input import QGPTStreamInput
-from openapi_client.models.qgpt_stream_output import QGPTStreamOutput
+from pieces_client.models.qgpt_hints_input import QGPTHintsInput
+from pieces_client.models.qgpt_persons_related_input import QGPTPersonsRelatedInput
+from pieces_client.models.qgpt_persons_related_output import QGPTPersonsRelatedOutput
+from pieces_client.models.qgpt_question_input import QGPTQuestionInput
+from pieces_client.models.qgpt_question_output import QGPTQuestionOutput
+from pieces_client.models.qgpt_relevance_input import QGPTRelevanceInput
+from pieces_client.models.qgpt_relevance_output import QGPTRelevanceOutput
+from pieces_client.models.qgpt_reprompt_input import QGPTRepromptInput
+from pieces_client.models.qgpt_reprompt_output import QGPTRepromptOutput
+from pieces_client.models.qgpt_stream_input import QGPTStreamInput
+from pieces_client.models.qgpt_stream_output import QGPTStreamOutput
 
-from openapi_client.api_client import ApiClient
-from openapi_client.api_response import ApiResponse
-from openapi_client.exceptions import (  # noqa: F401
+from pieces_client.api_client import ApiClient
+from pieces_client.api_response import ApiResponse
+from pieces_client.exceptions import (  # noqa: F401
     ApiTypeError,
     ApiValueError
 )

@@ -24,13 +24,13 @@ from pydantic import Field, StrictBool, StrictStr
 
 from typing import Optional
 
-from openapi_client.models.conversation_message import ConversationMessage
-from openapi_client.models.conversation_messages import ConversationMessages
-from openapi_client.models.seeded_conversation_message import SeededConversationMessage
+from pieces_client.models.conversation_message import ConversationMessage
+from pieces_client.models.conversation_messages import ConversationMessages
+from pieces_client.models.seeded_conversation_message import SeededConversationMessage
 
-from openapi_client.api_client import ApiClient
-from openapi_client.api_response import ApiResponse
-from openapi_client.exceptions import (  # noqa: F401
+from pieces_client.api_client import ApiClient
+from pieces_client.api_response import ApiResponse
+from pieces_client.exceptions import (  # noqa: F401
     ApiTypeError,
     ApiValueError
 )

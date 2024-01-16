@@ -21,8 +21,8 @@ import json
 
 from typing import Optional
 from pydantic import BaseModel, Field, StrictBool, StrictStr
-from openapi_client.models.qgpt_question_input import QGPTQuestionInput
-from openapi_client.models.qgpt_relevance_input import QGPTRelevanceInput
+from pieces_client.models.qgpt_question_input import QGPTQuestionInput
+from pieces_client.models.qgpt_relevance_input import QGPTRelevanceInput
 
 class QGPTStreamInput(BaseModel):
     """

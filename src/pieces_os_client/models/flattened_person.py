@@ -21,12 +21,12 @@ import json
 
 from typing import Dict, Optional
 from pydantic import BaseModel, Field, StrictInt, StrictStr
-from openapi_client.models.embedded_model_schema import EmbeddedModelSchema
-from openapi_client.models.grouped_timestamp import GroupedTimestamp
-from openapi_client.models.mechanism_enum import MechanismEnum
-from openapi_client.models.person_access import PersonAccess
-from openapi_client.models.person_type import PersonType
-from openapi_client.models.score import Score
+from pieces_client.models.embedded_model_schema import EmbeddedModelSchema
+from pieces_client.models.grouped_timestamp import GroupedTimestamp
+from pieces_client.models.mechanism_enum import MechanismEnum
+from pieces_client.models.person_access import PersonAccess
+from pieces_client.models.person_type import PersonType
+from pieces_client.models.score import Score
 
 class FlattenedPerson(BaseModel):
     """
@@ -157,10 +157,10 @@ class FlattenedPerson(BaseModel):
         })
         return _obj
 
-from openapi_client.models.flattened_annotations import FlattenedAnnotations
-from openapi_client.models.flattened_assets import FlattenedAssets
-from openapi_client.models.flattened_tags import FlattenedTags
-from openapi_client.models.flattened_websites import FlattenedWebsites
-from openapi_client.models.person_model import PersonModel
+from pieces_client.models.flattened_annotations import FlattenedAnnotations
+from pieces_client.models.flattened_assets import FlattenedAssets
+from pieces_client.models.flattened_tags import FlattenedTags
+from pieces_client.models.flattened_websites import FlattenedWebsites
+from pieces_client.models.person_model import PersonModel
 FlattenedPerson.update_forward_refs()
 

@@ -21,8 +21,8 @@ import json
 
 from typing import Optional
 from pydantic import BaseModel, Field, StrictInt
-from openapi_client.models.embedded_model_schema import EmbeddedModelSchema
-from openapi_client.models.seeded_connector_creation import SeededConnectorCreation
+from pieces_client.models.embedded_model_schema import EmbeddedModelSchema
+from pieces_client.models.seeded_connector_creation import SeededConnectorCreation
 
 class SuggestionTarget(BaseModel):
     """

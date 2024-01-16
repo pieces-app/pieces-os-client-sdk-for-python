@@ -24,13 +24,13 @@ from pydantic import Field, StrictStr
 
 from typing import Optional
 
-from openapi_client.models.hint import Hint
-from openapi_client.models.hints import Hints
-from openapi_client.models.seeded_hint import SeededHint
+from pieces_client.models.hint import Hint
+from pieces_client.models.hints import Hints
+from pieces_client.models.seeded_hint import SeededHint
 
-from openapi_client.api_client import ApiClient
-from openapi_client.api_response import ApiResponse
-from openapi_client.exceptions import (  # noqa: F401
+from pieces_client.api_client import ApiClient
+from pieces_client.api_response import ApiResponse
+from pieces_client.exceptions import (  # noqa: F401
     ApiTypeError,
     ApiValueError
 )

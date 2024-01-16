@@ -21,8 +21,8 @@ import json
 
 from typing import Optional
 from pydantic import BaseModel, Field, StrictStr
-from openapi_client.models.code_analysis import CodeAnalysis
-from openapi_client.models.embedded_model_schema import EmbeddedModelSchema
+from pieces_client.models.code_analysis import CodeAnalysis
+from pieces_client.models.embedded_model_schema import EmbeddedModelSchema
 
 class Analysis(BaseModel):
     """
@@ -88,6 +88,6 @@ class Analysis(BaseModel):
         })
         return _obj
 
-from openapi_client.models.image_analysis import ImageAnalysis
+from pieces_client.models.image_analysis import ImageAnalysis
 Analysis.update_forward_refs()
 

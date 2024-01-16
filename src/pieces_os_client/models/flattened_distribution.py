@@ -21,10 +21,10 @@ import json
 
 from typing import Optional
 from pydantic import BaseModel, Field, StrictStr
-from openapi_client.models.embedded_model_schema import EmbeddedModelSchema
-from openapi_client.models.git_hub_distribution import GitHubDistribution
-from openapi_client.models.grouped_timestamp import GroupedTimestamp
-from openapi_client.models.mailgun_distribution import MailgunDistribution
+from pieces_client.models.embedded_model_schema import EmbeddedModelSchema
+from pieces_client.models.git_hub_distribution import GitHubDistribution
+from pieces_client.models.grouped_timestamp import GroupedTimestamp
+from pieces_client.models.mailgun_distribution import MailgunDistribution
 
 class FlattenedDistribution(BaseModel):
     """

@@ -21,8 +21,8 @@ import json
 
 from typing import Optional
 from pydantic import BaseModel, Field
-from openapi_client.models.embedded_model_schema import EmbeddedModelSchema
-from openapi_client.models.graphical_ocr_descriptive_statistics import GraphicalOCRDescriptiveStatistics
+from pieces_client.models.embedded_model_schema import EmbeddedModelSchema
+from pieces_client.models.graphical_ocr_descriptive_statistics import GraphicalOCRDescriptiveStatistics
 
 class GraphicalOCRStatistics(BaseModel):
     """

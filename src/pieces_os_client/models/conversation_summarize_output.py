@@ -21,9 +21,9 @@ import json
 
 from typing import Optional
 from pydantic import BaseModel, Field
-from openapi_client.models.embedded_model_schema import EmbeddedModelSchema
-from openapi_client.models.referenced_annotation import ReferencedAnnotation
-from openapi_client.models.referenced_conversation import ReferencedConversation
+from pieces_client.models.embedded_model_schema import EmbeddedModelSchema
+from pieces_client.models.referenced_annotation import ReferencedAnnotation
+from pieces_client.models.referenced_conversation import ReferencedConversation
 
 class ConversationSummarizeOutput(BaseModel):
     """
