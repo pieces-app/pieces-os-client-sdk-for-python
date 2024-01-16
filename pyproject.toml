@@ -1,0 +1,24 @@
+[build-system]
+#a list of packages that are needed to build your package.
+requires = ["hatchling"]
+#name of the Python object that frontends will use to perform the build.
+build-backend = "hatchling.build"
+
+[project]
+name = "pieces_os_client_development_pieces"
+version = "0.0.1"
+authors = [
+    { name="Pieces", email="development@pieces.app" },
+]
+description = "A powerful code engine package for writing applications on top of Pieces OS"
+readme = "README.md"
+requires-python = ">=3.8"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+
+[project.urls]
+Homepage = "https://github.com/pieces-app/pieces-os-client-sdk-for-python"
+Issues = "https://github.com/pieces-app/pieces-os-client-sdk-for-python/issues"
