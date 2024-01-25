@@ -21,9 +21,9 @@ import json
 
 from typing import Dict, List, Optional
 from pydantic import BaseModel, Field, StrictInt, conlist
-from pieces_client.models.embedded_model_schema import EmbeddedModelSchema
-from pieces_client.models.score import Score
-from pieces_client.models.website import Website
+from pieces_os_client.models.embedded_model_schema import EmbeddedModelSchema
+from pieces_os_client.models.score import Score
+from pieces_os_client.models.website import Website
 
 class Websites(BaseModel):
     """

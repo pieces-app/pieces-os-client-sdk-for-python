@@ -21,9 +21,9 @@ import json
 
 from typing import Optional
 from pydantic import BaseModel, Field
-from pieces_client.models.embedded_model_schema import EmbeddedModelSchema
-from pieces_client.models.qgpt_question_output import QGPTQuestionOutput
-from pieces_client.models.relevant_qgpt_seeds import RelevantQGPTSeeds
+from pieces_os_client.models.embedded_model_schema import EmbeddedModelSchema
+from pieces_os_client.models.qgpt_question_output import QGPTQuestionOutput
+from pieces_os_client.models.relevant_qgpt_seeds import RelevantQGPTSeeds
 
 class QGPTRelevanceOutput(BaseModel):
     """

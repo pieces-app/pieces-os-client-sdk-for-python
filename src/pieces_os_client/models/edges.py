@@ -21,7 +21,7 @@ import json
 
 from typing import List
 from pydantic import BaseModel, Field, conlist
-from pieces_client.models.node import Node
+from pieces_os_client.models.node import Node
 
 class Edges(BaseModel):
     """

@@ -21,7 +21,7 @@ import json
 
 from typing import Optional, Union
 from pydantic import BaseModel, Field, StrictFloat, StrictInt, StrictStr
-from pieces_client.models.embedded_model_schema import EmbeddedModelSchema
+from pieces_os_client.models.embedded_model_schema import EmbeddedModelSchema
 
 class TLPCodeSnippetTagifyCode(BaseModel):
     """

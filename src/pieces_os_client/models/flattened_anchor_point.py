@@ -21,10 +21,10 @@ import json
 
 from typing import Optional
 from pydantic import BaseModel, Field, StrictBool, StrictStr
-from pieces_client.models.embedded_model_schema import EmbeddedModelSchema
-from pieces_client.models.grouped_timestamp import GroupedTimestamp
-from pieces_client.models.platform_enum import PlatformEnum
-from pieces_client.models.score import Score
+from pieces_os_client.models.embedded_model_schema import EmbeddedModelSchema
+from pieces_os_client.models.grouped_timestamp import GroupedTimestamp
+from pieces_os_client.models.platform_enum import PlatformEnum
+from pieces_os_client.models.score import Score
 
 class FlattenedAnchorPoint(BaseModel):
     """
@@ -109,6 +109,6 @@ class FlattenedAnchorPoint(BaseModel):
         })
         return _obj
 
-from pieces_client.models.referenced_anchor import ReferencedAnchor
+from pieces_os_client.models.referenced_anchor import ReferencedAnchor
 FlattenedAnchorPoint.update_forward_refs()
 

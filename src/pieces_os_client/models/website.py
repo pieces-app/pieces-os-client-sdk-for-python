@@ -21,13 +21,13 @@ import json
 
 from typing import Dict, Optional
 from pydantic import BaseModel, Field, StrictInt, StrictStr
-from pieces_client.models.embedded_model_schema import EmbeddedModelSchema
-from pieces_client.models.flattened_assets import FlattenedAssets
-from pieces_client.models.flattened_conversations import FlattenedConversations
-from pieces_client.models.flattened_persons import FlattenedPersons
-from pieces_client.models.grouped_timestamp import GroupedTimestamp
-from pieces_client.models.mechanism_enum import MechanismEnum
-from pieces_client.models.score import Score
+from pieces_os_client.models.embedded_model_schema import EmbeddedModelSchema
+from pieces_os_client.models.flattened_assets import FlattenedAssets
+from pieces_os_client.models.flattened_conversations import FlattenedConversations
+from pieces_os_client.models.flattened_persons import FlattenedPersons
+from pieces_os_client.models.grouped_timestamp import GroupedTimestamp
+from pieces_os_client.models.mechanism_enum import MechanismEnum
+from pieces_os_client.models.score import Score
 
 class Website(BaseModel):
     """

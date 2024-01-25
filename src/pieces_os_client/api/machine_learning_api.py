@@ -24,12 +24,12 @@ from pydantic import Field, StrictBool
 
 from typing import Optional
 
-from pieces_client.models.segmented_technical_language import SegmentedTechnicalLanguage
-from pieces_client.models.unsegmented_technical_language import UnsegmentedTechnicalLanguage
+from pieces_os_client.models.segmented_technical_language import SegmentedTechnicalLanguage
+from pieces_os_client.models.unsegmented_technical_language import UnsegmentedTechnicalLanguage
 
-from pieces_client.api_client import ApiClient
-from pieces_client.api_response import ApiResponse
-from pieces_client.exceptions import (  # noqa: F401
+from pieces_os_client.api_client import ApiClient
+from pieces_os_client.api_response import ApiResponse
+from pieces_os_client.exceptions import (  # noqa: F401
     ApiTypeError,
     ApiValueError
 )

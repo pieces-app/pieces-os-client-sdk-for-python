@@ -21,8 +21,8 @@ import json
 
 
 from pydantic import BaseModel, Field, StrictBool, StrictStr
-from pieces_client.models.grouped_timestamp import GroupedTimestamp
-from pieces_client.models.node_type_enum import NodeTypeEnum
+from pieces_os_client.models.grouped_timestamp import GroupedTimestamp
+from pieces_os_client.models.node_type_enum import NodeTypeEnum
 
 class Node(BaseModel):
     """

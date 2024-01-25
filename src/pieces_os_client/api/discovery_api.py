@@ -24,18 +24,18 @@ from pydantic import Field, StrictBool
 
 from typing import Optional
 
-from pieces_client.models.discovered_assets import DiscoveredAssets
-from pieces_client.models.discovered_html_webpages import DiscoveredHtmlWebpages
-from pieces_client.models.discovered_related_tags import DiscoveredRelatedTags
-from pieces_client.models.discovered_sensitives import DiscoveredSensitives
-from pieces_client.models.seeded_discoverable_assets import SeededDiscoverableAssets
-from pieces_client.models.seeded_discoverable_html_webpages import SeededDiscoverableHtmlWebpages
-from pieces_client.models.seeded_discoverable_related_tags import SeededDiscoverableRelatedTags
-from pieces_client.models.seeded_discoverable_sensitives import SeededDiscoverableSensitives
+from pieces_os_client.models.discovered_assets import DiscoveredAssets
+from pieces_os_client.models.discovered_html_webpages import DiscoveredHtmlWebpages
+from pieces_os_client.models.discovered_related_tags import DiscoveredRelatedTags
+from pieces_os_client.models.discovered_sensitives import DiscoveredSensitives
+from pieces_os_client.models.seeded_discoverable_assets import SeededDiscoverableAssets
+from pieces_os_client.models.seeded_discoverable_html_webpages import SeededDiscoverableHtmlWebpages
+from pieces_os_client.models.seeded_discoverable_related_tags import SeededDiscoverableRelatedTags
+from pieces_os_client.models.seeded_discoverable_sensitives import SeededDiscoverableSensitives
 
-from pieces_client.api_client import ApiClient
-from pieces_client.api_response import ApiResponse
-from pieces_client.exceptions import (  # noqa: F401
+from pieces_os_client.api_client import ApiClient
+from pieces_os_client.api_response import ApiResponse
+from pieces_os_client.exceptions import (  # noqa: F401
     ApiTypeError,
     ApiValueError
 )

@@ -21,12 +21,12 @@ import json
 
 from typing import Optional
 from pydantic import BaseModel, Field, StrictBool, StrictStr
-from pieces_client.models.application import Application
-from pieces_client.models.conversation_type_enum import ConversationTypeEnum
-from pieces_client.models.embedded_model_schema import EmbeddedModelSchema
-from pieces_client.models.grouped_timestamp import GroupedTimestamp
-from pieces_client.models.referenced_model import ReferencedModel
-from pieces_client.models.score import Score
+from pieces_os_client.models.application import Application
+from pieces_os_client.models.conversation_type_enum import ConversationTypeEnum
+from pieces_os_client.models.embedded_model_schema import EmbeddedModelSchema
+from pieces_os_client.models.grouped_timestamp import GroupedTimestamp
+from pieces_os_client.models.referenced_model import ReferencedModel
+from pieces_os_client.models.score import Score
 
 class FlattenedConversation(BaseModel):
     """
@@ -146,11 +146,11 @@ class FlattenedConversation(BaseModel):
         })
         return _obj
 
-from pieces_client.models.conversation_grounding import ConversationGrounding
-from pieces_client.models.flattened_anchors import FlattenedAnchors
-from pieces_client.models.flattened_annotations import FlattenedAnnotations
-from pieces_client.models.flattened_assets import FlattenedAssets
-from pieces_client.models.flattened_conversation_messages import FlattenedConversationMessages
-from pieces_client.models.flattened_websites import FlattenedWebsites
+from pieces_os_client.models.conversation_grounding import ConversationGrounding
+from pieces_os_client.models.flattened_anchors import FlattenedAnchors
+from pieces_os_client.models.flattened_annotations import FlattenedAnnotations
+from pieces_os_client.models.flattened_assets import FlattenedAssets
+from pieces_os_client.models.flattened_conversation_messages import FlattenedConversationMessages
+from pieces_os_client.models.flattened_websites import FlattenedWebsites
 FlattenedConversation.update_forward_refs()
 

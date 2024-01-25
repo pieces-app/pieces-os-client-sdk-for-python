@@ -21,8 +21,8 @@ import json
 
 from typing import Optional
 from pydantic import BaseModel, Field
-from pieces_client.models.embedded_model_schema import EmbeddedModelSchema
-from pieces_client.models.text_location import TextLocation
+from pieces_os_client.models.embedded_model_schema import EmbeddedModelSchema
+from pieces_os_client.models.text_location import TextLocation
 
 class TextMatch(BaseModel):
     """

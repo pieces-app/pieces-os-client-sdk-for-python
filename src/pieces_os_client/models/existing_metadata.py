@@ -21,9 +21,9 @@ import json
 
 from typing import Optional
 from pydantic import BaseModel, Field
-from pieces_client.models.embedded_model_schema import EmbeddedModelSchema
-from pieces_client.models.referenced_tag import ReferencedTag
-from pieces_client.models.referenced_website import ReferencedWebsite
+from pieces_os_client.models.embedded_model_schema import EmbeddedModelSchema
+from pieces_os_client.models.referenced_tag import ReferencedTag
+from pieces_os_client.models.referenced_website import ReferencedWebsite
 
 class ExistingMetadata(BaseModel):
     """

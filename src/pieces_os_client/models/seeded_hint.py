@@ -21,9 +21,9 @@ import json
 
 from typing import Optional
 from pydantic import BaseModel, Field, StrictStr
-from pieces_client.models.embedded_model_schema import EmbeddedModelSchema
-from pieces_client.models.hint_type_enum import HintTypeEnum
-from pieces_client.models.mechanism_enum import MechanismEnum
+from pieces_os_client.models.embedded_model_schema import EmbeddedModelSchema
+from pieces_os_client.models.hint_type_enum import HintTypeEnum
+from pieces_os_client.models.mechanism_enum import MechanismEnum
 
 class SeededHint(BaseModel):
     """

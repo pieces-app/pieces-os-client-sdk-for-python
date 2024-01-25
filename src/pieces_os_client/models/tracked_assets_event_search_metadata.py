@@ -21,7 +21,7 @@ import json
 
 from typing import Optional
 from pydantic import BaseModel, Field, StrictStr
-from pieces_client.models.embedded_model_schema import EmbeddedModelSchema
+from pieces_os_client.models.embedded_model_schema import EmbeddedModelSchema
 
 class TrackedAssetsEventSearchMetadata(BaseModel):
     """
@@ -80,6 +80,6 @@ class TrackedAssetsEventSearchMetadata(BaseModel):
         })
         return _obj
 
-from pieces_client.models.tracked_assets_event_search_metadata_results import TrackedAssetsEventSearchMetadataResults
+from pieces_os_client.models.tracked_assets_event_search_metadata_results import TrackedAssetsEventSearchMetadataResults
 TrackedAssetsEventSearchMetadata.update_forward_refs()
 

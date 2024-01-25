@@ -21,23 +21,23 @@ import json
 
 from typing import Optional
 from pydantic import BaseModel, Field, StrictBool, StrictStr
-from pieces_client.models.activities import Activities
-from pieces_client.models.anchors import Anchors
-from pieces_client.models.annotations import Annotations
-from pieces_client.models.conversations import Conversations
-from pieces_client.models.embedded_model_schema import EmbeddedModelSchema
-from pieces_client.models.formats import Formats
-from pieces_client.models.grouped_timestamp import GroupedTimestamp
-from pieces_client.models.hints import Hints
-from pieces_client.models.mechanism_enum import MechanismEnum
-from pieces_client.models.persons import Persons
-from pieces_client.models.preview import Preview
-from pieces_client.models.referenced_format import ReferencedFormat
-from pieces_client.models.score import Score
-from pieces_client.models.sensitives import Sensitives
-from pieces_client.models.shares import Shares
-from pieces_client.models.tags import Tags
-from pieces_client.models.websites import Websites
+from pieces_os_client.models.activities import Activities
+from pieces_os_client.models.anchors import Anchors
+from pieces_os_client.models.annotations import Annotations
+from pieces_os_client.models.conversations import Conversations
+from pieces_os_client.models.embedded_model_schema import EmbeddedModelSchema
+from pieces_os_client.models.formats import Formats
+from pieces_os_client.models.grouped_timestamp import GroupedTimestamp
+from pieces_os_client.models.hints import Hints
+from pieces_os_client.models.mechanism_enum import MechanismEnum
+from pieces_os_client.models.persons import Persons
+from pieces_os_client.models.preview import Preview
+from pieces_os_client.models.referenced_format import ReferencedFormat
+from pieces_os_client.models.score import Score
+from pieces_os_client.models.sensitives import Sensitives
+from pieces_os_client.models.shares import Shares
+from pieces_os_client.models.tags import Tags
+from pieces_os_client.models.websites import Websites
 
 class Asset(BaseModel):
     """

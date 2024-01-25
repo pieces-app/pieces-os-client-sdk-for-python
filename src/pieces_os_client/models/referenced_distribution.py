@@ -21,8 +21,8 @@ import json
 
 from typing import Optional
 from pydantic import BaseModel, Field, StrictStr
-from pieces_client.models.embedded_model_schema import EmbeddedModelSchema
-from pieces_client.models.flattened_distribution import FlattenedDistribution
+from pieces_os_client.models.embedded_model_schema import EmbeddedModelSchema
+from pieces_os_client.models.flattened_distribution import FlattenedDistribution
 
 class ReferencedDistribution(BaseModel):
     """

@@ -21,9 +21,9 @@ import json
 
 from typing import Optional
 from pydantic import BaseModel, Field, StrictStr
-from pieces_client.models.embedded_model_schema import EmbeddedModelSchema
-from pieces_client.models.mechanism_enum import MechanismEnum
-from pieces_client.models.tag_category_enum import TagCategoryEnum
+from pieces_os_client.models.embedded_model_schema import EmbeddedModelSchema
+from pieces_os_client.models.mechanism_enum import MechanismEnum
+from pieces_os_client.models.tag_category_enum import TagCategoryEnum
 
 class SeededTag(BaseModel):
     """

@@ -21,9 +21,9 @@ import json
 
 from typing import Optional
 from pydantic import BaseModel
-from pieces_client.models.tracked_asset_event_creation_metadata import TrackedAssetEventCreationMetadata
-from pieces_client.models.tracked_asset_event_format_reclassification_metadata import TrackedAssetEventFormatReclassificationMetadata
-from pieces_client.models.tracked_asset_event_rename_metadata import TrackedAssetEventRenameMetadata
+from pieces_os_client.models.tracked_asset_event_creation_metadata import TrackedAssetEventCreationMetadata
+from pieces_os_client.models.tracked_asset_event_format_reclassification_metadata import TrackedAssetEventFormatReclassificationMetadata
+from pieces_os_client.models.tracked_asset_event_rename_metadata import TrackedAssetEventRenameMetadata
 
 class TrackedAssetEventMetadata(BaseModel):
     """
@@ -130,14 +130,14 @@ class TrackedAssetEventMetadata(BaseModel):
         })
         return _obj
 
-from pieces_client.models.referenced_anchor import ReferencedAnchor
-from pieces_client.models.referenced_annotation import ReferencedAnnotation
-from pieces_client.models.referenced_hint import ReferencedHint
-from pieces_client.models.referenced_person import ReferencedPerson
-from pieces_client.models.referenced_sensitive import ReferencedSensitive
-from pieces_client.models.referenced_share import ReferencedShare
-from pieces_client.models.referenced_tag import ReferencedTag
-from pieces_client.models.referenced_website import ReferencedWebsite
-from pieces_client.models.tracked_assets_event_search_metadata import TrackedAssetsEventSearchMetadata
+from pieces_os_client.models.referenced_anchor import ReferencedAnchor
+from pieces_os_client.models.referenced_annotation import ReferencedAnnotation
+from pieces_os_client.models.referenced_hint import ReferencedHint
+from pieces_os_client.models.referenced_person import ReferencedPerson
+from pieces_os_client.models.referenced_sensitive import ReferencedSensitive
+from pieces_os_client.models.referenced_share import ReferencedShare
+from pieces_os_client.models.referenced_tag import ReferencedTag
+from pieces_os_client.models.referenced_website import ReferencedWebsite
+from pieces_os_client.models.tracked_assets_event_search_metadata import TrackedAssetsEventSearchMetadata
 TrackedAssetEventMetadata.update_forward_refs()
 

@@ -21,8 +21,8 @@ import json
 
 from typing import Optional
 from pydantic import BaseModel
-from pieces_client.models.grouped_timestamp import GroupedTimestamp
-from pieces_client.models.referenced_model import ReferencedModel
+from pieces_os_client.models.grouped_timestamp import GroupedTimestamp
+from pieces_os_client.models.referenced_model import ReferencedModel
 
 class PersonModel(BaseModel):
     """
@@ -89,7 +89,7 @@ class PersonModel(BaseModel):
         })
         return _obj
 
-from pieces_client.models.referenced_annotation import ReferencedAnnotation
-from pieces_client.models.referenced_asset import ReferencedAsset
+from pieces_os_client.models.referenced_annotation import ReferencedAnnotation
+from pieces_os_client.models.referenced_asset import ReferencedAsset
 PersonModel.update_forward_refs()
 

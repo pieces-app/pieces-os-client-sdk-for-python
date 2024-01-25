@@ -21,12 +21,12 @@ import json
 
 from typing import Optional
 from pydantic import BaseModel, Field
-from pieces_client.models.embedded_model_schema import EmbeddedModelSchema
-from pieces_client.models.seeded_tracked_adoption_event import SeededTrackedAdoptionEvent
-from pieces_client.models.seeded_tracked_interaction_event import SeededTrackedInteractionEvent
-from pieces_client.models.seeded_tracked_keyboard_event import SeededTrackedKeyboardEvent
-from pieces_client.models.seeded_tracked_machine_learning_event import SeededTrackedMachineLearningEvent
-from pieces_client.models.seeded_tracked_session_event import SeededTrackedSessionEvent
+from pieces_os_client.models.embedded_model_schema import EmbeddedModelSchema
+from pieces_os_client.models.seeded_tracked_adoption_event import SeededTrackedAdoptionEvent
+from pieces_os_client.models.seeded_tracked_interaction_event import SeededTrackedInteractionEvent
+from pieces_os_client.models.seeded_tracked_keyboard_event import SeededTrackedKeyboardEvent
+from pieces_os_client.models.seeded_tracked_machine_learning_event import SeededTrackedMachineLearningEvent
+from pieces_os_client.models.seeded_tracked_session_event import SeededTrackedSessionEvent
 
 class SeededConnectorTracking(BaseModel):
     """
@@ -123,9 +123,9 @@ class SeededConnectorTracking(BaseModel):
         })
         return _obj
 
-from pieces_client.models.seeded_tracked_asset_event import SeededTrackedAssetEvent
-from pieces_client.models.seeded_tracked_assets_event import SeededTrackedAssetsEvent
-from pieces_client.models.seeded_tracked_conversation_event import SeededTrackedConversationEvent
-from pieces_client.models.seeded_tracked_format_event import SeededTrackedFormatEvent
+from pieces_os_client.models.seeded_tracked_asset_event import SeededTrackedAssetEvent
+from pieces_os_client.models.seeded_tracked_assets_event import SeededTrackedAssetsEvent
+from pieces_os_client.models.seeded_tracked_conversation_event import SeededTrackedConversationEvent
+from pieces_os_client.models.seeded_tracked_format_event import SeededTrackedFormatEvent
 SeededConnectorTracking.update_forward_refs()
 

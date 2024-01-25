@@ -21,10 +21,10 @@ import json
 
 from typing import Optional
 from pydantic import BaseModel, Field
-from pieces_client.models.embedded_model_schema import EmbeddedModelSchema
-from pieces_client.models.seeded_classification import SeededClassification
-from pieces_client.models.seeded_file import SeededFile
-from pieces_client.models.seeded_fragment import SeededFragment
+from pieces_os_client.models.embedded_model_schema import EmbeddedModelSchema
+from pieces_os_client.models.seeded_classification import SeededClassification
+from pieces_os_client.models.seeded_file import SeededFile
+from pieces_os_client.models.seeded_fragment import SeededFragment
 
 class SeededFormat(BaseModel):
     """

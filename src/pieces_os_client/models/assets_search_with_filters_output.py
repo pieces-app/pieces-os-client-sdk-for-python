@@ -21,8 +21,8 @@ import json
 
 from typing import Optional
 from pydantic import BaseModel, Field
-from pieces_client.models.embedded_model_schema import EmbeddedModelSchema
-from pieces_client.models.searched_assets import SearchedAssets
+from pieces_os_client.models.embedded_model_schema import EmbeddedModelSchema
+from pieces_os_client.models.searched_assets import SearchedAssets
 
 class AssetsSearchWithFiltersOutput(BaseModel):
     """

@@ -21,8 +21,8 @@ import json
 
 from typing import List, Optional
 from pydantic import BaseModel, Field, StrictStr, conlist, validator
-from pieces_client.models.embedded_model_schema import EmbeddedModelSchema
-from pieces_client.models.seeded_pkceadditionalparameters import SeededPKCEADDITIONALPARAMETERS
+from pieces_os_client.models.embedded_model_schema import EmbeddedModelSchema
+from pieces_os_client.models.seeded_pkceadditionalparameters import SeededPKCEADDITIONALPARAMETERS
 
 class SeededPKCE(BaseModel):
     """

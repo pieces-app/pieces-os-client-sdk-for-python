@@ -21,9 +21,9 @@ import json
 
 from typing import Optional
 from pydantic import BaseModel, Field
-from pieces_client.models.embedded_model_schema import EmbeddedModelSchema
-from pieces_client.models.seeded_asset_metadata import SeededAssetMetadata
-from pieces_client.models.seeded_format import SeededFormat
+from pieces_os_client.models.embedded_model_schema import EmbeddedModelSchema
+from pieces_os_client.models.seeded_asset_metadata import SeededAssetMetadata
+from pieces_os_client.models.seeded_format import SeededFormat
 
 class SeededConnectorAsset(BaseModel):
     """

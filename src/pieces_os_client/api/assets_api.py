@@ -24,21 +24,21 @@ from pydantic import Field, StrictBool, StrictStr
 
 from typing import Optional
 
-from pieces_client.models.asset import Asset
-from pieces_client.models.assets import Assets
-from pieces_client.models.assets_search_with_filters_input import AssetsSearchWithFiltersInput
-from pieces_client.models.assets_search_with_filters_output import AssetsSearchWithFiltersOutput
-from pieces_client.models.flattened_assets import FlattenedAssets
-from pieces_client.models.formats import Formats
-from pieces_client.models.pseudo_assets import PseudoAssets
-from pieces_client.models.searched_assets import SearchedAssets
-from pieces_client.models.seed import Seed
-from pieces_client.models.seeded_assets_recommendation import SeededAssetsRecommendation
-from pieces_client.models.streamed_identifiers import StreamedIdentifiers
+from pieces_os_client.models.asset import Asset
+from pieces_os_client.models.assets import Assets
+from pieces_os_client.models.assets_search_with_filters_input import AssetsSearchWithFiltersInput
+from pieces_os_client.models.assets_search_with_filters_output import AssetsSearchWithFiltersOutput
+from pieces_os_client.models.flattened_assets import FlattenedAssets
+from pieces_os_client.models.formats import Formats
+from pieces_os_client.models.pseudo_assets import PseudoAssets
+from pieces_os_client.models.searched_assets import SearchedAssets
+from pieces_os_client.models.seed import Seed
+from pieces_os_client.models.seeded_assets_recommendation import SeededAssetsRecommendation
+from pieces_os_client.models.streamed_identifiers import StreamedIdentifiers
 
-from pieces_client.api_client import ApiClient
-from pieces_client.api_response import ApiResponse
-from pieces_client.exceptions import (  # noqa: F401
+from pieces_os_client.api_client import ApiClient
+from pieces_os_client.api_response import ApiResponse
+from pieces_os_client.exceptions import (  # noqa: F401
     ApiTypeError,
     ApiValueError
 )

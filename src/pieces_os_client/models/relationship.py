@@ -21,10 +21,10 @@ import json
 
 from typing import Optional
 from pydantic import BaseModel, Field, StrictStr
-from pieces_client.models.edges import Edges
-from pieces_client.models.embedded_model_schema import EmbeddedModelSchema
-from pieces_client.models.embeddings import Embeddings
-from pieces_client.models.grouped_timestamp import GroupedTimestamp
+from pieces_os_client.models.edges import Edges
+from pieces_os_client.models.embedded_model_schema import EmbeddedModelSchema
+from pieces_os_client.models.embeddings import Embeddings
+from pieces_os_client.models.grouped_timestamp import GroupedTimestamp
 
 class Relationship(BaseModel):
     """

@@ -21,7 +21,7 @@ import json
 
 from typing import Optional
 from pydantic import BaseModel
-from pieces_client.models.tracked_asset_event_format_reclassification_metadata import TrackedAssetEventFormatReclassificationMetadata
+from pieces_os_client.models.tracked_asset_event_format_reclassification_metadata import TrackedAssetEventFormatReclassificationMetadata
 
 class TrackedFormatEventMetadata(BaseModel):
     """

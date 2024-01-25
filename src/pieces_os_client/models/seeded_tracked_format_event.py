@@ -21,9 +21,9 @@ import json
 
 from typing import Optional
 from pydantic import BaseModel, Field
-from pieces_client.models.embedded_model_schema import EmbeddedModelSchema
-from pieces_client.models.tracked_format_event_identifier_description_pairs import TrackedFormatEventIdentifierDescriptionPairs
-from pieces_client.models.tracked_format_event_metadata import TrackedFormatEventMetadata
+from pieces_os_client.models.embedded_model_schema import EmbeddedModelSchema
+from pieces_os_client.models.tracked_format_event_identifier_description_pairs import TrackedFormatEventIdentifierDescriptionPairs
+from pieces_os_client.models.tracked_format_event_metadata import TrackedFormatEventMetadata
 
 class SeededTrackedFormatEvent(BaseModel):
     """
@@ -90,6 +90,6 @@ class SeededTrackedFormatEvent(BaseModel):
         })
         return _obj
 
-from pieces_client.models.referenced_format import ReferencedFormat
+from pieces_os_client.models.referenced_format import ReferencedFormat
 SeededTrackedFormatEvent.update_forward_refs()
 

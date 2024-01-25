@@ -21,11 +21,11 @@ import json
 
 from typing import Optional
 from pydantic import BaseModel, Field, StrictStr
-from pieces_client.models.auth0_identity import Auth0Identity
-from pieces_client.models.auth0_redirects import Auth0Redirects
-from pieces_client.models.auth0_user import Auth0User
-from pieces_client.models.auth0_user_metadata import Auth0UserMetadata
-from pieces_client.models.o_auth_group import OAuthGroup
+from pieces_os_client.models.auth0_identity import Auth0Identity
+from pieces_os_client.models.auth0_redirects import Auth0Redirects
+from pieces_os_client.models.auth0_user import Auth0User
+from pieces_os_client.models.auth0_user_metadata import Auth0UserMetadata
+from pieces_os_client.models.o_auth_group import OAuthGroup
 
 class Auth0(BaseModel):
     """

@@ -24,13 +24,13 @@ from pydantic import Field, StrictBool, StrictStr
 
 from typing import Optional
 
-from pieces_client.models.anchor import Anchor
-from pieces_client.models.anchors import Anchors
-from pieces_client.models.seeded_anchor import SeededAnchor
+from pieces_os_client.models.anchor import Anchor
+from pieces_os_client.models.anchors import Anchors
+from pieces_os_client.models.seeded_anchor import SeededAnchor
 
-from pieces_client.api_client import ApiClient
-from pieces_client.api_response import ApiResponse
-from pieces_client.exceptions import (  # noqa: F401
+from pieces_os_client.api_client import ApiClient
+from pieces_os_client.api_response import ApiResponse
+from pieces_os_client.exceptions import (  # noqa: F401
     ApiTypeError,
     ApiValueError
 )

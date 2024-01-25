@@ -21,8 +21,8 @@ import json
 
 from typing import Optional
 from pydantic import BaseModel, Field
-from pieces_client.models.analytics_tracked_adoption_event_identifier_description_pairs import AnalyticsTrackedAdoptionEventIdentifierDescriptionPairs
-from pieces_client.models.embedded_model_schema import EmbeddedModelSchema
+from pieces_os_client.models.analytics_tracked_adoption_event_identifier_description_pairs import AnalyticsTrackedAdoptionEventIdentifierDescriptionPairs
+from pieces_os_client.models.embedded_model_schema import EmbeddedModelSchema
 
 class SeededTrackedAdoptionEvent(BaseModel):
     """

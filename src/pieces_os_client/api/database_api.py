@@ -21,11 +21,11 @@ from pydantic import validate_arguments, ValidationError
 
 from typing import Optional
 
-from pieces_client.models.exported_database import ExportedDatabase
+from pieces_os_client.models.exported_database import ExportedDatabase
 
-from pieces_client.api_client import ApiClient
-from pieces_client.api_response import ApiResponse
-from pieces_client.exceptions import (  # noqa: F401
+from pieces_os_client.api_client import ApiClient
+from pieces_os_client.api_response import ApiResponse
+from pieces_os_client.exceptions import (  # noqa: F401
     ApiTypeError,
     ApiValueError
 )

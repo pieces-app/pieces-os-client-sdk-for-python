@@ -21,7 +21,7 @@ import json
 
 from typing import List
 from pydantic import BaseModel, Field, conlist
-from pieces_client.models.tlp_directed_discovery_filter import TLPDirectedDiscoveryFilter
+from pieces_os_client.models.tlp_directed_discovery_filter import TLPDirectedDiscoveryFilter
 
 class TLPDirectedDiscoveryFilters(BaseModel):
     """

@@ -24,13 +24,13 @@ from pydantic import Field, StrictStr
 
 from typing import Optional
 
-from pieces_client.models.annotation import Annotation
-from pieces_client.models.annotations import Annotations
-from pieces_client.models.seeded_annotation import SeededAnnotation
+from pieces_os_client.models.annotation import Annotation
+from pieces_os_client.models.annotations import Annotations
+from pieces_os_client.models.seeded_annotation import SeededAnnotation
 
-from pieces_client.api_client import ApiClient
-from pieces_client.api_response import ApiResponse
-from pieces_client.exceptions import (  # noqa: F401
+from pieces_os_client.api_client import ApiClient
+from pieces_os_client.api_response import ApiResponse
+from pieces_os_client.exceptions import (  # noqa: F401
     ApiTypeError,
     ApiValueError
 )

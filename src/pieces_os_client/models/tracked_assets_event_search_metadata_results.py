@@ -21,7 +21,7 @@ import json
 
 from typing import Optional, Union
 from pydantic import BaseModel, Field, StrictFloat, StrictInt
-from pieces_client.models.space import Space
+from pieces_os_client.models.space import Space
 
 class TrackedAssetsEventSearchMetadataResults(BaseModel):
     """
@@ -82,6 +82,6 @@ class TrackedAssetsEventSearchMetadataResults(BaseModel):
         })
         return _obj
 
-from pieces_client.models.flattened_assets import FlattenedAssets
+from pieces_os_client.models.flattened_assets import FlattenedAssets
 TrackedAssetsEventSearchMetadataResults.update_forward_refs()
 

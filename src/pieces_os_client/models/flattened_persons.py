@@ -21,8 +21,8 @@ import json
 
 from typing import Dict, List, Optional
 from pydantic import BaseModel, Field, StrictInt, conlist
-from pieces_client.models.embedded_model_schema import EmbeddedModelSchema
-from pieces_client.models.score import Score
+from pieces_os_client.models.embedded_model_schema import EmbeddedModelSchema
+from pieces_os_client.models.score import Score
 
 class FlattenedPersons(BaseModel):
     """
@@ -90,6 +90,6 @@ class FlattenedPersons(BaseModel):
         })
         return _obj
 
-from pieces_client.models.referenced_person import ReferencedPerson
+from pieces_os_client.models.referenced_person import ReferencedPerson
 FlattenedPersons.update_forward_refs()
 

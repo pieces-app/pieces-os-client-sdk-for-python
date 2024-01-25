@@ -21,11 +21,11 @@ import json
 
 from typing import Optional
 from pydantic import BaseModel, Field, StrictBool, StrictStr
-from pieces_client.models.embedded_model_schema import EmbeddedModelSchema
-from pieces_client.models.flattened_preview import FlattenedPreview
-from pieces_client.models.grouped_timestamp import GroupedTimestamp
-from pieces_client.models.mechanism_enum import MechanismEnum
-from pieces_client.models.score import Score
+from pieces_os_client.models.embedded_model_schema import EmbeddedModelSchema
+from pieces_os_client.models.flattened_preview import FlattenedPreview
+from pieces_os_client.models.grouped_timestamp import GroupedTimestamp
+from pieces_os_client.models.mechanism_enum import MechanismEnum
+from pieces_os_client.models.score import Score
 
 class FlattenedAsset(BaseModel):
     """
@@ -185,16 +185,16 @@ class FlattenedAsset(BaseModel):
         })
         return _obj
 
-from pieces_client.models.flattened_activities import FlattenedActivities
-from pieces_client.models.flattened_anchors import FlattenedAnchors
-from pieces_client.models.flattened_annotations import FlattenedAnnotations
-from pieces_client.models.flattened_conversations import FlattenedConversations
-from pieces_client.models.flattened_formats import FlattenedFormats
-from pieces_client.models.flattened_hints import FlattenedHints
-from pieces_client.models.flattened_persons import FlattenedPersons
-from pieces_client.models.flattened_sensitives import FlattenedSensitives
-from pieces_client.models.flattened_shares import FlattenedShares
-from pieces_client.models.flattened_tags import FlattenedTags
-from pieces_client.models.flattened_websites import FlattenedWebsites
+from pieces_os_client.models.flattened_activities import FlattenedActivities
+from pieces_os_client.models.flattened_anchors import FlattenedAnchors
+from pieces_os_client.models.flattened_annotations import FlattenedAnnotations
+from pieces_os_client.models.flattened_conversations import FlattenedConversations
+from pieces_os_client.models.flattened_formats import FlattenedFormats
+from pieces_os_client.models.flattened_hints import FlattenedHints
+from pieces_os_client.models.flattened_persons import FlattenedPersons
+from pieces_os_client.models.flattened_sensitives import FlattenedSensitives
+from pieces_os_client.models.flattened_shares import FlattenedShares
+from pieces_os_client.models.flattened_tags import FlattenedTags
+from pieces_os_client.models.flattened_websites import FlattenedWebsites
 FlattenedAsset.update_forward_refs()
 

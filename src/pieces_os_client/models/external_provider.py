@@ -21,10 +21,10 @@ import json
 
 from typing import Optional
 from pydantic import BaseModel, Field, StrictBool, StrictInt, StrictStr
-from pieces_client.models.embedded_model_schema import EmbeddedModelSchema
-from pieces_client.models.external_provider_profile_data import ExternalProviderProfileData
-from pieces_client.models.external_provider_type_enum import ExternalProviderTypeEnum
-from pieces_client.models.grouped_timestamp import GroupedTimestamp
+from pieces_os_client.models.embedded_model_schema import EmbeddedModelSchema
+from pieces_os_client.models.external_provider_profile_data import ExternalProviderProfileData
+from pieces_os_client.models.external_provider_type_enum import ExternalProviderTypeEnum
+from pieces_os_client.models.grouped_timestamp import GroupedTimestamp
 
 class ExternalProvider(BaseModel):
     """

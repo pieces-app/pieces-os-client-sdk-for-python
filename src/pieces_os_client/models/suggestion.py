@@ -21,11 +21,11 @@ import json
 
 from typing import Dict, Optional, Union
 from pydantic import BaseModel, Field, StrictFloat, StrictInt
-from pieces_client.models.assets import Assets
-from pieces_client.models.embedded_model_schema import EmbeddedModelSchema
-from pieces_client.models.reuse_suggestion import ReuseSuggestion
-from pieces_client.models.save_suggestion import SaveSuggestion
-from pieces_client.models.suggestion_target import SuggestionTarget
+from pieces_os_client.models.assets import Assets
+from pieces_os_client.models.embedded_model_schema import EmbeddedModelSchema
+from pieces_os_client.models.reuse_suggestion import ReuseSuggestion
+from pieces_os_client.models.save_suggestion import SaveSuggestion
+from pieces_os_client.models.suggestion_target import SuggestionTarget
 
 class Suggestion(BaseModel):
     """

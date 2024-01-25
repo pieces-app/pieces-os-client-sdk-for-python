@@ -21,7 +21,7 @@ import json
 
 
 from pydantic import BaseModel, Field
-from pieces_client.models.tlp_directed_discovery_filter_enum import TLPDirectedDiscoveryFilterEnum
+from pieces_os_client.models.tlp_directed_discovery_filter_enum import TLPDirectedDiscoveryFilterEnum
 
 class TLPDirectedDiscoveryFilter(BaseModel):
     """

@@ -21,9 +21,9 @@ import json
 
 from typing import Optional
 from pydantic import BaseModel, Field
-from pieces_client.models.embedded_model_schema import EmbeddedModelSchema
-from pieces_client.models.grouped_timestamp import GroupedTimestamp
-from pieces_client.models.person_access_scoped_enum import PersonAccessScopedEnum
+from pieces_os_client.models.embedded_model_schema import EmbeddedModelSchema
+from pieces_os_client.models.grouped_timestamp import GroupedTimestamp
+from pieces_os_client.models.person_access_scoped_enum import PersonAccessScopedEnum
 
 class PersonAccess(BaseModel):
     """
