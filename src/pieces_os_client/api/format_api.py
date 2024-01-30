@@ -24,15 +24,15 @@ from pydantic import Field, StrictBool, StrictStr
 
 from typing import Optional
 
-from pieces_client.models.analysis import Analysis
-from pieces_client.models.format import Format
-from pieces_client.models.format_reclassification import FormatReclassification
-from pieces_client.models.seeded_tracked_format_event import SeededTrackedFormatEvent
-from pieces_client.models.tracked_format_event import TrackedFormatEvent
+from pieces_os_client.models.analysis import Analysis
+from pieces_os_client.models.format import Format
+from pieces_os_client.models.format_reclassification import FormatReclassification
+from pieces_os_client.models.seeded_tracked_format_event import SeededTrackedFormatEvent
+from pieces_os_client.models.tracked_format_event import TrackedFormatEvent
 
-from pieces_client.api_client import ApiClient
-from pieces_client.api_response import ApiResponse
-from pieces_client.exceptions import (  # noqa: F401
+from pieces_os_client.api_client import ApiClient
+from pieces_os_client.api_response import ApiResponse
+from pieces_os_client.exceptions import (  # noqa: F401
     ApiTypeError,
     ApiValueError
 )

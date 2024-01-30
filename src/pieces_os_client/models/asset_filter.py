@@ -21,10 +21,10 @@ import json
 
 from typing import List, Optional
 from pydantic import BaseModel, Field, StrictStr, conlist
-from pieces_client.models.asset_filter_phrase import AssetFilterPhrase
-from pieces_client.models.asset_filter_timestamp import AssetFilterTimestamp
-from pieces_client.models.classification_specific_enum import ClassificationSpecificEnum
-from pieces_client.models.embedded_model_schema import EmbeddedModelSchema
+from pieces_os_client.models.asset_filter_phrase import AssetFilterPhrase
+from pieces_os_client.models.asset_filter_timestamp import AssetFilterTimestamp
+from pieces_os_client.models.classification_specific_enum import ClassificationSpecificEnum
+from pieces_os_client.models.embedded_model_schema import EmbeddedModelSchema
 
 class AssetFilter(BaseModel):
     """
@@ -104,6 +104,6 @@ class AssetFilter(BaseModel):
         })
         return _obj
 
-from pieces_client.models.asset_filters import AssetFilters
+from pieces_os_client.models.asset_filters import AssetFilters
 AssetFilter.update_forward_refs()
 

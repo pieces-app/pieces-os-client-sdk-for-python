@@ -21,8 +21,8 @@ import json
 
 from typing import Optional
 from pydantic import BaseModel, Field, StrictStr
-from pieces_client.models.embedded_model_schema import EmbeddedModelSchema
-from pieces_client.models.model import Model
+from pieces_os_client.models.embedded_model_schema import EmbeddedModelSchema
+from pieces_os_client.models.model import Model
 
 class OCRAnalysis(BaseModel):
     """
@@ -93,6 +93,6 @@ class OCRAnalysis(BaseModel):
         })
         return _obj
 
-from pieces_client.models.format import Format
+from pieces_os_client.models.format import Format
 OCRAnalysis.update_forward_refs()
 

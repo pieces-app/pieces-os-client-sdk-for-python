@@ -21,7 +21,7 @@ import json
 
 from typing import Optional
 from pydantic import BaseModel, Field, constr, validator
-from pieces_client.models.interacted_asset_interactions import InteractedAssetInteractions
+from pieces_os_client.models.interacted_asset_interactions import InteractedAssetInteractions
 
 class InteractedAsset(BaseModel):
     """

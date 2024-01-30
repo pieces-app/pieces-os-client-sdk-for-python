@@ -24,15 +24,15 @@ from pydantic import Field, StrictBool, StrictStr
 
 from typing import Optional
 
-from pieces_client.models.existent_metadata import ExistentMetadata
-from pieces_client.models.existing_metadata import ExistingMetadata
-from pieces_client.models.seeded_website import SeededWebsite
-from pieces_client.models.website import Website
-from pieces_client.models.websites import Websites
+from pieces_os_client.models.existent_metadata import ExistentMetadata
+from pieces_os_client.models.existing_metadata import ExistingMetadata
+from pieces_os_client.models.seeded_website import SeededWebsite
+from pieces_os_client.models.website import Website
+from pieces_os_client.models.websites import Websites
 
-from pieces_client.api_client import ApiClient
-from pieces_client.api_response import ApiResponse
-from pieces_client.exceptions import (  # noqa: F401
+from pieces_os_client.api_client import ApiClient
+from pieces_os_client.api_response import ApiResponse
+from pieces_os_client.exceptions import (  # noqa: F401
     ApiTypeError,
     ApiValueError
 )

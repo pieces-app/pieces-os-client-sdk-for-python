@@ -21,9 +21,9 @@ import json
 
 from typing import Optional
 from pydantic import BaseModel, Field, StrictStr
-from pieces_client.models.embedded_model_schema import EmbeddedModelSchema
-from pieces_client.models.grouped_timestamp import GroupedTimestamp
-from pieces_client.models.qgpt_conversation_message_role_enum import QGPTConversationMessageRoleEnum
+from pieces_os_client.models.embedded_model_schema import EmbeddedModelSchema
+from pieces_os_client.models.grouped_timestamp import GroupedTimestamp
+from pieces_os_client.models.qgpt_conversation_message_role_enum import QGPTConversationMessageRoleEnum
 
 class QGPTConversationMessage(BaseModel):
     """

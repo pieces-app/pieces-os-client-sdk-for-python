@@ -24,15 +24,15 @@ from pydantic import Field, StrictBool, StrictStr
 
 from typing import Optional
 
-from pieces_client.models.conversation import Conversation
-from pieces_client.models.conversation_messages import ConversationMessages
-from pieces_client.models.conversation_summarize_input import ConversationSummarizeInput
-from pieces_client.models.conversation_summarize_output import ConversationSummarizeOutput
-from pieces_client.models.seeded_score_increment import SeededScoreIncrement
+from pieces_os_client.models.conversation import Conversation
+from pieces_os_client.models.conversation_messages import ConversationMessages
+from pieces_os_client.models.conversation_summarize_input import ConversationSummarizeInput
+from pieces_os_client.models.conversation_summarize_output import ConversationSummarizeOutput
+from pieces_os_client.models.seeded_score_increment import SeededScoreIncrement
 
-from pieces_client.api_client import ApiClient
-from pieces_client.api_response import ApiResponse
-from pieces_client.exceptions import (  # noqa: F401
+from pieces_os_client.api_client import ApiClient
+from pieces_os_client.api_response import ApiResponse
+from pieces_os_client.exceptions import (  # noqa: F401
     ApiTypeError,
     ApiValueError
 )

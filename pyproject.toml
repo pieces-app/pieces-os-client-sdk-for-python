@@ -6,7 +6,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "pieces_os_client"
-version = "1.2.2"
+version = "1.2.3"
 authors = [
     { name="Pieces", email="development@pieces.app" },
 ]

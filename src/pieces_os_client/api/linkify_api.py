@@ -23,13 +23,13 @@ from pydantic import StrictStr
 
 from typing import Optional
 
-from pieces_client.models.linkify import Linkify
-from pieces_client.models.linkify_multiple import LinkifyMultiple
-from pieces_client.models.shares import Shares
+from pieces_os_client.models.linkify import Linkify
+from pieces_os_client.models.linkify_multiple import LinkifyMultiple
+from pieces_os_client.models.shares import Shares
 
-from pieces_client.api_client import ApiClient
-from pieces_client.api_response import ApiResponse
-from pieces_client.exceptions import (  # noqa: F401
+from pieces_os_client.api_client import ApiClient
+from pieces_os_client.api_response import ApiResponse
+from pieces_os_client.exceptions import (  # noqa: F401
     ApiTypeError,
     ApiValueError
 )

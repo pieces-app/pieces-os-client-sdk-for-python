@@ -21,8 +21,8 @@ import json
 
 from typing import Optional
 from pydantic import BaseModel, Field, StrictBool
-from pieces_client.models.embedded_model_schema import EmbeddedModelSchema
-from pieces_client.models.grouped_timestamp import GroupedTimestamp
+from pieces_os_client.models.embedded_model_schema import EmbeddedModelSchema
+from pieces_os_client.models.grouped_timestamp import GroupedTimestamp
 
 class AssetFilterTimestamp(BaseModel):
     """

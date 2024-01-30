@@ -21,14 +21,14 @@ import json
 
 from typing import Optional
 from pydantic import BaseModel, Field, StrictInt, StrictStr
-from pieces_client.models.application import Application
-from pieces_client.models.embedded_model_schema import EmbeddedModelSchema
-from pieces_client.models.flattened_asset import FlattenedAsset
-from pieces_client.models.flattened_format import FlattenedFormat
-from pieces_client.models.flattened_user_profile import FlattenedUserProfile
-from pieces_client.models.grouped_timestamp import GroupedTimestamp
-from pieces_client.models.mechanism_enum import MechanismEnum
-from pieces_client.models.seeded_connector_tracking import SeededConnectorTracking
+from pieces_os_client.models.application import Application
+from pieces_os_client.models.embedded_model_schema import EmbeddedModelSchema
+from pieces_os_client.models.flattened_asset import FlattenedAsset
+from pieces_os_client.models.flattened_format import FlattenedFormat
+from pieces_os_client.models.flattened_user_profile import FlattenedUserProfile
+from pieces_os_client.models.grouped_timestamp import GroupedTimestamp
+from pieces_os_client.models.mechanism_enum import MechanismEnum
+from pieces_os_client.models.seeded_connector_tracking import SeededConnectorTracking
 
 class Activity(BaseModel):
     """

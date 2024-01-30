@@ -21,9 +21,9 @@ import json
 
 from typing import Optional
 from pydantic import BaseModel, Field
-from pieces_client.models.embedded_model_schema import EmbeddedModelSchema
-from pieces_client.models.mailgun_distribution import MailgunDistribution
-from pieces_client.models.seeded_git_hub_distribution import SeededGitHubDistribution
+from pieces_os_client.models.embedded_model_schema import EmbeddedModelSchema
+from pieces_os_client.models.mailgun_distribution import MailgunDistribution
+from pieces_os_client.models.seeded_git_hub_distribution import SeededGitHubDistribution
 
 class SeededDistribution(BaseModel):
     """

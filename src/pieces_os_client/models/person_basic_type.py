@@ -21,9 +21,9 @@ import json
 
 from typing import Optional
 from pydantic import BaseModel, Field, StrictStr
-from pieces_client.models.embedded_model_schema import EmbeddedModelSchema
-from pieces_client.models.externally_sourced_enum import ExternallySourcedEnum
-from pieces_client.models.mailgun_metadata import MailgunMetadata
+from pieces_os_client.models.embedded_model_schema import EmbeddedModelSchema
+from pieces_os_client.models.externally_sourced_enum import ExternallySourcedEnum
+from pieces_os_client.models.mailgun_metadata import MailgunMetadata
 
 class PersonBasicType(BaseModel):
     """

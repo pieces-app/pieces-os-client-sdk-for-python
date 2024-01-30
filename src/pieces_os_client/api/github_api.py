@@ -24,12 +24,12 @@ from pydantic import Field, StrictBool
 
 from typing import Optional
 
-from pieces_client.models.seeded_github_gists_import import SeededGithubGistsImport
-from pieces_client.models.seeds import Seeds
+from pieces_os_client.models.seeded_github_gists_import import SeededGithubGistsImport
+from pieces_os_client.models.seeds import Seeds
 
-from pieces_client.api_client import ApiClient
-from pieces_client.api_response import ApiResponse
-from pieces_client.exceptions import (  # noqa: F401
+from pieces_os_client.api_client import ApiClient
+from pieces_os_client.api_response import ApiResponse
+from pieces_os_client.exceptions import (  # noqa: F401
     ApiTypeError,
     ApiValueError
 )

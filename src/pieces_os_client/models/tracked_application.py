@@ -21,9 +21,9 @@ import json
 
 from typing import Optional
 from pydantic import BaseModel, Field, StrictBool, StrictStr
-from pieces_client.models.application_name_enum import ApplicationNameEnum
-from pieces_client.models.embedded_model_schema import EmbeddedModelSchema
-from pieces_client.models.platform_enum import PlatformEnum
+from pieces_os_client.models.application_name_enum import ApplicationNameEnum
+from pieces_os_client.models.embedded_model_schema import EmbeddedModelSchema
+from pieces_os_client.models.platform_enum import PlatformEnum
 
 class TrackedApplication(BaseModel):
     """

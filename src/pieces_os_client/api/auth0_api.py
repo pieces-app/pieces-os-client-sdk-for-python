@@ -24,14 +24,14 @@ from pydantic import Field, StrictStr, conlist, validator
 
 from typing import Optional
 
-from pieces_client.models.auth0_user import Auth0User
-from pieces_client.models.embedded_model_schema import EmbeddedModelSchema
-from pieces_client.models.o_auth_token import OAuthToken
-from pieces_client.models.resulted_pkce import ResultedPKCE
+from pieces_os_client.models.auth0_user import Auth0User
+from pieces_os_client.models.embedded_model_schema import EmbeddedModelSchema
+from pieces_os_client.models.o_auth_token import OAuthToken
+from pieces_os_client.models.resulted_pkce import ResultedPKCE
 
-from pieces_client.api_client import ApiClient
-from pieces_client.api_response import ApiResponse
-from pieces_client.exceptions import (  # noqa: F401
+from pieces_os_client.api_client import ApiClient
+from pieces_os_client.api_response import ApiResponse
+from pieces_os_client.exceptions import (  # noqa: F401
     ApiTypeError,
     ApiValueError
 )

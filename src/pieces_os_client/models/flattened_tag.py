@@ -21,12 +21,12 @@ import json
 
 from typing import Dict, Optional
 from pydantic import BaseModel, Field, StrictInt, StrictStr
-from pieces_client.models.embedded_model_schema import EmbeddedModelSchema
-from pieces_client.models.grouped_timestamp import GroupedTimestamp
-from pieces_client.models.mechanism_enum import MechanismEnum
-from pieces_client.models.relationship import Relationship
-from pieces_client.models.score import Score
-from pieces_client.models.tag_category_enum import TagCategoryEnum
+from pieces_os_client.models.embedded_model_schema import EmbeddedModelSchema
+from pieces_os_client.models.grouped_timestamp import GroupedTimestamp
+from pieces_os_client.models.mechanism_enum import MechanismEnum
+from pieces_os_client.models.relationship import Relationship
+from pieces_os_client.models.score import Score
+from pieces_os_client.models.tag_category_enum import TagCategoryEnum
 
 class FlattenedTag(BaseModel):
     """
@@ -123,7 +123,7 @@ class FlattenedTag(BaseModel):
         })
         return _obj
 
-from pieces_client.models.flattened_assets import FlattenedAssets
-from pieces_client.models.flattened_persons import FlattenedPersons
+from pieces_os_client.models.flattened_assets import FlattenedAssets
+from pieces_os_client.models.flattened_persons import FlattenedPersons
 FlattenedTag.update_forward_refs()
 

@@ -21,9 +21,9 @@ import json
 
 from typing import List, Optional
 from pydantic import BaseModel, Field, conlist
-from pieces_client.models.embedded_model_schema import EmbeddedModelSchema
-from pieces_client.models.score import Score
-from pieces_client.models.sensitive import Sensitive
+from pieces_os_client.models.embedded_model_schema import EmbeddedModelSchema
+from pieces_os_client.models.score import Score
+from pieces_os_client.models.sensitive import Sensitive
 
 class Sensitives(BaseModel):
     """

@@ -21,7 +21,7 @@ import json
 
 
 from pydantic import BaseModel, Field, StrictInt, StrictStr
-from pieces_client.models.system_execution_cpu_information import SystemExecutionCpuInformation
+from pieces_os_client.models.system_execution_cpu_information import SystemExecutionCpuInformation
 
 class SystemExecutionInformation(BaseModel):
     """

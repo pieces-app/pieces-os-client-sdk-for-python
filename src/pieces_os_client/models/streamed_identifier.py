@@ -21,8 +21,8 @@ import json
 
 from typing import Optional
 from pydantic import BaseModel, Field, StrictBool
-from pieces_client.models.referenced_asset import ReferencedAsset
-from pieces_client.models.referenced_conversation import ReferencedConversation
+from pieces_os_client.models.referenced_asset import ReferencedAsset
+from pieces_os_client.models.referenced_conversation import ReferencedConversation
 
 class StreamedIdentifier(BaseModel):
     """

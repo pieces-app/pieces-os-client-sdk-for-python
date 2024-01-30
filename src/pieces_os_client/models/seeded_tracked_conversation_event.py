@@ -21,9 +21,9 @@ import json
 
 from typing import Optional
 from pydantic import BaseModel, Field
-from pieces_client.models.embedded_model_schema import EmbeddedModelSchema
-from pieces_client.models.tracked_conversation_event_identifier_description_pairs import TrackedConversationEventIdentifierDescriptionPairs
-from pieces_client.models.tracked_conversation_event_metadata import TrackedConversationEventMetadata
+from pieces_os_client.models.embedded_model_schema import EmbeddedModelSchema
+from pieces_os_client.models.tracked_conversation_event_identifier_description_pairs import TrackedConversationEventIdentifierDescriptionPairs
+from pieces_os_client.models.tracked_conversation_event_metadata import TrackedConversationEventMetadata
 
 class SeededTrackedConversationEvent(BaseModel):
     """
@@ -90,6 +90,6 @@ class SeededTrackedConversationEvent(BaseModel):
         })
         return _obj
 
-from pieces_client.models.referenced_conversation import ReferencedConversation
+from pieces_os_client.models.referenced_conversation import ReferencedConversation
 SeededTrackedConversationEvent.update_forward_refs()
 

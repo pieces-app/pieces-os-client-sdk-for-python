@@ -21,8 +21,8 @@ import json
 
 from typing import Optional, Union
 from pydantic import BaseModel, Field, StrictFloat, StrictInt
-from pieces_client.models.embedded_model_schema import EmbeddedModelSchema
-from pieces_client.models.model_download_progress_status_enum import ModelDownloadProgressStatusEnum
+from pieces_os_client.models.embedded_model_schema import EmbeddedModelSchema
+from pieces_os_client.models.model_download_progress_status_enum import ModelDownloadProgressStatusEnum
 
 class ModelDownloadProgress(BaseModel):
     """

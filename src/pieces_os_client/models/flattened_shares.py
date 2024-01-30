@@ -21,8 +21,8 @@ import json
 
 from typing import List, Optional
 from pydantic import BaseModel, Field, conlist
-from pieces_client.models.embedded_model_schema import EmbeddedModelSchema
-from pieces_client.models.score import Score
+from pieces_os_client.models.embedded_model_schema import EmbeddedModelSchema
+from pieces_os_client.models.score import Score
 
 class FlattenedShares(BaseModel):
     """
@@ -88,6 +88,6 @@ class FlattenedShares(BaseModel):
         })
         return _obj
 
-from pieces_client.models.flattened_share import FlattenedShare
+from pieces_os_client.models.flattened_share import FlattenedShare
 FlattenedShares.update_forward_refs()
 

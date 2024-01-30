@@ -21,8 +21,8 @@ import json
 
 from typing import List, Optional, Union
 from pydantic import BaseModel, Field, StrictFloat, StrictInt, conlist
-from pieces_client.models.embedded_model_schema import EmbeddedModelSchema
-from pieces_client.models.searched_asset import SearchedAsset
+from pieces_os_client.models.embedded_model_schema import EmbeddedModelSchema
+from pieces_os_client.models.searched_asset import SearchedAsset
 
 class SearchedAssets(BaseModel):
     """

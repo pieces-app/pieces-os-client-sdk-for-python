@@ -21,12 +21,12 @@ import json
 
 from typing import Optional
 from pydantic import BaseModel, Field, StrictBool
-from pieces_client.models.application import Application
-from pieces_client.models.available_formats import AvailableFormats
-from pieces_client.models.embedded_model_schema import EmbeddedModelSchema
-from pieces_client.models.seeded_asset_enrichment import SeededAssetEnrichment
-from pieces_client.models.seeded_asset_metadata import SeededAssetMetadata
-from pieces_client.models.seeded_format import SeededFormat
+from pieces_os_client.models.application import Application
+from pieces_os_client.models.available_formats import AvailableFormats
+from pieces_os_client.models.embedded_model_schema import EmbeddedModelSchema
+from pieces_os_client.models.seeded_asset_enrichment import SeededAssetEnrichment
+from pieces_os_client.models.seeded_asset_metadata import SeededAssetMetadata
+from pieces_os_client.models.seeded_format import SeededFormat
 
 class SeededAsset(BaseModel):
     """

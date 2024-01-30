@@ -21,9 +21,9 @@ import json
 
 from typing import Optional
 from pydantic import BaseModel, Field, StrictStr
-from pieces_client.models.embedded_model_schema import EmbeddedModelSchema
-from pieces_client.models.qgpt_conversation import QGPTConversation
-from pieces_client.models.seed import Seed
+from pieces_os_client.models.embedded_model_schema import EmbeddedModelSchema
+from pieces_os_client.models.qgpt_conversation import QGPTConversation
+from pieces_os_client.models.seed import Seed
 
 class QGPTPersonsRelatedInput(BaseModel):
     """

@@ -21,12 +21,12 @@ import json
 
 from typing import Optional
 from pydantic import BaseModel, Field, StrictStr
-from pieces_client.models.access_enum import AccessEnum
-from pieces_client.models.accessors import Accessors
-from pieces_client.models.embedded_model_schema import EmbeddedModelSchema
-from pieces_client.models.flattened_distributions import FlattenedDistributions
-from pieces_client.models.grouped_timestamp import GroupedTimestamp
-from pieces_client.models.score import Score
+from pieces_os_client.models.access_enum import AccessEnum
+from pieces_os_client.models.accessors import Accessors
+from pieces_os_client.models.embedded_model_schema import EmbeddedModelSchema
+from pieces_os_client.models.flattened_distributions import FlattenedDistributions
+from pieces_os_client.models.grouped_timestamp import GroupedTimestamp
+from pieces_os_client.models.score import Score
 
 class FlattenedShare(BaseModel):
     """
@@ -117,6 +117,6 @@ class FlattenedShare(BaseModel):
         })
         return _obj
 
-from pieces_client.models.flattened_assets import FlattenedAssets
+from pieces_os_client.models.flattened_assets import FlattenedAssets
 FlattenedShare.update_forward_refs()
 

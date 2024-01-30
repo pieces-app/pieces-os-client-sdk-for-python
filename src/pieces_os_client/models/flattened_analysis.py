@@ -21,8 +21,8 @@ import json
 
 from typing import Optional
 from pydantic import BaseModel, Field, StrictStr
-from pieces_client.models.code_analysis import CodeAnalysis
-from pieces_client.models.embedded_model_schema import EmbeddedModelSchema
+from pieces_os_client.models.code_analysis import CodeAnalysis
+from pieces_os_client.models.embedded_model_schema import EmbeddedModelSchema
 
 class FlattenedAnalysis(BaseModel):
     """
@@ -88,6 +88,6 @@ class FlattenedAnalysis(BaseModel):
         })
         return _obj
 
-from pieces_client.models.flattened_image_analysis import FlattenedImageAnalysis
+from pieces_os_client.models.flattened_image_analysis import FlattenedImageAnalysis
 FlattenedAnalysis.update_forward_refs()
 

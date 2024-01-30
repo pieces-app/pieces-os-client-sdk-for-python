@@ -21,17 +21,17 @@ from pydantic import validate_arguments, ValidationError
 
 from typing import List, Optional
 
-from pieces_client.models.checked_os_update import CheckedOSUpdate
-from pieces_client.models.file_picker_input import FilePickerInput
-from pieces_client.models.returned_user_profile import ReturnedUserProfile
-from pieces_client.models.seeded_external_provider import SeededExternalProvider
-from pieces_client.models.unchecked_os_update import UncheckedOSUpdate
-from pieces_client.models.user_profile import UserProfile
-from pieces_client.models.users import Users
+from pieces_os_client.models.checked_os_update import CheckedOSUpdate
+from pieces_os_client.models.file_picker_input import FilePickerInput
+from pieces_os_client.models.returned_user_profile import ReturnedUserProfile
+from pieces_os_client.models.seeded_external_provider import SeededExternalProvider
+from pieces_os_client.models.unchecked_os_update import UncheckedOSUpdate
+from pieces_os_client.models.user_profile import UserProfile
+from pieces_os_client.models.users import Users
 
-from pieces_client.api_client import ApiClient
-from pieces_client.api_response import ApiResponse
-from pieces_client.exceptions import (  # noqa: F401
+from pieces_os_client.api_client import ApiClient
+from pieces_os_client.api_response import ApiResponse
+from pieces_os_client.exceptions import (  # noqa: F401
     ApiTypeError,
     ApiValueError
 )

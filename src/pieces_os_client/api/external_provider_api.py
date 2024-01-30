@@ -21,16 +21,16 @@ from pydantic import validate_arguments, ValidationError
 
 from typing import Optional
 
-from pieces_client.models.created_external_provider_api_key import CreatedExternalProviderApiKey
-from pieces_client.models.deleted_external_provider_api_key import DeletedExternalProviderApiKey
-from pieces_client.models.precreated_external_provider_api_key import PrecreatedExternalProviderApiKey
-from pieces_client.models.predeleted_external_provider_api_key import PredeletedExternalProviderApiKey
-from pieces_client.models.preupdated_external_provider_api_key import PreupdatedExternalProviderApiKey
-from pieces_client.models.updated_external_provider_api_key import UpdatedExternalProviderApiKey
+from pieces_os_client.models.created_external_provider_api_key import CreatedExternalProviderApiKey
+from pieces_os_client.models.deleted_external_provider_api_key import DeletedExternalProviderApiKey
+from pieces_os_client.models.precreated_external_provider_api_key import PrecreatedExternalProviderApiKey
+from pieces_os_client.models.predeleted_external_provider_api_key import PredeletedExternalProviderApiKey
+from pieces_os_client.models.preupdated_external_provider_api_key import PreupdatedExternalProviderApiKey
+from pieces_os_client.models.updated_external_provider_api_key import UpdatedExternalProviderApiKey
 
-from pieces_client.api_client import ApiClient
-from pieces_client.api_response import ApiResponse
-from pieces_client.exceptions import (  # noqa: F401
+from pieces_os_client.api_client import ApiClient
+from pieces_os_client.api_response import ApiResponse
+from pieces_os_client.exceptions import (  # noqa: F401
     ApiTypeError,
     ApiValueError
 )

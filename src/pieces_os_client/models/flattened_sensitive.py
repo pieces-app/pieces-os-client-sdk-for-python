@@ -21,13 +21,13 @@ import json
 
 from typing import Optional
 from pydantic import BaseModel, Field, StrictInt, StrictStr
-from pieces_client.models.embedded_model_schema import EmbeddedModelSchema
-from pieces_client.models.grouped_timestamp import GroupedTimestamp
-from pieces_client.models.mechanism_enum import MechanismEnum
-from pieces_client.models.score import Score
-from pieces_client.models.sensitive_category_enum import SensitiveCategoryEnum
-from pieces_client.models.sensitive_metadata import SensitiveMetadata
-from pieces_client.models.sensitive_severity_enum import SensitiveSeverityEnum
+from pieces_os_client.models.embedded_model_schema import EmbeddedModelSchema
+from pieces_os_client.models.grouped_timestamp import GroupedTimestamp
+from pieces_os_client.models.mechanism_enum import MechanismEnum
+from pieces_os_client.models.score import Score
+from pieces_os_client.models.sensitive_category_enum import SensitiveCategoryEnum
+from pieces_os_client.models.sensitive_metadata import SensitiveMetadata
+from pieces_os_client.models.sensitive_severity_enum import SensitiveSeverityEnum
 
 class FlattenedSensitive(BaseModel):
     """
@@ -125,6 +125,6 @@ class FlattenedSensitive(BaseModel):
         })
         return _obj
 
-from pieces_client.models.referenced_asset import ReferencedAsset
+from pieces_os_client.models.referenced_asset import ReferencedAsset
 FlattenedSensitive.update_forward_refs()
 

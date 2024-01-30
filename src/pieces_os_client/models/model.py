@@ -21,14 +21,14 @@ import json
 
 from typing import Optional, Union
 from pydantic import BaseModel, Field, StrictBool, StrictFloat, StrictInt, StrictStr
-from pieces_client.models.byte_descriptor import ByteDescriptor
-from pieces_client.models.embedded_model_schema import EmbeddedModelSchema
-from pieces_client.models.external_ml_provider_enum import ExternalMLProviderEnum
-from pieces_client.models.grouped_timestamp import GroupedTimestamp
-from pieces_client.models.model_foundation_enum import ModelFoundationEnum
-from pieces_client.models.model_max_tokens import ModelMaxTokens
-from pieces_client.models.model_type_enum import ModelTypeEnum
-from pieces_client.models.model_usage_enum import ModelUsageEnum
+from pieces_os_client.models.byte_descriptor import ByteDescriptor
+from pieces_os_client.models.embedded_model_schema import EmbeddedModelSchema
+from pieces_os_client.models.external_ml_provider_enum import ExternalMLProviderEnum
+from pieces_os_client.models.grouped_timestamp import GroupedTimestamp
+from pieces_os_client.models.model_foundation_enum import ModelFoundationEnum
+from pieces_os_client.models.model_max_tokens import ModelMaxTokens
+from pieces_os_client.models.model_type_enum import ModelTypeEnum
+from pieces_os_client.models.model_usage_enum import ModelUsageEnum
 
 class Model(BaseModel):
     """

@@ -21,9 +21,9 @@ import json
 
 from typing import Optional
 from pydantic import BaseModel, Field, StrictBool, StrictStr
-from pieces_client.models.classification import Classification
-from pieces_client.models.embedded_model_schema import EmbeddedModelSchema
-from pieces_client.models.role import Role
+from pieces_os_client.models.classification import Classification
+from pieces_os_client.models.embedded_model_schema import EmbeddedModelSchema
+from pieces_os_client.models.role import Role
 
 class TrackedFormat(BaseModel):
     """

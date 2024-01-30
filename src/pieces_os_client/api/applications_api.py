@@ -24,19 +24,19 @@ from pydantic import Field, StrictStr, constr, validator
 
 from typing import Optional
 
-from pieces_client.models.application import Application
-from pieces_client.models.applications import Applications
-from pieces_client.models.seeded_tracked_interaction_event import SeededTrackedInteractionEvent
-from pieces_client.models.seeded_tracked_keyboard_event import SeededTrackedKeyboardEvent
-from pieces_client.models.session import Session
-from pieces_client.models.tracked_application_install import TrackedApplicationInstall
-from pieces_client.models.tracked_application_update import TrackedApplicationUpdate
-from pieces_client.models.tracked_interaction_event import TrackedInteractionEvent
-from pieces_client.models.tracked_keyboard_event import TrackedKeyboardEvent
+from pieces_os_client.models.application import Application
+from pieces_os_client.models.applications import Applications
+from pieces_os_client.models.seeded_tracked_interaction_event import SeededTrackedInteractionEvent
+from pieces_os_client.models.seeded_tracked_keyboard_event import SeededTrackedKeyboardEvent
+from pieces_os_client.models.session import Session
+from pieces_os_client.models.tracked_application_install import TrackedApplicationInstall
+from pieces_os_client.models.tracked_application_update import TrackedApplicationUpdate
+from pieces_os_client.models.tracked_interaction_event import TrackedInteractionEvent
+from pieces_os_client.models.tracked_keyboard_event import TrackedKeyboardEvent
 
-from pieces_client.api_client import ApiClient
-from pieces_client.api_response import ApiResponse
-from pieces_client.exceptions import (  # noqa: F401
+from pieces_os_client.api_client import ApiClient
+from pieces_os_client.api_response import ApiResponse
+from pieces_os_client.exceptions import (  # noqa: F401
     ApiTypeError,
     ApiValueError
 )

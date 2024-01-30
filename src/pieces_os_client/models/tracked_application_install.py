@@ -21,9 +21,9 @@ import json
 
 from typing import Optional
 from pydantic import BaseModel, Field
-from pieces_client.models.embedded_model_schema import EmbeddedModelSchema
-from pieces_client.models.tracked_application import TrackedApplication
-from pieces_client.models.tracked_user_profile import TrackedUserProfile
+from pieces_os_client.models.embedded_model_schema import EmbeddedModelSchema
+from pieces_os_client.models.tracked_application import TrackedApplication
+from pieces_os_client.models.tracked_user_profile import TrackedUserProfile
 
 class TrackedApplicationInstall(BaseModel):
     """

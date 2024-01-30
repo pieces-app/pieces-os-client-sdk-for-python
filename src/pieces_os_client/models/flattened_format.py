@@ -21,15 +21,15 @@ import json
 
 from typing import Optional
 from pydantic import BaseModel, Field, StrictStr, constr, validator
-from pieces_client.models.application import Application
-from pieces_client.models.byte_descriptor import ByteDescriptor
-from pieces_client.models.classification import Classification
-from pieces_client.models.embedded_model_schema import EmbeddedModelSchema
-from pieces_client.models.file_format import FileFormat
-from pieces_client.models.fragment_format import FragmentFormat
-from pieces_client.models.grouped_timestamp import GroupedTimestamp
-from pieces_client.models.relationship import Relationship
-from pieces_client.models.role import Role
+from pieces_os_client.models.application import Application
+from pieces_os_client.models.byte_descriptor import ByteDescriptor
+from pieces_os_client.models.classification import Classification
+from pieces_os_client.models.embedded_model_schema import EmbeddedModelSchema
+from pieces_os_client.models.file_format import FileFormat
+from pieces_os_client.models.fragment_format import FragmentFormat
+from pieces_os_client.models.grouped_timestamp import GroupedTimestamp
+from pieces_os_client.models.relationship import Relationship
+from pieces_os_client.models.role import Role
 
 class FlattenedFormat(BaseModel):
     """
@@ -160,7 +160,7 @@ class FlattenedFormat(BaseModel):
         })
         return _obj
 
-from pieces_client.models.flattened_activities import FlattenedActivities
-from pieces_client.models.flattened_analysis import FlattenedAnalysis
+from pieces_os_client.models.flattened_activities import FlattenedActivities
+from pieces_os_client.models.flattened_analysis import FlattenedAnalysis
 FlattenedFormat.update_forward_refs()
 

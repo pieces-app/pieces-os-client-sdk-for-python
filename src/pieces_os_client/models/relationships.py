@@ -21,7 +21,7 @@ import json
 
 from typing import List
 from pydantic import BaseModel, Field, conlist
-from pieces_client.models.relationship import Relationship
+from pieces_os_client.models.relationship import Relationship
 
 class Relationships(BaseModel):
     """

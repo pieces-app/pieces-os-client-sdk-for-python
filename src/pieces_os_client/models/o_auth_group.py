@@ -21,8 +21,8 @@ import json
 
 from typing import Optional
 from pydantic import BaseModel
-from pieces_client.models.o_auth_account import OAuthAccount
-from pieces_client.models.o_auth_token import OAuthToken
+from pieces_os_client.models.o_auth_account import OAuthAccount
+from pieces_os_client.models.o_auth_token import OAuthToken
 
 class OAuthGroup(BaseModel):
     """

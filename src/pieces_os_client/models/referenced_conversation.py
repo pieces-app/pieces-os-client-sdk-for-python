@@ -21,7 +21,7 @@ import json
 
 from typing import Optional
 from pydantic import BaseModel, Field, StrictStr
-from pieces_client.models.embedded_model_schema import EmbeddedModelSchema
+from pieces_os_client.models.embedded_model_schema import EmbeddedModelSchema
 
 class ReferencedConversation(BaseModel):
     """
@@ -80,6 +80,6 @@ class ReferencedConversation(BaseModel):
         })
         return _obj
 
-from pieces_client.models.flattened_conversation import FlattenedConversation
+from pieces_os_client.models.flattened_conversation import FlattenedConversation
 ReferencedConversation.update_forward_refs()
 

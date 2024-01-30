@@ -21,9 +21,9 @@ import json
 
 from typing import Optional
 from pydantic import BaseModel, Field, StrictStr
-from pieces_client.models.auth0_open_ai_user_metadata import Auth0OpenAIUserMetadata
-from pieces_client.models.auth0_user_allocation_metadata import Auth0UserAllocationMetadata
-from pieces_client.models.embedded_model_schema import EmbeddedModelSchema
+from pieces_os_client.models.auth0_open_ai_user_metadata import Auth0OpenAIUserMetadata
+from pieces_os_client.models.auth0_user_allocation_metadata import Auth0UserAllocationMetadata
+from pieces_os_client.models.embedded_model_schema import EmbeddedModelSchema
 
 class Auth0UserMetadata(BaseModel):
     """

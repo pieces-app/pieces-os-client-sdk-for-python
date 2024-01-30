@@ -21,13 +21,13 @@ import json
 
 from typing import Optional
 from pydantic import BaseModel, Field
-from pieces_client.models.application import Application
-from pieces_client.models.mechanism_enum import MechanismEnum
-from pieces_client.models.referenced_asset import ReferencedAsset
-from pieces_client.models.referenced_conversation import ReferencedConversation
-from pieces_client.models.referenced_format import ReferencedFormat
-from pieces_client.models.referenced_user import ReferencedUser
-from pieces_client.models.seeded_connector_tracking import SeededConnectorTracking
+from pieces_os_client.models.application import Application
+from pieces_os_client.models.mechanism_enum import MechanismEnum
+from pieces_os_client.models.referenced_asset import ReferencedAsset
+from pieces_os_client.models.referenced_conversation import ReferencedConversation
+from pieces_os_client.models.referenced_format import ReferencedFormat
+from pieces_os_client.models.referenced_user import ReferencedUser
+from pieces_os_client.models.seeded_connector_tracking import SeededConnectorTracking
 
 class SeededActivity(BaseModel):
     """

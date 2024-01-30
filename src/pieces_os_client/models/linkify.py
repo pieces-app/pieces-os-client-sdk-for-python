@@ -21,12 +21,12 @@ import json
 
 from typing import List, Optional
 from pydantic import BaseModel, Field, conlist
-from pieces_client.models.access_enum import AccessEnum
-from pieces_client.models.asset import Asset
-from pieces_client.models.embedded_model_schema import EmbeddedModelSchema
-from pieces_client.models.seed import Seed
-from pieces_client.models.seeded_distributions import SeededDistributions
-from pieces_client.models.seeded_user import SeededUser
+from pieces_os_client.models.access_enum import AccessEnum
+from pieces_os_client.models.asset import Asset
+from pieces_os_client.models.embedded_model_schema import EmbeddedModelSchema
+from pieces_os_client.models.seed import Seed
+from pieces_os_client.models.seeded_distributions import SeededDistributions
+from pieces_os_client.models.seeded_user import SeededUser
 
 class Linkify(BaseModel):
     """

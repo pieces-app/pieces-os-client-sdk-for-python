@@ -21,8 +21,8 @@ import json
 
 from typing import Optional
 from pydantic import BaseModel, Field, StrictStr
-from pieces_client.models.qgpt_question_answer import QGPTQuestionAnswer
-from pieces_client.models.relevant_qgpt_seeds import RelevantQGPTSeeds
+from pieces_os_client.models.qgpt_question_answer import QGPTQuestionAnswer
+from pieces_os_client.models.relevant_qgpt_seeds import RelevantQGPTSeeds
 
 class QGPTHintsInput(BaseModel):
     """

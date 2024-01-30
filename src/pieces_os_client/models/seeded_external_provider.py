@@ -21,7 +21,7 @@ import json
 
 
 from pydantic import BaseModel, Field
-from pieces_client.models.external_provider_type_enum import ExternalProviderTypeEnum
+from pieces_os_client.models.external_provider_type_enum import ExternalProviderTypeEnum
 
 class SeededExternalProvider(BaseModel):
     """
