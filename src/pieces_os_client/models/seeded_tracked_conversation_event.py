@@ -22,21 +22,30 @@ import json
 from typing import Optional
 from pydantic import BaseModel, Field
 from pieces_os_client.models.embedded_model_schema import EmbeddedModelSchema
-from pieces_os_client.models.tracked_conversation_event_identifier_description_pairs import TrackedConversationEventIdentifierDescriptionPairs
-from pieces_os_client.models.tracked_conversation_event_metadata import TrackedConversationEventMetadata
+from pieces_os_client.models.tracked_conversation_event_identifier_description_pairs import (
+    TrackedConversationEventIdentifierDescriptionPairs,
+)
+from pieces_os_client.models.tracked_conversation_event_metadata import (
+    TrackedConversationEventMetadata,
+)
+
 
 class SeededTrackedConversationEvent(BaseModel):
     """
     This is a pre-created(seed) TrackedConversationEvent  # noqa: E501
     """
+
     var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
-    identifier_description_pair: TrackedConversationEventIdentifierDescriptionPairs = Field(...)
+    identifier_description_pair: TrackedConversationEventIdentifierDescriptionPairs = (
+        Field(...)
+    )
     conversation: ReferencedConversation = Field(...)
     metadata: Optional[TrackedConversationEventMetadata] = None
     __properties = ["schema", "identifier_description_pair", "conversation", "metadata"]
 
     class Config:
         """Pydantic configuration"""
+
         allow_population_by_field_name = True
         validate_assignment = True
 
@@ -55,22 +64,21 @@ class SeededTrackedConversationEvent(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
-                          exclude={
-                          },
-                          exclude_none=True)
+        _dict = self.dict(by_alias=True, exclude={}, exclude_none=True)
         # override the default output from pydantic by calling `to_dict()` of var_schema
         if self.var_schema:
-            _dict['schema'] = self.var_schema.to_dict()
+            _dict["schema"] = self.var_schema.to_dict()
         # override the default output from pydantic by calling `to_dict()` of identifier_description_pair
         if self.identifier_description_pair:
-            _dict['identifier_description_pair'] = self.identifier_description_pair.to_dict()
+            _dict[
+                "identifier_description_pair"
+            ] = self.identifier_description_pair.to_dict()
         # override the default output from pydantic by calling `to_dict()` of conversation
         if self.conversation:
-            _dict['conversation'] = self.conversation.to_dict()
+            _dict["conversation"] = self.conversation.to_dict()
         # override the default output from pydantic by calling `to_dict()` of metadata
         if self.metadata:
-            _dict['metadata'] = self.metadata.to_dict()
+            _dict["metadata"] = self.metadata.to_dict()
         return _dict
 
     @classmethod
@@ -82,14 +90,31 @@ class SeededTrackedConversationEvent(BaseModel):
         if not isinstance(obj, dict):
             return SeededTrackedConversationEvent.parse_obj(obj)
 
-        _obj = SeededTrackedConversationEvent.parse_obj({
-            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
-            "identifier_description_pair": TrackedConversationEventIdentifierDescriptionPairs.from_dict(obj.get("identifier_description_pair")) if obj.get("identifier_description_pair") is not None else None,
-            "conversation": ReferencedConversation.from_dict(obj.get("conversation")) if obj.get("conversation") is not None else None,
-            "metadata": TrackedConversationEventMetadata.from_dict(obj.get("metadata")) if obj.get("metadata") is not None else None
-        })
+        _obj = SeededTrackedConversationEvent.parse_obj(
+            {
+                "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema"))
+                if obj.get("schema") is not None
+                else None,
+                "identifier_description_pair": TrackedConversationEventIdentifierDescriptionPairs.from_dict(
+                    obj.get("identifier_description_pair")
+                )
+                if obj.get("identifier_description_pair") is not None
+                else None,
+                "conversation": ReferencedConversation.from_dict(
+                    obj.get("conversation")
+                )
+                if obj.get("conversation") is not None
+                else None,
+                "metadata": TrackedConversationEventMetadata.from_dict(
+                    obj.get("metadata")
+                )
+                if obj.get("metadata") is not None
+                else None,
+            }
+        )
         return _obj
 
-from pieces_os_client.models.referenced_conversation import ReferencedConversation
-SeededTrackedConversationEvent.update_forward_refs()
 
+from pieces_os_client.models.referenced_conversation import ReferencedConversation
+
+# SeededTrackedConversationEvent.update_forward_refs()

@@ -28,13 +28,17 @@ from pieces_os_client.models.grouped_timestamp import GroupedTimestamp
 from pieces_os_client.models.referenced_model import ReferencedModel
 from pieces_os_client.models.score import Score
 
+
 class FlattenedConversation(BaseModel):
     """
     This is a flattend version of the Convsersation for DAG-Safety.  This will hold together a conversation. Ie allthe message within a conversation.  All the additional properties on here used on here like(anchors/assets) are used for context that will seed the conversation.  model is a calculated property, and will be the model of the last message sent if applicable.  # noqa: E501
     """
+
     var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
     id: StrictStr = Field(...)
-    name: Optional[StrictStr] = Field(None, description="This is a name that is customized.")
+    name: Optional[StrictStr] = Field(
+        None, description="This is a name that is customized."
+    )
     created: GroupedTimestamp = Field(...)
     updated: GroupedTimestamp = Field(...)
     deleted: Optional[GroupedTimestamp] = None
@@ -49,10 +53,29 @@ class FlattenedConversation(BaseModel):
     type: ConversationTypeEnum = Field(...)
     grounding: Optional[ConversationGrounding] = None
     score: Optional[Score] = None
-    __properties = ["schema", "id", "name", "created", "updated", "deleted", "favorited", "application", "annotations", "messages", "model", "assets", "websites", "anchors", "type", "grounding", "score"]
+    __properties = [
+        "schema",
+        "id",
+        "name",
+        "created",
+        "updated",
+        "deleted",
+        "favorited",
+        "application",
+        "annotations",
+        "messages",
+        "model",
+        "assets",
+        "websites",
+        "anchors",
+        "type",
+        "grounding",
+        "score",
+    ]
 
     class Config:
         """Pydantic configuration"""
+
         allow_population_by_field_name = True
         validate_assignment = True
 
@@ -71,49 +94,46 @@ class FlattenedConversation(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
-                          exclude={
-                          },
-                          exclude_none=True)
+        _dict = self.dict(by_alias=True, exclude={}, exclude_none=True)
         # override the default output from pydantic by calling `to_dict()` of var_schema
         if self.var_schema:
-            _dict['schema'] = self.var_schema.to_dict()
+            _dict["schema"] = self.var_schema.to_dict()
         # override the default output from pydantic by calling `to_dict()` of created
         if self.created:
-            _dict['created'] = self.created.to_dict()
+            _dict["created"] = self.created.to_dict()
         # override the default output from pydantic by calling `to_dict()` of updated
         if self.updated:
-            _dict['updated'] = self.updated.to_dict()
+            _dict["updated"] = self.updated.to_dict()
         # override the default output from pydantic by calling `to_dict()` of deleted
         if self.deleted:
-            _dict['deleted'] = self.deleted.to_dict()
+            _dict["deleted"] = self.deleted.to_dict()
         # override the default output from pydantic by calling `to_dict()` of application
         if self.application:
-            _dict['application'] = self.application.to_dict()
+            _dict["application"] = self.application.to_dict()
         # override the default output from pydantic by calling `to_dict()` of annotations
         if self.annotations:
-            _dict['annotations'] = self.annotations.to_dict()
+            _dict["annotations"] = self.annotations.to_dict()
         # override the default output from pydantic by calling `to_dict()` of messages
         if self.messages:
-            _dict['messages'] = self.messages.to_dict()
+            _dict["messages"] = self.messages.to_dict()
         # override the default output from pydantic by calling `to_dict()` of model
         if self.model:
-            _dict['model'] = self.model.to_dict()
+            _dict["model"] = self.model.to_dict()
         # override the default output from pydantic by calling `to_dict()` of assets
         if self.assets:
-            _dict['assets'] = self.assets.to_dict()
+            _dict["assets"] = self.assets.to_dict()
         # override the default output from pydantic by calling `to_dict()` of websites
         if self.websites:
-            _dict['websites'] = self.websites.to_dict()
+            _dict["websites"] = self.websites.to_dict()
         # override the default output from pydantic by calling `to_dict()` of anchors
         if self.anchors:
-            _dict['anchors'] = self.anchors.to_dict()
+            _dict["anchors"] = self.anchors.to_dict()
         # override the default output from pydantic by calling `to_dict()` of grounding
         if self.grounding:
-            _dict['grounding'] = self.grounding.to_dict()
+            _dict["grounding"] = self.grounding.to_dict()
         # override the default output from pydantic by calling `to_dict()` of score
         if self.score:
-            _dict['score'] = self.score.to_dict()
+            _dict["score"] = self.score.to_dict()
         return _dict
 
     @classmethod
@@ -125,32 +145,63 @@ class FlattenedConversation(BaseModel):
         if not isinstance(obj, dict):
             return FlattenedConversation.parse_obj(obj)
 
-        _obj = FlattenedConversation.parse_obj({
-            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
-            "id": obj.get("id"),
-            "name": obj.get("name"),
-            "created": GroupedTimestamp.from_dict(obj.get("created")) if obj.get("created") is not None else None,
-            "updated": GroupedTimestamp.from_dict(obj.get("updated")) if obj.get("updated") is not None else None,
-            "deleted": GroupedTimestamp.from_dict(obj.get("deleted")) if obj.get("deleted") is not None else None,
-            "favorited": obj.get("favorited"),
-            "application": Application.from_dict(obj.get("application")) if obj.get("application") is not None else None,
-            "annotations": FlattenedAnnotations.from_dict(obj.get("annotations")) if obj.get("annotations") is not None else None,
-            "messages": FlattenedConversationMessages.from_dict(obj.get("messages")) if obj.get("messages") is not None else None,
-            "model": ReferencedModel.from_dict(obj.get("model")) if obj.get("model") is not None else None,
-            "assets": FlattenedAssets.from_dict(obj.get("assets")) if obj.get("assets") is not None else None,
-            "websites": FlattenedWebsites.from_dict(obj.get("websites")) if obj.get("websites") is not None else None,
-            "anchors": FlattenedAnchors.from_dict(obj.get("anchors")) if obj.get("anchors") is not None else None,
-            "type": obj.get("type"),
-            "grounding": ConversationGrounding.from_dict(obj.get("grounding")) if obj.get("grounding") is not None else None,
-            "score": Score.from_dict(obj.get("score")) if obj.get("score") is not None else None
-        })
+        _obj = FlattenedConversation.parse_obj(
+            {
+                "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema"))
+                if obj.get("schema") is not None
+                else None,
+                "id": obj.get("id"),
+                "name": obj.get("name"),
+                "created": GroupedTimestamp.from_dict(obj.get("created"))
+                if obj.get("created") is not None
+                else None,
+                "updated": GroupedTimestamp.from_dict(obj.get("updated"))
+                if obj.get("updated") is not None
+                else None,
+                "deleted": GroupedTimestamp.from_dict(obj.get("deleted"))
+                if obj.get("deleted") is not None
+                else None,
+                "favorited": obj.get("favorited"),
+                "application": Application.from_dict(obj.get("application"))
+                if obj.get("application") is not None
+                else None,
+                "annotations": FlattenedAnnotations.from_dict(obj.get("annotations"))
+                if obj.get("annotations") is not None
+                else None,
+                "messages": FlattenedConversationMessages.from_dict(obj.get("messages"))
+                if obj.get("messages") is not None
+                else None,
+                "model": ReferencedModel.from_dict(obj.get("model"))
+                if obj.get("model") is not None
+                else None,
+                "assets": FlattenedAssets.from_dict(obj.get("assets"))
+                if obj.get("assets") is not None
+                else None,
+                "websites": FlattenedWebsites.from_dict(obj.get("websites"))
+                if obj.get("websites") is not None
+                else None,
+                "anchors": FlattenedAnchors.from_dict(obj.get("anchors"))
+                if obj.get("anchors") is not None
+                else None,
+                "type": obj.get("type"),
+                "grounding": ConversationGrounding.from_dict(obj.get("grounding"))
+                if obj.get("grounding") is not None
+                else None,
+                "score": Score.from_dict(obj.get("score"))
+                if obj.get("score") is not None
+                else None,
+            }
+        )
         return _obj
+
 
 from pieces_os_client.models.conversation_grounding import ConversationGrounding
 from pieces_os_client.models.flattened_anchors import FlattenedAnchors
 from pieces_os_client.models.flattened_annotations import FlattenedAnnotations
 from pieces_os_client.models.flattened_assets import FlattenedAssets
-from pieces_os_client.models.flattened_conversation_messages import FlattenedConversationMessages
+from pieces_os_client.models.flattened_conversation_messages import (
+    FlattenedConversationMessages,
+)
 from pieces_os_client.models.flattened_websites import FlattenedWebsites
-FlattenedConversation.update_forward_refs()
 
+# FlattenedConversation.update_forward_refs()

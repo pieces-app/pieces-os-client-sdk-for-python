@@ -28,27 +28,50 @@ from pieces_os_client.models.flattened_distributions import FlattenedDistributio
 from pieces_os_client.models.grouped_timestamp import GroupedTimestamp
 from pieces_os_client.models.score import Score
 
+
 class FlattenedShare(BaseModel):
     """
     This is a dag safe version of the Share.  if user is undefined && access is public then we have an asset that is publicly available.  # noqa: E501
     """
+
     var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
     id: StrictStr = Field(..., description="This references the share it self.")
-    asset: Optional[StrictStr] = Field(None, description="this is the asset id on the flattened share.")
-    user: Optional[StrictStr] = Field(None, description="this is the uuid of the user that the share is created for.")
+    asset: Optional[StrictStr] = Field(
+        None, description="this is the asset id on the flattened share."
+    )
+    user: Optional[StrictStr] = Field(
+        None, description="this is the uuid of the user that the share is created for."
+    )
     link: StrictStr = Field(..., description="this is the prebuilt link.")
     access: AccessEnum = Field(...)
     accessors: Accessors = Field(...)
     created: GroupedTimestamp = Field(...)
-    short: StrictStr = Field(..., description="This is a shortened version of our uuid.")
+    short: StrictStr = Field(
+        ..., description="This is a shortened version of our uuid."
+    )
     name: Optional[StrictStr] = None
     assets: Optional[FlattenedAssets] = None
     distributions: Optional[FlattenedDistributions] = None
     score: Optional[Score] = None
-    __properties = ["schema", "id", "asset", "user", "link", "access", "accessors", "created", "short", "name", "assets", "distributions", "score"]
+    __properties = [
+        "schema",
+        "id",
+        "asset",
+        "user",
+        "link",
+        "access",
+        "accessors",
+        "created",
+        "short",
+        "name",
+        "assets",
+        "distributions",
+        "score",
+    ]
 
     class Config:
         """Pydantic configuration"""
+
         allow_population_by_field_name = True
         validate_assignment = True
 
@@ -67,28 +90,25 @@ class FlattenedShare(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
-                          exclude={
-                          },
-                          exclude_none=True)
+        _dict = self.dict(by_alias=True, exclude={}, exclude_none=True)
         # override the default output from pydantic by calling `to_dict()` of var_schema
         if self.var_schema:
-            _dict['schema'] = self.var_schema.to_dict()
+            _dict["schema"] = self.var_schema.to_dict()
         # override the default output from pydantic by calling `to_dict()` of accessors
         if self.accessors:
-            _dict['accessors'] = self.accessors.to_dict()
+            _dict["accessors"] = self.accessors.to_dict()
         # override the default output from pydantic by calling `to_dict()` of created
         if self.created:
-            _dict['created'] = self.created.to_dict()
+            _dict["created"] = self.created.to_dict()
         # override the default output from pydantic by calling `to_dict()` of assets
         if self.assets:
-            _dict['assets'] = self.assets.to_dict()
+            _dict["assets"] = self.assets.to_dict()
         # override the default output from pydantic by calling `to_dict()` of distributions
         if self.distributions:
-            _dict['distributions'] = self.distributions.to_dict()
+            _dict["distributions"] = self.distributions.to_dict()
         # override the default output from pydantic by calling `to_dict()` of score
         if self.score:
-            _dict['score'] = self.score.to_dict()
+            _dict["score"] = self.score.to_dict()
         return _dict
 
     @classmethod
@@ -100,23 +120,40 @@ class FlattenedShare(BaseModel):
         if not isinstance(obj, dict):
             return FlattenedShare.parse_obj(obj)
 
-        _obj = FlattenedShare.parse_obj({
-            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
-            "id": obj.get("id"),
-            "asset": obj.get("asset"),
-            "user": obj.get("user"),
-            "link": obj.get("link"),
-            "access": obj.get("access"),
-            "accessors": Accessors.from_dict(obj.get("accessors")) if obj.get("accessors") is not None else None,
-            "created": GroupedTimestamp.from_dict(obj.get("created")) if obj.get("created") is not None else None,
-            "short": obj.get("short"),
-            "name": obj.get("name"),
-            "assets": FlattenedAssets.from_dict(obj.get("assets")) if obj.get("assets") is not None else None,
-            "distributions": FlattenedDistributions.from_dict(obj.get("distributions")) if obj.get("distributions") is not None else None,
-            "score": Score.from_dict(obj.get("score")) if obj.get("score") is not None else None
-        })
+        _obj = FlattenedShare.parse_obj(
+            {
+                "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema"))
+                if obj.get("schema") is not None
+                else None,
+                "id": obj.get("id"),
+                "asset": obj.get("asset"),
+                "user": obj.get("user"),
+                "link": obj.get("link"),
+                "access": obj.get("access"),
+                "accessors": Accessors.from_dict(obj.get("accessors"))
+                if obj.get("accessors") is not None
+                else None,
+                "created": GroupedTimestamp.from_dict(obj.get("created"))
+                if obj.get("created") is not None
+                else None,
+                "short": obj.get("short"),
+                "name": obj.get("name"),
+                "assets": FlattenedAssets.from_dict(obj.get("assets"))
+                if obj.get("assets") is not None
+                else None,
+                "distributions": FlattenedDistributions.from_dict(
+                    obj.get("distributions")
+                )
+                if obj.get("distributions") is not None
+                else None,
+                "score": Score.from_dict(obj.get("score"))
+                if obj.get("score") is not None
+                else None,
+            }
+        )
         return _obj
 
-from pieces_os_client.models.flattened_assets import FlattenedAssets
-FlattenedShare.update_forward_refs()
 
+from pieces_os_client.models.flattened_assets import FlattenedAssets
+
+# FlattenedShare.update_forward_refs()

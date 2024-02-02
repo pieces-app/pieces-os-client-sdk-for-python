@@ -22,15 +22,18 @@ import json
 from typing import Optional
 from pydantic import BaseModel
 
+
 class SeededTrackedAssetsEventMetadata(BaseModel):
     """
     Additional Metadata as Neeeded i.e. Search + Query, etc  # noqa: E501
     """
+
     search: Optional[TrackedAssetsEventSearchMetadata] = None
     __properties = ["search"]
 
     class Config:
         """Pydantic configuration"""
+
         allow_population_by_field_name = True
         validate_assignment = True
 
@@ -49,13 +52,10 @@ class SeededTrackedAssetsEventMetadata(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
-                          exclude={
-                          },
-                          exclude_none=True)
+        _dict = self.dict(by_alias=True, exclude={}, exclude_none=True)
         # override the default output from pydantic by calling `to_dict()` of search
         if self.search:
-            _dict['search'] = self.search.to_dict()
+            _dict["search"] = self.search.to_dict()
         return _dict
 
     @classmethod
@@ -67,11 +67,18 @@ class SeededTrackedAssetsEventMetadata(BaseModel):
         if not isinstance(obj, dict):
             return SeededTrackedAssetsEventMetadata.parse_obj(obj)
 
-        _obj = SeededTrackedAssetsEventMetadata.parse_obj({
-            "search": TrackedAssetsEventSearchMetadata.from_dict(obj.get("search")) if obj.get("search") is not None else None
-        })
+        _obj = SeededTrackedAssetsEventMetadata.parse_obj(
+            {
+                "search": TrackedAssetsEventSearchMetadata.from_dict(obj.get("search"))
+                if obj.get("search") is not None
+                else None
+            }
+        )
         return _obj
 
-from pieces_os_client.models.tracked_assets_event_search_metadata import TrackedAssetsEventSearchMetadata
-SeededTrackedAssetsEventMetadata.update_forward_refs()
 
+from pieces_os_client.models.tracked_assets_event_search_metadata import (
+    TrackedAssetsEventSearchMetadata,
+)
+
+# SeededTrackedAssetsEventMetadata.update_forward_refs()

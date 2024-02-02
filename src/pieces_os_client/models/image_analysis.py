@@ -23,18 +23,23 @@ from typing import Optional
 from pydantic import BaseModel, Field, StrictStr
 from pieces_os_client.models.embedded_model_schema import EmbeddedModelSchema
 
+
 class ImageAnalysis(BaseModel):
     """
     This is a model that represents all the information collected during the processing of an image.  # noqa: E501
     """
+
     var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
-    id: StrictStr = Field(..., description="this is a uuid that represents a imageAnalysis.")
+    id: StrictStr = Field(
+        ..., description="this is a uuid that represents a imageAnalysis."
+    )
     analysis: StrictStr = Field(..., description="this is a reference to the analysis.")
     ocr: Optional[OCRAnalysis] = None
     __properties = ["schema", "id", "analysis", "ocr"]
 
     class Config:
         """Pydantic configuration"""
+
         allow_population_by_field_name = True
         validate_assignment = True
 
@@ -53,16 +58,13 @@ class ImageAnalysis(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
-                          exclude={
-                          },
-                          exclude_none=True)
+        _dict = self.dict(by_alias=True, exclude={}, exclude_none=True)
         # override the default output from pydantic by calling `to_dict()` of var_schema
         if self.var_schema:
-            _dict['schema'] = self.var_schema.to_dict()
+            _dict["schema"] = self.var_schema.to_dict()
         # override the default output from pydantic by calling `to_dict()` of ocr
         if self.ocr:
-            _dict['ocr'] = self.ocr.to_dict()
+            _dict["ocr"] = self.ocr.to_dict()
         return _dict
 
     @classmethod
@@ -74,14 +76,21 @@ class ImageAnalysis(BaseModel):
         if not isinstance(obj, dict):
             return ImageAnalysis.parse_obj(obj)
 
-        _obj = ImageAnalysis.parse_obj({
-            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
-            "id": obj.get("id"),
-            "analysis": obj.get("analysis"),
-            "ocr": OCRAnalysis.from_dict(obj.get("ocr")) if obj.get("ocr") is not None else None
-        })
+        _obj = ImageAnalysis.parse_obj(
+            {
+                "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema"))
+                if obj.get("schema") is not None
+                else None,
+                "id": obj.get("id"),
+                "analysis": obj.get("analysis"),
+                "ocr": OCRAnalysis.from_dict(obj.get("ocr"))
+                if obj.get("ocr") is not None
+                else None,
+            }
+        )
         return _obj
 
-from pieces_os_client.models.ocr_analysis import OCRAnalysis
-ImageAnalysis.update_forward_refs()
 
+from pieces_os_client.models.ocr_analysis import OCRAnalysis
+
+# ImageAnalysis.update_forward_refs()

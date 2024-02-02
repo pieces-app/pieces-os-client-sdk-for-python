@@ -23,10 +23,12 @@ from typing import Optional
 from pydantic import BaseModel, Field, StrictStr
 from pieces_os_client.models.embedded_model_schema import EmbeddedModelSchema
 
+
 class ReferencedAsset(BaseModel):
     """
     A reference to a asset, which at minimum must have the asset's id. But in the case of a hydrated client API it may have a populated reference of type Asset.  # noqa: E501
     """
+
     var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
     id: StrictStr = Field(...)
     reference: Optional[FlattenedAsset] = None
@@ -34,6 +36,7 @@ class ReferencedAsset(BaseModel):
 
     class Config:
         """Pydantic configuration"""
+
         allow_population_by_field_name = True
         validate_assignment = True
 
@@ -52,16 +55,13 @@ class ReferencedAsset(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
-                          exclude={
-                          },
-                          exclude_none=True)
+        _dict = self.dict(by_alias=True, exclude={}, exclude_none=True)
         # override the default output from pydantic by calling `to_dict()` of var_schema
         if self.var_schema:
-            _dict['schema'] = self.var_schema.to_dict()
+            _dict["schema"] = self.var_schema.to_dict()
         # override the default output from pydantic by calling `to_dict()` of reference
         if self.reference:
-            _dict['reference'] = self.reference.to_dict()
+            _dict["reference"] = self.reference.to_dict()
         return _dict
 
     @classmethod
@@ -73,13 +73,20 @@ class ReferencedAsset(BaseModel):
         if not isinstance(obj, dict):
             return ReferencedAsset.parse_obj(obj)
 
-        _obj = ReferencedAsset.parse_obj({
-            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
-            "id": obj.get("id"),
-            "reference": FlattenedAsset.from_dict(obj.get("reference")) if obj.get("reference") is not None else None
-        })
+        _obj = ReferencedAsset.parse_obj(
+            {
+                "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema"))
+                if obj.get("schema") is not None
+                else None,
+                "id": obj.get("id"),
+                "reference": FlattenedAsset.from_dict(obj.get("reference"))
+                if obj.get("reference") is not None
+                else None,
+            }
+        )
         return _obj
 
-from pieces_os_client.models.flattened_asset import FlattenedAsset
-ReferencedAsset.update_forward_refs()
 
+from pieces_os_client.models.flattened_asset import FlattenedAsset
+
+# ReferencedAsset.update_forward_refs()

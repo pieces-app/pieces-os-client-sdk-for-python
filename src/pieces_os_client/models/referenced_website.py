@@ -23,10 +23,12 @@ from typing import Optional
 from pydantic import BaseModel, Field, StrictStr
 from pieces_os_client.models.embedded_model_schema import EmbeddedModelSchema
 
+
 class ReferencedWebsite(BaseModel):
     """
     ReferencedWebsite
     """
+
     var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
     id: StrictStr = Field(...)
     reference: Optional[FlattenedWebsite] = None
@@ -34,6 +36,7 @@ class ReferencedWebsite(BaseModel):
 
     class Config:
         """Pydantic configuration"""
+
         allow_population_by_field_name = True
         validate_assignment = True
 
@@ -52,16 +55,13 @@ class ReferencedWebsite(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
-                          exclude={
-                          },
-                          exclude_none=True)
+        _dict = self.dict(by_alias=True, exclude={}, exclude_none=True)
         # override the default output from pydantic by calling `to_dict()` of var_schema
         if self.var_schema:
-            _dict['schema'] = self.var_schema.to_dict()
+            _dict["schema"] = self.var_schema.to_dict()
         # override the default output from pydantic by calling `to_dict()` of reference
         if self.reference:
-            _dict['reference'] = self.reference.to_dict()
+            _dict["reference"] = self.reference.to_dict()
         return _dict
 
     @classmethod
@@ -73,13 +73,20 @@ class ReferencedWebsite(BaseModel):
         if not isinstance(obj, dict):
             return ReferencedWebsite.parse_obj(obj)
 
-        _obj = ReferencedWebsite.parse_obj({
-            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
-            "id": obj.get("id"),
-            "reference": FlattenedWebsite.from_dict(obj.get("reference")) if obj.get("reference") is not None else None
-        })
+        _obj = ReferencedWebsite.parse_obj(
+            {
+                "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema"))
+                if obj.get("schema") is not None
+                else None,
+                "id": obj.get("id"),
+                "reference": FlattenedWebsite.from_dict(obj.get("reference"))
+                if obj.get("reference") is not None
+                else None,
+            }
+        )
         return _obj
 
-from pieces_os_client.models.flattened_website import FlattenedWebsite
-ReferencedWebsite.update_forward_refs()
 
+from pieces_os_client.models.flattened_website import FlattenedWebsite
+
+# ReferencedWebsite.update_forward_refs()

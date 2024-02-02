@@ -23,18 +23,23 @@ from typing import Optional
 from pydantic import BaseModel, Field, StrictStr
 from pieces_os_client.models.embedded_model_schema import EmbeddedModelSchema
 
+
 class FlattenedImageAnalysis(BaseModel):
     """
     FlattenedImageAnalysis
     """
+
     var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
     id: StrictStr = Field(...)
     ocr: Optional[FlattenedOCRAnalysis] = None
-    analysis: StrictStr = Field(..., description="this is a reference to our (parent)analysis")
+    analysis: StrictStr = Field(
+        ..., description="this is a reference to our (parent)analysis"
+    )
     __properties = ["schema", "id", "ocr", "analysis"]
 
     class Config:
         """Pydantic configuration"""
+
         allow_population_by_field_name = True
         validate_assignment = True
 
@@ -53,16 +58,13 @@ class FlattenedImageAnalysis(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
-                          exclude={
-                          },
-                          exclude_none=True)
+        _dict = self.dict(by_alias=True, exclude={}, exclude_none=True)
         # override the default output from pydantic by calling `to_dict()` of var_schema
         if self.var_schema:
-            _dict['schema'] = self.var_schema.to_dict()
+            _dict["schema"] = self.var_schema.to_dict()
         # override the default output from pydantic by calling `to_dict()` of ocr
         if self.ocr:
-            _dict['ocr'] = self.ocr.to_dict()
+            _dict["ocr"] = self.ocr.to_dict()
         return _dict
 
     @classmethod
@@ -74,14 +76,21 @@ class FlattenedImageAnalysis(BaseModel):
         if not isinstance(obj, dict):
             return FlattenedImageAnalysis.parse_obj(obj)
 
-        _obj = FlattenedImageAnalysis.parse_obj({
-            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
-            "id": obj.get("id"),
-            "ocr": FlattenedOCRAnalysis.from_dict(obj.get("ocr")) if obj.get("ocr") is not None else None,
-            "analysis": obj.get("analysis")
-        })
+        _obj = FlattenedImageAnalysis.parse_obj(
+            {
+                "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema"))
+                if obj.get("schema") is not None
+                else None,
+                "id": obj.get("id"),
+                "ocr": FlattenedOCRAnalysis.from_dict(obj.get("ocr"))
+                if obj.get("ocr") is not None
+                else None,
+                "analysis": obj.get("analysis"),
+            }
+        )
         return _obj
 
-from pieces_os_client.models.flattened_ocr_analysis import FlattenedOCRAnalysis
-FlattenedImageAnalysis.update_forward_refs()
 
+from pieces_os_client.models.flattened_ocr_analysis import FlattenedOCRAnalysis
+
+# FlattenedImageAnalysis.update_forward_refs()

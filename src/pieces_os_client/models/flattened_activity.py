@@ -27,10 +27,12 @@ from pieces_os_client.models.flattened_user_profile import FlattenedUserProfile
 from pieces_os_client.models.grouped_timestamp import GroupedTimestamp
 from pieces_os_client.models.mechanism_enum import MechanismEnum
 
+
 class FlattenedActivity(BaseModel):
     """
     Note: - if mechanism == internal we will not display to the user.  # noqa: E501
     """
+
     var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
     id: StrictStr = Field(...)
     created: GroupedTimestamp = Field(...)
@@ -43,10 +45,24 @@ class FlattenedActivity(BaseModel):
     user: Optional[FlattenedUserProfile] = None
     mechanism: MechanismEnum = Field(...)
     rank: Optional[StrictInt] = None
-    __properties = ["schema", "id", "created", "updated", "event", "application", "deleted", "asset", "format", "user", "mechanism", "rank"]
+    __properties = [
+        "schema",
+        "id",
+        "created",
+        "updated",
+        "event",
+        "application",
+        "deleted",
+        "asset",
+        "format",
+        "user",
+        "mechanism",
+        "rank",
+    ]
 
     class Config:
         """Pydantic configuration"""
+
         allow_population_by_field_name = True
         validate_assignment = True
 
@@ -65,37 +81,34 @@ class FlattenedActivity(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
-                          exclude={
-                          },
-                          exclude_none=True)
+        _dict = self.dict(by_alias=True, exclude={}, exclude_none=True)
         # override the default output from pydantic by calling `to_dict()` of var_schema
         if self.var_schema:
-            _dict['schema'] = self.var_schema.to_dict()
+            _dict["schema"] = self.var_schema.to_dict()
         # override the default output from pydantic by calling `to_dict()` of created
         if self.created:
-            _dict['created'] = self.created.to_dict()
+            _dict["created"] = self.created.to_dict()
         # override the default output from pydantic by calling `to_dict()` of updated
         if self.updated:
-            _dict['updated'] = self.updated.to_dict()
+            _dict["updated"] = self.updated.to_dict()
         # override the default output from pydantic by calling `to_dict()` of event
         if self.event:
-            _dict['event'] = self.event.to_dict()
+            _dict["event"] = self.event.to_dict()
         # override the default output from pydantic by calling `to_dict()` of application
         if self.application:
-            _dict['application'] = self.application.to_dict()
+            _dict["application"] = self.application.to_dict()
         # override the default output from pydantic by calling `to_dict()` of deleted
         if self.deleted:
-            _dict['deleted'] = self.deleted.to_dict()
+            _dict["deleted"] = self.deleted.to_dict()
         # override the default output from pydantic by calling `to_dict()` of asset
         if self.asset:
-            _dict['asset'] = self.asset.to_dict()
+            _dict["asset"] = self.asset.to_dict()
         # override the default output from pydantic by calling `to_dict()` of format
         if self.format:
-            _dict['format'] = self.format.to_dict()
+            _dict["format"] = self.format.to_dict()
         # override the default output from pydantic by calling `to_dict()` of user
         if self.user:
-            _dict['user'] = self.user.to_dict()
+            _dict["user"] = self.user.to_dict()
         return _dict
 
     @classmethod
@@ -107,24 +120,45 @@ class FlattenedActivity(BaseModel):
         if not isinstance(obj, dict):
             return FlattenedActivity.parse_obj(obj)
 
-        _obj = FlattenedActivity.parse_obj({
-            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
-            "id": obj.get("id"),
-            "created": GroupedTimestamp.from_dict(obj.get("created")) if obj.get("created") is not None else None,
-            "updated": GroupedTimestamp.from_dict(obj.get("updated")) if obj.get("updated") is not None else None,
-            "event": SeededConnectorTracking.from_dict(obj.get("event")) if obj.get("event") is not None else None,
-            "application": Application.from_dict(obj.get("application")) if obj.get("application") is not None else None,
-            "deleted": GroupedTimestamp.from_dict(obj.get("deleted")) if obj.get("deleted") is not None else None,
-            "asset": ReferencedAsset.from_dict(obj.get("asset")) if obj.get("asset") is not None else None,
-            "format": ReferencedFormat.from_dict(obj.get("format")) if obj.get("format") is not None else None,
-            "user": FlattenedUserProfile.from_dict(obj.get("user")) if obj.get("user") is not None else None,
-            "mechanism": obj.get("mechanism"),
-            "rank": obj.get("rank")
-        })
+        _obj = FlattenedActivity.parse_obj(
+            {
+                "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema"))
+                if obj.get("schema") is not None
+                else None,
+                "id": obj.get("id"),
+                "created": GroupedTimestamp.from_dict(obj.get("created"))
+                if obj.get("created") is not None
+                else None,
+                "updated": GroupedTimestamp.from_dict(obj.get("updated"))
+                if obj.get("updated") is not None
+                else None,
+                "event": SeededConnectorTracking.from_dict(obj.get("event"))
+                if obj.get("event") is not None
+                else None,
+                "application": Application.from_dict(obj.get("application"))
+                if obj.get("application") is not None
+                else None,
+                "deleted": GroupedTimestamp.from_dict(obj.get("deleted"))
+                if obj.get("deleted") is not None
+                else None,
+                "asset": ReferencedAsset.from_dict(obj.get("asset"))
+                if obj.get("asset") is not None
+                else None,
+                "format": ReferencedFormat.from_dict(obj.get("format"))
+                if obj.get("format") is not None
+                else None,
+                "user": FlattenedUserProfile.from_dict(obj.get("user"))
+                if obj.get("user") is not None
+                else None,
+                "mechanism": obj.get("mechanism"),
+                "rank": obj.get("rank"),
+            }
+        )
         return _obj
+
 
 from pieces_os_client.models.referenced_asset import ReferencedAsset
 from pieces_os_client.models.referenced_format import ReferencedFormat
 from pieces_os_client.models.seeded_connector_tracking import SeededConnectorTracking
-FlattenedActivity.update_forward_refs()
 
+# FlattenedActivity.update_forward_refs()
