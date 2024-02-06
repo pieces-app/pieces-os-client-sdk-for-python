@@ -25,6 +25,7 @@ from pieces_os_client.models.application import Application
 from pieces_os_client.models.conversation_type_enum import ConversationTypeEnum
 from pieces_os_client.models.embedded_model_schema import EmbeddedModelSchema
 from pieces_os_client.models.grouped_timestamp import GroupedTimestamp
+from pieces_os_client.models.qgpt_prompt_pipeline import QGPTPromptPipeline
 from pieces_os_client.models.referenced_model import ReferencedModel
 from pieces_os_client.models.score import Score
 
@@ -49,7 +50,8 @@ class FlattenedConversation(BaseModel):
     type: ConversationTypeEnum = Field(...)
     grounding: Optional[ConversationGrounding] = None
     score: Optional[Score] = None
-    __properties = ["schema", "id", "name", "created", "updated", "deleted", "favorited", "application", "annotations", "messages", "model", "assets", "websites", "anchors", "type", "grounding", "score"]
+    pipeline: Optional[QGPTPromptPipeline] = None
+    __properties = ["schema", "id", "name", "created", "updated", "deleted", "favorited", "application", "annotations", "messages", "model", "assets", "websites", "anchors", "type", "grounding", "score", "pipeline"]
 
     class Config:
         """Pydantic configuration"""
@@ -114,6 +116,9 @@ class FlattenedConversation(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of score
         if self.score:
             _dict['score'] = self.score.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of pipeline
+        if self.pipeline:
+            _dict['pipeline'] = self.pipeline.to_dict()
         return _dict
 
     @classmethod
@@ -142,7 +147,8 @@ class FlattenedConversation(BaseModel):
             "anchors": FlattenedAnchors.from_dict(obj.get("anchors")) if obj.get("anchors") is not None else None,
             "type": obj.get("type"),
             "grounding": ConversationGrounding.from_dict(obj.get("grounding")) if obj.get("grounding") is not None else None,
-            "score": Score.from_dict(obj.get("score")) if obj.get("score") is not None else None
+            "score": Score.from_dict(obj.get("score")) if obj.get("score") is not None else None,
+            "pipeline": QGPTPromptPipeline.from_dict(obj.get("pipeline")) if obj.get("pipeline") is not None else None
         })
         return _obj
 

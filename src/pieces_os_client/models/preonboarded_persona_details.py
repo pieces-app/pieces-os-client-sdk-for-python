@@ -19,20 +19,18 @@ import re  # noqa: F401
 import json
 
 
-from typing import Optional
-from pydantic import BaseModel, Field, StrictBool
+from typing import List, Optional
+from pydantic import BaseModel, Field, StrictStr, conlist
 from pieces_os_client.models.embedded_model_schema import EmbeddedModelSchema
-from pieces_os_client.models.qgpt_prompt_pipeline import QGPTPromptPipeline
 
-class QGPTRelevanceInputOptions(BaseModel):
+class PreonboardedPersonaDetails(BaseModel):
     """
-    QGPTRelevanceInputOptions
+    This is an input body for the /machine_learning/text/technical_processing/generators/personification endpoint.  This will accept some of the personal details ie languages/personas && will transform this in to onbaording snippets  # noqa: E501
     """
     var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
-    database: Optional[StrictBool] = Field(None, description="This is an optional boolen that will tell us to use our entire snippet database as the sample.")
-    question: Optional[StrictBool] = Field(None, description="This is an optional boolean, that will let the serve know if you want to combine the 2 endpointsboth relevance && the Question endpoint to return the final results.")
-    pipeline: Optional[QGPTPromptPipeline] = None
-    __properties = ["schema", "database", "question", "pipeline"]
+    languages: Optional[conlist(StrictStr)] = None
+    personas: Optional[conlist(StrictStr)] = None
+    __properties = ["schema", "languages", "personas"]
 
     class Config:
         """Pydantic configuration"""
@@ -48,8 +46,8 @@ class QGPTRelevanceInputOptions(BaseModel):
         return json.dumps(self.to_dict())
 
     @classmethod
-    def from_json(cls, json_str: str) -> QGPTRelevanceInputOptions:
-        """Create an instance of QGPTRelevanceInputOptions from a JSON string"""
+    def from_json(cls, json_str: str) -> PreonboardedPersonaDetails:
+        """Create an instance of PreonboardedPersonaDetails from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self):
@@ -61,25 +59,21 @@ class QGPTRelevanceInputOptions(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of var_schema
         if self.var_schema:
             _dict['schema'] = self.var_schema.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of pipeline
-        if self.pipeline:
-            _dict['pipeline'] = self.pipeline.to_dict()
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> QGPTRelevanceInputOptions:
-        """Create an instance of QGPTRelevanceInputOptions from a dict"""
+    def from_dict(cls, obj: dict) -> PreonboardedPersonaDetails:
+        """Create an instance of PreonboardedPersonaDetails from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
-            return QGPTRelevanceInputOptions.parse_obj(obj)
+            return PreonboardedPersonaDetails.parse_obj(obj)
 
-        _obj = QGPTRelevanceInputOptions.parse_obj({
+        _obj = PreonboardedPersonaDetails.parse_obj({
             "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
-            "database": obj.get("database"),
-            "question": obj.get("question"),
-            "pipeline": QGPTPromptPipeline.from_dict(obj.get("pipeline")) if obj.get("pipeline") is not None else None
+            "languages": obj.get("languages"),
+            "personas": obj.get("personas")
         })
         return _obj
 

@@ -1,11 +1,12 @@
 [tool.poetry]
   name = "pieces_os_client"
-  version = "1.2.3"
+  version = "1.2.4"
   description = "A powerful code engine package for writing applications on top of Pieces OS"
   authors = [
     "Pieces <development@pieces.app>"
   ]
-  license = "MIT"  # Assuming the project uses the MIT License
+  readme = "README.md"
+  license = "MIT"
 
 [tool.poetry.dependencies]
   python = ">=3.8"

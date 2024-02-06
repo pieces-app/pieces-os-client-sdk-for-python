@@ -20,19 +20,15 @@ import json
 
 
 from typing import Optional
-from pydantic import BaseModel, Field, StrictBool
+from pydantic import BaseModel, Field
 from pieces_os_client.models.embedded_model_schema import EmbeddedModelSchema
-from pieces_os_client.models.qgpt_prompt_pipeline import QGPTPromptPipeline
 
-class QGPTRelevanceInputOptions(BaseModel):
+class QGPTTaskPipelineForCodeFix(BaseModel):
     """
-    QGPTRelevanceInputOptions
+    This task is for fixing a bit of code.  This is a class so that we can add optional properties in the future.  # noqa: E501
     """
     var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
-    database: Optional[StrictBool] = Field(None, description="This is an optional boolen that will tell us to use our entire snippet database as the sample.")
-    question: Optional[StrictBool] = Field(None, description="This is an optional boolean, that will let the serve know if you want to combine the 2 endpointsboth relevance && the Question endpoint to return the final results.")
-    pipeline: Optional[QGPTPromptPipeline] = None
-    __properties = ["schema", "database", "question", "pipeline"]
+    __properties = ["schema"]
 
     class Config:
         """Pydantic configuration"""
@@ -48,8 +44,8 @@ class QGPTRelevanceInputOptions(BaseModel):
         return json.dumps(self.to_dict())
 
     @classmethod
-    def from_json(cls, json_str: str) -> QGPTRelevanceInputOptions:
-        """Create an instance of QGPTRelevanceInputOptions from a JSON string"""
+    def from_json(cls, json_str: str) -> QGPTTaskPipelineForCodeFix:
+        """Create an instance of QGPTTaskPipelineForCodeFix from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self):
@@ -61,25 +57,19 @@ class QGPTRelevanceInputOptions(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of var_schema
         if self.var_schema:
             _dict['schema'] = self.var_schema.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of pipeline
-        if self.pipeline:
-            _dict['pipeline'] = self.pipeline.to_dict()
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> QGPTRelevanceInputOptions:
-        """Create an instance of QGPTRelevanceInputOptions from a dict"""
+    def from_dict(cls, obj: dict) -> QGPTTaskPipelineForCodeFix:
+        """Create an instance of QGPTTaskPipelineForCodeFix from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
-            return QGPTRelevanceInputOptions.parse_obj(obj)
+            return QGPTTaskPipelineForCodeFix.parse_obj(obj)
 
-        _obj = QGPTRelevanceInputOptions.parse_obj({
-            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
-            "database": obj.get("database"),
-            "question": obj.get("question"),
-            "pipeline": QGPTPromptPipeline.from_dict(obj.get("pipeline")) if obj.get("pipeline") is not None else None
+        _obj = QGPTTaskPipelineForCodeFix.parse_obj({
+            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None
         })
         return _obj
 

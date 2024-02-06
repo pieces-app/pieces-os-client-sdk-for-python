@@ -20,22 +20,19 @@ import json
 
 
 from typing import Optional
-from pydantic import BaseModel, Field, StrictStr
+from pydantic import BaseModel, Field
 from pieces_os_client.models.embedded_model_schema import EmbeddedModelSchema
-from pieces_os_client.models.qgpt_conversation import QGPTConversation
-from pieces_os_client.models.qgpt_prompt_pipeline import QGPTPromptPipeline
+from pieces_os_client.models.qgpt_conversation_pipeline import QGPTConversationPipeline
+from pieces_os_client.models.qgpt_task_pipeline import QGPTTaskPipeline
 
-class QGPTRepromptInput(BaseModel):
+class QGPTPromptPipeline(BaseModel):
     """
-    Query is your followup question.  Conversation is a list of the back and fourth with the qgpt bot. where the first entry in the array was the last message sent.  # noqa: E501
+    This is a model related to switching between different prompts based on if we are dealing with  various tasks or if we are attempting to converse with LLMs via conversation.  You will have 2 options-  1) task- This is specifically for 1 off task operations for instance explaning a bit of code 2) conversation- This is specifically for conversing with our LLMs, will provide better results && high fedility                responses for instance contextualize code conversations.  # noqa: E501
     """
     var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
-    query: StrictStr = Field(...)
-    conversation: QGPTConversation = Field(...)
-    application: Optional[StrictStr] = Field(None, description="optional application id")
-    model: Optional[StrictStr] = Field(None, description="optional model id")
-    pipeline: Optional[QGPTPromptPipeline] = None
-    __properties = ["schema", "query", "conversation", "application", "model", "pipeline"]
+    task: Optional[QGPTTaskPipeline] = None
+    conversation: Optional[QGPTConversationPipeline] = None
+    __properties = ["schema", "task", "conversation"]
 
     class Config:
         """Pydantic configuration"""
@@ -51,8 +48,8 @@ class QGPTRepromptInput(BaseModel):
         return json.dumps(self.to_dict())
 
     @classmethod
-    def from_json(cls, json_str: str) -> QGPTRepromptInput:
-        """Create an instance of QGPTRepromptInput from a JSON string"""
+    def from_json(cls, json_str: str) -> QGPTPromptPipeline:
+        """Create an instance of QGPTPromptPipeline from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self):
@@ -64,30 +61,27 @@ class QGPTRepromptInput(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of var_schema
         if self.var_schema:
             _dict['schema'] = self.var_schema.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of task
+        if self.task:
+            _dict['task'] = self.task.to_dict()
         # override the default output from pydantic by calling `to_dict()` of conversation
         if self.conversation:
             _dict['conversation'] = self.conversation.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of pipeline
-        if self.pipeline:
-            _dict['pipeline'] = self.pipeline.to_dict()
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> QGPTRepromptInput:
-        """Create an instance of QGPTRepromptInput from a dict"""
+    def from_dict(cls, obj: dict) -> QGPTPromptPipeline:
+        """Create an instance of QGPTPromptPipeline from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
-            return QGPTRepromptInput.parse_obj(obj)
+            return QGPTPromptPipeline.parse_obj(obj)
 
-        _obj = QGPTRepromptInput.parse_obj({
+        _obj = QGPTPromptPipeline.parse_obj({
             "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
-            "query": obj.get("query"),
-            "conversation": QGPTConversation.from_dict(obj.get("conversation")) if obj.get("conversation") is not None else None,
-            "application": obj.get("application"),
-            "model": obj.get("model"),
-            "pipeline": QGPTPromptPipeline.from_dict(obj.get("pipeline")) if obj.get("pipeline") is not None else None
+            "task": QGPTTaskPipeline.from_dict(obj.get("task")) if obj.get("task") is not None else None,
+            "conversation": QGPTConversationPipeline.from_dict(obj.get("conversation")) if obj.get("conversation") is not None else None
         })
         return _obj
 

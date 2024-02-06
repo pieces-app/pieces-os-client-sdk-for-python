@@ -19,20 +19,18 @@ import re  # noqa: F401
 import json
 
 
-from typing import Optional
-from pydantic import BaseModel, Field, StrictBool
+from typing import List, Optional
+from pydantic import BaseModel, Field, conlist
+from pieces_os_client.models.detected_external_application import DetectedExternalApplication
 from pieces_os_client.models.embedded_model_schema import EmbeddedModelSchema
-from pieces_os_client.models.qgpt_prompt_pipeline import QGPTPromptPipeline
 
-class QGPTRelevanceInputOptions(BaseModel):
+class DetectedExternalApplications(BaseModel):
     """
-    QGPTRelevanceInputOptions
+    This is used as the returnable for the /applications/external && /applications/external/related endpoints.  This will return an iterable of Deteched Application a detected Application is an application that is currently installed on your machine.  the /applications/external/related endpoint, will return a subset of the applications returned mainly applications that we detect are Pieces Applications that you have yet to install + names of applications where Pieces is coming soon.  # noqa: E501
     """
     var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
-    database: Optional[StrictBool] = Field(None, description="This is an optional boolen that will tell us to use our entire snippet database as the sample.")
-    question: Optional[StrictBool] = Field(None, description="This is an optional boolean, that will let the serve know if you want to combine the 2 endpointsboth relevance && the Question endpoint to return the final results.")
-    pipeline: Optional[QGPTPromptPipeline] = None
-    __properties = ["schema", "database", "question", "pipeline"]
+    iterable: conlist(DetectedExternalApplication) = Field(...)
+    __properties = ["schema", "iterable"]
 
     class Config:
         """Pydantic configuration"""
@@ -48,8 +46,8 @@ class QGPTRelevanceInputOptions(BaseModel):
         return json.dumps(self.to_dict())
 
     @classmethod
-    def from_json(cls, json_str: str) -> QGPTRelevanceInputOptions:
-        """Create an instance of QGPTRelevanceInputOptions from a JSON string"""
+    def from_json(cls, json_str: str) -> DetectedExternalApplications:
+        """Create an instance of DetectedExternalApplications from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self):
@@ -61,25 +59,27 @@ class QGPTRelevanceInputOptions(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of var_schema
         if self.var_schema:
             _dict['schema'] = self.var_schema.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of pipeline
-        if self.pipeline:
-            _dict['pipeline'] = self.pipeline.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of each item in iterable (list)
+        _items = []
+        if self.iterable:
+            for _item in self.iterable:
+                if _item:
+                    _items.append(_item.to_dict())
+            _dict['iterable'] = _items
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> QGPTRelevanceInputOptions:
-        """Create an instance of QGPTRelevanceInputOptions from a dict"""
+    def from_dict(cls, obj: dict) -> DetectedExternalApplications:
+        """Create an instance of DetectedExternalApplications from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
-            return QGPTRelevanceInputOptions.parse_obj(obj)
+            return DetectedExternalApplications.parse_obj(obj)
 
-        _obj = QGPTRelevanceInputOptions.parse_obj({
+        _obj = DetectedExternalApplications.parse_obj({
             "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
-            "database": obj.get("database"),
-            "question": obj.get("question"),
-            "pipeline": QGPTPromptPipeline.from_dict(obj.get("pipeline")) if obj.get("pipeline") is not None else None
+            "iterable": [DetectedExternalApplication.from_dict(_item) for _item in obj.get("iterable")] if obj.get("iterable") is not None else None
         })
         return _obj
 

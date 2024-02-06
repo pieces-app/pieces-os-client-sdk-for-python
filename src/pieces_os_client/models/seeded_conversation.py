@@ -26,6 +26,7 @@ from pieces_os_client.models.conversation_type_enum import ConversationTypeEnum
 from pieces_os_client.models.embedded_model_schema import EmbeddedModelSchema
 from pieces_os_client.models.flattened_assets import FlattenedAssets
 from pieces_os_client.models.flattened_websites import FlattenedWebsites
+from pieces_os_client.models.qgpt_prompt_pipeline import QGPTPromptPipeline
 from pieces_os_client.models.referenced_model import ReferencedModel
 from pieces_os_client.models.seeded_anchor import SeededAnchor
 from pieces_os_client.models.seeded_annotation import SeededAnnotation
@@ -46,7 +47,8 @@ class SeededConversation(BaseModel):
     websites: Optional[FlattenedWebsites] = None
     anchors: Optional[conlist(SeededAnchor)] = None
     type: ConversationTypeEnum = Field(...)
-    __properties = ["schema", "name", "favorited", "application", "annotations", "messages", "model", "assets", "websites", "anchors", "type"]
+    pipeline: Optional[QGPTPromptPipeline] = None
+    __properties = ["schema", "name", "favorited", "application", "annotations", "messages", "model", "assets", "websites", "anchors", "type", "pipeline"]
 
     class Config:
         """Pydantic configuration"""
@@ -108,6 +110,9 @@ class SeededConversation(BaseModel):
                 if _item:
                     _items.append(_item.to_dict())
             _dict['anchors'] = _items
+        # override the default output from pydantic by calling `to_dict()` of pipeline
+        if self.pipeline:
+            _dict['pipeline'] = self.pipeline.to_dict()
         return _dict
 
     @classmethod
@@ -130,7 +135,8 @@ class SeededConversation(BaseModel):
             "assets": FlattenedAssets.from_dict(obj.get("assets")) if obj.get("assets") is not None else None,
             "websites": FlattenedWebsites.from_dict(obj.get("websites")) if obj.get("websites") is not None else None,
             "anchors": [SeededAnchor.from_dict(_item) for _item in obj.get("anchors")] if obj.get("anchors") is not None else None,
-            "type": obj.get("type")
+            "type": obj.get("type"),
+            "pipeline": QGPTPromptPipeline.from_dict(obj.get("pipeline")) if obj.get("pipeline") is not None else None
         })
         return _obj
 

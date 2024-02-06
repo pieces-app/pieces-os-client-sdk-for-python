@@ -23,6 +23,7 @@ from typing import Optional
 from pydantic import BaseModel, Field, StrictStr
 from pieces_os_client.models.embedded_model_schema import EmbeddedModelSchema
 from pieces_os_client.models.flattened_conversation_messages import FlattenedConversationMessages
+from pieces_os_client.models.qgpt_prompt_pipeline import QGPTPromptPipeline
 from pieces_os_client.models.relevant_qgpt_seeds import RelevantQGPTSeeds
 
 class QGPTQuestionInput(BaseModel):
@@ -35,7 +36,8 @@ class QGPTQuestionInput(BaseModel):
     application: Optional[StrictStr] = Field(None, description="optional application id")
     model: Optional[StrictStr] = Field(None, description="optional model id")
     messages: Optional[FlattenedConversationMessages] = None
-    __properties = ["schema", "relevant", "query", "application", "model", "messages"]
+    pipeline: Optional[QGPTPromptPipeline] = None
+    __properties = ["schema", "relevant", "query", "application", "model", "messages", "pipeline"]
 
     class Config:
         """Pydantic configuration"""
@@ -70,6 +72,9 @@ class QGPTQuestionInput(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of messages
         if self.messages:
             _dict['messages'] = self.messages.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of pipeline
+        if self.pipeline:
+            _dict['pipeline'] = self.pipeline.to_dict()
         return _dict
 
     @classmethod
@@ -87,7 +92,8 @@ class QGPTQuestionInput(BaseModel):
             "query": obj.get("query"),
             "application": obj.get("application"),
             "model": obj.get("model"),
-            "messages": FlattenedConversationMessages.from_dict(obj.get("messages")) if obj.get("messages") is not None else None
+            "messages": FlattenedConversationMessages.from_dict(obj.get("messages")) if obj.get("messages") is not None else None,
+            "pipeline": QGPTPromptPipeline.from_dict(obj.get("pipeline")) if obj.get("pipeline") is not None else None
         })
         return _obj
 
