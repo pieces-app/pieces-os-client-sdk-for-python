@@ -24,10 +24,12 @@ from pydantic import BaseModel, Field, conlist
 from pieces_os_client.models.embedded_model_schema import EmbeddedModelSchema
 from pieces_os_client.models.filter_operation_type_enum import FilterOperationTypeEnum
 
+
 class AssetFilters(BaseModel):
     """
     AssetFilters
     """
+
     var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
     iterable: conlist(AssetFilter) = Field(...)
     type: Optional[FilterOperationTypeEnum] = None
@@ -35,6 +37,7 @@ class AssetFilters(BaseModel):
 
     class Config:
         """Pydantic configuration"""
+
         allow_population_by_field_name = True
         validate_assignment = True
 
@@ -53,20 +56,17 @@ class AssetFilters(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
-                          exclude={
-                          },
-                          exclude_none=True)
+        _dict = self.dict(by_alias=True, exclude={}, exclude_none=True)
         # override the default output from pydantic by calling `to_dict()` of var_schema
         if self.var_schema:
-            _dict['schema'] = self.var_schema.to_dict()
+            _dict["schema"] = self.var_schema.to_dict()
         # override the default output from pydantic by calling `to_dict()` of each item in iterable (list)
         _items = []
         if self.iterable:
             for _item in self.iterable:
                 if _item:
                     _items.append(_item.to_dict())
-            _dict['iterable'] = _items
+            _dict["iterable"] = _items
         return _dict
 
     @classmethod
@@ -78,13 +78,22 @@ class AssetFilters(BaseModel):
         if not isinstance(obj, dict):
             return AssetFilters.parse_obj(obj)
 
-        _obj = AssetFilters.parse_obj({
-            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
-            "iterable": [AssetFilter.from_dict(_item) for _item in obj.get("iterable")] if obj.get("iterable") is not None else None,
-            "type": obj.get("type")
-        })
+        _obj = AssetFilters.parse_obj(
+            {
+                "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema"))
+                if obj.get("schema") is not None
+                else None,
+                "iterable": [
+                    AssetFilter.from_dict(_item) for _item in obj.get("iterable")
+                ]
+                if obj.get("iterable") is not None
+                else None,
+                "type": obj.get("type"),
+            }
+        )
         return _obj
 
-from pieces_os_client.models.asset_filter import AssetFilter
-AssetFilters.update_forward_refs()
 
+from pieces_os_client.models.asset_filter import AssetFilter
+
+# AssetFilters.update_forward_refs()

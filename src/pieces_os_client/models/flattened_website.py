@@ -26,10 +26,12 @@ from pieces_os_client.models.grouped_timestamp import GroupedTimestamp
 from pieces_os_client.models.mechanism_enum import MechanismEnum
 from pieces_os_client.models.score import Score
 
+
 class FlattenedWebsite(BaseModel):
     """
     This is a specific model for related websites to an asset.[DAG SAFE]  # noqa: E501
     """
+
     var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
     id: StrictStr = Field(..., description="this is aspecific uuid that represents")
     assets: Optional[FlattenedAssets] = None
@@ -38,15 +40,36 @@ class FlattenedWebsite(BaseModel):
     created: GroupedTimestamp = Field(...)
     updated: GroupedTimestamp = Field(...)
     deleted: Optional[GroupedTimestamp] = None
-    mechanisms: Optional[Dict[str, MechanismEnum]] = Field(None, description="This is a Map<String, MechanismEnum> where the the key is an asset id.")
-    interactions: Optional[StrictInt] = Field(None, description="This is an optional value that will keep track of the number of times this has been interacted with.")
+    mechanisms: Optional[Dict[str, MechanismEnum]] = Field(
+        None,
+        description="This is a Map<String, MechanismEnum> where the the key is an asset id.",
+    )
+    interactions: Optional[StrictInt] = Field(
+        None,
+        description="This is an optional value that will keep track of the number of times this has been interacted with.",
+    )
     persons: Optional[FlattenedPersons] = None
     conversations: Optional[FlattenedConversations] = None
     score: Optional[Score] = None
-    __properties = ["schema", "id", "assets", "name", "url", "created", "updated", "deleted", "mechanisms", "interactions", "persons", "conversations", "score"]
+    __properties = [
+        "schema",
+        "id",
+        "assets",
+        "name",
+        "url",
+        "created",
+        "updated",
+        "deleted",
+        "mechanisms",
+        "interactions",
+        "persons",
+        "conversations",
+        "score",
+    ]
 
     class Config:
         """Pydantic configuration"""
+
         allow_population_by_field_name = True
         validate_assignment = True
 
@@ -65,34 +88,31 @@ class FlattenedWebsite(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
-                          exclude={
-                          },
-                          exclude_none=True)
+        _dict = self.dict(by_alias=True, exclude={}, exclude_none=True)
         # override the default output from pydantic by calling `to_dict()` of var_schema
         if self.var_schema:
-            _dict['schema'] = self.var_schema.to_dict()
+            _dict["schema"] = self.var_schema.to_dict()
         # override the default output from pydantic by calling `to_dict()` of assets
         if self.assets:
-            _dict['assets'] = self.assets.to_dict()
+            _dict["assets"] = self.assets.to_dict()
         # override the default output from pydantic by calling `to_dict()` of created
         if self.created:
-            _dict['created'] = self.created.to_dict()
+            _dict["created"] = self.created.to_dict()
         # override the default output from pydantic by calling `to_dict()` of updated
         if self.updated:
-            _dict['updated'] = self.updated.to_dict()
+            _dict["updated"] = self.updated.to_dict()
         # override the default output from pydantic by calling `to_dict()` of deleted
         if self.deleted:
-            _dict['deleted'] = self.deleted.to_dict()
+            _dict["deleted"] = self.deleted.to_dict()
         # override the default output from pydantic by calling `to_dict()` of persons
         if self.persons:
-            _dict['persons'] = self.persons.to_dict()
+            _dict["persons"] = self.persons.to_dict()
         # override the default output from pydantic by calling `to_dict()` of conversations
         if self.conversations:
-            _dict['conversations'] = self.conversations.to_dict()
+            _dict["conversations"] = self.conversations.to_dict()
         # override the default output from pydantic by calling `to_dict()` of score
         if self.score:
-            _dict['score'] = self.score.to_dict()
+            _dict["score"] = self.score.to_dict()
         return _dict
 
     @classmethod
@@ -104,25 +124,48 @@ class FlattenedWebsite(BaseModel):
         if not isinstance(obj, dict):
             return FlattenedWebsite.parse_obj(obj)
 
-        _obj = FlattenedWebsite.parse_obj({
-            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
-            "id": obj.get("id"),
-            "assets": FlattenedAssets.from_dict(obj.get("assets")) if obj.get("assets") is not None else None,
-            "name": obj.get("name"),
-            "url": obj.get("url"),
-            "created": GroupedTimestamp.from_dict(obj.get("created")) if obj.get("created") is not None else None,
-            "updated": GroupedTimestamp.from_dict(obj.get("updated")) if obj.get("updated") is not None else None,
-            "deleted": GroupedTimestamp.from_dict(obj.get("deleted")) if obj.get("deleted") is not None else None,
-            "mechanisms": dict((_k, _v) for _k, _v in obj.get("mechanisms").items()),
-            "interactions": obj.get("interactions"),
-            "persons": FlattenedPersons.from_dict(obj.get("persons")) if obj.get("persons") is not None else None,
-            "conversations": FlattenedConversations.from_dict(obj.get("conversations")) if obj.get("conversations") is not None else None,
-            "score": Score.from_dict(obj.get("score")) if obj.get("score") is not None else None
-        })
+        _obj = FlattenedWebsite.parse_obj(
+            {
+                "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema"))
+                if obj.get("schema") is not None
+                else None,
+                "id": obj.get("id"),
+                "assets": FlattenedAssets.from_dict(obj.get("assets"))
+                if obj.get("assets") is not None
+                else None,
+                "name": obj.get("name"),
+                "url": obj.get("url"),
+                "created": GroupedTimestamp.from_dict(obj.get("created"))
+                if obj.get("created") is not None
+                else None,
+                "updated": GroupedTimestamp.from_dict(obj.get("updated"))
+                if obj.get("updated") is not None
+                else None,
+                "deleted": GroupedTimestamp.from_dict(obj.get("deleted"))
+                if obj.get("deleted") is not None
+                else None,
+                "mechanisms": dict(
+                    (_k, _v) for _k, _v in obj.get("mechanisms").items()
+                ),
+                "interactions": obj.get("interactions"),
+                "persons": FlattenedPersons.from_dict(obj.get("persons"))
+                if obj.get("persons") is not None
+                else None,
+                "conversations": FlattenedConversations.from_dict(
+                    obj.get("conversations")
+                )
+                if obj.get("conversations") is not None
+                else None,
+                "score": Score.from_dict(obj.get("score"))
+                if obj.get("score") is not None
+                else None,
+            }
+        )
         return _obj
+
 
 from pieces_os_client.models.flattened_assets import FlattenedAssets
 from pieces_os_client.models.flattened_conversations import FlattenedConversations
 from pieces_os_client.models.flattened_persons import FlattenedPersons
-FlattenedWebsite.update_forward_refs()
 
+# FlattenedWebsite.update_forward_refs()

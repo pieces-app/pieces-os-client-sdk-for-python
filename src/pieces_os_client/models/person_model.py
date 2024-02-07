@@ -24,10 +24,12 @@ from pydantic import BaseModel
 from pieces_os_client.models.grouped_timestamp import GroupedTimestamp
 from pieces_os_client.models.referenced_model import ReferencedModel
 
+
 class PersonModel(BaseModel):
     """
     This is a PersonSpecific Model. and will let us know for all the assets that get attached to the person if, this person was attached via a model or just attached automatically.  explanation here are the reason why a Person was attached to an asset.  # noqa: E501
     """
+
     asset: Optional[ReferencedAsset] = None
     model: Optional[ReferencedModel] = None
     deleted: Optional[GroupedTimestamp] = None
@@ -36,6 +38,7 @@ class PersonModel(BaseModel):
 
     class Config:
         """Pydantic configuration"""
+
         allow_population_by_field_name = True
         validate_assignment = True
 
@@ -54,22 +57,19 @@ class PersonModel(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
-                          exclude={
-                          },
-                          exclude_none=True)
+        _dict = self.dict(by_alias=True, exclude={}, exclude_none=True)
         # override the default output from pydantic by calling `to_dict()` of asset
         if self.asset:
-            _dict['asset'] = self.asset.to_dict()
+            _dict["asset"] = self.asset.to_dict()
         # override the default output from pydantic by calling `to_dict()` of model
         if self.model:
-            _dict['model'] = self.model.to_dict()
+            _dict["model"] = self.model.to_dict()
         # override the default output from pydantic by calling `to_dict()` of deleted
         if self.deleted:
-            _dict['deleted'] = self.deleted.to_dict()
+            _dict["deleted"] = self.deleted.to_dict()
         # override the default output from pydantic by calling `to_dict()` of explanation
         if self.explanation:
-            _dict['explanation'] = self.explanation.to_dict()
+            _dict["explanation"] = self.explanation.to_dict()
         return _dict
 
     @classmethod
@@ -81,15 +81,26 @@ class PersonModel(BaseModel):
         if not isinstance(obj, dict):
             return PersonModel.parse_obj(obj)
 
-        _obj = PersonModel.parse_obj({
-            "asset": ReferencedAsset.from_dict(obj.get("asset")) if obj.get("asset") is not None else None,
-            "model": ReferencedModel.from_dict(obj.get("model")) if obj.get("model") is not None else None,
-            "deleted": GroupedTimestamp.from_dict(obj.get("deleted")) if obj.get("deleted") is not None else None,
-            "explanation": ReferencedAnnotation.from_dict(obj.get("explanation")) if obj.get("explanation") is not None else None
-        })
+        _obj = PersonModel.parse_obj(
+            {
+                "asset": ReferencedAsset.from_dict(obj.get("asset"))
+                if obj.get("asset") is not None
+                else None,
+                "model": ReferencedModel.from_dict(obj.get("model"))
+                if obj.get("model") is not None
+                else None,
+                "deleted": GroupedTimestamp.from_dict(obj.get("deleted"))
+                if obj.get("deleted") is not None
+                else None,
+                "explanation": ReferencedAnnotation.from_dict(obj.get("explanation"))
+                if obj.get("explanation") is not None
+                else None,
+            }
+        )
         return _obj
+
 
 from pieces_os_client.models.referenced_annotation import ReferencedAnnotation
 from pieces_os_client.models.referenced_asset import ReferencedAsset
-PersonModel.update_forward_refs()
 
+# PersonModel.update_forward_refs()

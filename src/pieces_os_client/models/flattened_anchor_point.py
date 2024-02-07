@@ -26,10 +26,12 @@ from pieces_os_client.models.grouped_timestamp import GroupedTimestamp
 from pieces_os_client.models.platform_enum import PlatformEnum
 from pieces_os_client.models.score import Score
 
+
 class FlattenedAnchorPoint(BaseModel):
     """
     FlattenedAnchorPoint
     """
+
     var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
     id: StrictStr = Field(...)
     verified: Optional[StrictBool] = None
@@ -40,10 +42,22 @@ class FlattenedAnchorPoint(BaseModel):
     platform: Optional[PlatformEnum] = None
     anchor: ReferencedAnchor = Field(...)
     score: Optional[Score] = None
-    __properties = ["schema", "id", "verified", "fullpath", "created", "updated", "deleted", "platform", "anchor", "score"]
+    __properties = [
+        "schema",
+        "id",
+        "verified",
+        "fullpath",
+        "created",
+        "updated",
+        "deleted",
+        "platform",
+        "anchor",
+        "score",
+    ]
 
     class Config:
         """Pydantic configuration"""
+
         allow_population_by_field_name = True
         validate_assignment = True
 
@@ -62,28 +76,25 @@ class FlattenedAnchorPoint(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
-                          exclude={
-                          },
-                          exclude_none=True)
+        _dict = self.dict(by_alias=True, exclude={}, exclude_none=True)
         # override the default output from pydantic by calling `to_dict()` of var_schema
         if self.var_schema:
-            _dict['schema'] = self.var_schema.to_dict()
+            _dict["schema"] = self.var_schema.to_dict()
         # override the default output from pydantic by calling `to_dict()` of created
         if self.created:
-            _dict['created'] = self.created.to_dict()
+            _dict["created"] = self.created.to_dict()
         # override the default output from pydantic by calling `to_dict()` of updated
         if self.updated:
-            _dict['updated'] = self.updated.to_dict()
+            _dict["updated"] = self.updated.to_dict()
         # override the default output from pydantic by calling `to_dict()` of deleted
         if self.deleted:
-            _dict['deleted'] = self.deleted.to_dict()
+            _dict["deleted"] = self.deleted.to_dict()
         # override the default output from pydantic by calling `to_dict()` of anchor
         if self.anchor:
-            _dict['anchor'] = self.anchor.to_dict()
+            _dict["anchor"] = self.anchor.to_dict()
         # override the default output from pydantic by calling `to_dict()` of score
         if self.score:
-            _dict['score'] = self.score.to_dict()
+            _dict["score"] = self.score.to_dict()
         return _dict
 
     @classmethod
@@ -95,20 +106,35 @@ class FlattenedAnchorPoint(BaseModel):
         if not isinstance(obj, dict):
             return FlattenedAnchorPoint.parse_obj(obj)
 
-        _obj = FlattenedAnchorPoint.parse_obj({
-            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
-            "id": obj.get("id"),
-            "verified": obj.get("verified"),
-            "fullpath": obj.get("fullpath"),
-            "created": GroupedTimestamp.from_dict(obj.get("created")) if obj.get("created") is not None else None,
-            "updated": GroupedTimestamp.from_dict(obj.get("updated")) if obj.get("updated") is not None else None,
-            "deleted": GroupedTimestamp.from_dict(obj.get("deleted")) if obj.get("deleted") is not None else None,
-            "platform": obj.get("platform"),
-            "anchor": ReferencedAnchor.from_dict(obj.get("anchor")) if obj.get("anchor") is not None else None,
-            "score": Score.from_dict(obj.get("score")) if obj.get("score") is not None else None
-        })
+        _obj = FlattenedAnchorPoint.parse_obj(
+            {
+                "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema"))
+                if obj.get("schema") is not None
+                else None,
+                "id": obj.get("id"),
+                "verified": obj.get("verified"),
+                "fullpath": obj.get("fullpath"),
+                "created": GroupedTimestamp.from_dict(obj.get("created"))
+                if obj.get("created") is not None
+                else None,
+                "updated": GroupedTimestamp.from_dict(obj.get("updated"))
+                if obj.get("updated") is not None
+                else None,
+                "deleted": GroupedTimestamp.from_dict(obj.get("deleted"))
+                if obj.get("deleted") is not None
+                else None,
+                "platform": obj.get("platform"),
+                "anchor": ReferencedAnchor.from_dict(obj.get("anchor"))
+                if obj.get("anchor") is not None
+                else None,
+                "score": Score.from_dict(obj.get("score"))
+                if obj.get("score") is not None
+                else None,
+            }
+        )
         return _obj
 
-from pieces_os_client.models.referenced_anchor import ReferencedAnchor
-FlattenedAnchorPoint.update_forward_refs()
 
+from pieces_os_client.models.referenced_anchor import ReferencedAnchor
+
+# FlattenedAnchorPoint.update_forward_refs()

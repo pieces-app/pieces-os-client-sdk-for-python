@@ -23,18 +23,25 @@ from typing import Optional, Union
 from pydantic import BaseModel, Field, StrictFloat, StrictInt
 from pieces_os_client.models.space import Space
 
+
 class TrackedAssetsEventSearchMetadataResults(BaseModel):
     """
     Numbers related to search results  # noqa: E501
     """
-    fuzzy: Optional[Union[StrictFloat, StrictInt]] = Field(None, description="Total number of fuzzy results")
-    exact: Optional[Union[StrictFloat, StrictInt]] = Field(None, description="Total number of exact results")
+
+    fuzzy: Optional[Union[StrictFloat, StrictInt]] = Field(
+        None, description="Total number of fuzzy results"
+    )
+    exact: Optional[Union[StrictFloat, StrictInt]] = Field(
+        None, description="Total number of exact results"
+    )
     assets: Optional[FlattenedAssets] = None
     space: Optional[Space] = None
     __properties = ["fuzzy", "exact", "assets", "space"]
 
     class Config:
         """Pydantic configuration"""
+
         allow_population_by_field_name = True
         validate_assignment = True
 
@@ -53,16 +60,13 @@ class TrackedAssetsEventSearchMetadataResults(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
-                          exclude={
-                          },
-                          exclude_none=True)
+        _dict = self.dict(by_alias=True, exclude={}, exclude_none=True)
         # override the default output from pydantic by calling `to_dict()` of assets
         if self.assets:
-            _dict['assets'] = self.assets.to_dict()
+            _dict["assets"] = self.assets.to_dict()
         # override the default output from pydantic by calling `to_dict()` of space
         if self.space:
-            _dict['space'] = self.space.to_dict()
+            _dict["space"] = self.space.to_dict()
         return _dict
 
     @classmethod
@@ -74,14 +78,21 @@ class TrackedAssetsEventSearchMetadataResults(BaseModel):
         if not isinstance(obj, dict):
             return TrackedAssetsEventSearchMetadataResults.parse_obj(obj)
 
-        _obj = TrackedAssetsEventSearchMetadataResults.parse_obj({
-            "fuzzy": obj.get("fuzzy"),
-            "exact": obj.get("exact"),
-            "assets": FlattenedAssets.from_dict(obj.get("assets")) if obj.get("assets") is not None else None,
-            "space": Space.from_dict(obj.get("space")) if obj.get("space") is not None else None
-        })
+        _obj = TrackedAssetsEventSearchMetadataResults.parse_obj(
+            {
+                "fuzzy": obj.get("fuzzy"),
+                "exact": obj.get("exact"),
+                "assets": FlattenedAssets.from_dict(obj.get("assets"))
+                if obj.get("assets") is not None
+                else None,
+                "space": Space.from_dict(obj.get("space"))
+                if obj.get("space") is not None
+                else None,
+            }
+        )
         return _obj
 
-from pieces_os_client.models.flattened_assets import FlattenedAssets
-TrackedAssetsEventSearchMetadataResults.update_forward_refs()
 
+from pieces_os_client.models.flattened_assets import FlattenedAssets
+
+# TrackedAssetsEventSearchMetadataResults.update_forward_refs()

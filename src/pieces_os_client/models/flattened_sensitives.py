@@ -24,10 +24,12 @@ from pydantic import BaseModel, Field, conlist
 from pieces_os_client.models.embedded_model_schema import EmbeddedModelSchema
 from pieces_os_client.models.score import Score
 
+
 class FlattenedSensitives(BaseModel):
     """
     This is a flattened representation of multiple sensitive pieces of data.  # noqa: E501
     """
+
     var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
     iterable: conlist(ReferencedSensitive) = Field(...)
     score: Optional[Score] = None
@@ -35,6 +37,7 @@ class FlattenedSensitives(BaseModel):
 
     class Config:
         """Pydantic configuration"""
+
         allow_population_by_field_name = True
         validate_assignment = True
 
@@ -53,23 +56,20 @@ class FlattenedSensitives(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
-                          exclude={
-                          },
-                          exclude_none=True)
+        _dict = self.dict(by_alias=True, exclude={}, exclude_none=True)
         # override the default output from pydantic by calling `to_dict()` of var_schema
         if self.var_schema:
-            _dict['schema'] = self.var_schema.to_dict()
+            _dict["schema"] = self.var_schema.to_dict()
         # override the default output from pydantic by calling `to_dict()` of each item in iterable (list)
         _items = []
         if self.iterable:
             for _item in self.iterable:
                 if _item:
                     _items.append(_item.to_dict())
-            _dict['iterable'] = _items
+            _dict["iterable"] = _items
         # override the default output from pydantic by calling `to_dict()` of score
         if self.score:
-            _dict['score'] = self.score.to_dict()
+            _dict["score"] = self.score.to_dict()
         return _dict
 
     @classmethod
@@ -81,13 +81,25 @@ class FlattenedSensitives(BaseModel):
         if not isinstance(obj, dict):
             return FlattenedSensitives.parse_obj(obj)
 
-        _obj = FlattenedSensitives.parse_obj({
-            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
-            "iterable": [ReferencedSensitive.from_dict(_item) for _item in obj.get("iterable")] if obj.get("iterable") is not None else None,
-            "score": Score.from_dict(obj.get("score")) if obj.get("score") is not None else None
-        })
+        _obj = FlattenedSensitives.parse_obj(
+            {
+                "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema"))
+                if obj.get("schema") is not None
+                else None,
+                "iterable": [
+                    ReferencedSensitive.from_dict(_item)
+                    for _item in obj.get("iterable")
+                ]
+                if obj.get("iterable") is not None
+                else None,
+                "score": Score.from_dict(obj.get("score"))
+                if obj.get("score") is not None
+                else None,
+            }
+        )
         return _obj
 
-from pieces_os_client.models.referenced_sensitive import ReferencedSensitive
-FlattenedSensitives.update_forward_refs()
 
+from pieces_os_client.models.referenced_sensitive import ReferencedSensitive
+
+# FlattenedSensitives.update_forward_refs()

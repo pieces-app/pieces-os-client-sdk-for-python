@@ -29,10 +29,12 @@ from pieces_os_client.models.sensitive_category_enum import SensitiveCategoryEnu
 from pieces_os_client.models.sensitive_metadata import SensitiveMetadata
 from pieces_os_client.models.sensitive_severity_enum import SensitiveSeverityEnum
 
+
 class FlattenedSensitive(BaseModel):
     """
     This is a dereferenced representation of a sensitive pieces of data.  # noqa: E501
     """
+
     var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
     id: StrictStr = Field(...)
     created: GroupedTimestamp = Field(...)
@@ -46,12 +48,32 @@ class FlattenedSensitive(BaseModel):
     name: StrictStr = Field(...)
     description: StrictStr = Field(...)
     metadata: Optional[SensitiveMetadata] = None
-    interactions: Optional[StrictInt] = Field(None, description="This is an optional value that will keep track of the number of times this has been interacted with.")
+    interactions: Optional[StrictInt] = Field(
+        None,
+        description="This is an optional value that will keep track of the number of times this has been interacted with.",
+    )
     score: Optional[Score] = None
-    __properties = ["schema", "id", "created", "updated", "deleted", "asset", "text", "mechanism", "category", "severity", "name", "description", "metadata", "interactions", "score"]
+    __properties = [
+        "schema",
+        "id",
+        "created",
+        "updated",
+        "deleted",
+        "asset",
+        "text",
+        "mechanism",
+        "category",
+        "severity",
+        "name",
+        "description",
+        "metadata",
+        "interactions",
+        "score",
+    ]
 
     class Config:
         """Pydantic configuration"""
+
         allow_population_by_field_name = True
         validate_assignment = True
 
@@ -70,31 +92,28 @@ class FlattenedSensitive(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
-                          exclude={
-                          },
-                          exclude_none=True)
+        _dict = self.dict(by_alias=True, exclude={}, exclude_none=True)
         # override the default output from pydantic by calling `to_dict()` of var_schema
         if self.var_schema:
-            _dict['schema'] = self.var_schema.to_dict()
+            _dict["schema"] = self.var_schema.to_dict()
         # override the default output from pydantic by calling `to_dict()` of created
         if self.created:
-            _dict['created'] = self.created.to_dict()
+            _dict["created"] = self.created.to_dict()
         # override the default output from pydantic by calling `to_dict()` of updated
         if self.updated:
-            _dict['updated'] = self.updated.to_dict()
+            _dict["updated"] = self.updated.to_dict()
         # override the default output from pydantic by calling `to_dict()` of deleted
         if self.deleted:
-            _dict['deleted'] = self.deleted.to_dict()
+            _dict["deleted"] = self.deleted.to_dict()
         # override the default output from pydantic by calling `to_dict()` of asset
         if self.asset:
-            _dict['asset'] = self.asset.to_dict()
+            _dict["asset"] = self.asset.to_dict()
         # override the default output from pydantic by calling `to_dict()` of metadata
         if self.metadata:
-            _dict['metadata'] = self.metadata.to_dict()
+            _dict["metadata"] = self.metadata.to_dict()
         # override the default output from pydantic by calling `to_dict()` of score
         if self.score:
-            _dict['score'] = self.score.to_dict()
+            _dict["score"] = self.score.to_dict()
         return _dict
 
     @classmethod
@@ -106,25 +125,42 @@ class FlattenedSensitive(BaseModel):
         if not isinstance(obj, dict):
             return FlattenedSensitive.parse_obj(obj)
 
-        _obj = FlattenedSensitive.parse_obj({
-            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
-            "id": obj.get("id"),
-            "created": GroupedTimestamp.from_dict(obj.get("created")) if obj.get("created") is not None else None,
-            "updated": GroupedTimestamp.from_dict(obj.get("updated")) if obj.get("updated") is not None else None,
-            "deleted": GroupedTimestamp.from_dict(obj.get("deleted")) if obj.get("deleted") is not None else None,
-            "asset": ReferencedAsset.from_dict(obj.get("asset")) if obj.get("asset") is not None else None,
-            "text": obj.get("text"),
-            "mechanism": obj.get("mechanism"),
-            "category": obj.get("category"),
-            "severity": obj.get("severity"),
-            "name": obj.get("name"),
-            "description": obj.get("description"),
-            "metadata": SensitiveMetadata.from_dict(obj.get("metadata")) if obj.get("metadata") is not None else None,
-            "interactions": obj.get("interactions"),
-            "score": Score.from_dict(obj.get("score")) if obj.get("score") is not None else None
-        })
+        _obj = FlattenedSensitive.parse_obj(
+            {
+                "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema"))
+                if obj.get("schema") is not None
+                else None,
+                "id": obj.get("id"),
+                "created": GroupedTimestamp.from_dict(obj.get("created"))
+                if obj.get("created") is not None
+                else None,
+                "updated": GroupedTimestamp.from_dict(obj.get("updated"))
+                if obj.get("updated") is not None
+                else None,
+                "deleted": GroupedTimestamp.from_dict(obj.get("deleted"))
+                if obj.get("deleted") is not None
+                else None,
+                "asset": ReferencedAsset.from_dict(obj.get("asset"))
+                if obj.get("asset") is not None
+                else None,
+                "text": obj.get("text"),
+                "mechanism": obj.get("mechanism"),
+                "category": obj.get("category"),
+                "severity": obj.get("severity"),
+                "name": obj.get("name"),
+                "description": obj.get("description"),
+                "metadata": SensitiveMetadata.from_dict(obj.get("metadata"))
+                if obj.get("metadata") is not None
+                else None,
+                "interactions": obj.get("interactions"),
+                "score": Score.from_dict(obj.get("score"))
+                if obj.get("score") is not None
+                else None,
+            }
+        )
         return _obj
 
-from pieces_os_client.models.referenced_asset import ReferencedAsset
-FlattenedSensitive.update_forward_refs()
 
+from pieces_os_client.models.referenced_asset import ReferencedAsset
+
+# FlattenedSensitive.update_forward_refs()

@@ -21,14 +21,22 @@ import json
 
 from typing import Optional
 from pydantic import BaseModel
-from pieces_os_client.models.tracked_asset_event_creation_metadata import TrackedAssetEventCreationMetadata
-from pieces_os_client.models.tracked_asset_event_format_reclassification_metadata import TrackedAssetEventFormatReclassificationMetadata
-from pieces_os_client.models.tracked_asset_event_rename_metadata import TrackedAssetEventRenameMetadata
+from pieces_os_client.models.tracked_asset_event_creation_metadata import (
+    TrackedAssetEventCreationMetadata,
+)
+from pieces_os_client.models.tracked_asset_event_format_reclassification_metadata import (
+    TrackedAssetEventFormatReclassificationMetadata,
+)
+from pieces_os_client.models.tracked_asset_event_rename_metadata import (
+    TrackedAssetEventRenameMetadata,
+)
+
 
 class TrackedAssetEventMetadata(BaseModel):
     """
     TrackedAssetEventMetadata
     """
+
     reclassification: Optional[TrackedAssetEventFormatReclassificationMetadata] = None
     creation: Optional[TrackedAssetEventCreationMetadata] = None
     rename: Optional[TrackedAssetEventRenameMetadata] = None
@@ -41,10 +49,24 @@ class TrackedAssetEventMetadata(BaseModel):
     annotation: Optional[ReferencedAnnotation] = None
     hint: Optional[ReferencedHint] = None
     anchor: Optional[ReferencedAnchor] = None
-    __properties = ["reclassification", "creation", "rename", "tag", "website", "person", "sensitive", "share", "search", "annotation", "hint", "anchor"]
+    __properties = [
+        "reclassification",
+        "creation",
+        "rename",
+        "tag",
+        "website",
+        "person",
+        "sensitive",
+        "share",
+        "search",
+        "annotation",
+        "hint",
+        "anchor",
+    ]
 
     class Config:
         """Pydantic configuration"""
+
         allow_population_by_field_name = True
         validate_assignment = True
 
@@ -63,46 +85,43 @@ class TrackedAssetEventMetadata(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
-                          exclude={
-                          },
-                          exclude_none=True)
+        _dict = self.dict(by_alias=True, exclude={}, exclude_none=True)
         # override the default output from pydantic by calling `to_dict()` of reclassification
         if self.reclassification:
-            _dict['reclassification'] = self.reclassification.to_dict()
+            _dict["reclassification"] = self.reclassification.to_dict()
         # override the default output from pydantic by calling `to_dict()` of creation
         if self.creation:
-            _dict['creation'] = self.creation.to_dict()
+            _dict["creation"] = self.creation.to_dict()
         # override the default output from pydantic by calling `to_dict()` of rename
         if self.rename:
-            _dict['rename'] = self.rename.to_dict()
+            _dict["rename"] = self.rename.to_dict()
         # override the default output from pydantic by calling `to_dict()` of tag
         if self.tag:
-            _dict['tag'] = self.tag.to_dict()
+            _dict["tag"] = self.tag.to_dict()
         # override the default output from pydantic by calling `to_dict()` of website
         if self.website:
-            _dict['website'] = self.website.to_dict()
+            _dict["website"] = self.website.to_dict()
         # override the default output from pydantic by calling `to_dict()` of person
         if self.person:
-            _dict['person'] = self.person.to_dict()
+            _dict["person"] = self.person.to_dict()
         # override the default output from pydantic by calling `to_dict()` of sensitive
         if self.sensitive:
-            _dict['sensitive'] = self.sensitive.to_dict()
+            _dict["sensitive"] = self.sensitive.to_dict()
         # override the default output from pydantic by calling `to_dict()` of share
         if self.share:
-            _dict['share'] = self.share.to_dict()
+            _dict["share"] = self.share.to_dict()
         # override the default output from pydantic by calling `to_dict()` of search
         if self.search:
-            _dict['search'] = self.search.to_dict()
+            _dict["search"] = self.search.to_dict()
         # override the default output from pydantic by calling `to_dict()` of annotation
         if self.annotation:
-            _dict['annotation'] = self.annotation.to_dict()
+            _dict["annotation"] = self.annotation.to_dict()
         # override the default output from pydantic by calling `to_dict()` of hint
         if self.hint:
-            _dict['hint'] = self.hint.to_dict()
+            _dict["hint"] = self.hint.to_dict()
         # override the default output from pydantic by calling `to_dict()` of anchor
         if self.anchor:
-            _dict['anchor'] = self.anchor.to_dict()
+            _dict["anchor"] = self.anchor.to_dict()
         return _dict
 
     @classmethod
@@ -114,21 +133,52 @@ class TrackedAssetEventMetadata(BaseModel):
         if not isinstance(obj, dict):
             return TrackedAssetEventMetadata.parse_obj(obj)
 
-        _obj = TrackedAssetEventMetadata.parse_obj({
-            "reclassification": TrackedAssetEventFormatReclassificationMetadata.from_dict(obj.get("reclassification")) if obj.get("reclassification") is not None else None,
-            "creation": TrackedAssetEventCreationMetadata.from_dict(obj.get("creation")) if obj.get("creation") is not None else None,
-            "rename": TrackedAssetEventRenameMetadata.from_dict(obj.get("rename")) if obj.get("rename") is not None else None,
-            "tag": ReferencedTag.from_dict(obj.get("tag")) if obj.get("tag") is not None else None,
-            "website": ReferencedWebsite.from_dict(obj.get("website")) if obj.get("website") is not None else None,
-            "person": ReferencedPerson.from_dict(obj.get("person")) if obj.get("person") is not None else None,
-            "sensitive": ReferencedSensitive.from_dict(obj.get("sensitive")) if obj.get("sensitive") is not None else None,
-            "share": ReferencedShare.from_dict(obj.get("share")) if obj.get("share") is not None else None,
-            "search": TrackedAssetsEventSearchMetadata.from_dict(obj.get("search")) if obj.get("search") is not None else None,
-            "annotation": ReferencedAnnotation.from_dict(obj.get("annotation")) if obj.get("annotation") is not None else None,
-            "hint": ReferencedHint.from_dict(obj.get("hint")) if obj.get("hint") is not None else None,
-            "anchor": ReferencedAnchor.from_dict(obj.get("anchor")) if obj.get("anchor") is not None else None
-        })
+        _obj = TrackedAssetEventMetadata.parse_obj(
+            {
+                "reclassification": TrackedAssetEventFormatReclassificationMetadata.from_dict(
+                    obj.get("reclassification")
+                )
+                if obj.get("reclassification") is not None
+                else None,
+                "creation": TrackedAssetEventCreationMetadata.from_dict(
+                    obj.get("creation")
+                )
+                if obj.get("creation") is not None
+                else None,
+                "rename": TrackedAssetEventRenameMetadata.from_dict(obj.get("rename"))
+                if obj.get("rename") is not None
+                else None,
+                "tag": ReferencedTag.from_dict(obj.get("tag"))
+                if obj.get("tag") is not None
+                else None,
+                "website": ReferencedWebsite.from_dict(obj.get("website"))
+                if obj.get("website") is not None
+                else None,
+                "person": ReferencedPerson.from_dict(obj.get("person"))
+                if obj.get("person") is not None
+                else None,
+                "sensitive": ReferencedSensitive.from_dict(obj.get("sensitive"))
+                if obj.get("sensitive") is not None
+                else None,
+                "share": ReferencedShare.from_dict(obj.get("share"))
+                if obj.get("share") is not None
+                else None,
+                "search": TrackedAssetsEventSearchMetadata.from_dict(obj.get("search"))
+                if obj.get("search") is not None
+                else None,
+                "annotation": ReferencedAnnotation.from_dict(obj.get("annotation"))
+                if obj.get("annotation") is not None
+                else None,
+                "hint": ReferencedHint.from_dict(obj.get("hint"))
+                if obj.get("hint") is not None
+                else None,
+                "anchor": ReferencedAnchor.from_dict(obj.get("anchor"))
+                if obj.get("anchor") is not None
+                else None,
+            }
+        )
         return _obj
+
 
 from pieces_os_client.models.referenced_anchor import ReferencedAnchor
 from pieces_os_client.models.referenced_annotation import ReferencedAnnotation
@@ -138,6 +188,8 @@ from pieces_os_client.models.referenced_sensitive import ReferencedSensitive
 from pieces_os_client.models.referenced_share import ReferencedShare
 from pieces_os_client.models.referenced_tag import ReferencedTag
 from pieces_os_client.models.referenced_website import ReferencedWebsite
-from pieces_os_client.models.tracked_assets_event_search_metadata import TrackedAssetsEventSearchMetadata
-TrackedAssetEventMetadata.update_forward_refs()
+from pieces_os_client.models.tracked_assets_event_search_metadata import (
+    TrackedAssetsEventSearchMetadata,
+)
 
+# TrackedAssetEventMetadata.update_forward_refs()

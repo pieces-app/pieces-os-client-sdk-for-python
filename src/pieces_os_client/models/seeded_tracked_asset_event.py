@@ -22,20 +22,27 @@ import json
 from typing import Optional
 from pydantic import BaseModel, Field
 from pieces_os_client.models.embedded_model_schema import EmbeddedModelSchema
-from pieces_os_client.models.tracked_asset_event_identifier_description_pairs import TrackedAssetEventIdentifierDescriptionPairs
+from pieces_os_client.models.tracked_asset_event_identifier_description_pairs import (
+    TrackedAssetEventIdentifierDescriptionPairs,
+)
+
 
 class SeededTrackedAssetEvent(BaseModel):
     """
     This seeded tracked asset event will be recieved by a context on the OS Server side, which will then be able to look up the asset id and structure the asset for shipment to Segment aka a fully built TrackedAssetEvent  # noqa: E501
     """
+
     var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
     asset: ReferencedAsset = Field(...)
-    identifier_description_pair: TrackedAssetEventIdentifierDescriptionPairs = Field(...)
+    identifier_description_pair: TrackedAssetEventIdentifierDescriptionPairs = Field(
+        ...
+    )
     metadata: Optional[TrackedAssetEventMetadata] = None
     __properties = ["schema", "asset", "identifier_description_pair", "metadata"]
 
     class Config:
         """Pydantic configuration"""
+
         allow_population_by_field_name = True
         validate_assignment = True
 
@@ -54,22 +61,21 @@ class SeededTrackedAssetEvent(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
-                          exclude={
-                          },
-                          exclude_none=True)
+        _dict = self.dict(by_alias=True, exclude={}, exclude_none=True)
         # override the default output from pydantic by calling `to_dict()` of var_schema
         if self.var_schema:
-            _dict['schema'] = self.var_schema.to_dict()
+            _dict["schema"] = self.var_schema.to_dict()
         # override the default output from pydantic by calling `to_dict()` of asset
         if self.asset:
-            _dict['asset'] = self.asset.to_dict()
+            _dict["asset"] = self.asset.to_dict()
         # override the default output from pydantic by calling `to_dict()` of identifier_description_pair
         if self.identifier_description_pair:
-            _dict['identifier_description_pair'] = self.identifier_description_pair.to_dict()
+            _dict[
+                "identifier_description_pair"
+            ] = self.identifier_description_pair.to_dict()
         # override the default output from pydantic by calling `to_dict()` of metadata
         if self.metadata:
-            _dict['metadata'] = self.metadata.to_dict()
+            _dict["metadata"] = self.metadata.to_dict()
         return _dict
 
     @classmethod
@@ -81,15 +87,30 @@ class SeededTrackedAssetEvent(BaseModel):
         if not isinstance(obj, dict):
             return SeededTrackedAssetEvent.parse_obj(obj)
 
-        _obj = SeededTrackedAssetEvent.parse_obj({
-            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
-            "asset": ReferencedAsset.from_dict(obj.get("asset")) if obj.get("asset") is not None else None,
-            "identifier_description_pair": TrackedAssetEventIdentifierDescriptionPairs.from_dict(obj.get("identifier_description_pair")) if obj.get("identifier_description_pair") is not None else None,
-            "metadata": TrackedAssetEventMetadata.from_dict(obj.get("metadata")) if obj.get("metadata") is not None else None
-        })
+        _obj = SeededTrackedAssetEvent.parse_obj(
+            {
+                "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema"))
+                if obj.get("schema") is not None
+                else None,
+                "asset": ReferencedAsset.from_dict(obj.get("asset"))
+                if obj.get("asset") is not None
+                else None,
+                "identifier_description_pair": TrackedAssetEventIdentifierDescriptionPairs.from_dict(
+                    obj.get("identifier_description_pair")
+                )
+                if obj.get("identifier_description_pair") is not None
+                else None,
+                "metadata": TrackedAssetEventMetadata.from_dict(obj.get("metadata"))
+                if obj.get("metadata") is not None
+                else None,
+            }
+        )
         return _obj
 
-from pieces_os_client.models.referenced_asset import ReferencedAsset
-from pieces_os_client.models.tracked_asset_event_metadata import TrackedAssetEventMetadata
-SeededTrackedAssetEvent.update_forward_refs()
 
+from pieces_os_client.models.referenced_asset import ReferencedAsset
+from pieces_os_client.models.tracked_asset_event_metadata import (
+    TrackedAssetEventMetadata,
+)
+
+# SeededTrackedAssetEvent.update_forward_refs()

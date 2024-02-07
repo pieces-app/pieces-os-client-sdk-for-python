@@ -22,21 +22,30 @@ import json
 from typing import Optional
 from pydantic import BaseModel, Field
 from pieces_os_client.models.embedded_model_schema import EmbeddedModelSchema
-from pieces_os_client.models.tracked_format_event_identifier_description_pairs import TrackedFormatEventIdentifierDescriptionPairs
-from pieces_os_client.models.tracked_format_event_metadata import TrackedFormatEventMetadata
+from pieces_os_client.models.tracked_format_event_identifier_description_pairs import (
+    TrackedFormatEventIdentifierDescriptionPairs,
+)
+from pieces_os_client.models.tracked_format_event_metadata import (
+    TrackedFormatEventMetadata,
+)
+
 
 class SeededTrackedFormatEvent(BaseModel):
     """
     Again this is a model designed to be sent over to a context server to be built and then sent along to segment.   # noqa: E501
     """
+
     var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
-    identifier_description_pair: TrackedFormatEventIdentifierDescriptionPairs = Field(...)
+    identifier_description_pair: TrackedFormatEventIdentifierDescriptionPairs = Field(
+        ...
+    )
     format: ReferencedFormat = Field(...)
     metadata: Optional[TrackedFormatEventMetadata] = None
     __properties = ["schema", "identifier_description_pair", "format", "metadata"]
 
     class Config:
         """Pydantic configuration"""
+
         allow_population_by_field_name = True
         validate_assignment = True
 
@@ -55,22 +64,21 @@ class SeededTrackedFormatEvent(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
-                          exclude={
-                          },
-                          exclude_none=True)
+        _dict = self.dict(by_alias=True, exclude={}, exclude_none=True)
         # override the default output from pydantic by calling `to_dict()` of var_schema
         if self.var_schema:
-            _dict['schema'] = self.var_schema.to_dict()
+            _dict["schema"] = self.var_schema.to_dict()
         # override the default output from pydantic by calling `to_dict()` of identifier_description_pair
         if self.identifier_description_pair:
-            _dict['identifier_description_pair'] = self.identifier_description_pair.to_dict()
+            _dict[
+                "identifier_description_pair"
+            ] = self.identifier_description_pair.to_dict()
         # override the default output from pydantic by calling `to_dict()` of format
         if self.format:
-            _dict['format'] = self.format.to_dict()
+            _dict["format"] = self.format.to_dict()
         # override the default output from pydantic by calling `to_dict()` of metadata
         if self.metadata:
-            _dict['metadata'] = self.metadata.to_dict()
+            _dict["metadata"] = self.metadata.to_dict()
         return _dict
 
     @classmethod
@@ -82,14 +90,27 @@ class SeededTrackedFormatEvent(BaseModel):
         if not isinstance(obj, dict):
             return SeededTrackedFormatEvent.parse_obj(obj)
 
-        _obj = SeededTrackedFormatEvent.parse_obj({
-            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
-            "identifier_description_pair": TrackedFormatEventIdentifierDescriptionPairs.from_dict(obj.get("identifier_description_pair")) if obj.get("identifier_description_pair") is not None else None,
-            "format": ReferencedFormat.from_dict(obj.get("format")) if obj.get("format") is not None else None,
-            "metadata": TrackedFormatEventMetadata.from_dict(obj.get("metadata")) if obj.get("metadata") is not None else None
-        })
+        _obj = SeededTrackedFormatEvent.parse_obj(
+            {
+                "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema"))
+                if obj.get("schema") is not None
+                else None,
+                "identifier_description_pair": TrackedFormatEventIdentifierDescriptionPairs.from_dict(
+                    obj.get("identifier_description_pair")
+                )
+                if obj.get("identifier_description_pair") is not None
+                else None,
+                "format": ReferencedFormat.from_dict(obj.get("format"))
+                if obj.get("format") is not None
+                else None,
+                "metadata": TrackedFormatEventMetadata.from_dict(obj.get("metadata"))
+                if obj.get("metadata") is not None
+                else None,
+            }
+        )
         return _obj
 
-from pieces_os_client.models.referenced_format import ReferencedFormat
-SeededTrackedFormatEvent.update_forward_refs()
 
+from pieces_os_client.models.referenced_format import ReferencedFormat
+
+# SeededTrackedFormatEvent.update_forward_refs()

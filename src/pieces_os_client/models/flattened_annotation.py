@@ -28,10 +28,12 @@ from pieces_os_client.models.mechanism_enum import MechanismEnum
 from pieces_os_client.models.referenced_model import ReferencedModel
 from pieces_os_client.models.score import Score
 
+
 class FlattenedAnnotation(BaseModel):
     """
     This is the flattened Version of the annotation, IMPORTANT: when referencing these, ONLY Take the UUID, do NOT polinate(ie w/ asset/person/model) the FlattenedAnnotation as it can create an infinite loop.  # noqa: E501
     """
+
     var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
     id: StrictStr = Field(...)
     created: GroupedTimestamp = Field(...)
@@ -49,10 +51,29 @@ class FlattenedAnnotation(BaseModel):
     conversation: Optional[ReferencedConversation] = None
     score: Optional[Score] = None
     messages: Optional[FlattenedConversationMessages] = None
-    __properties = ["schema", "id", "created", "updated", "deleted", "mechanism", "asset", "person", "type", "text", "model", "pseudo", "favorited", "anchor", "conversation", "score", "messages"]
+    __properties = [
+        "schema",
+        "id",
+        "created",
+        "updated",
+        "deleted",
+        "mechanism",
+        "asset",
+        "person",
+        "type",
+        "text",
+        "model",
+        "pseudo",
+        "favorited",
+        "anchor",
+        "conversation",
+        "score",
+        "messages",
+    ]
 
     class Config:
         """Pydantic configuration"""
+
         allow_population_by_field_name = True
         validate_assignment = True
 
@@ -71,43 +92,40 @@ class FlattenedAnnotation(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
-                          exclude={
-                          },
-                          exclude_none=True)
+        _dict = self.dict(by_alias=True, exclude={}, exclude_none=True)
         # override the default output from pydantic by calling `to_dict()` of var_schema
         if self.var_schema:
-            _dict['schema'] = self.var_schema.to_dict()
+            _dict["schema"] = self.var_schema.to_dict()
         # override the default output from pydantic by calling `to_dict()` of created
         if self.created:
-            _dict['created'] = self.created.to_dict()
+            _dict["created"] = self.created.to_dict()
         # override the default output from pydantic by calling `to_dict()` of updated
         if self.updated:
-            _dict['updated'] = self.updated.to_dict()
+            _dict["updated"] = self.updated.to_dict()
         # override the default output from pydantic by calling `to_dict()` of deleted
         if self.deleted:
-            _dict['deleted'] = self.deleted.to_dict()
+            _dict["deleted"] = self.deleted.to_dict()
         # override the default output from pydantic by calling `to_dict()` of asset
         if self.asset:
-            _dict['asset'] = self.asset.to_dict()
+            _dict["asset"] = self.asset.to_dict()
         # override the default output from pydantic by calling `to_dict()` of person
         if self.person:
-            _dict['person'] = self.person.to_dict()
+            _dict["person"] = self.person.to_dict()
         # override the default output from pydantic by calling `to_dict()` of model
         if self.model:
-            _dict['model'] = self.model.to_dict()
+            _dict["model"] = self.model.to_dict()
         # override the default output from pydantic by calling `to_dict()` of anchor
         if self.anchor:
-            _dict['anchor'] = self.anchor.to_dict()
+            _dict["anchor"] = self.anchor.to_dict()
         # override the default output from pydantic by calling `to_dict()` of conversation
         if self.conversation:
-            _dict['conversation'] = self.conversation.to_dict()
+            _dict["conversation"] = self.conversation.to_dict()
         # override the default output from pydantic by calling `to_dict()` of score
         if self.score:
-            _dict['score'] = self.score.to_dict()
+            _dict["score"] = self.score.to_dict()
         # override the default output from pydantic by calling `to_dict()` of messages
         if self.messages:
-            _dict['messages'] = self.messages.to_dict()
+            _dict["messages"] = self.messages.to_dict()
         return _dict
 
     @classmethod
@@ -119,31 +137,60 @@ class FlattenedAnnotation(BaseModel):
         if not isinstance(obj, dict):
             return FlattenedAnnotation.parse_obj(obj)
 
-        _obj = FlattenedAnnotation.parse_obj({
-            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
-            "id": obj.get("id"),
-            "created": GroupedTimestamp.from_dict(obj.get("created")) if obj.get("created") is not None else None,
-            "updated": GroupedTimestamp.from_dict(obj.get("updated")) if obj.get("updated") is not None else None,
-            "deleted": GroupedTimestamp.from_dict(obj.get("deleted")) if obj.get("deleted") is not None else None,
-            "mechanism": obj.get("mechanism"),
-            "asset": ReferencedAsset.from_dict(obj.get("asset")) if obj.get("asset") is not None else None,
-            "person": ReferencedPerson.from_dict(obj.get("person")) if obj.get("person") is not None else None,
-            "type": obj.get("type"),
-            "text": obj.get("text"),
-            "model": ReferencedModel.from_dict(obj.get("model")) if obj.get("model") is not None else None,
-            "pseudo": obj.get("pseudo"),
-            "favorited": obj.get("favorited"),
-            "anchor": ReferencedAnchor.from_dict(obj.get("anchor")) if obj.get("anchor") is not None else None,
-            "conversation": ReferencedConversation.from_dict(obj.get("conversation")) if obj.get("conversation") is not None else None,
-            "score": Score.from_dict(obj.get("score")) if obj.get("score") is not None else None,
-            "messages": FlattenedConversationMessages.from_dict(obj.get("messages")) if obj.get("messages") is not None else None
-        })
+        _obj = FlattenedAnnotation.parse_obj(
+            {
+                "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema"))
+                if obj.get("schema") is not None
+                else None,
+                "id": obj.get("id"),
+                "created": GroupedTimestamp.from_dict(obj.get("created"))
+                if obj.get("created") is not None
+                else None,
+                "updated": GroupedTimestamp.from_dict(obj.get("updated"))
+                if obj.get("updated") is not None
+                else None,
+                "deleted": GroupedTimestamp.from_dict(obj.get("deleted"))
+                if obj.get("deleted") is not None
+                else None,
+                "mechanism": obj.get("mechanism"),
+                "asset": ReferencedAsset.from_dict(obj.get("asset"))
+                if obj.get("asset") is not None
+                else None,
+                "person": ReferencedPerson.from_dict(obj.get("person"))
+                if obj.get("person") is not None
+                else None,
+                "type": obj.get("type"),
+                "text": obj.get("text"),
+                "model": ReferencedModel.from_dict(obj.get("model"))
+                if obj.get("model") is not None
+                else None,
+                "pseudo": obj.get("pseudo"),
+                "favorited": obj.get("favorited"),
+                "anchor": ReferencedAnchor.from_dict(obj.get("anchor"))
+                if obj.get("anchor") is not None
+                else None,
+                "conversation": ReferencedConversation.from_dict(
+                    obj.get("conversation")
+                )
+                if obj.get("conversation") is not None
+                else None,
+                "score": Score.from_dict(obj.get("score"))
+                if obj.get("score") is not None
+                else None,
+                "messages": FlattenedConversationMessages.from_dict(obj.get("messages"))
+                if obj.get("messages") is not None
+                else None,
+            }
+        )
         return _obj
 
-from pieces_os_client.models.flattened_conversation_messages import FlattenedConversationMessages
+
+from pieces_os_client.models.flattened_conversation_messages import (
+    FlattenedConversationMessages,
+)
 from pieces_os_client.models.referenced_anchor import ReferencedAnchor
 from pieces_os_client.models.referenced_asset import ReferencedAsset
 from pieces_os_client.models.referenced_conversation import ReferencedConversation
 from pieces_os_client.models.referenced_person import ReferencedPerson
-FlattenedAnnotation.update_forward_refs()
 
+# FlattenedAnnotation.update_forward_refs()
