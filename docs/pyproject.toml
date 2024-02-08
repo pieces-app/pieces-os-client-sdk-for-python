@@ -1,0 +1,21 @@
+[tool.poetry]
+  name = "pieces_os_client"
+  version = "1.2.3"
+  description = "A powerful code engine package for writing applications on top of Pieces OS"
+  authors = [
+    "Pieces <development@pieces.app>"
+  ]
+  license = "MIT"  # Assuming the project uses the MIT License
+
+[tool.poetry.dependencies]
+  python = ">=3.8"
+
+[tool.poetry.urls]
+  homepage = "https://github.com/pieces-app/pieces-os-client-sdk-for-python"
+  repository = "https://github.com/pieces-app/pieces-os-client-sdk-for-python"  # If the code is hosted on a repository
+  issues = "https://github.com/pieces-app/pieces-os-client-sdk-for-python/issues"
+
+[build-system]
+  requires = ["poetry-core>=1.0.0"]
+  build-backend = "poetry.core.masonry.api"
+
