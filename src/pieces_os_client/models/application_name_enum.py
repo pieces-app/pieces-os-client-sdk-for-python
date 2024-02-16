@@ -13,13 +13,10 @@
 """  # noqa: E501
 
 
+from __future__ import annotations
 import json
-import pprint
-import re  # noqa: F401
-from aenum import Enum, no_arg
-
-
-
+from enum import Enum
+from typing_extensions import Self
 
 
 class ApplicationNameEnum(str, Enum):
@@ -56,11 +53,22 @@ class ApplicationNameEnum(str, Enum):
     SLACK = 'SLACK'
     AZURE_DATA_STUDIO = 'AZURE_DATA_STUDIO'
     OPEN_SOURCE = 'OPEN_SOURCE'
+    R_STUDIO = 'R_STUDIO'
+    VIM = 'VIM'
+    NOTION = 'NOTION'
+    GITHUB_DESKTOP = 'GITHUB_DESKTOP'
+    RAYCAST = 'RAYCAST'
+    REPLIT = 'REPLIT'
+    ALFRED = 'ALFRED'
+    FIGMA = 'FIGMA'
+    SKETCH = 'SKETCH'
+    ADOBE_ILLUSTRATOR = 'ADOBE_ILLUSTRATOR'
+    NOTEPAD_PLUS_PLUS = 'NOTEPAD_PLUS_PLUS'
     UNKNOWN = 'UNKNOWN'
 
     @classmethod
-    def from_json(cls, json_str: str) -> ApplicationNameEnum:
+    def from_json(cls, json_str: str) -> Self:
         """Create an instance of ApplicationNameEnum from a JSON string"""
-        return ApplicationNameEnum(json.loads(json_str))
+        return cls(json.loads(json_str))
 
 

@@ -18,50 +18,66 @@ import pprint
 import re  # noqa: F401
 import json
 
-
-from typing import Optional
 from pydantic import BaseModel, Field, StrictBool, StrictStr
+from typing import Any, ClassVar, Dict, List, Optional
 from pieces_os_client.models.classification import Classification
 from pieces_os_client.models.embedded_model_schema import EmbeddedModelSchema
 from pieces_os_client.models.role import Role
+from typing import Optional, Set
+from typing_extensions import Self
 
 class TrackedFormat(BaseModel):
     """
-    A minimal format to send to Mixpanel  # noqa: E501
-    """
-    var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
-    id: StrictStr = Field(..., description="The UUID of the format")
-    classification: Classification = Field(...)
-    role: Role = Field(...)
-    asset: StrictStr = Field(..., description="The UUID of the asset associated")
-    fragment: StrictBool = Field(...)
-    file: StrictBool = Field(...)
-    __properties = ["schema", "id", "classification", "role", "asset", "fragment", "file"]
+    A minimal format to send to Mixpanel
+    """ # noqa: E501
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
+    id: StrictStr = Field(description="The UUID of the format")
+    classification: Classification
+    role: Role
+    asset: StrictStr = Field(description="The UUID of the asset associated")
+    fragment: StrictBool
+    file: StrictBool
+    __properties: ClassVar[List[str]] = ["schema", "id", "classification", "role", "asset", "fragment", "file"]
 
-    class Config:
-        """Pydantic configuration"""
-        allow_population_by_field_name = True
-        validate_assignment = True
+    model_config = {
+        "populate_by_name": True,
+        "validate_assignment": True,
+        "protected_namespaces": (),
+    }
+
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
+        # TODO: pydantic v2: use .model_dump_json(by_alias=True, exclude_unset=True) instead
         return json.dumps(self.to_dict())
 
     @classmethod
-    def from_json(cls, json_str: str) -> TrackedFormat:
+    def from_json(cls, json_str: str) -> Optional[Self]:
         """Create an instance of TrackedFormat from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
-    def to_dict(self):
-        """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
-                          exclude={
-                          },
-                          exclude_none=True)
+    def to_dict(self) -> Dict[str, Any]:
+        """Return the dictionary representation of the model using alias.
+
+        This has the following differences from calling pydantic's
+        `self.model_dump(by_alias=True)`:
+
+        * `None` is only added to the output dict for nullable fields that
+          were set at model initialization. Other fields with value `None`
+          are ignored.
+        """
+        excluded_fields: Set[str] = set([
+        ])
+
+        _dict = self.model_dump(
+            by_alias=True,
+            exclude=excluded_fields,
+            exclude_none=True,
+        )
         # override the default output from pydantic by calling `to_dict()` of var_schema
         if self.var_schema:
             _dict['schema'] = self.var_schema.to_dict()
@@ -71,18 +87,18 @@ class TrackedFormat(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> TrackedFormat:
+    def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
         """Create an instance of TrackedFormat from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
-            return TrackedFormat.parse_obj(obj)
+            return cls.model_validate(obj)
 
-        _obj = TrackedFormat.parse_obj({
-            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
+        _obj = cls.model_validate({
+            "schema": EmbeddedModelSchema.from_dict(obj["schema"]) if obj.get("schema") is not None else None,
             "id": obj.get("id"),
-            "classification": Classification.from_dict(obj.get("classification")) if obj.get("classification") is not None else None,
+            "classification": Classification.from_dict(obj["classification"]) if obj.get("classification") is not None else None,
             "role": obj.get("role"),
             "asset": obj.get("asset"),
             "fragment": obj.get("fragment"),

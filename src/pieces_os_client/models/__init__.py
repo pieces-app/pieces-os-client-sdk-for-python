@@ -29,9 +29,7 @@ from pieces_os_client.models.allocation_status_enum import AllocationStatusEnum
 from pieces_os_client.models.allocations import Allocations
 from pieces_os_client.models.analyses import Analyses
 from pieces_os_client.models.analysis import Analysis
-from pieces_os_client.models.analytics_tracked_adoption_event_identifier_description_pairs import (
-    AnalyticsTrackedAdoptionEventIdentifierDescriptionPairs,
-)
+from pieces_os_client.models.analytics_tracked_adoption_event_identifier_description_pairs import AnalyticsTrackedAdoptionEventIdentifierDescriptionPairs
 from pieces_os_client.models.anchor import Anchor
 from pieces_os_client.models.anchor_point import AnchorPoint
 from pieces_os_client.models.anchor_points import AnchorPoints
@@ -52,20 +50,14 @@ from pieces_os_client.models.asset_filters import AssetFilters
 from pieces_os_client.models.asset_reclassification import AssetReclassification
 from pieces_os_client.models.asset_search_space import AssetSearchSpace
 from pieces_os_client.models.assets import Assets
-from pieces_os_client.models.assets_search_with_filters_input import (
-    AssetsSearchWithFiltersInput,
-)
-from pieces_os_client.models.assets_search_with_filters_output import (
-    AssetsSearchWithFiltersOutput,
-)
+from pieces_os_client.models.assets_search_with_filters_input import AssetsSearchWithFiltersInput
+from pieces_os_client.models.assets_search_with_filters_output import AssetsSearchWithFiltersOutput
 from pieces_os_client.models.auth0 import Auth0
 from pieces_os_client.models.auth0_identity import Auth0Identity
 from pieces_os_client.models.auth0_open_ai_user_metadata import Auth0OpenAIUserMetadata
 from pieces_os_client.models.auth0_redirects import Auth0Redirects
 from pieces_os_client.models.auth0_user import Auth0User
-from pieces_os_client.models.auth0_user_allocation_metadata import (
-    Auth0UserAllocationMetadata,
-)
+from pieces_os_client.models.auth0_user_allocation_metadata import Auth0UserAllocationMetadata
 from pieces_os_client.models.auth0_user_metadata import Auth0UserMetadata
 from pieces_os_client.models.available_formats import AvailableFormats
 from pieces_os_client.models.byte_descriptor import ByteDescriptor
@@ -73,42 +65,26 @@ from pieces_os_client.models.capabilities_enum import CapabilitiesEnum
 from pieces_os_client.models.challenged_pkce import ChallengedPKCE
 from pieces_os_client.models.checked_os_update import CheckedOSUpdate
 from pieces_os_client.models.classification import Classification
-from pieces_os_client.models.classification_generic_enum import (
-    ClassificationGenericEnum,
-)
-from pieces_os_client.models.classification_rendering_enum import (
-    ClassificationRenderingEnum,
-)
-from pieces_os_client.models.classification_specific_enum import (
-    ClassificationSpecificEnum,
-)
+from pieces_os_client.models.classification_generic_enum import ClassificationGenericEnum
+from pieces_os_client.models.classification_rendering_enum import ClassificationRenderingEnum
+from pieces_os_client.models.classification_specific_enum import ClassificationSpecificEnum
 from pieces_os_client.models.code_analyses import CodeAnalyses
 from pieces_os_client.models.code_analysis import CodeAnalysis
 from pieces_os_client.models.context import Context
 from pieces_os_client.models.conversation import Conversation
 from pieces_os_client.models.conversation_grounding import ConversationGrounding
 from pieces_os_client.models.conversation_message import ConversationMessage
-from pieces_os_client.models.conversation_message_sentiment_enum import (
-    ConversationMessageSentimentEnum,
-)
+from pieces_os_client.models.conversation_message_sentiment_enum import ConversationMessageSentimentEnum
 from pieces_os_client.models.conversation_messages import ConversationMessages
-from pieces_os_client.models.conversation_summarize_input import (
-    ConversationSummarizeInput,
-)
-from pieces_os_client.models.conversation_summarize_output import (
-    ConversationSummarizeOutput,
-)
+from pieces_os_client.models.conversation_summarize_input import ConversationSummarizeInput
+from pieces_os_client.models.conversation_summarize_output import ConversationSummarizeOutput
 from pieces_os_client.models.conversation_type_enum import ConversationTypeEnum
 from pieces_os_client.models.conversations import Conversations
-from pieces_os_client.models.conversations_create_from_asset_output import (
-    ConversationsCreateFromAssetOutput,
-)
-from pieces_os_client.models.created_external_provider_api_key import (
-    CreatedExternalProviderApiKey,
-)
-from pieces_os_client.models.deleted_external_provider_api_key import (
-    DeletedExternalProviderApiKey,
-)
+from pieces_os_client.models.conversations_create_from_asset_output import ConversationsCreateFromAssetOutput
+from pieces_os_client.models.created_external_provider_api_key import CreatedExternalProviderApiKey
+from pieces_os_client.models.deleted_external_provider_api_key import DeletedExternalProviderApiKey
+from pieces_os_client.models.detected_external_application import DetectedExternalApplication
+from pieces_os_client.models.detected_external_applications import DetectedExternalApplications
 from pieces_os_client.models.discovered_asset import DiscoveredAsset
 from pieces_os_client.models.discovered_assets import DiscoveredAssets
 from pieces_os_client.models.discovered_html_webpage import DiscoveredHtmlWebpage
@@ -121,9 +97,7 @@ from pieces_os_client.models.distribution import Distribution
 from pieces_os_client.models.distributions import Distributions
 from pieces_os_client.models.edges import Edges
 from pieces_os_client.models.embedded_model_schema import EmbeddedModelSchema
-from pieces_os_client.models.embedded_model_schema_semantic_version_enum import (
-    EmbeddedModelSchemaSemanticVersionEnum,
-)
+from pieces_os_client.models.embedded_model_schema_semantic_version_enum import EmbeddedModelSchemaSemanticVersionEnum
 from pieces_os_client.models.embedding import Embedding
 from pieces_os_client.models.embeddings import Embeddings
 from pieces_os_client.models.existent_metadata import ExistentMetadata
@@ -134,9 +108,7 @@ from pieces_os_client.models.exported_database_format import ExportedDatabaseFor
 from pieces_os_client.models.exported_database_formats import ExportedDatabaseFormats
 from pieces_os_client.models.external_ml_provider_enum import ExternalMLProviderEnum
 from pieces_os_client.models.external_provider import ExternalProvider
-from pieces_os_client.models.external_provider_profile_data import (
-    ExternalProviderProfileData,
-)
+from pieces_os_client.models.external_provider_profile_data import ExternalProviderProfileData
 from pieces_os_client.models.external_provider_type_enum import ExternalProviderTypeEnum
 from pieces_os_client.models.external_providers import ExternalProviders
 from pieces_os_client.models.externally_sourced_enum import ExternallySourcedEnum
@@ -156,12 +128,8 @@ from pieces_os_client.models.flattened_annotations import FlattenedAnnotations
 from pieces_os_client.models.flattened_asset import FlattenedAsset
 from pieces_os_client.models.flattened_assets import FlattenedAssets
 from pieces_os_client.models.flattened_conversation import FlattenedConversation
-from pieces_os_client.models.flattened_conversation_message import (
-    FlattenedConversationMessage,
-)
-from pieces_os_client.models.flattened_conversation_messages import (
-    FlattenedConversationMessages,
-)
+from pieces_os_client.models.flattened_conversation_message import FlattenedConversationMessage
+from pieces_os_client.models.flattened_conversation_messages import FlattenedConversationMessages
 from pieces_os_client.models.flattened_conversations import FlattenedConversations
 from pieces_os_client.models.flattened_distribution import FlattenedDistribution
 from pieces_os_client.models.flattened_distributions import FlattenedDistributions
@@ -193,20 +161,12 @@ from pieces_os_client.models.fragment_format import FragmentFormat
 from pieces_os_client.models.fragment_metadata import FragmentMetadata
 from pieces_os_client.models.git_hub_distribution import GitHubDistribution
 from pieces_os_client.models.git_hub_gist_distribution import GitHubGistDistribution
-from pieces_os_client.models.graphical_image_descriptive_statistics import (
-    GraphicalImageDescriptiveStatistics,
-)
+from pieces_os_client.models.graphical_image_descriptive_statistics import GraphicalImageDescriptiveStatistics
 from pieces_os_client.models.graphical_image_processing import GraphicalImageProcessing
 from pieces_os_client.models.graphical_image_statistics import GraphicalImageStatistics
-from pieces_os_client.models.graphical_machine_learning_processing_event import (
-    GraphicalMachineLearningProcessingEvent,
-)
-from pieces_os_client.models.graphical_ocr_descriptive_statistics import (
-    GraphicalOCRDescriptiveStatistics,
-)
-from pieces_os_client.models.graphical_ocr_descriptive_statistics_confidence import (
-    GraphicalOCRDescriptiveStatisticsConfidence,
-)
+from pieces_os_client.models.graphical_machine_learning_processing_event import GraphicalMachineLearningProcessingEvent
+from pieces_os_client.models.graphical_ocr_descriptive_statistics import GraphicalOCRDescriptiveStatistics
+from pieces_os_client.models.graphical_ocr_descriptive_statistics_confidence import GraphicalOCRDescriptiveStatisticsConfidence
 from pieces_os_client.models.graphical_ocr_processing import GraphicalOCRProcessing
 from pieces_os_client.models.graphical_ocr_statistics import GraphicalOCRStatistics
 from pieces_os_client.models.graphical_svg_statistics import GraphicalSVGStatistics
@@ -218,9 +178,7 @@ from pieces_os_client.models.hints import Hints
 from pieces_os_client.models.image_analyses import ImageAnalyses
 from pieces_os_client.models.image_analysis import ImageAnalysis
 from pieces_os_client.models.interacted_asset import InteractedAsset
-from pieces_os_client.models.interacted_asset_interactions import (
-    InteractedAssetInteractions,
-)
+from pieces_os_client.models.interacted_asset_interactions import InteractedAssetInteractions
 from pieces_os_client.models.interacted_assets import InteractedAssets
 from pieces_os_client.models.linkify import Linkify
 from pieces_os_client.models.linkify_multiple import LinkifyMultiple
@@ -231,9 +189,7 @@ from pieces_os_client.models.model import Model
 from pieces_os_client.models.model_delete_cache_input import ModelDeleteCacheInput
 from pieces_os_client.models.model_delete_cache_output import ModelDeleteCacheOutput
 from pieces_os_client.models.model_download_progress import ModelDownloadProgress
-from pieces_os_client.models.model_download_progress_status_enum import (
-    ModelDownloadProgressStatusEnum,
-)
+from pieces_os_client.models.model_download_progress_status_enum import ModelDownloadProgressStatusEnum
 from pieces_os_client.models.model_foundation_enum import ModelFoundationEnum
 from pieces_os_client.models.model_max_tokens import ModelMaxTokens
 from pieces_os_client.models.model_type_enum import ModelTypeEnum
@@ -247,7 +203,14 @@ from pieces_os_client.models.o_auth_group import OAuthGroup
 from pieces_os_client.models.o_auth_token import OAuthToken
 from pieces_os_client.models.ocr_analyses import OCRAnalyses
 from pieces_os_client.models.ocr_analysis import OCRAnalysis
+from pieces_os_client.models.os_device_cpu_hardware_information import OSDeviceCPUHardwareInformation
+from pieces_os_client.models.os_device_dependencies_information import OSDeviceDependenciesInformation
+from pieces_os_client.models.os_device_gpu_hardware_capabilities_information import OSDeviceGPUHardwareCapabilitiesInformation
+from pieces_os_client.models.os_device_gpu_hardware_information import OSDeviceGPUHardwareInformation
+from pieces_os_client.models.os_device_hardware_information import OSDeviceHardwareInformation
+from pieces_os_client.models.os_device_information_returnable import OSDeviceInformationReturnable
 from pieces_os_client.models.os_health import OSHealth
+from pieces_os_client.models.onboarded_persona_details import OnboardedPersonaDetails
 from pieces_os_client.models.open_ai_models_list_input import OpenAIModelsListInput
 from pieces_os_client.models.open_ai_models_list_output import OpenAIModelsListOutput
 from pieces_os_client.models.ordered_metrics import OrderedMetrics
@@ -260,15 +223,10 @@ from pieces_os_client.models.person_model import PersonModel
 from pieces_os_client.models.person_type import PersonType
 from pieces_os_client.models.persons import Persons
 from pieces_os_client.models.platform_enum import PlatformEnum
-from pieces_os_client.models.precreated_external_provider_api_key import (
-    PrecreatedExternalProviderApiKey,
-)
-from pieces_os_client.models.predeleted_external_provider_api_key import (
-    PredeletedExternalProviderApiKey,
-)
-from pieces_os_client.models.preupdated_external_provider_api_key import (
-    PreupdatedExternalProviderApiKey,
-)
+from pieces_os_client.models.precreated_external_provider_api_key import PrecreatedExternalProviderApiKey
+from pieces_os_client.models.predeleted_external_provider_api_key import PredeletedExternalProviderApiKey
+from pieces_os_client.models.preonboarded_persona_details import PreonboardedPersonaDetails
+from pieces_os_client.models.preupdated_external_provider_api_key import PreupdatedExternalProviderApiKey
 from pieces_os_client.models.preview import Preview
 from pieces_os_client.models.privacy_enum import PrivacyEnum
 from pieces_os_client.models.pseudo_assets import PseudoAssets
@@ -276,26 +234,33 @@ from pieces_os_client.models.qgpt_agent_related_routes import QGPTAgentRelatedRo
 from pieces_os_client.models.qgpt_agent_routes import QGPTAgentRoutes
 from pieces_os_client.models.qgpt_conversation import QGPTConversation
 from pieces_os_client.models.qgpt_conversation_message import QGPTConversationMessage
-from pieces_os_client.models.qgpt_conversation_message_role_enum import (
-    QGPTConversationMessageRoleEnum,
-)
+from pieces_os_client.models.qgpt_conversation_message_role_enum import QGPTConversationMessageRoleEnum
+from pieces_os_client.models.qgpt_conversation_pipeline import QGPTConversationPipeline
+from pieces_os_client.models.qgpt_conversation_pipeline_for_contextualized_code_dialog import QGPTConversationPipelineForContextualizedCodeDialog
+from pieces_os_client.models.qgpt_conversation_pipeline_for_contextualized_code_generation import QGPTConversationPipelineForContextualizedCodeGeneration
+from pieces_os_client.models.qgpt_conversation_pipeline_for_generalized_code_dialog import QGPTConversationPipelineForGeneralizedCodeDialog
 from pieces_os_client.models.qgpt_hints_input import QGPTHintsInput
 from pieces_os_client.models.qgpt_persons_related_input import QGPTPersonsRelatedInput
 from pieces_os_client.models.qgpt_persons_related_output import QGPTPersonsRelatedOutput
+from pieces_os_client.models.qgpt_prompt_pipeline import QGPTPromptPipeline
 from pieces_os_client.models.qgpt_question_answer import QGPTQuestionAnswer
 from pieces_os_client.models.qgpt_question_answers import QGPTQuestionAnswers
 from pieces_os_client.models.qgpt_question_input import QGPTQuestionInput
 from pieces_os_client.models.qgpt_question_output import QGPTQuestionOutput
 from pieces_os_client.models.qgpt_relevance_input import QGPTRelevanceInput
-from pieces_os_client.models.qgpt_relevance_input_options import (
-    QGPTRelevanceInputOptions,
-)
+from pieces_os_client.models.qgpt_relevance_input_options import QGPTRelevanceInputOptions
 from pieces_os_client.models.qgpt_relevance_output import QGPTRelevanceOutput
 from pieces_os_client.models.qgpt_reprompt_input import QGPTRepromptInput
 from pieces_os_client.models.qgpt_reprompt_output import QGPTRepromptOutput
 from pieces_os_client.models.qgpt_stream_enum import QGPTStreamEnum
 from pieces_os_client.models.qgpt_stream_input import QGPTStreamInput
 from pieces_os_client.models.qgpt_stream_output import QGPTStreamOutput
+from pieces_os_client.models.qgpt_task_pipeline import QGPTTaskPipeline
+from pieces_os_client.models.qgpt_task_pipeline_for_code_commentation import QGPTTaskPipelineForCodeCommentation
+from pieces_os_client.models.qgpt_task_pipeline_for_code_completion import QGPTTaskPipelineForCodeCompletion
+from pieces_os_client.models.qgpt_task_pipeline_for_code_explanation import QGPTTaskPipelineForCodeExplanation
+from pieces_os_client.models.qgpt_task_pipeline_for_code_fix import QGPTTaskPipelineForCodeFix
+from pieces_os_client.models.qgpt_task_pipeline_for_code_modification import QGPTTaskPipelineForCodeModification
 from pieces_os_client.models.reaction import Reaction
 from pieces_os_client.models.recipients import Recipients
 from pieces_os_client.models.referenced_activity import ReferencedActivity
@@ -304,9 +269,7 @@ from pieces_os_client.models.referenced_anchor_point import ReferencedAnchorPoin
 from pieces_os_client.models.referenced_annotation import ReferencedAnnotation
 from pieces_os_client.models.referenced_asset import ReferencedAsset
 from pieces_os_client.models.referenced_conversation import ReferencedConversation
-from pieces_os_client.models.referenced_conversation_message import (
-    ReferencedConversationMessage,
-)
+from pieces_os_client.models.referenced_conversation_message import ReferencedConversationMessage
 from pieces_os_client.models.referenced_distribution import ReferencedDistribution
 from pieces_os_client.models.referenced_format import ReferencedFormat
 from pieces_os_client.models.referenced_hint import ReferencedHint
@@ -345,40 +308,22 @@ from pieces_os_client.models.seeded_asset_sensitive import SeededAssetSensitive
 from pieces_os_client.models.seeded_asset_tag import SeededAssetTag
 from pieces_os_client.models.seeded_asset_tags import SeededAssetTags
 from pieces_os_client.models.seeded_asset_website import SeededAssetWebsite
-from pieces_os_client.models.seeded_assets_recommendation import (
-    SeededAssetsRecommendation,
-)
+from pieces_os_client.models.seeded_assets_recommendation import SeededAssetsRecommendation
 from pieces_os_client.models.seeded_classification import SeededClassification
 from pieces_os_client.models.seeded_connector_asset import SeededConnectorAsset
-from pieces_os_client.models.seeded_connector_connection import (
-    SeededConnectorConnection,
-)
+from pieces_os_client.models.seeded_connector_connection import SeededConnectorConnection
 from pieces_os_client.models.seeded_connector_creation import SeededConnectorCreation
 from pieces_os_client.models.seeded_connector_tracking import SeededConnectorTracking
 from pieces_os_client.models.seeded_conversation import SeededConversation
-from pieces_os_client.models.seeded_conversation_message import (
-    SeededConversationMessage,
-)
+from pieces_os_client.models.seeded_conversation_message import SeededConversationMessage
 from pieces_os_client.models.seeded_discoverable_asset import SeededDiscoverableAsset
 from pieces_os_client.models.seeded_discoverable_assets import SeededDiscoverableAssets
-from pieces_os_client.models.seeded_discoverable_html_webpage import (
-    SeededDiscoverableHtmlWebpage,
-)
-from pieces_os_client.models.seeded_discoverable_html_webpages import (
-    SeededDiscoverableHtmlWebpages,
-)
-from pieces_os_client.models.seeded_discoverable_related_tag import (
-    SeededDiscoverableRelatedTag,
-)
-from pieces_os_client.models.seeded_discoverable_related_tags import (
-    SeededDiscoverableRelatedTags,
-)
-from pieces_os_client.models.seeded_discoverable_sensitive import (
-    SeededDiscoverableSensitive,
-)
-from pieces_os_client.models.seeded_discoverable_sensitives import (
-    SeededDiscoverableSensitives,
-)
+from pieces_os_client.models.seeded_discoverable_html_webpage import SeededDiscoverableHtmlWebpage
+from pieces_os_client.models.seeded_discoverable_html_webpages import SeededDiscoverableHtmlWebpages
+from pieces_os_client.models.seeded_discoverable_related_tag import SeededDiscoverableRelatedTag
+from pieces_os_client.models.seeded_discoverable_related_tags import SeededDiscoverableRelatedTags
+from pieces_os_client.models.seeded_discoverable_sensitive import SeededDiscoverableSensitive
+from pieces_os_client.models.seeded_discoverable_sensitives import SeededDiscoverableSensitives
 from pieces_os_client.models.seeded_distribution import SeededDistribution
 from pieces_os_client.models.seeded_distributions import SeededDistributions
 from pieces_os_client.models.seeded_external_provider import SeededExternalProvider
@@ -386,65 +331,39 @@ from pieces_os_client.models.seeded_file import SeededFile
 from pieces_os_client.models.seeded_format import SeededFormat
 from pieces_os_client.models.seeded_fragment import SeededFragment
 from pieces_os_client.models.seeded_git_hub_distribution import SeededGitHubDistribution
-from pieces_os_client.models.seeded_git_hub_gist_distribution import (
-    SeededGitHubGistDistribution,
-)
+from pieces_os_client.models.seeded_git_hub_gist_distribution import SeededGitHubGistDistribution
 from pieces_os_client.models.seeded_github_gists_import import SeededGithubGistsImport
 from pieces_os_client.models.seeded_hint import SeededHint
 from pieces_os_client.models.seeded_mac_os_asset import SeededMacOSAsset
 from pieces_os_client.models.seeded_model import SeededModel
 from pieces_os_client.models.seeded_models import SeededModels
 from pieces_os_client.models.seeded_pkce import SeededPKCE
-from pieces_os_client.models.seeded_pkceadditionalparameters import (
-    SeededPKCEADDITIONALPARAMETERS,
-)
+from pieces_os_client.models.seeded_pkceadditionalparameters import SeededPKCEADDITIONALPARAMETERS
 from pieces_os_client.models.seeded_person import SeededPerson
 from pieces_os_client.models.seeded_score import SeededScore
 from pieces_os_client.models.seeded_score_increment import SeededScoreIncrement
 from pieces_os_client.models.seeded_sensitive import SeededSensitive
 from pieces_os_client.models.seeded_share import SeededShare
 from pieces_os_client.models.seeded_tag import SeededTag
-from pieces_os_client.models.seeded_tracked_adoption_event import (
-    SeededTrackedAdoptionEvent,
-)
+from pieces_os_client.models.seeded_tracked_adoption_event import SeededTrackedAdoptionEvent
 from pieces_os_client.models.seeded_tracked_application import SeededTrackedApplication
 from pieces_os_client.models.seeded_tracked_asset_event import SeededTrackedAssetEvent
 from pieces_os_client.models.seeded_tracked_assets_event import SeededTrackedAssetsEvent
-from pieces_os_client.models.seeded_tracked_assets_event_metadata import (
-    SeededTrackedAssetsEventMetadata,
-)
-from pieces_os_client.models.seeded_tracked_conversation_event import (
-    SeededTrackedConversationEvent,
-)
+from pieces_os_client.models.seeded_tracked_assets_event_metadata import SeededTrackedAssetsEventMetadata
+from pieces_os_client.models.seeded_tracked_conversation_event import SeededTrackedConversationEvent
 from pieces_os_client.models.seeded_tracked_format_event import SeededTrackedFormatEvent
-from pieces_os_client.models.seeded_tracked_interaction_event import (
-    SeededTrackedInteractionEvent,
-)
-from pieces_os_client.models.seeded_tracked_interaction_event_identifier_description_pairs import (
-    SeededTrackedInteractionEventIdentifierDescriptionPairs,
-)
-from pieces_os_client.models.seeded_tracked_keyboard_event import (
-    SeededTrackedKeyboardEvent,
-)
-from pieces_os_client.models.seeded_tracked_keyboard_event_identifier_description_pairs import (
-    SeededTrackedKeyboardEventIdentifierDescriptionPairs,
-)
-from pieces_os_client.models.seeded_tracked_machine_learning_event import (
-    SeededTrackedMachineLearningEvent,
-)
-from pieces_os_client.models.seeded_tracked_session_event import (
-    SeededTrackedSessionEvent,
-)
+from pieces_os_client.models.seeded_tracked_interaction_event import SeededTrackedInteractionEvent
+from pieces_os_client.models.seeded_tracked_interaction_event_identifier_description_pairs import SeededTrackedInteractionEventIdentifierDescriptionPairs
+from pieces_os_client.models.seeded_tracked_keyboard_event import SeededTrackedKeyboardEvent
+from pieces_os_client.models.seeded_tracked_keyboard_event_identifier_description_pairs import SeededTrackedKeyboardEventIdentifierDescriptionPairs
+from pieces_os_client.models.seeded_tracked_machine_learning_event import SeededTrackedMachineLearningEvent
+from pieces_os_client.models.seeded_tracked_session_event import SeededTrackedSessionEvent
 from pieces_os_client.models.seeded_ultra_suite_asset import SeededUltraSuiteAsset
 from pieces_os_client.models.seeded_user import SeededUser
 from pieces_os_client.models.seeded_website import SeededWebsite
 from pieces_os_client.models.seeds import Seeds
-from pieces_os_client.models.segmented_technical_language import (
-    SegmentedTechnicalLanguage,
-)
-from pieces_os_client.models.segmented_technical_language_fragment import (
-    SegmentedTechnicalLanguageFragment,
-)
+from pieces_os_client.models.segmented_technical_language import SegmentedTechnicalLanguage
+from pieces_os_client.models.segmented_technical_language_fragment import SegmentedTechnicalLanguageFragment
 from pieces_os_client.models.sensitive import Sensitive
 from pieces_os_client.models.sensitive_category_enum import SensitiveCategoryEnum
 from pieces_os_client.models.sensitive_metadata import SensitiveMetadata
@@ -458,67 +377,29 @@ from pieces_os_client.models.streamed_identifier import StreamedIdentifier
 from pieces_os_client.models.streamed_identifiers import StreamedIdentifiers
 from pieces_os_client.models.suggestion import Suggestion
 from pieces_os_client.models.suggestion_target import SuggestionTarget
-from pieces_os_client.models.system_execution_cpu_information import (
-    SystemExecutionCpuInformation,
-)
-from pieces_os_client.models.system_execution_information import (
-    SystemExecutionInformation,
-)
-from pieces_os_client.models.tlp_code_directory_analytics import (
-    TLPCodeDirectoryAnalytics,
-)
+from pieces_os_client.models.system_execution_cpu_information import SystemExecutionCpuInformation
+from pieces_os_client.models.system_execution_information import SystemExecutionInformation
+from pieces_os_client.models.tlp_code_directory_analytics import TLPCodeDirectoryAnalytics
 from pieces_os_client.models.tlp_code_file_analytics import TLPCodeFileAnalytics
-from pieces_os_client.models.tlp_code_fragment_classification import (
-    TLPCodeFragmentClassification,
-)
-from pieces_os_client.models.tlp_code_fragment_classification_metadata import (
-    TLPCodeFragmentClassificationMetadata,
-)
-from pieces_os_client.models.tlp_code_fragment_description import (
-    TLPCodeFragmentDescription,
-)
-from pieces_os_client.models.tlp_code_fragment_descriptive_statistics import (
-    TLPCodeFragmentDescriptiveStatistics,
-)
-from pieces_os_client.models.tlp_code_fragment_reclassification import (
-    TLPCodeFragmentReclassification,
-)
-from pieces_os_client.models.tlp_code_fragment_reclassification_updates import (
-    TLPCodeFragmentReclassificationUpdates,
-)
-from pieces_os_client.models.tlp_code_fragment_statistics import (
-    TLPCodeFragmentStatistics,
-)
-from pieces_os_client.models.tlp_code_fragment_suggested_reuse import (
-    TLPCodeFragmentSuggestedReuse,
-)
-from pieces_os_client.models.tlp_code_fragment_suggested_save import (
-    TLPCodeFragmentSuggestedSave,
-)
+from pieces_os_client.models.tlp_code_fragment_classification import TLPCodeFragmentClassification
+from pieces_os_client.models.tlp_code_fragment_classification_metadata import TLPCodeFragmentClassificationMetadata
+from pieces_os_client.models.tlp_code_fragment_description import TLPCodeFragmentDescription
+from pieces_os_client.models.tlp_code_fragment_descriptive_statistics import TLPCodeFragmentDescriptiveStatistics
+from pieces_os_client.models.tlp_code_fragment_reclassification import TLPCodeFragmentReclassification
+from pieces_os_client.models.tlp_code_fragment_reclassification_updates import TLPCodeFragmentReclassificationUpdates
+from pieces_os_client.models.tlp_code_fragment_statistics import TLPCodeFragmentStatistics
+from pieces_os_client.models.tlp_code_fragment_suggested_reuse import TLPCodeFragmentSuggestedReuse
+from pieces_os_client.models.tlp_code_fragment_suggested_save import TLPCodeFragmentSuggestedSave
 from pieces_os_client.models.tlp_code_fragment_tagify import TLPCodeFragmentTagify
 from pieces_os_client.models.tlp_code_processing import TLPCodeProcessing
-from pieces_os_client.models.tlp_code_repository_analytics import (
-    TLPCodeRepositoryAnalytics,
-)
+from pieces_os_client.models.tlp_code_repository_analytics import TLPCodeRepositoryAnalytics
 from pieces_os_client.models.tlp_code_snippet_analytics import TLPCodeSnippetAnalytics
-from pieces_os_client.models.tlp_code_snippet_suggested_interactions import (
-    TLPCodeSnippetSuggestedInteractions,
-)
-from pieces_os_client.models.tlp_code_snippet_tagify_code import (
-    TLPCodeSnippetTagifyCode,
-)
-from pieces_os_client.models.tlp_directed_discovery_filter import (
-    TLPDirectedDiscoveryFilter,
-)
-from pieces_os_client.models.tlp_directed_discovery_filter_enum import (
-    TLPDirectedDiscoveryFilterEnum,
-)
-from pieces_os_client.models.tlp_directed_discovery_filters import (
-    TLPDirectedDiscoveryFilters,
-)
-from pieces_os_client.models.tlp_machine_learning_processing_event import (
-    TLPMachineLearningProcessingEvent,
-)
+from pieces_os_client.models.tlp_code_snippet_suggested_interactions import TLPCodeSnippetSuggestedInteractions
+from pieces_os_client.models.tlp_code_snippet_tagify_code import TLPCodeSnippetTagifyCode
+from pieces_os_client.models.tlp_directed_discovery_filter import TLPDirectedDiscoveryFilter
+from pieces_os_client.models.tlp_directed_discovery_filter_enum import TLPDirectedDiscoveryFilterEnum
+from pieces_os_client.models.tlp_directed_discovery_filters import TLPDirectedDiscoveryFilters
+from pieces_os_client.models.tlp_machine_learning_processing_event import TLPMachineLearningProcessingEvent
 from pieces_os_client.models.tag import Tag
 from pieces_os_client.models.tag_category_enum import TagCategoryEnum
 from pieces_os_client.models.tags import Tags
@@ -527,137 +408,36 @@ from pieces_os_client.models.text_match import TextMatch
 from pieces_os_client.models.theme import Theme
 from pieces_os_client.models.tokenized_pkce import TokenizedPKCE
 from pieces_os_client.models.tracked_application import TrackedApplication
-from pieces_os_client.models.tracked_application_install import (
-    TrackedApplicationInstall,
-)
+from pieces_os_client.models.tracked_application_install import TrackedApplicationInstall
 from pieces_os_client.models.tracked_application_update import TrackedApplicationUpdate
-from pieces_os_client.models.tracked_asset_event_creation_metadata import (
-    TrackedAssetEventCreationMetadata,
-)
-from pieces_os_client.models.tracked_asset_event_creation_metadata_clipboard import (
-    TrackedAssetEventCreationMetadataClipboard,
-)
-from pieces_os_client.models.tracked_asset_event_creation_metadata_file import (
-    TrackedAssetEventCreationMetadataFile,
-)
-from pieces_os_client.models.tracked_asset_event_format_reclassification_metadata import (
-    TrackedAssetEventFormatReclassificationMetadata,
-)
-from pieces_os_client.models.tracked_asset_event_identifier_description_pairs import (
-    TrackedAssetEventIdentifierDescriptionPairs,
-)
-from pieces_os_client.models.tracked_asset_event_metadata import (
-    TrackedAssetEventMetadata,
-)
-from pieces_os_client.models.tracked_asset_event_rename_metadata import (
-    TrackedAssetEventRenameMetadata,
-)
-from pieces_os_client.models.tracked_assets_event_identifier_description_pairs import (
-    TrackedAssetsEventIdentifierDescriptionPairs,
-)
-from pieces_os_client.models.tracked_assets_event_search_metadata import (
-    TrackedAssetsEventSearchMetadata,
-)
-from pieces_os_client.models.tracked_assets_event_search_metadata_results import (
-    TrackedAssetsEventSearchMetadataResults,
-)
-from pieces_os_client.models.tracked_conversation_event_identifier_description_pairs import (
-    TrackedConversationEventIdentifierDescriptionPairs,
-)
-from pieces_os_client.models.tracked_conversation_event_metadata import (
-    TrackedConversationEventMetadata,
-)
-from pieces_os_client.models.tracked_conversation_event_rename_metadata import (
-    TrackedConversationEventRenameMetadata,
-)
+from pieces_os_client.models.tracked_asset_event_creation_metadata import TrackedAssetEventCreationMetadata
+from pieces_os_client.models.tracked_asset_event_creation_metadata_clipboard import TrackedAssetEventCreationMetadataClipboard
+from pieces_os_client.models.tracked_asset_event_creation_metadata_file import TrackedAssetEventCreationMetadataFile
+from pieces_os_client.models.tracked_asset_event_format_reclassification_metadata import TrackedAssetEventFormatReclassificationMetadata
+from pieces_os_client.models.tracked_asset_event_identifier_description_pairs import TrackedAssetEventIdentifierDescriptionPairs
+from pieces_os_client.models.tracked_asset_event_metadata import TrackedAssetEventMetadata
+from pieces_os_client.models.tracked_asset_event_rename_metadata import TrackedAssetEventRenameMetadata
+from pieces_os_client.models.tracked_assets_event_identifier_description_pairs import TrackedAssetsEventIdentifierDescriptionPairs
+from pieces_os_client.models.tracked_assets_event_search_metadata import TrackedAssetsEventSearchMetadata
+from pieces_os_client.models.tracked_assets_event_search_metadata_results import TrackedAssetsEventSearchMetadataResults
+from pieces_os_client.models.tracked_conversation_event_identifier_description_pairs import TrackedConversationEventIdentifierDescriptionPairs
+from pieces_os_client.models.tracked_conversation_event_metadata import TrackedConversationEventMetadata
+from pieces_os_client.models.tracked_conversation_event_rename_metadata import TrackedConversationEventRenameMetadata
 from pieces_os_client.models.tracked_format import TrackedFormat
 from pieces_os_client.models.tracked_format_event import TrackedFormatEvent
-from pieces_os_client.models.tracked_format_event_identifier_description_pairs import (
-    TrackedFormatEventIdentifierDescriptionPairs,
-)
-from pieces_os_client.models.tracked_format_event_metadata import (
-    TrackedFormatEventMetadata,
-)
+from pieces_os_client.models.tracked_format_event_identifier_description_pairs import TrackedFormatEventIdentifierDescriptionPairs
+from pieces_os_client.models.tracked_format_event_metadata import TrackedFormatEventMetadata
 from pieces_os_client.models.tracked_interaction_event import TrackedInteractionEvent
 from pieces_os_client.models.tracked_keyboard_event import TrackedKeyboardEvent
-from pieces_os_client.models.tracked_session_event_identifier_description_pairs import (
-    TrackedSessionEventIdentifierDescriptionPairs,
-)
+from pieces_os_client.models.tracked_session_event_identifier_description_pairs import TrackedSessionEventIdentifierDescriptionPairs
 from pieces_os_client.models.tracked_user_profile import TrackedUserProfile
 from pieces_os_client.models.transferable_bytes import TransferableBytes
 from pieces_os_client.models.transferable_string import TransferableString
 from pieces_os_client.models.unchecked_os_update import UncheckedOSUpdate
-from pieces_os_client.models.unsegmented_technical_language import (
-    UnsegmentedTechnicalLanguage,
-)
-from pieces_os_client.models.updated_external_provider_api_key import (
-    UpdatedExternalProviderApiKey,
-)
+from pieces_os_client.models.unsegmented_technical_language import UnsegmentedTechnicalLanguage
+from pieces_os_client.models.updated_external_provider_api_key import UpdatedExternalProviderApiKey
 from pieces_os_client.models.updating_status_enum import UpdatingStatusEnum
 from pieces_os_client.models.user_profile import UserProfile
 from pieces_os_client.models.users import Users
 from pieces_os_client.models.website import Website
 from pieces_os_client.models.websites import Websites
-
-Analysis.update_forward_refs()
-AssetFilter.update_forward_refs()
-AssetFilters.update_forward_refs()
-ConversationGrounding.update_forward_refs()
-FlattenedActivities.update_forward_refs()
-FlattenedActivity.update_forward_refs()
-FlattenedAnalysis.update_forward_refs()
-FlattenedAnchorPoint.update_forward_refs()
-FlattenedAnchorPoints.update_forward_refs()
-FlattenedAnchor.update_forward_refs()
-FlattenedAnchors.update_forward_refs()
-FlattenedAnnotation.update_forward_refs()
-FlattenedAnnotations.update_forward_refs()
-FlattenedAsset.update_forward_refs()
-FlattenedAssets.update_forward_refs()
-FlattenedConversationMessage.update_forward_refs()
-FlattenedConversationMessages.update_forward_refs()
-FlattenedConversation.update_forward_refs()
-FlattenedConversations.update_forward_refs()
-FlattenedFormat.update_forward_refs()
-FlattenedFormats.update_forward_refs()
-FlattenedHint.update_forward_refs()
-FlattenedHints.update_forward_refs()
-FlattenedImageAnalysis.update_forward_refs()
-FlattenedOCRAnalysis.update_forward_refs()
-FlattenedPerson.update_forward_refs()
-FlattenedPersons.update_forward_refs()
-FlattenedSensitive.update_forward_refs()
-FlattenedSensitives.update_forward_refs()
-FlattenedShare.update_forward_refs()
-FlattenedShares.update_forward_refs()
-FlattenedTag.update_forward_refs()
-FlattenedTags.update_forward_refs()
-FlattenedWebsite.update_forward_refs()
-FlattenedWebsites.update_forward_refs()
-Format.update_forward_refs()
-ImageAnalysis.update_forward_refs()
-OCRAnalysis.update_forward_refs()
-PersonModel.update_forward_refs()
-ReferencedActivity.update_forward_refs()
-ReferencedAnchorPoint.update_forward_refs()
-ReferencedAnchor.update_forward_refs()
-ReferencedAnnotation.update_forward_refs()
-ReferencedAsset.update_forward_refs()
-ReferencedConversationMessage.update_forward_refs()
-ReferencedConversation.update_forward_refs()
-ReferencedFormat.update_forward_refs()
-ReferencedHint.update_forward_refs()
-ReferencedPerson.update_forward_refs()
-ReferencedSensitive.update_forward_refs()
-ReferencedShare.update_forward_refs()
-ReferencedTag.update_forward_refs()
-ReferencedWebsite.update_forward_refs()
-SeededConnectorTracking.update_forward_refs()
-SeededTrackedAssetEvent.update_forward_refs()
-SeededTrackedAssetsEventMetadata.update_forward_refs()
-SeededTrackedAssetsEvent.update_forward_refs()
-SeededTrackedConversationEvent.update_forward_refs()
-SeededTrackedFormatEvent.update_forward_refs()
-TrackedAssetEventMetadata.update_forward_refs()
-TrackedAssetsEventSearchMetadataResults.update_forward_refs()
-TrackedAssetsEventSearchMetadata.update_forward_refs()
