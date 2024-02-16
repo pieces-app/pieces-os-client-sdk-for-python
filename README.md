@@ -1,5 +1,6 @@
 #  Pieces OS Client
 [![PyPI version](https://badge.fury.io/py/pieces-os-client.svg)](https://badge.fury.io/py/pieces-os-client)
+[![Downloads](https://static.pepy.tech/badge/pieces_os_client)](https://pepy.tech/project/pieces_os_client)
 
 <h1 align="center">
    <b>
