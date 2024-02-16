@@ -119,7 +119,8 @@ with pieces_os_client.ApiClient(configuration) as api_client:
         print("The response of ConnectorApi->connect:\n")
         pprint(api_response)
     except Exception as e:
-        print("Exception when calling ConnectorApi->connect: %s\n" % e)       
+        print("Exception when calling ConnectorApi->connect: %s\n" % e)     
+```  
 
 
 ### Creating with `Asset` & `/Assets`
