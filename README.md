@@ -17,23 +17,22 @@
 
 ## Table of Contents
 
-- [Operating System Support](#-operating-system-support)
-- [Installing](#-installing)
-    - [Pieces OS](#-pieces-os)
-    - [Downloading PyPI Package](#-downloading-pypi-package)
+- [Operating System Support](#operating-system-support)
+- [Installing](#installing)
+    - [Pieces OS](#pieces-os)
+    - [Downloading PyPI Package](#downloading-pypi-package)
     - [Starter Project](#starter-project)
 - [Testing Usage](#testing-usage)
 - [Examples](#examples)
-    - [/connect](#connect)
-    - [Asset + /assets](#creating-with-asset--assets)
+    - [Connect](#connect)
+    - [Asset & /Assets](#creating-with-asset--assets)
     - [SeededAsset](#seededasset)
-    - [/assets/create](#using-assetscreate)
-    - [/assets/snapshot](#get-your-assets-snapshot)
-    - [/asset/update](#update-your-assets-metadata-or-properties)
-    - [/assets/delete](#deleting-an-asset)
+    - [Get your Assets Snapshot](#get-your-assets-snapshot)
+    - [Update your Assets](#update-your-assets-metadata-or-properties)
+    - [Deleting an Asset](#deleting-an-asset)
 - [Releases](#releases)
 - [Contributing](#contributing)
-- [Supported Versions](#supported-versions-)
+- [Supported Versions](#supported-versions)
 
 
 ## Operating System Support
@@ -86,7 +85,7 @@ with pieces_os_client.ApiClient(configuration) as api_client:
     api_instance = pieces_os_client.WellKnownApi(api_client)
 
     try:
-        # /.well-known/version [Get]
+        # api_instance.get_well_known_version() [Get]
         api_response = api_instance.get_well_known_version()
         print("The response of WellKnownApi->get_well_known_version:\n")
         pprint(api_response)
@@ -101,11 +100,10 @@ Here are a few examples of using some of the basic endpoints for getting up and 
 
 A developer documentation that outlines all the ins and outs of our available endpoints can be found [here](https://github.com/pieces-app/pieces-os-client-sdk-for-python/tree/main/docs/docs).
 
-### `/connect`
+### Connect
 When developing and creating an application on top of Pieces OS, it is important that you authenticate with the application itself when performing requests.
 
-To 'connect' your application (this python project) to the server, you will need to make a POST request to /connect endpoint of the API and print the response. 
-
+To 'connect' your application (this Python project) to the server, you will need to make a POST request to the `api_instance.connect()` endpoint of the API and print the response.
 
 ```python
 # Enter a context with an instance of the API client
@@ -116,13 +114,13 @@ with pieces_os_client.ApiClient(configuration) as api_client:
     # SeededConnectorConnection |  (optional)
 
     try:
-        # /connect [POST]
+        # api_instance.connect() [POST]
         api_response = api_instance.connect(seeded_connector_connection=seeded_connector_connection)
         print("The response of ConnectorApi->connect:\n")
         pprint(api_response)
     except Exception as e:
         print("Exception when calling ConnectorApi->connect: %s\n" % e)       
-```
+
 
 ### Creating with `Asset` & `/Assets`
 **Asset** is a very important model who's primary purpose is to manage the seeded data that comes in to the application, and is stored inside of Pieces OS. Each asset is identifiable as a piece of saved data, or pre-seeded data.
@@ -162,7 +160,7 @@ with pieces_os_client.ApiClient(configuration) as api_client:
     seeded_accessor = pieces_os_client.SeededAccessor() # SeededAccessor |  (optional)
 
     try:
-        # /asset/{asset} [POST] Scoped to an Asset
+         # api_instance.asset_snapshot(asset, transferables=transferables, seeded_accessor=seeded_accessor) [POST] Scoped to an Asset
         api_response = api_instance.asset_snapshot_post(asset, transferables=transferables, seeded_accessor=seeded_accessor)
         print("The response of AssetApi->asset_snapshot_post:\n")
         pprint(api_response)
@@ -183,7 +181,7 @@ with pieces_os_client.ApiClient(configuration) as api_client:
     asset = pieces_os_client.Asset() # Asset | This is the updated Asset that needs to be updated in our db. (optional)
 
     try:
-        # /asset/update [POST] Scoped to Asset
+        # api_instance.asset_update(transferables=transferables, asset=asset) [POST] Scoped to Asset
         api_response = api_instance.asset_update(transferables=transferables, asset=asset)
         print("The response of AssetApi->asset_update:\n")
         pprint(api_response)
@@ -202,7 +200,7 @@ with pieces_os_client.ApiClient(configuration) as api_client:
     asset = '2254f2c8-5797-40e8-ac56-41166dc0e159' # str | The id (uuid) of the asset that you are trying to access.
 
     try:
-        # /assets/delete [POST] Scoped to Asset
+        # api_instance.assets_delete_asset(asset) [POST] Scoped to Asset
         api_response = api_instance.assets_delete_asset(asset)
         print("The response of AssetsApi->assets_delete_asset:\n")
         pprint(api_response)
