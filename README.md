@@ -88,7 +88,7 @@ with pieces_os_client.ApiClient(configuration) as api_client:
         # api_instance.get_well_known_version() [Get]
         api_response = api_instance.get_well_known_version()
         print("The response of WellKnownApi->get_well_known_version:\n")
-        pprint(api_response)
+        print(api_response)
     except Exception as e:
         print("Exception when calling WellKnownApi->get_well_known_version: %s\n" % e)
 ``` 
@@ -117,7 +117,7 @@ with pieces_os_client.ApiClient(configuration) as api_client:
         # api_instance.connect() [POST]
         api_response = api_instance.connect(seeded_connector_connection=seeded_connector_connection)
         print("The response of ConnectorApi->connect:\n")
-        pprint(api_response)
+        print(api_response)
     except Exception as e:
         print("Exception when calling ConnectorApi->connect: %s\n" % e)     
 ```  
@@ -164,7 +164,7 @@ with pieces_os_client.ApiClient(configuration) as api_client:
          # api_instance.asset_snapshot(asset, transferables=transferables, seeded_accessor=seeded_accessor) [POST] Scoped to an Asset
         api_response = api_instance.asset_snapshot_post(asset, transferables=transferables, seeded_accessor=seeded_accessor)
         print("The response of AssetApi->asset_snapshot_post:\n")
-        pprint(api_response)
+        print(api_response)
     except Exception as e:
         print("Exception when calling AssetApi->asset_snapshot_post: %s\n" % e)
 ``` 
@@ -185,7 +185,7 @@ with pieces_os_client.ApiClient(configuration) as api_client:
         # api_instance.asset_update(transferables=transferables, asset=asset) [POST] Scoped to Asset
         api_response = api_instance.asset_update(transferables=transferables, asset=asset)
         print("The response of AssetApi->asset_update:\n")
-        pprint(api_response)
+        print(api_response)
     except Exception as e:
         print("Exception when calling AssetApi->asset_update: %s\n" % e)
 ``` 
@@ -204,7 +204,7 @@ with pieces_os_client.ApiClient(configuration) as api_client:
         # api_instance.assets_delete_asset(asset) [POST] Scoped to Asset
         api_response = api_instance.assets_delete_asset(asset)
         print("The response of AssetsApi->assets_delete_asset:\n")
-        pprint(api_response)
+        print(api_response)
     except Exception as e:
         print("Exception when calling AssetsApi->assets_delete_asset: %s\n" % e)
 ``` 
