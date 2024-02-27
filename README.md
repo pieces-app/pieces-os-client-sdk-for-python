@@ -98,7 +98,7 @@ with pieces_os_client.ApiClient(configuration) as api_client:
 ## Examples
 Here are a few examples of using some of the basic endpoints for getting up and running, along with creating an asset for the first time. 
 
-A developer documentation that outlines all the ins and outs of our available endpoints can be found [here](https://github.com/pieces-app/pieces-os-client-sdk-for-python/tree/main/docs/docs).
+A developer documentation that outlines all the ins and outs of our available endpoints can be found [here](https://github.com/pieces-app/pieces-os-client-sdk-for-python/tree/main/docs).
 
 ### Connect
 When developing and creating an application on top of Pieces OS, it is important that you authenticate with the application itself when performing requests.
