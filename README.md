@@ -64,7 +64,7 @@ To get started with the Pieces SDK, follow these steps:
 After installing the SDK, you can import the library into your project and start utilizing its features:
 
 ```shell
-from pieces_os_client.models
+import pieces_os_client as pos_client
 ```
 For detailed usage instructions and examples, refer to the [documentation](https://docs.pieces.app/build).
 
