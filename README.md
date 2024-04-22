@@ -162,6 +162,32 @@ with pieces_os_client.ApiClient(configuration) as api_client:
 </details>
 
 <details>
+<summary>Create a new Asset</summary>
+   When integrating your application with Pieces OS, creating a new asset is a fundamental task that enables you to manage your resources effectively. This code snippet demonstrates how to accomplish this task using the Pieces OS API.
+
+   After establishing a connection with the API client and instantiating the Assets API class, you can call the `assets_create_new_asset` method to create the asset.You can customize the asset creation process by setting parameters such as `transferables` and `seed`.
+
+   ```python
+
+   # Enter a context with an instance of the API client
+   with pieces_os_client.ApiClient(configuration) as api_client:
+      # Create an instance of the API class
+      api_instance = Assets API(api_client)
+      transferables = True # bool | This is a boolean that will decided if we are want to return the transferable data (default) or not(performance enhancement) (optional)
+      seed = pieces_os_client.Seed() # Seed |  (optional)
+
+      try:
+         # /assets/create [POST] Scoped to Asset
+         api_response = api_instance.assets_create_new_asset(transferables=transferables, seed=seed)
+         print("The response of AssetsApi->assets_create_new_asset:\n")
+         pprint(api_response)
+      except Exception as e:
+         print("Exception when calling AssetsApi->assets_create_new_asset: %s\n" % e)
+
+   ```
+</details>
+
+<details>
 <summary>Get your Assets Snapshot</summary>
 
    When working with your app implementation you will often need to call the entire asset snapshot in order to get the correct snippet from your storage in Pieces OS. You can use this asset snapshot by passing the asset's ID and a boolean value indicating whether or not to return transferable data. The response from the API is then printed to the console.
