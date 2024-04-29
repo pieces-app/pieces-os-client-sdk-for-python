@@ -40,12 +40,14 @@ body:
   - type: dropdown
     id: py_version
     attributes:
-      label: Your Node version (`node -v`)
+      label: Your python version (`python -V`)
       options:
-        - v12.x
-        - v14.x
-        - v16.x
-        - v18.x
+        - Python 3.12.x
+        - Python 3.11.x
+        - Python 3.10.x
+        - Python 3.9.x
+        - Python 3.8.x
+        - Python 3.7.x
         - Other (specify below)
     validations:
       required: false
