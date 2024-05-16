@@ -3,7 +3,6 @@
 Assumption: The iterable will be in the exact same order as it was passed in within the seededDiscoveredHtmlWebpages
 
 ## Properties
-
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 

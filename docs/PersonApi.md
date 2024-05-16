@@ -1,13 +1,557 @@
 # pieces_os_client.PersonApi
 
-All URIs are relative to *http://localhost:3000*
+All URIs are relative to *http://localhost:1000*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**person_associate_asset**](PersonApi.md#person_associate_asset) | **POST** /person/{person}/assets/associate/{asset} | /person/{person}/assets/associate/{asset} [POST]
+[**person_associate_tag**](PersonApi.md#person_associate_tag) | **POST** /person/{person}/tags/associate/{tag} | /person/{person}/tags/associate/{tag} [POST]
+[**person_associate_website**](PersonApi.md#person_associate_website) | **POST** /person/{person}/websites/associate/{website} | /person/{person}/websites/associate/{website} [POST]
+[**person_associate_workstream_summary**](PersonApi.md#person_associate_workstream_summary) | **POST** /person/{person}/workstream_summaries/associate/{workstream_summary} | /person/{person}/workstream_summaries/associate/{workstream_summary} [POST]
+[**person_disassociate_asset**](PersonApi.md#person_disassociate_asset) | **POST** /person/{person}/assets/disassociate/{asset} | /person/{person}/assets/disassociate/{asset} [POST]
+[**person_disassociate_tag**](PersonApi.md#person_disassociate_tag) | **POST** /person/{person}/tags/disassociate/{tag} | /person/{person}/tags/disassociate/{tag} [POST]
+[**person_disassociate_website**](PersonApi.md#person_disassociate_website) | **POST** /person/{person}/websites/disassociate/{website} | /person/{person}/websites/disassociate/{website} [POST]
+[**person_disassociate_workstream_summary**](PersonApi.md#person_disassociate_workstream_summary) | **POST** /person/{person}/workstream_summaries/disassociate/{workstream_summary} | /person/{person}/workstream_summaries/disassociate/{workstream_summary} [POST]
 [**person_scores_increment**](PersonApi.md#person_scores_increment) | **POST** /person/{person}/scores/increment | &#39;/person/{person}/scores/increment&#39; [POST]
 [**person_snapshot**](PersonApi.md#person_snapshot) | **GET** /person/{person} | /person/{person} [GET]
 [**update_person**](PersonApi.md#update_person) | **POST** /person/update | /person/update [POST]
 
+
+# **person_associate_asset**
+> person_associate_asset(person, asset)
+
+/person/{person}/assets/associate/{asset} [POST]
+
+associates a person and an asset. It performs the same action as the asset equivalent.
+
+### Example
+
+```python
+import time
+import os
+import pieces_os_client
+from pieces_os_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to http://localhost:1000
+# See configuration.py for a list of all supported configuration parameters.
+configuration = pieces_os_client.Configuration(
+    host = "http://localhost:1000"
+)
+
+
+# Enter a context with an instance of the API client
+with pieces_os_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = pieces_os_client.PersonApi(api_client)
+    person = 'person_example' # str | This is a uuid that represents a person.
+    asset = '2254f2c8-5797-40e8-ac56-41166dc0e159' # str | The id (uuid) of the asset that you are trying to access.
+
+    try:
+        # /person/{person}/assets/associate/{asset} [POST]
+        api_instance.person_associate_asset(person, asset)
+    except Exception as e:
+        print("Exception when calling PersonApi->person_associate_asset: %s\n" % e)
+```
+
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **person** | **str**| This is a uuid that represents a person. | 
+ **asset** | **str**| The id (uuid) of the asset that you are trying to access. | 
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: text/plain
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**204** | No Content |  -  |
+**500** | Internal Server Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **person_associate_tag**
+> person_associate_tag(person, tag)
+
+/person/{person}/tags/associate/{tag} [POST]
+
+associates a tag and a person. It performs the same action as the tag equivalent.
+
+### Example
+
+```python
+import time
+import os
+import pieces_os_client
+from pieces_os_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to http://localhost:1000
+# See configuration.py for a list of all supported configuration parameters.
+configuration = pieces_os_client.Configuration(
+    host = "http://localhost:1000"
+)
+
+
+# Enter a context with an instance of the API client
+with pieces_os_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = pieces_os_client.PersonApi(api_client)
+    person = 'person_example' # str | This is a uuid that represents a person.
+    tag = 'tag_example' # str | tag id
+
+    try:
+        # /person/{person}/tags/associate/{tag} [POST]
+        api_instance.person_associate_tag(person, tag)
+    except Exception as e:
+        print("Exception when calling PersonApi->person_associate_tag: %s\n" % e)
+```
+
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **person** | **str**| This is a uuid that represents a person. | 
+ **tag** | **str**| tag id | 
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: text/plain
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**204** | No Content |  -  |
+**500** | Internal Server Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **person_associate_website**
+> person_associate_website(person, website)
+
+/person/{person}/websites/associate/{website} [POST]
+
+associates a website and a person. It performs the same action as the website equivalent.
+
+### Example
+
+```python
+import time
+import os
+import pieces_os_client
+from pieces_os_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to http://localhost:1000
+# See configuration.py for a list of all supported configuration parameters.
+configuration = pieces_os_client.Configuration(
+    host = "http://localhost:1000"
+)
+
+
+# Enter a context with an instance of the API client
+with pieces_os_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = pieces_os_client.PersonApi(api_client)
+    person = 'person_example' # str | This is a uuid that represents a person.
+    website = 'website_example' # str | website id
+
+    try:
+        # /person/{person}/websites/associate/{website} [POST]
+        api_instance.person_associate_website(person, website)
+    except Exception as e:
+        print("Exception when calling PersonApi->person_associate_website: %s\n" % e)
+```
+
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **person** | **str**| This is a uuid that represents a person. | 
+ **website** | **str**| website id | 
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: text/plain
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**204** | No Content |  -  |
+**500** | Internal Server Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **person_associate_workstream_summary**
+> person_associate_workstream_summary(person, workstream_summary)
+
+/person/{person}/workstream_summaries/associate/{workstream_summary} [POST]
+
+This will associate a person with a workstream summary. This will do the same thing as the workstreamSummary equivalent.
+
+### Example
+
+```python
+import time
+import os
+import pieces_os_client
+from pieces_os_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to http://localhost:1000
+# See configuration.py for a list of all supported configuration parameters.
+configuration = pieces_os_client.Configuration(
+    host = "http://localhost:1000"
+)
+
+
+# Enter a context with an instance of the API client
+with pieces_os_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = pieces_os_client.PersonApi(api_client)
+    person = 'person_example' # str | This is a uuid that represents a person.
+    workstream_summary = 'workstream_summary_example' # str | This is a identifier that is used to identify a specific workstream_summary.
+
+    try:
+        # /person/{person}/workstream_summaries/associate/{workstream_summary} [POST]
+        api_instance.person_associate_workstream_summary(person, workstream_summary)
+    except Exception as e:
+        print("Exception when calling PersonApi->person_associate_workstream_summary: %s\n" % e)
+```
+
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **person** | **str**| This is a uuid that represents a person. | 
+ **workstream_summary** | **str**| This is a identifier that is used to identify a specific workstream_summary. | 
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: text/plain
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**204** | No Content |  -  |
+**500** | Internal Server Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **person_disassociate_asset**
+> person_disassociate_asset(person, asset)
+
+/person/{person}/assets/disassociate/{asset} [POST]
+
+Disassociates a person from an asset. It performs the same action as the asset equivalent.
+
+### Example
+
+```python
+import time
+import os
+import pieces_os_client
+from pieces_os_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to http://localhost:1000
+# See configuration.py for a list of all supported configuration parameters.
+configuration = pieces_os_client.Configuration(
+    host = "http://localhost:1000"
+)
+
+
+# Enter a context with an instance of the API client
+with pieces_os_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = pieces_os_client.PersonApi(api_client)
+    person = 'person_example' # str | This is a uuid that represents a person.
+    asset = '2254f2c8-5797-40e8-ac56-41166dc0e159' # str | The id (uuid) of the asset that you are trying to access.
+
+    try:
+        # /person/{person}/assets/disassociate/{asset} [POST]
+        api_instance.person_disassociate_asset(person, asset)
+    except Exception as e:
+        print("Exception when calling PersonApi->person_disassociate_asset: %s\n" % e)
+```
+
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **person** | **str**| This is a uuid that represents a person. | 
+ **asset** | **str**| The id (uuid) of the asset that you are trying to access. | 
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: text/plain
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**204** | No Content |  -  |
+**500** | Internal Server Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **person_disassociate_tag**
+> person_disassociate_tag(person, tag)
+
+/person/{person}/tags/disassociate/{tag} [POST]
+
+Disassociates a person from a tag. It performs the same action as the tag equivalent.
+
+### Example
+
+```python
+import time
+import os
+import pieces_os_client
+from pieces_os_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to http://localhost:1000
+# See configuration.py for a list of all supported configuration parameters.
+configuration = pieces_os_client.Configuration(
+    host = "http://localhost:1000"
+)
+
+
+# Enter a context with an instance of the API client
+with pieces_os_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = pieces_os_client.PersonApi(api_client)
+    person = 'person_example' # str | This is a uuid that represents a person.
+    tag = 'tag_example' # str | tag id
+
+    try:
+        # /person/{person}/tags/disassociate/{tag} [POST]
+        api_instance.person_disassociate_tag(person, tag)
+    except Exception as e:
+        print("Exception when calling PersonApi->person_disassociate_tag: %s\n" % e)
+```
+
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **person** | **str**| This is a uuid that represents a person. | 
+ **tag** | **str**| tag id | 
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: text/plain
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**204** | No Content |  -  |
+**500** | Internal Server Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **person_disassociate_website**
+> person_disassociate_website(person, website)
+
+/person/{person}/websites/disassociate/{website} [POST]
+
+Disassociates a person from a website. It performs the same action as the website equivalent.
+
+### Example
+
+```python
+import time
+import os
+import pieces_os_client
+from pieces_os_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to http://localhost:1000
+# See configuration.py for a list of all supported configuration parameters.
+configuration = pieces_os_client.Configuration(
+    host = "http://localhost:1000"
+)
+
+
+# Enter a context with an instance of the API client
+with pieces_os_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = pieces_os_client.PersonApi(api_client)
+    person = 'person_example' # str | This is a uuid that represents a person.
+    website = 'website_example' # str | website id
+
+    try:
+        # /person/{person}/websites/disassociate/{website} [POST]
+        api_instance.person_disassociate_website(person, website)
+    except Exception as e:
+        print("Exception when calling PersonApi->person_disassociate_website: %s\n" % e)
+```
+
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **person** | **str**| This is a uuid that represents a person. | 
+ **website** | **str**| website id | 
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: text/plain
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**204** | No Content |  -  |
+**500** | Internal Server Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **person_disassociate_workstream_summary**
+> person_disassociate_workstream_summary(person, workstream_summary)
+
+/person/{person}/workstream_summaries/disassociate/{workstream_summary} [POST]
+
+This will enable us to disassociate an person from a workstream summary. This will do the same thing as the workstreamSummary equivalent.
+
+### Example
+
+```python
+import time
+import os
+import pieces_os_client
+from pieces_os_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to http://localhost:1000
+# See configuration.py for a list of all supported configuration parameters.
+configuration = pieces_os_client.Configuration(
+    host = "http://localhost:1000"
+)
+
+
+# Enter a context with an instance of the API client
+with pieces_os_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = pieces_os_client.PersonApi(api_client)
+    person = 'person_example' # str | This is a uuid that represents a person.
+    workstream_summary = 'workstream_summary_example' # str | This is a identifier that is used to identify a specific workstream_summary.
+
+    try:
+        # /person/{person}/workstream_summaries/disassociate/{workstream_summary} [POST]
+        api_instance.person_disassociate_workstream_summary(person, workstream_summary)
+    except Exception as e:
+        print("Exception when calling PersonApi->person_disassociate_workstream_summary: %s\n" % e)
+```
+
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **person** | **str**| This is a uuid that represents a person. | 
+ **workstream_summary** | **str**| This is a identifier that is used to identify a specific workstream_summary. | 
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: text/plain
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**204** | No Content |  -  |
+**500** | Internal Server Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **person_scores_increment**
 > person_scores_increment(person, seeded_score_increment=seeded_score_increment)
@@ -18,17 +562,18 @@ This will take in a SeededScoreIncrement and will increment the material relativ
 
 ### Example
 
-
 ```python
+import time
+import os
 import pieces_os_client
 from pieces_os_client.models.seeded_score_increment import SeededScoreIncrement
 from pieces_os_client.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to http://localhost:3000
+# Defining the host is optional and defaults to http://localhost:1000
 # See configuration.py for a list of all supported configuration parameters.
 configuration = pieces_os_client.Configuration(
-    host = "http://localhost:3000"
+    host = "http://localhost:1000"
 )
 
 
@@ -50,7 +595,6 @@ with pieces_os_client.ApiClient(configuration) as api_client:
 
 ### Parameters
 
-
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **person** | **str**| This is a uuid that represents a person. | 
@@ -67,10 +611,9 @@ No authorization required
 ### HTTP request headers
 
  - **Content-Type**: application/json
- - **Accept**: application/json
+ - **Accept**: text/plain
 
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **204** | No Content |  -  |
@@ -87,17 +630,18 @@ This will get a snapshot of a specific person
 
 ### Example
 
-
 ```python
+import time
+import os
 import pieces_os_client
 from pieces_os_client.models.person import Person
 from pieces_os_client.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to http://localhost:3000
+# Defining the host is optional and defaults to http://localhost:1000
 # See configuration.py for a list of all supported configuration parameters.
 configuration = pieces_os_client.Configuration(
-    host = "http://localhost:3000"
+    host = "http://localhost:1000"
 )
 
 
@@ -121,7 +665,6 @@ with pieces_os_client.ApiClient(configuration) as api_client:
 
 ### Parameters
 
-
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **person** | **str**| This is a uuid that represents a person. | 
@@ -138,10 +681,9 @@ No authorization required
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json
+ - **Accept**: application/json, text/plain
 
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
@@ -158,17 +700,18 @@ This will update a specific person
 
 ### Example
 
-
 ```python
+import time
+import os
 import pieces_os_client
 from pieces_os_client.models.person import Person
 from pieces_os_client.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to http://localhost:3000
+# Defining the host is optional and defaults to http://localhost:1000
 # See configuration.py for a list of all supported configuration parameters.
 configuration = pieces_os_client.Configuration(
-    host = "http://localhost:3000"
+    host = "http://localhost:1000"
 )
 
 
@@ -192,7 +735,6 @@ with pieces_os_client.ApiClient(configuration) as api_client:
 
 ### Parameters
 
-
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **transferables** | **bool**| This is a boolean that will decided if we are want to return the transferable data (default) or not(performance enhancement) | [optional] 
@@ -212,7 +754,6 @@ No authorization required
  - **Accept**: application/json
 
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |

@@ -18,67 +18,51 @@ import pprint
 import re  # noqa: F401
 import json
 
+
+from typing import Optional
 from pydantic import BaseModel, Field, StrictStr
-from typing import Any, ClassVar, Dict, List, Optional
 from pieces_os_client.models.embedded_model_schema import EmbeddedModelSchema
 from pieces_os_client.models.externally_sourced_enum import ExternallySourcedEnum
 from pieces_os_client.models.mailgun_metadata import MailgunMetadata
-from typing import Optional, Set
-from typing_extensions import Self
 
 class PersonBasicType(BaseModel):
     """
-    This is all optional properties around the most basic information around a non-pieces user.  A Basic type will NOT have a scope as it is not an actual pieces user.
-    """ # noqa: E501
-    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
-    username: Optional[StrictStr] = Field(default=None, description="username or twitter handle...etc")
-    name: Optional[StrictStr] = Field(default=None, description="This is the name of the basic user.")
-    picture: Optional[StrictStr] = Field(default=None, description="this is a url picture representation of a user.")
-    email: Optional[StrictStr] = Field(default=None, description="an email that was extracted.")
+    This is all optional properties around the most basic information around a non-pieces user.  A Basic type will NOT have a scope as it is not an actual pieces user.  # noqa: E501
+    """
+    var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
+    username: Optional[StrictStr] = Field(None, description="username or twitter handle...etc")
+    name: Optional[StrictStr] = Field(None, description="This is the name of the basic user.")
+    picture: Optional[StrictStr] = Field(None, description="this is a url picture representation of a user.")
+    email: Optional[StrictStr] = Field(None, description="an email that was extracted.")
     sourced: Optional[ExternallySourcedEnum] = None
-    url: Optional[StrictStr] = Field(default=None, description="This is a specific url that this basic user came from.")
+    url: Optional[StrictStr] = Field(None, description="This is a specific url that this basic user came from.")
     mailgun: Optional[MailgunMetadata] = None
-    __properties: ClassVar[List[str]] = ["schema", "username", "name", "picture", "email", "sourced", "url", "mailgun"]
+    __properties = ["schema", "username", "name", "picture", "email", "sourced", "url", "mailgun"]
 
-    model_config = {
-        "populate_by_name": True,
-        "validate_assignment": True,
-        "protected_namespaces": (),
-    }
-
+    class Config:
+        """Pydantic configuration"""
+        allow_population_by_field_name = True
+        validate_assignment = True
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.model_dump(by_alias=True))
+        return pprint.pformat(self.dict(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
-        # TODO: pydantic v2: use .model_dump_json(by_alias=True, exclude_unset=True) instead
         return json.dumps(self.to_dict())
 
     @classmethod
-    def from_json(cls, json_str: str) -> Optional[Self]:
+    def from_json(cls, json_str: str) -> PersonBasicType:
         """Create an instance of PersonBasicType from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
-    def to_dict(self) -> Dict[str, Any]:
-        """Return the dictionary representation of the model using alias.
-
-        This has the following differences from calling pydantic's
-        `self.model_dump(by_alias=True)`:
-
-        * `None` is only added to the output dict for nullable fields that
-          were set at model initialization. Other fields with value `None`
-          are ignored.
-        """
-        excluded_fields: Set[str] = set([
-        ])
-
-        _dict = self.model_dump(
-            by_alias=True,
-            exclude=excluded_fields,
-            exclude_none=True,
-        )
+    def to_dict(self):
+        """Returns the dictionary representation of the model using alias"""
+        _dict = self.dict(by_alias=True,
+                          exclude={
+                          },
+                          exclude_none=True)
         # override the default output from pydantic by calling `to_dict()` of var_schema
         if self.var_schema:
             _dict['schema'] = self.var_schema.to_dict()
@@ -88,23 +72,23 @@ class PersonBasicType(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
+    def from_dict(cls, obj: dict) -> PersonBasicType:
         """Create an instance of PersonBasicType from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
-            return cls.model_validate(obj)
+            return PersonBasicType.parse_obj(obj)
 
-        _obj = cls.model_validate({
-            "schema": EmbeddedModelSchema.from_dict(obj["schema"]) if obj.get("schema") is not None else None,
+        _obj = PersonBasicType.parse_obj({
+            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
             "username": obj.get("username"),
             "name": obj.get("name"),
             "picture": obj.get("picture"),
             "email": obj.get("email"),
             "sourced": obj.get("sourced"),
             "url": obj.get("url"),
-            "mailgun": MailgunMetadata.from_dict(obj["mailgun"]) if obj.get("mailgun") is not None else None
+            "mailgun": MailgunMetadata.from_dict(obj.get("mailgun")) if obj.get("mailgun") is not None else None
         })
         return _obj
 

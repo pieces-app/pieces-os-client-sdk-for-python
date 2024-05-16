@@ -3,7 +3,6 @@
 An Asset Model representing data extracted from an Application connecting a group of data containing one or more Formats.  Below formats, preview, and original CAN to be pollinated (DAG Unsafe) because it is a root node and it's child leaf nodes will prevent cycles agressively.
 
 ## Properties
-
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
@@ -34,6 +33,7 @@ Name | Type | Description | Notes
 **hints** | [**Hints**](Hints.md) |  | [optional] 
 **anchors** | [**Anchors**](Anchors.md) |  | [optional] 
 **conversations** | [**Conversations**](Conversations.md) |  | [optional] 
+**summaries** | [**WorkstreamSummaries**](WorkstreamSummaries.md) |  | [optional] 
 **demo** | **bool** | This will let us know if this asset was generated as a &#39;demo&#39; snippet | [optional] 
 
 ## Example

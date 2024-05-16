@@ -3,7 +3,6 @@
 if expiration is add then, after the alloted expiration date the user will only have view && comment only permissions. Only present in the case there is a scope such as a defined collection/asset...  if asset is passed then that means this person belongs to a scoped asset.  NOTE****: annotations here are annotations to describe the person!!! if in the future we want to add who wrote an annotation on and asset or soemthing like that, we will want to add a new field on here called authorships.
 
 ## Properties
-
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
@@ -21,6 +20,7 @@ Name | Type | Description | Notes
 **models** | [**Dict[str, PersonModel]**](PersonModel.md) | This is a Map&lt;String, PersonModel&gt;, where the the key is an asset id. | [optional] 
 **annotations** | [**FlattenedAnnotations**](FlattenedAnnotations.md) |  | [optional] 
 **score** | [**Score**](Score.md) |  | [optional] 
+**summaries** | [**FlattenedWorkstreamSummaries**](FlattenedWorkstreamSummaries.md) |  | [optional] 
 
 ## Example
 

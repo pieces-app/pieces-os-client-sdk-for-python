@@ -3,7 +3,6 @@
 This is the flow that mobile apps use to access an API. Use this endpoint to exchange an Authorization Code for a Token.
 
 ## Properties
-
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 

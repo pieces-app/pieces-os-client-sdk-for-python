@@ -15,7 +15,7 @@
 """  # noqa: E501
 
 
-__version__ = "1.0.0"
+__version__ = "2.2.0"
 
 # import apis into sdk package
 from pieces_os_client.api.activities_api import ActivitiesApi
@@ -35,6 +35,7 @@ from pieces_os_client.api.asset_api import AssetApi
 from pieces_os_client.api.assets_api import AssetsApi
 from pieces_os_client.api.auth0_api import Auth0Api
 from pieces_os_client.api.backup_api import BackupApi
+from pieces_os_client.api.backups_api import BackupsApi
 from pieces_os_client.api.classification_api import ClassificationApi
 from pieces_os_client.api.code_analyses_api import CodeAnalysesApi
 from pieces_os_client.api.connector_api import ConnectorApi
@@ -68,6 +69,8 @@ from pieces_os_client.api.person_api import PersonApi
 from pieces_os_client.api.persons_api import PersonsApi
 from pieces_os_client.api.piece_api import PieceApi
 from pieces_os_client.api.qgpt_api import QGPTApi
+from pieces_os_client.api.range_api import RangeApi
+from pieces_os_client.api.ranges_api import RangesApi
 from pieces_os_client.api.relationship_api import RelationshipApi
 from pieces_os_client.api.relationships_api import RelationshipsApi
 from pieces_os_client.api.search_api import SearchApi
@@ -83,6 +86,12 @@ from pieces_os_client.api.users_api import UsersApi
 from pieces_os_client.api.website_api import WebsiteApi
 from pieces_os_client.api.websites_api import WebsitesApi
 from pieces_os_client.api.well_known_api import WellKnownApi
+from pieces_os_client.api.workstream_api import WorkstreamApi
+from pieces_os_client.api.workstream_event_api import WorkstreamEventApi
+from pieces_os_client.api.workstream_events_api import WorkstreamEventsApi
+from pieces_os_client.api.workstream_pattern_engine_api import WorkstreamPatternEngineApi
+from pieces_os_client.api.workstream_summaries_api import WorkstreamSummariesApi
+from pieces_os_client.api.workstream_summary_api import WorkstreamSummaryApi
 
 # import ApiClient
 from pieces_os_client.api_response import ApiResponse
@@ -119,6 +128,7 @@ from pieces_os_client.models.anchors import Anchors
 from pieces_os_client.models.annotation import Annotation
 from pieces_os_client.models.annotation_type_enum import AnnotationTypeEnum
 from pieces_os_client.models.annotations import Annotations
+from pieces_os_client.models.anonymous_temporal_range import AnonymousTemporalRange
 from pieces_os_client.models.application import Application
 from pieces_os_client.models.application_name_enum import ApplicationNameEnum
 from pieces_os_client.models.applications import Applications
@@ -139,8 +149,19 @@ from pieces_os_client.models.auth0_open_ai_user_metadata import Auth0OpenAIUserM
 from pieces_os_client.models.auth0_redirects import Auth0Redirects
 from pieces_os_client.models.auth0_user import Auth0User
 from pieces_os_client.models.auth0_user_allocation_metadata import Auth0UserAllocationMetadata
+from pieces_os_client.models.auth0_user_beta_status import Auth0UserBetaStatus
 from pieces_os_client.models.auth0_user_metadata import Auth0UserMetadata
 from pieces_os_client.models.available_formats import AvailableFormats
+from pieces_os_client.models.backup import Backup
+from pieces_os_client.models.backup_status import BackupStatus
+from pieces_os_client.models.backup_status_enum import BackupStatusEnum
+from pieces_os_client.models.backup_streamed_progress import BackupStreamedProgress
+from pieces_os_client.models.backups import Backups
+from pieces_os_client.models.browser_selection import BrowserSelection
+from pieces_os_client.models.browser_tab import BrowserTab
+from pieces_os_client.models.browser_tab_value import BrowserTabValue
+from pieces_os_client.models.browser_tab_values import BrowserTabValues
+from pieces_os_client.models.browser_tabs import BrowserTabs
 from pieces_os_client.models.byte_descriptor import ByteDescriptor
 from pieces_os_client.models.capabilities_enum import CapabilitiesEnum
 from pieces_os_client.models.challenged_pkce import ChallengedPKCE
@@ -149,6 +170,7 @@ from pieces_os_client.models.classification import Classification
 from pieces_os_client.models.classification_generic_enum import ClassificationGenericEnum
 from pieces_os_client.models.classification_rendering_enum import ClassificationRenderingEnum
 from pieces_os_client.models.classification_specific_enum import ClassificationSpecificEnum
+from pieces_os_client.models.classifications import Classifications
 from pieces_os_client.models.code_analyses import CodeAnalyses
 from pieces_os_client.models.code_analysis import CodeAnalysis
 from pieces_os_client.models.context import Context
@@ -176,6 +198,8 @@ from pieces_os_client.models.discovered_sensitive import DiscoveredSensitive
 from pieces_os_client.models.discovered_sensitives import DiscoveredSensitives
 from pieces_os_client.models.distribution import Distribution
 from pieces_os_client.models.distributions import Distributions
+from pieces_os_client.models.document_contributor import DocumentContributor
+from pieces_os_client.models.document_contributors import DocumentContributors
 from pieces_os_client.models.edges import Edges
 from pieces_os_client.models.embedded_model_schema import EmbeddedModelSchema
 from pieces_os_client.models.embedded_model_schema_semantic_version_enum import EmbeddedModelSchemaSemanticVersionEnum
@@ -223,6 +247,8 @@ from pieces_os_client.models.flattened_ocr_analysis import FlattenedOCRAnalysis
 from pieces_os_client.models.flattened_person import FlattenedPerson
 from pieces_os_client.models.flattened_persons import FlattenedPersons
 from pieces_os_client.models.flattened_preview import FlattenedPreview
+from pieces_os_client.models.flattened_range import FlattenedRange
+from pieces_os_client.models.flattened_ranges import FlattenedRanges
 from pieces_os_client.models.flattened_sensitive import FlattenedSensitive
 from pieces_os_client.models.flattened_sensitives import FlattenedSensitives
 from pieces_os_client.models.flattened_share import FlattenedShare
@@ -232,6 +258,10 @@ from pieces_os_client.models.flattened_tags import FlattenedTags
 from pieces_os_client.models.flattened_user_profile import FlattenedUserProfile
 from pieces_os_client.models.flattened_website import FlattenedWebsite
 from pieces_os_client.models.flattened_websites import FlattenedWebsites
+from pieces_os_client.models.flattened_workstream_event import FlattenedWorkstreamEvent
+from pieces_os_client.models.flattened_workstream_events import FlattenedWorkstreamEvents
+from pieces_os_client.models.flattened_workstream_summaries import FlattenedWorkstreamSummaries
+from pieces_os_client.models.flattened_workstream_summary import FlattenedWorkstreamSummary
 from pieces_os_client.models.font import Font
 from pieces_os_client.models.format import Format
 from pieces_os_client.models.format_metric import FormatMetric
@@ -256,11 +286,24 @@ from pieces_os_client.models.health import Health
 from pieces_os_client.models.hint import Hint
 from pieces_os_client.models.hint_type_enum import HintTypeEnum
 from pieces_os_client.models.hints import Hints
+from pieces_os_client.models.ide_selection import IDESelection
+from pieces_os_client.models.ide_selections import IDESelections
+from pieces_os_client.models.ide_tab import IDETab
+from pieces_os_client.models.ide_tabs import IDETabs
 from pieces_os_client.models.image_analyses import ImageAnalyses
 from pieces_os_client.models.image_analysis import ImageAnalysis
 from pieces_os_client.models.interacted_asset import InteractedAsset
 from pieces_os_client.models.interacted_asset_interactions import InteractedAssetInteractions
 from pieces_os_client.models.interacted_assets import InteractedAssets
+from pieces_os_client.models.language_server_protocol import LanguageServerProtocol
+from pieces_os_client.models.language_server_protocol_code import LanguageServerProtocolCode
+from pieces_os_client.models.language_server_protocol_code_description import LanguageServerProtocolCodeDescription
+from pieces_os_client.models.language_server_protocol_diagnostic import LanguageServerProtocolDiagnostic
+from pieces_os_client.models.language_server_protocol_diagnostics import LanguageServerProtocolDiagnostics
+from pieces_os_client.models.language_server_protocol_location import LanguageServerProtocolLocation
+from pieces_os_client.models.language_server_protocol_location_range import LanguageServerProtocolLocationRange
+from pieces_os_client.models.language_server_protocol_location_range_position import LanguageServerProtocolLocationRangePosition
+from pieces_os_client.models.language_server_protocol_severity_enum import LanguageServerProtocolSeverityEnum
 from pieces_os_client.models.linkify import Linkify
 from pieces_os_client.models.linkify_multiple import LinkifyMultiple
 from pieces_os_client.models.mailgun_distribution import MailgunDistribution
@@ -291,6 +334,8 @@ from pieces_os_client.models.os_device_gpu_hardware_information import OSDeviceG
 from pieces_os_client.models.os_device_hardware_information import OSDeviceHardwareInformation
 from pieces_os_client.models.os_device_information_returnable import OSDeviceInformationReturnable
 from pieces_os_client.models.os_health import OSHealth
+from pieces_os_client.models.os_permissions import OSPermissions
+from pieces_os_client.models.os_processing_permissions import OSProcessingPermissions
 from pieces_os_client.models.onboarded_persona_details import OnboardedPersonaDetails
 from pieces_os_client.models.open_ai_models_list_input import OpenAIModelsListInput
 from pieces_os_client.models.open_ai_models_list_output import OpenAIModelsListOutput
@@ -310,6 +355,8 @@ from pieces_os_client.models.preonboarded_persona_details import PreonboardedPer
 from pieces_os_client.models.preupdated_external_provider_api_key import PreupdatedExternalProviderApiKey
 from pieces_os_client.models.preview import Preview
 from pieces_os_client.models.privacy_enum import PrivacyEnum
+from pieces_os_client.models.project_module import ProjectModule
+from pieces_os_client.models.project_modules import ProjectModules
 from pieces_os_client.models.pseudo_assets import PseudoAssets
 from pieces_os_client.models.qgpt_agent_related_routes import QGPTAgentRelatedRoutes
 from pieces_os_client.models.qgpt_agent_routes import QGPTAgentRoutes
@@ -319,6 +366,7 @@ from pieces_os_client.models.qgpt_conversation_message_role_enum import QGPTConv
 from pieces_os_client.models.qgpt_conversation_pipeline import QGPTConversationPipeline
 from pieces_os_client.models.qgpt_conversation_pipeline_for_contextualized_code_dialog import QGPTConversationPipelineForContextualizedCodeDialog
 from pieces_os_client.models.qgpt_conversation_pipeline_for_contextualized_code_generation import QGPTConversationPipelineForContextualizedCodeGeneration
+from pieces_os_client.models.qgpt_conversation_pipeline_for_contextualized_code_workstream_dialog import QGPTConversationPipelineForContextualizedCodeWorkstreamDialog
 from pieces_os_client.models.qgpt_conversation_pipeline_for_generalized_code_dialog import QGPTConversationPipelineForGeneralizedCodeDialog
 from pieces_os_client.models.qgpt_hints_input import QGPTHintsInput
 from pieces_os_client.models.qgpt_persons_related_input import QGPTPersonsRelatedInput
@@ -342,6 +390,8 @@ from pieces_os_client.models.qgpt_task_pipeline_for_code_completion import QGPTT
 from pieces_os_client.models.qgpt_task_pipeline_for_code_explanation import QGPTTaskPipelineForCodeExplanation
 from pieces_os_client.models.qgpt_task_pipeline_for_code_fix import QGPTTaskPipelineForCodeFix
 from pieces_os_client.models.qgpt_task_pipeline_for_code_modification import QGPTTaskPipelineForCodeModification
+from pieces_os_client.models.range import Range
+from pieces_os_client.models.ranges import Ranges
 from pieces_os_client.models.reaction import Reaction
 from pieces_os_client.models.recipients import Recipients
 from pieces_os_client.models.referenced_activity import ReferencedActivity
@@ -356,11 +406,14 @@ from pieces_os_client.models.referenced_format import ReferencedFormat
 from pieces_os_client.models.referenced_hint import ReferencedHint
 from pieces_os_client.models.referenced_model import ReferencedModel
 from pieces_os_client.models.referenced_person import ReferencedPerson
+from pieces_os_client.models.referenced_range import ReferencedRange
 from pieces_os_client.models.referenced_sensitive import ReferencedSensitive
 from pieces_os_client.models.referenced_share import ReferencedShare
 from pieces_os_client.models.referenced_tag import ReferencedTag
 from pieces_os_client.models.referenced_user import ReferencedUser
 from pieces_os_client.models.referenced_website import ReferencedWebsite
+from pieces_os_client.models.referenced_workstream_event import ReferencedWorkstreamEvent
+from pieces_os_client.models.referenced_workstream_summary import ReferencedWorkstreamSummary
 from pieces_os_client.models.relationship import Relationship
 from pieces_os_client.models.relationships import Relationships
 from pieces_os_client.models.relevant_qgpt_seed import RelevantQGPTSeed
@@ -390,6 +443,7 @@ from pieces_os_client.models.seeded_asset_tag import SeededAssetTag
 from pieces_os_client.models.seeded_asset_tags import SeededAssetTags
 from pieces_os_client.models.seeded_asset_website import SeededAssetWebsite
 from pieces_os_client.models.seeded_assets_recommendation import SeededAssetsRecommendation
+from pieces_os_client.models.seeded_backup import SeededBackup
 from pieces_os_client.models.seeded_classification import SeededClassification
 from pieces_os_client.models.seeded_connector_asset import SeededConnectorAsset
 from pieces_os_client.models.seeded_connector_connection import SeededConnectorConnection
@@ -421,6 +475,10 @@ from pieces_os_client.models.seeded_models import SeededModels
 from pieces_os_client.models.seeded_pkce import SeededPKCE
 from pieces_os_client.models.seeded_pkceadditionalparameters import SeededPKCEADDITIONALPARAMETERS
 from pieces_os_client.models.seeded_person import SeededPerson
+from pieces_os_client.models.seeded_range import SeededRange
+from pieces_os_client.models.seeded_range_conversation_association import SeededRangeConversationAssociation
+from pieces_os_client.models.seeded_range_conversation_grounding_association import SeededRangeConversationGroundingAssociation
+from pieces_os_client.models.seeded_range_conversation_grounding_temporal_association import SeededRangeConversationGroundingTemporalAssociation
 from pieces_os_client.models.seeded_score import SeededScore
 from pieces_os_client.models.seeded_score_increment import SeededScoreIncrement
 from pieces_os_client.models.seeded_sensitive import SeededSensitive
@@ -442,6 +500,10 @@ from pieces_os_client.models.seeded_tracked_session_event import SeededTrackedSe
 from pieces_os_client.models.seeded_ultra_suite_asset import SeededUltraSuiteAsset
 from pieces_os_client.models.seeded_user import SeededUser
 from pieces_os_client.models.seeded_website import SeededWebsite
+from pieces_os_client.models.seeded_workstream_event import SeededWorkstreamEvent
+from pieces_os_client.models.seeded_workstream_ingestion import SeededWorkstreamIngestion
+from pieces_os_client.models.seeded_workstream_suggestions_refresh import SeededWorkstreamSuggestionsRefresh
+from pieces_os_client.models.seeded_workstream_summary import SeededWorkstreamSummary
 from pieces_os_client.models.seeds import Seeds
 from pieces_os_client.models.segmented_technical_language import SegmentedTechnicalLanguage
 from pieces_os_client.models.segmented_technical_language_fragment import SegmentedTechnicalLanguageFragment
@@ -484,11 +546,11 @@ from pieces_os_client.models.tlp_machine_learning_processing_event import TLPMac
 from pieces_os_client.models.tag import Tag
 from pieces_os_client.models.tag_category_enum import TagCategoryEnum
 from pieces_os_client.models.tags import Tags
+from pieces_os_client.models.temporal_range_grounding import TemporalRangeGrounding
 from pieces_os_client.models.text_location import TextLocation
 from pieces_os_client.models.text_match import TextMatch
 from pieces_os_client.models.theme import Theme
 from pieces_os_client.models.tokenized_pkce import TokenizedPKCE
-from pieces_os_client.models.tracked_application import TrackedApplication
 from pieces_os_client.models.tracked_application_install import TrackedApplicationInstall
 from pieces_os_client.models.tracked_application_update import TrackedApplicationUpdate
 from pieces_os_client.models.tracked_asset_event_creation_metadata import TrackedAssetEventCreationMetadata
@@ -518,7 +580,24 @@ from pieces_os_client.models.unchecked_os_update import UncheckedOSUpdate
 from pieces_os_client.models.unsegmented_technical_language import UnsegmentedTechnicalLanguage
 from pieces_os_client.models.updated_external_provider_api_key import UpdatedExternalProviderApiKey
 from pieces_os_client.models.updating_status_enum import UpdatingStatusEnum
+from pieces_os_client.models.user_beta_status import UserBetaStatus
 from pieces_os_client.models.user_profile import UserProfile
 from pieces_os_client.models.users import Users
 from pieces_os_client.models.website import Website
 from pieces_os_client.models.websites import Websites
+from pieces_os_client.models.workstream_event import WorkstreamEvent
+from pieces_os_client.models.workstream_event_context import WorkstreamEventContext
+from pieces_os_client.models.workstream_event_trigger import WorkstreamEventTrigger
+from pieces_os_client.models.workstream_event_trigger_context_browser import WorkstreamEventTriggerContextBrowser
+from pieces_os_client.models.workstream_event_trigger_context_ide import WorkstreamEventTriggerContextIDE
+from pieces_os_client.models.workstream_events import WorkstreamEvents
+from pieces_os_client.models.workstream_ingestion import WorkstreamIngestion
+from pieces_os_client.models.workstream_pattern_engine_data_cleanup_request import WorkstreamPatternEngineDataCleanupRequest
+from pieces_os_client.models.workstream_pattern_engine_status import WorkstreamPatternEngineStatus
+from pieces_os_client.models.workstream_pattern_engine_vision_status import WorkstreamPatternEngineVisionStatus
+from pieces_os_client.models.workstream_suggestion import WorkstreamSuggestion
+from pieces_os_client.models.workstream_suggestion_type import WorkstreamSuggestionType
+from pieces_os_client.models.workstream_suggestions import WorkstreamSuggestions
+from pieces_os_client.models.workstream_suggestions_refresh import WorkstreamSuggestionsRefresh
+from pieces_os_client.models.workstream_summaries import WorkstreamSummaries
+from pieces_os_client.models.workstream_summary import WorkstreamSummary

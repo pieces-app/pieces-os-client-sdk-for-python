@@ -18,68 +18,52 @@ import pprint
 import re  # noqa: F401
 import json
 
+
+from typing import Optional, Union
 from pydantic import BaseModel, Field, StrictFloat, StrictInt, StrictStr
-from typing import Any, ClassVar, Dict, List, Optional, Union
 from pieces_os_client.models.qgpt_agent_routes import QGPTAgentRoutes
 from pieces_os_client.models.qgpt_question_output import QGPTQuestionOutput
 from pieces_os_client.models.qgpt_relevance_output import QGPTRelevanceOutput
 from pieces_os_client.models.qgpt_stream_enum import QGPTStreamEnum
-from typing import Optional, Set
-from typing_extensions import Self
 
 class QGPTStreamOutput(BaseModel):
     """
-    This is the out for the /qgpt/stream endpoint.  200: success 401: invalid authentication/api key 429: Rate limit/Quota exceeded 500: server had an error 503: the engine is currently overloaded
-    """ # noqa: E501
-    request: Optional[StrictStr] = Field(default=None, description="This is the id used to represent the stream of response. this will always be present. We will use the value passed inby the client, or we will generate one.")
+    This is the out for the /qgpt/stream endpoint.  200: success 401: invalid authentication/api key 429: Rate limit/Quota exceeded 500: server had an error 503: the engine is currently overloaded  # noqa: E501
+    """
+    request: Optional[StrictStr] = Field(None, description="This is the id used to represent the stream of response. this will always be present. We will use the value passed inby the client, or we will generate one.")
     relevance: Optional[QGPTRelevanceOutput] = None
     question: Optional[QGPTQuestionOutput] = None
     status: Optional[QGPTStreamEnum] = None
-    conversation: StrictStr = Field(description="This is the ID of a predefined persisted conversation, if this is not present we will create a new conversation for the input/output.(in the case of a question)")
-    status_code: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="This will be provided", alias="statusCode")
-    error_message: Optional[StrictStr] = Field(default=None, description="optional error message is the status code is NOT 200", alias="errorMessage")
-    agent_routes: Optional[QGPTAgentRoutes] = Field(default=None, alias="agentRoutes")
-    __properties: ClassVar[List[str]] = ["request", "relevance", "question", "status", "conversation", "statusCode", "errorMessage", "agentRoutes"]
+    conversation: StrictStr = Field(..., description="This is the ID of a predefined persisted conversation, if this is not present we will create a new conversation for the input/output.(in the case of a question)")
+    status_code: Optional[Union[StrictFloat, StrictInt]] = Field(None, alias="statusCode", description="This will be provided")
+    error_message: Optional[StrictStr] = Field(None, alias="errorMessage", description="optional error message is the status code is NOT 200")
+    agent_routes: Optional[QGPTAgentRoutes] = Field(None, alias="agentRoutes")
+    __properties = ["request", "relevance", "question", "status", "conversation", "statusCode", "errorMessage", "agentRoutes"]
 
-    model_config = {
-        "populate_by_name": True,
-        "validate_assignment": True,
-        "protected_namespaces": (),
-    }
-
+    class Config:
+        """Pydantic configuration"""
+        allow_population_by_field_name = True
+        validate_assignment = True
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.model_dump(by_alias=True))
+        return pprint.pformat(self.dict(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
-        # TODO: pydantic v2: use .model_dump_json(by_alias=True, exclude_unset=True) instead
         return json.dumps(self.to_dict())
 
     @classmethod
-    def from_json(cls, json_str: str) -> Optional[Self]:
+    def from_json(cls, json_str: str) -> QGPTStreamOutput:
         """Create an instance of QGPTStreamOutput from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
-    def to_dict(self) -> Dict[str, Any]:
-        """Return the dictionary representation of the model using alias.
-
-        This has the following differences from calling pydantic's
-        `self.model_dump(by_alias=True)`:
-
-        * `None` is only added to the output dict for nullable fields that
-          were set at model initialization. Other fields with value `None`
-          are ignored.
-        """
-        excluded_fields: Set[str] = set([
-        ])
-
-        _dict = self.model_dump(
-            by_alias=True,
-            exclude=excluded_fields,
-            exclude_none=True,
-        )
+    def to_dict(self):
+        """Returns the dictionary representation of the model using alias"""
+        _dict = self.dict(by_alias=True,
+                          exclude={
+                          },
+                          exclude_none=True)
         # override the default output from pydantic by calling `to_dict()` of relevance
         if self.relevance:
             _dict['relevance'] = self.relevance.to_dict()
@@ -90,30 +74,30 @@ class QGPTStreamOutput(BaseModel):
         if self.agent_routes:
             _dict['agentRoutes'] = self.agent_routes.to_dict()
         # set to None if status_code (nullable) is None
-        # and model_fields_set contains the field
-        if self.status_code is None and "status_code" in self.model_fields_set:
+        # and __fields_set__ contains the field
+        if self.status_code is None and "status_code" in self.__fields_set__:
             _dict['statusCode'] = None
 
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
+    def from_dict(cls, obj: dict) -> QGPTStreamOutput:
         """Create an instance of QGPTStreamOutput from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
-            return cls.model_validate(obj)
+            return QGPTStreamOutput.parse_obj(obj)
 
-        _obj = cls.model_validate({
+        _obj = QGPTStreamOutput.parse_obj({
             "request": obj.get("request"),
-            "relevance": QGPTRelevanceOutput.from_dict(obj["relevance"]) if obj.get("relevance") is not None else None,
-            "question": QGPTQuestionOutput.from_dict(obj["question"]) if obj.get("question") is not None else None,
+            "relevance": QGPTRelevanceOutput.from_dict(obj.get("relevance")) if obj.get("relevance") is not None else None,
+            "question": QGPTQuestionOutput.from_dict(obj.get("question")) if obj.get("question") is not None else None,
             "status": obj.get("status"),
             "conversation": obj.get("conversation"),
-            "statusCode": obj.get("statusCode"),
-            "errorMessage": obj.get("errorMessage"),
-            "agentRoutes": QGPTAgentRoutes.from_dict(obj["agentRoutes"]) if obj.get("agentRoutes") is not None else None
+            "status_code": obj.get("statusCode"),
+            "error_message": obj.get("errorMessage"),
+            "agent_routes": QGPTAgentRoutes.from_dict(obj.get("agentRoutes")) if obj.get("agentRoutes") is not None else None
         })
         return _obj
 

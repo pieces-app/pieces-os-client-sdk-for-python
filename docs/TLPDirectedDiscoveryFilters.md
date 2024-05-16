@@ -3,7 +3,6 @@
 Contains array of TLPDirectedDiscoveryFilter
 
 ## Properties
-
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **iterable** | [**List[TLPDirectedDiscoveryFilter]**](TLPDirectedDiscoveryFilter.md) | Array that contains filters like class/function/loop | 

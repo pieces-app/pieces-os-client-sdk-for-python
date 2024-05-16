@@ -3,7 +3,6 @@
 if you want a range between you can use from && to.  if you want anything before, use to and NO from.  if you want anything after, use from and NO to.
 
 ## Properties
-
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 

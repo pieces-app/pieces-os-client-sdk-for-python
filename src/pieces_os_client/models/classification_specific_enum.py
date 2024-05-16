@@ -13,10 +13,13 @@
 """  # noqa: E501
 
 
-from __future__ import annotations
 import json
-from enum import Enum
-from typing_extensions import Self
+import pprint
+import re  # noqa: F401
+from aenum import Enum, no_arg
+
+
+
 
 
 class ClassificationSpecificEnum(str, Enum):
@@ -521,10 +524,16 @@ class ClassificationSpecificEnum(str, Enum):
     FSX = 'fsx'
     TF = 'tf'
     VBA = 'vba'
+    SVELTE = 'svelte'
+    VUE = 'vue'
+    SCSS = 'scss'
+    FEATURE = 'feature'
+    INI = 'ini'
+    FTL = 'ftl'
 
     @classmethod
-    def from_json(cls, json_str: str) -> Self:
+    def from_json(cls, json_str: str) -> ClassificationSpecificEnum:
         """Create an instance of ClassificationSpecificEnum from a JSON string"""
-        return cls(json.loads(json_str))
+        return ClassificationSpecificEnum(json.loads(json_str))
 
 

@@ -3,7 +3,6 @@
 The redirect URI for you Auth 0 Service
 
 ## Properties
-
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **authenticated** | **str** | Where the Auth0 redirects after the user is authorized | [optional] 

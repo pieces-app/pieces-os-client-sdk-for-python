@@ -3,7 +3,6 @@
 Numbers related to search results
 
 ## Properties
-
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **fuzzy** | **float** | Total number of fuzzy results | [optional] 

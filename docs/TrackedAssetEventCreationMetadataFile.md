@@ -3,7 +3,6 @@
 If an asset was created from a file attachment
 
 ## Properties
-
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **keyboard** | **bool** | Whether the file was pasted via the keyboard | [optional] 

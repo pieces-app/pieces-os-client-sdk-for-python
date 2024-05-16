@@ -3,7 +3,6 @@
 This is a pre-created accessor that simply takes an os id and an optional user(flattened)
 
 ## Properties
-
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 

@@ -3,7 +3,6 @@
 A model to group all of the properties associated with OAuthGroup
 
 ## Properties
-
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **token** | [**OAuthToken**](OAuthToken.md) |  | [optional] 

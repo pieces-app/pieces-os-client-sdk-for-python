@@ -3,12 +3,11 @@
 This is a model used to track when an Application is Updated
 
 ## Properties
-
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
-**current** | [**TrackedApplication**](TrackedApplication.md) |  | 
-**previous** | [**TrackedApplication**](TrackedApplication.md) |  | [optional] 
+**current** | [**Application**](Application.md) |  | 
+**previous** | [**Application**](Application.md) |  | [optional] 
 **user** | [**TrackedUserProfile**](TrackedUserProfile.md) |  | [optional] 
 
 ## Example

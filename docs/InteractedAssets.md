@@ -3,7 +3,6 @@
 A model which contains a list of InteractedAssets with potentially additional properties.
 
 ## Properties
-
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 

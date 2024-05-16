@@ -3,7 +3,6 @@
 This is specifically for our allocation server metadata.
 
 ## Properties
-
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **project** | **str** |  | 

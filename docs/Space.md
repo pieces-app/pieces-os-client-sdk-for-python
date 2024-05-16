@@ -3,7 +3,6 @@
 This is used in the TrackedAssetsEventSearchMetadata
 
 ## Properties
-
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **size** | **int** | This is the size of your current catalog.(number of assets) | [optional] 

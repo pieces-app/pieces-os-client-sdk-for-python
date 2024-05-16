@@ -2,7 +2,6 @@
 
 
 ## Properties
-
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **viewed** | **str** | https://en.wikipedia.org/wiki/ISO_8601#Time_intervals | 

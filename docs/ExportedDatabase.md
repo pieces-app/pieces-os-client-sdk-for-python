@@ -2,7 +2,6 @@
 
 
 ## Properties
-
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **analyses** | **List[int]** |  | 
@@ -31,7 +30,11 @@ Name | Type | Description | Notes
 **anchor_points** | **List[int]** |  | [optional] 
 **conversations** | **List[int]** |  | [optional] 
 **conversation_messages** | **List[int]** |  | [optional] 
+**workstream_events** | **List[int]** |  | [optional] 
+**ranges** | **List[int]** |  | [optional] 
+**workstream_summaries** | **List[int]** |  | [optional] 
 **message_values** | [**ExportedDatabaseFormats**](ExportedDatabaseFormats.md) |  | [optional] 
+**workstream_event_values** | [**ExportedDatabaseFormats**](ExportedDatabaseFormats.md) |  | [optional] 
 
 ## Example
 

@@ -3,7 +3,6 @@
 This is multiple ReferencedTags(which includes an optional FlattenedTag Model within the reference model).
 
 ## Properties
-
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 

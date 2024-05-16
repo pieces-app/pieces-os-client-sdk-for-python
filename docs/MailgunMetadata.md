@@ -3,7 +3,6 @@
 TODO add additional properties. TODO eventually modify this model to look like the response from Mailgun.
 
 ## Properties
-
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 

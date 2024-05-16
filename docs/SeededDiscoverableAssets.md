@@ -3,7 +3,6 @@
 Assumption: filters imposed in this model can be overwritten by passing them in SeededDiscoverableAsset
 
 ## Properties
-
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 

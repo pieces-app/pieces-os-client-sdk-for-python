@@ -3,7 +3,6 @@
 This is a specific model for related websites to an asset.
 
 ## Properties
-
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
@@ -19,6 +18,7 @@ Name | Type | Description | Notes
 **persons** | [**FlattenedPersons**](FlattenedPersons.md) |  | [optional] 
 **conversations** | [**FlattenedConversations**](FlattenedConversations.md) |  | [optional] 
 **score** | [**Score**](Score.md) |  | [optional] 
+**summaries** | [**FlattenedWorkstreamSummaries**](FlattenedWorkstreamSummaries.md) |  | [optional] 
 
 ## Example
 

@@ -3,7 +3,6 @@
 This is a fully referenced version of a Distribution. TODO add additional distributions such as slack, google_chat, ...etc
 
 ## Properties
-
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 

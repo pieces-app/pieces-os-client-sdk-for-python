@@ -3,7 +3,6 @@
 This will be a simple model with a score and a text value that will represent the value returned for this answer.
 
 ## Properties
-
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
