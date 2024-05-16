@@ -1,13 +1,15 @@
 # pieces_os_client.UserApi
 
-All URIs are relative to *http://localhost:3000*
+All URIs are relative to *http://localhost:1000*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**clear_user**](UserApi.md#clear_user) | **POST** /user/clear | /user/clear
+[**refresh_user**](UserApi.md#refresh_user) | **GET** /user/refresh | /user/refresh [GET]
 [**select_user**](UserApi.md#select_user) | **POST** /user/select | /user/select [POST]
-[**stream_user**](UserApi.md#stream_user) | **GET** /user/stream | /user/stream [GET]
+[**stream_user**](UserApi.md#stream_user) | **GET** /user/stream | /user/stream [WS]
 [**update_user**](UserApi.md#update_user) | **POST** /user/update | /user/update [POST]
+[**user_beta_status**](UserApi.md#user_beta_status) | **POST** /user/beta/status | /user/beta/status [POST]
 [**user_providers**](UserApi.md#user_providers) | **GET** /user/providers | Your GET endpoint
 [**user_snapshot**](UserApi.md#user_snapshot) | **GET** /user | /user [GET]
 [**user_update_vanity**](UserApi.md#user_update_vanity) | **POST** /user/update/vanity | /user/update/vanity [POST]
@@ -22,16 +24,17 @@ An endpoint to clear the current user.
 
 ### Example
 
-
 ```python
+import time
+import os
 import pieces_os_client
 from pieces_os_client.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to http://localhost:3000
+# Defining the host is optional and defaults to http://localhost:1000
 # See configuration.py for a list of all supported configuration parameters.
 configuration = pieces_os_client.Configuration(
-    host = "http://localhost:3000"
+    host = "http://localhost:1000"
 )
 
 
@@ -50,7 +53,6 @@ with pieces_os_client.ApiClient(configuration) as api_client:
 
 
 ### Parameters
-
 This endpoint does not need any parameter.
 
 ### Return type
@@ -67,10 +69,73 @@ No authorization required
  - **Accept**: Not defined
 
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **204** | No Content |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **refresh_user**
+> UserProfile refresh_user()
+
+/user/refresh [GET]
+
+This will refresh a user.
+
+### Example
+
+```python
+import time
+import os
+import pieces_os_client
+from pieces_os_client.models.user_profile import UserProfile
+from pieces_os_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to http://localhost:1000
+# See configuration.py for a list of all supported configuration parameters.
+configuration = pieces_os_client.Configuration(
+    host = "http://localhost:1000"
+)
+
+
+# Enter a context with an instance of the API client
+with pieces_os_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = pieces_os_client.UserApi(api_client)
+
+    try:
+        # /user/refresh [GET]
+        api_response = api_instance.refresh_user()
+        print("The response of UserApi->refresh_user:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling UserApi->refresh_user: %s\n" % e)
+```
+
+
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+[**UserProfile**](UserProfile.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json, text/plain
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**500** | Internal Server Error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -86,18 +151,19 @@ This will select the current user.
 * OAuth Authentication (auth0):
 * OAuth Authentication (auth0):
 * OAuth Authentication (auth0):
-
 ```python
+import time
+import os
 import pieces_os_client
 from pieces_os_client.models.auth0_user import Auth0User
 from pieces_os_client.models.user_profile import UserProfile
 from pieces_os_client.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to http://localhost:3000
+# Defining the host is optional and defaults to http://localhost:1000
 # See configuration.py for a list of all supported configuration parameters.
 configuration = pieces_os_client.Configuration(
-    host = "http://localhost:3000"
+    host = "http://localhost:1000"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -130,7 +196,6 @@ with pieces_os_client.ApiClient(configuration) as api_client:
 
 ### Parameters
 
-
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **auth0_user** | [**Auth0User**](Auth0User.md)|  | [optional] 
@@ -149,7 +214,6 @@ Name | Type | Description  | Notes
  - **Accept**: application/json
 
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
@@ -159,23 +223,24 @@ Name | Type | Description  | Notes
 # **stream_user**
 > UserProfile stream_user()
 
-/user/stream [GET]
+/user/stream [WS]
 
-This will stream in the current user, not quiet sure yet how we want to do this.
+Provides a WebSocket connection that streams user data.
 
 ### Example
 
-
 ```python
+import time
+import os
 import pieces_os_client
 from pieces_os_client.models.user_profile import UserProfile
 from pieces_os_client.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to http://localhost:3000
+# Defining the host is optional and defaults to http://localhost:1000
 # See configuration.py for a list of all supported configuration parameters.
 configuration = pieces_os_client.Configuration(
-    host = "http://localhost:3000"
+    host = "http://localhost:1000"
 )
 
 
@@ -185,7 +250,7 @@ with pieces_os_client.ApiClient(configuration) as api_client:
     api_instance = pieces_os_client.UserApi(api_client)
 
     try:
-        # /user/stream [GET]
+        # /user/stream [WS]
         api_response = api_instance.stream_user()
         print("The response of UserApi->stream_user:\n")
         pprint(api_response)
@@ -196,7 +261,6 @@ with pieces_os_client.ApiClient(configuration) as api_client:
 
 
 ### Parameters
-
 This endpoint does not need any parameter.
 
 ### Return type
@@ -213,7 +277,6 @@ No authorization required
  - **Accept**: application/json
 
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
@@ -229,17 +292,18 @@ This will update a specific user in the database.
 
 ### Example
 
-
 ```python
+import time
+import os
 import pieces_os_client
 from pieces_os_client.models.user_profile import UserProfile
 from pieces_os_client.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to http://localhost:3000
+# Defining the host is optional and defaults to http://localhost:1000
 # See configuration.py for a list of all supported configuration parameters.
 configuration = pieces_os_client.Configuration(
-    host = "http://localhost:3000"
+    host = "http://localhost:1000"
 )
 
 
@@ -262,7 +326,6 @@ with pieces_os_client.ApiClient(configuration) as api_client:
 
 ### Parameters
 
-
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **user_profile** | [**UserProfile**](UserProfile.md)|  | [optional] 
@@ -281,10 +344,78 @@ No authorization required
  - **Accept**: application/json
 
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **user_beta_status**
+> UserBetaStatus user_beta_status(user_beta_status=user_beta_status)
+
+/user/beta/status [POST]
+
+This will be an endpoint to give access or remove access immediately from a given user.(isomorphic from the given provider)
+
+### Example
+
+```python
+import time
+import os
+import pieces_os_client
+from pieces_os_client.models.user_beta_status import UserBetaStatus
+from pieces_os_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to http://localhost:1000
+# See configuration.py for a list of all supported configuration parameters.
+configuration = pieces_os_client.Configuration(
+    host = "http://localhost:1000"
+)
+
+
+# Enter a context with an instance of the API client
+with pieces_os_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = pieces_os_client.UserApi(api_client)
+    user_beta_status = pieces_os_client.UserBetaStatus() # UserBetaStatus |  (optional)
+
+    try:
+        # /user/beta/status [POST]
+        api_response = api_instance.user_beta_status(user_beta_status=user_beta_status)
+        print("The response of UserApi->user_beta_status:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling UserApi->user_beta_status: %s\n" % e)
+```
+
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **user_beta_status** | [**UserBetaStatus**](UserBetaStatus.md)|  | [optional] 
+
+### Return type
+
+[**UserBetaStatus**](UserBetaStatus.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json, text/plain
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**500** | Internal Server Error |  -  |
+**511** | Authentication Required, This means that you user needs to be authenticated with OS in order to change the beta status |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -297,17 +428,18 @@ This will retrieve all the users Providers that are connected to this account.  
 
 ### Example
 
-
 ```python
+import time
+import os
 import pieces_os_client
 from pieces_os_client.models.returned_user_profile import ReturnedUserProfile
 from pieces_os_client.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to http://localhost:3000
+# Defining the host is optional and defaults to http://localhost:1000
 # See configuration.py for a list of all supported configuration parameters.
 configuration = pieces_os_client.Configuration(
-    host = "http://localhost:3000"
+    host = "http://localhost:1000"
 )
 
 
@@ -328,7 +460,6 @@ with pieces_os_client.ApiClient(configuration) as api_client:
 
 
 ### Parameters
-
 This endpoint does not need any parameter.
 
 ### Return type
@@ -342,10 +473,9 @@ No authorization required
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json
+ - **Accept**: application/json, text/plain
 
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
@@ -363,17 +493,18 @@ This will return a snapshot of the current user. This will return our ReturnUser
 
 ### Example
 
-
 ```python
+import time
+import os
 import pieces_os_client
 from pieces_os_client.models.returned_user_profile import ReturnedUserProfile
 from pieces_os_client.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to http://localhost:3000
+# Defining the host is optional and defaults to http://localhost:1000
 # See configuration.py for a list of all supported configuration parameters.
 configuration = pieces_os_client.Configuration(
-    host = "http://localhost:3000"
+    host = "http://localhost:1000"
 )
 
 
@@ -394,7 +525,6 @@ with pieces_os_client.ApiClient(configuration) as api_client:
 
 
 ### Parameters
-
 This endpoint does not need any parameter.
 
 ### Return type
@@ -411,7 +541,6 @@ No authorization required
  - **Accept**: application/json
 
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
@@ -427,17 +556,18 @@ This is a local route to update your vanityname. ie mark.pieces.cloud, where \"m
 
 ### Example
 
-
 ```python
+import time
+import os
 import pieces_os_client
 from pieces_os_client.models.user_profile import UserProfile
 from pieces_os_client.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to http://localhost:3000
+# Defining the host is optional and defaults to http://localhost:1000
 # See configuration.py for a list of all supported configuration parameters.
 configuration = pieces_os_client.Configuration(
-    host = "http://localhost:3000"
+    host = "http://localhost:1000"
 )
 
 
@@ -460,7 +590,6 @@ with pieces_os_client.ApiClient(configuration) as api_client:
 
 ### Parameters
 
-
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **user_profile** | [**UserProfile**](UserProfile.md)| This will take an update userProfile, with the updated vanity name! | [optional] 
@@ -476,10 +605,9 @@ No authorization required
 ### HTTP request headers
 
  - **Content-Type**: application/json
- - **Accept**: application/json
+ - **Accept**: application/json, text/plain
 
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |

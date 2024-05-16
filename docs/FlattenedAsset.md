@@ -1,9 +1,8 @@
 # FlattenedAsset
 
-An Asset Model representing data extracted from an Application connecting a group of data containing one or more Formats. [DAG Compatible - Directed Acyclic Graph Data Structure]  FlattenedAsset prevent Cycles in Reference because all outbound references are strings as opposed to crosspollinated objects.  i.e. FlattenedFormat.formats is Type String[] or List\\<String\\>, FlattenedFormat.preview is Type String, and FlattenedFormat.original is Type String
+An Asset Model representing data extracted from an Application connecting a group of data containing one or more Formats. [DAG Compatible - Directed Acyclic Graph Data Structure]  FlattenedAsset prevent Cycles in Reference because all outbound references are strings as opposed to crosspollinated objects.  i.e. FlattenedFormat.preview is Type String, and FlattenedFormat.original is Type String
 
 ## Properties
-
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
@@ -35,6 +34,7 @@ Name | Type | Description | Notes
 **anchors** | [**FlattenedAnchors**](FlattenedAnchors.md) |  | [optional] 
 **conversations** | [**FlattenedConversations**](FlattenedConversations.md) |  | [optional] 
 **demo** | **bool** | This will let us know if this asset was generated as a &#39;demo&#39; snippet | [optional] 
+**summaries** | [**FlattenedWorkstreamSummaries**](FlattenedWorkstreamSummaries.md) |  | [optional] 
 
 ## Example
 

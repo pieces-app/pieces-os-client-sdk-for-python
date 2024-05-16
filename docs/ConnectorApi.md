@@ -1,6 +1,6 @@
 # pieces_os_client.ConnectorApi
 
-All URIs are relative to *http://localhost:3000*
+All URIs are relative to *http://localhost:1000*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -17,22 +17,23 @@ Method | HTTP request | Description
 
 /connect [POST]
 
-An endpoint which abstracts a bootup/connection for a specific context
+Abstracts a bootup/connection for a specific context.
 
 ### Example
 
-
 ```python
+import time
+import os
 import pieces_os_client
 from pieces_os_client.models.context import Context
 from pieces_os_client.models.seeded_connector_connection import SeededConnectorConnection
 from pieces_os_client.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to http://localhost:3000
+# Defining the host is optional and defaults to http://localhost:1000
 # See configuration.py for a list of all supported configuration parameters.
 configuration = pieces_os_client.Configuration(
-    host = "http://localhost:3000"
+    host = "http://localhost:1000"
 )
 
 
@@ -55,7 +56,6 @@ with pieces_os_client.ApiClient(configuration) as api_client:
 
 ### Parameters
 
-
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **seeded_connector_connection** | [**SeededConnectorConnection**](SeededConnectorConnection.md)|  | [optional] 
@@ -71,10 +71,9 @@ No authorization required
 ### HTTP request headers
 
  - **Content-Type**: application/json
- - **Accept**: application/json
+ - **Accept**: application/json, text/plain
 
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
@@ -87,21 +86,22 @@ No authorization required
 
 /{application}/intention [POST]
 
-This can be used to send a SeededAsset over that you may use to compair in the future.
+Allows you to send a SeededAsset for future comparison.
 
 ### Example
 
-
 ```python
+import time
+import os
 import pieces_os_client
 from pieces_os_client.models.seeded_connector_asset import SeededConnectorAsset
 from pieces_os_client.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to http://localhost:3000
+# Defining the host is optional and defaults to http://localhost:1000
 # See configuration.py for a list of all supported configuration parameters.
 configuration = pieces_os_client.Configuration(
-    host = "http://localhost:3000"
+    host = "http://localhost:1000"
 )
 
 
@@ -125,7 +125,6 @@ with pieces_os_client.ApiClient(configuration) as api_client:
 
 ### Parameters
 
-
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **application** | **str**|  | 
@@ -142,10 +141,9 @@ No authorization required
 ### HTTP request headers
 
  - **Content-Type**: application/json
- - **Accept**: application/json
+ - **Accept**: text/plain
 
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
@@ -160,20 +158,21 @@ No authorization required
 
 /onboarded [POST]
 
-A consolidation endpoint to handle the updating of an onboarding process.
+A central endpoint to manage updates to the onboarding process.
 
 ### Example
 
-
 ```python
+import time
+import os
 import pieces_os_client
 from pieces_os_client.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to http://localhost:3000
+# Defining the host is optional and defaults to http://localhost:1000
 # See configuration.py for a list of all supported configuration parameters.
 configuration = pieces_os_client.Configuration(
-    host = "http://localhost:3000"
+    host = "http://localhost:1000"
 )
 
 
@@ -197,7 +196,6 @@ with pieces_os_client.ApiClient(configuration) as api_client:
 
 ### Parameters
 
-
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **application** | **str**| This is a uuid that represents an application | 
@@ -214,13 +212,12 @@ No authorization required
 ### HTTP request headers
 
  - **Content-Type**: application/json
- - **Accept**: application/json
+ - **Accept**: text/plain
 
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | OK, This will jsut return a string of \&quot;OK\&quot;. |  -  |
+**200** | OK, This will just return a string of \&quot;OK\&quot;. |  -  |
 **400** | Bad Request, Application Failed to connect, Please ensure this is a valid integration. This happens in the case a developer provides and incorrect {application} (applicationId) within the route that doest match a preregisterd integration. |  -  |
 **401** | Unauthorized, you will get this in the case that you are trying to ping Pieces_OS but havnt connected yet.\&quot;/connect was not called for your application.\&quot; |  -  |
 
@@ -231,21 +228,22 @@ No authorization required
 
 /{application}/reaction [POST]
 
-This will react to the response returned from the /suggest endpoint. 
+This will respond to the output generated by the /suggest endpoint.
 
 ### Example
 
-
 ```python
+import time
+import os
 import pieces_os_client
 from pieces_os_client.models.reaction import Reaction
 from pieces_os_client.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to http://localhost:3000
+# Defining the host is optional and defaults to http://localhost:1000
 # See configuration.py for a list of all supported configuration parameters.
 configuration = pieces_os_client.Configuration(
-    host = "http://localhost:3000"
+    host = "http://localhost:1000"
 )
 
 
@@ -269,7 +267,6 @@ with pieces_os_client.ApiClient(configuration) as api_client:
 
 ### Parameters
 
-
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **application** | **str**|  | 
@@ -286,10 +283,9 @@ No authorization required
 ### HTTP request headers
 
  - **Content-Type**: application/json
- - **Accept**: application/json
+ - **Accept**: text/plain
 
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | This string will either (1) be a string of the AssetUid or (2) will be a generic string of &#39;OK&#39; if the asset was not saved and &#39;OK&#39; if the result was just used to send information about the a suggested reuse. |  -  |
@@ -303,22 +299,23 @@ No authorization required
 
 /{application}/suggestion [POST]
 
-This can and should be called everytime a snippet is coppied from an integration. IE A Jetbrains user coppies some code, then this end point can get called to weigh if we want to suggest a piece to be reused (if reuse is true we should provide asset that the user may want to use) or saved or neither.   **Note: Could potentially accept a SeededFormat for the request body if we want.  TODO potentially just make this a get endpoint. (because we are trying to retireve data.
+Invoked whenever a code snippet is copied from an integration. For instance, if a JetBrains user copies code, this endpoint can be called to assess whether to suggest reusing a piece (if reuse is true, the endpoint provides assets that the user may consider using), saving the code snippet, or taking no action.   **Note: This endpoint could potentially accept a SeededFormat for the request body if required.
 
 ### Example
 
-
 ```python
+import time
+import os
 import pieces_os_client
 from pieces_os_client.models.seeded_connector_creation import SeededConnectorCreation
 from pieces_os_client.models.suggestion import Suggestion
 from pieces_os_client.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to http://localhost:3000
+# Defining the host is optional and defaults to http://localhost:1000
 # See configuration.py for a list of all supported configuration parameters.
 configuration = pieces_os_client.Configuration(
-    host = "http://localhost:3000"
+    host = "http://localhost:1000"
 )
 
 
@@ -342,7 +339,6 @@ with pieces_os_client.ApiClient(configuration) as api_client:
 
 ### Parameters
 
-
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **application** | **str**|  | 
@@ -359,10 +355,9 @@ No authorization required
 ### HTTP request headers
 
  - **Content-Type**: application/json
- - **Accept**: application/json
+ - **Accept**: application/json, text/plain
 
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
@@ -376,21 +371,22 @@ No authorization required
 
 /{application}/track [POST]
 
-This is an endpoint specifically to abstract the work of packaging for segment on a per-context basis
+Abstracts the process of packaging segments on a per-context basis.
 
 ### Example
 
-
 ```python
+import time
+import os
 import pieces_os_client
 from pieces_os_client.models.seeded_connector_tracking import SeededConnectorTracking
 from pieces_os_client.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to http://localhost:3000
+# Defining the host is optional and defaults to http://localhost:1000
 # See configuration.py for a list of all supported configuration parameters.
 configuration = pieces_os_client.Configuration(
-    host = "http://localhost:3000"
+    host = "http://localhost:1000"
 )
 
 
@@ -414,7 +410,6 @@ with pieces_os_client.ApiClient(configuration) as api_client:
 
 ### Parameters
 
-
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **application** | **str**| This is a uuid that represents an application | 
@@ -431,10 +426,9 @@ No authorization required
 ### HTTP request headers
 
  - **Content-Type**: application/json
- - **Accept**: application/json
+ - **Accept**: text/plain
 
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK, This will jsut return a string of \&quot;OK\&quot;. |  -  |

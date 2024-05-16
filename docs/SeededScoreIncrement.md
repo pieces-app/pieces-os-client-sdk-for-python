@@ -3,7 +3,6 @@
 This is the body for a respective scores increment,  This will enable us to know what material we want to increment, all of which are optional, if it is defined we will attempt to increment the material.
 
 ## Properties
-
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
@@ -31,6 +30,12 @@ Name | Type | Description | Notes
 **persons** | [**SeededScore**](SeededScore.md) |  | [optional] 
 **tag** | [**SeededScore**](SeededScore.md) |  | [optional] 
 **tags** | [**SeededScore**](SeededScore.md) |  | [optional] 
+**workstream_summary** | [**SeededScore**](SeededScore.md) |  | [optional] 
+**workstream_summaries** | [**SeededScore**](SeededScore.md) |  | [optional] 
+**workstream_events** | [**SeededScore**](SeededScore.md) |  | [optional] 
+**workstream_event** | [**SeededScore**](SeededScore.md) |  | [optional] 
+**ranges** | [**SeededScore**](SeededScore.md) |  | [optional] 
+**range** | [**SeededScore**](SeededScore.md) |  | [optional] 
 
 ## Example
 

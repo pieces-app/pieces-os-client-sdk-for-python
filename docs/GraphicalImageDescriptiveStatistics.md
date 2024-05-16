@@ -3,7 +3,6 @@
 Model for collecting descriptive statistics of images uploaded to Pieces
 
 ## Properties
-
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 

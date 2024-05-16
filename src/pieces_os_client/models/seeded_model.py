@@ -18,8 +18,9 @@ import pprint
 import re  # noqa: F401
 import json
 
+
+from typing import Optional, Union
 from pydantic import BaseModel, Field, StrictBool, StrictFloat, StrictInt, StrictStr
-from typing import Any, ClassVar, Dict, List, Optional, Union
 from pieces_os_client.models.byte_descriptor import ByteDescriptor
 from pieces_os_client.models.embedded_model_schema import EmbeddedModelSchema
 from pieces_os_client.models.external_ml_provider_enum import ExternalMLProviderEnum
@@ -28,73 +29,56 @@ from pieces_os_client.models.model_foundation_enum import ModelFoundationEnum
 from pieces_os_client.models.model_max_tokens import ModelMaxTokens
 from pieces_os_client.models.model_type_enum import ModelTypeEnum
 from pieces_os_client.models.model_usage_enum import ModelUsageEnum
-from typing import Optional, Set
-from typing_extensions import Self
 
 class SeededModel(BaseModel):
     """
-    This is Precursor to a Model.  bytes: here is the size of the model in a file local on your computer. ram: is the amount of ram usage when the model is loaded into memory.
-    """ # noqa: E501
-    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
-    version: StrictStr = Field(description="this is a version of the model.")
-    created: GroupedTimestamp
-    name: StrictStr = Field(description="This is an Optional Name of the Model.")
-    description: Optional[StrictStr] = Field(default=None, description="An Optional Description of the model itself.")
-    cloud: StrictBool = Field(description="This will inform the user if this was a model that is hosted in the cloud")
-    type: ModelTypeEnum
-    usage: ModelUsageEnum
+    This is Precursor to a Model.  bytes: here is the size of the model in a file local on your computer. ram: is the amount of ram usage when the model is loaded into memory.  # noqa: E501
+    """
+    var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
+    version: StrictStr = Field(..., description="this is a version of the model.")
+    created: GroupedTimestamp = Field(...)
+    name: StrictStr = Field(..., description="This is an Optional Name of the Model.")
+    description: Optional[StrictStr] = Field(None, description="An Optional Description of the model itself.")
+    cloud: StrictBool = Field(..., description="This will inform the user if this was a model that is hosted in the cloud")
+    type: ModelTypeEnum = Field(...)
+    usage: ModelUsageEnum = Field(...)
     bytes: Optional[ByteDescriptor] = None
     ram: Optional[ByteDescriptor] = None
-    quantization: Optional[StrictStr] = Field(default=None, description="quantization is a string like: q8f16_0,  q4f16_1, etc...")
+    quantization: Optional[StrictStr] = Field(None, description="quantization is a string like: q8f16_0,  q4f16_1, etc...")
     foundation: Optional[ModelFoundationEnum] = None
-    downloaded: Optional[StrictBool] = Field(default=None, description="This is an optional bool to let us know if this model has been downloaded locally.")
-    unique: Optional[StrictStr] = Field(default=None, description="This is the unique model name used to load the model.")
-    parameters: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="This is the number of parameters in terms of billions.")
+    downloaded: Optional[StrictBool] = Field(None, description="This is an optional bool to let us know if this model has been downloaded locally.")
+    unique: Optional[StrictStr] = Field(None, description="This is the unique model name used to load the model.")
+    parameters: Optional[Union[StrictFloat, StrictInt]] = Field(None, description="This is the number of parameters in terms of billions.")
     provider: Optional[ExternalMLProviderEnum] = None
-    cpu: Optional[StrictBool] = Field(default=None, description="This is an optional bool that is optimized for CPU usage.")
-    max_tokens: Optional[ModelMaxTokens] = Field(default=None, alias="maxTokens")
-    custom: Optional[StrictBool] = Field(default=None, description="This is reserved to custommly registed models.")
-    __properties: ClassVar[List[str]] = ["schema", "version", "created", "name", "description", "cloud", "type", "usage", "bytes", "ram", "quantization", "foundation", "downloaded", "unique", "parameters", "provider", "cpu", "maxTokens", "custom"]
+    cpu: Optional[StrictBool] = Field(None, description="This is an optional bool that is optimized for CPU usage.")
+    max_tokens: Optional[ModelMaxTokens] = Field(None, alias="maxTokens")
+    custom: Optional[StrictBool] = Field(None, description="This is reserved to custommly registed models.")
+    __properties = ["schema", "version", "created", "name", "description", "cloud", "type", "usage", "bytes", "ram", "quantization", "foundation", "downloaded", "unique", "parameters", "provider", "cpu", "maxTokens", "custom"]
 
-    model_config = {
-        "populate_by_name": True,
-        "validate_assignment": True,
-        "protected_namespaces": (),
-    }
-
+    class Config:
+        """Pydantic configuration"""
+        allow_population_by_field_name = True
+        validate_assignment = True
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.model_dump(by_alias=True))
+        return pprint.pformat(self.dict(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
-        # TODO: pydantic v2: use .model_dump_json(by_alias=True, exclude_unset=True) instead
         return json.dumps(self.to_dict())
 
     @classmethod
-    def from_json(cls, json_str: str) -> Optional[Self]:
+    def from_json(cls, json_str: str) -> SeededModel:
         """Create an instance of SeededModel from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
-    def to_dict(self) -> Dict[str, Any]:
-        """Return the dictionary representation of the model using alias.
-
-        This has the following differences from calling pydantic's
-        `self.model_dump(by_alias=True)`:
-
-        * `None` is only added to the output dict for nullable fields that
-          were set at model initialization. Other fields with value `None`
-          are ignored.
-        """
-        excluded_fields: Set[str] = set([
-        ])
-
-        _dict = self.model_dump(
-            by_alias=True,
-            exclude=excluded_fields,
-            exclude_none=True,
-        )
+    def to_dict(self):
+        """Returns the dictionary representation of the model using alias"""
+        _dict = self.dict(by_alias=True,
+                          exclude={
+                          },
+                          exclude_none=True)
         # override the default output from pydantic by calling `to_dict()` of var_schema
         if self.var_schema:
             _dict['schema'] = self.var_schema.to_dict()
@@ -111,32 +95,32 @@ class SeededModel(BaseModel):
         if self.max_tokens:
             _dict['maxTokens'] = self.max_tokens.to_dict()
         # set to None if parameters (nullable) is None
-        # and model_fields_set contains the field
-        if self.parameters is None and "parameters" in self.model_fields_set:
+        # and __fields_set__ contains the field
+        if self.parameters is None and "parameters" in self.__fields_set__:
             _dict['parameters'] = None
 
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
+    def from_dict(cls, obj: dict) -> SeededModel:
         """Create an instance of SeededModel from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
-            return cls.model_validate(obj)
+            return SeededModel.parse_obj(obj)
 
-        _obj = cls.model_validate({
-            "schema": EmbeddedModelSchema.from_dict(obj["schema"]) if obj.get("schema") is not None else None,
+        _obj = SeededModel.parse_obj({
+            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
             "version": obj.get("version"),
-            "created": GroupedTimestamp.from_dict(obj["created"]) if obj.get("created") is not None else None,
+            "created": GroupedTimestamp.from_dict(obj.get("created")) if obj.get("created") is not None else None,
             "name": obj.get("name"),
             "description": obj.get("description"),
             "cloud": obj.get("cloud"),
             "type": obj.get("type"),
             "usage": obj.get("usage"),
-            "bytes": ByteDescriptor.from_dict(obj["bytes"]) if obj.get("bytes") is not None else None,
-            "ram": ByteDescriptor.from_dict(obj["ram"]) if obj.get("ram") is not None else None,
+            "bytes": ByteDescriptor.from_dict(obj.get("bytes")) if obj.get("bytes") is not None else None,
+            "ram": ByteDescriptor.from_dict(obj.get("ram")) if obj.get("ram") is not None else None,
             "quantization": obj.get("quantization"),
             "foundation": obj.get("foundation"),
             "downloaded": obj.get("downloaded"),
@@ -144,7 +128,7 @@ class SeededModel(BaseModel):
             "parameters": obj.get("parameters"),
             "provider": obj.get("provider"),
             "cpu": obj.get("cpu"),
-            "maxTokens": ModelMaxTokens.from_dict(obj["maxTokens"]) if obj.get("maxTokens") is not None else None,
+            "max_tokens": ModelMaxTokens.from_dict(obj.get("maxTokens")) if obj.get("maxTokens") is not None else None,
             "custom": obj.get("custom")
         })
         return _obj

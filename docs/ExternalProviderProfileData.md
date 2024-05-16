@@ -3,7 +3,6 @@
 All of these will be optional.  Will support ProfileData from all our social providers.
 
 ## Properties
-
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **name** | **str** |  | [optional] 

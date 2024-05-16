@@ -3,7 +3,6 @@
 This is a model for a minimum exported version of an asset.
 
 ## Properties
-
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **name** | **str** | this is the title of the asset  | 

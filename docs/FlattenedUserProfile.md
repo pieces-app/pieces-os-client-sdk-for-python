@@ -3,7 +3,6 @@
 This is a FlattenedUserProfile that includes information that is not sensative in relation to a user.
 
 ## Properties
-
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 

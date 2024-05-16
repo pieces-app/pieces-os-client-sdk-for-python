@@ -3,7 +3,6 @@
 update && version: will be present only if your cloud was successfully spun up && running.  updated: is the last time this was updated.
 
 ## Properties
-
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 

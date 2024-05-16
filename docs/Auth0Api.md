@@ -1,6 +1,6 @@
 # pieces_os_client.Auth0Api
 
-All URIs are relative to *http://localhost:3000*
+All URIs are relative to *http://localhost:1000*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -19,16 +19,17 @@ https://auth0.com/docs/api/authentication#logout
 
 ### Example
 
-
 ```python
+import time
+import os
 import pieces_os_client
 from pieces_os_client.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to http://localhost:3000
+# Defining the host is optional and defaults to http://localhost:1000
 # See configuration.py for a list of all supported configuration parameters.
 configuration = pieces_os_client.Configuration(
-    host = "http://localhost:3000"
+    host = "http://localhost:1000"
 )
 
 
@@ -52,7 +53,6 @@ with pieces_os_client.ApiClient(configuration) as api_client:
 
 ### Parameters
 
-
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **client_id** | **str**| The client ID of the Auth0 Instance | [optional] 
@@ -72,7 +72,6 @@ No authorization required
  - **Accept**: text/html
 
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
@@ -88,17 +87,18 @@ An endpoint that is used locally authenticate via a PKCE Flow.  Example https://
 
 ### Example
 
-
 ```python
+import time
+import os
 import pieces_os_client
 from pieces_os_client.models.resulted_pkce import ResultedPKCE
 from pieces_os_client.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to http://localhost:3000
+# Defining the host is optional and defaults to http://localhost:1000
 # See configuration.py for a list of all supported configuration parameters.
 configuration = pieces_os_client.Configuration(
-    host = "http://localhost:3000"
+    host = "http://localhost:1000"
 )
 
 
@@ -131,7 +131,6 @@ with pieces_os_client.ApiClient(configuration) as api_client:
 
 ### Parameters
 
-
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **audience** | **str**|  The unique identifier of the target API you want to access. | 
@@ -160,7 +159,6 @@ No authorization required
  - **Accept**: application/x-www-form-urlencoded
 
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
@@ -176,18 +174,19 @@ An endpoint to generate a OAuth Token for an authentication flow.
 
 ### Example
 
-
 ```python
+import time
+import os
 import pieces_os_client
 from pieces_os_client.models.embedded_model_schema import EmbeddedModelSchema
 from pieces_os_client.models.o_auth_token import OAuthToken
 from pieces_os_client.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to http://localhost:3000
+# Defining the host is optional and defaults to http://localhost:1000
 # See configuration.py for a list of all supported configuration parameters.
 configuration = pieces_os_client.Configuration(
-    host = "http://localhost:3000"
+    host = "http://localhost:1000"
 )
 
 
@@ -216,7 +215,6 @@ with pieces_os_client.ApiClient(configuration) as api_client:
 
 ### Parameters
 
-
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **grant_type** | **str**| Denotes the flow you are using. For Authorization Code, use authorization_code or refresh_token. | 
@@ -241,7 +239,6 @@ No authorization required
  - **Accept**: application/json
 
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
@@ -260,17 +257,18 @@ Get the users info from the Auth0 API
 * OAuth Authentication (auth0):
 * OAuth Authentication (auth0):
 * OAuth Authentication (auth0):
-
 ```python
+import time
+import os
 import pieces_os_client
 from pieces_os_client.models.auth0_user import Auth0User
 from pieces_os_client.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to http://localhost:3000
+# Defining the host is optional and defaults to http://localhost:1000
 # See configuration.py for a list of all supported configuration parameters.
 configuration = pieces_os_client.Configuration(
-    host = "http://localhost:3000"
+    host = "http://localhost:1000"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -301,7 +299,6 @@ with pieces_os_client.ApiClient(configuration) as api_client:
 
 
 ### Parameters
-
 This endpoint does not need any parameter.
 
 ### Return type
@@ -318,7 +315,6 @@ This endpoint does not need any parameter.
  - **Accept**: application/json
 
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |

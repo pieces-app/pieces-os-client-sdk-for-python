@@ -1,6 +1,6 @@
 # pieces_os_client.ModelsApi
 
-All URIs are relative to *http://localhost:3000*
+All URIs are relative to *http://localhost:1000*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -16,22 +16,23 @@ Method | HTTP request | Description
 
 /models/create [POST]
 
-This will create a ml model, this is aloud however all models will be set to custom: true.  && we will verify we dont have a model that matches this model.
+Creates a machine learning model. By default, all models created through this endpoint will have the 'custom' attribute set to true. Additionally, the endpoint ensures that no duplicate models exist before creating a new one.
 
 ### Example
 
-
 ```python
+import time
+import os
 import pieces_os_client
 from pieces_os_client.models.model import Model
 from pieces_os_client.models.seeded_model import SeededModel
 from pieces_os_client.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to http://localhost:3000
+# Defining the host is optional and defaults to http://localhost:1000
 # See configuration.py for a list of all supported configuration parameters.
 configuration = pieces_os_client.Configuration(
-    host = "http://localhost:3000"
+    host = "http://localhost:1000"
 )
 
 
@@ -54,7 +55,6 @@ with pieces_os_client.ApiClient(configuration) as api_client:
 
 ### Parameters
 
-
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **seeded_model** | [**SeededModel**](SeededModel.md)|  | [optional] 
@@ -70,10 +70,9 @@ No authorization required
 ### HTTP request headers
 
  - **Content-Type**: application/json
- - **Accept**: application/json
+ - **Accept**: application/json, text/plain
 
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
@@ -86,20 +85,21 @@ No authorization required
 
 /models/{model}/delete [POST]
 
-This will delete a model, This is only available for custom: true models.
+Deletes a specific model. It is exclusively available for custom models with the 'custom: true' attribute.
 
 ### Example
 
-
 ```python
+import time
+import os
 import pieces_os_client
 from pieces_os_client.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to http://localhost:3000
+# Defining the host is optional and defaults to http://localhost:1000
 # See configuration.py for a list of all supported configuration parameters.
 configuration = pieces_os_client.Configuration(
-    host = "http://localhost:3000"
+    host = "http://localhost:1000"
 )
 
 
@@ -120,7 +120,6 @@ with pieces_os_client.ApiClient(configuration) as api_client:
 
 ### Parameters
 
-
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **model** | **str**| model id | 
@@ -136,10 +135,9 @@ No authorization required
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json
+ - **Accept**: text/plain
 
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **204** | No Content |  -  |
@@ -152,22 +150,23 @@ No authorization required
 
 /models/{model}/delete/cache [POST]
 
-This is going to delete and sort of data that is associated with the Model itself IE the Assets/Libraries downloaded specifically for this model.  This is only available for the LLLM models for now.
+Deletes the data associated with a specific model, such as assets or libraries downloaded specifically for this model.   Note: This functionality is currently only available for LLM models.
 
 ### Example
 
-
 ```python
+import time
+import os
 import pieces_os_client
 from pieces_os_client.models.model_delete_cache_input import ModelDeleteCacheInput
 from pieces_os_client.models.model_delete_cache_output import ModelDeleteCacheOutput
 from pieces_os_client.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to http://localhost:3000
+# Defining the host is optional and defaults to http://localhost:1000
 # See configuration.py for a list of all supported configuration parameters.
 configuration = pieces_os_client.Configuration(
-    host = "http://localhost:3000"
+    host = "http://localhost:1000"
 )
 
 
@@ -191,7 +190,6 @@ with pieces_os_client.ApiClient(configuration) as api_client:
 
 ### Parameters
 
-
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **model** | **str**| model id | 
@@ -208,10 +206,9 @@ No authorization required
 ### HTTP request headers
 
  - **Content-Type**: application/json
- - **Accept**: application/json
+ - **Accept**: application/json, text/plain
 
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
@@ -228,17 +225,18 @@ This will get a snapshot of all of your models.
 
 ### Example
 
-
 ```python
+import time
+import os
 import pieces_os_client
 from pieces_os_client.models.models import Models
 from pieces_os_client.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to http://localhost:3000
+# Defining the host is optional and defaults to http://localhost:1000
 # See configuration.py for a list of all supported configuration parameters.
 configuration = pieces_os_client.Configuration(
-    host = "http://localhost:3000"
+    host = "http://localhost:1000"
 )
 
 
@@ -259,7 +257,6 @@ with pieces_os_client.ApiClient(configuration) as api_client:
 
 
 ### Parameters
-
 This endpoint does not need any parameter.
 
 ### Return type
@@ -273,10 +270,9 @@ No authorization required
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json
+ - **Accept**: application/json, text/plain
 
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
@@ -289,20 +285,21 @@ No authorization required
 
 /models/unload [POST]
 
-This will unload all of the ml models.(that are unloadable)
+Unloads all available machine learning models that are unloadable.
 
 ### Example
 
-
 ```python
+import time
+import os
 import pieces_os_client
 from pieces_os_client.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to http://localhost:3000
+# Defining the host is optional and defaults to http://localhost:1000
 # See configuration.py for a list of all supported configuration parameters.
 configuration = pieces_os_client.Configuration(
-    host = "http://localhost:3000"
+    host = "http://localhost:1000"
 )
 
 
@@ -321,7 +318,6 @@ with pieces_os_client.ApiClient(configuration) as api_client:
 
 
 ### Parameters
-
 This endpoint does not need any parameter.
 
 ### Return type
@@ -335,10 +331,9 @@ No authorization required
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json
+ - **Accept**: text/plain
 
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **204** | No Content |  -  |

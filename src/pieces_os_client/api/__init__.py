@@ -18,6 +18,7 @@ from pieces_os_client.api.asset_api import AssetApi
 from pieces_os_client.api.assets_api import AssetsApi
 from pieces_os_client.api.auth0_api import Auth0Api
 from pieces_os_client.api.backup_api import BackupApi
+from pieces_os_client.api.backups_api import BackupsApi
 from pieces_os_client.api.classification_api import ClassificationApi
 from pieces_os_client.api.code_analyses_api import CodeAnalysesApi
 from pieces_os_client.api.connector_api import ConnectorApi
@@ -51,6 +52,8 @@ from pieces_os_client.api.person_api import PersonApi
 from pieces_os_client.api.persons_api import PersonsApi
 from pieces_os_client.api.piece_api import PieceApi
 from pieces_os_client.api.qgpt_api import QGPTApi
+from pieces_os_client.api.range_api import RangeApi
+from pieces_os_client.api.ranges_api import RangesApi
 from pieces_os_client.api.relationship_api import RelationshipApi
 from pieces_os_client.api.relationships_api import RelationshipsApi
 from pieces_os_client.api.search_api import SearchApi
@@ -66,4 +69,10 @@ from pieces_os_client.api.users_api import UsersApi
 from pieces_os_client.api.website_api import WebsiteApi
 from pieces_os_client.api.websites_api import WebsitesApi
 from pieces_os_client.api.well_known_api import WellKnownApi
+from pieces_os_client.api.workstream_api import WorkstreamApi
+from pieces_os_client.api.workstream_event_api import WorkstreamEventApi
+from pieces_os_client.api.workstream_events_api import WorkstreamEventsApi
+from pieces_os_client.api.workstream_pattern_engine_api import WorkstreamPatternEngineApi
+from pieces_os_client.api.workstream_summaries_api import WorkstreamSummariesApi
+from pieces_os_client.api.workstream_summary_api import WorkstreamSummaryApi
 

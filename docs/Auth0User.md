@@ -3,7 +3,6 @@
 
 
 ## Properties
-
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **name** | **str** |  User&#39;s full name. | [optional] 

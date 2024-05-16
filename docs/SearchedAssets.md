@@ -3,7 +3,6 @@
 This is a modle that will return fro mthe search endpoint that will just contain an array of assets!
 
 ## Properties
-
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 

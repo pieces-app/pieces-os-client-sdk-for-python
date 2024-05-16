@@ -13,10 +13,13 @@
 """  # noqa: E501
 
 
-from __future__ import annotations
 import json
-from enum import Enum
-from typing_extensions import Self
+import pprint
+import re  # noqa: F401
+from aenum import Enum, no_arg
+
+
+
 
 
 class AccessEnum(str, Enum):
@@ -31,8 +34,8 @@ class AccessEnum(str, Enum):
     PRIVATE = 'PRIVATE'
 
     @classmethod
-    def from_json(cls, json_str: str) -> Self:
+    def from_json(cls, json_str: str) -> AccessEnum:
         """Create an instance of AccessEnum from a JSON string"""
-        return cls(json.loads(json_str))
+        return AccessEnum(json.loads(json_str))
 
 

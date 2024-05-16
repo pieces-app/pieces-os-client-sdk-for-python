@@ -3,7 +3,6 @@
 
 
 ## Properties
-
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **raw** | **List[float]** | this is the raw value of the embedding | 

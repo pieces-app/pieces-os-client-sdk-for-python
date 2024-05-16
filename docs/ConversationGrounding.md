@@ -3,11 +3,11 @@
 This is the context used for grounding the ml models with reguard to a conversation.
 
 ## Properties
-
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 **messages** | [**FlattenedConversationMessages**](FlattenedConversationMessages.md) |  | [optional] 
+**temporal** | [**TemporalRangeGrounding**](TemporalRangeGrounding.md) |  | [optional] 
 
 ## Example
 

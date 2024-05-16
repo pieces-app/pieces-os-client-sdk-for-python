@@ -1,9 +1,8 @@
 # CodeAnalysis
 
-This is the ML Analysis object Specific to code.  prediction and similarity are custom types {[string]: number}. ** please dont not modify **
+This is the ML Analysis object Specific to code.  prediction and similarity are custom types. ** please dont not modify **
 
 ## Properties
-
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 

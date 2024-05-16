@@ -3,7 +3,6 @@
 This will lets us know about specific dependencies that we are looking for on the device that are needed for specific tasks.
 
 ## Properties
-
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 

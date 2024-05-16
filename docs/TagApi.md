@@ -1,6 +1,6 @@
 # pieces_os_client.TagApi
 
-All URIs are relative to *http://localhost:3000*
+All URIs are relative to *http://localhost:1000*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -22,16 +22,17 @@ This will associate a tag with a asset.
 
 ### Example
 
-
 ```python
+import time
+import os
 import pieces_os_client
 from pieces_os_client.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to http://localhost:3000
+# Defining the host is optional and defaults to http://localhost:1000
 # See configuration.py for a list of all supported configuration parameters.
 configuration = pieces_os_client.Configuration(
-    host = "http://localhost:3000"
+    host = "http://localhost:1000"
 )
 
 
@@ -53,7 +54,6 @@ with pieces_os_client.ApiClient(configuration) as api_client:
 
 ### Parameters
 
-
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **asset** | **str**| The id (uuid) of the asset that you are trying to access. | 
@@ -70,10 +70,9 @@ No authorization required
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json
+ - **Accept**: text/plain
 
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **204** | No Content |  -  |
@@ -90,16 +89,17 @@ This will associate a tag with a person.
 
 ### Example
 
-
 ```python
+import time
+import os
 import pieces_os_client
 from pieces_os_client.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to http://localhost:3000
+# Defining the host is optional and defaults to http://localhost:1000
 # See configuration.py for a list of all supported configuration parameters.
 configuration = pieces_os_client.Configuration(
-    host = "http://localhost:3000"
+    host = "http://localhost:1000"
 )
 
 
@@ -121,7 +121,6 @@ with pieces_os_client.ApiClient(configuration) as api_client:
 
 ### Parameters
 
-
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **tag** | **str**| tag id | 
@@ -138,10 +137,9 @@ No authorization required
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json
+ - **Accept**: text/plain
 
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **204** | No Content |  -  |
@@ -158,16 +156,17 @@ This will enable us to dissassociate a tag from a asset.
 
 ### Example
 
-
 ```python
+import time
+import os
 import pieces_os_client
 from pieces_os_client.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to http://localhost:3000
+# Defining the host is optional and defaults to http://localhost:1000
 # See configuration.py for a list of all supported configuration parameters.
 configuration = pieces_os_client.Configuration(
-    host = "http://localhost:3000"
+    host = "http://localhost:1000"
 )
 
 
@@ -189,7 +188,6 @@ with pieces_os_client.ApiClient(configuration) as api_client:
 
 ### Parameters
 
-
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **tag** | **str**| tag id | 
@@ -206,10 +204,9 @@ No authorization required
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json
+ - **Accept**: text/plain
 
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **204** | No Content |  -  |
@@ -226,16 +223,17 @@ This will enable us to dissassociate a tag from a person.
 
 ### Example
 
-
 ```python
+import time
+import os
 import pieces_os_client
 from pieces_os_client.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to http://localhost:3000
+# Defining the host is optional and defaults to http://localhost:1000
 # See configuration.py for a list of all supported configuration parameters.
 configuration = pieces_os_client.Configuration(
-    host = "http://localhost:3000"
+    host = "http://localhost:1000"
 )
 
 
@@ -257,7 +255,6 @@ with pieces_os_client.ApiClient(configuration) as api_client:
 
 ### Parameters
 
-
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **tag** | **str**| tag id | 
@@ -274,10 +271,9 @@ No authorization required
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json
+ - **Accept**: text/plain
 
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **204** | No Content |  -  |
@@ -294,17 +290,18 @@ This will take in a SeededScoreIncrement and will increment the material relativ
 
 ### Example
 
-
 ```python
+import time
+import os
 import pieces_os_client
 from pieces_os_client.models.seeded_score_increment import SeededScoreIncrement
 from pieces_os_client.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to http://localhost:3000
+# Defining the host is optional and defaults to http://localhost:1000
 # See configuration.py for a list of all supported configuration parameters.
 configuration = pieces_os_client.Configuration(
-    host = "http://localhost:3000"
+    host = "http://localhost:1000"
 )
 
 
@@ -326,7 +323,6 @@ with pieces_os_client.ApiClient(configuration) as api_client:
 
 ### Parameters
 
-
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **tag** | **str**| tag id | 
@@ -343,10 +339,9 @@ No authorization required
 ### HTTP request headers
 
  - **Content-Type**: application/json
- - **Accept**: application/json
+ - **Accept**: text/plain
 
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **204** | No Content |  -  |
@@ -363,17 +358,18 @@ This will update a specific tag.
 
 ### Example
 
-
 ```python
+import time
+import os
 import pieces_os_client
 from pieces_os_client.models.tag import Tag
 from pieces_os_client.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to http://localhost:3000
+# Defining the host is optional and defaults to http://localhost:1000
 # See configuration.py for a list of all supported configuration parameters.
 configuration = pieces_os_client.Configuration(
-    host = "http://localhost:3000"
+    host = "http://localhost:1000"
 )
 
 
@@ -397,7 +393,6 @@ with pieces_os_client.ApiClient(configuration) as api_client:
 
 ### Parameters
 
-
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **transferables** | **bool**| This is a boolean that will decided if we are want to return the transferable data (default) or not(performance enhancement) | [optional] 
@@ -414,10 +409,9 @@ No authorization required
 ### HTTP request headers
 
  - **Content-Type**: application/json
- - **Accept**: application/json
+ - **Accept**: application/json, text/plain
 
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
@@ -434,17 +428,18 @@ This will get a specific tag.
 
 ### Example
 
-
 ```python
+import time
+import os
 import pieces_os_client
 from pieces_os_client.models.tag import Tag
 from pieces_os_client.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to http://localhost:3000
+# Defining the host is optional and defaults to http://localhost:1000
 # See configuration.py for a list of all supported configuration parameters.
 configuration = pieces_os_client.Configuration(
-    host = "http://localhost:3000"
+    host = "http://localhost:1000"
 )
 
 
@@ -468,7 +463,6 @@ with pieces_os_client.ApiClient(configuration) as api_client:
 
 ### Parameters
 
-
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **tag** | **str**| tag id | 
@@ -485,10 +479,9 @@ No authorization required
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json
+ - **Accept**: application/json, text/plain
 
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |

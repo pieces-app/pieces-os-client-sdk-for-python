@@ -18,75 +18,59 @@ import pprint
 import re  # noqa: F401
 import json
 
+
+from typing import Optional
 from pydantic import BaseModel, Field, StrictStr
-from typing import Any, ClassVar, Dict, List, Optional
 from pieces_os_client.models.aesthetics import Aesthetics
 from pieces_os_client.models.allocation_cloud import AllocationCloud
 from pieces_os_client.models.auth0_user_metadata import Auth0UserMetadata
 from pieces_os_client.models.embedded_model_schema import EmbeddedModelSchema
 from pieces_os_client.models.external_providers import ExternalProviders
 from pieces_os_client.models.grouped_timestamp import GroupedTimestamp
-from typing import Optional, Set
-from typing_extensions import Self
 
 class UserProfile(BaseModel):
     """
-    This is the model for a user logged into Pieces.
-    """ # noqa: E501
-    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
-    picture: Optional[StrictStr] = Field(default='https://picsum.photos/200', description="mapped from picture.URL pointing to the user's profile picture. ")
+    This is the model for a user logged into Pieces.  # noqa: E501
+    """
+    var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
+    picture: Optional[StrictStr] = Field('https://picsum.photos/200', description="mapped from picture.URL pointing to the user's profile picture. ")
     email: Optional[StrictStr] = 'user@pieces.app'
     created: Optional[GroupedTimestamp] = None
     updated: Optional[GroupedTimestamp] = None
-    username: Optional[StrictStr] = Field(default=None, description=" (unique) User's username.  ")
-    id: StrictStr
-    name: Optional[StrictStr] = Field(default=None, description="This is the name of the User.")
-    aesthetics: Aesthetics
+    username: Optional[StrictStr] = Field(None, description=" (unique) User's username.  ")
+    id: StrictStr = Field(...)
+    name: Optional[StrictStr] = Field(None, description="This is the name of the User.")
+    aesthetics: Aesthetics = Field(...)
     vanityname: Optional[StrictStr] = None
     allocation: Optional[AllocationCloud] = None
     providers: Optional[ExternalProviders] = None
     auth0: Optional[Auth0UserMetadata] = None
-    __properties: ClassVar[List[str]] = ["schema", "picture", "email", "created", "updated", "username", "id", "name", "aesthetics", "vanityname", "allocation", "providers", "auth0"]
+    __properties = ["schema", "picture", "email", "created", "updated", "username", "id", "name", "aesthetics", "vanityname", "allocation", "providers", "auth0"]
 
-    model_config = {
-        "populate_by_name": True,
-        "validate_assignment": True,
-        "protected_namespaces": (),
-    }
-
+    class Config:
+        """Pydantic configuration"""
+        allow_population_by_field_name = True
+        validate_assignment = True
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.model_dump(by_alias=True))
+        return pprint.pformat(self.dict(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
-        # TODO: pydantic v2: use .model_dump_json(by_alias=True, exclude_unset=True) instead
         return json.dumps(self.to_dict())
 
     @classmethod
-    def from_json(cls, json_str: str) -> Optional[Self]:
+    def from_json(cls, json_str: str) -> UserProfile:
         """Create an instance of UserProfile from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
-    def to_dict(self) -> Dict[str, Any]:
-        """Return the dictionary representation of the model using alias.
-
-        This has the following differences from calling pydantic's
-        `self.model_dump(by_alias=True)`:
-
-        * `None` is only added to the output dict for nullable fields that
-          were set at model initialization. Other fields with value `None`
-          are ignored.
-        """
-        excluded_fields: Set[str] = set([
-        ])
-
-        _dict = self.model_dump(
-            by_alias=True,
-            exclude=excluded_fields,
-            exclude_none=True,
-        )
+    def to_dict(self):
+        """Returns the dictionary representation of the model using alias"""
+        _dict = self.dict(by_alias=True,
+                          exclude={
+                          },
+                          exclude_none=True)
         # override the default output from pydantic by calling `to_dict()` of var_schema
         if self.var_schema:
             _dict['schema'] = self.var_schema.to_dict()
@@ -111,28 +95,28 @@ class UserProfile(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
+    def from_dict(cls, obj: dict) -> UserProfile:
         """Create an instance of UserProfile from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
-            return cls.model_validate(obj)
+            return UserProfile.parse_obj(obj)
 
-        _obj = cls.model_validate({
-            "schema": EmbeddedModelSchema.from_dict(obj["schema"]) if obj.get("schema") is not None else None,
+        _obj = UserProfile.parse_obj({
+            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
             "picture": obj.get("picture") if obj.get("picture") is not None else 'https://picsum.photos/200',
             "email": obj.get("email") if obj.get("email") is not None else 'user@pieces.app',
-            "created": GroupedTimestamp.from_dict(obj["created"]) if obj.get("created") is not None else None,
-            "updated": GroupedTimestamp.from_dict(obj["updated"]) if obj.get("updated") is not None else None,
+            "created": GroupedTimestamp.from_dict(obj.get("created")) if obj.get("created") is not None else None,
+            "updated": GroupedTimestamp.from_dict(obj.get("updated")) if obj.get("updated") is not None else None,
             "username": obj.get("username"),
             "id": obj.get("id"),
             "name": obj.get("name"),
-            "aesthetics": Aesthetics.from_dict(obj["aesthetics"]) if obj.get("aesthetics") is not None else None,
+            "aesthetics": Aesthetics.from_dict(obj.get("aesthetics")) if obj.get("aesthetics") is not None else None,
             "vanityname": obj.get("vanityname"),
-            "allocation": AllocationCloud.from_dict(obj["allocation"]) if obj.get("allocation") is not None else None,
-            "providers": ExternalProviders.from_dict(obj["providers"]) if obj.get("providers") is not None else None,
-            "auth0": Auth0UserMetadata.from_dict(obj["auth0"]) if obj.get("auth0") is not None else None
+            "allocation": AllocationCloud.from_dict(obj.get("allocation")) if obj.get("allocation") is not None else None,
+            "providers": ExternalProviders.from_dict(obj.get("providers")) if obj.get("providers") is not None else None,
+            "auth0": Auth0UserMetadata.from_dict(obj.get("auth0")) if obj.get("auth0") is not None else None
         })
         return _obj
 

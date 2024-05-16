@@ -3,7 +3,6 @@
 A Model to support account creation to Auth0's Database.
 
 ## Properties
-
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **client_id** | **str** | The client_id of your client. | 

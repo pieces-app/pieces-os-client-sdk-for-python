@@ -3,7 +3,6 @@
 This is the body input for the /code_gpt/question.  Note: - each relevant seed, must require at minimum a Seed or an id used from the /code_gpt/relevance endpoint or we will throw an error.
 
 ## Properties
-
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
@@ -13,6 +12,7 @@ Name | Type | Description | Notes
 **model** | **str** | optional model id | [optional] 
 **messages** | [**FlattenedConversationMessages**](FlattenedConversationMessages.md) |  | [optional] 
 **pipeline** | [**QGPTPromptPipeline**](QGPTPromptPipeline.md) |  | [optional] 
+**temporal** | [**TemporalRangeGrounding**](TemporalRangeGrounding.md) |  | [optional] 
 
 ## Example
 

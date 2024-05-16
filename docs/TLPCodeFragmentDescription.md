@@ -3,7 +3,6 @@
 Model for ML big query Code Description.
 
 ## Properties
-
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **description** | **str** | This is the stringified json of a TLPDescription object | [optional] 

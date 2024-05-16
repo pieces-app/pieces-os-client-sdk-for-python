@@ -3,7 +3,6 @@
 A model that Generates A PKCE Challenge Object with the needed requirements.
 
 ## Properties
-
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 

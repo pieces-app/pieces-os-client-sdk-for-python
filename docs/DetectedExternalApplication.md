@@ -3,7 +3,6 @@
 This is a detected External Application that comes from our endpoint that will get a snapshot of the installed applications on your machine.
 
 ## Properties
-
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 

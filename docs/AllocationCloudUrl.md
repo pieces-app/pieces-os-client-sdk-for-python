@@ -3,7 +3,6 @@
 This is one of the 3 possible urls that will route to your cloud :).
 
 ## Properties
-
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 

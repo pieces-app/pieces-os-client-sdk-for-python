@@ -18,22 +18,21 @@ import pprint
 import re  # noqa: F401
 import json
 
+
+from typing import Optional
 from pydantic import BaseModel, Field
-from typing import Any, ClassVar, Dict, List, Optional
 from pieces_os_client.models.embedded_model_schema import EmbeddedModelSchema
 from pieces_os_client.models.seeded_tracked_adoption_event import SeededTrackedAdoptionEvent
 from pieces_os_client.models.seeded_tracked_interaction_event import SeededTrackedInteractionEvent
 from pieces_os_client.models.seeded_tracked_keyboard_event import SeededTrackedKeyboardEvent
 from pieces_os_client.models.seeded_tracked_machine_learning_event import SeededTrackedMachineLearningEvent
 from pieces_os_client.models.seeded_tracked_session_event import SeededTrackedSessionEvent
-from typing import Optional, Set
-from typing_extensions import Self
 
 class SeededConnectorTracking(BaseModel):
     """
-    This model is designed to be light weight and low friction while most of the heavy lifting will be happening inside of the context servers.  This Model is important because this has references to our materials, instead of fully referenced materials.(very similar to our SeededTrackedEvent, consider consolidating and converting these to Referenced models instead of ID's)
-    """ # noqa: E501
-    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
+    This model is designed to be light weight and low friction while most of the heavy lifting will be happening inside of the context servers.  This Model is important because this has references to our materials, instead of fully referenced materials.(very similar to our SeededTrackedEvent, consider consolidating and converting these to Referenced models instead of ID's)  # noqa: E501
+    """
+    var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
     format: Optional[SeededTrackedFormatEvent] = None
     asset: Optional[SeededTrackedAssetEvent] = None
     interaction: Optional[SeededTrackedInteractionEvent] = None
@@ -43,47 +42,32 @@ class SeededConnectorTracking(BaseModel):
     ml: Optional[SeededTrackedMachineLearningEvent] = None
     adoption: Optional[SeededTrackedAdoptionEvent] = None
     conversation: Optional[SeededTrackedConversationEvent] = None
-    __properties: ClassVar[List[str]] = ["schema", "format", "asset", "interaction", "keyboard", "session", "assets", "ml", "adoption", "conversation"]
+    __properties = ["schema", "format", "asset", "interaction", "keyboard", "session", "assets", "ml", "adoption", "conversation"]
 
-    model_config = {
-        "populate_by_name": True,
-        "validate_assignment": True,
-        "protected_namespaces": (),
-    }
-
+    class Config:
+        """Pydantic configuration"""
+        allow_population_by_field_name = True
+        validate_assignment = True
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.model_dump(by_alias=True))
+        return pprint.pformat(self.dict(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
-        # TODO: pydantic v2: use .model_dump_json(by_alias=True, exclude_unset=True) instead
         return json.dumps(self.to_dict())
 
     @classmethod
-    def from_json(cls, json_str: str) -> Optional[Self]:
+    def from_json(cls, json_str: str) -> SeededConnectorTracking:
         """Create an instance of SeededConnectorTracking from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
-    def to_dict(self) -> Dict[str, Any]:
-        """Return the dictionary representation of the model using alias.
-
-        This has the following differences from calling pydantic's
-        `self.model_dump(by_alias=True)`:
-
-        * `None` is only added to the output dict for nullable fields that
-          were set at model initialization. Other fields with value `None`
-          are ignored.
-        """
-        excluded_fields: Set[str] = set([
-        ])
-
-        _dict = self.model_dump(
-            by_alias=True,
-            exclude=excluded_fields,
-            exclude_none=True,
-        )
+    def to_dict(self):
+        """Returns the dictionary representation of the model using alias"""
+        _dict = self.dict(by_alias=True,
+                          exclude={
+                          },
+                          exclude_none=True)
         # override the default output from pydantic by calling `to_dict()` of var_schema
         if self.var_schema:
             _dict['schema'] = self.var_schema.to_dict()
@@ -117,25 +101,25 @@ class SeededConnectorTracking(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
+    def from_dict(cls, obj: dict) -> SeededConnectorTracking:
         """Create an instance of SeededConnectorTracking from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
-            return cls.model_validate(obj)
+            return SeededConnectorTracking.parse_obj(obj)
 
-        _obj = cls.model_validate({
-            "schema": EmbeddedModelSchema.from_dict(obj["schema"]) if obj.get("schema") is not None else None,
-            "format": SeededTrackedFormatEvent.from_dict(obj["format"]) if obj.get("format") is not None else None,
-            "asset": SeededTrackedAssetEvent.from_dict(obj["asset"]) if obj.get("asset") is not None else None,
-            "interaction": SeededTrackedInteractionEvent.from_dict(obj["interaction"]) if obj.get("interaction") is not None else None,
-            "keyboard": SeededTrackedKeyboardEvent.from_dict(obj["keyboard"]) if obj.get("keyboard") is not None else None,
-            "session": SeededTrackedSessionEvent.from_dict(obj["session"]) if obj.get("session") is not None else None,
-            "assets": SeededTrackedAssetsEvent.from_dict(obj["assets"]) if obj.get("assets") is not None else None,
-            "ml": SeededTrackedMachineLearningEvent.from_dict(obj["ml"]) if obj.get("ml") is not None else None,
-            "adoption": SeededTrackedAdoptionEvent.from_dict(obj["adoption"]) if obj.get("adoption") is not None else None,
-            "conversation": SeededTrackedConversationEvent.from_dict(obj["conversation"]) if obj.get("conversation") is not None else None
+        _obj = SeededConnectorTracking.parse_obj({
+            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
+            "format": SeededTrackedFormatEvent.from_dict(obj.get("format")) if obj.get("format") is not None else None,
+            "asset": SeededTrackedAssetEvent.from_dict(obj.get("asset")) if obj.get("asset") is not None else None,
+            "interaction": SeededTrackedInteractionEvent.from_dict(obj.get("interaction")) if obj.get("interaction") is not None else None,
+            "keyboard": SeededTrackedKeyboardEvent.from_dict(obj.get("keyboard")) if obj.get("keyboard") is not None else None,
+            "session": SeededTrackedSessionEvent.from_dict(obj.get("session")) if obj.get("session") is not None else None,
+            "assets": SeededTrackedAssetsEvent.from_dict(obj.get("assets")) if obj.get("assets") is not None else None,
+            "ml": SeededTrackedMachineLearningEvent.from_dict(obj.get("ml")) if obj.get("ml") is not None else None,
+            "adoption": SeededTrackedAdoptionEvent.from_dict(obj.get("adoption")) if obj.get("adoption") is not None else None,
+            "conversation": SeededTrackedConversationEvent.from_dict(obj.get("conversation")) if obj.get("conversation") is not None else None
         })
         return _obj
 
@@ -143,6 +127,5 @@ from pieces_os_client.models.seeded_tracked_asset_event import SeededTrackedAsse
 from pieces_os_client.models.seeded_tracked_assets_event import SeededTrackedAssetsEvent
 from pieces_os_client.models.seeded_tracked_conversation_event import SeededTrackedConversationEvent
 from pieces_os_client.models.seeded_tracked_format_event import SeededTrackedFormatEvent
-# TODO: Rewrite to not use raise_errors
-SeededConnectorTracking.model_rebuild(raise_errors=False)
+SeededConnectorTracking.update_forward_refs()
 

@@ -3,7 +3,6 @@
 A base class for a collection of assets and some additional meta properties. Fully Populated with Formats internally (not just uuid's).
 
 ## Properties
-
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 

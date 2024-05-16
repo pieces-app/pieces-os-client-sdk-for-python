@@ -3,7 +3,6 @@
 This is a dag safe version of the Share.  if user is undefined && access is public then we have an asset that is publicly available.
 
 ## Properties
-
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 

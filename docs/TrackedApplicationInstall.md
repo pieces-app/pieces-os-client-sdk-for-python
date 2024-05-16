@@ -3,11 +3,10 @@
 A model that allows for us to specifically track Application Installs & Related Data
 
 ## Properties
-
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
-**application** | [**TrackedApplication**](TrackedApplication.md) |  | 
+**application** | [**Application**](Application.md) |  | 
 **user** | [**TrackedUserProfile**](TrackedUserProfile.md) |  | [optional] 
 
 ## Example

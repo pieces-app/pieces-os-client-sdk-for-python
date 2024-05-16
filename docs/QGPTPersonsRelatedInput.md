@@ -3,7 +3,6 @@
 This is used for /qgpt/persons/related.  will accept a seed, or conversation all optionally. 
 
 ## Properties
-
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 

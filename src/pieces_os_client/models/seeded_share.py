@@ -18,67 +18,51 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, Field, StrictStr
-from typing import Any, ClassVar, Dict, List, Optional
+
+from typing import List, Optional
+from pydantic import BaseModel, Field, StrictStr, conlist
 from pieces_os_client.models.access_enum import AccessEnum
 from pieces_os_client.models.asset import Asset
 from pieces_os_client.models.assets import Assets
 from pieces_os_client.models.embedded_model_schema import EmbeddedModelSchema
 from pieces_os_client.models.seeded_user import SeededUser
-from typing import Optional, Set
-from typing_extensions import Self
 
 class SeededShare(BaseModel):
     """
-     required to pass in an asset or assets.
-    """ # noqa: E501
-    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
+     required to pass in an asset or assets.  # noqa: E501
+    """
+    var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
     asset: Optional[Asset] = None
-    users: Optional[List[SeededUser]] = Field(default=None, description="if private please specificy some users you want to share this with.")
-    access: AccessEnum
+    users: Optional[conlist(SeededUser)] = Field(None, description="if private please specificy some users you want to share this with.")
+    access: AccessEnum = Field(...)
     assets: Optional[Assets] = None
-    name: Optional[StrictStr] = Field(default=None, description="optional name, if it is available. and must be unique.")
-    __properties: ClassVar[List[str]] = ["schema", "asset", "users", "access", "assets", "name"]
+    name: Optional[StrictStr] = Field(None, description="optional name, if it is available. and must be unique.")
+    __properties = ["schema", "asset", "users", "access", "assets", "name"]
 
-    model_config = {
-        "populate_by_name": True,
-        "validate_assignment": True,
-        "protected_namespaces": (),
-    }
-
+    class Config:
+        """Pydantic configuration"""
+        allow_population_by_field_name = True
+        validate_assignment = True
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.model_dump(by_alias=True))
+        return pprint.pformat(self.dict(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
-        # TODO: pydantic v2: use .model_dump_json(by_alias=True, exclude_unset=True) instead
         return json.dumps(self.to_dict())
 
     @classmethod
-    def from_json(cls, json_str: str) -> Optional[Self]:
+    def from_json(cls, json_str: str) -> SeededShare:
         """Create an instance of SeededShare from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
-    def to_dict(self) -> Dict[str, Any]:
-        """Return the dictionary representation of the model using alias.
-
-        This has the following differences from calling pydantic's
-        `self.model_dump(by_alias=True)`:
-
-        * `None` is only added to the output dict for nullable fields that
-          were set at model initialization. Other fields with value `None`
-          are ignored.
-        """
-        excluded_fields: Set[str] = set([
-        ])
-
-        _dict = self.model_dump(
-            by_alias=True,
-            exclude=excluded_fields,
-            exclude_none=True,
-        )
+    def to_dict(self):
+        """Returns the dictionary representation of the model using alias"""
+        _dict = self.dict(by_alias=True,
+                          exclude={
+                          },
+                          exclude_none=True)
         # override the default output from pydantic by calling `to_dict()` of var_schema
         if self.var_schema:
             _dict['schema'] = self.var_schema.to_dict()
@@ -98,20 +82,20 @@ class SeededShare(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
+    def from_dict(cls, obj: dict) -> SeededShare:
         """Create an instance of SeededShare from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
-            return cls.model_validate(obj)
+            return SeededShare.parse_obj(obj)
 
-        _obj = cls.model_validate({
-            "schema": EmbeddedModelSchema.from_dict(obj["schema"]) if obj.get("schema") is not None else None,
-            "asset": Asset.from_dict(obj["asset"]) if obj.get("asset") is not None else None,
-            "users": [SeededUser.from_dict(_item) for _item in obj["users"]] if obj.get("users") is not None else None,
+        _obj = SeededShare.parse_obj({
+            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
+            "asset": Asset.from_dict(obj.get("asset")) if obj.get("asset") is not None else None,
+            "users": [SeededUser.from_dict(_item) for _item in obj.get("users")] if obj.get("users") is not None else None,
             "access": obj.get("access"),
-            "assets": Assets.from_dict(obj["assets"]) if obj.get("assets") is not None else None,
+            "assets": Assets.from_dict(obj.get("assets")) if obj.get("assets") is not None else None,
             "name": obj.get("name")
         })
         return _obj

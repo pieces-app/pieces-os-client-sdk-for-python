@@ -3,7 +3,6 @@
 A Model to describe what application a format/analytics event originated - Specifically NOT requiring an ID
 
 ## Properties
-
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
