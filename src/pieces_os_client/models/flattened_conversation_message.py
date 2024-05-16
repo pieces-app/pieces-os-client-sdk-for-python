@@ -18,8 +18,9 @@ import pprint
 import re  # noqa: F401
 import json
 
+
+from typing import Optional
 from pydantic import BaseModel, Field, StrictStr
-from typing import Any, ClassVar, Dict, List, Optional
 from pieces_os_client.models.conversation_message_sentiment_enum import ConversationMessageSentimentEnum
 from pieces_os_client.models.embedded_model_schema import EmbeddedModelSchema
 from pieces_os_client.models.fragment_format import FragmentFormat
@@ -27,66 +28,49 @@ from pieces_os_client.models.grouped_timestamp import GroupedTimestamp
 from pieces_os_client.models.model import Model
 from pieces_os_client.models.qgpt_conversation_message_role_enum import QGPTConversationMessageRoleEnum
 from pieces_os_client.models.score import Score
-from typing import Optional, Set
-from typing_extensions import Self
 
 class FlattenedConversationMessage(BaseModel):
     """
-    This is a flattened DAG safe version of a ConversationMessage.
-    """ # noqa: E501
-    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
-    id: StrictStr
-    created: GroupedTimestamp
-    updated: GroupedTimestamp
+    This is a flattened DAG safe version of a ConversationMessage.  # noqa: E501
+    """
+    var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
+    id: StrictStr = Field(...)
+    created: GroupedTimestamp = Field(...)
+    updated: GroupedTimestamp = Field(...)
     deleted: Optional[GroupedTimestamp] = None
     model: Optional[Model] = None
     fragment: Optional[FragmentFormat] = None
-    conversation: ReferencedConversation
+    conversation: ReferencedConversation = Field(...)
     sentiment: Optional[ConversationMessageSentimentEnum] = None
-    role: QGPTConversationMessageRoleEnum
+    role: QGPTConversationMessageRoleEnum = Field(...)
     score: Optional[Score] = None
     annotations: Optional[FlattenedAnnotations] = None
-    __properties: ClassVar[List[str]] = ["schema", "id", "created", "updated", "deleted", "model", "fragment", "conversation", "sentiment", "role", "score", "annotations"]
+    __properties = ["schema", "id", "created", "updated", "deleted", "model", "fragment", "conversation", "sentiment", "role", "score", "annotations"]
 
-    model_config = {
-        "populate_by_name": True,
-        "validate_assignment": True,
-        "protected_namespaces": (),
-    }
-
+    class Config:
+        """Pydantic configuration"""
+        allow_population_by_field_name = True
+        validate_assignment = True
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.model_dump(by_alias=True))
+        return pprint.pformat(self.dict(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
-        # TODO: pydantic v2: use .model_dump_json(by_alias=True, exclude_unset=True) instead
         return json.dumps(self.to_dict())
 
     @classmethod
-    def from_json(cls, json_str: str) -> Optional[Self]:
+    def from_json(cls, json_str: str) -> FlattenedConversationMessage:
         """Create an instance of FlattenedConversationMessage from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
-    def to_dict(self) -> Dict[str, Any]:
-        """Return the dictionary representation of the model using alias.
-
-        This has the following differences from calling pydantic's
-        `self.model_dump(by_alias=True)`:
-
-        * `None` is only added to the output dict for nullable fields that
-          were set at model initialization. Other fields with value `None`
-          are ignored.
-        """
-        excluded_fields: Set[str] = set([
-        ])
-
-        _dict = self.model_dump(
-            by_alias=True,
-            exclude=excluded_fields,
-            exclude_none=True,
-        )
+    def to_dict(self):
+        """Returns the dictionary representation of the model using alias"""
+        _dict = self.dict(by_alias=True,
+                          exclude={
+                          },
+                          exclude_none=True)
         # override the default output from pydantic by calling `to_dict()` of var_schema
         if self.var_schema:
             _dict['schema'] = self.var_schema.to_dict()
@@ -117,32 +101,31 @@ class FlattenedConversationMessage(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
+    def from_dict(cls, obj: dict) -> FlattenedConversationMessage:
         """Create an instance of FlattenedConversationMessage from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
-            return cls.model_validate(obj)
+            return FlattenedConversationMessage.parse_obj(obj)
 
-        _obj = cls.model_validate({
-            "schema": EmbeddedModelSchema.from_dict(obj["schema"]) if obj.get("schema") is not None else None,
+        _obj = FlattenedConversationMessage.parse_obj({
+            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
             "id": obj.get("id"),
-            "created": GroupedTimestamp.from_dict(obj["created"]) if obj.get("created") is not None else None,
-            "updated": GroupedTimestamp.from_dict(obj["updated"]) if obj.get("updated") is not None else None,
-            "deleted": GroupedTimestamp.from_dict(obj["deleted"]) if obj.get("deleted") is not None else None,
-            "model": Model.from_dict(obj["model"]) if obj.get("model") is not None else None,
-            "fragment": FragmentFormat.from_dict(obj["fragment"]) if obj.get("fragment") is not None else None,
-            "conversation": ReferencedConversation.from_dict(obj["conversation"]) if obj.get("conversation") is not None else None,
+            "created": GroupedTimestamp.from_dict(obj.get("created")) if obj.get("created") is not None else None,
+            "updated": GroupedTimestamp.from_dict(obj.get("updated")) if obj.get("updated") is not None else None,
+            "deleted": GroupedTimestamp.from_dict(obj.get("deleted")) if obj.get("deleted") is not None else None,
+            "model": Model.from_dict(obj.get("model")) if obj.get("model") is not None else None,
+            "fragment": FragmentFormat.from_dict(obj.get("fragment")) if obj.get("fragment") is not None else None,
+            "conversation": ReferencedConversation.from_dict(obj.get("conversation")) if obj.get("conversation") is not None else None,
             "sentiment": obj.get("sentiment"),
             "role": obj.get("role"),
-            "score": Score.from_dict(obj["score"]) if obj.get("score") is not None else None,
-            "annotations": FlattenedAnnotations.from_dict(obj["annotations"]) if obj.get("annotations") is not None else None
+            "score": Score.from_dict(obj.get("score")) if obj.get("score") is not None else None,
+            "annotations": FlattenedAnnotations.from_dict(obj.get("annotations")) if obj.get("annotations") is not None else None
         })
         return _obj
 
 from pieces_os_client.models.flattened_annotations import FlattenedAnnotations
 from pieces_os_client.models.referenced_conversation import ReferencedConversation
-# TODO: Rewrite to not use raise_errors
-FlattenedConversationMessage.model_rebuild(raise_errors=False)
+FlattenedConversationMessage.update_forward_refs()
 

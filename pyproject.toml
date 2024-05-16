@@ -1,26 +1,31 @@
 [tool.poetry]
-  name = "pieces_os_client"
-  version = "2.0.0-1"
-  description = "A powerful code engine package for writing applications on top of Pieces OS"
-  authors = [
-    "Pieces <development@pieces.app>"
-  ]
-  license = "MIT"
-  readme = "README.md"
+name = "pieces_os_client"
+version = "2.2.0"
+description = "A powerful code engine package for writing applications on top of Pieces OS"
+authors = ["Pieces <development@pieces.app>"]
+license = "MIT"
+readme = "README.md"
 
 [tool.poetry.dependencies]
-  python = ">=3.8"
-  pydantic = "1.10.13"
-  aenum = "^3.1.15"
-  python-dateutil = "^2.8.2"
-  urllib3 = "^2.2.0"
+python = "^3.7"
+urllib3 = ">= 1.25.3"
+python-dateutil = ">=2.8.2"
+pydantic = "^1.10.5, <2"
+aenum = ">=3.1.11"
+
+[tool.poetry.dev-dependencies]
+pytest = ">=7.2.1"
+tox = ">=3.9.0"
+flake8 = ">=4.0.0"
 
 [tool.poetry.urls]
-  homepage = "https://github.com/pieces-app/pieces-os-client-sdk-for-python"
-  repository = "https://github.com/pieces-app/pieces-os-client-sdk-for-python"
-  issues = "https://github.com/pieces-app/pieces-os-client-sdk-for-python/issues"
+homepage = "https://github.com/pieces-app/pieces-os-client-sdk-for-python"
+repository = "https://github.com/pieces-app/pieces-os-client-sdk-for-python"
+issues = "https://github.com/pieces-app/pieces-os-client-sdk-for-python/issues"
 
 [build-system]
-  requires = ["poetry-core>=1.0.0"]
-  build-backend = "poetry.core.masonry.api"
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
 
+[tool.pylint.'MESSAGES CONTROL']
+extension-pkg-whitelist = "pydantic"

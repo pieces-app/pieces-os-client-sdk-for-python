@@ -18,76 +18,60 @@ import pprint
 import re  # noqa: F401
 import json
 
+
+from typing import Optional
 from pydantic import BaseModel, Field, StrictBool, StrictInt, StrictStr
-from typing import Any, ClassVar, Dict, List, Optional
-from typing import Optional, Set
-from typing_extensions import Self
 
 class Auth0Identity(BaseModel):
     """
-    Contains info retrieved from the identity provider with which the user originally authenticates. Users may also link their profile to multiple identity providers; those identities will then also appear in this array. The contents of an individual identity provider object varies by provider, but it will typically include the following. Link: [https://auth0.com/docs/rules/user-object-in-rules]  Currently left out: - profile_data: (Object) User information associated with the connection. When profiles are linked, it is populated with the associated user info for secondary accounts.
-    """ # noqa: E501
-    connection: Optional[StrictStr] = Field(default=None, description="Name of the Auth0 connection used to authenticate the user. ")
-    is_social: Optional[StrictBool] = Field(default=None, description="Indicates whether the connection is a social one. ", alias="isSocial")
-    provider: Optional[StrictStr] = Field(default=None, description="mapped from user_id  -> id")
-    user_id: Optional[StrictStr] = Field(default=None, description="User's unique identifier for this connection/provider.")
+    Contains info retrieved from the identity provider with which the user originally authenticates. Users may also link their profile to multiple identity providers; those identities will then also appear in this array. The contents of an individual identity provider object varies by provider, but it will typically include the following. Link: [https://auth0.com/docs/rules/user-object-in-rules]  Currently left out: - profile_data: (Object) User information associated with the connection. When profiles are linked, it is populated with the associated user info for secondary accounts.  # noqa: E501
+    """
+    connection: Optional[StrictStr] = Field(None, description="Name of the Auth0 connection used to authenticate the user. ")
+    is_social: Optional[StrictBool] = Field(None, alias="isSocial", description="Indicates whether the connection is a social one. ")
+    provider: Optional[StrictStr] = Field(None, description="mapped from user_id  -> id")
+    user_id: Optional[StrictStr] = Field(None, description="User's unique identifier for this connection/provider.")
     access_token: Optional[StrictStr] = None
     expires_in: Optional[StrictInt] = None
-    __properties: ClassVar[List[str]] = ["connection", "isSocial", "provider", "user_id", "access_token", "expires_in"]
+    __properties = ["connection", "isSocial", "provider", "user_id", "access_token", "expires_in"]
 
-    model_config = {
-        "populate_by_name": True,
-        "validate_assignment": True,
-        "protected_namespaces": (),
-    }
-
+    class Config:
+        """Pydantic configuration"""
+        allow_population_by_field_name = True
+        validate_assignment = True
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.model_dump(by_alias=True))
+        return pprint.pformat(self.dict(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
-        # TODO: pydantic v2: use .model_dump_json(by_alias=True, exclude_unset=True) instead
         return json.dumps(self.to_dict())
 
     @classmethod
-    def from_json(cls, json_str: str) -> Optional[Self]:
+    def from_json(cls, json_str: str) -> Auth0Identity:
         """Create an instance of Auth0Identity from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
-    def to_dict(self) -> Dict[str, Any]:
-        """Return the dictionary representation of the model using alias.
-
-        This has the following differences from calling pydantic's
-        `self.model_dump(by_alias=True)`:
-
-        * `None` is only added to the output dict for nullable fields that
-          were set at model initialization. Other fields with value `None`
-          are ignored.
-        """
-        excluded_fields: Set[str] = set([
-        ])
-
-        _dict = self.model_dump(
-            by_alias=True,
-            exclude=excluded_fields,
-            exclude_none=True,
-        )
+    def to_dict(self):
+        """Returns the dictionary representation of the model using alias"""
+        _dict = self.dict(by_alias=True,
+                          exclude={
+                          },
+                          exclude_none=True)
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
+    def from_dict(cls, obj: dict) -> Auth0Identity:
         """Create an instance of Auth0Identity from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
-            return cls.model_validate(obj)
+            return Auth0Identity.parse_obj(obj)
 
-        _obj = cls.model_validate({
+        _obj = Auth0Identity.parse_obj({
             "connection": obj.get("connection"),
-            "isSocial": obj.get("isSocial"),
+            "is_social": obj.get("isSocial"),
             "provider": obj.get("provider"),
             "user_id": obj.get("user_id"),
             "access_token": obj.get("access_token"),

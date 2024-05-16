@@ -13,10 +13,13 @@
 """  # noqa: E501
 
 
-from __future__ import annotations
 import json
-from enum import Enum
-from typing_extensions import Self
+import pprint
+import re  # noqa: F401
+from aenum import Enum, no_arg
+
+
+
 
 
 class MechanismEnum(str, Enum):
@@ -34,8 +37,8 @@ class MechanismEnum(str, Enum):
     DELETED = 'DELETED'
 
     @classmethod
-    def from_json(cls, json_str: str) -> Self:
+    def from_json(cls, json_str: str) -> MechanismEnum:
         """Create an instance of MechanismEnum from a JSON string"""
-        return cls(json.loads(json_str))
+        return MechanismEnum(json.loads(json_str))
 
 

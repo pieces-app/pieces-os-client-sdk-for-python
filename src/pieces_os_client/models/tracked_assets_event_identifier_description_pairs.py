@@ -18,85 +18,69 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, Field, StrictStr, field_validator
-from typing import Any, ClassVar, Dict, List, Optional
+
+from typing import Optional
+from pydantic import BaseModel, Field, StrictStr, validator
 from pieces_os_client.models.embedded_model_schema import EmbeddedModelSchema
-from typing import Optional, Set
-from typing_extensions import Self
 
 class TrackedAssetsEventIdentifierDescriptionPairs(BaseModel):
     """
-    These are all of the available event types that are permitted in an object pair notation.
-    """ # noqa: E501
-    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
-    assets_searched: Optional[StrictStr] = Field(default=None, description="A If the assets were searched")
-    __properties: ClassVar[List[str]] = ["schema", "assets_searched"]
+    These are all of the available event types that are permitted in an object pair notation.  # noqa: E501
+    """
+    var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
+    assets_searched: Optional[StrictStr] = Field(None, description="A If the assets were searched")
+    __properties = ["schema", "assets_searched"]
 
-    @field_validator('assets_searched')
+    @validator('assets_searched')
     def assets_searched_validate_enum(cls, value):
         """Validates the enum"""
         if value is None:
             return value
 
-        if value not in set(['assets_were_searched']):
+        if value not in ('assets_were_searched'):
             raise ValueError("must be one of enum values ('assets_were_searched')")
         return value
 
-    model_config = {
-        "populate_by_name": True,
-        "validate_assignment": True,
-        "protected_namespaces": (),
-    }
-
+    class Config:
+        """Pydantic configuration"""
+        allow_population_by_field_name = True
+        validate_assignment = True
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.model_dump(by_alias=True))
+        return pprint.pformat(self.dict(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
-        # TODO: pydantic v2: use .model_dump_json(by_alias=True, exclude_unset=True) instead
         return json.dumps(self.to_dict())
 
     @classmethod
-    def from_json(cls, json_str: str) -> Optional[Self]:
+    def from_json(cls, json_str: str) -> TrackedAssetsEventIdentifierDescriptionPairs:
         """Create an instance of TrackedAssetsEventIdentifierDescriptionPairs from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
-    def to_dict(self) -> Dict[str, Any]:
-        """Return the dictionary representation of the model using alias.
-
-        This has the following differences from calling pydantic's
-        `self.model_dump(by_alias=True)`:
-
-        * `None` is only added to the output dict for nullable fields that
-          were set at model initialization. Other fields with value `None`
-          are ignored.
-        """
-        excluded_fields: Set[str] = set([
-        ])
-
-        _dict = self.model_dump(
-            by_alias=True,
-            exclude=excluded_fields,
-            exclude_none=True,
-        )
+    def to_dict(self):
+        """Returns the dictionary representation of the model using alias"""
+        _dict = self.dict(by_alias=True,
+                          exclude={
+                          },
+                          exclude_none=True)
         # override the default output from pydantic by calling `to_dict()` of var_schema
         if self.var_schema:
             _dict['schema'] = self.var_schema.to_dict()
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
+    def from_dict(cls, obj: dict) -> TrackedAssetsEventIdentifierDescriptionPairs:
         """Create an instance of TrackedAssetsEventIdentifierDescriptionPairs from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
-            return cls.model_validate(obj)
+            return TrackedAssetsEventIdentifierDescriptionPairs.parse_obj(obj)
 
-        _obj = cls.model_validate({
-            "schema": EmbeddedModelSchema.from_dict(obj["schema"]) if obj.get("schema") is not None else None,
+        _obj = TrackedAssetsEventIdentifierDescriptionPairs.parse_obj({
+            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
             "assets_searched": obj.get("assets_searched")
         })
         return _obj

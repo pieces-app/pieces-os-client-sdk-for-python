@@ -13,10 +13,13 @@
 """  # noqa: E501
 
 
-from __future__ import annotations
 import json
-from enum import Enum
-from typing_extensions import Self
+import pprint
+import re  # noqa: F401
+from aenum import Enum, no_arg
+
+
+
 
 
 class ModelFoundationEnum(str, Enum):
@@ -33,6 +36,10 @@ class ModelFoundationEnum(str, Enum):
     LLAMA_2_7_B = 'LLAMA_2_7B'
     LLAMA_2_13_B = 'LLAMA_2_13B'
     LLAMA_2_70_B = 'LLAMA_2_70B'
+    LLAMA_3_2_B = 'LLAMA_3_2B'
+    LLAMA_3_7_B = 'LLAMA_3_7B'
+    LLAMA_3_13_B = 'LLAMA_3_13B'
+    LLAMA_3_70_B = 'LLAMA_3_70B'
     CODE_LLAMA_2_7_B = 'CODE_LLAMA_2_7B'
     CODE_LLAMA_2_13_B = 'CODE_LLAMA_2_13B'
     CODE_LLAMA_2_70_B = 'CODE_LLAMA_2_70B'
@@ -101,15 +108,31 @@ class ModelFoundationEnum(str, Enum):
     DISTILROBERTA = 'DISTILROBERTA'
     MISTRAL_7_B = 'MISTRAL_7B'
     GEMINI = 'GEMINI'
+    GEMINI_1_DOT_5 = 'GEMINI_1.5'
     FAST_TEXT = 'FAST_TEXT'
     UNIXCODER = 'UNIXCODER'
     PHI_1_DOT_5 = 'PHI_1.5'
     PHI_2 = 'PHI_2'
     MIXTRAL_8_X_7_B = 'MIXTRAL_8_x_7B'
+    MIXTRAL_8_X_22_B = 'MIXTRAL_8_x_22B'
+    GEMMA_7_B = 'GEMMA_7B'
+    GEMMA_2_B = 'GEMMA_2B'
+    CODE_GEMMA_7_B = 'CODE_GEMMA_7B'
+    CODE_GEMMA_2_B = 'CODE_GEMMA_2B'
+    RECURRENT_GEMMA_2_B = 'RECURRENT_GEMMA_2B'
+    GROK_1 = 'GROK_1'
+    GROK_1_DOT_5 = 'GROK_1.5'
+    CLAUDE_2 = 'CLAUDE_2'
+    CLAUDE_3 = 'CLAUDE_3'
+    STARLING_7_B = 'STARLING_7B'
+    DBRX = 'DBRX'
+    COMMAND_R_PLUS = 'COMMAND_R+'
+    GEMMA_1_DOT_1_2_B = 'GEMMA_1.1_2B'
+    GEMMA_1_DOT_1_7_B = 'GEMMA_1.1_7B'
 
     @classmethod
-    def from_json(cls, json_str: str) -> Self:
+    def from_json(cls, json_str: str) -> ModelFoundationEnum:
         """Create an instance of ModelFoundationEnum from a JSON string"""
-        return cls(json.loads(json_str))
+        return ModelFoundationEnum(json.loads(json_str))
 
 

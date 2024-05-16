@@ -18,8 +18,9 @@ import pprint
 import re  # noqa: F401
 import json
 
+
+from typing import Optional
 from pydantic import BaseModel, Field, StrictBool, StrictStr
-from typing import Any, ClassVar, Dict, List, Optional
 from pieces_os_client.models.annotation_type_enum import AnnotationTypeEnum
 from pieces_os_client.models.embedded_model_schema import EmbeddedModelSchema
 from pieces_os_client.models.flattened_conversation_messages import FlattenedConversationMessages
@@ -30,24 +31,23 @@ from pieces_os_client.models.referenced_asset import ReferencedAsset
 from pieces_os_client.models.referenced_conversation import ReferencedConversation
 from pieces_os_client.models.referenced_model import ReferencedModel
 from pieces_os_client.models.referenced_person import ReferencedPerson
+from pieces_os_client.models.referenced_workstream_summary import ReferencedWorkstreamSummary
 from pieces_os_client.models.score import Score
-from typing import Optional, Set
-from typing_extensions import Self
 
 class Annotation(BaseModel):
     """
-    An Annotation is the replacement for descriptions, this will enable comments, description, summaries and many more.  person on here is a reference to the description/comment/annotation about a person  NOTE: person here is NOT the creator of the annotaion. but rather the descriptions of the person. NOTE****: if we want to add \"who\" wrote the annotation, we will want to add a new field on here called author && will need to also layer in behavior the enable an author(person) and an asset both being referenced(ensure you check the side effect in the AssetsFacade.delete)
-    """ # noqa: E501
-    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
-    id: StrictStr
-    created: GroupedTimestamp
-    updated: GroupedTimestamp
+    An Annotation is the replacement for descriptions, this will enable comments, description, summaries and many more.  person on here is a reference to the description/comment/annotation about a person  NOTE: person here is NOT the creator of the annotaion. but rather the descriptions of the person. NOTE****: if we want to add \"who\" wrote the annotation, we will want to add a new field on here called author && will need to also layer in behavior the enable an author(person) and an asset both being referenced(ensure you check the side effect in the AssetsFacade.delete)  # noqa: E501
+    """
+    var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
+    id: StrictStr = Field(...)
+    created: GroupedTimestamp = Field(...)
+    updated: GroupedTimestamp = Field(...)
     deleted: Optional[GroupedTimestamp] = None
     mechanism: Optional[MechanismEnum] = None
     asset: Optional[ReferencedAsset] = None
     person: Optional[ReferencedPerson] = None
-    type: AnnotationTypeEnum
-    text: StrictStr = Field(description="This is the text of the annotation.")
+    type: AnnotationTypeEnum = Field(...)
+    text: StrictStr = Field(..., description="This is the text of the annotation.")
     model: Optional[ReferencedModel] = None
     pseudo: Optional[StrictBool] = None
     favorited: Optional[StrictBool] = None
@@ -55,47 +55,33 @@ class Annotation(BaseModel):
     conversation: Optional[ReferencedConversation] = None
     score: Optional[Score] = None
     messages: Optional[FlattenedConversationMessages] = None
-    __properties: ClassVar[List[str]] = ["schema", "id", "created", "updated", "deleted", "mechanism", "asset", "person", "type", "text", "model", "pseudo", "favorited", "anchor", "conversation", "score", "messages"]
+    summary: Optional[ReferencedWorkstreamSummary] = None
+    __properties = ["schema", "id", "created", "updated", "deleted", "mechanism", "asset", "person", "type", "text", "model", "pseudo", "favorited", "anchor", "conversation", "score", "messages", "summary"]
 
-    model_config = {
-        "populate_by_name": True,
-        "validate_assignment": True,
-        "protected_namespaces": (),
-    }
-
+    class Config:
+        """Pydantic configuration"""
+        allow_population_by_field_name = True
+        validate_assignment = True
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.model_dump(by_alias=True))
+        return pprint.pformat(self.dict(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
-        # TODO: pydantic v2: use .model_dump_json(by_alias=True, exclude_unset=True) instead
         return json.dumps(self.to_dict())
 
     @classmethod
-    def from_json(cls, json_str: str) -> Optional[Self]:
+    def from_json(cls, json_str: str) -> Annotation:
         """Create an instance of Annotation from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
-    def to_dict(self) -> Dict[str, Any]:
-        """Return the dictionary representation of the model using alias.
-
-        This has the following differences from calling pydantic's
-        `self.model_dump(by_alias=True)`:
-
-        * `None` is only added to the output dict for nullable fields that
-          were set at model initialization. Other fields with value `None`
-          are ignored.
-        """
-        excluded_fields: Set[str] = set([
-        ])
-
-        _dict = self.model_dump(
-            by_alias=True,
-            exclude=excluded_fields,
-            exclude_none=True,
-        )
+    def to_dict(self):
+        """Returns the dictionary representation of the model using alias"""
+        _dict = self.dict(by_alias=True,
+                          exclude={
+                          },
+                          exclude_none=True)
         # override the default output from pydantic by calling `to_dict()` of var_schema
         if self.var_schema:
             _dict['schema'] = self.var_schema.to_dict()
@@ -129,35 +115,39 @@ class Annotation(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of messages
         if self.messages:
             _dict['messages'] = self.messages.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of summary
+        if self.summary:
+            _dict['summary'] = self.summary.to_dict()
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
+    def from_dict(cls, obj: dict) -> Annotation:
         """Create an instance of Annotation from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
-            return cls.model_validate(obj)
+            return Annotation.parse_obj(obj)
 
-        _obj = cls.model_validate({
-            "schema": EmbeddedModelSchema.from_dict(obj["schema"]) if obj.get("schema") is not None else None,
+        _obj = Annotation.parse_obj({
+            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
             "id": obj.get("id"),
-            "created": GroupedTimestamp.from_dict(obj["created"]) if obj.get("created") is not None else None,
-            "updated": GroupedTimestamp.from_dict(obj["updated"]) if obj.get("updated") is not None else None,
-            "deleted": GroupedTimestamp.from_dict(obj["deleted"]) if obj.get("deleted") is not None else None,
+            "created": GroupedTimestamp.from_dict(obj.get("created")) if obj.get("created") is not None else None,
+            "updated": GroupedTimestamp.from_dict(obj.get("updated")) if obj.get("updated") is not None else None,
+            "deleted": GroupedTimestamp.from_dict(obj.get("deleted")) if obj.get("deleted") is not None else None,
             "mechanism": obj.get("mechanism"),
-            "asset": ReferencedAsset.from_dict(obj["asset"]) if obj.get("asset") is not None else None,
-            "person": ReferencedPerson.from_dict(obj["person"]) if obj.get("person") is not None else None,
+            "asset": ReferencedAsset.from_dict(obj.get("asset")) if obj.get("asset") is not None else None,
+            "person": ReferencedPerson.from_dict(obj.get("person")) if obj.get("person") is not None else None,
             "type": obj.get("type"),
             "text": obj.get("text"),
-            "model": ReferencedModel.from_dict(obj["model"]) if obj.get("model") is not None else None,
+            "model": ReferencedModel.from_dict(obj.get("model")) if obj.get("model") is not None else None,
             "pseudo": obj.get("pseudo"),
             "favorited": obj.get("favorited"),
-            "anchor": ReferencedAnchor.from_dict(obj["anchor"]) if obj.get("anchor") is not None else None,
-            "conversation": ReferencedConversation.from_dict(obj["conversation"]) if obj.get("conversation") is not None else None,
-            "score": Score.from_dict(obj["score"]) if obj.get("score") is not None else None,
-            "messages": FlattenedConversationMessages.from_dict(obj["messages"]) if obj.get("messages") is not None else None
+            "anchor": ReferencedAnchor.from_dict(obj.get("anchor")) if obj.get("anchor") is not None else None,
+            "conversation": ReferencedConversation.from_dict(obj.get("conversation")) if obj.get("conversation") is not None else None,
+            "score": Score.from_dict(obj.get("score")) if obj.get("score") is not None else None,
+            "messages": FlattenedConversationMessages.from_dict(obj.get("messages")) if obj.get("messages") is not None else None,
+            "summary": ReferencedWorkstreamSummary.from_dict(obj.get("summary")) if obj.get("summary") is not None else None
         })
         return _obj
 

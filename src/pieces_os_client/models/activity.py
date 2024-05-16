@@ -18,8 +18,9 @@ import pprint
 import re  # noqa: F401
 import json
 
+
+from typing import Optional
 from pydantic import BaseModel, Field, StrictInt, StrictStr
-from typing import Any, ClassVar, Dict, List, Optional
 from pieces_os_client.models.application import Application
 from pieces_os_client.models.embedded_model_schema import EmbeddedModelSchema
 from pieces_os_client.models.flattened_asset import FlattenedAsset
@@ -28,66 +29,49 @@ from pieces_os_client.models.flattened_user_profile import FlattenedUserProfile
 from pieces_os_client.models.grouped_timestamp import GroupedTimestamp
 from pieces_os_client.models.mechanism_enum import MechanismEnum
 from pieces_os_client.models.seeded_connector_tracking import SeededConnectorTracking
-from typing import Optional, Set
-from typing_extensions import Self
 
 class Activity(BaseModel):
     """
-    consider a rename to Event? That being said if we go with event we need to think about a word to pre/post fix event because it is likely to be a reserved word.  additional documentation: https://www.notion.so/getpieces/Activity-4da8de193733441f85f87b510235fb74   Notes: - user/asset/format are all optional, NOT required that one of these are present. - if mechanism == internal we will not display to the user.  Thoughts around additional properties. - hmm dismissed array here, that is an array of strings, where the string is the userId that dismissed this notification? or we could potentially do it based on the os_ID. - 
-    """ # noqa: E501
-    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
-    id: StrictStr
-    created: GroupedTimestamp
-    updated: GroupedTimestamp
-    event: SeededConnectorTracking
-    application: Application
+    consider a rename to Event? That being said if we go with event we need to think about a word to pre/post fix event because it is likely to be a reserved word.  additional documentation: https://www.notion.so/getpieces/Activity-4da8de193733441f85f87b510235fb74   Notes: - user/asset/format are all optional, NOT required that one of these are present. - if mechanism == internal we will not display to the user.  Thoughts around additional properties. - hmm dismissed array here, that is an array of strings, where the string is the userId that dismissed this notification? or we could potentially do it based on the os_ID. -   # noqa: E501
+    """
+    var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
+    id: StrictStr = Field(...)
+    created: GroupedTimestamp = Field(...)
+    updated: GroupedTimestamp = Field(...)
+    event: SeededConnectorTracking = Field(...)
+    application: Application = Field(...)
     deleted: Optional[GroupedTimestamp] = None
     asset: Optional[FlattenedAsset] = None
     user: Optional[FlattenedUserProfile] = None
     format: Optional[FlattenedFormat] = None
-    mechanism: MechanismEnum
-    rank: Optional[StrictInt] = Field(default=None, description="This is the numeric value assigned for this activity event. This number is based off the the type of activity event calcaulated on the server side.DO NOT MODIFY. To see what the value qualilates to, please refer to the function within the common sdk. The number here is based on the fib series. from 0 -> infinity but rn there arnt any value over 8.")
-    __properties: ClassVar[List[str]] = ["schema", "id", "created", "updated", "event", "application", "deleted", "asset", "user", "format", "mechanism", "rank"]
+    mechanism: MechanismEnum = Field(...)
+    rank: Optional[StrictInt] = Field(None, description="This is the numeric value assigned for this activity event. This number is based off the the type of activity event calcaulated on the server side.DO NOT MODIFY. To see what the value qualilates to, please refer to the function within the common sdk. The number here is based on the fib series. from 0 -> infinity but rn there arnt any value over 8.")
+    __properties = ["schema", "id", "created", "updated", "event", "application", "deleted", "asset", "user", "format", "mechanism", "rank"]
 
-    model_config = {
-        "populate_by_name": True,
-        "validate_assignment": True,
-        "protected_namespaces": (),
-    }
-
+    class Config:
+        """Pydantic configuration"""
+        allow_population_by_field_name = True
+        validate_assignment = True
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.model_dump(by_alias=True))
+        return pprint.pformat(self.dict(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
-        # TODO: pydantic v2: use .model_dump_json(by_alias=True, exclude_unset=True) instead
         return json.dumps(self.to_dict())
 
     @classmethod
-    def from_json(cls, json_str: str) -> Optional[Self]:
+    def from_json(cls, json_str: str) -> Activity:
         """Create an instance of Activity from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
-    def to_dict(self) -> Dict[str, Any]:
-        """Return the dictionary representation of the model using alias.
-
-        This has the following differences from calling pydantic's
-        `self.model_dump(by_alias=True)`:
-
-        * `None` is only added to the output dict for nullable fields that
-          were set at model initialization. Other fields with value `None`
-          are ignored.
-        """
-        excluded_fields: Set[str] = set([
-        ])
-
-        _dict = self.model_dump(
-            by_alias=True,
-            exclude=excluded_fields,
-            exclude_none=True,
-        )
+    def to_dict(self):
+        """Returns the dictionary representation of the model using alias"""
+        _dict = self.dict(by_alias=True,
+                          exclude={
+                          },
+                          exclude_none=True)
         # override the default output from pydantic by calling `to_dict()` of var_schema
         if self.var_schema:
             _dict['schema'] = self.var_schema.to_dict()
@@ -118,25 +102,25 @@ class Activity(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
+    def from_dict(cls, obj: dict) -> Activity:
         """Create an instance of Activity from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
-            return cls.model_validate(obj)
+            return Activity.parse_obj(obj)
 
-        _obj = cls.model_validate({
-            "schema": EmbeddedModelSchema.from_dict(obj["schema"]) if obj.get("schema") is not None else None,
+        _obj = Activity.parse_obj({
+            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
             "id": obj.get("id"),
-            "created": GroupedTimestamp.from_dict(obj["created"]) if obj.get("created") is not None else None,
-            "updated": GroupedTimestamp.from_dict(obj["updated"]) if obj.get("updated") is not None else None,
-            "event": SeededConnectorTracking.from_dict(obj["event"]) if obj.get("event") is not None else None,
-            "application": Application.from_dict(obj["application"]) if obj.get("application") is not None else None,
-            "deleted": GroupedTimestamp.from_dict(obj["deleted"]) if obj.get("deleted") is not None else None,
-            "asset": FlattenedAsset.from_dict(obj["asset"]) if obj.get("asset") is not None else None,
-            "user": FlattenedUserProfile.from_dict(obj["user"]) if obj.get("user") is not None else None,
-            "format": FlattenedFormat.from_dict(obj["format"]) if obj.get("format") is not None else None,
+            "created": GroupedTimestamp.from_dict(obj.get("created")) if obj.get("created") is not None else None,
+            "updated": GroupedTimestamp.from_dict(obj.get("updated")) if obj.get("updated") is not None else None,
+            "event": SeededConnectorTracking.from_dict(obj.get("event")) if obj.get("event") is not None else None,
+            "application": Application.from_dict(obj.get("application")) if obj.get("application") is not None else None,
+            "deleted": GroupedTimestamp.from_dict(obj.get("deleted")) if obj.get("deleted") is not None else None,
+            "asset": FlattenedAsset.from_dict(obj.get("asset")) if obj.get("asset") is not None else None,
+            "user": FlattenedUserProfile.from_dict(obj.get("user")) if obj.get("user") is not None else None,
+            "format": FlattenedFormat.from_dict(obj.get("format")) if obj.get("format") is not None else None,
             "mechanism": obj.get("mechanism"),
             "rank": obj.get("rank")
         })
