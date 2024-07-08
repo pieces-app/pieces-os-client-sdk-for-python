@@ -37,7 +37,7 @@ class SeededWorkstreamSummary(BaseModel):
     """
     This is a seeded version of a WorkstreamSummary  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     events: Optional[FlattenedWorkstreamEvents] = None
     name: StrictStr = Field(...)
     annotations: Optional[conlist(SeededAnnotation)] = None

@@ -28,7 +28,7 @@ class ConversationsCreateFromAssetOutput(BaseModel):
     """
     This is the model for the output for the \"/conversations/create/from_asset/{asset}\" endpoints.  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     conversation: ReferencedConversation = Field(...)
     __properties = ["schema", "conversation"]
 

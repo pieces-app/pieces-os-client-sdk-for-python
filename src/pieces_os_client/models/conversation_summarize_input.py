@@ -28,7 +28,7 @@ class ConversationSummarizeInput(BaseModel):
     """
     Optionally you may pass in a list of conversation message that you would like to use for the summary.  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     messages: Optional[FlattenedConversationMessages] = None
     __properties = ["schema", "messages"]
 

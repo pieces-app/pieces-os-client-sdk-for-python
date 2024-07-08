@@ -27,7 +27,7 @@ class ReferencedRange(BaseModel):
     """
     This is a minimal version of a Range, with mainly an Id.  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     id: StrictStr = Field(...)
     reference: Optional[FlattenedRange] = None
     __properties = ["schema", "id", "reference"]

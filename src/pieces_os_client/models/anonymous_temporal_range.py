@@ -28,8 +28,8 @@ class AnonymousTemporalRange(BaseModel):
     """
     if you want a range between you can use from && to.  if you want anything before, use to and NO from.  if you want anything after, use from and NO to.  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
-    var_from: Optional[GroupedTimestamp] = Field(None, alias="from")
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
+    var_from: Optional[GroupedTimestamp] = Field(default=None, alias="from")
     to: Optional[GroupedTimestamp] = None
     between: Optional[StrictBool] = None
     continuous: Optional[StrictBool] = None

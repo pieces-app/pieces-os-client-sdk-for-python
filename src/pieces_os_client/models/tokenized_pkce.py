@@ -27,13 +27,13 @@ class TokenizedPKCE(BaseModel):
     """
     This is the flow that mobile apps use to access an API. Use this endpoint to exchange an Authorization Code for a Token.  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
-    grant_type: StrictStr = Field(..., description="Denotes the flow you are using. For Authorization Code, use authorization_code or refresh_token.")
-    client_id: StrictStr = Field(..., description="Your application's Client ID.")
-    code: StrictStr = Field(..., description="The Authorization Code received from the initial /authorize call.")
-    redirect_uri: StrictStr = Field(..., description="This is required only if it was set at the GET /authorize endpoint. The values must match.")
-    code_verifier: StrictStr = Field(..., description="Cryptographically random key that was used to generate the code_challenge passed to /authorize.")
-    audience: Optional[StrictStr] = Field(None, description="The audience domain: i.e. https://pieces.us.auth0.com")
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
+    grant_type: StrictStr = Field(default=..., description="Denotes the flow you are using. For Authorization Code, use authorization_code or refresh_token.")
+    client_id: StrictStr = Field(default=..., description="Your application's Client ID.")
+    code: StrictStr = Field(default=..., description="The Authorization Code received from the initial /authorize call.")
+    redirect_uri: StrictStr = Field(default=..., description="This is required only if it was set at the GET /authorize endpoint. The values must match.")
+    code_verifier: StrictStr = Field(default=..., description="Cryptographically random key that was used to generate the code_challenge passed to /authorize.")
+    audience: Optional[StrictStr] = Field(default=None, description="The audience domain: i.e. https://pieces.us.auth0.com")
     __properties = ["schema", "grant_type", "client_id", "code", "redirect_uri", "code_verifier", "audience"]
 
     @validator('grant_type')

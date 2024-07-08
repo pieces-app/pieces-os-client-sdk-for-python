@@ -28,7 +28,7 @@ class Health(BaseModel):
     """
     This is a health model used to determine the \"health\" of the os server and cloud server(Coming Soon). READONLY Model.  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     os: OSHealth = Field(...)
     __properties = ["schema", "os"]
 

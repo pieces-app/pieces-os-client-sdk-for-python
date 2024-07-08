@@ -27,7 +27,7 @@ class TLPCodeFragmentDescriptiveStatistics(BaseModel):
     """
     Model for ML big query Data collection.  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     user: StrictStr = Field(...)
     os: StrictStr = Field(...)
     language: StrictStr = Field(...)
@@ -35,8 +35,8 @@ class TLPCodeFragmentDescriptiveStatistics(BaseModel):
     ast: StrictStr = Field(...)
     timestamp: StrictStr = Field(...)
     asset: StrictStr = Field(...)
-    context: StrictStr = Field(..., description="this is the application in which this was created from.")
-    snippet: StrictStr = Field(..., description="this is the value of the snippet")
+    context: StrictStr = Field(default=..., description="this is the application in which this was created from.")
+    snippet: StrictStr = Field(default=..., description="this is the value of the snippet")
     __properties = ["schema", "user", "os", "language", "length", "ast", "timestamp", "asset", "context", "snippet"]
 
     class Config:

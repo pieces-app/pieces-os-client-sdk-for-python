@@ -28,7 +28,7 @@ class Embedding(BaseModel):
     """
       # noqa: E501
     """
-    raw: conlist(Union[StrictFloat, StrictInt]) = Field(..., description="this is the raw value of the embedding")
+    raw: conlist(Union[StrictFloat, StrictInt]) = Field(default=..., description="this is the raw value of the embedding")
     model: Model = Field(...)
     created: GroupedTimestamp = Field(...)
     updated: GroupedTimestamp = Field(...)

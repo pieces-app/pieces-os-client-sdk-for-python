@@ -28,7 +28,7 @@ print SeededConversationMessage.to_json()
 # convert the object into a dict
 seeded_conversation_message_dict = seeded_conversation_message_instance.to_dict()
 # create an instance of SeededConversationMessage from a dict
-seeded_conversation_message_form_dict = seeded_conversation_message.from_dict(seeded_conversation_message_dict)
+seeded_conversation_message_from_dict = SeededConversationMessage.from_dict(seeded_conversation_message_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

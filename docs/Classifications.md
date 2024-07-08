@@ -23,7 +23,7 @@ print Classifications.to_json()
 # convert the object into a dict
 classifications_dict = classifications_instance.to_dict()
 # create an instance of Classifications from a dict
-classifications_form_dict = classifications.from_dict(classifications_dict)
+classifications_from_dict = Classifications.from_dict(classifications_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

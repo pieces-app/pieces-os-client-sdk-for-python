@@ -27,9 +27,9 @@ class TrackedInteractionEvent(BaseModel):
     """
     This is a model that will hold relavent information in relation to an interaction(ONLY CLICK/TAP) analytics event(usage). If you want to register an event that relates to an interaction with the key then register a Keyboard Event.   # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
-    description: StrictStr = Field(..., description="(optional) a description of this button that was clicked. or maybe what it did.")
-    element: Optional[StrictStr] = Field(None, description="This is an identifer that will allow the developer to know what unique button/field was interacted with.")
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
+    description: StrictStr = Field(default=..., description="(optional) a description of this button that was clicked. or maybe what it did.")
+    element: Optional[StrictStr] = Field(default=None, description="This is an identifer that will allow the developer to know what unique button/field was interacted with.")
     __properties = ["schema", "description", "element"]
 
     class Config:

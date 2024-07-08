@@ -30,7 +30,7 @@ class SeededDiscoverableAsset(BaseModel):
     """
     Assumption: filters applied in this model will overwrite filters passed in SeededDiscoverableAssets  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     file: Optional[SeededFile] = None
     fragment: Optional[SeededFragment] = None
     directory: Optional[StrictStr] = None

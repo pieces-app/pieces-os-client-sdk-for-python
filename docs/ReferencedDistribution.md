@@ -24,7 +24,7 @@ print ReferencedDistribution.to_json()
 # convert the object into a dict
 referenced_distribution_dict = referenced_distribution_instance.to_dict()
 # create an instance of ReferencedDistribution from a dict
-referenced_distribution_form_dict = referenced_distribution.from_dict(referenced_distribution_dict)
+referenced_distribution_from_dict = ReferencedDistribution.from_dict(referenced_distribution_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

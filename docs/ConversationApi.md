@@ -9,8 +9,8 @@ Method | HTTP request | Description
 [**conversation_associate_grounding_temporal_range_workstream**](ConversationApi.md#conversation_associate_grounding_temporal_range_workstream) | **POST** /conversation/{conversation}/grounding/temporal_range/workstreams/associate/{range} | /conversation/{conversation}/grounding/temporal/ranges/associate/{range} [POST]
 [**conversation_associate_website**](ConversationApi.md#conversation_associate_website) | **POST** /conversation/{conversation}/websites/associate/{website} | /conversation/{conversation}/websites/associate/{website} [POST]
 [**conversation_associate_workstream_summary**](ConversationApi.md#conversation_associate_workstream_summary) | **POST** /conversation/{conversation}/workstream_summaries/associate/{workstream_summary} | /conversation/{conversation}/workstream_summaries/associate/{workstream_summary} [POST]
-[**conversation_disassociate_anchor**](ConversationApi.md#conversation_disassociate_anchor) | **POST** /conversation/{conversation}/anchors/delete/{anchor} | /conversation/{conversation}/anchors/delete/{anchor} [POST]
-[**conversation_disassociate_asset**](ConversationApi.md#conversation_disassociate_asset) | **POST** /conversation/{conversation}/assets/delete/{asset} | /conversation/{conversation}/assets/delete/{asset} [POST]
+[**conversation_disassociate_anchor**](ConversationApi.md#conversation_disassociate_anchor) | **POST** /conversation/{conversation}/anchors/disassociate/{anchor} | /conversation/{conversation}/anchors/disassociate/{anchor} [POST]
+[**conversation_disassociate_asset**](ConversationApi.md#conversation_disassociate_asset) | **POST** /conversation/{conversation}/assets/disassociate/{asset} | /conversation/{conversation}/assets/disassociate/{asset} [POST]
 [**conversation_disassociate_grounding_temporal_range_workstream**](ConversationApi.md#conversation_disassociate_grounding_temporal_range_workstream) | **POST** /conversation/{conversation}/grounding/temporal_range/workstreams/disassociate/{range} | /conversation/{conversation}/grounding/temporal_range/workstreams/disassociate/{range} [POST]
 [**conversation_disassociate_website**](ConversationApi.md#conversation_disassociate_website) | **POST** /conversation/{conversation}/websites/disassociate/{website} | /website/{website}/websites/disassociate/{website} [POST]
 [**conversation_disassociate_workstream_summary**](ConversationApi.md#conversation_disassociate_workstream_summary) | **POST** /conversation/{conversation}/workstream_summaries/disassociate/{workstream_summary} | /conversation/{conversation}/workstream_summaries/disassociate/{workstream_summary} [POST]
@@ -22,6 +22,7 @@ Method | HTTP request | Description
 [**conversation_specific_conversation_rename**](ConversationApi.md#conversation_specific_conversation_rename) | **POST** /conversation/{conversation}/rename | /conversation/{conversation}/rename [POST]
 [**conversation_summarize**](ConversationApi.md#conversation_summarize) | **POST** /conversation/{conversation}/summarize | /conversation/{conversation}/summarize [POST]
 [**conversation_update**](ConversationApi.md#conversation_update) | **POST** /conversation/update | /conversation/update [POST]
+[**search_conversation_specific_messages**](ConversationApi.md#search_conversation_specific_messages) | **POST** /conversation/{conversation}/search | /conversation/{conversation}/search [POST]
 
 
 # **conversation_associate_anchor**
@@ -362,7 +363,7 @@ No authorization required
 # **conversation_disassociate_anchor**
 > conversation_disassociate_anchor(conversation, anchor)
 
-/conversation/{conversation}/anchors/delete/{anchor} [POST]
+/conversation/{conversation}/anchors/disassociate/{anchor} [POST]
 
 Updates both the anchor and the conversation, deleting (disassociating) them simultaneously.
 
@@ -390,7 +391,7 @@ with pieces_os_client.ApiClient(configuration) as api_client:
     anchor = 'anchor_example' # str | This is the specific uuid of an anchor.
 
     try:
-        # /conversation/{conversation}/anchors/delete/{anchor} [POST]
+        # /conversation/{conversation}/anchors/disassociate/{anchor} [POST]
         api_instance.conversation_disassociate_anchor(conversation, anchor)
     except Exception as e:
         print("Exception when calling ConversationApi->conversation_disassociate_anchor: %s\n" % e)
@@ -429,7 +430,7 @@ No authorization required
 # **conversation_disassociate_asset**
 > conversation_disassociate_asset(conversation, asset)
 
-/conversation/{conversation}/assets/delete/{asset} [POST]
+/conversation/{conversation}/assets/disassociate/{asset} [POST]
 
 Updates both the asset and the conversation, effectively disassociating them.
 
@@ -457,7 +458,7 @@ with pieces_os_client.ApiClient(configuration) as api_client:
     asset = '2254f2c8-5797-40e8-ac56-41166dc0e159' # str | The id (uuid) of the asset that you are trying to access.
 
     try:
-        # /conversation/{conversation}/assets/delete/{asset} [POST]
+        # /conversation/{conversation}/assets/disassociate/{asset} [POST]
         api_instance.conversation_disassociate_asset(conversation, asset)
     except Exception as e:
         print("Exception when calling ConversationApi->conversation_disassociate_asset: %s\n" % e)
@@ -1229,6 +1230,79 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**Conversation**](Conversation.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json, text/plain
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**500** | Internal Server Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **search_conversation_specific_messages**
+> SearchedConversationMessages search_conversation_specific_messages(conversation, transferables=transferables, search_input=search_input)
+
+/conversation/{conversation}/search [POST]
+
+This will search a specific conversation for a match  note: here we will only search the conversationMessages for this given Conversation
+
+### Example
+
+```python
+import time
+import os
+import pieces_os_client
+from pieces_os_client.models.search_input import SearchInput
+from pieces_os_client.models.searched_conversation_messages import SearchedConversationMessages
+from pieces_os_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to http://localhost:1000
+# See configuration.py for a list of all supported configuration parameters.
+configuration = pieces_os_client.Configuration(
+    host = "http://localhost:1000"
+)
+
+
+# Enter a context with an instance of the API client
+with pieces_os_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = pieces_os_client.ConversationApi(api_client)
+    conversation = 'conversation_example' # str | This is the uuid of a conversation.
+    transferables = True # bool | This is a boolean that will decided if we are want to return the transferable data (default) or not(performance enhancement) (optional)
+    search_input = pieces_os_client.SearchInput() # SearchInput |  (optional)
+
+    try:
+        # /conversation/{conversation}/search [POST]
+        api_response = api_instance.search_conversation_specific_messages(conversation, transferables=transferables, search_input=search_input)
+        print("The response of ConversationApi->search_conversation_specific_messages:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling ConversationApi->search_conversation_specific_messages: %s\n" % e)
+```
+
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **conversation** | **str**| This is the uuid of a conversation. | 
+ **transferables** | **bool**| This is a boolean that will decided if we are want to return the transferable data (default) or not(performance enhancement) | [optional] 
+ **search_input** | [**SearchInput**](SearchInput.md)|  | [optional] 
+
+### Return type
+
+[**SearchedConversationMessages**](SearchedConversationMessages.md)
 
 ### Authorization
 

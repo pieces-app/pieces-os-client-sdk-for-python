@@ -28,7 +28,7 @@ print FlattenedUserProfile.to_json()
 # convert the object into a dict
 flattened_user_profile_dict = flattened_user_profile_instance.to_dict()
 # create an instance of FlattenedUserProfile from a dict
-flattened_user_profile_form_dict = flattened_user_profile.from_dict(flattened_user_profile_dict)
+flattened_user_profile_from_dict = FlattenedUserProfile.from_dict(flattened_user_profile_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

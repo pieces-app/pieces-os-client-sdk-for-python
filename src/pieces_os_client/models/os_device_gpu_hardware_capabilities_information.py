@@ -27,8 +27,8 @@ class OSDeviceGPUHardwareCapabilitiesInformation(BaseModel):
     """
     This will give specific information on task specific capibilites for GPU.  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
-    llm: Optional[StrictBool] = Field(None, description="This will let us know if in the case we have a gpu and our gpu has the capabilities to use llms")
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
+    llm: Optional[StrictBool] = Field(default=None, description="This will let us know if in the case we have a gpu and our gpu has the capabilities to use llms")
     __properties = ["schema", "llm"]
 
     class Config:

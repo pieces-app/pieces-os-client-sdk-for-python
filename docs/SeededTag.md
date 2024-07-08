@@ -27,7 +27,7 @@ print SeededTag.to_json()
 # convert the object into a dict
 seeded_tag_dict = seeded_tag_instance.to_dict()
 # create an instance of SeededTag from a dict
-seeded_tag_form_dict = seeded_tag.from_dict(seeded_tag_dict)
+seeded_tag_from_dict = SeededTag.from_dict(seeded_tag_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

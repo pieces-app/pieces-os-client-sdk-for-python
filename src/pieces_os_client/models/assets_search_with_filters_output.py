@@ -28,7 +28,7 @@ class AssetsSearchWithFiltersOutput(BaseModel):
     """
     output for the /assets/search [POST]   # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     results: SearchedAssets = Field(...)
     __properties = ["schema", "results"]
 

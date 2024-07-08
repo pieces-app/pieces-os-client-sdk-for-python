@@ -25,7 +25,7 @@ print SearchedAssets.to_json()
 # convert the object into a dict
 searched_assets_dict = searched_assets_instance.to_dict()
 # create an instance of SearchedAssets from a dict
-searched_assets_form_dict = searched_assets.from_dict(searched_assets_dict)
+searched_assets_from_dict = SearchedAssets.from_dict(searched_assets_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

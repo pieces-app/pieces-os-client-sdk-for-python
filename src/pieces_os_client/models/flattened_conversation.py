@@ -33,9 +33,9 @@ class FlattenedConversation(BaseModel):
     """
     This is a flattend version of the Convsersation for DAG-Safety.  This will hold together a conversation. Ie allthe message within a conversation.  All the additional properties on here used on here like(anchors/assets) are used for context that will seed the conversation.  model is a calculated property, and will be the model of the last message sent if applicable.  summaries: on the top level here will simply be used to associate a conversation and a summary(this is not used for grounding), grounding.summaries will be used for this.(TODO)  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     id: StrictStr = Field(...)
-    name: Optional[StrictStr] = Field(None, description="This is a name that is customized.")
+    name: Optional[StrictStr] = Field(default=None, description="This is a name that is customized.")
     created: GroupedTimestamp = Field(...)
     updated: GroupedTimestamp = Field(...)
     deleted: Optional[GroupedTimestamp] = None
@@ -51,7 +51,7 @@ class FlattenedConversation(BaseModel):
     grounding: Optional[ConversationGrounding] = None
     score: Optional[Score] = None
     pipeline: Optional[QGPTPromptPipeline] = None
-    demo: Optional[StrictBool] = Field(None, description="This will let us know if this conversation was generated as a 'demo' conversation")
+    demo: Optional[StrictBool] = Field(default=None, description="This will let us know if this conversation was generated as a 'demo' conversation")
     summaries: Optional[FlattenedWorkstreamSummaries] = None
     __properties = ["schema", "id", "name", "created", "updated", "deleted", "favorited", "application", "annotations", "messages", "model", "assets", "websites", "anchors", "type", "grounding", "score", "pipeline", "demo", "summaries"]
 

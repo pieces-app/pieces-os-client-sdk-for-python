@@ -22,7 +22,7 @@ print SeededTrackedAssetsEventMetadata.to_json()
 # convert the object into a dict
 seeded_tracked_assets_event_metadata_dict = seeded_tracked_assets_event_metadata_instance.to_dict()
 # create an instance of SeededTrackedAssetsEventMetadata from a dict
-seeded_tracked_assets_event_metadata_form_dict = seeded_tracked_assets_event_metadata.from_dict(seeded_tracked_assets_event_metadata_dict)
+seeded_tracked_assets_event_metadata_from_dict = SeededTrackedAssetsEventMetadata.from_dict(seeded_tracked_assets_event_metadata_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

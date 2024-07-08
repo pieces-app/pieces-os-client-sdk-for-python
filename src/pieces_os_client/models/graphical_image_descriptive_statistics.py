@@ -27,7 +27,7 @@ class GraphicalImageDescriptiveStatistics(BaseModel):
     """
     Model for collecting descriptive statistics of images uploaded to Pieces  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     width: StrictStr = Field(...)
     height: StrictStr = Field(...)
     channels: StrictStr = Field(...)

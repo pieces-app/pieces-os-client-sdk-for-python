@@ -27,7 +27,7 @@ class ReferencedWorkstreamSummary(BaseModel):
     """
     this is a referenced minimal version of a WorkstreamSummary typically just our uuid.  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     id: StrictStr = Field(...)
     reference: Optional[FlattenedWorkstreamSummary] = None
     __properties = ["schema", "id", "reference"]

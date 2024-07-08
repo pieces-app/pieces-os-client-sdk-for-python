@@ -23,7 +23,7 @@ print SeededRangeConversationAssociation.to_json()
 # convert the object into a dict
 seeded_range_conversation_association_dict = seeded_range_conversation_association_instance.to_dict()
 # create an instance of SeededRangeConversationAssociation from a dict
-seeded_range_conversation_association_form_dict = seeded_range_conversation_association.from_dict(seeded_range_conversation_association_dict)
+seeded_range_conversation_association_from_dict = SeededRangeConversationAssociation.from_dict(seeded_range_conversation_association_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

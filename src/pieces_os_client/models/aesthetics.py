@@ -29,7 +29,7 @@ class Aesthetics(BaseModel):
     """
     These are aesthetics properties that will ensure the darkmode + font size and other aesthetics properties persist:)  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     theme: Theme = Field(...)
     font: Font = Field(...)
     __properties = ["schema", "theme", "font"]

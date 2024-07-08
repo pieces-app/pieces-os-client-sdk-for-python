@@ -27,9 +27,9 @@ class TrackedKeyboardEvent(BaseModel):
     """
     This is a model that will hold relavent information in relation to a keyboard(including shortcuts) analytics event (usage).  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
-    description: StrictStr = Field(..., description="this is a description of the event, optional.")
-    shortcut: conlist(StrictInt) = Field(..., description="this is an array of of ascii values that represent numerics on your keyboard.")
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
+    description: StrictStr = Field(default=..., description="this is a description of the event, optional.")
+    shortcut: conlist(StrictInt) = Field(default=..., description="this is an array of of ascii values that represent numerics on your keyboard.")
     __properties = ["schema", "description", "shortcut"]
 
     class Config:

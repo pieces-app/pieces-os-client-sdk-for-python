@@ -28,7 +28,7 @@ class Formats(BaseModel):
     """
     A base class for a collection of formats and some additional meta properties.  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     iterable: conlist(Format) = Field(...)
     __properties = ["schema", "iterable"]
 

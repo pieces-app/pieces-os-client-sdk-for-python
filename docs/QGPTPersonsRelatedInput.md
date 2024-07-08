@@ -26,7 +26,7 @@ print QGPTPersonsRelatedInput.to_json()
 # convert the object into a dict
 qgpt_persons_related_input_dict = qgpt_persons_related_input_instance.to_dict()
 # create an instance of QGPTPersonsRelatedInput from a dict
-qgpt_persons_related_input_form_dict = qgpt_persons_related_input.from_dict(qgpt_persons_related_input_dict)
+qgpt_persons_related_input_from_dict = QGPTPersonsRelatedInput.from_dict(qgpt_persons_related_input_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

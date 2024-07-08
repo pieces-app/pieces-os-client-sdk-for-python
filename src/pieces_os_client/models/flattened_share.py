@@ -32,15 +32,15 @@ class FlattenedShare(BaseModel):
     """
     This is a dag safe version of the Share.  if user is undefined && access is public then we have an asset that is publicly available.  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
-    id: StrictStr = Field(..., description="This references the share it self.")
-    asset: Optional[StrictStr] = Field(None, description="this is the asset id on the flattened share.")
-    user: Optional[StrictStr] = Field(None, description="this is the uuid of the user that the share is created for.")
-    link: StrictStr = Field(..., description="this is the prebuilt link.")
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
+    id: StrictStr = Field(default=..., description="This references the share it self.")
+    asset: Optional[StrictStr] = Field(default=None, description="this is the asset id on the flattened share.")
+    user: Optional[StrictStr] = Field(default=None, description="this is the uuid of the user that the share is created for.")
+    link: StrictStr = Field(default=..., description="this is the prebuilt link.")
     access: AccessEnum = Field(...)
     accessors: Accessors = Field(...)
     created: GroupedTimestamp = Field(...)
-    short: StrictStr = Field(..., description="This is a shortened version of our uuid.")
+    short: StrictStr = Field(default=..., description="This is a shortened version of our uuid.")
     name: Optional[StrictStr] = None
     assets: Optional[FlattenedAssets] = None
     distributions: Optional[FlattenedDistributions] = None

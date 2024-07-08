@@ -27,9 +27,9 @@ class OSHealth(BaseModel):
     """
     This is a specific model for the health of our OS Server.  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
-    id: StrictStr = Field(..., description="id of your OS")
-    version: StrictStr = Field(..., description="this is the current OS version")
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
+    id: StrictStr = Field(default=..., description="id of your OS")
+    version: StrictStr = Field(default=..., description="this is the current OS version")
     __properties = ["schema", "id", "version"]
 
     class Config:

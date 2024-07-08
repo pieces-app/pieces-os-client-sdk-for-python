@@ -32,7 +32,7 @@ print CodeAnalysis.to_json()
 # convert the object into a dict
 code_analysis_dict = code_analysis_instance.to_dict()
 # create an instance of CodeAnalysis from a dict
-code_analysis_form_dict = code_analysis.from_dict(code_analysis_dict)
+code_analysis_from_dict = CodeAnalysis.from_dict(code_analysis_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

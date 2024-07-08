@@ -25,7 +25,7 @@ print FragmentFormat.to_json()
 # convert the object into a dict
 fragment_format_dict = fragment_format_instance.to_dict()
 # create an instance of FragmentFormat from a dict
-fragment_format_form_dict = fragment_format.from_dict(fragment_format_dict)
+fragment_format_from_dict = FragmentFormat.from_dict(fragment_format_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -23,7 +23,7 @@ print WorkstreamPatternEngineDataCleanupRequest.to_json()
 # convert the object into a dict
 workstream_pattern_engine_data_cleanup_request_dict = workstream_pattern_engine_data_cleanup_request_instance.to_dict()
 # create an instance of WorkstreamPatternEngineDataCleanupRequest from a dict
-workstream_pattern_engine_data_cleanup_request_form_dict = workstream_pattern_engine_data_cleanup_request.from_dict(workstream_pattern_engine_data_cleanup_request_dict)
+workstream_pattern_engine_data_cleanup_request_from_dict = WorkstreamPatternEngineDataCleanupRequest.from_dict(workstream_pattern_engine_data_cleanup_request_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

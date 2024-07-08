@@ -26,10 +26,10 @@ class Auth0Identity(BaseModel):
     """
     Contains info retrieved from the identity provider with which the user originally authenticates. Users may also link their profile to multiple identity providers; those identities will then also appear in this array. The contents of an individual identity provider object varies by provider, but it will typically include the following. Link: [https://auth0.com/docs/rules/user-object-in-rules]  Currently left out: - profile_data: (Object) User information associated with the connection. When profiles are linked, it is populated with the associated user info for secondary accounts.  # noqa: E501
     """
-    connection: Optional[StrictStr] = Field(None, description="Name of the Auth0 connection used to authenticate the user. ")
-    is_social: Optional[StrictBool] = Field(None, alias="isSocial", description="Indicates whether the connection is a social one. ")
-    provider: Optional[StrictStr] = Field(None, description="mapped from user_id  -> id")
-    user_id: Optional[StrictStr] = Field(None, description="User's unique identifier for this connection/provider.")
+    connection: Optional[StrictStr] = Field(default=None, description="Name of the Auth0 connection used to authenticate the user. ")
+    is_social: Optional[StrictBool] = Field(default=None, alias="isSocial", description="Indicates whether the connection is a social one. ")
+    provider: Optional[StrictStr] = Field(default=None, description="mapped from user_id  -> id")
+    user_id: Optional[StrictStr] = Field(default=None, description="User's unique identifier for this connection/provider.")
     access_token: Optional[StrictStr] = None
     expires_in: Optional[StrictInt] = None
     __properties = ["connection", "isSocial", "provider", "user_id", "access_token", "expires_in"]

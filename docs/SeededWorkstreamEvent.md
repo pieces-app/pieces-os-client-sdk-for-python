@@ -28,7 +28,7 @@ print SeededWorkstreamEvent.to_json()
 # convert the object into a dict
 seeded_workstream_event_dict = seeded_workstream_event_instance.to_dict()
 # create an instance of SeededWorkstreamEvent from a dict
-seeded_workstream_event_form_dict = seeded_workstream_event.from_dict(seeded_workstream_event_dict)
+seeded_workstream_event_from_dict = SeededWorkstreamEvent.from_dict(seeded_workstream_event_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

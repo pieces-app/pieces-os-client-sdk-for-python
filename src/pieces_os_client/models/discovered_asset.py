@@ -31,7 +31,7 @@ class DiscoveredAsset(BaseModel):
     """
       # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     file: Optional[SeededFile] = None
     fragment: Optional[SeededFragment] = None
     directory: Optional[StrictStr] = None

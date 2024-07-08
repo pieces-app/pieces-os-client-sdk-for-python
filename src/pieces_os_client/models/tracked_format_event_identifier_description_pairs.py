@@ -27,17 +27,17 @@ class TrackedFormatEventIdentifierDescriptionPairs(BaseModel):
     """
     This is a model that allows us to send send over super specific format related events such as copied, deleted, downloaded, etc  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
-    format_created: Optional[StrictStr] = Field(None, description="The key value pair for an asset being created.")
-    format_copied: Optional[StrictStr] = Field(None, description="If a format was copied entirely")
-    format_partially_copied: Optional[StrictStr] = Field(None, description="If a format was copied partially")
-    format_downloaded: Optional[StrictStr] = Field(None, description="If a format was downloaded")
-    format_deleted: Optional[StrictStr] = Field(None, description="If an format was deleted")
-    format_generic_classification_updated: Optional[StrictStr] = Field(None, description="If a generic classification was changed on a format")
-    format_specific_classification_updated: Optional[StrictStr] = Field(None, description="If a specific classification was changed on a format")
-    format_updated: Optional[StrictStr] = Field(None, description="a format was updated, generic update.")
-    format_inserted: Optional[StrictStr] = Field(None, description="a format was inserted")
-    format_value_edited: Optional[StrictStr] = Field(None, description="a format's value was update ie, the text, etc...")
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
+    format_created: Optional[StrictStr] = Field(default=None, description="The key value pair for an asset being created.")
+    format_copied: Optional[StrictStr] = Field(default=None, description="If a format was copied entirely")
+    format_partially_copied: Optional[StrictStr] = Field(default=None, description="If a format was copied partially")
+    format_downloaded: Optional[StrictStr] = Field(default=None, description="If a format was downloaded")
+    format_deleted: Optional[StrictStr] = Field(default=None, description="If an format was deleted")
+    format_generic_classification_updated: Optional[StrictStr] = Field(default=None, description="If a generic classification was changed on a format")
+    format_specific_classification_updated: Optional[StrictStr] = Field(default=None, description="If a specific classification was changed on a format")
+    format_updated: Optional[StrictStr] = Field(default=None, description="a format was updated, generic update.")
+    format_inserted: Optional[StrictStr] = Field(default=None, description="a format was inserted")
+    format_value_edited: Optional[StrictStr] = Field(default=None, description="a format's value was update ie, the text, etc...")
     __properties = ["schema", "format_created", "format_copied", "format_partially_copied", "format_downloaded", "format_deleted", "format_generic_classification_updated", "format_specific_classification_updated", "format_updated", "format_inserted", "format_value_edited"]
 
     @validator('format_created')

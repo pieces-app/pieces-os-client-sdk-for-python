@@ -25,7 +25,7 @@ print TrackedFormatEvent.to_json()
 # convert the object into a dict
 tracked_format_event_dict = tracked_format_event_instance.to_dict()
 # create an instance of TrackedFormatEvent from a dict
-tracked_format_event_form_dict = tracked_format_event.from_dict(tracked_format_event_dict)
+tracked_format_event_from_dict = TrackedFormatEvent.from_dict(tracked_format_event_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

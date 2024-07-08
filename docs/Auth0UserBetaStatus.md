@@ -23,7 +23,7 @@ print Auth0UserBetaStatus.to_json()
 # convert the object into a dict
 auth0_user_beta_status_dict = auth0_user_beta_status_instance.to_dict()
 # create an instance of Auth0UserBetaStatus from a dict
-auth0_user_beta_status_form_dict = auth0_user_beta_status.from_dict(auth0_user_beta_status_dict)
+auth0_user_beta_status_from_dict = Auth0UserBetaStatus.from_dict(auth0_user_beta_status_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

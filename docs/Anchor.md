@@ -18,6 +18,7 @@ Name | Type | Description | Notes
 **conversations** | [**FlattenedConversations**](FlattenedConversations.md) |  | [optional] 
 **score** | [**Score**](Score.md) |  | [optional] 
 **summaries** | [**FlattenedWorkstreamSummaries**](FlattenedWorkstreamSummaries.md) |  | [optional] 
+**persons** | [**FlattenedPersons**](FlattenedPersons.md) |  | [optional] 
 
 ## Example
 
@@ -34,7 +35,7 @@ print Anchor.to_json()
 # convert the object into a dict
 anchor_dict = anchor_instance.to_dict()
 # create an instance of Anchor from a dict
-anchor_form_dict = anchor.from_dict(anchor_dict)
+anchor_from_dict = Anchor.from_dict(anchor_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -28,7 +28,7 @@ class Preview(BaseModel):
     """
     This is a preview Model that will hold references to at minimum the base preview. which can be potentiall a base image, or also base text/code and then the oveylay is another format(image/text/code) that is 'overlayed' ontop of the base format.  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     base: ReferencedFormat = Field(...)
     overlay: Optional[ReferencedFormat] = None
     __properties = ["schema", "base", "overlay"]

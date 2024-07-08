@@ -23,7 +23,7 @@ print UpdatedExternalProviderApiKey.to_json()
 # convert the object into a dict
 updated_external_provider_api_key_dict = updated_external_provider_api_key_instance.to_dict()
 # create an instance of UpdatedExternalProviderApiKey from a dict
-updated_external_provider_api_key_form_dict = updated_external_provider_api_key.from_dict(updated_external_provider_api_key_dict)
+updated_external_provider_api_key_from_dict = UpdatedExternalProviderApiKey.from_dict(updated_external_provider_api_key_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

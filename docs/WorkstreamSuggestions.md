@@ -24,7 +24,7 @@ print WorkstreamSuggestions.to_json()
 # convert the object into a dict
 workstream_suggestions_dict = workstream_suggestions_instance.to_dict()
 # create an instance of WorkstreamSuggestions from a dict
-workstream_suggestions_form_dict = workstream_suggestions.from_dict(workstream_suggestions_dict)
+workstream_suggestions_from_dict = WorkstreamSuggestions.from_dict(workstream_suggestions_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -23,7 +23,7 @@ print ReferencedModel.to_json()
 # convert the object into a dict
 referenced_model_dict = referenced_model_instance.to_dict()
 # create an instance of ReferencedModel from a dict
-referenced_model_form_dict = referenced_model.from_dict(referenced_model_dict)
+referenced_model_from_dict = ReferencedModel.from_dict(referenced_model_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

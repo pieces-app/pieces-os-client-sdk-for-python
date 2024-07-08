@@ -33,7 +33,7 @@ class PKCE(BaseModel):
     """
     An object representing all of the properties involved in a PKCE Authentication Flow  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     result: Optional[ResultedPKCE] = None
     challenge: Optional[ChallengedPKCE] = None
     revocation: Optional[RevokedPKCE] = None

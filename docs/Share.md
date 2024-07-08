@@ -34,7 +34,7 @@ print Share.to_json()
 # convert the object into a dict
 share_dict = share_instance.to_dict()
 # create an instance of Share from a dict
-share_form_dict = share.from_dict(share_dict)
+share_from_dict = Share.from_dict(share_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

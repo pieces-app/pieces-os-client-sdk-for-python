@@ -30,7 +30,7 @@ print SeededAsset.to_json()
 # convert the object into a dict
 seeded_asset_dict = seeded_asset_instance.to_dict()
 # create an instance of SeededAsset from a dict
-seeded_asset_form_dict = seeded_asset.from_dict(seeded_asset_dict)
+seeded_asset_from_dict = SeededAsset.from_dict(seeded_asset_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

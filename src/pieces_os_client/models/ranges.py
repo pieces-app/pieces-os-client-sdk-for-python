@@ -29,9 +29,9 @@ class Ranges(BaseModel):
     """
     This is a collection of many Ranges  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     iterable: conlist(Range) = Field(...)
-    indices: Optional[Dict[str, StrictInt]] = Field(None, description="This is a Map<String, int> where the the key is an range id.")
+    indices: Optional[Dict[str, StrictInt]] = Field(default=None, description="This is a Map<String, int> where the the key is an range id.")
     score: Optional[Score] = None
     continuous: Optional[StrictBool] = None
     __properties = ["schema", "iterable", "indices", "score", "continuous"]

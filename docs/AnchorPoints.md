@@ -25,7 +25,7 @@ print AnchorPoints.to_json()
 # convert the object into a dict
 anchor_points_dict = anchor_points_instance.to_dict()
 # create an instance of AnchorPoints from a dict
-anchor_points_form_dict = anchor_points.from_dict(anchor_points_dict)
+anchor_points_from_dict = AnchorPoints.from_dict(anchor_points_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

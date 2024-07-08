@@ -5,6 +5,7 @@ All URIs are relative to *http://localhost:1000*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**workstream_suggestions_refresh**](WorkstreamApi.md#workstream_suggestions_refresh) | **POST** /workstream/suggestions/refresh | /workstream/suggestions/refresh [POST]
+[**workstream_suggestions_stream**](WorkstreamApi.md#workstream_suggestions_stream) | **GET** /workstream/suggestions/stream | /workstream/suggestions/stream [WS]
 
 
 # **workstream_suggestions_refresh**
@@ -66,6 +67,70 @@ No authorization required
 ### HTTP request headers
 
  - **Content-Type**: application/json
+ - **Accept**: application/json, text/plain
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**500** | Internal Server Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **workstream_suggestions_stream**
+> WorkstreamSuggestions workstream_suggestions_stream()
+
+/workstream/suggestions/stream [WS]
+
+Provides a WebSocket connection that emits changes to your workstream suggestions.
+
+### Example
+
+```python
+import time
+import os
+import pieces_os_client
+from pieces_os_client.models.workstream_suggestions import WorkstreamSuggestions
+from pieces_os_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to http://localhost:1000
+# See configuration.py for a list of all supported configuration parameters.
+configuration = pieces_os_client.Configuration(
+    host = "http://localhost:1000"
+)
+
+
+# Enter a context with an instance of the API client
+with pieces_os_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = pieces_os_client.WorkstreamApi(api_client)
+
+    try:
+        # /workstream/suggestions/stream [WS]
+        api_response = api_instance.workstream_suggestions_stream()
+        print("The response of WorkstreamApi->workstream_suggestions_stream:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling WorkstreamApi->workstream_suggestions_stream: %s\n" % e)
+```
+
+
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+[**WorkstreamSuggestions**](WorkstreamSuggestions.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
  - **Accept**: application/json, text/plain
 
 ### HTTP response details

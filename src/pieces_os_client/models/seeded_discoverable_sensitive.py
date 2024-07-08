@@ -31,9 +31,9 @@ class SeededDiscoverableSensitive(BaseModel):
     """
     This is the SeededDiscoverableSensitive, this has every property that the seededSensitive has except this one is all optionally passed in. and will override our classification if provided.  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     asset: StrictStr = Field(...)
-    text: StrictStr = Field(..., description="this is the string representative of the sensative piece of data.")
+    text: StrictStr = Field(default=..., description="this is the string representative of the sensative piece of data.")
     mechanism: Optional[MechanismEnum] = None
     category: Optional[SensitiveCategoryEnum] = None
     severity: Optional[SensitiveSeverityEnum] = None

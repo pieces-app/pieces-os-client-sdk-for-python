@@ -22,7 +22,7 @@ print ExternalProviders.to_json()
 # convert the object into a dict
 external_providers_dict = external_providers_instance.to_dict()
 # create an instance of ExternalProviders from a dict
-external_providers_form_dict = external_providers.from_dict(external_providers_dict)
+external_providers_from_dict = ExternalProviders.from_dict(external_providers_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

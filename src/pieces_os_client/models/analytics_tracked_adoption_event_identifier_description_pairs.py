@@ -27,7 +27,7 @@ class AnalyticsTrackedAdoptionEventIdentifierDescriptionPairs(BaseModel):
     """
     AnalyticsTrackedAdoptionEventIdentifierDescriptionPairs
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     adoption_install: Optional[StrictStr] = None
     adoption_uninstall: Optional[StrictStr] = None
     __properties = ["schema", "adoption_install", "adoption_uninstall"]

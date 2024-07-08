@@ -25,7 +25,7 @@ print SeededAssetTag.to_json()
 # convert the object into a dict
 seeded_asset_tag_dict = seeded_asset_tag_instance.to_dict()
 # create an instance of SeededAssetTag from a dict
-seeded_asset_tag_form_dict = seeded_asset_tag.from_dict(seeded_asset_tag_dict)
+seeded_asset_tag_from_dict = SeededAssetTag.from_dict(seeded_asset_tag_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

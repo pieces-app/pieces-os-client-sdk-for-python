@@ -25,7 +25,7 @@ print BackupStatus.to_json()
 # convert the object into a dict
 backup_status_dict = backup_status_instance.to_dict()
 # create an instance of BackupStatus from a dict
-backup_status_form_dict = backup_status.from_dict(backup_status_dict)
+backup_status_from_dict = BackupStatus.from_dict(backup_status_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

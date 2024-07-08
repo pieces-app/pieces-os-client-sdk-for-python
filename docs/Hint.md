@@ -32,7 +32,7 @@ print Hint.to_json()
 # convert the object into a dict
 hint_dict = hint_instance.to_dict()
 # create an instance of Hint from a dict
-hint_form_dict = hint.from_dict(hint_dict)
+hint_from_dict = Hint.from_dict(hint_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

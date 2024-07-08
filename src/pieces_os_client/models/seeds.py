@@ -28,7 +28,7 @@ class Seeds(BaseModel):
     """
     This is a plural model for multiple Seed.  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     iterable: conlist(Seed) = Field(...)
     __properties = ["schema", "iterable"]
 

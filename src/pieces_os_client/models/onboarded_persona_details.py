@@ -28,7 +28,7 @@ class OnboardedPersonaDetails(BaseModel):
     """
     This is an out body for the /machine_learning/text/technical_processing/generators/personification endpoint.  This will have accepted some of the personal details (in the input body) ie languages/personas && will transform this in to onbaording snippets that we will return with this model  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     seeds: Seeds = Field(...)
     __properties = ["schema", "seeds"]
 

@@ -28,7 +28,7 @@ class CreatedExternalProviderApiKey(BaseModel):
     """
     This is the outputmodel for /external_provider/api_key/create  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     metadata: Auth0UserMetadata = Field(...)
     __properties = ["schema", "metadata"]
 

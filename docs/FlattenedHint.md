@@ -32,7 +32,7 @@ print FlattenedHint.to_json()
 # convert the object into a dict
 flattened_hint_dict = flattened_hint_instance.to_dict()
 # create an instance of FlattenedHint from a dict
-flattened_hint_form_dict = flattened_hint.from_dict(flattened_hint_dict)
+flattened_hint_from_dict = FlattenedHint.from_dict(flattened_hint_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

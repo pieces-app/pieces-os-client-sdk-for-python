@@ -23,7 +23,7 @@ print InteractedAssetInteractions.to_json()
 # convert the object into a dict
 interacted_asset_interactions_dict = interacted_asset_interactions_instance.to_dict()
 # create an instance of InteractedAssetInteractions from a dict
-interacted_asset_interactions_form_dict = interacted_asset_interactions.from_dict(interacted_asset_interactions_dict)
+interacted_asset_interactions_from_dict = InteractedAssetInteractions.from_dict(interacted_asset_interactions_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

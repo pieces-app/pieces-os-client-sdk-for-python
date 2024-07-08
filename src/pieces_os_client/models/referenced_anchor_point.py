@@ -27,7 +27,7 @@ class ReferencedAnchorPoint(BaseModel):
     """
     ReferencedAnchorPoint
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     id: StrictStr = Field(...)
     reference: Optional[FlattenedAnchorPoint] = None
     __properties = ["schema", "id", "reference"]

@@ -27,11 +27,11 @@ class TransferableString(BaseModel):
     """
     This is a String representaion of any of these changes.  [NOT IMPLEMENTED] base64, base64_url, data_url [IMPLEMENTED] raw  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
-    raw: Optional[StrictStr] = Field(None, description="IMPLEMENTED")
-    var_base64: Optional[StrictStr] = Field(None, alias="base64", description="NOT IMPLEMENTED")
-    base64_url: Optional[StrictStr] = Field(None, description="NOT IMPLEMENTED")
-    data_url: Optional[StrictStr] = Field(None, description="NOT IMPLEMENTED")
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
+    raw: Optional[StrictStr] = Field(default=None, description="IMPLEMENTED")
+    var_base64: Optional[StrictStr] = Field(default=None, alias="base64", description="NOT IMPLEMENTED")
+    base64_url: Optional[StrictStr] = Field(default=None, description="NOT IMPLEMENTED")
+    data_url: Optional[StrictStr] = Field(default=None, description="NOT IMPLEMENTED")
     __properties = ["schema", "raw", "base64", "base64_url", "data_url"]
 
     class Config:

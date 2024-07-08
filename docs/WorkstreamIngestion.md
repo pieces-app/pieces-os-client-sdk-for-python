@@ -22,7 +22,7 @@ print WorkstreamIngestion.to_json()
 # convert the object into a dict
 workstream_ingestion_dict = workstream_ingestion_instance.to_dict()
 # create an instance of WorkstreamIngestion from a dict
-workstream_ingestion_form_dict = workstream_ingestion.from_dict(workstream_ingestion_dict)
+workstream_ingestion_from_dict = WorkstreamIngestion.from_dict(workstream_ingestion_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

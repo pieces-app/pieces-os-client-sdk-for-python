@@ -27,7 +27,7 @@ class UnsegmentedTechnicalLanguage(BaseModel):
     """
     This is the input model for '/machine_learning/text/technical_language/parsers/segmentation'  This will take the unsegmentedText here!  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     value: StrictStr = Field(...)
     __properties = ["schema", "value"]
 

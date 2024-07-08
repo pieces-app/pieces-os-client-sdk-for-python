@@ -37,7 +37,7 @@ class Format(BaseModel):
     """
     A representation of Data for a particular Form Factor of an Asset.  Below asset HAS to be Flattened because it is a leaf node and must prevent cycles agressively.  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     id: StrictStr = Field(...)
     creator: StrictStr = Field(...)
     classification: Classification = Field(...)
@@ -50,7 +50,7 @@ class Format(BaseModel):
     updated: GroupedTimestamp = Field(...)
     deleted: Optional[GroupedTimestamp] = None
     synced: Optional[GroupedTimestamp] = None
-    cloud: Optional[StrictStr] = Field(None, description="This is a path used to determine what path this format lives at within the cloud.")
+    cloud: Optional[StrictStr] = Field(default=None, description="This is a path used to determine what path this format lives at within the cloud.")
     fragment: Optional[FragmentFormat] = None
     file: Optional[FileFormat] = None
     analysis: Optional[Analysis] = None

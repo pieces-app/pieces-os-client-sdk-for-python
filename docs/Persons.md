@@ -25,7 +25,7 @@ print Persons.to_json()
 # convert the object into a dict
 persons_dict = persons_instance.to_dict()
 # create an instance of Persons from a dict
-persons_form_dict = persons.from_dict(persons_dict)
+persons_from_dict = Persons.from_dict(persons_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

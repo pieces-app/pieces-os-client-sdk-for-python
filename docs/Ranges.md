@@ -26,7 +26,7 @@ print Ranges.to_json()
 # convert the object into a dict
 ranges_dict = ranges_instance.to_dict()
 # create an instance of Ranges from a dict
-ranges_form_dict = ranges.from_dict(ranges_dict)
+ranges_from_dict = Ranges.from_dict(ranges_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

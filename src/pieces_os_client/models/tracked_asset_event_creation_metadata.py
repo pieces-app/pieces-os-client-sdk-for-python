@@ -29,7 +29,7 @@ class TrackedAssetEventCreationMetadata(BaseModel):
     """
     Metadata attached to a creation event on an Asset  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     clipboard: Optional[TrackedAssetEventCreationMetadataClipboard] = None
     file: Optional[TrackedAssetEventCreationMetadataFile] = None
     __properties = ["schema", "clipboard", "file"]

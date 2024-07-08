@@ -25,7 +25,7 @@ print Anchors.to_json()
 # convert the object into a dict
 anchors_dict = anchors_instance.to_dict()
 # create an instance of Anchors from a dict
-anchors_form_dict = anchors.from_dict(anchors_dict)
+anchors_from_dict = Anchors.from_dict(anchors_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

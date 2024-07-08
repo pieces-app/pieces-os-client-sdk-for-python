@@ -26,15 +26,15 @@ class OAuthAccount(BaseModel):
     """
     A Model to support account creation to Auth0's Database.  # noqa: E501
     """
-    client_id: constr(strict=True, min_length=1) = Field(..., description="The client_id of your client.")
-    email: constr(strict=True, min_length=1) = Field(..., description="The user's email address.")
-    connection: constr(strict=True, min_length=1) = Field(..., description="The name of the database configured to your client.")
-    username: constr(strict=True, min_length=1) = Field(..., description="The user's username. Only valid if the connection requires a username.")
-    given_name: constr(strict=True, min_length=1) = Field(..., description="The user's given name(s).")
-    family_name: constr(strict=True, min_length=1) = Field(..., description="The user's family name(s).")
-    name: constr(strict=True, min_length=1) = Field(..., description="The user's full name.")
-    picture: constr(strict=True, min_length=1) = Field(..., description="A URI pointing to the user's picture.")
-    nickname: constr(strict=True, min_length=1) = Field(..., description="The user's nickname.")
+    client_id: constr(strict=True, min_length=1) = Field(default=..., description="The client_id of your client.")
+    email: constr(strict=True, min_length=1) = Field(default=..., description="The user's email address.")
+    connection: constr(strict=True, min_length=1) = Field(default=..., description="The name of the database configured to your client.")
+    username: constr(strict=True, min_length=1) = Field(default=..., description="The user's username. Only valid if the connection requires a username.")
+    given_name: constr(strict=True, min_length=1) = Field(default=..., description="The user's given name(s).")
+    family_name: constr(strict=True, min_length=1) = Field(default=..., description="The user's family name(s).")
+    name: constr(strict=True, min_length=1) = Field(default=..., description="The user's full name.")
+    picture: constr(strict=True, min_length=1) = Field(default=..., description="A URI pointing to the user's picture.")
+    nickname: constr(strict=True, min_length=1) = Field(default=..., description="The user's nickname.")
     __properties = ["client_id", "email", "connection", "username", "given_name", "family_name", "name", "picture", "nickname"]
 
     class Config:

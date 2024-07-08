@@ -25,7 +25,7 @@ print Websites.to_json()
 # convert the object into a dict
 websites_dict = websites_instance.to_dict()
 # create an instance of Websites from a dict
-websites_form_dict = websites.from_dict(websites_dict)
+websites_from_dict = Websites.from_dict(websites_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

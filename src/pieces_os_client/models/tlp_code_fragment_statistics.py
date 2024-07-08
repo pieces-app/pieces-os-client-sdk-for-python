@@ -28,7 +28,7 @@ class TLPCodeFragmentStatistics(BaseModel):
     """
     TLPCodeFragmentStatistics
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     descriptive: Optional[TLPCodeFragmentDescriptiveStatistics] = None
     __properties = ["schema", "descriptive"]
 

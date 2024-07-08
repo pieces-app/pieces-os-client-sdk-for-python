@@ -23,7 +23,7 @@ print WorkstreamPatternEngineStatus.to_json()
 # convert the object into a dict
 workstream_pattern_engine_status_dict = workstream_pattern_engine_status_instance.to_dict()
 # create an instance of WorkstreamPatternEngineStatus from a dict
-workstream_pattern_engine_status_form_dict = workstream_pattern_engine_status.from_dict(workstream_pattern_engine_status_dict)
+workstream_pattern_engine_status_from_dict = WorkstreamPatternEngineStatus.from_dict(workstream_pattern_engine_status_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

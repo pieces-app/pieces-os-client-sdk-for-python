@@ -30,7 +30,7 @@ class StreamedIdentifier(BaseModel):
     """
     asset: Optional[ReferencedAsset] = None
     conversation: Optional[ReferencedConversation] = None
-    deleted: Optional[StrictBool] = Field(None, description="This is a specific bool that will let us know if we deleted an Identifierfrom the db.")
+    deleted: Optional[StrictBool] = Field(default=None, description="This is a specific bool that will let us know if we deleted an Identifierfrom the db.")
     __properties = ["asset", "conversation", "deleted"]
 
     class Config:

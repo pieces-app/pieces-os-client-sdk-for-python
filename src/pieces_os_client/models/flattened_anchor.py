@@ -30,7 +30,7 @@ class FlattenedAnchor(BaseModel):
     """
     FlattenedAnchor
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     id: StrictStr = Field(...)
     type: AnchorTypeEnum = Field(...)
     watch: Optional[StrictBool] = None
@@ -44,7 +44,8 @@ class FlattenedAnchor(BaseModel):
     conversations: Optional[FlattenedConversations] = None
     score: Optional[Score] = None
     summaries: Optional[FlattenedWorkstreamSummaries] = None
-    __properties = ["schema", "id", "type", "watch", "points", "created", "updated", "deleted", "assets", "name", "annotations", "conversations", "score", "summaries"]
+    persons: Optional[FlattenedPersons] = None
+    __properties = ["schema", "id", "type", "watch", "points", "created", "updated", "deleted", "assets", "name", "annotations", "conversations", "score", "summaries", "persons"]
 
     class Config:
         """Pydantic configuration"""
@@ -100,6 +101,9 @@ class FlattenedAnchor(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of summaries
         if self.summaries:
             _dict['summaries'] = self.summaries.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of persons
+        if self.persons:
+            _dict['persons'] = self.persons.to_dict()
         return _dict
 
     @classmethod
@@ -125,7 +129,8 @@ class FlattenedAnchor(BaseModel):
             "annotations": FlattenedAnnotations.from_dict(obj.get("annotations")) if obj.get("annotations") is not None else None,
             "conversations": FlattenedConversations.from_dict(obj.get("conversations")) if obj.get("conversations") is not None else None,
             "score": Score.from_dict(obj.get("score")) if obj.get("score") is not None else None,
-            "summaries": FlattenedWorkstreamSummaries.from_dict(obj.get("summaries")) if obj.get("summaries") is not None else None
+            "summaries": FlattenedWorkstreamSummaries.from_dict(obj.get("summaries")) if obj.get("summaries") is not None else None,
+            "persons": FlattenedPersons.from_dict(obj.get("persons")) if obj.get("persons") is not None else None
         })
         return _obj
 
@@ -133,6 +138,7 @@ from pieces_os_client.models.flattened_anchor_points import FlattenedAnchorPoint
 from pieces_os_client.models.flattened_annotations import FlattenedAnnotations
 from pieces_os_client.models.flattened_assets import FlattenedAssets
 from pieces_os_client.models.flattened_conversations import FlattenedConversations
+from pieces_os_client.models.flattened_persons import FlattenedPersons
 from pieces_os_client.models.flattened_workstream_summaries import FlattenedWorkstreamSummaries
 FlattenedAnchor.update_forward_refs()
 

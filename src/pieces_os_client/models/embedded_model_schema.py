@@ -27,7 +27,7 @@ class EmbeddedModelSchema(BaseModel):
     """
     This is a model that will keep track of all of our version related to our models. ie (1) the database migration and (2) the global semantic version of the api.  # noqa: E501
     """
-    migration: StrictInt = Field(..., description="this is the current database version that this model was used for.")
+    migration: StrictInt = Field(default=..., description="this is the current database version that this model was used for.")
     semantic: EmbeddedModelSchemaSemanticVersionEnum = Field(...)
     __properties = ["migration", "semantic"]
 

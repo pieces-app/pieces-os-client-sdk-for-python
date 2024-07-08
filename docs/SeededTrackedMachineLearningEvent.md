@@ -23,7 +23,7 @@ print SeededTrackedMachineLearningEvent.to_json()
 # convert the object into a dict
 seeded_tracked_machine_learning_event_dict = seeded_tracked_machine_learning_event_instance.to_dict()
 # create an instance of SeededTrackedMachineLearningEvent from a dict
-seeded_tracked_machine_learning_event_form_dict = seeded_tracked_machine_learning_event.from_dict(seeded_tracked_machine_learning_event_dict)
+seeded_tracked_machine_learning_event_from_dict = SeededTrackedMachineLearningEvent.from_dict(seeded_tracked_machine_learning_event_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

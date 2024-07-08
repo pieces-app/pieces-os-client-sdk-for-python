@@ -28,9 +28,9 @@ class FlattenedWorkstreamSummaries(BaseModel):
     """
     This is a DAG-Safe plural model of workstreamsummaries  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     iterable: conlist(ReferencedWorkstreamSummary) = Field(...)
-    indices: Optional[Dict[str, StrictInt]] = Field(None, description="This is a Map<String, int> where the the key is an summary id.")
+    indices: Optional[Dict[str, StrictInt]] = Field(default=None, description="This is a Map<String, int> where the the key is an summary id.")
     score: Optional[Score] = None
     __properties = ["schema", "iterable", "indices", "score"]
 

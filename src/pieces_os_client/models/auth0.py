@@ -34,12 +34,12 @@ class Auth0(BaseModel):
     identity: Optional[Auth0Identity] = None
     user: Optional[Auth0User] = None
     metadata: Optional[Auth0UserMetadata] = None
-    domain: StrictStr = Field(..., description="The domain of your Auth 0 Service")
-    client: StrictStr = Field(..., description="The Client ID for your Auth0 Service")
-    audience: StrictStr = Field(..., description="The Server Audience of your Auth0 Service")
+    domain: StrictStr = Field(default=..., description="The domain of your Auth 0 Service")
+    client: StrictStr = Field(default=..., description="The Client ID for your Auth0 Service")
+    audience: StrictStr = Field(default=..., description="The Server Audience of your Auth0 Service")
     redirects: Auth0Redirects = Field(...)
-    o_auth: OAuthGroup = Field(..., alias="oAuth")
-    namespace: Optional[StrictStr] = Field(None, description="An optional namespace parameter to add an additional namespace")
+    o_auth: OAuthGroup = Field(default=..., alias="oAuth")
+    namespace: Optional[StrictStr] = Field(default=None, description="An optional namespace parameter to add an additional namespace")
     __properties = ["identity", "user", "metadata", "domain", "client", "audience", "redirects", "oAuth", "namespace"]
 
     class Config:

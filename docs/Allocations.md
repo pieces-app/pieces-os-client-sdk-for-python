@@ -22,7 +22,7 @@ print Allocations.to_json()
 # convert the object into a dict
 allocations_dict = allocations_instance.to_dict()
 # create an instance of Allocations from a dict
-allocations_form_dict = allocations.from_dict(allocations_dict)
+allocations_from_dict = Allocations.from_dict(allocations_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

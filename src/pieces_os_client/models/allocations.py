@@ -28,7 +28,7 @@ class Allocations(BaseModel):
     """
     Allocations
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     iterable: conlist(AllocationCloud) = Field(...)
     __properties = ["schema", "iterable"]
 

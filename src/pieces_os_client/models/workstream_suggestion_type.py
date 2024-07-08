@@ -26,7 +26,7 @@ class WorkstreamSuggestionType(BaseModel):
     """
     This is used to map the types of the iterable to given booleans of their respective material types  # noqa: E501
     """
-    var_schema: Optional[StrictBool] = Field(None, alias="schema")
+    var_schema: Optional[StrictBool] = Field(default=None, alias="schema")
     summary: Optional[StrictBool] = None
     asset: Optional[StrictBool] = None
     tag: Optional[StrictBool] = None
@@ -34,6 +34,8 @@ class WorkstreamSuggestionType(BaseModel):
     anchor: Optional[StrictBool] = None
     conversation: Optional[StrictBool] = None
     person: Optional[StrictBool] = None
+    seed: Optional[StrictBool] = None
+    seeds: Optional[StrictBool] = None
     summaries: Optional[StrictBool] = None
     assets: Optional[StrictBool] = None
     tags: Optional[StrictBool] = None
@@ -41,7 +43,7 @@ class WorkstreamSuggestionType(BaseModel):
     anchors: Optional[StrictBool] = None
     conversations: Optional[StrictBool] = None
     persons: Optional[StrictBool] = None
-    __properties = ["schema", "summary", "asset", "tag", "website", "anchor", "conversation", "person", "summaries", "assets", "tags", "websites", "anchors", "conversations", "persons"]
+    __properties = ["schema", "summary", "asset", "tag", "website", "anchor", "conversation", "person", "seed", "seeds", "summaries", "assets", "tags", "websites", "anchors", "conversations", "persons"]
 
     class Config:
         """Pydantic configuration"""
@@ -87,6 +89,8 @@ class WorkstreamSuggestionType(BaseModel):
             "anchor": obj.get("anchor"),
             "conversation": obj.get("conversation"),
             "person": obj.get("person"),
+            "seed": obj.get("seed"),
+            "seeds": obj.get("seeds"),
             "summaries": obj.get("summaries"),
             "assets": obj.get("assets"),
             "tags": obj.get("tags"),

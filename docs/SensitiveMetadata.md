@@ -24,7 +24,7 @@ print SensitiveMetadata.to_json()
 # convert the object into a dict
 sensitive_metadata_dict = sensitive_metadata_instance.to_dict()
 # create an instance of SensitiveMetadata from a dict
-sensitive_metadata_form_dict = sensitive_metadata.from_dict(sensitive_metadata_dict)
+sensitive_metadata_from_dict = SensitiveMetadata.from_dict(sensitive_metadata_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

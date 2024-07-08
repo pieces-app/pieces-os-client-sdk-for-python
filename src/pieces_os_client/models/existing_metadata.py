@@ -29,7 +29,7 @@ class ExistingMetadata(BaseModel):
     """
     This is a shared input model for all the exists endpoints: /tags/exists : if the tag exists you will have a defined tag:ReferencedTag, if not then it doesnt exist. /websites/exists: if the url exists you will have a defined website:ReferencedWebsite, if not then it doesnt exist.  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     website: Optional[ReferencedWebsite] = None
     tag: Optional[ReferencedTag] = None
     __properties = ["schema", "website", "tag"]

@@ -25,7 +25,7 @@ print ModelMaxTokens.to_json()
 # convert the object into a dict
 model_max_tokens_dict = model_max_tokens_instance.to_dict()
 # create an instance of ModelMaxTokens from a dict
-model_max_tokens_form_dict = model_max_tokens.from_dict(model_max_tokens_dict)
+model_max_tokens_from_dict = ModelMaxTokens.from_dict(model_max_tokens_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

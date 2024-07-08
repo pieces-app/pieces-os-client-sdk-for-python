@@ -27,7 +27,7 @@ class ProjectModules(BaseModel):
     """
     This is a plural representation of the ProjectModule  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     iterable: conlist(ProjectModule) = Field(...)
     __properties = ["schema", "iterable"]
 

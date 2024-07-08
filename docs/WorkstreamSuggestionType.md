@@ -13,6 +13,8 @@ Name | Type | Description | Notes
 **anchor** | **bool** |  | [optional] 
 **conversation** | **bool** |  | [optional] 
 **person** | **bool** |  | [optional] 
+**seed** | **bool** |  | [optional] 
+**seeds** | **bool** |  | [optional] 
 **summaries** | **bool** |  | [optional] 
 **assets** | **bool** |  | [optional] 
 **tags** | **bool** |  | [optional] 
@@ -36,7 +38,7 @@ print WorkstreamSuggestionType.to_json()
 # convert the object into a dict
 workstream_suggestion_type_dict = workstream_suggestion_type_instance.to_dict()
 # create an instance of WorkstreamSuggestionType from a dict
-workstream_suggestion_type_form_dict = workstream_suggestion_type.from_dict(workstream_suggestion_type_dict)
+workstream_suggestion_type_from_dict = WorkstreamSuggestionType.from_dict(workstream_suggestion_type_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

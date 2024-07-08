@@ -33,7 +33,7 @@ class FlattenedConversationMessage(BaseModel):
     """
     This is a flattened DAG safe version of a ConversationMessage.  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     id: StrictStr = Field(...)
     created: GroupedTimestamp = Field(...)
     updated: GroupedTimestamp = Field(...)

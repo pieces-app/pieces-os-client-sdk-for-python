@@ -28,7 +28,7 @@ class SeededDiscoverableSensitives(BaseModel):
     """
     SeededDiscoverableSensitives
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     iterable: conlist(SeededDiscoverableSensitive) = Field(...)
     application: StrictStr = Field(...)
     __properties = ["schema", "iterable", "application"]

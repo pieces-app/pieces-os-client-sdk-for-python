@@ -28,7 +28,7 @@ class SeededTrackedAssetEvent(BaseModel):
     """
     This seeded tracked asset event will be recieved by a context on the OS Server side, which will then be able to look up the asset id and structure the asset for shipment to Segment aka a fully built TrackedAssetEvent  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     asset: ReferencedAsset = Field(...)
     identifier_description_pair: TrackedAssetEventIdentifierDescriptionPairs = Field(...)
     metadata: Optional[TrackedAssetEventMetadata] = None

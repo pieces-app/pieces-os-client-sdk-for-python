@@ -27,7 +27,7 @@ class WorkstreamEventTriggerContextIDE(BaseModel):
     """
     This is the given context for an IDE.  tabs: this here refers to the tabs w/in the IDE.  Modules here are the given repositories  Name: this is the name of a workspace, but not required.  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     tabs: Optional[IDETabs] = None
     modules: Optional[ProjectModules] = None
     name: Optional[StrictStr] = None

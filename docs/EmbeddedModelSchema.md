@@ -23,7 +23,7 @@ print EmbeddedModelSchema.to_json()
 # convert the object into a dict
 embedded_model_schema_dict = embedded_model_schema_instance.to_dict()
 # create an instance of EmbeddedModelSchema from a dict
-embedded_model_schema_form_dict = embedded_model_schema.from_dict(embedded_model_schema_dict)
+embedded_model_schema_from_dict = EmbeddedModelSchema.from_dict(embedded_model_schema_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

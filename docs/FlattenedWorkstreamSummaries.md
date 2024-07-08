@@ -25,7 +25,7 @@ print FlattenedWorkstreamSummaries.to_json()
 # convert the object into a dict
 flattened_workstream_summaries_dict = flattened_workstream_summaries_instance.to_dict()
 # create an instance of FlattenedWorkstreamSummaries from a dict
-flattened_workstream_summaries_form_dict = flattened_workstream_summaries.from_dict(flattened_workstream_summaries_dict)
+flattened_workstream_summaries_from_dict = FlattenedWorkstreamSummaries.from_dict(flattened_workstream_summaries_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

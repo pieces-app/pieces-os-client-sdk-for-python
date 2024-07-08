@@ -28,7 +28,7 @@ class GraphicalOCRProcessing(BaseModel):
     """
     GraphicalOCRProcessing
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     statistics: Optional[GraphicalOCRStatistics] = None
     __properties = ["schema", "statistics"]
 

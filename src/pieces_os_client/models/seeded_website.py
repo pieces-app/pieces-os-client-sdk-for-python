@@ -28,13 +28,13 @@ class SeededWebsite(BaseModel):
     """
     This is the minimum information required to create a website for a specific asset.  you can optionally add an asset, or person id to attach this website directly to it  TODO consider updating these asset,format to referenced Models  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
-    asset: Optional[StrictStr] = Field(None, description="This is the specific asset that this website is going to get attached to!!")
-    conversation: Optional[StrictStr] = Field(None, description="This is the specific conversation that this website is going to get attached to!!")
-    url: StrictStr = Field(..., description="this is the url of the website.")
-    name: StrictStr = Field(..., description="name of the website.(customizable and updateable as well.)")
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
+    asset: Optional[StrictStr] = Field(default=None, description="This is the specific asset that this website is going to get attached to!!")
+    conversation: Optional[StrictStr] = Field(default=None, description="This is the specific conversation that this website is going to get attached to!!")
+    url: StrictStr = Field(default=..., description="this is the url of the website.")
+    name: StrictStr = Field(default=..., description="name of the website.(customizable and updateable as well.)")
     mechanism: Optional[MechanismEnum] = None
-    person: Optional[StrictStr] = Field(None, description="this is a uuid of a person that we are going to add the website too.")
+    person: Optional[StrictStr] = Field(default=None, description="this is a uuid of a person that we are going to add the website too.")
     __properties = ["schema", "asset", "conversation", "url", "name", "mechanism", "person"]
 
     class Config:

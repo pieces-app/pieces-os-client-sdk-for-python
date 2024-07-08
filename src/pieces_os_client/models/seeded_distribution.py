@@ -29,7 +29,7 @@ class SeededDistribution(BaseModel):
     """
     TODO if we add another distribution add to this, Distribution, and flattenedDistribution.  can only use this Model with our Linkify Model.  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     mailgun: Optional[MailgunDistribution] = None
     github: Optional[SeededGitHubDistribution] = None
     __properties = ["schema", "mailgun", "github"]

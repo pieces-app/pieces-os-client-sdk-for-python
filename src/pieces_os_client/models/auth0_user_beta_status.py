@@ -28,7 +28,7 @@ class Auth0UserBetaStatus(BaseModel):
     """
     Note: continuous: this means that from this moment in time, the user is continuously opted into beta  otherwise we will use the from/to values provided.  Note: in order to opt out of vision, you will just end their beta w/ the updated with a to property that is effectively right now in time.  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     vision: Optional[AnonymousTemporalRange] = None
     __properties = ["schema", "vision"]
 

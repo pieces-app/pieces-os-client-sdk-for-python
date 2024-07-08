@@ -28,7 +28,7 @@ class TextMatch(BaseModel):
     """
     Thext Match currently used for sensitive for scales for people, and anything related to text matching.  group: is the entire match subgroup is the inner match within the group.(optional)  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     group: TextLocation = Field(...)
     subgroup: Optional[TextLocation] = None
     __properties = ["schema", "group", "subgroup"]

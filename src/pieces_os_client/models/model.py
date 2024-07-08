@@ -34,27 +34,27 @@ class Model(BaseModel):
     """
     This is a Machine Learning Model, that will give readable information about the Machine Learning Model Used.  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
-    id: StrictStr = Field(..., description="uuid ")
-    version: StrictStr = Field(..., description="this is a version of the model.")
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
+    id: StrictStr = Field(default=..., description="uuid ")
+    version: StrictStr = Field(default=..., description="this is a version of the model.")
     created: GroupedTimestamp = Field(...)
-    name: StrictStr = Field(..., description="This is an Optional Name of the Model.")
-    description: Optional[StrictStr] = Field(None, description="An Optional Description of the model itself.")
-    cloud: StrictBool = Field(..., description="This will inform the user if this was a model that is hosted in the cloud")
+    name: StrictStr = Field(default=..., description="This is an Optional Name of the Model.")
+    description: Optional[StrictStr] = Field(default=None, description="An Optional Description of the model itself.")
+    cloud: StrictBool = Field(default=..., description="This will inform the user if this was a model that is hosted in the cloud")
     type: ModelTypeEnum = Field(...)
     usage: ModelUsageEnum = Field(...)
     bytes: Optional[ByteDescriptor] = None
     ram: Optional[ByteDescriptor] = None
-    quantization: Optional[StrictStr] = Field(None, description="quantization is a string like: q8f16_0,  q4f16_1, etc...")
+    quantization: Optional[StrictStr] = Field(default=None, description="quantization is a string like: q8f16_0,  q4f16_1, etc...")
     foundation: Optional[ModelFoundationEnum] = None
-    downloaded: Optional[StrictBool] = Field(None, description="This is an optional bool to let us know if this model has been downloaded locally.")
-    loaded: Optional[StrictBool] = Field(None, description="This is a boolean that represents if the model is loaded into memory.(this is not persisted, and is calculated on the fly.)")
-    unique: Optional[StrictStr] = Field(None, description="This is the unique model name used to load the model.")
-    parameters: Optional[Union[StrictFloat, StrictInt]] = Field(None, description="This is the number of parameters in terms of billions.")
+    downloaded: Optional[StrictBool] = Field(default=None, description="This is an optional bool to let us know if this model has been downloaded locally.")
+    loaded: Optional[StrictBool] = Field(default=None, description="This is a boolean that represents if the model is loaded into memory.(this is not persisted, and is calculated on the fly.)")
+    unique: Optional[StrictStr] = Field(default=None, description="This is the unique model name used to load the model.")
+    parameters: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="This is the number of parameters in terms of billions.")
     provider: Optional[ExternalMLProviderEnum] = None
-    cpu: Optional[StrictBool] = Field(None, description="This is an optional bool that is optimized for CPU usage.")
-    downloading: Optional[StrictBool] = Field(None, description="This is a calculated property, that will say if this is currently downloading.")
-    max_tokens: Optional[ModelMaxTokens] = Field(None, alias="maxTokens")
+    cpu: Optional[StrictBool] = Field(default=None, description="This is an optional bool that is optimized for CPU usage.")
+    downloading: Optional[StrictBool] = Field(default=None, description="This is a calculated property, that will say if this is currently downloading.")
+    max_tokens: Optional[ModelMaxTokens] = Field(default=None, alias="maxTokens")
     custom: Optional[StrictBool] = None
     __properties = ["schema", "id", "version", "created", "name", "description", "cloud", "type", "usage", "bytes", "ram", "quantization", "foundation", "downloaded", "loaded", "unique", "parameters", "provider", "cpu", "downloading", "maxTokens", "custom"]
 

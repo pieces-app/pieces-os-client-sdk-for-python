@@ -32,23 +32,24 @@ class FlattenedPerson(BaseModel):
     """
     if expiration is add then, after the alloted expiration date the user will only have view && comment only permissions. Only present in the case there is a scope such as a defined collection/asset...  if asset is passed then that means this person belongs to a scoped asset.  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     id: StrictStr = Field(...)
     created: GroupedTimestamp = Field(...)
     updated: GroupedTimestamp = Field(...)
     deleted: Optional[GroupedTimestamp] = None
     type: PersonType = Field(...)
     assets: Optional[FlattenedAssets] = None
-    mechanisms: Optional[Dict[str, MechanismEnum]] = Field(None, description="This is a Map<String, MechanismEnum> where the the key is an asset id.")
-    interactions: Optional[StrictInt] = Field(None, description="This is an optional value that will keep track of the number of times this has been interacted with.")
-    access: Optional[Dict[str, PersonAccess]] = Field(None, description="This is a Map<String, PersonAccess> where the the key is an asset id.")
+    mechanisms: Optional[Dict[str, MechanismEnum]] = Field(default=None, description="This is a Map<String, MechanismEnum> where the the key is an asset id.")
+    interactions: Optional[StrictInt] = Field(default=None, description="This is an optional value that will keep track of the number of times this has been interacted with.")
+    access: Optional[Dict[str, PersonAccess]] = Field(default=None, description="This is a Map<String, PersonAccess> where the the key is an asset id.")
     tags: Optional[FlattenedTags] = None
     websites: Optional[FlattenedWebsites] = None
-    models: Optional[Dict[str, PersonModel]] = Field(None, description="This is a Map<String, PersonModel>, where the the key is an asset id.")
+    models: Optional[Dict[str, PersonModel]] = Field(default=None, description="This is a Map<String, PersonModel>, where the the key is an asset id.")
     annotations: Optional[FlattenedAnnotations] = None
     score: Optional[Score] = None
     summaries: Optional[FlattenedWorkstreamSummaries] = None
-    __properties = ["schema", "id", "created", "updated", "deleted", "type", "assets", "mechanisms", "interactions", "access", "tags", "websites", "models", "annotations", "score", "summaries"]
+    anchors: Optional[FlattenedAnchors] = None
+    __properties = ["schema", "id", "created", "updated", "deleted", "type", "assets", "mechanisms", "interactions", "access", "tags", "websites", "models", "annotations", "score", "summaries", "anchors"]
 
     class Config:
         """Pydantic configuration"""
@@ -121,6 +122,9 @@ class FlattenedPerson(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of summaries
         if self.summaries:
             _dict['summaries'] = self.summaries.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of anchors
+        if self.anchors:
+            _dict['anchors'] = self.anchors.to_dict()
         return _dict
 
     @classmethod
@@ -158,10 +162,12 @@ class FlattenedPerson(BaseModel):
             else None,
             "annotations": FlattenedAnnotations.from_dict(obj.get("annotations")) if obj.get("annotations") is not None else None,
             "score": Score.from_dict(obj.get("score")) if obj.get("score") is not None else None,
-            "summaries": FlattenedWorkstreamSummaries.from_dict(obj.get("summaries")) if obj.get("summaries") is not None else None
+            "summaries": FlattenedWorkstreamSummaries.from_dict(obj.get("summaries")) if obj.get("summaries") is not None else None,
+            "anchors": FlattenedAnchors.from_dict(obj.get("anchors")) if obj.get("anchors") is not None else None
         })
         return _obj
 
+from pieces_os_client.models.flattened_anchors import FlattenedAnchors
 from pieces_os_client.models.flattened_annotations import FlattenedAnnotations
 from pieces_os_client.models.flattened_assets import FlattenedAssets
 from pieces_os_client.models.flattened_tags import FlattenedTags

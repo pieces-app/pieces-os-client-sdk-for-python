@@ -28,7 +28,7 @@ class FlattenedSensitives(BaseModel):
     """
     This is a flattened representation of multiple sensitive pieces of data.  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     iterable: conlist(ReferencedSensitive) = Field(...)
     score: Optional[Score] = None
     __properties = ["schema", "iterable", "score"]

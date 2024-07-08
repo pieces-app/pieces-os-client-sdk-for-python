@@ -29,9 +29,9 @@ class Websites(BaseModel):
     """
     This is a specific model for related websites to an asset.  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     iterable: conlist(Website) = Field(...)
-    indices: Optional[Dict[str, StrictInt]] = Field(None, description="This is a Map<String, int> where the the key is an website id.")
+    indices: Optional[Dict[str, StrictInt]] = Field(default=None, description="This is a Map<String, int> where the the key is an website id.")
     score: Optional[Score] = None
     __properties = ["schema", "iterable", "indices", "score"]
 

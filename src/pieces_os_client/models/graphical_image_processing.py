@@ -28,7 +28,7 @@ class GraphicalImageProcessing(BaseModel):
     """
     GraphicalImageProcessing
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     statistics: Optional[GraphicalImageStatistics] = None
     __properties = ["schema", "statistics"]
 

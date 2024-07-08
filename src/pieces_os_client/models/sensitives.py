@@ -29,7 +29,7 @@ class Sensitives(BaseModel):
     """
     This is a model that represents many individual sensitive pieces of data.  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     iterable: conlist(Sensitive) = Field(...)
     score: Optional[Score] = None
     __properties = ["schema", "iterable", "score"]

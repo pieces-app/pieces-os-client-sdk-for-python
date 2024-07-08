@@ -28,7 +28,7 @@ class OpenAIModelsListOutput(BaseModel):
     """
     This is the output model for the /open_ai/models/list endpoint.  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     models: SeededModels = Field(...)
     __properties = ["schema", "models"]
 

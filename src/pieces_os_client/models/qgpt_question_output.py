@@ -28,7 +28,7 @@ class QGPTQuestionOutput(BaseModel):
     """
     This is the output/returned value from the /qgpt/question endpoint. && /qgpt/followup  This will just have a single required property. the possible answers to the question, with a score.  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     answers: QGPTQuestionAnswers = Field(...)
     __properties = ["schema", "answers"]
 

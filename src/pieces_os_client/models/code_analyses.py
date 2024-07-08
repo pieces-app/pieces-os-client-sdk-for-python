@@ -28,7 +28,7 @@ class CodeAnalyses(BaseModel):
     """
     CodeAnalyses
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     iterable: conlist(CodeAnalysis) = Field(...)
     __properties = ["schema", "iterable"]
 

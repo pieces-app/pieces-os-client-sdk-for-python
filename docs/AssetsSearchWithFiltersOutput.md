@@ -23,7 +23,7 @@ print AssetsSearchWithFiltersOutput.to_json()
 # convert the object into a dict
 assets_search_with_filters_output_dict = assets_search_with_filters_output_instance.to_dict()
 # create an instance of AssetsSearchWithFiltersOutput from a dict
-assets_search_with_filters_output_form_dict = assets_search_with_filters_output.from_dict(assets_search_with_filters_output_dict)
+assets_search_with_filters_output_from_dict = AssetsSearchWithFiltersOutput.from_dict(assets_search_with_filters_output_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

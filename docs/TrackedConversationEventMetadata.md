@@ -23,7 +23,7 @@ print TrackedConversationEventMetadata.to_json()
 # convert the object into a dict
 tracked_conversation_event_metadata_dict = tracked_conversation_event_metadata_instance.to_dict()
 # create an instance of TrackedConversationEventMetadata from a dict
-tracked_conversation_event_metadata_form_dict = tracked_conversation_event_metadata.from_dict(tracked_conversation_event_metadata_dict)
+tracked_conversation_event_metadata_from_dict = TrackedConversationEventMetadata.from_dict(tracked_conversation_event_metadata_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -27,8 +27,8 @@ class TrackedAssetsEventIdentifierDescriptionPairs(BaseModel):
     """
     These are all of the available event types that are permitted in an object pair notation.  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
-    assets_searched: Optional[StrictStr] = Field(None, description="A If the assets were searched")
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
+    assets_searched: Optional[StrictStr] = Field(default=None, description="A If the assets were searched")
     __properties = ["schema", "assets_searched"]
 
     @validator('assets_searched')

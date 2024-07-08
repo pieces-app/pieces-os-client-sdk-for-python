@@ -23,7 +23,7 @@ print WorkstreamSuggestionsRefresh.to_json()
 # convert the object into a dict
 workstream_suggestions_refresh_dict = workstream_suggestions_refresh_instance.to_dict()
 # create an instance of WorkstreamSuggestionsRefresh from a dict
-workstream_suggestions_refresh_form_dict = workstream_suggestions_refresh.from_dict(workstream_suggestions_refresh_dict)
+workstream_suggestions_refresh_from_dict = WorkstreamSuggestionsRefresh.from_dict(workstream_suggestions_refresh_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

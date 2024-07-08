@@ -24,7 +24,7 @@ print RevokedPKCE.to_json()
 # convert the object into a dict
 revoked_pkce_dict = revoked_pkce_instance.to_dict()
 # create an instance of RevokedPKCE from a dict
-revoked_pkce_form_dict = revoked_pkce.from_dict(revoked_pkce_dict)
+revoked_pkce_from_dict = RevokedPKCE.from_dict(revoked_pkce_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

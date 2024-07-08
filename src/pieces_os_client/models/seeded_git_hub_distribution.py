@@ -28,7 +28,7 @@ class SeededGitHubDistribution(BaseModel):
     """
     SeededGitHubDistribution
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     gist: Optional[SeededGitHubGistDistribution] = None
     __properties = ["schema", "gist"]
 

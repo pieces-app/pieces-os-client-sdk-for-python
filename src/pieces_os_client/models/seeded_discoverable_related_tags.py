@@ -28,9 +28,9 @@ class SeededDiscoverableRelatedTags(BaseModel):
     """
     SeededDiscoverableRelatedTags
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     iterable: conlist(SeededDiscoverableRelatedTag) = Field(...)
-    application: StrictStr = Field(..., description="This is the application id that this request is sent from.")
+    application: StrictStr = Field(default=..., description="This is the application id that this request is sent from.")
     __properties = ["schema", "iterable", "application"]
 
     class Config:

@@ -27,17 +27,17 @@ class TLPCodeSnippetTagifyCode(BaseModel):
     """
       # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
-    distribution: StrictStr = Field(..., description="stringified array of numbers")
-    inferred_distribution: StrictStr = Field(..., description="stringified array of numbers")
-    tags: StrictStr = Field(..., description="stringified array of strings")
-    inferred_tags: StrictStr = Field(..., description="stringified array of strings")
-    model: StrictStr = Field(..., description="this is the model version ")
-    label_version: StrictStr = Field(..., description="This is the version of the file that we are using that contains all the possible tags")
-    threshold: Union[StrictFloat, StrictInt] = Field(..., description="this is the minimum score from the model that a tag needs to have to be included in the tags array.")
-    inferred_threshold: Union[StrictFloat, StrictInt] = Field(..., description="this is the minimum score from the postprocessing that a tag needs to have to be included in the inferred_tags array.")
-    context: StrictStr = Field(..., description="this is the origin in which this asset was created, application(string representation)")
-    asset: StrictStr = Field(..., description="This is the asset id.")
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
+    distribution: StrictStr = Field(default=..., description="stringified array of numbers")
+    inferred_distribution: StrictStr = Field(default=..., description="stringified array of numbers")
+    tags: StrictStr = Field(default=..., description="stringified array of strings")
+    inferred_tags: StrictStr = Field(default=..., description="stringified array of strings")
+    model: StrictStr = Field(default=..., description="this is the model version ")
+    label_version: StrictStr = Field(default=..., description="This is the version of the file that we are using that contains all the possible tags")
+    threshold: Union[StrictFloat, StrictInt] = Field(default=..., description="this is the minimum score from the model that a tag needs to have to be included in the tags array.")
+    inferred_threshold: Union[StrictFloat, StrictInt] = Field(default=..., description="this is the minimum score from the postprocessing that a tag needs to have to be included in the inferred_tags array.")
+    context: StrictStr = Field(default=..., description="this is the origin in which this asset was created, application(string representation)")
+    asset: StrictStr = Field(default=..., description="This is the asset id.")
     __properties = ["schema", "distribution", "inferred_distribution", "tags", "inferred_tags", "model", "label_version", "threshold", "inferred_threshold", "context", "asset"]
 
     class Config:

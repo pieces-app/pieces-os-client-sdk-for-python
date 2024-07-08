@@ -530,6 +530,8 @@ class ClassificationSpecificEnum(str, Enum):
     FEATURE = 'feature'
     INI = 'ini'
     FTL = 'ftl'
+    HCL = 'hcl'
+    ABAP = 'abap'
 
     @classmethod
     def from_json(cls, json_str: str) -> ClassificationSpecificEnum:

@@ -26,7 +26,7 @@ print OSDeviceInformationReturnable.to_json()
 # convert the object into a dict
 os_device_information_returnable_dict = os_device_information_returnable_instance.to_dict()
 # create an instance of OSDeviceInformationReturnable from a dict
-os_device_information_returnable_form_dict = os_device_information_returnable.from_dict(os_device_information_returnable_dict)
+os_device_information_returnable_from_dict = OSDeviceInformationReturnable.from_dict(os_device_information_returnable_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

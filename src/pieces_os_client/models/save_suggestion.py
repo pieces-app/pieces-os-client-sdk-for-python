@@ -27,8 +27,8 @@ class SaveSuggestion(BaseModel):
     """
     This is the SaveSuggestion. Mainly creating an additional model here because I imagine that we will want to add some additional data to this in the future (potentially with more numerical data that is emitted from the ML Models)  **Note: suggested is required here because we will want to say if we reccomend to take this action of save or not.  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
-    suggested: StrictBool = Field(..., description="This is a boolean, that will say if you should or should not take action.")
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
+    suggested: StrictBool = Field(default=..., description="This is a boolean, that will say if you should or should not take action.")
     __properties = ["schema", "suggested"]
 
     class Config:

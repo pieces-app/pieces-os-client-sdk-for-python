@@ -23,7 +23,7 @@ print ReferencedAnchorPoint.to_json()
 # convert the object into a dict
 referenced_anchor_point_dict = referenced_anchor_point_instance.to_dict()
 # create an instance of ReferencedAnchorPoint from a dict
-referenced_anchor_point_form_dict = referenced_anchor_point.from_dict(referenced_anchor_point_dict)
+referenced_anchor_point_from_dict = ReferencedAnchorPoint.from_dict(referenced_anchor_point_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

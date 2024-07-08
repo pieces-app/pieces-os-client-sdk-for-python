@@ -28,7 +28,7 @@ class UserBetaStatus(BaseModel):
     """
     This is used to either grant or remove a specific provider betastatus  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     auth0: Optional[Auth0UserBetaStatus] = None
     user: StrictStr = Field(...)
     __properties = ["schema", "auth0", "user"]

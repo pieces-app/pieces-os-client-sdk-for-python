@@ -28,7 +28,7 @@ class SeededModels(BaseModel):
     """
     This is a Model that will hold an iterable of SeededModels.  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     iterable: conlist(SeededModel) = Field(...)
     __properties = ["schema", "iterable"]
 

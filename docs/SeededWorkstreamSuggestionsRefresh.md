@@ -24,7 +24,7 @@ print SeededWorkstreamSuggestionsRefresh.to_json()
 # convert the object into a dict
 seeded_workstream_suggestions_refresh_dict = seeded_workstream_suggestions_refresh_instance.to_dict()
 # create an instance of SeededWorkstreamSuggestionsRefresh from a dict
-seeded_workstream_suggestions_refresh_form_dict = seeded_workstream_suggestions_refresh.from_dict(seeded_workstream_suggestions_refresh_dict)
+seeded_workstream_suggestions_refresh_from_dict = SeededWorkstreamSuggestionsRefresh.from_dict(seeded_workstream_suggestions_refresh_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

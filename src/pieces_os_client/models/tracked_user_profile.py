@@ -27,11 +27,11 @@ class TrackedUserProfile(BaseModel):
     """
     A user that will be passed along with each analytics event  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
-    id: StrictStr = Field(..., description="The ID of the user that you are tracking.")
-    username: StrictStr = Field(..., description="This is a username that is attempted to be assigned but is \"Anonymous User\" by default")
-    email: Optional[StrictStr] = Field(None, description="The user's email if we have it.")
-    granularity: StrictStr = Field(..., description="At what level is this user being tracked.")
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
+    id: StrictStr = Field(default=..., description="The ID of the user that you are tracking.")
+    username: StrictStr = Field(default=..., description="This is a username that is attempted to be assigned but is \"Anonymous User\" by default")
+    email: Optional[StrictStr] = Field(default=None, description="The user's email if we have it.")
+    granularity: StrictStr = Field(default=..., description="At what level is this user being tracked.")
     __properties = ["schema", "id", "username", "email", "granularity"]
 
     @validator('granularity')

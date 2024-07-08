@@ -24,7 +24,7 @@ from aenum import Enum, no_arg
 
 class ModelFoundationEnum(str, Enum):
     """
-    This is used to describe the foundational models used within POS.
+    This is used to describe the foundational models used within POS.  Note: LATEST models could be used as the latests of these and then could use a system to either(check a file) or       we could add and endpoint to click out to the cloud to get the latest models and update these locally so that our users       can always have the latest without having to update the application.(not used for now)
     """
 
     """
@@ -37,7 +37,6 @@ class ModelFoundationEnum(str, Enum):
     LLAMA_2_13_B = 'LLAMA_2_13B'
     LLAMA_2_70_B = 'LLAMA_2_70B'
     LLAMA_3_2_B = 'LLAMA_3_2B'
-    LLAMA_3_7_B = 'LLAMA_3_7B'
     LLAMA_3_13_B = 'LLAMA_3_13B'
     LLAMA_3_70_B = 'LLAMA_3_70B'
     CODE_LLAMA_2_7_B = 'CODE_LLAMA_2_7B'
@@ -129,6 +128,20 @@ class ModelFoundationEnum(str, Enum):
     COMMAND_R_PLUS = 'COMMAND_R+'
     GEMMA_1_DOT_1_2_B = 'GEMMA_1.1_2B'
     GEMMA_1_DOT_1_7_B = 'GEMMA_1.1_7B'
+    GEMMA_2_9_B = 'GEMMA_2_9B'
+    PHI_3_MINI = 'PHI_3_MINI'
+    PHI_3_SMALL = 'PHI_3_SMALL'
+    GRANITE_3_B = 'GRANITE_3B'
+    GRANITE_8_B = 'GRANITE_8B'
+    LLAMA_3_8_B = 'LLAMA_3_8B'
+    CLAUDE_3_DOT_5 = 'CLAUDE_3.5'
+    CLAUDE_LATEST = 'CLAUDE_LATEST'
+    GRANITE_LATEST = 'GRANITE_LATEST'
+    LLAMA_LATEST = 'LLAMA_LATEST'
+    PHI_LATEST = 'PHI_LATEST'
+    GEMMA_LATEST = 'GEMMA_LATEST'
+    GEMINI_LATEST = 'GEMINI_LATEST'
+    GPT_LATEST = 'GPT_LATEST'
 
     @classmethod
     def from_json(cls, json_str: str) -> ModelFoundationEnum:

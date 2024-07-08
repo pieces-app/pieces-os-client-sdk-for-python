@@ -36,7 +36,7 @@ print FlattenedSensitive.to_json()
 # convert the object into a dict
 flattened_sensitive_dict = flattened_sensitive_instance.to_dict()
 # create an instance of FlattenedSensitive from a dict
-flattened_sensitive_form_dict = flattened_sensitive.from_dict(flattened_sensitive_dict)
+flattened_sensitive_from_dict = FlattenedSensitive.from_dict(flattened_sensitive_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

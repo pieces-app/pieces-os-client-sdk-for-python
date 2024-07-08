@@ -27,7 +27,7 @@ class GroupedTimestamp(BaseModel):
     """
     A helper classs to wrap Date-Time Values with Useful Helper Properties  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     value: datetime = Field(...)
     readable: Optional[StrictStr] = None
     __properties = ["schema", "value", "readable"]

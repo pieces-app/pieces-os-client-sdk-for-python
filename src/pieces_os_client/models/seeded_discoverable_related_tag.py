@@ -29,11 +29,11 @@ class SeededDiscoverableRelatedTag(BaseModel):
     """
       # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
-    text: StrictStr = Field(..., description="This is the description of the tag.")
-    asset: StrictStr = Field(..., description="this is a uuid that references an asset.")
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
+    text: StrictStr = Field(default=..., description="This is the description of the tag.")
+    asset: StrictStr = Field(default=..., description="this is a uuid that references an asset.")
     mechanism: Optional[MechanismEnum] = None
-    format: Optional[StrictStr] = Field(None, description="(optionally) you can attach a tag to a format. so when you delete a format this tag will get removed from the asset as well.")
+    format: Optional[StrictStr] = Field(default=None, description="(optionally) you can attach a tag to a format. so when you delete a format this tag will get removed from the asset as well.")
     category: Optional[TagCategoryEnum] = None
     __properties = ["schema", "text", "asset", "mechanism", "format", "category"]
 

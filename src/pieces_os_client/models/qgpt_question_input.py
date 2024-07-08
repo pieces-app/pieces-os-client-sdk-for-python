@@ -31,11 +31,11 @@ class QGPTQuestionInput(BaseModel):
     """
     This is the body input for the /code_gpt/question.  Note: - each relevant seed, must require at minimum a Seed or an id used from the /code_gpt/relevance endpoint or we will throw an error.  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     relevant: RelevantQGPTSeeds = Field(...)
-    query: StrictStr = Field(..., description="This is the user asked question.")
-    application: Optional[StrictStr] = Field(None, description="optional application id")
-    model: Optional[StrictStr] = Field(None, description="optional model id")
+    query: StrictStr = Field(default=..., description="This is the user asked question.")
+    application: Optional[StrictStr] = Field(default=None, description="optional application id")
+    model: Optional[StrictStr] = Field(default=None, description="optional model id")
     messages: Optional[FlattenedConversationMessages] = None
     pipeline: Optional[QGPTPromptPipeline] = None
     temporal: Optional[TemporalRangeGrounding] = None

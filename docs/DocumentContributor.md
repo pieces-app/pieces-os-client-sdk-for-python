@@ -26,7 +26,7 @@ print DocumentContributor.to_json()
 # convert the object into a dict
 document_contributor_dict = document_contributor_instance.to_dict()
 # create an instance of DocumentContributor from a dict
-document_contributor_form_dict = document_contributor.from_dict(document_contributor_dict)
+document_contributor_from_dict = DocumentContributor.from_dict(document_contributor_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

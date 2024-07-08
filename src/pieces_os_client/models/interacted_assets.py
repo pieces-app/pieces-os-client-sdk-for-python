@@ -28,7 +28,7 @@ class InteractedAssets(BaseModel):
     """
     A model which contains a list of InteractedAssets with potentially additional properties.  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     iterable: conlist(InteractedAsset) = Field(...)
     __properties = ["schema", "iterable"]
 

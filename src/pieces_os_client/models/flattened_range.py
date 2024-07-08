@@ -29,13 +29,13 @@ class FlattenedRange(BaseModel):
     """
     This is a DAG-Safe minimal representation of a Range.  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     id: StrictStr = Field(...)
     score: Optional[Score] = None
     created: GroupedTimestamp = Field(...)
     updated: GroupedTimestamp = Field(...)
     to: Optional[GroupedTimestamp] = None
-    var_from: Optional[GroupedTimestamp] = Field(None, alias="from")
+    var_from: Optional[GroupedTimestamp] = Field(default=None, alias="from")
     between: Optional[StrictBool] = None
     summaries: Optional[FlattenedWorkstreamSummaries] = None
     conversations: Optional[FlattenedConversations] = None

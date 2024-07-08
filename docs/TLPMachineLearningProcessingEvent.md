@@ -22,7 +22,7 @@ print TLPMachineLearningProcessingEvent.to_json()
 # convert the object into a dict
 tlp_machine_learning_processing_event_dict = tlp_machine_learning_processing_event_instance.to_dict()
 # create an instance of TLPMachineLearningProcessingEvent from a dict
-tlp_machine_learning_processing_event_form_dict = tlp_machine_learning_processing_event.from_dict(tlp_machine_learning_processing_event_dict)
+tlp_machine_learning_processing_event_from_dict = TLPMachineLearningProcessingEvent.from_dict(tlp_machine_learning_processing_event_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

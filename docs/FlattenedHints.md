@@ -25,7 +25,7 @@ print FlattenedHints.to_json()
 # convert the object into a dict
 flattened_hints_dict = flattened_hints_instance.to_dict()
 # create an instance of FlattenedHints from a dict
-flattened_hints_form_dict = flattened_hints.from_dict(flattened_hints_dict)
+flattened_hints_from_dict = FlattenedHints.from_dict(flattened_hints_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

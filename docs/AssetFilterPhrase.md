@@ -26,7 +26,7 @@ print AssetFilterPhrase.to_json()
 # convert the object into a dict
 asset_filter_phrase_dict = asset_filter_phrase_instance.to_dict()
 # create an instance of AssetFilterPhrase from a dict
-asset_filter_phrase_form_dict = asset_filter_phrase.from_dict(asset_filter_phrase_dict)
+asset_filter_phrase_from_dict = AssetFilterPhrase.from_dict(asset_filter_phrase_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

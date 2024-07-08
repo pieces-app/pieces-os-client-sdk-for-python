@@ -22,7 +22,7 @@ print FlattenedActivities.to_json()
 # convert the object into a dict
 flattened_activities_dict = flattened_activities_instance.to_dict()
 # create an instance of FlattenedActivities from a dict
-flattened_activities_form_dict = flattened_activities.from_dict(flattened_activities_dict)
+flattened_activities_from_dict = FlattenedActivities.from_dict(flattened_activities_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

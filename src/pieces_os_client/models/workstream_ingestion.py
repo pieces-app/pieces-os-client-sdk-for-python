@@ -27,7 +27,7 @@ class WorkstreamIngestion(BaseModel):
     """
     This is used for a returnable in the contest ingestion endpoint for the Feed.  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     __properties = ["schema"]
 
     class Config:

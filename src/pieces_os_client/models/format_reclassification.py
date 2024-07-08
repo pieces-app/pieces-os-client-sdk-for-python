@@ -29,7 +29,7 @@ class FormatReclassification(BaseModel):
     """
     This is a model that will represent the miminum properties required to update the classification of this format.  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     ext: ClassificationSpecificEnum = Field(...)
     format: Format = Field(...)
     __properties = ["schema", "ext", "format"]

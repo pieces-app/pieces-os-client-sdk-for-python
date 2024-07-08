@@ -28,10 +28,10 @@ class SearchedAssets(BaseModel):
     """
     This is a modle that will return fro mthe search endpoint that will just contain an array of assets!  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     iterable: conlist(SearchedAsset) = Field(...)
-    suggested: Union[StrictFloat, StrictInt] = Field(..., description="the number of fuzzy/suggested search results.")
-    exact: Union[StrictFloat, StrictInt] = Field(..., description="the number of exact results")
+    suggested: Union[StrictFloat, StrictInt] = Field(default=..., description="the number of fuzzy/suggested search results.")
+    exact: Union[StrictFloat, StrictInt] = Field(default=..., description="the number of exact results")
     __properties = ["schema", "iterable", "suggested", "exact"]
 
     class Config:

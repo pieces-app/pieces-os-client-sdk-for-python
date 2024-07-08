@@ -28,7 +28,7 @@ class TrackedAssetEventFormatReclassificationMetadata(BaseModel):
     """
     Metadata of a format reclassification event  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     previous: Optional[Classification] = None
     current: Optional[Classification] = None
     __properties = ["schema", "previous", "current"]

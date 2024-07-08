@@ -28,7 +28,7 @@ print FlattenedDistribution.to_json()
 # convert the object into a dict
 flattened_distribution_dict = flattened_distribution_instance.to_dict()
 # create an instance of FlattenedDistribution from a dict
-flattened_distribution_form_dict = flattened_distribution.from_dict(flattened_distribution_dict)
+flattened_distribution_from_dict = FlattenedDistribution.from_dict(flattened_distribution_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

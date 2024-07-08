@@ -25,7 +25,7 @@ print WorkstreamEvents.to_json()
 # convert the object into a dict
 workstream_events_dict = workstream_events_instance.to_dict()
 # create an instance of WorkstreamEvents from a dict
-workstream_events_form_dict = workstream_events.from_dict(workstream_events_dict)
+workstream_events_from_dict = WorkstreamEvents.from_dict(workstream_events_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

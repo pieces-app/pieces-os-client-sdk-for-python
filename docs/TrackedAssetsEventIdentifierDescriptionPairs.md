@@ -23,7 +23,7 @@ print TrackedAssetsEventIdentifierDescriptionPairs.to_json()
 # convert the object into a dict
 tracked_assets_event_identifier_description_pairs_dict = tracked_assets_event_identifier_description_pairs_instance.to_dict()
 # create an instance of TrackedAssetsEventIdentifierDescriptionPairs from a dict
-tracked_assets_event_identifier_description_pairs_form_dict = tracked_assets_event_identifier_description_pairs.from_dict(tracked_assets_event_identifier_description_pairs_dict)
+tracked_assets_event_identifier_description_pairs_from_dict = TrackedAssetsEventIdentifierDescriptionPairs.from_dict(tracked_assets_event_identifier_description_pairs_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

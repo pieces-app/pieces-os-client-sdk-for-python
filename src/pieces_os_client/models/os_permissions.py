@@ -28,7 +28,7 @@ class OSPermissions(BaseModel):
     """
     This will return the permission of this specific operating system w/ relation to given features.  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     processing: Optional[OSProcessingPermissions] = None
     __properties = ["schema", "processing"]
 

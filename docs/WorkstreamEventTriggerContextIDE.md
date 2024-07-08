@@ -25,7 +25,7 @@ print WorkstreamEventTriggerContextIDE.to_json()
 # convert the object into a dict
 workstream_event_trigger_context_ide_dict = workstream_event_trigger_context_ide_instance.to_dict()
 # create an instance of WorkstreamEventTriggerContextIDE from a dict
-workstream_event_trigger_context_ide_form_dict = workstream_event_trigger_context_ide.from_dict(workstream_event_trigger_context_ide_dict)
+workstream_event_trigger_context_ide_from_dict = WorkstreamEventTriggerContextIDE.from_dict(workstream_event_trigger_context_ide_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

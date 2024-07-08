@@ -13,6 +13,8 @@ Name | Type | Description | Notes
 **anchor** | [**ReferencedAnchor**](ReferencedAnchor.md) |  | [optional] 
 **conversation** | [**ReferencedConversation**](ReferencedConversation.md) |  | [optional] 
 **person** | [**ReferencedPerson**](ReferencedPerson.md) |  | [optional] 
+**seed** | [**Seed**](Seed.md) |  | [optional] 
+**seeds** | [**Seeds**](Seeds.md) |  | [optional] 
 **summaries** | [**FlattenedWorkstreamSummaries**](FlattenedWorkstreamSummaries.md) |  | [optional] 
 **assets** | [**FlattenedAssets**](FlattenedAssets.md) |  | [optional] 
 **tags** | [**FlattenedTags**](FlattenedTags.md) |  | [optional] 
@@ -38,7 +40,7 @@ print WorkstreamSuggestion.to_json()
 # convert the object into a dict
 workstream_suggestion_dict = workstream_suggestion_instance.to_dict()
 # create an instance of WorkstreamSuggestion from a dict
-workstream_suggestion_form_dict = workstream_suggestion.from_dict(workstream_suggestion_dict)
+workstream_suggestion_from_dict = WorkstreamSuggestion.from_dict(workstream_suggestion_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

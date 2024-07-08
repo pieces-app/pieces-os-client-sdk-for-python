@@ -27,9 +27,9 @@ class TrackedAssetEventCreationMetadataClipboard(BaseModel):
     """
     If an asset was created from a clipboard event  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
-    keyboard: Optional[StrictBool] = Field(None, description="Whether the clipboard was utilized via the keyboard")
-    interaction: Optional[StrictBool] = Field(None, description="Whether the clipboard was extracted through a button click")
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
+    keyboard: Optional[StrictBool] = Field(default=None, description="Whether the clipboard was utilized via the keyboard")
+    interaction: Optional[StrictBool] = Field(default=None, description="Whether the clipboard was extracted through a button click")
     __properties = ["schema", "keyboard", "interaction"]
 
     class Config:

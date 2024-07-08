@@ -23,7 +23,7 @@ print MailgunDistribution.to_json()
 # convert the object into a dict
 mailgun_distribution_dict = mailgun_distribution_instance.to_dict()
 # create an instance of MailgunDistribution from a dict
-mailgun_distribution_form_dict = mailgun_distribution.from_dict(mailgun_distribution_dict)
+mailgun_distribution_from_dict = MailgunDistribution.from_dict(mailgun_distribution_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

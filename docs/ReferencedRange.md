@@ -24,7 +24,7 @@ print ReferencedRange.to_json()
 # convert the object into a dict
 referenced_range_dict = referenced_range_instance.to_dict()
 # create an instance of ReferencedRange from a dict
-referenced_range_form_dict = referenced_range.from_dict(referenced_range_dict)
+referenced_range_from_dict = ReferencedRange.from_dict(referenced_range_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

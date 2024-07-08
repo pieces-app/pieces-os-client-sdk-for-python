@@ -25,7 +25,7 @@ print Annotations.to_json()
 # convert the object into a dict
 annotations_dict = annotations_instance.to_dict()
 # create an instance of Annotations from a dict
-annotations_form_dict = annotations.from_dict(annotations_dict)
+annotations_from_dict = Annotations.from_dict(annotations_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -28,7 +28,7 @@ class AssetFilters(BaseModel):
     """
     AssetFilters
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     iterable: conlist(AssetFilter) = Field(...)
     type: Optional[FilterOperationTypeEnum] = None
     __properties = ["schema", "iterable", "type"]

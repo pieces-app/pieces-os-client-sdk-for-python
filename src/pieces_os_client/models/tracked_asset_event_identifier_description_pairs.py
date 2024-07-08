@@ -27,34 +27,34 @@ class TrackedAssetEventIdentifierDescriptionPairs(BaseModel):
     """
     These are all of the available event types that are permitted in an object pair notation.  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
-    asset_created: Optional[StrictStr] = Field(None, description="The key value pair for an asset being created.")
-    asset_viewed: Optional[StrictStr] = Field(None, description="An asset was viewed")
-    asset_format_copied: Optional[StrictStr] = Field(None, description="An asset's format was copied")
-    asset_format_downloaded: Optional[StrictStr] = Field(None, description="An asset's format was downloaded")
-    asset_deleted: Optional[StrictStr] = Field(None, description="An asset was deleted or not")
-    asset_description_updated: Optional[StrictStr] = Field(None, description="An asset was redescribed by the user")
-    asset_name_updated: Optional[StrictStr] = Field(None, description="An asset was renamed by the user")
-    asset_format_generic_classification_updated: Optional[StrictStr] = Field(None, description="A generic classification was changed on a format within an asset")
-    asset_format_specific_classification_updated: Optional[StrictStr] = Field(None, description="A specific classification was changed on a format within an asset")
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
+    asset_created: Optional[StrictStr] = Field(default=None, description="The key value pair for an asset being created.")
+    asset_viewed: Optional[StrictStr] = Field(default=None, description="An asset was viewed")
+    asset_format_copied: Optional[StrictStr] = Field(default=None, description="An asset's format was copied")
+    asset_format_downloaded: Optional[StrictStr] = Field(default=None, description="An asset's format was downloaded")
+    asset_deleted: Optional[StrictStr] = Field(default=None, description="An asset was deleted or not")
+    asset_description_updated: Optional[StrictStr] = Field(default=None, description="An asset was redescribed by the user")
+    asset_name_updated: Optional[StrictStr] = Field(default=None, description="An asset was renamed by the user")
+    asset_format_generic_classification_updated: Optional[StrictStr] = Field(default=None, description="A generic classification was changed on a format within an asset")
+    asset_format_specific_classification_updated: Optional[StrictStr] = Field(default=None, description="A specific classification was changed on a format within an asset")
     asset_creation_failed: Optional[StrictStr] = None
     asset_tag_added: Optional[StrictStr] = None
     asset_link_added: Optional[StrictStr] = None
-    asset_link_generated: Optional[StrictStr] = Field(None, description="user generated a link for the asset")
+    asset_link_generated: Optional[StrictStr] = Field(default=None, description="user generated a link for the asset")
     asset_link_deleted: Optional[StrictStr] = None
     asset_tag_deleted: Optional[StrictStr] = None
-    asset_updated: Optional[StrictStr] = Field(None, description="This is just a generic string for an asset was updated.")
-    asset_format_value_edited: Optional[StrictStr] = Field(None, description="This is a side effect event for a format value getting edited that exists on an asset.")
-    asset_format_updated: Optional[StrictStr] = Field(None, description="This is a generic activity event for an asset getting updated because our format was updated for some reason.")
-    asset_link_revoked: Optional[StrictStr] = Field(None, description="This means that a shareable link was revoked.")
-    asset_person_added: Optional[StrictStr] = Field(None, description="This just means that a person was added via the user.")
-    asset_person_deleted: Optional[StrictStr] = Field(None, description="This just means that a person was deleted via the user.")
-    asset_sensitive_added: Optional[StrictStr] = Field(None, description="This just means that a sensitive was added via the user.")
-    asset_sensitive_deleted: Optional[StrictStr] = Field(None, description="This just means that a sensitive was deleted via the user.")
-    suggested_asset_referenced: Optional[StrictStr] = Field(None, description="This means that an asset was view/used while the user was looking at the suggestion view.")
-    searched_asset_referenced: Optional[StrictStr] = Field(None, description="This means that an asset was view/used while the user was looking at the searching view.")
-    asset_referenced: Optional[StrictStr] = Field(None, description="This means that an asset was view/used while the user was looking at the default view.")
-    activity_asset_referenced: Optional[StrictStr] = Field(None, description="This means that a user referenced an asset by first clicking on an asset within an activity event.(ie from the activity view)")
+    asset_updated: Optional[StrictStr] = Field(default=None, description="This is just a generic string for an asset was updated.")
+    asset_format_value_edited: Optional[StrictStr] = Field(default=None, description="This is a side effect event for a format value getting edited that exists on an asset.")
+    asset_format_updated: Optional[StrictStr] = Field(default=None, description="This is a generic activity event for an asset getting updated because our format was updated for some reason.")
+    asset_link_revoked: Optional[StrictStr] = Field(default=None, description="This means that a shareable link was revoked.")
+    asset_person_added: Optional[StrictStr] = Field(default=None, description="This just means that a person was added via the user.")
+    asset_person_deleted: Optional[StrictStr] = Field(default=None, description="This just means that a person was deleted via the user.")
+    asset_sensitive_added: Optional[StrictStr] = Field(default=None, description="This just means that a sensitive was added via the user.")
+    asset_sensitive_deleted: Optional[StrictStr] = Field(default=None, description="This just means that a sensitive was deleted via the user.")
+    suggested_asset_referenced: Optional[StrictStr] = Field(default=None, description="This means that an asset was view/used while the user was looking at the suggestion view.")
+    searched_asset_referenced: Optional[StrictStr] = Field(default=None, description="This means that an asset was view/used while the user was looking at the searching view.")
+    asset_referenced: Optional[StrictStr] = Field(default=None, description="This means that an asset was view/used while the user was looking at the default view.")
+    activity_asset_referenced: Optional[StrictStr] = Field(default=None, description="This means that a user referenced an asset by first clicking on an asset within an activity event.(ie from the activity view)")
     asset_annotation_added: Optional[StrictStr] = None
     asset_annotation_deleted: Optional[StrictStr] = None
     asset_annotation_updated: Optional[StrictStr] = None

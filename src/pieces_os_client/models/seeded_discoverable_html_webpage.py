@@ -27,9 +27,9 @@ class SeededDiscoverableHtmlWebpage(BaseModel):
     """
     SeededDiscoverableHtmlWebpage
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
-    url: StrictStr = Field(..., description="The route of the page ")
-    page: StrictStr = Field(..., description="page's html as a string")
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
+    url: StrictStr = Field(default=..., description="The route of the page ")
+    page: StrictStr = Field(default=..., description="page's html as a string")
     __properties = ["schema", "url", "page"]
 
     class Config:

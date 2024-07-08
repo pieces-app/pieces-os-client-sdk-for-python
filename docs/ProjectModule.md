@@ -26,7 +26,7 @@ print ProjectModule.to_json()
 # convert the object into a dict
 project_module_dict = project_module_instance.to_dict()
 # create an instance of ProjectModule from a dict
-project_module_form_dict = project_module.from_dict(project_module_dict)
+project_module_from_dict = ProjectModule.from_dict(project_module_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -22,7 +22,7 @@ print GraphicalImageStatistics.to_json()
 # convert the object into a dict
 graphical_image_statistics_dict = graphical_image_statistics_instance.to_dict()
 # create an instance of GraphicalImageStatistics from a dict
-graphical_image_statistics_form_dict = graphical_image_statistics.from_dict(graphical_image_statistics_dict)
+graphical_image_statistics_from_dict = GraphicalImageStatistics.from_dict(graphical_image_statistics_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

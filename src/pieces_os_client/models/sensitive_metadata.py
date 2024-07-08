@@ -28,9 +28,9 @@ class SensitiveMetadata(BaseModel):
     """
     This is optional metatdata attached to a sensitive piece of data.  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     match: Optional[TextMatch] = None
-    entropy: Optional[Union[StrictFloat, StrictInt]] = Field(None, description="entropy of the sensitive")
+    entropy: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="entropy of the sensitive")
     __properties = ["schema", "match", "entropy"]
 
     class Config:

@@ -29,9 +29,9 @@ class SeededDiscoverableAssets(BaseModel):
     """
     Assumption: filters imposed in this model can be overwritten by passing them in SeededDiscoverableAsset  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
-    application: StrictStr = Field(..., description="application id.")
-    iterable: conlist(SeededDiscoverableAsset) = Field(..., description="This is an iterable of already snippitized snippets that we will compare && cluster.")
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
+    application: StrictStr = Field(default=..., description="application id.")
+    iterable: conlist(SeededDiscoverableAsset) = Field(default=..., description="This is an iterable of already snippitized snippets that we will compare && cluster.")
     filters: Optional[TLPDirectedDiscoveryFilters] = None
     __properties = ["schema", "application", "iterable", "filters"]
 

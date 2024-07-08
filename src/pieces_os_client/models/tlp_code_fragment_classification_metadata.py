@@ -28,7 +28,7 @@ class TLPCodeFragmentClassificationMetadata(BaseModel):
     """
     TLPCodeFragmentClassificationMetadata
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     context: Optional[Classification] = None
     prior: Optional[Classification] = None
     __properties = ["schema", "context", "prior"]

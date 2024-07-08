@@ -24,7 +24,7 @@ print AssetReclassification.to_json()
 # convert the object into a dict
 asset_reclassification_dict = asset_reclassification_instance.to_dict()
 # create an instance of AssetReclassification from a dict
-asset_reclassification_form_dict = asset_reclassification.from_dict(asset_reclassification_dict)
+asset_reclassification_from_dict = AssetReclassification.from_dict(asset_reclassification_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

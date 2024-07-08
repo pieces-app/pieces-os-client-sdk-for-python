@@ -28,7 +28,7 @@ class DiscoveredHtmlWebpages(BaseModel):
     """
     Assumption: The iterable will be in the exact same order as it was passed in within the seededDiscoveredHtmlWebpages  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     iterable: conlist(DiscoveredHtmlWebpage) = Field(...)
     application: StrictStr = Field(...)
     __properties = ["schema", "iterable", "application"]

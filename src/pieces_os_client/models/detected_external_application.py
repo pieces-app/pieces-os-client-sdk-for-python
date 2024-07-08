@@ -27,8 +27,8 @@ class DetectedExternalApplication(BaseModel):
     """
     This is a detected External Application that comes from our endpoint that will get a snapshot of the installed applications on your machine.  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
-    name: StrictStr = Field(..., description="this is the name of the application")
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
+    name: StrictStr = Field(default=..., description="this is the name of the application")
     version: Optional[StrictStr] = None
     __properties = ["schema", "name", "version"]
 

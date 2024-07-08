@@ -7,6 +7,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 **allowed_extensions** | **List[str]** |  | [optional] 
+**allow_multiple** | **bool** | default behavior is set to true | [optional] 
 
 ## Example
 
@@ -23,7 +24,7 @@ print FilePickerInput.to_json()
 # convert the object into a dict
 file_picker_input_dict = file_picker_input_instance.to_dict()
 # create an instance of FilePickerInput from a dict
-file_picker_input_form_dict = file_picker_input.from_dict(file_picker_input_dict)
+file_picker_input_from_dict = FilePickerInput.from_dict(file_picker_input_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -28,9 +28,9 @@ class SeededDiscoverableHtmlWebpages(BaseModel):
     """
     SeededDiscoverableHtmlWebpages
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     iterable: conlist(SeededDiscoverableHtmlWebpage) = Field(...)
-    application: StrictStr = Field(..., description="This is the applicaiton Id used to connect to Pieces OS.")
+    application: StrictStr = Field(default=..., description="This is the applicaiton Id used to connect to Pieces OS.")
     __properties = ["schema", "iterable", "application"]
 
     class Config:

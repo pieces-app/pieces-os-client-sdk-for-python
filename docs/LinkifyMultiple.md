@@ -26,7 +26,7 @@ print LinkifyMultiple.to_json()
 # convert the object into a dict
 linkify_multiple_dict = linkify_multiple_instance.to_dict()
 # create an instance of LinkifyMultiple from a dict
-linkify_multiple_form_dict = linkify_multiple.from_dict(linkify_multiple_dict)
+linkify_multiple_from_dict = LinkifyMultiple.from_dict(linkify_multiple_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

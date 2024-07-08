@@ -28,7 +28,7 @@ class SeededTrackedSessionEvent(BaseModel):
     """
     A simple model to capture a Tracked Session to be send to the Connection API  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     identifier_description_pair: TrackedSessionEventIdentifierDescriptionPairs = Field(...)
     __properties = ["schema", "identifier_description_pair"]
 

@@ -28,7 +28,7 @@ class ModelDeleteCacheOutput(BaseModel):
     """
     This is the output model for '/model/{model}/delete/cache'  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     model: ReferencedModel = Field(...)
     __properties = ["schema", "model"]
 

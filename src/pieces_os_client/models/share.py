@@ -34,17 +34,17 @@ class Share(BaseModel):
     """
     This represents what information that is relavent to anything and every sharing related. v1 will look very bare and will add more and more data as we go!  if user is undefined && access is public then we have an asset that is publicly available.  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
-    id: StrictStr = Field(..., description="This is the uuid that represents this share model.")
-    user: Optional[StrictStr] = Field(None, description="this is the uuid of the user that the share is created for.")
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
+    id: StrictStr = Field(default=..., description="This is the uuid that represents this share model.")
+    user: Optional[StrictStr] = Field(default=None, description="this is the uuid of the user that the share is created for.")
     asset: Optional[FlattenedAsset] = None
     assets: Optional[FlattenedAssets] = None
-    link: StrictStr = Field(..., description="This is the prebuilt link.")
+    link: StrictStr = Field(default=..., description="This is the prebuilt link.")
     access: AccessEnum = Field(...)
     accessors: Accessors = Field(...)
     created: GroupedTimestamp = Field(...)
-    short: StrictStr = Field(..., description="This is a shortened version of our uuid.")
-    name: Optional[StrictStr] = Field(None, description="this is an optional name we can give to the link, ie ?p=JAVASCRIPT or what ever the user wants as long as it is available.")
+    short: StrictStr = Field(default=..., description="This is a shortened version of our uuid.")
+    name: Optional[StrictStr] = Field(default=None, description="this is an optional name we can give to the link, ie ?p=JAVASCRIPT or what ever the user wants as long as it is available.")
     distributions: Optional[Distributions] = None
     score: Optional[Score] = None
     __properties = ["schema", "id", "user", "asset", "assets", "link", "access", "accessors", "created", "short", "name", "distributions", "score"]

@@ -33,7 +33,7 @@ print ConversationMessage.to_json()
 # convert the object into a dict
 conversation_message_dict = conversation_message_instance.to_dict()
 # create an instance of ConversationMessage from a dict
-conversation_message_form_dict = conversation_message.from_dict(conversation_message_dict)
+conversation_message_from_dict = ConversationMessage.from_dict(conversation_message_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

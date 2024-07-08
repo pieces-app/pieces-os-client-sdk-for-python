@@ -30,7 +30,7 @@ print TLPCodeFragmentSuggestedSave.to_json()
 # convert the object into a dict
 tlp_code_fragment_suggested_save_dict = tlp_code_fragment_suggested_save_instance.to_dict()
 # create an instance of TLPCodeFragmentSuggestedSave from a dict
-tlp_code_fragment_suggested_save_form_dict = tlp_code_fragment_suggested_save.from_dict(tlp_code_fragment_suggested_save_dict)
+tlp_code_fragment_suggested_save_from_dict = TLPCodeFragmentSuggestedSave.from_dict(tlp_code_fragment_suggested_save_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

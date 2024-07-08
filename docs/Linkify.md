@@ -27,7 +27,7 @@ print Linkify.to_json()
 # convert the object into a dict
 linkify_dict = linkify_instance.to_dict()
 # create an instance of Linkify from a dict
-linkify_form_dict = linkify.from_dict(linkify_dict)
+linkify_from_dict = Linkify.from_dict(linkify_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

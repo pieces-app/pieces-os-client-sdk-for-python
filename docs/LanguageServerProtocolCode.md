@@ -25,7 +25,7 @@ print LanguageServerProtocolCode.to_json()
 # convert the object into a dict
 language_server_protocol_code_dict = language_server_protocol_code_instance.to_dict()
 # create an instance of LanguageServerProtocolCode from a dict
-language_server_protocol_code_form_dict = language_server_protocol_code.from_dict(language_server_protocol_code_dict)
+language_server_protocol_code_from_dict = LanguageServerProtocolCode.from_dict(language_server_protocol_code_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

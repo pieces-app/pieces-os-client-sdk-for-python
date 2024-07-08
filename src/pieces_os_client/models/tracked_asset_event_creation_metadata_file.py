@@ -26,9 +26,9 @@ class TrackedAssetEventCreationMetadataFile(BaseModel):
     """
     If an asset was created from a file attachment  # noqa: E501
     """
-    keyboard: Optional[StrictBool] = Field(None, description="Whether the file was pasted via the keyboard")
-    drag_and_drop: Optional[StrictBool] = Field(None, description="Whether the file was dropped onto pieces")
-    interaction: Optional[StrictBool] = Field(None, description="Whether the file was attached via a button click")
+    keyboard: Optional[StrictBool] = Field(default=None, description="Whether the file was pasted via the keyboard")
+    drag_and_drop: Optional[StrictBool] = Field(default=None, description="Whether the file was dropped onto pieces")
+    interaction: Optional[StrictBool] = Field(default=None, description="Whether the file was attached via a button click")
     __properties = ["keyboard", "drag_and_drop", "interaction"]
 
     class Config:

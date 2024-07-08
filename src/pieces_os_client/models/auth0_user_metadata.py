@@ -30,13 +30,13 @@ class Auth0UserMetadata(BaseModel):
     """
     User Metadata from Auth0  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     global_id: StrictStr = Field(...)
     cloud_key: Optional[StrictStr] = None
-    stripe_customer_id: Optional[StrictStr] = Field(None, description="A customer ID that is added to the user in the case of payments")
-    vanityname: Optional[StrictStr] = Field(None, description="this is the vanityname of the user.(set from their custom CNAME dns record.) ie mark.pieces.cloud where \"mark\" is the vanityname.")
+    stripe_customer_id: Optional[StrictStr] = Field(default=None, description="A customer ID that is added to the user in the case of payments")
+    vanityname: Optional[StrictStr] = Field(default=None, description="this is the vanityname of the user.(set from their custom CNAME dns record.) ie mark.pieces.cloud where \"mark\" is the vanityname.")
     allocation: Optional[Auth0UserAllocationMetadata] = None
-    open_ai: Optional[Auth0OpenAIUserMetadata] = Field(None, alias="open_AI")
+    open_ai: Optional[Auth0OpenAIUserMetadata] = Field(default=None, alias="open_AI")
     beta: Optional[AnonymousTemporalRange] = None
     __properties = ["schema", "global_id", "cloud_key", "stripe_customer_id", "vanityname", "allocation", "open_AI", "beta"]
 

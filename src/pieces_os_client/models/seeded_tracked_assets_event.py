@@ -28,7 +28,7 @@ class SeededTrackedAssetsEvent(BaseModel):
     """
     An seeded event model that can occur at the assets level i.e. search   # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     identifier_description_pair: Optional[TrackedAssetsEventIdentifierDescriptionPairs] = None
     metadata: Optional[SeededTrackedAssetsEventMetadata] = None
     __properties = ["schema", "identifier_description_pair", "metadata"]

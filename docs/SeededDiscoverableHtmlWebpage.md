@@ -23,7 +23,7 @@ print SeededDiscoverableHtmlWebpage.to_json()
 # convert the object into a dict
 seeded_discoverable_html_webpage_dict = seeded_discoverable_html_webpage_instance.to_dict()
 # create an instance of SeededDiscoverableHtmlWebpage from a dict
-seeded_discoverable_html_webpage_form_dict = seeded_discoverable_html_webpage.from_dict(seeded_discoverable_html_webpage_dict)
+seeded_discoverable_html_webpage_from_dict = SeededDiscoverableHtmlWebpage.from_dict(seeded_discoverable_html_webpage_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

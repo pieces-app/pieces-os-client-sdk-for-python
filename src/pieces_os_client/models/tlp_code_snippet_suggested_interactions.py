@@ -29,7 +29,7 @@ class TLPCodeSnippetSuggestedInteractions(BaseModel):
     """
     TLPCodeSnippetSuggestedInteractions
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     save: Optional[TLPCodeFragmentSuggestedSave] = None
     reuse: Optional[TLPCodeFragmentSuggestedReuse] = None
     __properties = ["schema", "save", "reuse"]

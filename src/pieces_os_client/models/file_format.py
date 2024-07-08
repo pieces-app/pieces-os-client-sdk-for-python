@@ -29,7 +29,7 @@ class FileFormat(BaseModel):
     """
     This describes a FileFormat. If you need meta data you can get all of that from your format wrapper.  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     bytes: Optional[TransferableBytes] = None
     string: Optional[TransferableString] = None
     __properties = ["schema", "bytes", "string"]

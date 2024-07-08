@@ -27,7 +27,7 @@ class Notification(BaseModel):
     """
     config model for notification invoking  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     id: StrictInt = Field(...)
     title: Optional[StrictStr] = None
     message: Optional[StrictStr] = None

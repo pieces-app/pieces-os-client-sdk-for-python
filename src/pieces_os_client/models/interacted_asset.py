@@ -27,7 +27,7 @@ class InteractedAsset(BaseModel):
     """
     A model that represents an asset that has been interacted with.   # noqa: E501
     """
-    asset: Optional[constr(strict=True, max_length=36, min_length=36)] = Field(None, description="A uuid model. 36 Characters (4 Dashes, 32 Numbers/Letters) ")
+    asset: Optional[constr(strict=True, max_length=36, min_length=36)] = Field(default=None, description="A uuid model. 36 Characters (4 Dashes, 32 Numbers/Letters) ")
     interactions: Optional[InteractedAssetInteractions] = None
     __properties = ["asset", "interactions"]
 

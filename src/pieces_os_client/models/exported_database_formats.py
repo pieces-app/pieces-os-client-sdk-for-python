@@ -28,7 +28,7 @@ class ExportedDatabaseFormats(BaseModel):
     """
     ExportedDatabaseFormats
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     iterable: conlist(ExportedDatabaseFormat) = Field(...)
     __properties = ["schema", "iterable"]
 

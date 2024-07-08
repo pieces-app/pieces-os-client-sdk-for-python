@@ -31,7 +31,7 @@ class TLPCodeProcessing(BaseModel):
     """
     TLPCodeProcessing
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     fragment: Optional[TLPCodeSnippetAnalytics] = None
     file: Optional[TLPCodeFileAnalytics] = None
     directory: Optional[TLPCodeDirectoryAnalytics] = None

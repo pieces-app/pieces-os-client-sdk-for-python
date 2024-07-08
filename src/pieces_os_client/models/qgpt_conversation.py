@@ -28,7 +28,7 @@ class QGPTConversation(BaseModel):
     """
     QGPTConversation
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     iterable: Optional[conlist(QGPTConversationMessage)] = None
     __properties = ["schema", "iterable"]
 

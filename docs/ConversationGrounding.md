@@ -24,7 +24,7 @@ print ConversationGrounding.to_json()
 # convert the object into a dict
 conversation_grounding_dict = conversation_grounding_instance.to_dict()
 # create an instance of ConversationGrounding from a dict
-conversation_grounding_form_dict = conversation_grounding.from_dict(conversation_grounding_dict)
+conversation_grounding_from_dict = ConversationGrounding.from_dict(conversation_grounding_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

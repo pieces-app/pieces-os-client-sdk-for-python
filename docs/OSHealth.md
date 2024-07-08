@@ -24,7 +24,7 @@ print OSHealth.to_json()
 # convert the object into a dict
 os_health_dict = os_health_instance.to_dict()
 # create an instance of OSHealth from a dict
-os_health_form_dict = os_health.from_dict(os_health_dict)
+os_health_from_dict = OSHealth.from_dict(os_health_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

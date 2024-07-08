@@ -20,16 +20,17 @@ import json
 
 
 from typing import List, Optional
-from pydantic import BaseModel, Field, StrictStr, conlist
+from pydantic import BaseModel, Field, StrictBool, StrictStr, conlist
 from pieces_os_client.models.embedded_model_schema import EmbeddedModelSchema
 
 class FilePickerInput(BaseModel):
     """
     This is the input model for the FilePicker  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
-    allowed_extensions: Optional[conlist(StrictStr)] = Field(None, alias="allowedExtensions")
-    __properties = ["schema", "allowedExtensions"]
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
+    allowed_extensions: Optional[conlist(StrictStr)] = Field(default=None, alias="allowedExtensions")
+    allow_multiple: Optional[StrictBool] = Field(default=None, alias="allowMultiple", description="default behavior is set to true")
+    __properties = ["schema", "allowedExtensions", "allowMultiple"]
 
     class Config:
         """Pydantic configuration"""
@@ -71,7 +72,8 @@ class FilePickerInput(BaseModel):
 
         _obj = FilePickerInput.parse_obj({
             "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
-            "allowed_extensions": obj.get("allowedExtensions")
+            "allowed_extensions": obj.get("allowedExtensions"),
+            "allow_multiple": obj.get("allowMultiple")
         })
         return _obj
 

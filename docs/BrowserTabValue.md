@@ -27,7 +27,7 @@ print BrowserTabValue.to_json()
 # convert the object into a dict
 browser_tab_value_dict = browser_tab_value_instance.to_dict()
 # create an instance of BrowserTabValue from a dict
-browser_tab_value_form_dict = browser_tab_value.from_dict(browser_tab_value_dict)
+browser_tab_value_from_dict = BrowserTabValue.from_dict(browser_tab_value_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

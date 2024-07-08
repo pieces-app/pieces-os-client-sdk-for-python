@@ -30,7 +30,7 @@ class GraphicalMachineLearningProcessingEvent(BaseModel):
     """
     GraphicalMachineLearningProcessingEvent
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     ocr: Optional[GraphicalOCRProcessing] = None
     image: Optional[GraphicalImageProcessing] = None
     svg: Optional[GraphicalSVGStatistics] = None

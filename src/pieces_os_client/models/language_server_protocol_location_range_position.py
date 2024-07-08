@@ -27,7 +27,7 @@ class LanguageServerProtocolLocationRangePosition(BaseModel):
     """
     modeled after this (https://microsoft.github.io/language-server-protocol/specifications/lsp/3.17/specification/#position)  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     line: StrictInt = Field(...)
     character: StrictInt = Field(...)
     __properties = ["schema", "line", "character"]

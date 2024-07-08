@@ -28,7 +28,7 @@ class SeededTrackedAdoptionEvent(BaseModel):
     """
     SeededTrackedAdoptionEvent
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     identifier_description_pair: Optional[AnalyticsTrackedAdoptionEventIdentifierDescriptionPairs] = None
     __properties = ["schema", "identifier_description_pair"]
 

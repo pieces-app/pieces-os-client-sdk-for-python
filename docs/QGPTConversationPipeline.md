@@ -26,7 +26,7 @@ print QGPTConversationPipeline.to_json()
 # convert the object into a dict
 qgpt_conversation_pipeline_dict = qgpt_conversation_pipeline_instance.to_dict()
 # create an instance of QGPTConversationPipeline from a dict
-qgpt_conversation_pipeline_form_dict = qgpt_conversation_pipeline.from_dict(qgpt_conversation_pipeline_dict)
+qgpt_conversation_pipeline_from_dict = QGPTConversationPipeline.from_dict(qgpt_conversation_pipeline_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

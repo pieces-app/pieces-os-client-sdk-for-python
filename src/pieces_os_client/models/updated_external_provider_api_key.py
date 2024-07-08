@@ -28,7 +28,7 @@ class UpdatedExternalProviderApiKey(BaseModel):
     """
     This is the update Auth0UserMetadata object, and the specific update output model for \"/external_provider/api_key/update\"  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     metadata: Auth0UserMetadata = Field(...)
     __properties = ["schema", "metadata"]
 

@@ -27,7 +27,7 @@ class ReferencedAnchor(BaseModel):
     """
     This is the referenced version of a Anchor, main used for the uuid.  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     id: StrictStr = Field(...)
     reference: Optional[FlattenedAnchor] = None
     __properties = ["schema", "id", "reference"]

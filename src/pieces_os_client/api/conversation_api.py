@@ -28,6 +28,8 @@ from pieces_os_client.models.conversation import Conversation
 from pieces_os_client.models.conversation_messages import ConversationMessages
 from pieces_os_client.models.conversation_summarize_input import ConversationSummarizeInput
 from pieces_os_client.models.conversation_summarize_output import ConversationSummarizeOutput
+from pieces_os_client.models.search_input import SearchInput
+from pieces_os_client.models.searched_conversation_messages import SearchedConversationMessages
 from pieces_os_client.models.seeded_score_increment import SeededScoreIncrement
 
 from pieces_os_client.api_client import ApiClient
@@ -782,7 +784,7 @@ class ConversationApi:
 
     @validate_arguments
     def conversation_disassociate_anchor(self, conversation : Annotated[StrictStr, Field(..., description="This is the uuid of a conversation.")], anchor : Annotated[StrictStr, Field(..., description="This is the specific uuid of an anchor.")], **kwargs) -> None:  # noqa: E501
-        """/conversation/{conversation}/anchors/delete/{anchor} [POST]  # noqa: E501
+        """/conversation/{conversation}/anchors/disassociate/{anchor} [POST]  # noqa: E501
 
         Updates both the anchor and the conversation, deleting (disassociating) them simultaneously.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
@@ -814,7 +816,7 @@ class ConversationApi:
 
     @validate_arguments
     def conversation_disassociate_anchor_with_http_info(self, conversation : Annotated[StrictStr, Field(..., description="This is the uuid of a conversation.")], anchor : Annotated[StrictStr, Field(..., description="This is the specific uuid of an anchor.")], **kwargs) -> ApiResponse:  # noqa: E501
-        """/conversation/{conversation}/anchors/delete/{anchor} [POST]  # noqa: E501
+        """/conversation/{conversation}/anchors/disassociate/{anchor} [POST]  # noqa: E501
 
         Updates both the anchor and the conversation, deleting (disassociating) them simultaneously.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
@@ -910,7 +912,7 @@ class ConversationApi:
         _response_types_map = {}
 
         return self.api_client.call_api(
-            '/conversation/{conversation}/anchors/delete/{anchor}', 'POST',
+            '/conversation/{conversation}/anchors/disassociate/{anchor}', 'POST',
             _path_params,
             _query_params,
             _header_params,
@@ -928,7 +930,7 @@ class ConversationApi:
 
     @validate_arguments
     def conversation_disassociate_asset(self, conversation : Annotated[StrictStr, Field(..., description="This is the uuid of a conversation.")], asset : Annotated[StrictStr, Field(..., description="The id (uuid) of the asset that you are trying to access.")], **kwargs) -> None:  # noqa: E501
-        """/conversation/{conversation}/assets/delete/{asset} [POST]  # noqa: E501
+        """/conversation/{conversation}/assets/disassociate/{asset} [POST]  # noqa: E501
 
         Updates both the asset and the conversation, effectively disassociating them.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
@@ -960,7 +962,7 @@ class ConversationApi:
 
     @validate_arguments
     def conversation_disassociate_asset_with_http_info(self, conversation : Annotated[StrictStr, Field(..., description="This is the uuid of a conversation.")], asset : Annotated[StrictStr, Field(..., description="The id (uuid) of the asset that you are trying to access.")], **kwargs) -> ApiResponse:  # noqa: E501
-        """/conversation/{conversation}/assets/delete/{asset} [POST]  # noqa: E501
+        """/conversation/{conversation}/assets/disassociate/{asset} [POST]  # noqa: E501
 
         Updates both the asset and the conversation, effectively disassociating them.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
@@ -1056,7 +1058,7 @@ class ConversationApi:
         _response_types_map = {}
 
         return self.api_client.call_api(
-            '/conversation/{conversation}/assets/delete/{asset}', 'POST',
+            '/conversation/{conversation}/assets/disassociate/{asset}', 'POST',
             _path_params,
             _query_params,
             _header_params,
@@ -2699,6 +2701,170 @@ class ConversationApi:
 
         return self.api_client.call_api(
             '/conversation/update', 'POST',
+            _path_params,
+            _query_params,
+            _header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            response_types_map=_response_types_map,
+            auth_settings=_auth_settings,
+            async_req=_params.get('async_req'),
+            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=_params.get('_preload_content', True),
+            _request_timeout=_params.get('_request_timeout'),
+            collection_formats=_collection_formats,
+            _request_auth=_params.get('_request_auth'))
+
+    @validate_arguments
+    def search_conversation_specific_messages(self, conversation : Annotated[StrictStr, Field(..., description="This is the uuid of a conversation.")], transferables : Annotated[Optional[StrictBool], Field(description="This is a boolean that will decided if we are want to return the transferable data (default) or not(performance enhancement)")] = None, search_input : Optional[SearchInput] = None, **kwargs) -> SearchedConversationMessages:  # noqa: E501
+        """/conversation/{conversation}/search [POST]  # noqa: E501
+
+        This will search a specific conversation for a match  note: here we will only search the conversationMessages for this given Conversation  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.search_conversation_specific_messages(conversation, transferables, search_input, async_req=True)
+        >>> result = thread.get()
+
+        :param conversation: This is the uuid of a conversation. (required)
+        :type conversation: str
+        :param transferables: This is a boolean that will decided if we are want to return the transferable data (default) or not(performance enhancement)
+        :type transferables: bool
+        :param search_input:
+        :type search_input: SearchInput
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _request_timeout: timeout setting for this request.
+               If one number provided, it will be total request
+               timeout. It can also be a pair (tuple) of
+               (connection, read) timeouts.
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: SearchedConversationMessages
+        """
+        kwargs['_return_http_data_only'] = True
+        if '_preload_content' in kwargs:
+            message = "Error! Please call the search_conversation_specific_messages_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
+            raise ValueError(message)
+        return self.search_conversation_specific_messages_with_http_info(conversation, transferables, search_input, **kwargs)  # noqa: E501
+
+    @validate_arguments
+    def search_conversation_specific_messages_with_http_info(self, conversation : Annotated[StrictStr, Field(..., description="This is the uuid of a conversation.")], transferables : Annotated[Optional[StrictBool], Field(description="This is a boolean that will decided if we are want to return the transferable data (default) or not(performance enhancement)")] = None, search_input : Optional[SearchInput] = None, **kwargs) -> ApiResponse:  # noqa: E501
+        """/conversation/{conversation}/search [POST]  # noqa: E501
+
+        This will search a specific conversation for a match  note: here we will only search the conversationMessages for this given Conversation  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.search_conversation_specific_messages_with_http_info(conversation, transferables, search_input, async_req=True)
+        >>> result = thread.get()
+
+        :param conversation: This is the uuid of a conversation. (required)
+        :type conversation: str
+        :param transferables: This is a boolean that will decided if we are want to return the transferable data (default) or not(performance enhancement)
+        :type transferables: bool
+        :param search_input:
+        :type search_input: SearchInput
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _preload_content: if False, the ApiResponse.data will
+                                 be set to none and raw_data will store the
+                                 HTTP response body without reading/decoding.
+                                 Default is True.
+        :type _preload_content: bool, optional
+        :param _return_http_data_only: response data instead of ApiResponse
+                                       object with status code, headers, etc
+        :type _return_http_data_only: bool, optional
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
+        :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: tuple(SearchedConversationMessages, status_code(int), headers(HTTPHeaderDict))
+        """
+
+        _params = locals()
+
+        _all_params = [
+            'conversation',
+            'transferables',
+            'search_input'
+        ]
+        _all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers'
+            ]
+        )
+
+        # validate the arguments
+        for _key, _val in _params['kwargs'].items():
+            if _key not in _all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method search_conversation_specific_messages" % _key
+                )
+            _params[_key] = _val
+        del _params['kwargs']
+
+        _collection_formats = {}
+
+        # process the path parameters
+        _path_params = {}
+        if _params['conversation'] is not None:
+            _path_params['conversation'] = _params['conversation']
+
+
+        # process the query parameters
+        _query_params = []
+        if _params.get('transferables') is not None:  # noqa: E501
+            _query_params.append(('transferables', _params['transferables']))
+
+        # process the header parameters
+        _header_params = dict(_params.get('_headers', {}))
+        # process the form parameters
+        _form_params = []
+        _files = {}
+        # process the body parameter
+        _body_params = None
+        if _params['search_input'] is not None:
+            _body_params = _params['search_input']
+
+        # set the HTTP header `Accept`
+        _header_params['Accept'] = self.api_client.select_header_accept(
+            ['application/json', 'text/plain'])  # noqa: E501
+
+        # set the HTTP header `Content-Type`
+        _content_types_list = _params.get('_content_type',
+            self.api_client.select_header_content_type(
+                ['application/json']))
+        if _content_types_list:
+                _header_params['Content-Type'] = _content_types_list
+
+        # authentication setting
+        _auth_settings = []  # noqa: E501
+
+        _response_types_map = {
+            '200': "SearchedConversationMessages",
+            '500': "str",
+        }
+
+        return self.api_client.call_api(
+            '/conversation/{conversation}/search', 'POST',
             _path_params,
             _query_params,
             _header_params,

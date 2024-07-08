@@ -27,7 +27,7 @@ class LanguageServerProtocolCodeDescription(BaseModel):
     """
     modeled off of (https://microsoft.github.io/language-server-protocol/specifications/lsp/3.17/specification/#codeDescription)  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     href: StrictStr = Field(...)
     __properties = ["schema", "href"]
 

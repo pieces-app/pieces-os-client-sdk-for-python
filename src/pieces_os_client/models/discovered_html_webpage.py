@@ -28,7 +28,7 @@ class DiscoveredHtmlWebpage(BaseModel):
     """
     This will return assets that were extracted from the html webpage. This will contain the original url so you can double check the results wtih the results you passed in, but it will remain in the same order that it was passed in if used within the /discover/discover/html/webpage endpoint.  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     assets: DiscoveredAssets = Field(...)
     url: StrictStr = Field(...)
     __properties = ["schema", "assets", "url"]

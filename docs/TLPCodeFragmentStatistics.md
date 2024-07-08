@@ -22,7 +22,7 @@ print TLPCodeFragmentStatistics.to_json()
 # convert the object into a dict
 tlp_code_fragment_statistics_dict = tlp_code_fragment_statistics_instance.to_dict()
 # create an instance of TLPCodeFragmentStatistics from a dict
-tlp_code_fragment_statistics_form_dict = tlp_code_fragment_statistics.from_dict(tlp_code_fragment_statistics_dict)
+tlp_code_fragment_statistics_from_dict = TLPCodeFragmentStatistics.from_dict(tlp_code_fragment_statistics_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

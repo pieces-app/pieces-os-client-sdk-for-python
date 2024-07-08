@@ -28,7 +28,7 @@ class Accessors(BaseModel):
     """
     Accessors
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     iterable: conlist(Accessor) = Field(...)
     __properties = ["schema", "iterable"]
 

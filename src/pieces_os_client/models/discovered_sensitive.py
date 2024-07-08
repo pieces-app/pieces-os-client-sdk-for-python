@@ -28,7 +28,7 @@ class DiscoveredSensitive(BaseModel):
     """
     This will return a discoveredSensitive, with a seed that can be used to create if automatic is set to false. and will provide the original text provided.  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     seed: SeededSensitive = Field(...)
     text: StrictStr = Field(...)
     __properties = ["schema", "seed", "text"]

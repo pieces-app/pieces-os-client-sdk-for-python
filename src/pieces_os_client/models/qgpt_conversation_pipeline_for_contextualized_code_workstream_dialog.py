@@ -27,7 +27,7 @@ class QGPTConversationPipelineForContextualizedCodeWorkstreamDialog(BaseModel):
     """
     This is for the users that wants to have contextualized code conversations around their workstream materials, meaning conversations around code with Context provided, as well as workstream information ie information gathered from the WPE.  This is a class so that we can add optional properties in the future.  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     __properties = ["schema"]
 
     class Config:

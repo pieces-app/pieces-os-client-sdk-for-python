@@ -12,6 +12,7 @@ Name | Type | Description | Notes
 **type** | [**PersonType**](PersonType.md) |  | 
 **model** | [**PersonModel**](PersonModel.md) |  | [optional] 
 **annotations** | [**List[SeededAnnotation]**](SeededAnnotation.md) |  | [optional] 
+**anchors** | [**FlattenedAnchors**](FlattenedAnchors.md) |  | [optional] 
 
 ## Example
 
@@ -28,7 +29,7 @@ print SeededPerson.to_json()
 # convert the object into a dict
 seeded_person_dict = seeded_person_instance.to_dict()
 # create an instance of SeededPerson from a dict
-seeded_person_form_dict = seeded_person.from_dict(seeded_person_dict)
+seeded_person_from_dict = SeededPerson.from_dict(seeded_person_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

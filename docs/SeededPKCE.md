@@ -38,7 +38,7 @@ print SeededPKCE.to_json()
 # convert the object into a dict
 seeded_pkce_dict = seeded_pkce_instance.to_dict()
 # create an instance of SeededPKCE from a dict
-seeded_pkce_form_dict = seeded_pkce.from_dict(seeded_pkce_dict)
+seeded_pkce_from_dict = SeededPKCE.from_dict(seeded_pkce_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

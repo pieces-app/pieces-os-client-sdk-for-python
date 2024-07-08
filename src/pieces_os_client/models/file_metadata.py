@@ -28,10 +28,10 @@ class FileMetadata(BaseModel):
     """
     This is a model for metadata of a file!  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
-    name: Optional[StrictStr] = Field(None, description="This is the name of your file.")
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
+    name: Optional[StrictStr] = Field(default=None, description="This is the name of your file.")
     ext: Optional[ClassificationSpecificEnum] = None
-    size: Optional[StrictInt] = Field(None, description="This is the size(in bytes)")
+    size: Optional[StrictInt] = Field(default=None, description="This is the size(in bytes)")
     __properties = ["schema", "name", "ext", "size"]
 
     class Config:

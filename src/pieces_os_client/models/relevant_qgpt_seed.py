@@ -29,10 +29,10 @@ class RelevantQGPTSeed(BaseModel):
     """
     This is a generic model used, to wrap a seed, as well as give an identifier used to further identifiy this snippet.  Seed is optional here because you may just want to provide the id, and not the original seed.  id is also optional here as you may provide an id or not here.(however with specific endpoint this ID is a guarentee.)  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     id: Optional[StrictStr] = None
     seed: Optional[Seed] = None
-    path: Optional[StrictStr] = Field(None, description="This is an optional file path")
+    path: Optional[StrictStr] = Field(default=None, description="This is an optional file path")
     asset: Optional[ReferencedAsset] = None
     __properties = ["schema", "id", "seed", "path", "asset"]
 

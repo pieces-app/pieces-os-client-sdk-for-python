@@ -28,9 +28,9 @@ class AllocationCloudUrl(BaseModel):
     """
     This is one of the 3 possible urls that will route to your cloud :).  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     status: AllocationStatusEnum = Field(...)
-    url: StrictStr = Field(..., description="this is the base url that is used to communicat with your vpc.")
+    url: StrictStr = Field(default=..., description="this is the base url that is used to communicat with your vpc.")
     __properties = ["schema", "status", "url"]
 
     class Config:

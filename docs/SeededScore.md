@@ -10,6 +10,7 @@ Name | Type | Description | Notes
 **update** | **bool** |  | [optional] 
 **reference** | **bool** |  | [optional] 
 **priority** | **bool** |  | [optional] 
+**searched** | **bool** |  | [optional] 
 
 ## Example
 
@@ -26,7 +27,7 @@ print SeededScore.to_json()
 # convert the object into a dict
 seeded_score_dict = seeded_score_instance.to_dict()
 # create an instance of SeededScore from a dict
-seeded_score_form_dict = seeded_score.from_dict(seeded_score_dict)
+seeded_score_from_dict = SeededScore.from_dict(seeded_score_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -28,22 +28,22 @@ class SeededPKCE(BaseModel):
     """
     A model that initialized a PKCE Authentication Flow.  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
-    response_type: StrictStr = Field(..., description="Indicates to Auth0 which OAuth 2.0 Flow you want to perform. Use code for Authorization Code Grant (PKCE) Flow.")
-    state: StrictStr = Field(..., description="An opaque value the clients adds to the initial request that Auth0 includes when redirecting the back to the client. This value must be used by the client to prevent CSRF attacks.")
-    nonce: StrictStr = Field(..., description="A local key that is held as the comparator to state, thus they should be the same.")
-    redirect_uri: Optional[StrictStr] = Field(None, description="http://localhost:8080/authentication/response")
-    code_challenge: StrictStr = Field(..., description="Generated challenge from the code_verifier.")
-    code_challenge_method: StrictStr = Field(..., description="Method used to generate the challenge. The PKCE spec defines two methods, S256 and plain, however, Auth0 supports only S256 since the latter is discouraged.")
-    domain: Optional[StrictStr] = Field(None, description="https://auth.pieces.services/authorize")
-    audience: Optional[StrictStr] = Field(None, description="The unique identifier of the target API you want to access. i.e. https://pieces.us.auth0.com/api/v2/")
-    screen_hint: Optional[StrictStr] = Field(None, description="Provides a hint to Auth0 as to what flow should be displayed. The default behavior is to show a login page but you can override this by passing 'signup' to show the signup page instead.")
-    prompt: Optional[StrictStr] = Field(None, description=" To initiate a silent authentication request, use prompt=none (see Remarks for more info).")
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
+    response_type: StrictStr = Field(default=..., description="Indicates to Auth0 which OAuth 2.0 Flow you want to perform. Use code for Authorization Code Grant (PKCE) Flow.")
+    state: StrictStr = Field(default=..., description="An opaque value the clients adds to the initial request that Auth0 includes when redirecting the back to the client. This value must be used by the client to prevent CSRF attacks.")
+    nonce: StrictStr = Field(default=..., description="A local key that is held as the comparator to state, thus they should be the same.")
+    redirect_uri: Optional[StrictStr] = Field(default=None, description="http://localhost:8080/authentication/response")
+    code_challenge: StrictStr = Field(default=..., description="Generated challenge from the code_verifier.")
+    code_challenge_method: StrictStr = Field(default=..., description="Method used to generate the challenge. The PKCE spec defines two methods, S256 and plain, however, Auth0 supports only S256 since the latter is discouraged.")
+    domain: Optional[StrictStr] = Field(default=None, description="https://auth.pieces.services/authorize")
+    audience: Optional[StrictStr] = Field(default=None, description="The unique identifier of the target API you want to access. i.e. https://pieces.us.auth0.com/api/v2/")
+    screen_hint: Optional[StrictStr] = Field(default=None, description="Provides a hint to Auth0 as to what flow should be displayed. The default behavior is to show a login page but you can override this by passing 'signup' to show the signup page instead.")
+    prompt: Optional[StrictStr] = Field(default=None, description=" To initiate a silent authentication request, use prompt=none (see Remarks for more info).")
     organization: Optional[StrictStr] = None
     invitation: Optional[StrictStr] = None
-    scope: conlist(StrictStr) = Field(..., description="The scopes which you want to request authorization for. These must be separated by a space. You can request any of the standard OpenID Connect (OIDC) scopes about users, such as profile and email, custom claims that must conform to a namespaced format, or any scopes supported by the target API (for example, read:contacts). Include offline_access to get a Refresh Token.")
-    client_id: StrictStr = Field(..., description="Your application's Client ID.")
-    additional_parameters: Optional[SeededPKCEADDITIONALPARAMETERS] = Field(None, alias="ADDITIONAL_PARAMETERS")
+    scope: conlist(StrictStr) = Field(default=..., description="The scopes which you want to request authorization for. These must be separated by a space. You can request any of the standard OpenID Connect (OIDC) scopes about users, such as profile and email, custom claims that must conform to a namespaced format, or any scopes supported by the target API (for example, read:contacts). Include offline_access to get a Refresh Token.")
+    client_id: StrictStr = Field(default=..., description="Your application's Client ID.")
+    additional_parameters: Optional[SeededPKCEADDITIONALPARAMETERS] = Field(default=None, alias="ADDITIONAL_PARAMETERS")
     response_mode: Optional[StrictStr] = None
     __properties = ["schema", "response_type", "state", "nonce", "redirect_uri", "code_challenge", "code_challenge_method", "domain", "audience", "screen_hint", "prompt", "organization", "invitation", "scope", "client_id", "ADDITIONAL_PARAMETERS", "response_mode"]
 

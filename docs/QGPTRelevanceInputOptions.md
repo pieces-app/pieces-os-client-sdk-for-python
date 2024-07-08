@@ -24,7 +24,7 @@ print QGPTRelevanceInputOptions.to_json()
 # convert the object into a dict
 qgpt_relevance_input_options_dict = qgpt_relevance_input_options_instance.to_dict()
 # create an instance of QGPTRelevanceInputOptions from a dict
-qgpt_relevance_input_options_form_dict = qgpt_relevance_input_options.from_dict(qgpt_relevance_input_options_dict)
+qgpt_relevance_input_options_from_dict = QGPTRelevanceInputOptions.from_dict(qgpt_relevance_input_options_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

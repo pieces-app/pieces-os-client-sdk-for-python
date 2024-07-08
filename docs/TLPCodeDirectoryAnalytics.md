@@ -22,7 +22,7 @@ print TLPCodeDirectoryAnalytics.to_json()
 # convert the object into a dict
 tlp_code_directory_analytics_dict = tlp_code_directory_analytics_instance.to_dict()
 # create an instance of TLPCodeDirectoryAnalytics from a dict
-tlp_code_directory_analytics_form_dict = tlp_code_directory_analytics.from_dict(tlp_code_directory_analytics_dict)
+tlp_code_directory_analytics_from_dict = TLPCodeDirectoryAnalytics.from_dict(tlp_code_directory_analytics_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

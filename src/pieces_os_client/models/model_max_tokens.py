@@ -27,7 +27,7 @@ class ModelMaxTokens(BaseModel):
     """
     This will describe the MaxTokens for an MLModel  total is required.  iff there is a differentiator with inputs/outputs, then we can also provide those as well.  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     total: Optional[Union[StrictFloat, StrictInt]] = Field(...)
     input: Optional[Union[StrictFloat, StrictInt]] = None
     output: Optional[Union[StrictFloat, StrictInt]] = None

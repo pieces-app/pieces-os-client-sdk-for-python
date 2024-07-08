@@ -28,11 +28,11 @@ class OCRAnalysis(BaseModel):
     """
     This is the data collected during the ocr analysis of an image.  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     id: StrictStr = Field(...)
     raw: Format = Field(...)
     hocr: Format = Field(...)
-    image: StrictStr = Field(..., description="this is a reference the the imageAnalysis.")
+    image: StrictStr = Field(default=..., description="this is a reference the the imageAnalysis.")
     model: Model = Field(...)
     __properties = ["schema", "id", "raw", "hocr", "image", "model"]
 

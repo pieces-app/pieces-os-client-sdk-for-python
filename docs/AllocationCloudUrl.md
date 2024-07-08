@@ -24,7 +24,7 @@ print AllocationCloudUrl.to_json()
 # convert the object into a dict
 allocation_cloud_url_dict = allocation_cloud_url_instance.to_dict()
 # create an instance of AllocationCloudUrl from a dict
-allocation_cloud_url_form_dict = allocation_cloud_url.from_dict(allocation_cloud_url_dict)
+allocation_cloud_url_from_dict = AllocationCloudUrl.from_dict(allocation_cloud_url_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

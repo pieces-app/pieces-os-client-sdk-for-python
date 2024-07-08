@@ -27,8 +27,8 @@ class TrackedAssetsEventSearchMetadata(BaseModel):
     """
     Metadata attached to a search event on an Asset  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
-    query: Optional[StrictStr] = Field(None, description="The search query itself")
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
+    query: Optional[StrictStr] = Field(default=None, description="The search query itself")
     results: Optional[TrackedAssetsEventSearchMetadataResults] = None
     __properties = ["schema", "query", "results"]
 

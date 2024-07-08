@@ -24,7 +24,7 @@ print LanguageServerProtocolLocationRange.to_json()
 # convert the object into a dict
 language_server_protocol_location_range_dict = language_server_protocol_location_range_instance.to_dict()
 # create an instance of LanguageServerProtocolLocationRange from a dict
-language_server_protocol_location_range_form_dict = language_server_protocol_location_range.from_dict(language_server_protocol_location_range_dict)
+language_server_protocol_location_range_from_dict = LanguageServerProtocolLocationRange.from_dict(language_server_protocol_location_range_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

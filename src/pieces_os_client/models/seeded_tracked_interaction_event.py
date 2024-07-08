@@ -28,8 +28,8 @@ class SeededTrackedInteractionEvent(BaseModel):
     """
     This is a model that will hold relavent information in relation to an interaction(ONLY CLICK/TAP) analytics event(usage). If you want to register an event that relates to an interaction with the key then register a Keyboard Event.   # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
-    description: StrictStr = Field(..., description="These need structure")
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
+    description: StrictStr = Field(default=..., description="These need structure")
     element: Optional[StrictStr] = None
     identifier_description_pair: Optional[SeededTrackedInteractionEventIdentifierDescriptionPairs] = None
     __properties = ["schema", "description", "element", "identifier_description_pair"]

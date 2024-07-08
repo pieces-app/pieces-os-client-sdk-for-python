@@ -27,9 +27,9 @@ class ImageAnalysis(BaseModel):
     """
     This is a model that represents all the information collected during the processing of an image.  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
-    id: StrictStr = Field(..., description="this is a uuid that represents a imageAnalysis.")
-    analysis: StrictStr = Field(..., description="this is a reference to the analysis.")
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
+    id: StrictStr = Field(default=..., description="this is a uuid that represents a imageAnalysis.")
+    analysis: StrictStr = Field(default=..., description="this is a reference to the analysis.")
     ocr: Optional[OCRAnalysis] = None
     __properties = ["schema", "id", "analysis", "ocr"]
 

@@ -29,7 +29,7 @@ class SeededTrackedMachineLearningEvent(BaseModel):
     """
     SeededTrackedMachineLearningEvent
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     tlp: Optional[TLPMachineLearningProcessingEvent] = None
     graphical: Optional[GraphicalMachineLearningProcessingEvent] = None
     __properties = ["schema", "tlp", "graphical"]

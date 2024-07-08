@@ -27,7 +27,7 @@ class ConversationGrounding(BaseModel):
     """
     This is the context used for grounding the ml models with reguard to a conversation.  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     messages: Optional[FlattenedConversationMessages] = None
     temporal: Optional[TemporalRangeGrounding] = None
     __properties = ["schema", "messages", "temporal"]

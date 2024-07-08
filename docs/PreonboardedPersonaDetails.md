@@ -24,7 +24,7 @@ print PreonboardedPersonaDetails.to_json()
 # convert the object into a dict
 preonboarded_persona_details_dict = preonboarded_persona_details_instance.to_dict()
 # create an instance of PreonboardedPersonaDetails from a dict
-preonboarded_persona_details_form_dict = preonboarded_persona_details.from_dict(preonboarded_persona_details_dict)
+preonboarded_persona_details_from_dict = PreonboardedPersonaDetails.from_dict(preonboarded_persona_details_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

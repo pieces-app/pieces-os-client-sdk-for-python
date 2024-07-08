@@ -23,7 +23,7 @@ print QGPTTaskPipelineForCodeCompletion.to_json()
 # convert the object into a dict
 qgpt_task_pipeline_for_code_completion_dict = qgpt_task_pipeline_for_code_completion_instance.to_dict()
 # create an instance of QGPTTaskPipelineForCodeCompletion from a dict
-qgpt_task_pipeline_for_code_completion_form_dict = qgpt_task_pipeline_for_code_completion.from_dict(qgpt_task_pipeline_for_code_completion_dict)
+qgpt_task_pipeline_for_code_completion_from_dict = QGPTTaskPipelineForCodeCompletion.from_dict(qgpt_task_pipeline_for_code_completion_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

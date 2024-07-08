@@ -22,7 +22,7 @@ print QGPTConversation.to_json()
 # convert the object into a dict
 qgpt_conversation_dict = qgpt_conversation_instance.to_dict()
 # create an instance of QGPTConversation from a dict
-qgpt_conversation_form_dict = qgpt_conversation.from_dict(qgpt_conversation_dict)
+qgpt_conversation_from_dict = QGPTConversation.from_dict(qgpt_conversation_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

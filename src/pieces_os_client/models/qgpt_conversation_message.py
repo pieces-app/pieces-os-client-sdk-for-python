@@ -29,7 +29,7 @@ class QGPTConversationMessage(BaseModel):
     """
     This will take a single message, and a role.  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     text: StrictStr = Field(...)
     role: QGPTConversationMessageRoleEnum = Field(...)
     timestamp: GroupedTimestamp = Field(...)

@@ -32,7 +32,7 @@ class FlattenedHint(BaseModel):
     """
     This is the flattened version of a hint. Ensure that you DO NOT reference the Asset here as you can create an infinite loop within the packaging.  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     id: StrictStr = Field(...)
     created: GroupedTimestamp = Field(...)
     updated: GroupedTimestamp = Field(...)
@@ -40,7 +40,7 @@ class FlattenedHint(BaseModel):
     mechanism: Optional[MechanismEnum] = None
     asset: Optional[ReferencedAsset] = None
     type: HintTypeEnum = Field(...)
-    text: StrictStr = Field(..., description="This is the text of the hint.")
+    text: StrictStr = Field(default=..., description="This is the text of the hint.")
     model: Optional[ReferencedModel] = None
     score: Optional[Score] = None
     __properties = ["schema", "id", "created", "updated", "deleted", "mechanism", "asset", "type", "text", "model", "score"]

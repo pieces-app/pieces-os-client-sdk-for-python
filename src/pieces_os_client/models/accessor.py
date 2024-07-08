@@ -28,11 +28,11 @@ class Accessor(BaseModel):
     """
     This is used to determine who has accessed a share. and how many times.  The user here is the user that accessed this Piece.(optional) if undefined then this user was not logged in yet.  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     id: StrictStr = Field(...)
-    os: StrictStr = Field(..., description="this is an os id.")
+    os: StrictStr = Field(default=..., description="this is an os id.")
     share: StrictStr = Field(...)
-    count: StrictInt = Field(..., description="how many times this user accessed this piece.")
+    count: StrictInt = Field(default=..., description="how many times this user accessed this piece.")
     user: Optional[FlattenedUserProfile] = None
     __properties = ["schema", "id", "os", "share", "count", "user"]
 

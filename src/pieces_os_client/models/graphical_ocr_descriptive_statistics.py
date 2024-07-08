@@ -28,7 +28,7 @@ class GraphicalOCRDescriptiveStatistics(BaseModel):
     """
     Model for monitoring and evaluating the OCR feature  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     asset: StrictStr = Field(...)
     user: StrictStr = Field(...)
     model: StrictStr = Field(...)

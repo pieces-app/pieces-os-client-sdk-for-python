@@ -22,7 +22,7 @@ print TemporalRangeGrounding.to_json()
 # convert the object into a dict
 temporal_range_grounding_dict = temporal_range_grounding_instance.to_dict()
 # create an instance of TemporalRangeGrounding from a dict
-temporal_range_grounding_form_dict = temporal_range_grounding.from_dict(temporal_range_grounding_dict)
+temporal_range_grounding_from_dict = TemporalRangeGrounding.from_dict(temporal_range_grounding_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

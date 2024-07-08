@@ -27,7 +27,7 @@ class ByteDescriptor(BaseModel):
     """
     This is a nice microclass to help with managing the size of a File or Fragment in a readable way for UI's  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     value: StrictInt = Field(...)
     readable: StrictStr = Field(...)
     __properties = ["schema", "value", "readable"]

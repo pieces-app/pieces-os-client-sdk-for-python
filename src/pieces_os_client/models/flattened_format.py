@@ -35,20 +35,20 @@ class FlattenedFormat(BaseModel):
     """
     A representation of Data for a particular Form Factor of an Asset.[DAG Compatible - Directed Acyclic Graph Data Structure]  FlattenedFormats prevent Cycles in Reference because all outbound references are strings as opposed to crosspollinated objects.  i.e. FlattenedFormat.asset is Type String  fragment or file will always be defined. Even thought they are both optional.  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     id: StrictStr = Field(...)
     creator: StrictStr = Field(...)
     classification: Classification = Field(...)
     icon: Optional[StrictStr] = None
     role: Role = Field(...)
     application: Application = Field(...)
-    asset: constr(strict=True, max_length=36, min_length=36) = Field(..., description="A uuid model. 36 Characters (4 Dashes, 32 Numbers/Letters) ")
+    asset: constr(strict=True, max_length=36, min_length=36) = Field(default=..., description="A uuid model. 36 Characters (4 Dashes, 32 Numbers/Letters) ")
     bytes: ByteDescriptor = Field(...)
     created: GroupedTimestamp = Field(...)
     updated: GroupedTimestamp = Field(...)
     deleted: Optional[GroupedTimestamp] = None
     synced: Optional[GroupedTimestamp] = None
-    cloud: Optional[StrictStr] = Field(None, description="This is a path used to determine what path this format lives at within the cloud.")
+    cloud: Optional[StrictStr] = Field(default=None, description="This is a path used to determine what path this format lives at within the cloud.")
     fragment: Optional[FragmentFormat] = None
     file: Optional[FileFormat] = None
     analysis: Optional[FlattenedAnalysis] = None

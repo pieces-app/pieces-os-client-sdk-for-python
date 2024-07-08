@@ -29,7 +29,7 @@ class BrowserSelection(BaseModel):
     """
     This is a given bit of text/code that is selected in the browser, this can be a copy/paste/selection  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     classification: Classification = Field(...)
     value: TransferableString = Field(...)
     __properties = ["schema", "classification", "value"]

@@ -52,7 +52,7 @@ print SeededScoreIncrement.to_json()
 # convert the object into a dict
 seeded_score_increment_dict = seeded_score_increment_instance.to_dict()
 # create an instance of SeededScoreIncrement from a dict
-seeded_score_increment_form_dict = seeded_score_increment.from_dict(seeded_score_increment_dict)
+seeded_score_increment_from_dict = SeededScoreIncrement.from_dict(seeded_score_increment_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -26,7 +26,7 @@ print Context.to_json()
 # convert the object into a dict
 context_dict = context_instance.to_dict()
 # create an instance of Context from a dict
-context_form_dict = context.from_dict(context_dict)
+context_from_dict = Context.from_dict(context_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

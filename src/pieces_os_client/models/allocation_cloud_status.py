@@ -28,7 +28,7 @@ class AllocationCloudStatus(BaseModel):
     """
     AllocationCloudStatus
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     cloud: AllocationStatusEnum = Field(...)
     __properties = ["schema", "cloud"]
 

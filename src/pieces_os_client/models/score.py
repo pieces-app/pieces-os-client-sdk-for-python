@@ -27,14 +27,15 @@ class Score(BaseModel):
     """
     This is use as the score for an asset.  Manual: will be the raw sum of the asset activity events ranks with mechanismEnum == manual Automatic: will be the raw sum of the asset activity events ranks with mechanismEnum == automatic  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
-    manual: StrictInt = Field(..., description="These are points assigned via manual user driven events.")
-    automatic: StrictInt = Field(..., description="These are point assigned via automatic activity events.")
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
+    manual: StrictInt = Field(default=..., description="These are points assigned via manual user driven events.")
+    automatic: StrictInt = Field(default=..., description="These are point assigned via automatic activity events.")
     priority: Optional[StrictInt] = None
     reuse: Optional[StrictInt] = None
     update: Optional[StrictInt] = None
     reference: Optional[StrictInt] = None
-    __properties = ["schema", "manual", "automatic", "priority", "reuse", "update", "reference"]
+    searched: Optional[StrictInt] = None
+    __properties = ["schema", "manual", "automatic", "priority", "reuse", "update", "reference", "searched"]
 
     class Config:
         """Pydantic configuration"""
@@ -81,7 +82,8 @@ class Score(BaseModel):
             "priority": obj.get("priority"),
             "reuse": obj.get("reuse"),
             "update": obj.get("update"),
-            "reference": obj.get("reference")
+            "reference": obj.get("reference"),
+            "searched": obj.get("searched")
         })
         return _obj
 

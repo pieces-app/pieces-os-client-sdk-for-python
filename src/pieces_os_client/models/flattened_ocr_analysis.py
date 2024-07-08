@@ -28,12 +28,12 @@ class FlattenedOCRAnalysis(BaseModel):
     """
     [DAG Safe] Ocr Analysis that will reference FlattenedFormats.  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     id: StrictStr = Field(...)
     raw: ReferencedFormat = Field(...)
     hocr: ReferencedFormat = Field(...)
     model: Model = Field(...)
-    image: StrictStr = Field(..., description="this is a refernece to the image analysis.")
+    image: StrictStr = Field(default=..., description="this is a refernece to the image analysis.")
     __properties = ["schema", "id", "raw", "hocr", "model", "image"]
 
     class Config:

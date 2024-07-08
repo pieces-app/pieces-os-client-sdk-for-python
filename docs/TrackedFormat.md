@@ -28,7 +28,7 @@ print TrackedFormat.to_json()
 # convert the object into a dict
 tracked_format_dict = tracked_format_instance.to_dict()
 # create an instance of TrackedFormat from a dict
-tracked_format_form_dict = tracked_format.from_dict(tracked_format_dict)
+tracked_format_from_dict = TrackedFormat.from_dict(tracked_format_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

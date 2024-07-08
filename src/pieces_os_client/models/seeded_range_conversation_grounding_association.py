@@ -28,7 +28,7 @@ class SeededRangeConversationGroundingAssociation(BaseModel):
     """
     SeededRangeConversationGroundingAssociation
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     temporal: Optional[SeededRangeConversationGroundingTemporalAssociation] = None
     __properties = ["schema", "temporal"]
 

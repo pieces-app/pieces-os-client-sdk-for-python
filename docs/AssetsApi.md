@@ -11,15 +11,14 @@ Method | HTTP request | Description
 [**assets_get_related_assets**](AssetsApi.md#assets_get_related_assets) | **GET** /assets/related | /assets/related [GET]
 [**assets_identifiers_snapshot**](AssetsApi.md#assets_identifiers_snapshot) | **GET** /assets/identifiers | /assets/identifiers [GET]
 [**assets_pseudo_snapshot**](AssetsApi.md#assets_pseudo_snapshot) | **GET** /assets/pseudo | /assets/pseudo [GET]
-[**assets_search_assets**](AssetsApi.md#assets_search_assets) | **GET** /assets/search | /assets/search?query&#x3D;string [GET]
 [**assets_search_with_filters**](AssetsApi.md#assets_search_with_filters) | **POST** /assets/search | /assets/search [POST]
 [**assets_snapshot**](AssetsApi.md#assets_snapshot) | **GET** /assets | /assets [GET] Scoped to Assets
 [**assets_specific_asset_formats_snapshot**](AssetsApi.md#assets_specific_asset_formats_snapshot) | **GET** /assets/{asset}/formats | /assets/{asset}/formats [GET] Scoped To Assets
 [**assets_specific_asset_snapshot**](AssetsApi.md#assets_specific_asset_snapshot) | **GET** /assets/{asset} | /assets/{asset} [GET] Scoped to Assets
 [**assets_stream_identifiers**](AssetsApi.md#assets_stream_identifiers) | **GET** /assets/stream/identifiers | /assets/stream/identifiers [WS]
 [**get_assets_stream_transferables**](AssetsApi.md#get_assets_stream_transferables) | **GET** /assets/stream/transferables | /assets/stream/transferables [WS]
+[**search_assets**](AssetsApi.md#search_assets) | **GET** /assets/search | /assets/search?query&#x3D;string [GET]
 [**stream_assets**](AssetsApi.md#stream_assets) | **GET** /assets/stream | /assets/stream [WS]
-[**workstream_suggestions_stream**](AssetsApi.md#workstream_suggestions_stream) | **GET** /workstream/suggestions/stream | /workstream/suggestions/stream [WS]
 
 
 # **assets_create_new_asset**
@@ -495,80 +494,6 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **assets_search_assets**
-> SearchedAssets assets_search_assets(query=query, transferables=transferables, searchable_tags=searchable_tags, pseudo=pseudo)
-
-/assets/search?query=string [GET]
-
-Performs a search across your pieces and returns Assets (the results) based on your query. Presently, it only requires your query to be sent in the body. It is mandatory to include searchable_tags (comma-separated values of tags) or a query string.  If a query is provided, a fuzzy search will be conducted. If searchable tags are provided, a tag-based search will be executed.  If neither are included, a 500 error will be returned.
-
-### Example
-
-```python
-import time
-import os
-import pieces_os_client
-from pieces_os_client.models.searched_assets import SearchedAssets
-from pieces_os_client.rest import ApiException
-from pprint import pprint
-
-# Defining the host is optional and defaults to http://localhost:1000
-# See configuration.py for a list of all supported configuration parameters.
-configuration = pieces_os_client.Configuration(
-    host = "http://localhost:1000"
-)
-
-
-# Enter a context with an instance of the API client
-with pieces_os_client.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = pieces_os_client.AssetsApi(api_client)
-    query = 'query_example' # str | This is a string that you can use to search your assets. (optional)
-    transferables = True # bool | This is a boolean that will decided if we are want to return the transferable data (default) or not(performance enhancement) (optional)
-    searchable_tags = 'searchable_tags_example' # str | This is a comma separated value of tags used for search. (optional)
-    pseudo = True # bool | This is helper boolean that will give you the ability to also include your pseudo assets, we will always default to false. (optional)
-
-    try:
-        # /assets/search?query=string [GET]
-        api_response = api_instance.assets_search_assets(query=query, transferables=transferables, searchable_tags=searchable_tags, pseudo=pseudo)
-        print("The response of AssetsApi->assets_search_assets:\n")
-        pprint(api_response)
-    except Exception as e:
-        print("Exception when calling AssetsApi->assets_search_assets: %s\n" % e)
-```
-
-
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **query** | **str**| This is a string that you can use to search your assets. | [optional] 
- **transferables** | **bool**| This is a boolean that will decided if we are want to return the transferable data (default) or not(performance enhancement) | [optional] 
- **searchable_tags** | **str**| This is a comma separated value of tags used for search. | [optional] 
- **pseudo** | **bool**| This is helper boolean that will give you the ability to also include your pseudo assets, we will always default to false. | [optional] 
-
-### Return type
-
-[**SearchedAssets**](SearchedAssets.md)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json, text/plain
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | OK |  -  |
-**500** | Internal Server Error |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
 # **assets_search_with_filters**
 > AssetsSearchWithFiltersOutput assets_search_with_filters(transferables=transferables, pseudo=pseudo, assets_search_with_filters_input=assets_search_with_filters_input)
 
@@ -978,6 +903,80 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **search_assets**
+> SearchedAssets search_assets(query=query, transferables=transferables, searchable_tags=searchable_tags, pseudo=pseudo)
+
+/assets/search?query=string [GET]
+
+Performs a search across your pieces and returns Assets (the results) based on your query. Presently, it only requires your query to be sent in the body. It is mandatory to include searchable_tags (comma-separated values of tags) or a query string.  If a query is provided, a fuzzy search will be conducted. If searchable tags are provided, a tag-based search will be executed.  If neither are included, a 500 error will be returned.
+
+### Example
+
+```python
+import time
+import os
+import pieces_os_client
+from pieces_os_client.models.searched_assets import SearchedAssets
+from pieces_os_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to http://localhost:1000
+# See configuration.py for a list of all supported configuration parameters.
+configuration = pieces_os_client.Configuration(
+    host = "http://localhost:1000"
+)
+
+
+# Enter a context with an instance of the API client
+with pieces_os_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = pieces_os_client.AssetsApi(api_client)
+    query = 'query_example' # str | This is a string that you can use to search your assets. (optional)
+    transferables = True # bool | This is a boolean that will decided if we are want to return the transferable data (default) or not(performance enhancement) (optional)
+    searchable_tags = 'searchable_tags_example' # str | This is a comma separated value of tags used for search. (optional)
+    pseudo = True # bool | This is helper boolean that will give you the ability to also include your pseudo assets, we will always default to false. (optional)
+
+    try:
+        # /assets/search?query=string [GET]
+        api_response = api_instance.search_assets(query=query, transferables=transferables, searchable_tags=searchable_tags, pseudo=pseudo)
+        print("The response of AssetsApi->search_assets:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling AssetsApi->search_assets: %s\n" % e)
+```
+
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **query** | **str**| This is a string that you can use to search your assets. | [optional] 
+ **transferables** | **bool**| This is a boolean that will decided if we are want to return the transferable data (default) or not(performance enhancement) | [optional] 
+ **searchable_tags** | **str**| This is a comma separated value of tags used for search. | [optional] 
+ **pseudo** | **bool**| This is helper boolean that will give you the ability to also include your pseudo assets, we will always default to false. | [optional] 
+
+### Return type
+
+[**SearchedAssets**](SearchedAssets.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json, text/plain
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**500** | Internal Server Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **stream_assets**
 > Assets stream_assets()
 
@@ -1038,70 +1037,6 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **workstream_suggestions_stream**
-> WorkstreamSuggestions workstream_suggestions_stream()
-
-/workstream/suggestions/stream [WS]
-
-Provides a WebSocket connection that emits changes to your workstream suggestions.
-
-### Example
-
-```python
-import time
-import os
-import pieces_os_client
-from pieces_os_client.models.workstream_suggestions import WorkstreamSuggestions
-from pieces_os_client.rest import ApiException
-from pprint import pprint
-
-# Defining the host is optional and defaults to http://localhost:1000
-# See configuration.py for a list of all supported configuration parameters.
-configuration = pieces_os_client.Configuration(
-    host = "http://localhost:1000"
-)
-
-
-# Enter a context with an instance of the API client
-with pieces_os_client.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = pieces_os_client.AssetsApi(api_client)
-
-    try:
-        # /workstream/suggestions/stream [WS]
-        api_response = api_instance.workstream_suggestions_stream()
-        print("The response of AssetsApi->workstream_suggestions_stream:\n")
-        pprint(api_response)
-    except Exception as e:
-        print("Exception when calling AssetsApi->workstream_suggestions_stream: %s\n" % e)
-```
-
-
-
-### Parameters
-This endpoint does not need any parameter.
-
-### Return type
-
-[**WorkstreamSuggestions**](WorkstreamSuggestions.md)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json, text/plain
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | OK |  -  |
-**500** | Internal Server Error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

@@ -29,7 +29,7 @@ class BrowserTabValue(BaseModel):
     """
     snippet: these are extracted code blocks selection: here is a copy/paste/selection  note: recommended that you pass in the md version of the webpage  note: please dont pass in all three html,md,text, just pass in 1.  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     html: Optional[TransferableString] = None
     md: Optional[TransferableString] = None
     text: Optional[TransferableString] = None

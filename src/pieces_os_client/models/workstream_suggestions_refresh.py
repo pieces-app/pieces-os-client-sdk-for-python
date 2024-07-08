@@ -28,7 +28,7 @@ class WorkstreamSuggestionsRefresh(BaseModel):
     """
     This will return the new refreshed suggestions, about what data changed, and the data that was used to bias the suggestions.  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     suggestions: WorkstreamSuggestions = Field(...)
     __properties = ["schema", "suggestions"]
 

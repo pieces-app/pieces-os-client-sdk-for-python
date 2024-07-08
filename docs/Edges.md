@@ -21,7 +21,7 @@ print Edges.to_json()
 # convert the object into a dict
 edges_dict = edges_instance.to_dict()
 # create an instance of Edges from a dict
-edges_form_dict = edges.from_dict(edges_dict)
+edges_from_dict = Edges.from_dict(edges_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

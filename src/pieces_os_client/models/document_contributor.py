@@ -31,7 +31,7 @@ class DocumentContributor(BaseModel):
     """
     A DocumentContributor is a preseeded representation of a Person  This can be used in the case of the browser, or in the IDE  If they are apart of an IDE, we can in the future provide git information (IE add a Git object for their commits)  person: this is most important part which is the email/name xyz  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     classification: Optional[Classification] = None
     value: Optional[TransferableString] = None
     person: PersonBasicType = Field(...)

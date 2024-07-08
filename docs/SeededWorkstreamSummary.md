@@ -33,7 +33,7 @@ print SeededWorkstreamSummary.to_json()
 # convert the object into a dict
 seeded_workstream_summary_dict = seeded_workstream_summary_instance.to_dict()
 # create an instance of SeededWorkstreamSummary from a dict
-seeded_workstream_summary_form_dict = seeded_workstream_summary.from_dict(seeded_workstream_summary_dict)
+seeded_workstream_summary_from_dict = SeededWorkstreamSummary.from_dict(seeded_workstream_summary_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -28,7 +28,7 @@ class FlattenedShares(BaseModel):
     """
     This is just an iterable of our individual share models.  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     iterable: conlist(FlattenedShare) = Field(...)
     score: Optional[Score] = None
     __properties = ["schema", "iterable", "score"]

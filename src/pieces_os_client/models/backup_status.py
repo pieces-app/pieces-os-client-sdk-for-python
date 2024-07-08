@@ -29,9 +29,9 @@ class BackupStatus(BaseModel):
     """
     TODO add more description to this.  can eventually add a number that display the percent downloaded an so on.(this is called percent 0-100)  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     value: Optional[BackupStatusEnum] = None
-    percentage: Optional[Union[StrictFloat, StrictInt]] = Field(None, description="Optionally if the download is in progress you will receive a download percent(from 0-100).")
+    percentage: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="Optionally if the download is in progress you will receive a download percent(from 0-100).")
     backup: Backup = Field(...)
     __properties = ["schema", "value", "percentage", "backup"]
 

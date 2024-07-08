@@ -25,7 +25,7 @@ print WorkstreamSummaries.to_json()
 # convert the object into a dict
 workstream_summaries_dict = workstream_summaries_instance.to_dict()
 # create an instance of WorkstreamSummaries from a dict
-workstream_summaries_form_dict = workstream_summaries.from_dict(workstream_summaries_dict)
+workstream_summaries_from_dict = WorkstreamSummaries.from_dict(workstream_summaries_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -51,7 +51,7 @@ print FlattenedAsset.to_json()
 # convert the object into a dict
 flattened_asset_dict = flattened_asset_instance.to_dict()
 # create an instance of FlattenedAsset from a dict
-flattened_asset_form_dict = flattened_asset.from_dict(flattened_asset_dict)
+flattened_asset_from_dict = FlattenedAsset.from_dict(flattened_asset_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
