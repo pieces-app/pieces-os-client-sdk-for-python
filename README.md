@@ -12,10 +12,10 @@
 
 # <p align="center"> Pieces OS Client SDK For Python
    <p align="center">
-      <a href="https://github.com/pieces-app/pieces-os-client-sdk-for-python" alt="GitHub contributors">
+      <a href="https://github.com/pieces-app/pieces-os-client-sdk-for-python/graphs/contributors" alt="GitHub contributors">
          <img src="https://img.shields.io/github/contributors/pieces-app/pieces-os-client-sdk-for-python.svg" />
-      <a>
-      <a href="https://github.com/pieces-app/pieces-os-client-sdk-for-python" alt="GitHub issues by-label">
+      </a>
+      <a href="https://github.com/pieces-app/pieces-os-client-sdk-for-python/issues" alt="GitHub issues by-label">
          <img src="https://img.shields.io/github/issues/pieces-app/pieces-os-client-sdk-for-python" />
       </a>
       <a href="https://discord.gg/getpieces" alt="Discord">
@@ -24,7 +24,7 @@
       <a href="https://twitter.com/getpieces" alt="Twitter Follow">
          <img src="https://img.shields.io/twitter/follow/pieces.svg?label=Follow" />
       </a>
-      <a href="https://github.com/pieces-app/pieces-os-client-sdk-for-python" alt="License">
+      <a href="https://github.com/pieces-app/pieces-os-client-sdk-for-python/blob/main/LICENSE" alt="License">
          <img src="https://img.shields.io/github/license/pieces-app/pieces-os-client-sdk-for-python.svg" />
       </a>
       <a href="https://pypi.org/project/pieces_os_client" >
