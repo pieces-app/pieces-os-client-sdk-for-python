@@ -52,13 +52,8 @@ To get started with the Pieces SDK, follow these steps:
 
 2. **Install the PyPI Package**: Use pip to install the Pieces SDK package:
    ```shell
-   pip install pieces-os-client==1.2.7
+   pip install pieces_os_client
    ```
-
-
-> Ensure that you install `v1.2.7` of the Pieces SDK package to ensure compatibility with the latest version of Pieces OS.
-> 
-> We are working on a fix for this but for now, please install the package with that specific version number.
 
 ## Usage
 After installing the SDK, you can import the library into your project and start utilizing its features:
