@@ -1,17 +1,16 @@
 [tool.poetry]
 name = "pieces_os_client"
 version = "2.3.0"
-description = "Pieces Isomorphic OpenAPI"
-authors = ["Tsavo Knott <tsavo@pieces.app>"]
-license = "NoLicense"
+description = "A powerful code engine package for writing applications on top of Pieces OS"
+authors = ["Pieces <development@pieces.app>"]
+license = "MIT"
 readme = "README.md"
-repository = "https://github.com/GIT_USER_ID/GIT_REPO_ID"
-keywords = ["OpenAPI", "OpenAPI-Generator", "Pieces Isomorphic OpenAPI"]
-include = ["pieces_os_client/py.typed"]
+homepage = "https://pieces.app"
+repository = "https://github.com/pieces-app/pieces-os-client-sdk-for-python"
+documentation = "https://docs.pieces.app/build/reference/python/"
 
 [tool.poetry.dependencies]
 python = "^3.7"
-
 urllib3 = ">= 1.25.3"
 python-dateutil = ">=2.8.2"
 pydantic = "^1.10.5, <2"
@@ -21,6 +20,9 @@ aenum = ">=3.1.11"
 pytest = ">=7.2.1"
 tox = ">=3.9.0"
 flake8 = ">=4.0.0"
+
+[tool.poetry.urls]
+issues = "https://github.com/pieces-app/pieces-os-client-sdk-for-python/issues"
 
 [build-system]
 requires = ["setuptools"]
