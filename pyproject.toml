@@ -5,6 +5,9 @@ description = "A powerful code engine package for writing applications on top of
 authors = ["Pieces <development@pieces.app>"]
 license = "MIT"
 readme = "README.md"
+homepage = "https://pieces.app"
+repository = "https://github.com/pieces-app/pieces-os-client-sdk-for-python"
+documentation = "https://docs.pieces.app/build/reference/python/"
 
 [tool.poetry.dependencies]
 python = "^3.7"
@@ -19,8 +22,6 @@ tox = ">=3.9.0"
 flake8 = ">=4.0.0"
 
 [tool.poetry.urls]
-homepage = "https://github.com/pieces-app/pieces-os-client-sdk-for-python"
-repository = "https://github.com/pieces-app/pieces-os-client-sdk-for-python"
 issues = "https://github.com/pieces-app/pieces-os-client-sdk-for-python/issues"
 
 [build-system]
