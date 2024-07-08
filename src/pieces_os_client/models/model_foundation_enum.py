@@ -142,6 +142,11 @@ class ModelFoundationEnum(str, Enum):
     GEMMA_LATEST = 'GEMMA_LATEST'
     GEMINI_LATEST = 'GEMINI_LATEST'
     GPT_LATEST = 'GPT_LATEST'
+    AZURE_LATEST = 'AZURE_LATEST'
+    AZURE_FAST = 'AZURE_FAST'
+    AZURE_BEST = 'AZURE_BEST'
+    AZURE_DEFAULT = 'AZURE_DEFAULT'
+    AZURE_CUSTOM = 'AZURE_CUSTOM'
 
     @classmethod
     def from_json(cls, json_str: str) -> ModelFoundationEnum:

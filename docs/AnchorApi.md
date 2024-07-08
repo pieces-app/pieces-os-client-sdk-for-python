@@ -10,7 +10,7 @@ Method | HTTP request | Description
 [**anchor_associate_workstream_summary**](AnchorApi.md#anchor_associate_workstream_summary) | **POST** /anchor/{anchor}/workstream_summaries/associate/{workstream_summary} | /anchor/{anchor}/workstream_summaries/associate/{workstream_summary} [POST]
 [**anchor_disassociate_asset**](AnchorApi.md#anchor_disassociate_asset) | **POST** /anchor/{anchor}/assets/disassociate/{asset} | /anchor/{anchor}/assets/disassociate/{asset} [POST]
 [**anchor_disassociate_conversation**](AnchorApi.md#anchor_disassociate_conversation) | **POST** /anchor/{anchor}/conversations/disassociate/{conversation} | /anchor/{anchor}/conversations/disassociate/{conversation} [POST]
-[**anchor_disassociate_person**](AnchorApi.md#anchor_disassociate_person) | **POST** /anchors/{anchor}/persons/disassociate/{person} | /anchor/{anchor}/persons/disassociate/{person} [POST]
+[**anchor_disassociate_person**](AnchorApi.md#anchor_disassociate_person) | **POST** /anchor/{anchor}/persons/disassociate/{person} | /anchor/{anchor}/persons/disassociate/{person} [POST]
 [**anchor_disassociate_workstream_summary**](AnchorApi.md#anchor_disassociate_workstream_summary) | **POST** /anchor/{anchor}/workstream_summaries/disassociate/{workstream_summary} | /anchor/{anchor}/workstream_summaries/disassociate/{workstream_summary} [POST]
 [**anchor_rename**](AnchorApi.md#anchor_rename) | **POST** /anchor/{anchor}/rename | /anchor/{anchor}/rename [POST]
 [**anchor_scores_increment**](AnchorApi.md#anchor_scores_increment) | **POST** /anchor/{anchor}/scores/increment | &#39;/anchor/{anchor}/scores/increment&#39; [POST]

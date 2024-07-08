@@ -10,8 +10,8 @@ Name | Type | Description | Notes
 **created** | [**GroupedTimestamp**](GroupedTimestamp.md) |  | 
 **updated** | [**GroupedTimestamp**](GroupedTimestamp.md) |  | 
 **deleted** | [**GroupedTimestamp**](GroupedTimestamp.md) |  | [optional] 
-**mechanism** | [**MechanismEnum**](MechanismEnum.md) |  | [optional] 
-**asset** | [**ReferencedAsset**](ReferencedAsset.md) |  | [optional] 
+**mechanisms** | [**Dict[str, MechanismEnum]**](MechanismEnum.md) | This is a Map&lt;String, MechanismEnum&gt; where the the key is an asset id. | [optional] 
+**assets** | [**FlattenedAssets**](FlattenedAssets.md) |  | [optional] 
 **type** | [**HintTypeEnum**](HintTypeEnum.md) |  | 
 **text** | **str** | This is the text of the hint. | 
 **model** | [**ReferencedModel**](ReferencedModel.md) |  | [optional] 

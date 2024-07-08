@@ -1053,7 +1053,7 @@ class AnchorApi:
         _response_types_map = {}
 
         return self.api_client.call_api(
-            '/anchors/{anchor}/persons/disassociate/{person}', 'POST',
+            '/anchor/{anchor}/persons/disassociate/{person}', 'POST',
             _path_params,
             _query_params,
             _header_params,

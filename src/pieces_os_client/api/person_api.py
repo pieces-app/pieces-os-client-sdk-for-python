@@ -49,7 +49,7 @@ class PersonApi:
 
     @validate_arguments
     def person_associate_anchor(self, person : Annotated[StrictStr, Field(..., description="This is a uuid that represents a person.")], anchor : Annotated[StrictStr, Field(..., description="This is the specific uuid of an anchor.")], **kwargs) -> None:  # noqa: E501
-        """/persons/{person}/anchors/associate/{anchor} [POST]  # noqa: E501
+        """/person/{person}/anchors/associate/{anchor} [POST]  # noqa: E501
 
         associates a person and an anchor. It performs the same action as the anchor equivalent.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
@@ -81,7 +81,7 @@ class PersonApi:
 
     @validate_arguments
     def person_associate_anchor_with_http_info(self, person : Annotated[StrictStr, Field(..., description="This is a uuid that represents a person.")], anchor : Annotated[StrictStr, Field(..., description="This is the specific uuid of an anchor.")], **kwargs) -> ApiResponse:  # noqa: E501
-        """/persons/{person}/anchors/associate/{anchor} [POST]  # noqa: E501
+        """/person/{person}/anchors/associate/{anchor} [POST]  # noqa: E501
 
         associates a person and an anchor. It performs the same action as the anchor equivalent.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
@@ -177,7 +177,7 @@ class PersonApi:
         _response_types_map = {}
 
         return self.api_client.call_api(
-            '/persons/{person}/anchors/associate/{anchor}', 'POST',
+            '/person/{person}/anchors/associate/{anchor}', 'POST',
             _path_params,
             _query_params,
             _header_params,
@@ -779,7 +779,7 @@ class PersonApi:
 
     @validate_arguments
     def person_disassociate_anchor(self, person : Annotated[StrictStr, Field(..., description="This is a uuid that represents a person.")], anchor : Annotated[StrictStr, Field(..., description="This is the specific uuid of an anchor.")], **kwargs) -> None:  # noqa: E501
-        """/persons/{person}/anchors/disassociate/{anchor} [POST]  # noqa: E501
+        """/person/{person}/anchors/disassociate/{anchor} [POST]  # noqa: E501
 
         Disassociates a person from an achor. It performs the same action as the anchor equivalent.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
@@ -811,7 +811,7 @@ class PersonApi:
 
     @validate_arguments
     def person_disassociate_anchor_with_http_info(self, person : Annotated[StrictStr, Field(..., description="This is a uuid that represents a person.")], anchor : Annotated[StrictStr, Field(..., description="This is the specific uuid of an anchor.")], **kwargs) -> ApiResponse:  # noqa: E501
-        """/persons/{person}/anchors/disassociate/{anchor} [POST]  # noqa: E501
+        """/person/{person}/anchors/disassociate/{anchor} [POST]  # noqa: E501
 
         Disassociates a person from an achor. It performs the same action as the anchor equivalent.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
@@ -907,7 +907,7 @@ class PersonApi:
         _response_types_map = {}
 
         return self.api_client.call_api(
-            '/persons/{person}/anchors/disassociate/{anchor}', 'POST',
+            '/person/{person}/anchors/disassociate/{anchor}', 'POST',
             _path_params,
             _query_params,
             _header_params,

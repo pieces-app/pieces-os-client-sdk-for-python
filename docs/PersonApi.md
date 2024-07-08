@@ -4,12 +4,12 @@ All URIs are relative to *http://localhost:1000*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**person_associate_anchor**](PersonApi.md#person_associate_anchor) | **POST** /persons/{person}/anchors/associate/{anchor} | /persons/{person}/anchors/associate/{anchor} [POST]
+[**person_associate_anchor**](PersonApi.md#person_associate_anchor) | **POST** /person/{person}/anchors/associate/{anchor} | /person/{person}/anchors/associate/{anchor} [POST]
 [**person_associate_asset**](PersonApi.md#person_associate_asset) | **POST** /person/{person}/assets/associate/{asset} | /person/{person}/assets/associate/{asset} [POST]
 [**person_associate_tag**](PersonApi.md#person_associate_tag) | **POST** /person/{person}/tags/associate/{tag} | /person/{person}/tags/associate/{tag} [POST]
 [**person_associate_website**](PersonApi.md#person_associate_website) | **POST** /person/{person}/websites/associate/{website} | /person/{person}/websites/associate/{website} [POST]
 [**person_associate_workstream_summary**](PersonApi.md#person_associate_workstream_summary) | **POST** /person/{person}/workstream_summaries/associate/{workstream_summary} | /person/{person}/workstream_summaries/associate/{workstream_summary} [POST]
-[**person_disassociate_anchor**](PersonApi.md#person_disassociate_anchor) | **POST** /persons/{person}/anchors/disassociate/{anchor} | /persons/{person}/anchors/disassociate/{anchor} [POST]
+[**person_disassociate_anchor**](PersonApi.md#person_disassociate_anchor) | **POST** /person/{person}/anchors/disassociate/{anchor} | /person/{person}/anchors/disassociate/{anchor} [POST]
 [**person_disassociate_asset**](PersonApi.md#person_disassociate_asset) | **POST** /person/{person}/assets/disassociate/{asset} | /person/{person}/assets/disassociate/{asset} [POST]
 [**person_disassociate_tag**](PersonApi.md#person_disassociate_tag) | **POST** /person/{person}/tags/disassociate/{tag} | /person/{person}/tags/disassociate/{tag} [POST]
 [**person_disassociate_website**](PersonApi.md#person_disassociate_website) | **POST** /person/{person}/websites/disassociate/{website} | /person/{person}/websites/disassociate/{website} [POST]
@@ -22,7 +22,7 @@ Method | HTTP request | Description
 # **person_associate_anchor**
 > person_associate_anchor(person, anchor)
 
-/persons/{person}/anchors/associate/{anchor} [POST]
+/person/{person}/anchors/associate/{anchor} [POST]
 
 associates a person and an anchor. It performs the same action as the anchor equivalent.
 
@@ -50,7 +50,7 @@ with pieces_os_client.ApiClient(configuration) as api_client:
     anchor = 'anchor_example' # str | This is the specific uuid of an anchor.
 
     try:
-        # /persons/{person}/anchors/associate/{anchor} [POST]
+        # /person/{person}/anchors/associate/{anchor} [POST]
         api_instance.person_associate_anchor(person, anchor)
     except Exception as e:
         print("Exception when calling PersonApi->person_associate_anchor: %s\n" % e)
@@ -357,7 +357,7 @@ No authorization required
 # **person_disassociate_anchor**
 > person_disassociate_anchor(person, anchor)
 
-/persons/{person}/anchors/disassociate/{anchor} [POST]
+/person/{person}/anchors/disassociate/{anchor} [POST]
 
 Disassociates a person from an achor. It performs the same action as the anchor equivalent.
 
@@ -385,7 +385,7 @@ with pieces_os_client.ApiClient(configuration) as api_client:
     anchor = 'anchor_example' # str | This is the specific uuid of an anchor.
 
     try:
-        # /persons/{person}/anchors/disassociate/{anchor} [POST]
+        # /person/{person}/anchors/disassociate/{anchor} [POST]
         api_instance.person_disassociate_anchor(person, anchor)
     except Exception as e:
         print("Exception when calling PersonApi->person_disassociate_anchor: %s\n" % e)
