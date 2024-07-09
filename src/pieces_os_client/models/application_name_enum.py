@@ -70,6 +70,7 @@ class ApplicationNameEnum(str, Enum):
     EMBEETLE = 'EMBEETLE'
     ECLIPSE = 'ECLIPSE'
     X_CODE = 'X_CODE'
+    NETBEANS = 'NETBEANS'
     UNKNOWN = 'UNKNOWN'
 
     @classmethod
