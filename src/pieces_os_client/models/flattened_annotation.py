@@ -32,7 +32,7 @@ class FlattenedAnnotation(BaseModel):
     """
     This is the flattened Version of the annotation, IMPORTANT: when referencing these, ONLY Take the UUID, do NOT polinate(ie w/ asset/person/model) the FlattenedAnnotation as it can create an infinite loop.  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     id: StrictStr = Field(...)
     created: GroupedTimestamp = Field(...)
     updated: GroupedTimestamp = Field(...)
@@ -41,7 +41,7 @@ class FlattenedAnnotation(BaseModel):
     asset: Optional[ReferencedAsset] = None
     person: Optional[ReferencedPerson] = None
     type: AnnotationTypeEnum = Field(...)
-    text: StrictStr = Field(..., description="This is the text of the annotation.")
+    text: StrictStr = Field(default=..., description="This is the text of the annotation.")
     model: Optional[ReferencedModel] = None
     pseudo: Optional[StrictBool] = None
     favorited: Optional[StrictBool] = None

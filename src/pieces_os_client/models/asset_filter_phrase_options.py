@@ -28,7 +28,7 @@ class AssetFilterPhraseOptions(BaseModel):
     """
     AssetFilterPhraseOptions
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     annotation: Optional[AnnotationTypeEnum] = None
     __properties = ["schema", "annotation"]
 

@@ -28,7 +28,7 @@ class WorkstreamPatternEngineStatus(BaseModel):
     """
     This will return the status for the Workstream pettern engine, specifically the activation/deactivation status  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     vision: Optional[WorkstreamPatternEngineVisionStatus] = None
     __properties = ["schema", "vision"]
 

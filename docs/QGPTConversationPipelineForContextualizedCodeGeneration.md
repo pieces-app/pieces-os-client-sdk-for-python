@@ -22,7 +22,7 @@ print QGPTConversationPipelineForContextualizedCodeGeneration.to_json()
 # convert the object into a dict
 qgpt_conversation_pipeline_for_contextualized_code_generation_dict = qgpt_conversation_pipeline_for_contextualized_code_generation_instance.to_dict()
 # create an instance of QGPTConversationPipelineForContextualizedCodeGeneration from a dict
-qgpt_conversation_pipeline_for_contextualized_code_generation_form_dict = qgpt_conversation_pipeline_for_contextualized_code_generation.from_dict(qgpt_conversation_pipeline_for_contextualized_code_generation_dict)
+qgpt_conversation_pipeline_for_contextualized_code_generation_from_dict = QGPTConversationPipelineForContextualizedCodeGeneration.from_dict(qgpt_conversation_pipeline_for_contextualized_code_generation_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

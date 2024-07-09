@@ -24,7 +24,7 @@ print SuggestionTarget.to_json()
 # convert the object into a dict
 suggestion_target_dict = suggestion_target_instance.to_dict()
 # create an instance of SuggestionTarget from a dict
-suggestion_target_form_dict = suggestion_target.from_dict(suggestion_target_dict)
+suggestion_target_from_dict = SuggestionTarget.from_dict(suggestion_target_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

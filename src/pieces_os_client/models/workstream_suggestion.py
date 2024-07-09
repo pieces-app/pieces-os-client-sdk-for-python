@@ -36,12 +36,14 @@ from pieces_os_client.models.referenced_person import ReferencedPerson
 from pieces_os_client.models.referenced_tag import ReferencedTag
 from pieces_os_client.models.referenced_website import ReferencedWebsite
 from pieces_os_client.models.referenced_workstream_summary import ReferencedWorkstreamSummary
+from pieces_os_client.models.seed import Seed
+from pieces_os_client.models.seeds import Seeds
 
 class WorkstreamSuggestion(BaseModel):
     """
     This is an individual material that is apart of the workstream feed. might want to also consider plural uuids ie top websites/tags/and others..  related: this is an optional field that will only be calculated for first degree relationships.          ie. an anchor may have related.iterable.first.persons that are not associated but related.          via the workstream patturn engine.  current: if current is defined then this is the current viewed object  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     summary: Optional[ReferencedWorkstreamSummary] = None
     asset: Optional[ReferencedAsset] = None
     tag: Optional[ReferencedTag] = None
@@ -49,6 +51,8 @@ class WorkstreamSuggestion(BaseModel):
     anchor: Optional[ReferencedAnchor] = None
     conversation: Optional[ReferencedConversation] = None
     person: Optional[ReferencedPerson] = None
+    seed: Optional[Seed] = None
+    seeds: Optional[Seeds] = None
     summaries: Optional[FlattenedWorkstreamSummaries] = None
     assets: Optional[FlattenedAssets] = None
     tags: Optional[FlattenedTags] = None
@@ -58,7 +62,7 @@ class WorkstreamSuggestion(BaseModel):
     persons: Optional[FlattenedPersons] = None
     related: Optional[WorkstreamSuggestions] = None
     current: Optional[WorkstreamSuggestion] = None
-    __properties = ["schema", "summary", "asset", "tag", "website", "anchor", "conversation", "person", "summaries", "assets", "tags", "websites", "anchors", "conversations", "persons", "related", "current"]
+    __properties = ["schema", "summary", "asset", "tag", "website", "anchor", "conversation", "person", "seed", "seeds", "summaries", "assets", "tags", "websites", "anchors", "conversations", "persons", "related", "current"]
 
     class Config:
         """Pydantic configuration"""
@@ -108,6 +112,12 @@ class WorkstreamSuggestion(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of person
         if self.person:
             _dict['person'] = self.person.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of seed
+        if self.seed:
+            _dict['seed'] = self.seed.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of seeds
+        if self.seeds:
+            _dict['seeds'] = self.seeds.to_dict()
         # override the default output from pydantic by calling `to_dict()` of summaries
         if self.summaries:
             _dict['summaries'] = self.summaries.to_dict()
@@ -155,6 +165,8 @@ class WorkstreamSuggestion(BaseModel):
             "anchor": ReferencedAnchor.from_dict(obj.get("anchor")) if obj.get("anchor") is not None else None,
             "conversation": ReferencedConversation.from_dict(obj.get("conversation")) if obj.get("conversation") is not None else None,
             "person": ReferencedPerson.from_dict(obj.get("person")) if obj.get("person") is not None else None,
+            "seed": Seed.from_dict(obj.get("seed")) if obj.get("seed") is not None else None,
+            "seeds": Seeds.from_dict(obj.get("seeds")) if obj.get("seeds") is not None else None,
             "summaries": FlattenedWorkstreamSummaries.from_dict(obj.get("summaries")) if obj.get("summaries") is not None else None,
             "assets": FlattenedAssets.from_dict(obj.get("assets")) if obj.get("assets") is not None else None,
             "tags": FlattenedTags.from_dict(obj.get("tags")) if obj.get("tags") is not None else None,

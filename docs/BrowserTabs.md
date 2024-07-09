@@ -23,7 +23,7 @@ print BrowserTabs.to_json()
 # convert the object into a dict
 browser_tabs_dict = browser_tabs_instance.to_dict()
 # create an instance of BrowserTabs from a dict
-browser_tabs_form_dict = browser_tabs.from_dict(browser_tabs_dict)
+browser_tabs_from_dict = BrowserTabs.from_dict(browser_tabs_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

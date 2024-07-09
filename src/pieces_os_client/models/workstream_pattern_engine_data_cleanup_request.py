@@ -28,7 +28,7 @@ class WorkstreamPatternEngineDataCleanupRequest(BaseModel):
     """
     NOTE: if we want to remove all the data the from would be unset, the to will be right now.  from: is always in the past to: is always at least before from in our time.  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     ranges: Optional[conlist(AnonymousTemporalRange)] = None
     __properties = ["schema", "ranges"]
 

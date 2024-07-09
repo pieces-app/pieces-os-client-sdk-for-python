@@ -29,7 +29,7 @@ print Distribution.to_json()
 # convert the object into a dict
 distribution_dict = distribution_instance.to_dict()
 # create an instance of Distribution from a dict
-distribution_form_dict = distribution.from_dict(distribution_dict)
+distribution_from_dict = Distribution.from_dict(distribution_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

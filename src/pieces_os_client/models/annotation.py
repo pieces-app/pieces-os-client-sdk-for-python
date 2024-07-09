@@ -38,7 +38,7 @@ class Annotation(BaseModel):
     """
     An Annotation is the replacement for descriptions, this will enable comments, description, summaries and many more.  person on here is a reference to the description/comment/annotation about a person  NOTE: person here is NOT the creator of the annotaion. but rather the descriptions of the person. NOTE****: if we want to add \"who\" wrote the annotation, we will want to add a new field on here called author && will need to also layer in behavior the enable an author(person) and an asset both being referenced(ensure you check the side effect in the AssetsFacade.delete)  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     id: StrictStr = Field(...)
     created: GroupedTimestamp = Field(...)
     updated: GroupedTimestamp = Field(...)
@@ -47,7 +47,7 @@ class Annotation(BaseModel):
     asset: Optional[ReferencedAsset] = None
     person: Optional[ReferencedPerson] = None
     type: AnnotationTypeEnum = Field(...)
-    text: StrictStr = Field(..., description="This is the text of the annotation.")
+    text: StrictStr = Field(default=..., description="This is the text of the annotation.")
     model: Optional[ReferencedModel] = None
     pseudo: Optional[StrictBool] = None
     favorited: Optional[StrictBool] = None

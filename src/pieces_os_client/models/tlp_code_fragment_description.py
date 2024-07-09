@@ -26,14 +26,14 @@ class TLPCodeFragmentDescription(BaseModel):
     """
     Model for ML big query Code Description.  # noqa: E501
     """
-    description: Optional[StrictStr] = Field(None, description="This is the stringified json of a TLPDescription object")
-    asset: StrictStr = Field(..., description="This is the asset id.")
-    created: StrictStr = Field(..., description="timestamp of creation")
-    model: StrictStr = Field(..., description="this is the model version")
-    latency: Optional[Union[StrictFloat, StrictInt]] = Field(None, description="the time it takes to run this model.")
-    user: StrictStr = Field(..., description="the uuid of the user the description was created for.")
-    context: Optional[StrictStr] = Field(None, description="the application this description was created from.")
-    os: Optional[StrictStr] = Field(None, description="This is the UUID of the OS that this context is currently connected to.")
+    description: Optional[StrictStr] = Field(default=None, description="This is the stringified json of a TLPDescription object")
+    asset: StrictStr = Field(default=..., description="This is the asset id.")
+    created: StrictStr = Field(default=..., description="timestamp of creation")
+    model: StrictStr = Field(default=..., description="this is the model version")
+    latency: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="the time it takes to run this model.")
+    user: StrictStr = Field(default=..., description="the uuid of the user the description was created for.")
+    context: Optional[StrictStr] = Field(default=None, description="the application this description was created from.")
+    os: Optional[StrictStr] = Field(default=None, description="This is the UUID of the OS that this context is currently connected to.")
     __properties = ["description", "asset", "created", "model", "latency", "user", "context", "os"]
 
     class Config:

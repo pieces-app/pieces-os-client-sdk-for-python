@@ -28,7 +28,7 @@ class StreamedIdentifiers(BaseModel):
     """
     This is currently only used within /assets/steam/identifiers && /conversations/steam/identifiers but can be used with other as well, if we want to expand this class. && expand the StreamedIdentifier class.  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     iterable: conlist(StreamedIdentifier) = Field(...)
     __properties = ["schema", "iterable"]
 

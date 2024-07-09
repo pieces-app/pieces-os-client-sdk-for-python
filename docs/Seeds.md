@@ -23,7 +23,7 @@ print Seeds.to_json()
 # convert the object into a dict
 seeds_dict = seeds_instance.to_dict()
 # create an instance of Seeds from a dict
-seeds_form_dict = seeds.from_dict(seeds_dict)
+seeds_from_dict = Seeds.from_dict(seeds_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

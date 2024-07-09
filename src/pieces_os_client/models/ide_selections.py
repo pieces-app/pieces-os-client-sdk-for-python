@@ -28,7 +28,7 @@ class IDESelections(BaseModel):
     """
     Plural model that represent many selections in the browser  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     iterable: conlist(IDESelection) = Field(...)
     __properties = ["schema", "iterable"]
 

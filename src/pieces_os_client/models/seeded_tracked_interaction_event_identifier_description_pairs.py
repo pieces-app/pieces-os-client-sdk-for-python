@@ -27,7 +27,7 @@ class SeededTrackedInteractionEventIdentifierDescriptionPairs(BaseModel):
     """
     SeededTrackedInteractionEventIdentifierDescriptionPairs
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     assets_list_refreshed: Optional[StrictStr] = None
     __properties = ["schema", "assets_list_refreshed"]
 

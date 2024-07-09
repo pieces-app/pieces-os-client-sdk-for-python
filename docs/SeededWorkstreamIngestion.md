@@ -23,7 +23,7 @@ print SeededWorkstreamIngestion.to_json()
 # convert the object into a dict
 seeded_workstream_ingestion_dict = seeded_workstream_ingestion_instance.to_dict()
 # create an instance of SeededWorkstreamIngestion from a dict
-seeded_workstream_ingestion_form_dict = seeded_workstream_ingestion.from_dict(seeded_workstream_ingestion_dict)
+seeded_workstream_ingestion_from_dict = SeededWorkstreamIngestion.from_dict(seeded_workstream_ingestion_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

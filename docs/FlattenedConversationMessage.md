@@ -33,7 +33,7 @@ print FlattenedConversationMessage.to_json()
 # convert the object into a dict
 flattened_conversation_message_dict = flattened_conversation_message_instance.to_dict()
 # create an instance of FlattenedConversationMessage from a dict
-flattened_conversation_message_form_dict = flattened_conversation_message.from_dict(flattened_conversation_message_dict)
+flattened_conversation_message_from_dict = FlattenedConversationMessage.from_dict(flattened_conversation_message_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -27,7 +27,7 @@ class OpenAIModelsListInput(BaseModel):
     """
     This is the input model for the /open_ai/models/list endpoint.  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     user: StrictStr = Field(...)
     __properties = ["schema", "user"]
 

@@ -25,7 +25,7 @@ print ImageAnalysis.to_json()
 # convert the object into a dict
 image_analysis_dict = image_analysis_instance.to_dict()
 # create an instance of ImageAnalysis from a dict
-image_analysis_form_dict = image_analysis.from_dict(image_analysis_dict)
+image_analysis_from_dict = ImageAnalysis.from_dict(image_analysis_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

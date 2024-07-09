@@ -27,8 +27,8 @@ class OAuthToken(BaseModel):
     """
     A model representing a returnable response for a OAuthGroup Token  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
-    access_token: StrictStr = Field(..., description="The Access Token")
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
+    access_token: StrictStr = Field(default=..., description="The Access Token")
     token_type: StrictStr = Field(...)
     expires_in: StrictInt = Field(...)
     scope: StrictStr = Field(...)

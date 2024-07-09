@@ -59,7 +59,7 @@ print ExternalProviderProfileData.to_json()
 # convert the object into a dict
 external_provider_profile_data_dict = external_provider_profile_data_instance.to_dict()
 # create an instance of ExternalProviderProfileData from a dict
-external_provider_profile_data_form_dict = external_provider_profile_data.from_dict(external_provider_profile_data_dict)
+external_provider_profile_data_from_dict = ExternalProviderProfileData.from_dict(external_provider_profile_data_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -29,11 +29,11 @@ class LinkifyMultiple(BaseModel):
     """
     This is the incoming linkify model.  if access is PRIVATE then please provide and array of users to enable the link for.  Assumption, all assets are already backed up to the cloud.   # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
-    assets: conlist(StrictStr) = Field(..., description="This is an array or string that represents an already backed up asset. That will be added to a collection.")
-    users: Optional[conlist(SeededUser)] = Field(None, description="this is an array of users.")
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
+    assets: conlist(StrictStr) = Field(default=..., description="This is an array or string that represents an already backed up asset. That will be added to a collection.")
+    users: Optional[conlist(SeededUser)] = Field(default=None, description="this is an array of users.")
     access: AccessEnum = Field(...)
-    name: Optional[StrictStr] = Field(None, description="optionally can give the collection a name if you want.")
+    name: Optional[StrictStr] = Field(default=None, description="optionally can give the collection a name if you want.")
     __properties = ["schema", "assets", "users", "access", "name"]
 
     class Config:

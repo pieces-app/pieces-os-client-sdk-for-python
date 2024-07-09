@@ -29,12 +29,12 @@ class SeededTag(BaseModel):
     """
     This is the minimum information needed when creating a Tag.  Default we will attach manual to a tag unless otherwise specified for mechanism.  you can optionally add an asset, format, or person uuid to attach this tag directly to it  TODO consider updating these asset,format to referenced Models  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
-    text: StrictStr = Field(..., description="This is the description of the tag.")
-    asset: Optional[StrictStr] = Field(None, description="this is a uuid that references an asset.")
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
+    text: StrictStr = Field(default=..., description="This is the description of the tag.")
+    asset: Optional[StrictStr] = Field(default=None, description="this is a uuid that references an asset.")
     mechanism: Optional[MechanismEnum] = None
     category: Optional[TagCategoryEnum] = None
-    person: Optional[StrictStr] = Field(None, description="uuid of the person, you want to add this tag too")
+    person: Optional[StrictStr] = Field(default=None, description="uuid of the person, you want to add this tag too")
     __properties = ["schema", "text", "asset", "mechanism", "category", "person"]
 
     class Config:

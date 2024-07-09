@@ -31,7 +31,7 @@ print ExternalProvider.to_json()
 # convert the object into a dict
 external_provider_dict = external_provider_instance.to_dict()
 # create an instance of ExternalProvider from a dict
-external_provider_form_dict = external_provider.from_dict(external_provider_dict)
+external_provider_from_dict = ExternalProvider.from_dict(external_provider_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

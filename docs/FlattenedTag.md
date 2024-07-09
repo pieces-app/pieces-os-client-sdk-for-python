@@ -34,7 +34,7 @@ print FlattenedTag.to_json()
 # convert the object into a dict
 flattened_tag_dict = flattened_tag_instance.to_dict()
 # create an instance of FlattenedTag from a dict
-flattened_tag_form_dict = flattened_tag.from_dict(flattened_tag_dict)
+flattened_tag_from_dict = FlattenedTag.from_dict(flattened_tag_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

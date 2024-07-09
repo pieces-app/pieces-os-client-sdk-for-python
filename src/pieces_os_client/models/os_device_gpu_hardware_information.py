@@ -28,7 +28,7 @@ class OSDeviceGPUHardwareInformation(BaseModel):
     """
     This will let us know specific hardware information related to the GPU.  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     name: Optional[StrictStr] = None
     memory: Optional[Union[StrictFloat, StrictInt]] = None
     capabilities: Optional[OSDeviceGPUHardwareCapabilitiesInformation] = None

@@ -29,7 +29,7 @@ class SeededConnectorAsset(BaseModel):
     """
     A generic model to use with the Connector API that requires little to no additional information about the current application.  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     metadata: Optional[SeededAssetMetadata] = None
     format: SeededFormat = Field(...)
     __properties = ["schema", "metadata", "format"]

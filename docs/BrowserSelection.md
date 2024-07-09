@@ -24,7 +24,7 @@ print BrowserSelection.to_json()
 # convert the object into a dict
 browser_selection_dict = browser_selection_instance.to_dict()
 # create an instance of BrowserSelection from a dict
-browser_selection_form_dict = browser_selection.from_dict(browser_selection_dict)
+browser_selection_from_dict = BrowserSelection.from_dict(browser_selection_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

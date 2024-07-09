@@ -28,7 +28,7 @@ class PseudoAssets(BaseModel):
     """
     This is a model of all optional properties, that will get returned from /assets/pseudo.  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     identifiers: Optional[FlattenedAssets] = None
     __properties = ["schema", "identifiers"]
 

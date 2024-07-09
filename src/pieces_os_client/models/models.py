@@ -28,7 +28,7 @@ class Models(BaseModel):
     """
     This is a List of MachineLearning Models  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     iterable: conlist(Model) = Field(...)
     __properties = ["schema", "iterable"]
 

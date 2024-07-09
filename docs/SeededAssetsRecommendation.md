@@ -24,7 +24,7 @@ print SeededAssetsRecommendation.to_json()
 # convert the object into a dict
 seeded_assets_recommendation_dict = seeded_assets_recommendation_instance.to_dict()
 # create an instance of SeededAssetsRecommendation from a dict
-seeded_assets_recommendation_form_dict = seeded_assets_recommendation.from_dict(seeded_assets_recommendation_dict)
+seeded_assets_recommendation_from_dict = SeededAssetsRecommendation.from_dict(seeded_assets_recommendation_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

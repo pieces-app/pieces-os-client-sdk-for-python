@@ -28,9 +28,9 @@ class QGPTRelevanceInputOptions(BaseModel):
     """
     QGPTRelevanceInputOptions
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
-    database: Optional[StrictBool] = Field(None, description="This is an optional boolen that will tell us to use our entire snippet database as the sample.")
-    question: Optional[StrictBool] = Field(None, description="This is an optional boolean, that will let the serve know if you want to combine the 2 endpointsboth relevance && the Question endpoint to return the final results.")
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
+    database: Optional[StrictBool] = Field(default=None, description="This is an optional boolen that will tell us to use our entire snippet database as the sample.")
+    question: Optional[StrictBool] = Field(default=None, description="This is an optional boolean, that will let the serve know if you want to combine the 2 endpointsboth relevance && the Question endpoint to return the final results.")
     pipeline: Optional[QGPTPromptPipeline] = None
     __properties = ["schema", "database", "question", "pipeline"]
 

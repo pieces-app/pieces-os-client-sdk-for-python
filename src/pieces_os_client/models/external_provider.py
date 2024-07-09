@@ -30,16 +30,16 @@ class ExternalProvider(BaseModel):
     """
     I know that profileData and user_id have differeing casing but they are done because they map to Auth0's projeecties.  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     type: ExternalProviderTypeEnum = Field(...)
-    user_id: StrictStr = Field(..., description="This is the user_id within the provider.")
-    access_token: Optional[StrictStr] = Field(None, description="This is optional here, but will be present for BB, Github, and google.")
-    expires_in: Optional[StrictInt] = Field(None, description="Some providers have an expiration on their access token. IE BB, Google, NOT Github.")
+    user_id: StrictStr = Field(default=..., description="This is the user_id within the provider.")
+    access_token: Optional[StrictStr] = Field(default=None, description="This is optional here, but will be present for BB, Github, and google.")
+    expires_in: Optional[StrictInt] = Field(default=None, description="Some providers have an expiration on their access token. IE BB, Google, NOT Github.")
     created: GroupedTimestamp = Field(...)
     updated: GroupedTimestamp = Field(...)
-    profile_data: Optional[ExternalProviderProfileData] = Field(None, alias="profileData")
-    connection: Optional[StrictStr] = Field(None, description="This is an optional field that will be provided onentreprise connections. ie is type == waad then connection might be PiecesApp. However is other cases,you my find your provider and connection is the exact same string. To decifer between the two, you can use the isSocial bool.")
-    is_social: Optional[StrictBool] = Field(None, alias="isSocial")
+    profile_data: Optional[ExternalProviderProfileData] = Field(default=None, alias="profileData")
+    connection: Optional[StrictStr] = Field(default=None, description="This is an optional field that will be provided onentreprise connections. ie is type == waad then connection might be PiecesApp. However is other cases,you my find your provider and connection is the exact same string. To decifer between the two, you can use the isSocial bool.")
+    is_social: Optional[StrictBool] = Field(default=None, alias="isSocial")
     __properties = ["schema", "type", "user_id", "access_token", "expires_in", "created", "updated", "profileData", "connection", "isSocial"]
 
     class Config:

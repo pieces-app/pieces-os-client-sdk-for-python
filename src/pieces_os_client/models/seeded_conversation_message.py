@@ -33,7 +33,7 @@ class SeededConversationMessage(BaseModel):
     """
     This is a seeded version of a ConversationMessage.  conversation is optional, this is because it can be used within the SeededConversation, however if this is passed into the /messages/create w/o a conversation uuid then we will throw an error.  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     created: Optional[GroupedTimestamp] = None
     model: Optional[Model] = None
     fragment: FragmentFormat = Field(...)

@@ -33,7 +33,7 @@ print TLPCodeFragmentClassification.to_json()
 # convert the object into a dict
 tlp_code_fragment_classification_dict = tlp_code_fragment_classification_instance.to_dict()
 # create an instance of TLPCodeFragmentClassification from a dict
-tlp_code_fragment_classification_form_dict = tlp_code_fragment_classification.from_dict(tlp_code_fragment_classification_dict)
+tlp_code_fragment_classification_from_dict = TLPCodeFragmentClassification.from_dict(tlp_code_fragment_classification_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

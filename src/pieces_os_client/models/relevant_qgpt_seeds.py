@@ -28,7 +28,7 @@ class RelevantQGPTSeeds(BaseModel):
     """
     This is a plural of RelevantQGPTSeed.  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     iterable: conlist(RelevantQGPTSeed) = Field(...)
     __properties = ["schema", "iterable"]
 

@@ -22,7 +22,7 @@ print TLPDirectedDiscoveryFilters.to_json()
 # convert the object into a dict
 tlp_directed_discovery_filters_dict = tlp_directed_discovery_filters_instance.to_dict()
 # create an instance of TLPDirectedDiscoveryFilters from a dict
-tlp_directed_discovery_filters_form_dict = tlp_directed_discovery_filters.from_dict(tlp_directed_discovery_filters_dict)
+tlp_directed_discovery_filters_from_dict = TLPDirectedDiscoveryFilters.from_dict(tlp_directed_discovery_filters_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

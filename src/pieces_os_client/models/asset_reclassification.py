@@ -29,7 +29,7 @@ class AssetReclassification(BaseModel):
     """
     This is a model that will represent the miminum properties required to update the classification of this asset.  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     ext: ClassificationSpecificEnum = Field(...)
     asset: Asset = Field(...)
     __properties = ["schema", "ext", "asset"]

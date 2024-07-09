@@ -23,7 +23,7 @@ print SeededPKCEADDITIONALPARAMETERS.to_json()
 # convert the object into a dict
 seeded_pkceadditionalparameters_dict = seeded_pkceadditionalparameters_instance.to_dict()
 # create an instance of SeededPKCEADDITIONALPARAMETERS from a dict
-seeded_pkceadditionalparameters_form_dict = seeded_pkceadditionalparameters.from_dict(seeded_pkceadditionalparameters_dict)
+seeded_pkceadditionalparameters_from_dict = SeededPKCEADDITIONALPARAMETERS.from_dict(seeded_pkceadditionalparameters_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

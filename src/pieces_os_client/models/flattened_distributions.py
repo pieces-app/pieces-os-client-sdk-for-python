@@ -28,7 +28,7 @@ class FlattenedDistributions(BaseModel):
     """
     FlattenedDistributions
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     iterable: conlist(ReferencedDistribution) = Field(...)
     __properties = ["schema", "iterable"]
 

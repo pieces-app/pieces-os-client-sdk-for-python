@@ -29,7 +29,7 @@ class TrackedApplicationUpdate(BaseModel):
     """
     This is a model used to track when an Application is Updated  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     current: Application = Field(...)
     previous: Optional[Application] = None
     user: Optional[TrackedUserProfile] = None

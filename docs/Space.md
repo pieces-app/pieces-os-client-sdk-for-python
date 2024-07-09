@@ -23,7 +23,7 @@ print Space.to_json()
 # convert the object into a dict
 space_dict = space_instance.to_dict()
 # create an instance of Space from a dict
-space_form_dict = space.from_dict(space_dict)
+space_from_dict = Space.from_dict(space_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

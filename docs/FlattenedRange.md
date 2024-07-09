@@ -31,7 +31,7 @@ print FlattenedRange.to_json()
 # convert the object into a dict
 flattened_range_dict = flattened_range_instance.to_dict()
 # create an instance of FlattenedRange from a dict
-flattened_range_form_dict = flattened_range.from_dict(flattened_range_dict)
+flattened_range_from_dict = FlattenedRange.from_dict(flattened_range_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -28,7 +28,7 @@ class ReferencedDistribution(BaseModel):
     """
       # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     id: StrictStr = Field(...)
     reference: Optional[FlattenedDistribution] = None
     __properties = ["schema", "id", "reference"]

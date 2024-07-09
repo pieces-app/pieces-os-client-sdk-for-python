@@ -24,7 +24,7 @@ print ReferencedTag.to_json()
 # convert the object into a dict
 referenced_tag_dict = referenced_tag_instance.to_dict()
 # create an instance of ReferencedTag from a dict
-referenced_tag_form_dict = referenced_tag.from_dict(referenced_tag_dict)
+referenced_tag_from_dict = ReferencedTag.from_dict(referenced_tag_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

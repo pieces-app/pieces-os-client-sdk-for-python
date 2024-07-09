@@ -25,7 +25,7 @@ print Hints.to_json()
 # convert the object into a dict
 hints_dict = hints_instance.to_dict()
 # create an instance of Hints from a dict
-hints_form_dict = hints.from_dict(hints_dict)
+hints_from_dict = Hints.from_dict(hints_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

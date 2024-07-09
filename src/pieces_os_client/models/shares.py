@@ -29,8 +29,8 @@ class Shares(BaseModel):
     """
     this is just an iterable of our individual share models.  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
-    iterable: conlist(Share) = Field(..., description="this is just an iterable of our individual share models.")
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
+    iterable: conlist(Share) = Field(default=..., description="this is just an iterable of our individual share models.")
     score: Optional[Score] = None
     __properties = ["schema", "iterable", "score"]
 

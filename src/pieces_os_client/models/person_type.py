@@ -29,7 +29,7 @@ class PersonType(BaseModel):
     """
     basic or platform is absolutely required here. basic: if provided is just information that has been either extracted from the piece or other wise added here. platform: is a real Pieces User.(this user will also exist within the user's users collection. && if not then we will just use the data we have.)  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     basic: Optional[PersonBasicType] = None
     platform: Optional[UserProfile] = None
     __properties = ["schema", "basic", "platform"]

@@ -23,7 +23,7 @@ print AssetSearchSpace.to_json()
 # convert the object into a dict
 asset_search_space_dict = asset_search_space_instance.to_dict()
 # create an instance of AssetSearchSpace from a dict
-asset_search_space_form_dict = asset_search_space.from_dict(asset_search_space_dict)
+asset_search_space_from_dict = AssetSearchSpace.from_dict(asset_search_space_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

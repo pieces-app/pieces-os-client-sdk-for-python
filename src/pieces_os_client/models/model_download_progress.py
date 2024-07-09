@@ -28,9 +28,9 @@ class ModelDownloadProgress(BaseModel):
     """
     This is the model that is sent over our ws for streaming the progress of a model that is being downloaded.  can eventually add a number that display the percent downloaded an so on.(this is called percent 0-100)  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     status: Optional[ModelDownloadProgressStatusEnum] = None
-    percentage: Optional[Union[StrictFloat, StrictInt]] = Field(None, description="Optionally if the download is in progress you will recieve a download percent(from 0-100).")
+    percentage: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="Optionally if the download is in progress you will recieve a download percent(from 0-100).")
     __properties = ["schema", "status", "percentage"]
 
     class Config:

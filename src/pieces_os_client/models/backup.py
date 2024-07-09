@@ -29,7 +29,7 @@ class Backup(BaseModel):
     """
     This is a cloud Backup. This is specific metadata needed inorder to retrieve a Backup.  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     id: StrictStr = Field(...)
     version: StrictStr = Field(...)
     timestamp: StrictStr = Field(...)

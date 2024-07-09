@@ -24,7 +24,7 @@ print ReferencedShare.to_json()
 # convert the object into a dict
 referenced_share_dict = referenced_share_instance.to_dict()
 # create an instance of ReferencedShare from a dict
-referenced_share_form_dict = referenced_share.from_dict(referenced_share_dict)
+referenced_share_from_dict = ReferencedShare.from_dict(referenced_share_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

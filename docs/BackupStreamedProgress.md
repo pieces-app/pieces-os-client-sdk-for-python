@@ -25,7 +25,7 @@ print BackupStreamedProgress.to_json()
 # convert the object into a dict
 backup_streamed_progress_dict = backup_streamed_progress_instance.to_dict()
 # create an instance of BackupStreamedProgress from a dict
-backup_streamed_progress_form_dict = backup_streamed_progress.from_dict(backup_streamed_progress_dict)
+backup_streamed_progress_from_dict = BackupStreamedProgress.from_dict(backup_streamed_progress_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

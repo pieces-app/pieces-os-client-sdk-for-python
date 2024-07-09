@@ -29,7 +29,7 @@ class SeededRangeConversationAssociation(BaseModel):
     """
     SeededRangeConversationAssociation
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     reference: ReferencedConversation = Field(...)
     grounding: Optional[SeededRangeConversationGroundingAssociation] = None
     __properties = ["schema", "reference", "grounding"]

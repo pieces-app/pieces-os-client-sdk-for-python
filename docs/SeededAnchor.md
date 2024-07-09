@@ -13,6 +13,7 @@ Name | Type | Description | Notes
 **name** | **str** |  | [optional] 
 **annotations** | [**List[SeededAnnotation]**](SeededAnnotation.md) |  | [optional] 
 **conversation** | **str** |  | [optional] 
+**persons** | [**FlattenedPersons**](FlattenedPersons.md) |  | [optional] 
 
 ## Example
 
@@ -29,7 +30,7 @@ print SeededAnchor.to_json()
 # convert the object into a dict
 seeded_anchor_dict = seeded_anchor_instance.to_dict()
 # create an instance of SeededAnchor from a dict
-seeded_anchor_form_dict = seeded_anchor.from_dict(seeded_anchor_dict)
+seeded_anchor_from_dict = SeededAnchor.from_dict(seeded_anchor_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

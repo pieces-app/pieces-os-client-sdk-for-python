@@ -27,7 +27,7 @@ class FlattenedActivities(BaseModel):
     """
     FlattenedActivities
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     iterable: conlist(ReferencedActivity) = Field(...)
     __properties = ["schema", "iterable"]
 

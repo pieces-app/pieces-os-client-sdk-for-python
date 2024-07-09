@@ -27,7 +27,7 @@ class Auth0OpenAIUserMetadata(BaseModel):
     """
     Only supporting a single api key per user.  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     api_key: Optional[StrictStr] = None
     api_key_name: Optional[StrictStr] = None
     organization_key: Optional[StrictStr] = None

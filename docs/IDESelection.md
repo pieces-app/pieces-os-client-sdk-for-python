@@ -25,7 +25,7 @@ print IDESelection.to_json()
 # convert the object into a dict
 ide_selection_dict = ide_selection_instance.to_dict()
 # create an instance of IDESelection from a dict
-ide_selection_form_dict = ide_selection.from_dict(ide_selection_dict)
+ide_selection_from_dict = IDESelection.from_dict(ide_selection_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

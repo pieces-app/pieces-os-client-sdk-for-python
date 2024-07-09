@@ -25,7 +25,7 @@ print FlattenedWorkstreamEvents.to_json()
 # convert the object into a dict
 flattened_workstream_events_dict = flattened_workstream_events_instance.to_dict()
 # create an instance of FlattenedWorkstreamEvents from a dict
-flattened_workstream_events_form_dict = flattened_workstream_events.from_dict(flattened_workstream_events_dict)
+flattened_workstream_events_from_dict = FlattenedWorkstreamEvents.from_dict(flattened_workstream_events_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -24,7 +24,7 @@ print ReferencedPerson.to_json()
 # convert the object into a dict
 referenced_person_dict = referenced_person_instance.to_dict()
 # create an instance of ReferencedPerson from a dict
-referenced_person_form_dict = referenced_person.from_dict(referenced_person_dict)
+referenced_person_from_dict = ReferencedPerson.from_dict(referenced_person_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

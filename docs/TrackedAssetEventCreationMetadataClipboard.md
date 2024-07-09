@@ -24,7 +24,7 @@ print TrackedAssetEventCreationMetadataClipboard.to_json()
 # convert the object into a dict
 tracked_asset_event_creation_metadata_clipboard_dict = tracked_asset_event_creation_metadata_clipboard_instance.to_dict()
 # create an instance of TrackedAssetEventCreationMetadataClipboard from a dict
-tracked_asset_event_creation_metadata_clipboard_form_dict = tracked_asset_event_creation_metadata_clipboard.from_dict(tracked_asset_event_creation_metadata_clipboard_dict)
+tracked_asset_event_creation_metadata_clipboard_from_dict = TrackedAssetEventCreationMetadataClipboard.from_dict(tracked_asset_event_creation_metadata_clipboard_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -29,12 +29,12 @@ class SeededAnnotation(BaseModel):
     """
     This is the percursor to a fully referenced Annotation.  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     mechanism: Optional[MechanismEnum] = None
     asset: Optional[StrictStr] = None
     person: Optional[StrictStr] = None
     type: AnnotationTypeEnum = Field(...)
-    text: StrictStr = Field(..., description="This is the text of the annotation.")
+    text: StrictStr = Field(default=..., description="This is the text of the annotation.")
     model: Optional[StrictStr] = None
     pseudo: Optional[StrictBool] = None
     favorited: Optional[StrictBool] = None

@@ -24,7 +24,7 @@ print FlattenedAnchorPoints.to_json()
 # convert the object into a dict
 flattened_anchor_points_dict = flattened_anchor_points_instance.to_dict()
 # create an instance of FlattenedAnchorPoints from a dict
-flattened_anchor_points_form_dict = flattened_anchor_points.from_dict(flattened_anchor_points_dict)
+flattened_anchor_points_from_dict = FlattenedAnchorPoints.from_dict(flattened_anchor_points_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

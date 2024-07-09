@@ -29,11 +29,11 @@ class QGPTRepromptInput(BaseModel):
     """
     Query is your followup question.  Conversation is a list of the back and fourth with the qgpt bot. where the first entry in the array was the last message sent.  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     query: StrictStr = Field(...)
     conversation: QGPTConversation = Field(...)
-    application: Optional[StrictStr] = Field(None, description="optional application id")
-    model: Optional[StrictStr] = Field(None, description="optional model id")
+    application: Optional[StrictStr] = Field(default=None, description="optional application id")
+    model: Optional[StrictStr] = Field(default=None, description="optional model id")
     pipeline: Optional[QGPTPromptPipeline] = None
     __properties = ["schema", "query", "conversation", "application", "model", "pipeline"]
 

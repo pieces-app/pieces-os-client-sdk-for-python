@@ -30,9 +30,9 @@ class FlattenedDistribution(BaseModel):
     """
     FlattenedDistribution
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     id: StrictStr = Field(...)
-    share: StrictStr = Field(..., description="This is the UUId of the share.")
+    share: StrictStr = Field(default=..., description="This is the UUId of the share.")
     created: GroupedTimestamp = Field(...)
     updated: GroupedTimestamp = Field(...)
     deleted: Optional[GroupedTimestamp] = None

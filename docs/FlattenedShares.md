@@ -24,7 +24,7 @@ print FlattenedShares.to_json()
 # convert the object into a dict
 flattened_shares_dict = flattened_shares_instance.to_dict()
 # create an instance of FlattenedShares from a dict
-flattened_shares_form_dict = flattened_shares.from_dict(flattened_shares_dict)
+flattened_shares_from_dict = FlattenedShares.from_dict(flattened_shares_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

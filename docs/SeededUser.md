@@ -23,7 +23,7 @@ print SeededUser.to_json()
 # convert the object into a dict
 seeded_user_dict = seeded_user_instance.to_dict()
 # create an instance of SeededUser from a dict
-seeded_user_form_dict = seeded_user.from_dict(seeded_user_dict)
+seeded_user_from_dict = SeededUser.from_dict(seeded_user_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

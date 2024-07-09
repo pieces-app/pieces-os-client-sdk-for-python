@@ -26,7 +26,7 @@ print Embedding.to_json()
 # convert the object into a dict
 embedding_dict = embedding_instance.to_dict()
 # create an instance of Embedding from a dict
-embedding_form_dict = embedding.from_dict(embedding_dict)
+embedding_from_dict = Embedding.from_dict(embedding_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

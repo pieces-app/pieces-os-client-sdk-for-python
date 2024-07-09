@@ -25,7 +25,7 @@ print SeededDiscoverableAssets.to_json()
 # convert the object into a dict
 seeded_discoverable_assets_dict = seeded_discoverable_assets_instance.to_dict()
 # create an instance of SeededDiscoverableAssets from a dict
-seeded_discoverable_assets_form_dict = seeded_discoverable_assets.from_dict(seeded_discoverable_assets_dict)
+seeded_discoverable_assets_from_dict = SeededDiscoverableAssets.from_dict(seeded_discoverable_assets_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

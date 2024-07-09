@@ -27,7 +27,7 @@ class ReferencedSensitive(BaseModel):
     """
     A reference to a sensitive which at minimum must have the Sensitive id. But in the case of a hydrated client API it may have a populated reference of type Sensitive.  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     id: StrictStr = Field(...)
     reference: Optional[FlattenedSensitive] = None
     __properties = ["schema", "id", "reference"]

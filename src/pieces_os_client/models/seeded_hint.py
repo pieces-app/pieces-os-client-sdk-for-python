@@ -29,12 +29,12 @@ class SeededHint(BaseModel):
     """
     SeededHint
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     mechanism: Optional[MechanismEnum] = None
-    asset: Optional[StrictStr] = Field(None, description="This is an asset id that we are using to link this to an asset.")
+    asset: Optional[StrictStr] = Field(default=None, description="This is an asset id that we are using to link this to an asset.")
     type: HintTypeEnum = Field(...)
-    text: StrictStr = Field(..., description="This is the text of the hint.")
-    model: Optional[StrictStr] = Field(None, description="this is a model id. that we are using to link this to a model.")
+    text: StrictStr = Field(default=..., description="This is the text of the hint.")
+    model: Optional[StrictStr] = Field(default=None, description="this is a model id. that we are using to link this to a model.")
     __properties = ["schema", "mechanism", "asset", "type", "text", "model"]
 
     class Config:

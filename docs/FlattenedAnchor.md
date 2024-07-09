@@ -18,6 +18,7 @@ Name | Type | Description | Notes
 **conversations** | [**FlattenedConversations**](FlattenedConversations.md) |  | [optional] 
 **score** | [**Score**](Score.md) |  | [optional] 
 **summaries** | [**FlattenedWorkstreamSummaries**](FlattenedWorkstreamSummaries.md) |  | [optional] 
+**persons** | [**FlattenedPersons**](FlattenedPersons.md) |  | [optional] 
 
 ## Example
 
@@ -34,7 +35,7 @@ print FlattenedAnchor.to_json()
 # convert the object into a dict
 flattened_anchor_dict = flattened_anchor_instance.to_dict()
 # create an instance of FlattenedAnchor from a dict
-flattened_anchor_form_dict = flattened_anchor.from_dict(flattened_anchor_dict)
+flattened_anchor_from_dict = FlattenedAnchor.from_dict(flattened_anchor_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

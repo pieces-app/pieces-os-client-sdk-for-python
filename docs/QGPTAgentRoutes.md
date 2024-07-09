@@ -23,7 +23,7 @@ print QGPTAgentRoutes.to_json()
 # convert the object into a dict
 qgpt_agent_routes_dict = qgpt_agent_routes_instance.to_dict()
 # create an instance of QGPTAgentRoutes from a dict
-qgpt_agent_routes_form_dict = qgpt_agent_routes.from_dict(qgpt_agent_routes_dict)
+qgpt_agent_routes_from_dict = QGPTAgentRoutes.from_dict(qgpt_agent_routes_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

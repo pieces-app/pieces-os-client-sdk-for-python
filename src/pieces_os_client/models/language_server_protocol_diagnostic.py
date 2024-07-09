@@ -31,11 +31,11 @@ class LanguageServerProtocolDiagnostic(BaseModel):
     """
     TODO  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     range: LanguageServerProtocolLocationRange = Field(...)
     severity: Optional[LanguageServerProtocolSeverityEnum] = None
     code: Optional[LanguageServerProtocolCode] = None
-    code_description: Optional[LanguageServerProtocolCodeDescription] = Field(None, alias="codeDescription")
+    code_description: Optional[LanguageServerProtocolCodeDescription] = Field(default=None, alias="codeDescription")
     source: Optional[StrictStr] = None
     message: StrictStr = Field(...)
     __properties = ["schema", "range", "severity", "code", "codeDescription", "source", "message"]

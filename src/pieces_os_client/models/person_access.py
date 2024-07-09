@@ -29,7 +29,7 @@ class PersonAccess(BaseModel):
     """
     if scoped is provided will let us know what level of permission(access) this specific person has in relation to what scope.(collection, asset,...etc)  in the future will expand to global (with its own enumeration for a global entire project/cloud scope)  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     scoped: Optional[PersonAccessScopedEnum] = None
     deleted: Optional[GroupedTimestamp] = None
     __properties = ["schema", "scoped", "deleted"]

@@ -23,7 +23,7 @@ print DetectedExternalApplications.to_json()
 # convert the object into a dict
 detected_external_applications_dict = detected_external_applications_instance.to_dict()
 # create an instance of DetectedExternalApplications from a dict
-detected_external_applications_form_dict = detected_external_applications.from_dict(detected_external_applications_dict)
+detected_external_applications_from_dict = DetectedExternalApplications.from_dict(detected_external_applications_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

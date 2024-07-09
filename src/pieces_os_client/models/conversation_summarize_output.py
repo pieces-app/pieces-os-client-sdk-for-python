@@ -29,7 +29,7 @@ class ConversationSummarizeOutput(BaseModel):
     """
     This is the output model for \"/conversation/{conversation}/summarize  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     conversation: ReferencedConversation = Field(...)
     annotation: ReferencedAnnotation = Field(...)
     __properties = ["schema", "conversation", "annotation"]

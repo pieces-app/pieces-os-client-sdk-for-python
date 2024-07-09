@@ -24,7 +24,7 @@ print UserBetaStatus.to_json()
 # convert the object into a dict
 user_beta_status_dict = user_beta_status_instance.to_dict()
 # create an instance of UserBetaStatus from a dict
-user_beta_status_form_dict = user_beta_status.from_dict(user_beta_status_dict)
+user_beta_status_from_dict = UserBetaStatus.from_dict(user_beta_status_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

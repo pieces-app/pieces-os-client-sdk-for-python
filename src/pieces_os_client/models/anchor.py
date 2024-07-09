@@ -27,6 +27,7 @@ from pieces_os_client.models.flattened_anchor_points import FlattenedAnchorPoint
 from pieces_os_client.models.flattened_annotations import FlattenedAnnotations
 from pieces_os_client.models.flattened_assets import FlattenedAssets
 from pieces_os_client.models.flattened_conversations import FlattenedConversations
+from pieces_os_client.models.flattened_persons import FlattenedPersons
 from pieces_os_client.models.flattened_workstream_summaries import FlattenedWorkstreamSummaries
 from pieces_os_client.models.grouped_timestamp import GroupedTimestamp
 from pieces_os_client.models.score import Score
@@ -35,7 +36,7 @@ class Anchor(BaseModel):
     """
     Anchor
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     id: StrictStr = Field(...)
     name: Optional[StrictStr] = None
     type: AnchorTypeEnum = Field(...)
@@ -49,7 +50,8 @@ class Anchor(BaseModel):
     conversations: Optional[FlattenedConversations] = None
     score: Optional[Score] = None
     summaries: Optional[FlattenedWorkstreamSummaries] = None
-    __properties = ["schema", "id", "name", "type", "watch", "points", "created", "updated", "deleted", "assets", "annotations", "conversations", "score", "summaries"]
+    persons: Optional[FlattenedPersons] = None
+    __properties = ["schema", "id", "name", "type", "watch", "points", "created", "updated", "deleted", "assets", "annotations", "conversations", "score", "summaries", "persons"]
 
     class Config:
         """Pydantic configuration"""
@@ -105,6 +107,9 @@ class Anchor(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of summaries
         if self.summaries:
             _dict['summaries'] = self.summaries.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of persons
+        if self.persons:
+            _dict['persons'] = self.persons.to_dict()
         return _dict
 
     @classmethod
@@ -130,7 +135,8 @@ class Anchor(BaseModel):
             "annotations": FlattenedAnnotations.from_dict(obj.get("annotations")) if obj.get("annotations") is not None else None,
             "conversations": FlattenedConversations.from_dict(obj.get("conversations")) if obj.get("conversations") is not None else None,
             "score": Score.from_dict(obj.get("score")) if obj.get("score") is not None else None,
-            "summaries": FlattenedWorkstreamSummaries.from_dict(obj.get("summaries")) if obj.get("summaries") is not None else None
+            "summaries": FlattenedWorkstreamSummaries.from_dict(obj.get("summaries")) if obj.get("summaries") is not None else None,
+            "persons": FlattenedPersons.from_dict(obj.get("persons")) if obj.get("persons") is not None else None
         })
         return _obj
 

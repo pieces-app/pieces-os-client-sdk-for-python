@@ -28,7 +28,7 @@ print TLPCodeFragmentReclassification.to_json()
 # convert the object into a dict
 tlp_code_fragment_reclassification_dict = tlp_code_fragment_reclassification_instance.to_dict()
 # create an instance of TLPCodeFragmentReclassification from a dict
-tlp_code_fragment_reclassification_form_dict = tlp_code_fragment_reclassification.from_dict(tlp_code_fragment_reclassification_dict)
+tlp_code_fragment_reclassification_from_dict = TLPCodeFragmentReclassification.from_dict(tlp_code_fragment_reclassification_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

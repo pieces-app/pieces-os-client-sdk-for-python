@@ -22,7 +22,7 @@ print QGPTTaskPipelineForCodeCommentation.to_json()
 # convert the object into a dict
 qgpt_task_pipeline_for_code_commentation_dict = qgpt_task_pipeline_for_code_commentation_instance.to_dict()
 # create an instance of QGPTTaskPipelineForCodeCommentation from a dict
-qgpt_task_pipeline_for_code_commentation_form_dict = qgpt_task_pipeline_for_code_commentation.from_dict(qgpt_task_pipeline_for_code_commentation_dict)
+qgpt_task_pipeline_for_code_commentation_from_dict = QGPTTaskPipelineForCodeCommentation.from_dict(qgpt_task_pipeline_for_code_commentation_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

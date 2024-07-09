@@ -27,8 +27,8 @@ class QGPTTaskPipelineForCodeFix(BaseModel):
     """
     This task is for fixing a bit of code.  This is a class so that we can add optional properties in the future.  Note: the snippet && language that needs to be fixed should be within the QGPTQuestionInput.relevant.  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
-    error: Optional[StrictStr] = Field(None, description="This is the error message provided from the IDE, that we can use to provide the solution.")
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
+    error: Optional[StrictStr] = Field(default=None, description="This is the error message provided from the IDE, that we can use to provide the solution.")
     __properties = ["schema", "error"]
 
     class Config:

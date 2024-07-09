@@ -31,7 +31,7 @@ class FlattenedWorkstreamSummary(BaseModel):
     """
     This is a DAG-Safe minimal representation of a workstream summary  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     id: StrictStr = Field(...)
     score: Optional[Score] = None
     created: GroupedTimestamp = Field(...)

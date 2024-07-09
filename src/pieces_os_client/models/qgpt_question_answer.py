@@ -27,8 +27,8 @@ class QGPTQuestionAnswer(BaseModel):
     """
     This will be a simple model with a score and a text value that will represent the value returned for this answer.  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
-    score: Union[StrictFloat, StrictInt] = Field(..., description="This is the score from 0-1 on how good this answer is.")
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
+    score: Union[StrictFloat, StrictInt] = Field(default=..., description="This is the score from 0-1 on how good this answer is.")
     text: StrictStr = Field(...)
     __properties = ["schema", "score", "text"]
 

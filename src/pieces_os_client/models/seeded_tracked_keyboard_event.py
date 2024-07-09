@@ -28,8 +28,8 @@ class SeededTrackedKeyboardEvent(BaseModel):
     """
     This is a model that will hold relavent information in relation to a keyboard(including shortcuts) analytics event (usage).  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
-    description: StrictStr = Field(..., description="This also needs structure such as key vals or enums")
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
+    description: StrictStr = Field(default=..., description="This also needs structure such as key vals or enums")
     shortcut: conlist(StrictInt) = Field(...)
     identifier_description_pair: Optional[SeededTrackedKeyboardEventIdentifierDescriptionPairs] = None
     __properties = ["schema", "description", "shortcut", "identifier_description_pair"]

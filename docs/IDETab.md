@@ -30,7 +30,7 @@ print IDETab.to_json()
 # convert the object into a dict
 ide_tab_dict = ide_tab_instance.to_dict()
 # create an instance of IDETab from a dict
-ide_tab_form_dict = ide_tab.from_dict(ide_tab_dict)
+ide_tab_from_dict = IDETab.from_dict(ide_tab_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

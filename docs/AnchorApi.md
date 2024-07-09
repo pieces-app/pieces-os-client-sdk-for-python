@@ -6,9 +6,11 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**anchor_associate_asset**](AnchorApi.md#anchor_associate_asset) | **POST** /anchor/{anchor}/assets/associate/{asset} | /anchor/{anchor}/assets/associate/{asset} [POST]
 [**anchor_associate_conversation**](AnchorApi.md#anchor_associate_conversation) | **POST** /anchor/{anchor}/conversations/associate/{conversation} | /anchor/{anchor}/conversations/associate/{conversation} [POST]
+[**anchor_associate_person**](AnchorApi.md#anchor_associate_person) | **POST** /anchor/{anchor}/persons/associate/{person} | /anchor/{anchor}/persons/associate/{person} [POST]
 [**anchor_associate_workstream_summary**](AnchorApi.md#anchor_associate_workstream_summary) | **POST** /anchor/{anchor}/workstream_summaries/associate/{workstream_summary} | /anchor/{anchor}/workstream_summaries/associate/{workstream_summary} [POST]
 [**anchor_disassociate_asset**](AnchorApi.md#anchor_disassociate_asset) | **POST** /anchor/{anchor}/assets/disassociate/{asset} | /anchor/{anchor}/assets/disassociate/{asset} [POST]
 [**anchor_disassociate_conversation**](AnchorApi.md#anchor_disassociate_conversation) | **POST** /anchor/{anchor}/conversations/disassociate/{conversation} | /anchor/{anchor}/conversations/disassociate/{conversation} [POST]
+[**anchor_disassociate_person**](AnchorApi.md#anchor_disassociate_person) | **POST** /anchor/{anchor}/persons/disassociate/{person} | /anchor/{anchor}/persons/disassociate/{person} [POST]
 [**anchor_disassociate_workstream_summary**](AnchorApi.md#anchor_disassociate_workstream_summary) | **POST** /anchor/{anchor}/workstream_summaries/disassociate/{workstream_summary} | /anchor/{anchor}/workstream_summaries/disassociate/{workstream_summary} [POST]
 [**anchor_rename**](AnchorApi.md#anchor_rename) | **POST** /anchor/{anchor}/rename | /anchor/{anchor}/rename [POST]
 [**anchor_scores_increment**](AnchorApi.md#anchor_scores_increment) | **POST** /anchor/{anchor}/scores/increment | &#39;/anchor/{anchor}/scores/increment&#39; [POST]
@@ -128,6 +130,73 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **anchor** | **str**| This is the specific uuid of an anchor. | 
  **conversation** | **str**| This is the uuid of a conversation. | 
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: text/plain
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**204** | No Content |  -  |
+**500** | Internal Server Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **anchor_associate_person**
+> anchor_associate_person(anchor, person)
+
+/anchor/{anchor}/persons/associate/{person} [POST]
+
+associates an anchor and a person. It performs the same action as the person equivalent.
+
+### Example
+
+```python
+import time
+import os
+import pieces_os_client
+from pieces_os_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to http://localhost:1000
+# See configuration.py for a list of all supported configuration parameters.
+configuration = pieces_os_client.Configuration(
+    host = "http://localhost:1000"
+)
+
+
+# Enter a context with an instance of the API client
+with pieces_os_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = pieces_os_client.AnchorApi(api_client)
+    anchor = 'anchor_example' # str | This is the specific uuid of an anchor.
+    person = 'person_example' # str | This is a uuid that represents a person.
+
+    try:
+        # /anchor/{anchor}/persons/associate/{person} [POST]
+        api_instance.anchor_associate_person(anchor, person)
+    except Exception as e:
+        print("Exception when calling AnchorApi->anchor_associate_person: %s\n" % e)
+```
+
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **anchor** | **str**| This is the specific uuid of an anchor. | 
+ **person** | **str**| This is a uuid that represents a person. | 
 
 ### Return type
 
@@ -329,6 +398,73 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **anchor** | **str**| This is the specific uuid of an anchor. | 
  **conversation** | **str**| This is the uuid of a conversation. | 
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: text/plain
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**204** | No Content |  -  |
+**500** | Internal Server Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **anchor_disassociate_person**
+> anchor_disassociate_person(anchor, person)
+
+/anchor/{anchor}/persons/disassociate/{person} [POST]
+
+Disassociates an anchor from a person. It performs the same action as the person equivalent.
+
+### Example
+
+```python
+import time
+import os
+import pieces_os_client
+from pieces_os_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to http://localhost:1000
+# See configuration.py for a list of all supported configuration parameters.
+configuration = pieces_os_client.Configuration(
+    host = "http://localhost:1000"
+)
+
+
+# Enter a context with an instance of the API client
+with pieces_os_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = pieces_os_client.AnchorApi(api_client)
+    anchor = 'anchor_example' # str | This is the specific uuid of an anchor.
+    person = 'person_example' # str | This is a uuid that represents a person.
+
+    try:
+        # /anchor/{anchor}/persons/disassociate/{person} [POST]
+        api_instance.anchor_disassociate_person(anchor, person)
+    except Exception as e:
+        print("Exception when calling AnchorApi->anchor_disassociate_person: %s\n" % e)
+```
+
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **anchor** | **str**| This is the specific uuid of an anchor. | 
+ **person** | **str**| This is a uuid that represents a person. | 
 
 ### Return type
 

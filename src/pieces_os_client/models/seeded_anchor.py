@@ -29,16 +29,17 @@ class SeededAnchor(BaseModel):
     """
     SeededAnchor
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     type: AnchorTypeEnum = Field(...)
     watch: Optional[StrictBool] = None
     fullpath: StrictStr = Field(...)
-    asset: Optional[StrictStr] = Field(None, description="You may associate a SeededAnchor with an asset")
+    asset: Optional[StrictStr] = Field(default=None, description="You may associate a SeededAnchor with an asset")
     platform: Optional[PlatformEnum] = None
     name: Optional[StrictStr] = None
     annotations: Optional[conlist(SeededAnnotation)] = None
     conversation: Optional[StrictStr] = None
-    __properties = ["schema", "type", "watch", "fullpath", "asset", "platform", "name", "annotations", "conversation"]
+    persons: Optional[FlattenedPersons] = None
+    __properties = ["schema", "type", "watch", "fullpath", "asset", "platform", "name", "annotations", "conversation", "persons"]
 
     class Config:
         """Pydantic configuration"""
@@ -74,6 +75,9 @@ class SeededAnchor(BaseModel):
                 if _item:
                     _items.append(_item.to_dict())
             _dict['annotations'] = _items
+        # override the default output from pydantic by calling `to_dict()` of persons
+        if self.persons:
+            _dict['persons'] = self.persons.to_dict()
         return _dict
 
     @classmethod
@@ -94,10 +98,12 @@ class SeededAnchor(BaseModel):
             "platform": obj.get("platform"),
             "name": obj.get("name"),
             "annotations": [SeededAnnotation.from_dict(_item) for _item in obj.get("annotations")] if obj.get("annotations") is not None else None,
-            "conversation": obj.get("conversation")
+            "conversation": obj.get("conversation"),
+            "persons": FlattenedPersons.from_dict(obj.get("persons")) if obj.get("persons") is not None else None
         })
         return _obj
 
+from pieces_os_client.models.flattened_persons import FlattenedPersons
 from pieces_os_client.models.seeded_annotation import SeededAnnotation
 SeededAnchor.update_forward_refs()
 

@@ -25,7 +25,7 @@ print FlattenedAnalysis.to_json()
 # convert the object into a dict
 flattened_analysis_dict = flattened_analysis_instance.to_dict()
 # create an instance of FlattenedAnalysis from a dict
-flattened_analysis_form_dict = flattened_analysis.from_dict(flattened_analysis_dict)
+flattened_analysis_from_dict = FlattenedAnalysis.from_dict(flattened_analysis_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

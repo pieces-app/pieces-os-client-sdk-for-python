@@ -22,7 +22,7 @@ print Accessors.to_json()
 # convert the object into a dict
 accessors_dict = accessors_instance.to_dict()
 # create an instance of Accessors from a dict
-accessors_form_dict = accessors.from_dict(accessors_dict)
+accessors_from_dict = Accessors.from_dict(accessors_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

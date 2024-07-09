@@ -29,10 +29,10 @@ class OSDeviceInformationReturnable(BaseModel):
     """
     This is the returnable model for the /os/device/information.  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     dependencies: Optional[OSDeviceDependenciesInformation] = None
-    name: Optional[StrictStr] = Field(None, description="this is the name of the device")
-    version: Optional[StrictStr] = Field(None, description="this is the version of the device")
+    name: Optional[StrictStr] = Field(default=None, description="this is the name of the device")
+    version: Optional[StrictStr] = Field(default=None, description="this is the version of the device")
     hardware: Optional[OSDeviceHardwareInformation] = None
     __properties = ["schema", "dependencies", "name", "version", "hardware"]
 

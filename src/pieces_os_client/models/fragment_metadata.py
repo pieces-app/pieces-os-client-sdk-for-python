@@ -28,7 +28,7 @@ class FragmentMetadata(BaseModel):
     """
     This is a model for metadata of a file!  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     ext: Optional[ClassificationSpecificEnum] = None
     __properties = ["schema", "ext"]
 

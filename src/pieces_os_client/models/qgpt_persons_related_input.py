@@ -29,11 +29,11 @@ class QGPTPersonsRelatedInput(BaseModel):
     """
     This is used for /qgpt/persons/related.  will accept a seed, or conversation all optionally.   # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     seed: Optional[Seed] = None
     conversation: Optional[QGPTConversation] = None
-    application: Optional[StrictStr] = Field(None, description="optional application id")
-    model: Optional[StrictStr] = Field(None, description="optional model id")
+    application: Optional[StrictStr] = Field(default=None, description="optional application id")
+    model: Optional[StrictStr] = Field(default=None, description="optional model id")
     __properties = ["schema", "seed", "conversation", "application", "model"]
 
     class Config:

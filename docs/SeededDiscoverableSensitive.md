@@ -30,7 +30,7 @@ print SeededDiscoverableSensitive.to_json()
 # convert the object into a dict
 seeded_discoverable_sensitive_dict = seeded_discoverable_sensitive_instance.to_dict()
 # create an instance of SeededDiscoverableSensitive from a dict
-seeded_discoverable_sensitive_form_dict = seeded_discoverable_sensitive.from_dict(seeded_discoverable_sensitive_dict)
+seeded_discoverable_sensitive_from_dict = SeededDiscoverableSensitive.from_dict(seeded_discoverable_sensitive_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

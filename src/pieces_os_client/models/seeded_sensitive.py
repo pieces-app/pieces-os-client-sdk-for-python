@@ -31,9 +31,9 @@ class SeededSensitive(BaseModel):
     """
     This is the seededSensitive, this does not have an id yet as we will add it on the server side.  can optionally pass in our mechanism here, as the default will be manual unless specified.  TODO consider updating these asset,format to referenced Models  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     asset: StrictStr = Field(...)
-    text: StrictStr = Field(..., description="this is the string representative of the sensative piece of data.")
+    text: StrictStr = Field(default=..., description="this is the string representative of the sensative piece of data.")
     mechanism: Optional[MechanismEnum] = None
     category: SensitiveCategoryEnum = Field(...)
     severity: SensitiveSeverityEnum = Field(...)

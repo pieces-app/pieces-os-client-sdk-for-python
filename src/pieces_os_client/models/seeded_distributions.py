@@ -28,7 +28,7 @@ class SeededDistributions(BaseModel):
     """
     This is the plural version of a SeededDistribution that is not referenced just yet.  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     iterable: conlist(SeededDistribution) = Field(...)
     __properties = ["schema", "iterable"]
 

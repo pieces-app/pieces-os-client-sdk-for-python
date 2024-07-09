@@ -31,34 +31,34 @@ class ExportedDatabase(BaseModel):
     analyses: conlist(StrictInt) = Field(...)
     applications: conlist(StrictInt) = Field(...)
     assets: conlist(StrictInt) = Field(...)
-    code_analyses: conlist(StrictInt) = Field(..., alias="codeAnalyses")
+    code_analyses: conlist(StrictInt) = Field(default=..., alias="codeAnalyses")
     files: conlist(StrictInt) = Field(...)
-    format_metrics: conlist(StrictInt) = Field(..., alias="formatMetrics")
+    format_metrics: conlist(StrictInt) = Field(default=..., alias="formatMetrics")
     formats: conlist(StrictInt) = Field(...)
     fragments: conlist(StrictInt) = Field(...)
-    image_analyses: conlist(StrictInt) = Field(..., alias="imageAnalyses")
+    image_analyses: conlist(StrictInt) = Field(default=..., alias="imageAnalyses")
     models: conlist(StrictInt) = Field(...)
-    ocr_analyses: conlist(StrictInt) = Field(..., alias="ocrAnalyses")
+    ocr_analyses: conlist(StrictInt) = Field(default=..., alias="ocrAnalyses")
     persons: conlist(StrictInt) = Field(...)
     sensitives: conlist(StrictInt) = Field(...)
     tags: conlist(StrictInt) = Field(...)
     websites: conlist(StrictInt) = Field(...)
     values: ExportedDatabaseFormats = Field(...)
-    version: StrictStr = Field(..., description="This is the version of your os_server or cloud_server that we we exporting from.")
-    var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
+    version: StrictStr = Field(default=..., description="This is the version of your os_server or cloud_server that we we exporting from.")
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     relationships: Optional[conlist(StrictInt)] = None
     activities: Optional[conlist(StrictInt)] = None
     annotations: Optional[conlist(StrictInt)] = None
     hints: Optional[conlist(StrictInt)] = None
     anchors: Optional[conlist(StrictInt)] = None
-    anchor_points: Optional[conlist(StrictInt)] = Field(None, alias="anchorPoints")
+    anchor_points: Optional[conlist(StrictInt)] = Field(default=None, alias="anchorPoints")
     conversations: Optional[conlist(StrictInt)] = None
-    conversation_messages: Optional[conlist(StrictInt)] = Field(None, alias="conversationMessages")
-    workstream_events: Optional[conlist(StrictInt)] = Field(None, alias="workstreamEvents")
+    conversation_messages: Optional[conlist(StrictInt)] = Field(default=None, alias="conversationMessages")
+    workstream_events: Optional[conlist(StrictInt)] = Field(default=None, alias="workstreamEvents")
     ranges: Optional[conlist(StrictInt)] = None
-    workstream_summaries: Optional[conlist(StrictInt)] = Field(None, alias="workstreamSummaries")
-    message_values: Optional[ExportedDatabaseFormats] = Field(None, alias="messageValues")
-    workstream_event_values: Optional[ExportedDatabaseFormats] = Field(None, alias="workstreamEventValues")
+    workstream_summaries: Optional[conlist(StrictInt)] = Field(default=None, alias="workstreamSummaries")
+    message_values: Optional[ExportedDatabaseFormats] = Field(default=None, alias="messageValues")
+    workstream_event_values: Optional[ExportedDatabaseFormats] = Field(default=None, alias="workstreamEventValues")
     __properties = ["analyses", "applications", "assets", "codeAnalyses", "files", "formatMetrics", "formats", "fragments", "imageAnalyses", "models", "ocrAnalyses", "persons", "sensitives", "tags", "websites", "values", "version", "schema", "relationships", "activities", "annotations", "hints", "anchors", "anchorPoints", "conversations", "conversationMessages", "workstreamEvents", "ranges", "workstreamSummaries", "messageValues", "workstreamEventValues"]
 
     class Config:

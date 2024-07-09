@@ -23,7 +23,7 @@ print ConversationsCreateFromAssetOutput.to_json()
 # convert the object into a dict
 conversations_create_from_asset_output_dict = conversations_create_from_asset_output_instance.to_dict()
 # create an instance of ConversationsCreateFromAssetOutput from a dict
-conversations_create_from_asset_output_form_dict = conversations_create_from_asset_output.from_dict(conversations_create_from_asset_output_dict)
+conversations_create_from_asset_output_from_dict = ConversationsCreateFromAssetOutput.from_dict(conversations_create_from_asset_output_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

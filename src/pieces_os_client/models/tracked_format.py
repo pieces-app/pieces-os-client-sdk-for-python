@@ -29,11 +29,11 @@ class TrackedFormat(BaseModel):
     """
     A minimal format to send to Mixpanel  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
-    id: StrictStr = Field(..., description="The UUID of the format")
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
+    id: StrictStr = Field(default=..., description="The UUID of the format")
     classification: Classification = Field(...)
     role: Role = Field(...)
-    asset: StrictStr = Field(..., description="The UUID of the asset associated")
+    asset: StrictStr = Field(default=..., description="The UUID of the asset associated")
     fragment: StrictBool = Field(...)
     file: StrictBool = Field(...)
     __properties = ["schema", "id", "classification", "role", "asset", "fragment", "file"]

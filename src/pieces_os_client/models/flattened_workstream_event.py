@@ -31,7 +31,7 @@ class FlattenedWorkstreamEvent(BaseModel):
     """
     This is a singular (DAG Safe) version of a WorkstreamEvent.  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     id: StrictStr = Field(...)
     score: Optional[Score] = None
     application: Application = Field(...)

@@ -24,7 +24,7 @@ print DiscoveredHtmlWebpages.to_json()
 # convert the object into a dict
 discovered_html_webpages_dict = discovered_html_webpages_instance.to_dict()
 # create an instance of DiscoveredHtmlWebpages from a dict
-discovered_html_webpages_form_dict = discovered_html_webpages.from_dict(discovered_html_webpages_dict)
+discovered_html_webpages_from_dict = DiscoveredHtmlWebpages.from_dict(discovered_html_webpages_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

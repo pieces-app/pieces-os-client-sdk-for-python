@@ -29,7 +29,7 @@ class TLPCodeFragmentClassification(BaseModel):
     """
     Model for ML big query classification.  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     asset: StrictStr = Field(...)
     model: StrictStr = Field(...)
     created: StrictStr = Field(...)
@@ -38,8 +38,8 @@ class TLPCodeFragmentClassification(BaseModel):
     context: StrictStr = Field(...)
     distribution: Optional[StrictStr] = None
     metadata: Optional[TLPCodeFragmentClassificationMetadata] = None
-    user: StrictStr = Field(..., description="identifier for the user")
-    latency: Optional[Union[StrictFloat, StrictInt]] = Field(None, description="this is the time it takes to run this model.")
+    user: StrictStr = Field(default=..., description="identifier for the user")
+    latency: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="this is the time it takes to run this model.")
     system: Optional[SystemExecutionInformation] = None
     __properties = ["schema", "asset", "model", "created", "classification", "probability", "context", "distribution", "metadata", "user", "latency", "system"]
 

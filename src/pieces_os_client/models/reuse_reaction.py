@@ -27,7 +27,7 @@ class ReuseReaction(BaseModel):
     """
     if reuse was used in the reaction then we can provide the uuid of the asset that was reused.  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     asset: StrictStr = Field(...)
     __properties = ["schema", "asset"]
 

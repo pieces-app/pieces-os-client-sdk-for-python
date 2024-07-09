@@ -28,7 +28,7 @@ class SeededConnectorConnection(BaseModel):
     """
     A model that is passed to the context API at bootup  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     application: SeededTrackedApplication = Field(...)
     __properties = ["schema", "application"]
 

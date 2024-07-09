@@ -27,19 +27,19 @@ class TrackedSessionEventIdentifierDescriptionPairs(BaseModel):
     """
     These are all of the available event types that are permitted in an object pair notation.  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
-    session_initialized: Optional[StrictStr] = Field(None, description="The key value pair for an application being opened.")
-    session_local_connection_succeeded: Optional[StrictStr] = Field(None, description="There was a successful connection locally")
-    session_local_connection_failed: Optional[StrictStr] = Field(None, description="There was a failed connection locally")
-    session_inactive: Optional[StrictStr] = Field(None, description="If the current application is in the background or not, could also be minimized.")
-    session_active: Optional[StrictStr] = Field(None, description="If the application has been brought to the forground.")
-    session_terminated: Optional[StrictStr] = Field(None, description="If the user has closed the application, thus ending the session.")
-    session_authenticated_with_sign_in: Optional[StrictStr] = Field(None, description="A user has signed into this session with a an external account")
-    session_unauthenticated_with_sign_out: Optional[StrictStr] = Field(None, description="A user has signed out of this session")
-    session_unauthenticated_with_dismiss: Optional[StrictStr] = Field(None, description="A user did not sign into the session with a dismissal")
-    session_unauthenticated_with_remind: Optional[StrictStr] = Field(None, description="A user did not sign into the session with a reminder")
-    session_onboarding_initialized: Optional[StrictStr] = Field(None, description="Onboarding has been initialized for this session")
-    session_onboarding_completed: Optional[StrictStr] = Field(None, description="Onboarding has been completed for this session")
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
+    session_initialized: Optional[StrictStr] = Field(default=None, description="The key value pair for an application being opened.")
+    session_local_connection_succeeded: Optional[StrictStr] = Field(default=None, description="There was a successful connection locally")
+    session_local_connection_failed: Optional[StrictStr] = Field(default=None, description="There was a failed connection locally")
+    session_inactive: Optional[StrictStr] = Field(default=None, description="If the current application is in the background or not, could also be minimized.")
+    session_active: Optional[StrictStr] = Field(default=None, description="If the application has been brought to the forground.")
+    session_terminated: Optional[StrictStr] = Field(default=None, description="If the user has closed the application, thus ending the session.")
+    session_authenticated_with_sign_in: Optional[StrictStr] = Field(default=None, description="A user has signed into this session with a an external account")
+    session_unauthenticated_with_sign_out: Optional[StrictStr] = Field(default=None, description="A user has signed out of this session")
+    session_unauthenticated_with_dismiss: Optional[StrictStr] = Field(default=None, description="A user did not sign into the session with a dismissal")
+    session_unauthenticated_with_remind: Optional[StrictStr] = Field(default=None, description="A user did not sign into the session with a reminder")
+    session_onboarding_initialized: Optional[StrictStr] = Field(default=None, description="Onboarding has been initialized for this session")
+    session_onboarding_completed: Optional[StrictStr] = Field(default=None, description="Onboarding has been completed for this session")
     __properties = ["schema", "session_initialized", "session_local_connection_succeeded", "session_local_connection_failed", "session_inactive", "session_active", "session_terminated", "session_authenticated_with_sign_in", "session_unauthenticated_with_sign_out", "session_unauthenticated_with_dismiss", "session_unauthenticated_with_remind", "session_onboarding_initialized", "session_onboarding_completed"]
 
     @validator('session_initialized')

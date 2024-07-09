@@ -26,8 +26,8 @@ class Space(BaseModel):
     """
     This is used in the TrackedAssetsEventSearchMetadata  # noqa: E501
     """
-    size: Optional[StrictInt] = Field(None, description="This is the size of your current catalog.(number of assets)")
-    duration: Optional[StrictInt] = Field(None, description="this is the number in ms it took to run search.")
+    size: Optional[StrictInt] = Field(default=None, description="This is the size of your current catalog.(number of assets)")
+    duration: Optional[StrictInt] = Field(default=None, description="this is the number in ms it took to run search.")
     __properties = ["size", "duration"]
 
     class Config:

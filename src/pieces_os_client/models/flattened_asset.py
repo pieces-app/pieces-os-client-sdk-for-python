@@ -31,8 +31,8 @@ class FlattenedAsset(BaseModel):
     """
     An Asset Model representing data extracted from an Application connecting a group of data containing one or more Formats. [DAG Compatible - Directed Acyclic Graph Data Structure]  FlattenedAsset prevent Cycles in Reference because all outbound references are strings as opposed to crosspollinated objects.  i.e. FlattenedFormat.preview is Type String, and FlattenedFormat.original is Type String  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
-    id: StrictStr = Field(..., description="The globally available UID representing the asset in the Database, both locally and in the cloud.")
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
+    id: StrictStr = Field(default=..., description="The globally available UID representing the asset in the Database, both locally and in the cloud.")
     name: Optional[StrictStr] = None
     creator: StrictStr = Field(...)
     created: GroupedTimestamp = Field(...)
@@ -41,7 +41,7 @@ class FlattenedAsset(BaseModel):
     deleted: Optional[GroupedTimestamp] = None
     formats: FlattenedFormats = Field(...)
     preview: FlattenedPreview = Field(...)
-    original: StrictStr = Field(..., description="An identifier of the format that is a reference to the original.")
+    original: StrictStr = Field(default=..., description="An identifier of the format that is a reference to the original.")
     shares: Optional[FlattenedShares] = None
     mechanism: MechanismEnum = Field(...)
     websites: Optional[FlattenedWebsites] = None
@@ -49,7 +49,7 @@ class FlattenedAsset(BaseModel):
     tags: Optional[FlattenedTags] = None
     sensitives: Optional[FlattenedSensitives] = None
     persons: Optional[FlattenedPersons] = None
-    curated: Optional[StrictBool] = Field(None, description="This is an optional boolean that will flag that this asset came from a currated collection.")
+    curated: Optional[StrictBool] = Field(default=None, description="This is an optional boolean that will flag that this asset came from a currated collection.")
     discovered: Optional[StrictBool] = None
     activities: Optional[FlattenedActivities] = None
     score: Optional[Score] = None
@@ -59,7 +59,7 @@ class FlattenedAsset(BaseModel):
     hints: Optional[FlattenedHints] = None
     anchors: Optional[FlattenedAnchors] = None
     conversations: Optional[FlattenedConversations] = None
-    demo: Optional[StrictBool] = Field(None, description="This will let us know if this asset was generated as a 'demo' snippet")
+    demo: Optional[StrictBool] = Field(default=None, description="This will let us know if this asset was generated as a 'demo' snippet")
     summaries: Optional[FlattenedWorkstreamSummaries] = None
     __properties = ["schema", "id", "name", "creator", "created", "updated", "synced", "deleted", "formats", "preview", "original", "shares", "mechanism", "websites", "interacted", "tags", "sensitives", "persons", "curated", "discovered", "activities", "score", "favorited", "pseudo", "annotations", "hints", "anchors", "conversations", "demo", "summaries"]
 

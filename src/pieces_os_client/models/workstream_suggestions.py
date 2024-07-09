@@ -28,9 +28,9 @@ class WorkstreamSuggestions(BaseModel):
     """
     This is a list of the materials used in the workstream suggestions.  The feed will return a list of individual material that will be required to be fetched and re-referenced.(the materials that is.)  Considering if we want to have all the materaials just being referenced( ie ReferencedWebsite/ReferencedWorkstreamSummary/...xyz) && rebuilt  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     iterable: conlist(WorkstreamSuggestion) = Field(...)
-    types: Optional[conlist(WorkstreamSuggestionType)] = Field(None, description="This is iterable <WorkstreamSuggestionType>[] that gives the type of each of the items in the iterable. I.E. types[0] is the suggestion type of the item at iterable[0].")
+    types: Optional[conlist(WorkstreamSuggestionType)] = Field(default=None, description="This is iterable <WorkstreamSuggestionType>[] that gives the type of each of the items in the iterable. I.E. types[0] is the suggestion type of the item at iterable[0].")
     __properties = ["schema", "iterable", "types"]
 
     class Config:

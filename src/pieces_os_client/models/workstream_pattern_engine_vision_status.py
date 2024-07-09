@@ -28,7 +28,7 @@ class WorkstreamPatternEngineVisionStatus(BaseModel):
     """
     activation: can be active for forever w/ continous true, or it can be activated for the next couple hours  deactivation: here can be deactivated for forever w/ continuous true, or it can be deactivated for the next couple hours  Note: one or the other will be set and both are nullable.  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     activation: Optional[AnonymousTemporalRange] = None
     deactivation: Optional[AnonymousTemporalRange] = None
     __properties = ["schema", "activation", "deactivation"]

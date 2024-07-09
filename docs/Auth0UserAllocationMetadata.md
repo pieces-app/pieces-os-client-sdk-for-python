@@ -23,7 +23,7 @@ print Auth0UserAllocationMetadata.to_json()
 # convert the object into a dict
 auth0_user_allocation_metadata_dict = auth0_user_allocation_metadata_instance.to_dict()
 # create an instance of Auth0UserAllocationMetadata from a dict
-auth0_user_allocation_metadata_form_dict = auth0_user_allocation_metadata.from_dict(auth0_user_allocation_metadata_dict)
+auth0_user_allocation_metadata_from_dict = Auth0UserAllocationMetadata.from_dict(auth0_user_allocation_metadata_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

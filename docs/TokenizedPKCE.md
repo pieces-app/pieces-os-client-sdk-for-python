@@ -28,7 +28,7 @@ print TokenizedPKCE.to_json()
 # convert the object into a dict
 tokenized_pkce_dict = tokenized_pkce_instance.to_dict()
 # create an instance of TokenizedPKCE from a dict
-tokenized_pkce_form_dict = tokenized_pkce.from_dict(tokenized_pkce_dict)
+tokenized_pkce_from_dict = TokenizedPKCE.from_dict(tokenized_pkce_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

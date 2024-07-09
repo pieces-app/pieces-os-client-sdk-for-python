@@ -23,7 +23,7 @@ print ConversationSummarizeInput.to_json()
 # convert the object into a dict
 conversation_summarize_input_dict = conversation_summarize_input_instance.to_dict()
 # create an instance of ConversationSummarizeInput from a dict
-conversation_summarize_input_form_dict = conversation_summarize_input.from_dict(conversation_summarize_input_dict)
+conversation_summarize_input_from_dict = ConversationSummarizeInput.from_dict(conversation_summarize_input_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

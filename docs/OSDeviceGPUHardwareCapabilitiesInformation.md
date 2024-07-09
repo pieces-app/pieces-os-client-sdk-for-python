@@ -23,7 +23,7 @@ print OSDeviceGPUHardwareCapabilitiesInformation.to_json()
 # convert the object into a dict
 os_device_gpu_hardware_capabilities_information_dict = os_device_gpu_hardware_capabilities_information_instance.to_dict()
 # create an instance of OSDeviceGPUHardwareCapabilitiesInformation from a dict
-os_device_gpu_hardware_capabilities_information_form_dict = os_device_gpu_hardware_capabilities_information.from_dict(os_device_gpu_hardware_capabilities_information_dict)
+os_device_gpu_hardware_capabilities_information_from_dict = OSDeviceGPUHardwareCapabilitiesInformation.from_dict(os_device_gpu_hardware_capabilities_information_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

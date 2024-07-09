@@ -27,15 +27,15 @@ class TLPCodeFragmentSuggestedSave(BaseModel):
     """
     Model for monitoring and evaluating the suggested save feature  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     asset: StrictStr = Field(...)
     user: StrictStr = Field(...)
     model: StrictStr = Field(...)
     created: StrictStr = Field(...)
     os: StrictStr = Field(...)
-    context: Optional[StrictStr] = Field(None, description="context from where suggestion came from")
-    score: Optional[Union[StrictFloat, StrictInt]] = Field(None, description="maximum similarity score")
-    candidates: Optional[StrictInt] = Field(None, description="number of candidates")
+    context: Optional[StrictStr] = Field(default=None, description="context from where suggestion came from")
+    score: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="maximum similarity score")
+    candidates: Optional[StrictInt] = Field(default=None, description="number of candidates")
     __properties = ["schema", "asset", "user", "model", "created", "os", "context", "score", "candidates"]
 
     class Config:

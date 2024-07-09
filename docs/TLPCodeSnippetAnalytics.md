@@ -27,7 +27,7 @@ print TLPCodeSnippetAnalytics.to_json()
 # convert the object into a dict
 tlp_code_snippet_analytics_dict = tlp_code_snippet_analytics_instance.to_dict()
 # create an instance of TLPCodeSnippetAnalytics from a dict
-tlp_code_snippet_analytics_form_dict = tlp_code_snippet_analytics.from_dict(tlp_code_snippet_analytics_dict)
+tlp_code_snippet_analytics_from_dict = TLPCodeSnippetAnalytics.from_dict(tlp_code_snippet_analytics_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

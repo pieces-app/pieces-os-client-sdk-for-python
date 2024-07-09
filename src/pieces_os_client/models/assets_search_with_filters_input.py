@@ -29,11 +29,11 @@ class AssetsSearchWithFiltersInput(BaseModel):
     """
     AssetsSearchWithFiltersInput
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     query: Optional[StrictStr] = None
     space: Optional[AssetSearchSpace] = None
     filters: Optional[AssetFilters] = None
-    casing: Optional[StrictBool] = Field(None, description="This is an optional bool that will let us know, if we want to ignore case or not.(default is to allow casing)ie casing:true.")
+    casing: Optional[StrictBool] = Field(default=None, description="This is an optional bool that will let us know, if we want to ignore case or not.(default is to allow casing)ie casing:true.")
     __properties = ["schema", "query", "space", "filters", "casing"]
 
     class Config:

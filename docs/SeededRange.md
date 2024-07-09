@@ -27,7 +27,7 @@ print SeededRange.to_json()
 # convert the object into a dict
 seeded_range_dict = seeded_range_instance.to_dict()
 # create an instance of SeededRange from a dict
-seeded_range_form_dict = seeded_range.from_dict(seeded_range_dict)
+seeded_range_from_dict = SeededRange.from_dict(seeded_range_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

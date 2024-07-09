@@ -28,7 +28,7 @@ class TrackedConversationEventMetadata(BaseModel):
     """
     This is the metadata for the the ConversationEvent  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     rename: Optional[TrackedConversationEventRenameMetadata] = None
     __properties = ["schema", "rename"]
 

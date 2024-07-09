@@ -28,7 +28,7 @@ class Users(BaseModel):
     """
     A base class for a collection of users and some additional meta properties.  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     iterable: Optional[conlist(UserProfile)] = None
     __properties = ["schema", "iterable"]
 

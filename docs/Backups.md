@@ -25,7 +25,7 @@ print Backups.to_json()
 # convert the object into a dict
 backups_dict = backups_instance.to_dict()
 # create an instance of Backups from a dict
-backups_form_dict = backups.from_dict(backups_dict)
+backups_from_dict = Backups.from_dict(backups_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

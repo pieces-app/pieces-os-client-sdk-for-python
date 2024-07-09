@@ -27,7 +27,7 @@ class SeededBackup(BaseModel):
     """
     This is a precursor to a Backup, for now this will not need to take any properties.  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     __properties = ["schema"]
 
     class Config:

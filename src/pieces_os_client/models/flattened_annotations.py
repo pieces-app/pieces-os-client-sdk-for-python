@@ -28,9 +28,9 @@ class FlattenedAnnotations(BaseModel):
     """
     This is a flattened plural of Annotation, typically this will just be a list of uuids.  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     iterable: conlist(ReferencedAnnotation) = Field(...)
-    indices: Optional[Dict[str, StrictInt]] = Field(None, description="This is a Map<String, int> where the the key is an annotation id.")
+    indices: Optional[Dict[str, StrictInt]] = Field(default=None, description="This is a Map<String, int> where the the key is an annotation id.")
     score: Optional[Score] = None
     __properties = ["schema", "iterable", "indices", "score"]
 

@@ -25,7 +25,7 @@ print FlattenedWebsites.to_json()
 # convert the object into a dict
 flattened_websites_dict = flattened_websites_instance.to_dict()
 # create an instance of FlattenedWebsites from a dict
-flattened_websites_form_dict = flattened_websites.from_dict(flattened_websites_dict)
+flattened_websites_from_dict = FlattenedWebsites.from_dict(flattened_websites_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

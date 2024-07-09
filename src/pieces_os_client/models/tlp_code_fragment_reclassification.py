@@ -28,13 +28,13 @@ class TLPCodeFragmentReclassification(BaseModel):
     """
     Model for ML big query Reclassification.  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     asset: StrictStr = Field(...)
     model: StrictStr = Field(...)
     created: StrictStr = Field(...)
     updates: TLPCodeFragmentReclassificationUpdates = Field(...)
-    user: StrictStr = Field(..., description="this is the user that is reclassifying")
-    context: StrictStr = Field(..., description="this is the application is which this is from.")
+    user: StrictStr = Field(default=..., description="this is the user that is reclassifying")
+    context: StrictStr = Field(default=..., description="this is the application is which this is from.")
     __properties = ["schema", "asset", "model", "created", "updates", "user", "context"]
 
     class Config:

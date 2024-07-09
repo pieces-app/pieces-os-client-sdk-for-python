@@ -28,10 +28,10 @@ class FlattenedAnalysis(BaseModel):
     """
     FlattenedAnalysis
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     code: Optional[CodeAnalysis] = None
     id: StrictStr = Field(...)
-    format: StrictStr = Field(..., description="this is a reference to the format that it belongs too.")
+    format: StrictStr = Field(default=..., description="this is a reference to the format that it belongs too.")
     image: Optional[FlattenedImageAnalysis] = None
     __properties = ["schema", "code", "id", "format", "image"]
 

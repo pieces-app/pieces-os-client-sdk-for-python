@@ -28,11 +28,11 @@ class SeededGitHubGistDistribution(BaseModel):
     """
     This is the minimum information needed to distribute a Piece to a Gist.  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     recipients: Optional[Recipients] = None
-    public: Optional[StrictBool] = Field(None, description="we will default to true")
-    description: Optional[StrictStr] = Field(None, description="This is the description of the Gist Distribution")
-    name: StrictStr = Field(..., description="This is the name of the gist you will add.")
+    public: Optional[StrictBool] = Field(default=None, description="we will default to true")
+    description: Optional[StrictStr] = Field(default=None, description="This is the description of the Gist Distribution")
+    name: StrictStr = Field(default=..., description="This is the name of the gist you will add.")
     __properties = ["schema", "recipients", "public", "description", "name"]
 
     class Config:

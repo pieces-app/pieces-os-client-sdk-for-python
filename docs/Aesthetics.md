@@ -24,7 +24,7 @@ print Aesthetics.to_json()
 # convert the object into a dict
 aesthetics_dict = aesthetics_instance.to_dict()
 # create an instance of Aesthetics from a dict
-aesthetics_form_dict = aesthetics.from_dict(aesthetics_dict)
+aesthetics_from_dict = Aesthetics.from_dict(aesthetics_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

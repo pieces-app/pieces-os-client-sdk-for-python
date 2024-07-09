@@ -24,7 +24,7 @@ print ResultedPKCE.to_json()
 # convert the object into a dict
 resulted_pkce_dict = resulted_pkce_instance.to_dict()
 # create an instance of ResultedPKCE from a dict
-resulted_pkce_form_dict = resulted_pkce.from_dict(resulted_pkce_dict)
+resulted_pkce_from_dict = ResultedPKCE.from_dict(resulted_pkce_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -27,8 +27,8 @@ class TrackedAssetsEventSearchMetadataResults(BaseModel):
     """
     Numbers related to search results  # noqa: E501
     """
-    fuzzy: Optional[Union[StrictFloat, StrictInt]] = Field(None, description="Total number of fuzzy results")
-    exact: Optional[Union[StrictFloat, StrictInt]] = Field(None, description="Total number of exact results")
+    fuzzy: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="Total number of fuzzy results")
+    exact: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="Total number of exact results")
     assets: Optional[FlattenedAssets] = None
     space: Optional[Space] = None
     __properties = ["fuzzy", "exact", "assets", "space"]

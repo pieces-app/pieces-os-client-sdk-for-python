@@ -25,7 +25,7 @@ print FlattenedPersons.to_json()
 # convert the object into a dict
 flattened_persons_dict = flattened_persons_instance.to_dict()
 # create an instance of FlattenedPersons from a dict
-flattened_persons_form_dict = flattened_persons.from_dict(flattened_persons_dict)
+flattened_persons_from_dict = FlattenedPersons.from_dict(flattened_persons_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

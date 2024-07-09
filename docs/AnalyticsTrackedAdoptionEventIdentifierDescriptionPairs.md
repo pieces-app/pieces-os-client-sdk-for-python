@@ -23,7 +23,7 @@ print AnalyticsTrackedAdoptionEventIdentifierDescriptionPairs.to_json()
 # convert the object into a dict
 analytics_tracked_adoption_event_identifier_description_pairs_dict = analytics_tracked_adoption_event_identifier_description_pairs_instance.to_dict()
 # create an instance of AnalyticsTrackedAdoptionEventIdentifierDescriptionPairs from a dict
-analytics_tracked_adoption_event_identifier_description_pairs_form_dict = analytics_tracked_adoption_event_identifier_description_pairs.from_dict(analytics_tracked_adoption_event_identifier_description_pairs_dict)
+analytics_tracked_adoption_event_identifier_description_pairs_from_dict = AnalyticsTrackedAdoptionEventIdentifierDescriptionPairs.from_dict(analytics_tracked_adoption_event_identifier_description_pairs_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

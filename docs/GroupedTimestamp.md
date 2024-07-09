@@ -24,7 +24,7 @@ print GroupedTimestamp.to_json()
 # convert the object into a dict
 grouped_timestamp_dict = grouped_timestamp_instance.to_dict()
 # create an instance of GroupedTimestamp from a dict
-grouped_timestamp_form_dict = grouped_timestamp.from_dict(grouped_timestamp_dict)
+grouped_timestamp_from_dict = GroupedTimestamp.from_dict(grouped_timestamp_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

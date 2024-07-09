@@ -22,6 +22,7 @@ import json
 from typing import List, Optional
 from pydantic import BaseModel, Field, StrictStr, conlist
 from pieces_os_client.models.embedded_model_schema import EmbeddedModelSchema
+from pieces_os_client.models.flattened_anchors import FlattenedAnchors
 from pieces_os_client.models.mechanism_enum import MechanismEnum
 from pieces_os_client.models.person_access import PersonAccess
 from pieces_os_client.models.person_model import PersonModel
@@ -32,14 +33,15 @@ class SeededPerson(BaseModel):
     """
     This is a per-cursor to a full person.  Will throw an error, if asset is passed in but acces.scope is undefined.  can optionally pass in our mechanism here, as the default will be manual unless specified.  TODO consider updating these asset, format to referenced Models  Note: model, access, mechanism will only be added if the asset is passed in.  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     asset: Optional[StrictStr] = None
     mechanism: Optional[MechanismEnum] = None
     access: Optional[PersonAccess] = None
     type: PersonType = Field(...)
     model: Optional[PersonModel] = None
     annotations: Optional[conlist(SeededAnnotation)] = None
-    __properties = ["schema", "asset", "mechanism", "access", "type", "model", "annotations"]
+    anchors: Optional[FlattenedAnchors] = None
+    __properties = ["schema", "asset", "mechanism", "access", "type", "model", "annotations", "anchors"]
 
     class Config:
         """Pydantic configuration"""
@@ -84,6 +86,9 @@ class SeededPerson(BaseModel):
                 if _item:
                     _items.append(_item.to_dict())
             _dict['annotations'] = _items
+        # override the default output from pydantic by calling `to_dict()` of anchors
+        if self.anchors:
+            _dict['anchors'] = self.anchors.to_dict()
         return _dict
 
     @classmethod
@@ -102,7 +107,8 @@ class SeededPerson(BaseModel):
             "access": PersonAccess.from_dict(obj.get("access")) if obj.get("access") is not None else None,
             "type": PersonType.from_dict(obj.get("type")) if obj.get("type") is not None else None,
             "model": PersonModel.from_dict(obj.get("model")) if obj.get("model") is not None else None,
-            "annotations": [SeededAnnotation.from_dict(_item) for _item in obj.get("annotations")] if obj.get("annotations") is not None else None
+            "annotations": [SeededAnnotation.from_dict(_item) for _item in obj.get("annotations")] if obj.get("annotations") is not None else None,
+            "anchors": FlattenedAnchors.from_dict(obj.get("anchors")) if obj.get("anchors") is not None else None
         })
         return _obj
 

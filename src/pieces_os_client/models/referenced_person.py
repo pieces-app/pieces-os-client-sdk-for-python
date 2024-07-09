@@ -27,7 +27,7 @@ class ReferencedPerson(BaseModel):
     """
     [DAG Safe] version of a Person Model.   # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     id: StrictStr = Field(...)
     reference: Optional[FlattenedPerson] = None
     __properties = ["schema", "id", "reference"]

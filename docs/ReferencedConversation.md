@@ -24,7 +24,7 @@ print ReferencedConversation.to_json()
 # convert the object into a dict
 referenced_conversation_dict = referenced_conversation_instance.to_dict()
 # create an instance of ReferencedConversation from a dict
-referenced_conversation_form_dict = referenced_conversation.from_dict(referenced_conversation_dict)
+referenced_conversation_from_dict = ReferencedConversation.from_dict(referenced_conversation_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

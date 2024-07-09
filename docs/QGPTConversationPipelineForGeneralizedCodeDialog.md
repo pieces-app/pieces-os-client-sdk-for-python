@@ -22,7 +22,7 @@ print QGPTConversationPipelineForGeneralizedCodeDialog.to_json()
 # convert the object into a dict
 qgpt_conversation_pipeline_for_generalized_code_dialog_dict = qgpt_conversation_pipeline_for_generalized_code_dialog_instance.to_dict()
 # create an instance of QGPTConversationPipelineForGeneralizedCodeDialog from a dict
-qgpt_conversation_pipeline_for_generalized_code_dialog_form_dict = qgpt_conversation_pipeline_for_generalized_code_dialog.from_dict(qgpt_conversation_pipeline_for_generalized_code_dialog_dict)
+qgpt_conversation_pipeline_for_generalized_code_dialog_from_dict = QGPTConversationPipelineForGeneralizedCodeDialog.from_dict(qgpt_conversation_pipeline_for_generalized_code_dialog_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

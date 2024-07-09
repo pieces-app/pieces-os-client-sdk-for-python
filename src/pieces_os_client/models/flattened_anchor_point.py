@@ -30,10 +30,10 @@ class FlattenedAnchorPoint(BaseModel):
     """
     FlattenedAnchorPoint
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     id: StrictStr = Field(...)
     verified: Optional[StrictBool] = None
-    fullpath: StrictStr = Field(..., description="This is the text of the path.")
+    fullpath: StrictStr = Field(default=..., description="This is the text of the path.")
     created: GroupedTimestamp = Field(...)
     updated: GroupedTimestamp = Field(...)
     deleted: Optional[GroupedTimestamp] = None

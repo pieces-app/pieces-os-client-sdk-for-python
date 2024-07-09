@@ -27,9 +27,9 @@ class ExportedDatabaseFormat(BaseModel):
     """
     ExportedDatabaseFormat
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
-    id: StrictStr = Field(..., description="this is the id of the format")
-    raw: conlist(StrictInt) = Field(..., description="these are bytes.")
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
+    id: StrictStr = Field(default=..., description="this is the id of the format")
+    raw: conlist(StrictInt) = Field(default=..., description="these are bytes.")
     __properties = ["schema", "id", "raw"]
 
     class Config:

@@ -28,7 +28,7 @@ class GraphicalOCRStatistics(BaseModel):
     """
     GraphicalOCRStatistics
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     descriptive: Optional[GraphicalOCRDescriptiveStatistics] = None
     __properties = ["schema", "descriptive"]
 

@@ -27,8 +27,8 @@ class OSDeviceDependenciesInformation(BaseModel):
     """
     This will lets us know about specific dependencies that we are looking for on the device that are needed for specific tasks.  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
-    vulkan: StrictBool = Field(..., description="This will let us know if vulkan is present = true or not there ==false")
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
+    vulkan: StrictBool = Field(default=..., description="This will let us know if vulkan is present = true or not there ==false")
     __properties = ["schema", "vulkan"]
 
     class Config:

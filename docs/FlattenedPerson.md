@@ -21,6 +21,7 @@ Name | Type | Description | Notes
 **annotations** | [**FlattenedAnnotations**](FlattenedAnnotations.md) |  | [optional] 
 **score** | [**Score**](Score.md) |  | [optional] 
 **summaries** | [**FlattenedWorkstreamSummaries**](FlattenedWorkstreamSummaries.md) |  | [optional] 
+**anchors** | [**FlattenedAnchors**](FlattenedAnchors.md) |  | [optional] 
 
 ## Example
 
@@ -37,7 +38,7 @@ print FlattenedPerson.to_json()
 # convert the object into a dict
 flattened_person_dict = flattened_person_instance.to_dict()
 # create an instance of FlattenedPerson from a dict
-flattened_person_form_dict = flattened_person.from_dict(flattened_person_dict)
+flattened_person_from_dict = FlattenedPerson.from_dict(flattened_person_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

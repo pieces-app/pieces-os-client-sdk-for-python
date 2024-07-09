@@ -23,7 +23,7 @@ print MailgunMetadata.to_json()
 # convert the object into a dict
 mailgun_metadata_dict = mailgun_metadata_instance.to_dict()
 # create an instance of MailgunMetadata from a dict
-mailgun_metadata_form_dict = mailgun_metadata.from_dict(mailgun_metadata_dict)
+mailgun_metadata_from_dict = MailgunMetadata.from_dict(mailgun_metadata_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

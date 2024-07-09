@@ -23,7 +23,7 @@ print SegmentedTechnicalLanguage.to_json()
 # convert the object into a dict
 segmented_technical_language_dict = segmented_technical_language_instance.to_dict()
 # create an instance of SegmentedTechnicalLanguage from a dict
-segmented_technical_language_form_dict = segmented_technical_language.from_dict(segmented_technical_language_dict)
+segmented_technical_language_from_dict = SegmentedTechnicalLanguage.from_dict(segmented_technical_language_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

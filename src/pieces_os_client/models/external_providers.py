@@ -28,7 +28,7 @@ class ExternalProviders(BaseModel):
     """
     ExternalProviders
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     iterable: conlist(ExternalProvider) = Field(...)
     __properties = ["schema", "iterable"]
 

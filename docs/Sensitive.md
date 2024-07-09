@@ -36,7 +36,7 @@ print Sensitive.to_json()
 # convert the object into a dict
 sensitive_dict = sensitive_instance.to_dict()
 # create an instance of Sensitive from a dict
-sensitive_form_dict = sensitive.from_dict(sensitive_dict)
+sensitive_from_dict = Sensitive.from_dict(sensitive_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

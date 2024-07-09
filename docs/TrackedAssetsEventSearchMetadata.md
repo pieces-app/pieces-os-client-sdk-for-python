@@ -24,7 +24,7 @@ print TrackedAssetsEventSearchMetadata.to_json()
 # convert the object into a dict
 tracked_assets_event_search_metadata_dict = tracked_assets_event_search_metadata_instance.to_dict()
 # create an instance of TrackedAssetsEventSearchMetadata from a dict
-tracked_assets_event_search_metadata_form_dict = tracked_assets_event_search_metadata.from_dict(tracked_assets_event_search_metadata_dict)
+tracked_assets_event_search_metadata_from_dict = TrackedAssetsEventSearchMetadata.from_dict(tracked_assets_event_search_metadata_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

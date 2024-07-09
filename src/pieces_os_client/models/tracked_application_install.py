@@ -29,7 +29,7 @@ class TrackedApplicationInstall(BaseModel):
     """
     A model that allows for us to specifically track Application Installs & Related Data  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     application: Application = Field(...)
     user: Optional[TrackedUserProfile] = None
     __properties = ["schema", "application", "user"]

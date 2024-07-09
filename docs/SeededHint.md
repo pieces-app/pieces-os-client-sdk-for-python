@@ -26,7 +26,7 @@ print SeededHint.to_json()
 # convert the object into a dict
 seeded_hint_dict = seeded_hint_instance.to_dict()
 # create an instance of SeededHint from a dict
-seeded_hint_form_dict = seeded_hint.from_dict(seeded_hint_dict)
+seeded_hint_from_dict = SeededHint.from_dict(seeded_hint_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

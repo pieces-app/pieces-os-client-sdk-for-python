@@ -25,7 +25,7 @@ print Assets.to_json()
 # convert the object into a dict
 assets_dict = assets_instance.to_dict()
 # create an instance of Assets from a dict
-assets_form_dict = assets.from_dict(assets_dict)
+assets_from_dict = Assets.from_dict(assets_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

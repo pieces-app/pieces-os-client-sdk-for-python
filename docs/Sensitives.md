@@ -24,7 +24,7 @@ print Sensitives.to_json()
 # convert the object into a dict
 sensitives_dict = sensitives_instance.to_dict()
 # create an instance of Sensitives from a dict
-sensitives_form_dict = sensitives.from_dict(sensitives_dict)
+sensitives_from_dict = Sensitives.from_dict(sensitives_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

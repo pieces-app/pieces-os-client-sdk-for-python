@@ -30,15 +30,15 @@ class AllocationCloud(BaseModel):
     """
     update && version: will be present only if your cloud was successfully spun up && running.  updated: is the last time this was updated.  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
-    id: StrictStr = Field(..., description="This is a uuid that represents this cloud.(this is the same as the userid)")
-    user: StrictStr = Field(..., description="this is your useruuid.")
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
+    id: StrictStr = Field(default=..., description="This is a uuid that represents this cloud.(this is the same as the userid)")
+    user: StrictStr = Field(default=..., description="this is your useruuid.")
     urls: AllocationCloudUrls = Field(...)
     status: AllocationCloudStatus = Field(...)
-    project: StrictStr = Field(..., description="This is the project that this is attached to.")
+    project: StrictStr = Field(default=..., description="This is the project that this is attached to.")
     updated: Optional[GroupedTimestamp] = None
-    version: Optional[StrictStr] = Field(None, description="this is the current version of the server.")
-    region: Optional[StrictStr] = Field(None, description="this is the region where the project is defined.")
+    version: Optional[StrictStr] = Field(default=None, description="this is the current version of the server.")
+    region: Optional[StrictStr] = Field(default=None, description="this is the region where the project is defined.")
     __properties = ["schema", "id", "user", "urls", "status", "project", "updated", "version", "region"]
 
     class Config:

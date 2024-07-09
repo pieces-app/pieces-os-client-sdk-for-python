@@ -31,8 +31,8 @@ class QGPTHintsInput(BaseModel):
     query: Optional[StrictStr] = None
     answer: Optional[QGPTQuestionAnswer] = None
     relevant: RelevantQGPTSeeds = Field(...)
-    application: Optional[StrictStr] = Field(None, description="optional application id")
-    model: Optional[StrictStr] = Field(None, description="optional model id")
+    application: Optional[StrictStr] = Field(default=None, description="optional application id")
+    model: Optional[StrictStr] = Field(default=None, description="optional model id")
     __properties = ["query", "answer", "relevant", "application", "model"]
 
     class Config:

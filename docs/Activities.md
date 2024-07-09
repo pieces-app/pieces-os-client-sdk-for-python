@@ -23,7 +23,7 @@ print Activities.to_json()
 # convert the object into a dict
 activities_dict = activities_instance.to_dict()
 # create an instance of Activities from a dict
-activities_form_dict = activities.from_dict(activities_dict)
+activities_from_dict = Activities.from_dict(activities_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

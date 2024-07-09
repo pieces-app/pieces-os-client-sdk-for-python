@@ -25,7 +25,7 @@ print ExportedAsset.to_json()
 # convert the object into a dict
 exported_asset_dict = exported_asset_instance.to_dict()
 # create an instance of ExportedAsset from a dict
-exported_asset_form_dict = exported_asset.from_dict(exported_asset_dict)
+exported_asset_from_dict = ExportedAsset.from_dict(exported_asset_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

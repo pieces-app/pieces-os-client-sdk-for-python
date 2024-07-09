@@ -30,16 +30,16 @@ class FlattenedWebsite(BaseModel):
     """
     This is a specific model for related websites to an asset.[DAG SAFE]  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
-    id: StrictStr = Field(..., description="this is aspecific uuid that represents")
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
+    id: StrictStr = Field(default=..., description="this is aspecific uuid that represents")
     assets: Optional[FlattenedAssets] = None
-    name: StrictStr = Field(..., description="A customizable name.")
-    url: StrictStr = Field(..., description="The true url or the website.")
+    name: StrictStr = Field(default=..., description="A customizable name.")
+    url: StrictStr = Field(default=..., description="The true url or the website.")
     created: GroupedTimestamp = Field(...)
     updated: GroupedTimestamp = Field(...)
     deleted: Optional[GroupedTimestamp] = None
-    mechanisms: Optional[Dict[str, MechanismEnum]] = Field(None, description="This is a Map<String, MechanismEnum> where the the key is an asset id.")
-    interactions: Optional[StrictInt] = Field(None, description="This is an optional value that will keep track of the number of times this has been interacted with.")
+    mechanisms: Optional[Dict[str, MechanismEnum]] = Field(default=None, description="This is a Map<String, MechanismEnum> where the the key is an asset id.")
+    interactions: Optional[StrictInt] = Field(default=None, description="This is an optional value that will keep track of the number of times this has been interacted with.")
     persons: Optional[FlattenedPersons] = None
     conversations: Optional[FlattenedConversations] = None
     score: Optional[Score] = None

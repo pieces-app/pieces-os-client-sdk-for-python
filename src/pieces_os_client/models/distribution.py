@@ -31,7 +31,7 @@ class Distribution(BaseModel):
     """
     This is a fully referenced version of a Distribution. TODO add additional distributions such as slack, google_chat, ...etc  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     id: StrictStr = Field(...)
     share: FlattenedShare = Field(...)
     created: GroupedTimestamp = Field(...)

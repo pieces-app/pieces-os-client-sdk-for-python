@@ -24,7 +24,7 @@ print DiscoveredSensitives.to_json()
 # convert the object into a dict
 discovered_sensitives_dict = discovered_sensitives_instance.to_dict()
 # create an instance of DiscoveredSensitives from a dict
-discovered_sensitives_form_dict = discovered_sensitives.from_dict(discovered_sensitives_dict)
+discovered_sensitives_from_dict = DiscoveredSensitives.from_dict(discovered_sensitives_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

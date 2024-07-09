@@ -32,14 +32,14 @@ class UserProfile(BaseModel):
     """
     This is the model for a user logged into Pieces.  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
-    picture: Optional[StrictStr] = Field('https://picsum.photos/200', description="mapped from picture.URL pointing to the user's profile picture. ")
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
+    picture: Optional[StrictStr] = Field(default='https://picsum.photos/200', description="mapped from picture.URL pointing to the user's profile picture. ")
     email: Optional[StrictStr] = 'user@pieces.app'
     created: Optional[GroupedTimestamp] = None
     updated: Optional[GroupedTimestamp] = None
-    username: Optional[StrictStr] = Field(None, description=" (unique) User's username.  ")
+    username: Optional[StrictStr] = Field(default=None, description=" (unique) User's username.  ")
     id: StrictStr = Field(...)
-    name: Optional[StrictStr] = Field(None, description="This is the name of the User.")
+    name: Optional[StrictStr] = Field(default=None, description="This is the name of the User.")
     aesthetics: Aesthetics = Field(...)
     vanityname: Optional[StrictStr] = None
     allocation: Optional[AllocationCloud] = None

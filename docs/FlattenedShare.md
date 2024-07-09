@@ -34,7 +34,7 @@ print FlattenedShare.to_json()
 # convert the object into a dict
 flattened_share_dict = flattened_share_instance.to_dict()
 # create an instance of FlattenedShare from a dict
-flattened_share_form_dict = flattened_share.from_dict(flattened_share_dict)
+flattened_share_from_dict = FlattenedShare.from_dict(flattened_share_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -27,7 +27,7 @@ class QGPTTaskPipelineForCodeExplanation(BaseModel):
     """
     This task is for explaining a bit of code.  This is a class so that we can add optional properties in the future.  Note: the snippet && language that needs to be explaned should be within the QGPTQuestionInput.relevant  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     __properties = ["schema"]
 
     class Config:

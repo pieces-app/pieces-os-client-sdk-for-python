@@ -29,16 +29,16 @@ class GitHubGistDistribution(BaseModel):
     """
     This is a published Github Gist.  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     recipients: Recipients = Field(...)
-    public: StrictBool = Field(..., description="This will let us know if the gist is public or private.")
-    description: Optional[StrictStr] = Field(None, description="This is the description of the Gist Distribution")
-    name: StrictStr = Field(..., description="This is the name of the gist you will add.")
+    public: StrictBool = Field(default=..., description="This will let us know if the gist is public or private.")
+    description: Optional[StrictStr] = Field(default=None, description="This is the description of the Gist Distribution")
+    name: StrictStr = Field(default=..., description="This is the name of the gist you will add.")
     created: GroupedTimestamp = Field(...)
     updated: GroupedTimestamp = Field(...)
     deleted: Optional[GroupedTimestamp] = None
-    github_id: StrictStr = Field(..., description="This is the id that github uses to represent the gist.")
-    url: StrictStr = Field(..., description="This is the url where the gist is.")
+    github_id: StrictStr = Field(default=..., description="This is the id that github uses to represent the gist.")
+    url: StrictStr = Field(default=..., description="This is the url where the gist is.")
     __properties = ["schema", "recipients", "public", "description", "name", "created", "updated", "deleted", "github_id", "url"]
 
     class Config:

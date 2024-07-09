@@ -23,7 +23,7 @@ print ReferencedActivity.to_json()
 # convert the object into a dict
 referenced_activity_dict = referenced_activity_instance.to_dict()
 # create an instance of ReferencedActivity from a dict
-referenced_activity_form_dict = referenced_activity.from_dict(referenced_activity_dict)
+referenced_activity_from_dict = ReferencedActivity.from_dict(referenced_activity_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

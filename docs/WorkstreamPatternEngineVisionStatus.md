@@ -24,7 +24,7 @@ print WorkstreamPatternEngineVisionStatus.to_json()
 # convert the object into a dict
 workstream_pattern_engine_vision_status_dict = workstream_pattern_engine_vision_status_instance.to_dict()
 # create an instance of WorkstreamPatternEngineVisionStatus from a dict
-workstream_pattern_engine_vision_status_form_dict = workstream_pattern_engine_vision_status.from_dict(workstream_pattern_engine_vision_status_dict)
+workstream_pattern_engine_vision_status_from_dict = WorkstreamPatternEngineVisionStatus.from_dict(workstream_pattern_engine_vision_status_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

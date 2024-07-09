@@ -23,7 +23,7 @@ print WorkstreamEventTriggerContextBrowser.to_json()
 # convert the object into a dict
 workstream_event_trigger_context_browser_dict = workstream_event_trigger_context_browser_instance.to_dict()
 # create an instance of WorkstreamEventTriggerContextBrowser from a dict
-workstream_event_trigger_context_browser_form_dict = workstream_event_trigger_context_browser.from_dict(workstream_event_trigger_context_browser_dict)
+workstream_event_trigger_context_browser_from_dict = WorkstreamEventTriggerContextBrowser.from_dict(workstream_event_trigger_context_browser_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

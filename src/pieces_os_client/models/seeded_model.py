@@ -34,25 +34,25 @@ class SeededModel(BaseModel):
     """
     This is Precursor to a Model.  bytes: here is the size of the model in a file local on your computer. ram: is the amount of ram usage when the model is loaded into memory.  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
-    version: StrictStr = Field(..., description="this is a version of the model.")
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
+    version: StrictStr = Field(default=..., description="this is a version of the model.")
     created: GroupedTimestamp = Field(...)
-    name: StrictStr = Field(..., description="This is an Optional Name of the Model.")
-    description: Optional[StrictStr] = Field(None, description="An Optional Description of the model itself.")
-    cloud: StrictBool = Field(..., description="This will inform the user if this was a model that is hosted in the cloud")
+    name: StrictStr = Field(default=..., description="This is an Optional Name of the Model.")
+    description: Optional[StrictStr] = Field(default=None, description="An Optional Description of the model itself.")
+    cloud: StrictBool = Field(default=..., description="This will inform the user if this was a model that is hosted in the cloud")
     type: ModelTypeEnum = Field(...)
     usage: ModelUsageEnum = Field(...)
     bytes: Optional[ByteDescriptor] = None
     ram: Optional[ByteDescriptor] = None
-    quantization: Optional[StrictStr] = Field(None, description="quantization is a string like: q8f16_0,  q4f16_1, etc...")
+    quantization: Optional[StrictStr] = Field(default=None, description="quantization is a string like: q8f16_0,  q4f16_1, etc...")
     foundation: Optional[ModelFoundationEnum] = None
-    downloaded: Optional[StrictBool] = Field(None, description="This is an optional bool to let us know if this model has been downloaded locally.")
-    unique: Optional[StrictStr] = Field(None, description="This is the unique model name used to load the model.")
-    parameters: Optional[Union[StrictFloat, StrictInt]] = Field(None, description="This is the number of parameters in terms of billions.")
+    downloaded: Optional[StrictBool] = Field(default=None, description="This is an optional bool to let us know if this model has been downloaded locally.")
+    unique: Optional[StrictStr] = Field(default=None, description="This is the unique model name used to load the model.")
+    parameters: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="This is the number of parameters in terms of billions.")
     provider: Optional[ExternalMLProviderEnum] = None
-    cpu: Optional[StrictBool] = Field(None, description="This is an optional bool that is optimized for CPU usage.")
-    max_tokens: Optional[ModelMaxTokens] = Field(None, alias="maxTokens")
-    custom: Optional[StrictBool] = Field(None, description="This is reserved to custommly registed models.")
+    cpu: Optional[StrictBool] = Field(default=None, description="This is an optional bool that is optimized for CPU usage.")
+    max_tokens: Optional[ModelMaxTokens] = Field(default=None, alias="maxTokens")
+    custom: Optional[StrictBool] = Field(default=None, description="This is reserved to custommly registed models.")
     __properties = ["schema", "version", "created", "name", "description", "cloud", "type", "usage", "bytes", "ram", "quantization", "foundation", "downloaded", "unique", "parameters", "provider", "cpu", "maxTokens", "custom"]
 
     class Config:

@@ -44,8 +44,8 @@ class Asset(BaseModel):
     """
     An Asset Model representing data extracted from an Application connecting a group of data containing one or more Formats.  Below formats, preview, and original CAN to be pollinated (DAG Unsafe) because it is a root node and it's child leaf nodes will prevent cycles agressively.  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
-    id: StrictStr = Field(..., description="The globally available UID representing the asset in the Database, both locally and in the cloud.")
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
+    id: StrictStr = Field(default=..., description="The globally available UID representing the asset in the Database, both locally and in the cloud.")
     name: Optional[StrictStr] = None
     creator: StrictStr = Field(...)
     created: GroupedTimestamp = Field(...)
@@ -62,18 +62,18 @@ class Asset(BaseModel):
     tags: Optional[Tags] = None
     sensitives: Optional[Sensitives] = None
     persons: Optional[Persons] = None
-    curated: Optional[StrictBool] = Field(None, description="This is an optional boolean that will flag that this asset came from a currated collection.")
+    curated: Optional[StrictBool] = Field(default=None, description="This is an optional boolean that will flag that this asset came from a currated collection.")
     discovered: Optional[StrictBool] = None
     activities: Optional[Activities] = None
     score: Optional[Score] = None
     favorited: Optional[StrictBool] = None
-    pseudo: Optional[StrictBool] = Field(None, description="This will determine if this is a asset that the user did not explicitly save.")
+    pseudo: Optional[StrictBool] = Field(default=None, description="This will determine if this is a asset that the user did not explicitly save.")
     annotations: Optional[Annotations] = None
     hints: Optional[Hints] = None
     anchors: Optional[Anchors] = None
     conversations: Optional[Conversations] = None
     summaries: Optional[WorkstreamSummaries] = None
-    demo: Optional[StrictBool] = Field(None, description="This will let us know if this asset was generated as a 'demo' snippet")
+    demo: Optional[StrictBool] = Field(default=None, description="This will let us know if this asset was generated as a 'demo' snippet")
     __properties = ["schema", "id", "name", "creator", "created", "updated", "synced", "deleted", "formats", "preview", "original", "shares", "mechanism", "websites", "interacted", "tags", "sensitives", "persons", "curated", "discovered", "activities", "score", "favorited", "pseudo", "annotations", "hints", "anchors", "conversations", "summaries", "demo"]
 
     class Config:

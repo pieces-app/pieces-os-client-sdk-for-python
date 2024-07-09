@@ -25,7 +25,7 @@ print SeededClassification.to_json()
 # convert the object into a dict
 seeded_classification_dict = seeded_classification_instance.to_dict()
 # create an instance of SeededClassification from a dict
-seeded_classification_form_dict = seeded_classification.from_dict(seeded_classification_dict)
+seeded_classification_from_dict = SeededClassification.from_dict(seeded_classification_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

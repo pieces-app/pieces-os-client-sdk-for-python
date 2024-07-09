@@ -30,7 +30,7 @@ class FragmentFormat(BaseModel):
     """
     This will be either a TransferableString or TransferableBytes that represent your fragment. ONLY Pass one or the other DONT pass both or neither.  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     string: Optional[TransferableString] = None
     bytes: Optional[TransferableBytes] = None
     metadata: Optional[FragmentMetadata] = None

@@ -23,7 +23,7 @@ print Recipients.to_json()
 # convert the object into a dict
 recipients_dict = recipients_instance.to_dict()
 # create an instance of Recipients from a dict
-recipients_form_dict = recipients.from_dict(recipients_dict)
+recipients_from_dict = Recipients.from_dict(recipients_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

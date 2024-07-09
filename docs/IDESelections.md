@@ -23,7 +23,7 @@ print IDESelections.to_json()
 # convert the object into a dict
 ide_selections_dict = ide_selections_instance.to_dict()
 # create an instance of IDESelections from a dict
-ide_selections_form_dict = ide_selections.from_dict(ide_selections_dict)
+ide_selections_from_dict = IDESelections.from_dict(ide_selections_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

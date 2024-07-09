@@ -32,7 +32,7 @@ class QGPTTaskPipeline(BaseModel):
     """
     This model is specifically for QGPT Task pipelines, the model is used to group one off tasks for instance fix/explaining/commenting that dont necessarily require a conversation form factor.  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     code_explanation: Optional[QGPTTaskPipelineForCodeExplanation] = None
     code_commentation: Optional[QGPTTaskPipelineForCodeCommentation] = None
     code_fix: Optional[QGPTTaskPipelineForCodeFix] = None

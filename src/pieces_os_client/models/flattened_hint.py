@@ -19,7 +19,7 @@ import re  # noqa: F401
 import json
 
 
-from typing import Optional
+from typing import Dict, Optional
 from pydantic import BaseModel, Field, StrictStr
 from pieces_os_client.models.embedded_model_schema import EmbeddedModelSchema
 from pieces_os_client.models.grouped_timestamp import GroupedTimestamp
@@ -32,18 +32,18 @@ class FlattenedHint(BaseModel):
     """
     This is the flattened version of a hint. Ensure that you DO NOT reference the Asset here as you can create an infinite loop within the packaging.  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     id: StrictStr = Field(...)
     created: GroupedTimestamp = Field(...)
     updated: GroupedTimestamp = Field(...)
     deleted: Optional[GroupedTimestamp] = None
-    mechanism: Optional[MechanismEnum] = None
-    asset: Optional[ReferencedAsset] = None
+    mechanisms: Optional[Dict[str, MechanismEnum]] = Field(default=None, description="This is a Map<String, MechanismEnum> where the the key is an asset id.")
+    assets: Optional[FlattenedAssets] = None
     type: HintTypeEnum = Field(...)
-    text: StrictStr = Field(..., description="This is the text of the hint.")
+    text: StrictStr = Field(default=..., description="This is the text of the hint.")
     model: Optional[ReferencedModel] = None
     score: Optional[Score] = None
-    __properties = ["schema", "id", "created", "updated", "deleted", "mechanism", "asset", "type", "text", "model", "score"]
+    __properties = ["schema", "id", "created", "updated", "deleted", "mechanisms", "assets", "type", "text", "model", "score"]
 
     class Config:
         """Pydantic configuration"""
@@ -81,9 +81,9 @@ class FlattenedHint(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of deleted
         if self.deleted:
             _dict['deleted'] = self.deleted.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of asset
-        if self.asset:
-            _dict['asset'] = self.asset.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of assets
+        if self.assets:
+            _dict['assets'] = self.assets.to_dict()
         # override the default output from pydantic by calling `to_dict()` of model
         if self.model:
             _dict['model'] = self.model.to_dict()
@@ -107,8 +107,8 @@ class FlattenedHint(BaseModel):
             "created": GroupedTimestamp.from_dict(obj.get("created")) if obj.get("created") is not None else None,
             "updated": GroupedTimestamp.from_dict(obj.get("updated")) if obj.get("updated") is not None else None,
             "deleted": GroupedTimestamp.from_dict(obj.get("deleted")) if obj.get("deleted") is not None else None,
-            "mechanism": obj.get("mechanism"),
-            "asset": ReferencedAsset.from_dict(obj.get("asset")) if obj.get("asset") is not None else None,
+            "mechanisms": dict((_k, _v) for _k, _v in obj.get("mechanisms").items()),
+            "assets": FlattenedAssets.from_dict(obj.get("assets")) if obj.get("assets") is not None else None,
             "type": obj.get("type"),
             "text": obj.get("text"),
             "model": ReferencedModel.from_dict(obj.get("model")) if obj.get("model") is not None else None,
@@ -116,6 +116,6 @@ class FlattenedHint(BaseModel):
         })
         return _obj
 
-from pieces_os_client.models.referenced_asset import ReferencedAsset
+from pieces_os_client.models.flattened_assets import FlattenedAssets
 FlattenedHint.update_forward_refs()
 

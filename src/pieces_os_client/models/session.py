@@ -27,7 +27,7 @@ class Session(BaseModel):
     """
     This is a specific model that will let us know at what time this user was using the application.  # noqa: E501
     """
-    id: StrictStr = Field(..., description="The UUID of the current Session")
+    id: StrictStr = Field(default=..., description="The UUID of the current Session")
     opened: GroupedTimestamp = Field(...)
     closed: Optional[GroupedTimestamp] = None
     __properties = ["id", "opened", "closed"]

@@ -27,8 +27,8 @@ class ReferencedFormat(BaseModel):
     """
     A reference to a format which at minimum must have the format's id. But in the case of a hydrated client API it may have a populated reference of type Format.  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
-    id: StrictStr = Field(..., description="The id of the Format")
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
+    id: StrictStr = Field(default=..., description="The id of the Format")
     reference: Optional[FlattenedFormat] = None
     __properties = ["schema", "id", "reference"]
 

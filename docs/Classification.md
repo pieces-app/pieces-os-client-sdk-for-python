@@ -25,7 +25,7 @@ print Classification.to_json()
 # convert the object into a dict
 classification_dict = classification_instance.to_dict()
 # create an instance of Classification from a dict
-classification_form_dict = classification.from_dict(classification_dict)
+classification_from_dict = Classification.from_dict(classification_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

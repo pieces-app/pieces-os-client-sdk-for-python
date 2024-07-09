@@ -53,6 +53,9 @@ class ExternalMLProviderEnum(str, Enum):
     BIGCODE = 'BIGCODE'
     JINA = 'JINA'
     PIECES = 'PIECES'
+    ANTHROPIC = 'ANTHROPIC'
+    IBM = 'IBM'
+    SNOWFLAKE = 'SNOWFLAKE'
 
     @classmethod
     def from_json(cls, json_str: str) -> ExternalMLProviderEnum:

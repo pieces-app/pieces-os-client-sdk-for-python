@@ -25,7 +25,7 @@ print ConversationMessages.to_json()
 # convert the object into a dict
 conversation_messages_dict = conversation_messages_instance.to_dict()
 # create an instance of ConversationMessages from a dict
-conversation_messages_form_dict = conversation_messages.from_dict(conversation_messages_dict)
+conversation_messages_from_dict = ConversationMessages.from_dict(conversation_messages_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

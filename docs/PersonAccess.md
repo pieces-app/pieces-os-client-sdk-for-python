@@ -24,7 +24,7 @@ print PersonAccess.to_json()
 # convert the object into a dict
 person_access_dict = person_access_instance.to_dict()
 # create an instance of PersonAccess from a dict
-person_access_form_dict = person_access.from_dict(person_access_dict)
+person_access_from_dict = PersonAccess.from_dict(person_access_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

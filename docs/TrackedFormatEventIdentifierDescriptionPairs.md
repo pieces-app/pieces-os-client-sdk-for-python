@@ -32,7 +32,7 @@ print TrackedFormatEventIdentifierDescriptionPairs.to_json()
 # convert the object into a dict
 tracked_format_event_identifier_description_pairs_dict = tracked_format_event_identifier_description_pairs_instance.to_dict()
 # create an instance of TrackedFormatEventIdentifierDescriptionPairs from a dict
-tracked_format_event_identifier_description_pairs_form_dict = tracked_format_event_identifier_description_pairs.from_dict(tracked_format_event_identifier_description_pairs_dict)
+tracked_format_event_identifier_description_pairs_from_dict = TrackedFormatEventIdentifierDescriptionPairs.from_dict(tracked_format_event_identifier_description_pairs_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -35,10 +35,10 @@ class SeededAssetMetadata(BaseModel):
     """
     This is optional metadata sent with the SeededAsset and other SeededAssets ie (UE, Jetbrains...)  Note: if a user/develop didnt explicitly state a mechanism we will default to manual(user Driven only)  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
-    name: Optional[StrictStr] = Field(None, description="This is the name of the asset.")
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
+    name: Optional[StrictStr] = Field(default=None, description="This is the name of the asset.")
     mechanism: Optional[MechanismEnum] = None
-    tags: Optional[conlist(SeededAssetTag)] = Field(None, description="(optional) can add some tags to associate to this asset.")
+    tags: Optional[conlist(SeededAssetTag)] = Field(default=None, description="(optional) can add some tags to associate to this asset.")
     websites: Optional[conlist(SeededAssetWebsite)] = None
     sensitives: Optional[conlist(SeededAssetSensitive)] = None
     persons: Optional[conlist(SeededPerson)] = None

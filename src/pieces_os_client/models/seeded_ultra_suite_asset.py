@@ -29,8 +29,8 @@ class SeededUltraSuiteAsset(BaseModel):
     """
     A SeededUEAsset is the minimum data sent from UE required to create an asset within Pieces.  Fragment & file are both optional properties however we will throw an internal error if both fragment and file are passed through or if both are undefined.  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
-    name: Optional[StrictStr] = Field(None, description="(optional) name is the name of the file")
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
+    name: Optional[StrictStr] = Field(default=None, description="(optional) name is the name of the file")
     ext: Optional[ClassificationSpecificEnum] = None
     format: SeededFormat = Field(...)
     description: Optional[StrictStr] = None

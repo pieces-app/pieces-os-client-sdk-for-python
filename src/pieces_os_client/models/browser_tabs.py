@@ -27,7 +27,7 @@ class BrowserTabs(BaseModel):
     """
     This is a plural representation of the BrowserTab  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     iterable: conlist(BrowserTab) = Field(...)
     __properties = ["schema", "iterable"]
 

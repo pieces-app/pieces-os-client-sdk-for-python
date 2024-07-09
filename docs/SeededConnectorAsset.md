@@ -24,7 +24,7 @@ print SeededConnectorAsset.to_json()
 # convert the object into a dict
 seeded_connector_asset_dict = seeded_connector_asset_instance.to_dict()
 # create an instance of SeededConnectorAsset from a dict
-seeded_connector_asset_form_dict = seeded_connector_asset.from_dict(seeded_connector_asset_dict)
+seeded_connector_asset_from_dict = SeededConnectorAsset.from_dict(seeded_connector_asset_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

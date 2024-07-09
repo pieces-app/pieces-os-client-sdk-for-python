@@ -23,7 +23,7 @@ print FragmentMetadata.to_json()
 # convert the object into a dict
 fragment_metadata_dict = fragment_metadata_instance.to_dict()
 # create an instance of FragmentMetadata from a dict
-fragment_metadata_form_dict = fragment_metadata.from_dict(fragment_metadata_dict)
+fragment_metadata_from_dict = FragmentMetadata.from_dict(fragment_metadata_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

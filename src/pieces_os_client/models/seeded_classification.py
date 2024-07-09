@@ -30,7 +30,7 @@ class SeededClassification(BaseModel):
     """
     This is the specific classification of an Asset's Format.(This is on a per format basis b/c an asset could have different formats that are different format representations of the Asset.)  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     generic: Optional[ClassificationGenericEnum] = None
     specific: Optional[ClassificationSpecificEnum] = None
     rendering: Optional[ClassificationRenderingEnum] = None

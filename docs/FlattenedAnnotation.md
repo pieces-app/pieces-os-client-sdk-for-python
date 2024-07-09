@@ -39,7 +39,7 @@ print FlattenedAnnotation.to_json()
 # convert the object into a dict
 flattened_annotation_dict = flattened_annotation_instance.to_dict()
 # create an instance of FlattenedAnnotation from a dict
-flattened_annotation_form_dict = flattened_annotation.from_dict(flattened_annotation_dict)
+flattened_annotation_from_dict = FlattenedAnnotation.from_dict(flattened_annotation_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -23,7 +23,7 @@ print QGPTQuestionAnswers.to_json()
 # convert the object into a dict
 qgpt_question_answers_dict = qgpt_question_answers_instance.to_dict()
 # create an instance of QGPTQuestionAnswers from a dict
-qgpt_question_answers_form_dict = qgpt_question_answers.from_dict(qgpt_question_answers_dict)
+qgpt_question_answers_from_dict = QGPTQuestionAnswers.from_dict(qgpt_question_answers_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

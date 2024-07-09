@@ -26,8 +26,8 @@ class Auth0Redirects(BaseModel):
     """
     The redirect URI for you Auth 0 Service  # noqa: E501
     """
-    authenticated: Optional[StrictStr] = Field(None, description="Where the Auth0 redirects after the user is authorized")
-    unauthenticated: Optional[StrictStr] = Field(None, description="The redirect where a user returns once unauthenticated")
+    authenticated: Optional[StrictStr] = Field(default=None, description="Where the Auth0 redirects after the user is authorized")
+    unauthenticated: Optional[StrictStr] = Field(default=None, description="The redirect where a user returns once unauthenticated")
     __properties = ["authenticated", "unauthenticated"]
 
     class Config:

@@ -28,17 +28,17 @@ class Auth0User(BaseModel):
     """
       # noqa: E501
     """
-    name: Optional[StrictStr] = Field(None, description=" User's full name.")
-    picture: Optional[StrictStr] = Field(None, description="mapped from picture.URL pointing to the user's profile picture. ")
+    name: Optional[StrictStr] = Field(default=None, description=" User's full name.")
+    picture: Optional[StrictStr] = Field(default=None, description="mapped from picture.URL pointing to the user's profile picture. ")
     email: Optional[StrictStr] = None
     created_at: Optional[datetime] = None
-    email_verified: Optional[StrictBool] = Field(None, description="Indicates whether the user has verified their email address. Mapped from email_verified -> emailVerified.")
-    family_name: Optional[StrictStr] = Field(None, description="User's family name.")
-    given_name: Optional[StrictStr] = Field(None, description="User's given name. ")
-    identities: Optional[conlist(Auth0Identity)] = Field(None, description="Contains info retrieved from the identity provider with which the user originally authenticates.")
-    nickname: Optional[StrictStr] = Field(None, description="User's nickname. ")
+    email_verified: Optional[StrictBool] = Field(default=None, description="Indicates whether the user has verified their email address. Mapped from email_verified -> emailVerified.")
+    family_name: Optional[StrictStr] = Field(default=None, description="User's family name.")
+    given_name: Optional[StrictStr] = Field(default=None, description="User's given name. ")
+    identities: Optional[conlist(Auth0Identity)] = Field(default=None, description="Contains info retrieved from the identity provider with which the user originally authenticates.")
+    nickname: Optional[StrictStr] = Field(default=None, description="User's nickname. ")
     updated_at: Optional[datetime] = None
-    username: Optional[StrictStr] = Field(None, description=" (unique) User's username.  ")
+    username: Optional[StrictStr] = Field(default=None, description=" (unique) User's username.  ")
     user_metadata: Optional[Auth0UserMetadata] = None
     locale: Optional[StrictStr] = None
     user_id: Optional[StrictStr] = None

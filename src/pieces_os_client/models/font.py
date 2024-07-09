@@ -27,7 +27,7 @@ class Font(BaseModel):
     """
     This will describe the font that the user sees.  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     size: StrictInt = Field(...)
     __properties = ["schema", "size"]
 

@@ -30,7 +30,7 @@ print WorkstreamEvent.to_json()
 # convert the object into a dict
 workstream_event_dict = workstream_event_instance.to_dict()
 # create an instance of WorkstreamEvent from a dict
-workstream_event_form_dict = workstream_event.from_dict(workstream_event_dict)
+workstream_event_from_dict = WorkstreamEvent.from_dict(workstream_event_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

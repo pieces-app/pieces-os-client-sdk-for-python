@@ -27,8 +27,8 @@ class FlattenedUserProfile(BaseModel):
     """
     This is a FlattenedUserProfile that includes information that is not sensative in relation to a user.  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
-    id: StrictStr = Field(..., description="this is the uuid that identifies a user.")
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
+    id: StrictStr = Field(default=..., description="this is the uuid that identifies a user.")
     email: Optional[StrictStr] = None
     name: Optional[StrictStr] = None
     username: Optional[StrictStr] = None

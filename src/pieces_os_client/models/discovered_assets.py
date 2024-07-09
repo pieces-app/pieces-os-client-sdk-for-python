@@ -28,9 +28,9 @@ class DiscoveredAssets(BaseModel):
     """
     This is a plural Model that is used within the bulk upload flow in both cases of a file(&& needing snippitization) as well as if the fragments are passed in and they only need to be clustered.  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
-    application: StrictStr = Field(..., description="application id.")
-    iterable: conlist(DiscoveredAsset) = Field(..., description="This is an iterable of already snippitized snippets that have been clustered.(These are assets that are going to be uploaded or at minimum the assets that we reccommend to upload)")
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
+    application: StrictStr = Field(default=..., description="application id.")
+    iterable: conlist(DiscoveredAsset) = Field(default=..., description="This is an iterable of already snippitized snippets that have been clustered.(These are assets that are going to be uploaded or at minimum the assets that we reccommend to upload)")
     __properties = ["schema", "application", "iterable"]
 
     class Config:

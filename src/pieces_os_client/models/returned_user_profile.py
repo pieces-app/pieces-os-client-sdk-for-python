@@ -28,7 +28,7 @@ class ReturnedUserProfile(BaseModel):
     """
     This is a modle strictly for the purpose that when calling '/user' and other user related endpoints the UserProfile could potentially be null, so we needed a model to do that.  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     user: Optional[UserProfile] = None
     __properties = ["schema", "user"]
 

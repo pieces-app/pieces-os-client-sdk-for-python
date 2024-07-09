@@ -27,7 +27,7 @@ class WorkstreamEventTriggerContextBrowser(BaseModel):
     """
     This is the given context for the browser,  a client can pass through many of the same tab if they would like,  note: however please try to only side 3 unique website/anchors  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     tabs: Optional[BrowserTabs] = None
     __properties = ["schema", "tabs"]
 

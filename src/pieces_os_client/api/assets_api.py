@@ -35,7 +35,6 @@ from pieces_os_client.models.searched_assets import SearchedAssets
 from pieces_os_client.models.seed import Seed
 from pieces_os_client.models.seeded_assets_recommendation import SeededAssetsRecommendation
 from pieces_os_client.models.streamed_identifiers import StreamedIdentifiers
-from pieces_os_client.models.workstream_suggestions import WorkstreamSuggestions
 
 from pieces_os_client.api_client import ApiClient
 from pieces_os_client.api_response import ApiResponse
@@ -1077,171 +1076,6 @@ class AssetsApi:
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def assets_search_assets(self, query : Annotated[Optional[StrictStr], Field(description="This is a string that you can use to search your assets.")] = None, transferables : Annotated[Optional[StrictBool], Field(description="This is a boolean that will decided if we are want to return the transferable data (default) or not(performance enhancement)")] = None, searchable_tags : Annotated[Optional[StrictStr], Field(description="This is a comma separated value of tags used for search.")] = None, pseudo : Annotated[Optional[StrictBool], Field(description="This is helper boolean that will give you the ability to also include your pseudo assets, we will always default to false.")] = None, **kwargs) -> SearchedAssets:  # noqa: E501
-        """/assets/search?query=string [GET]  # noqa: E501
-
-        Performs a search across your pieces and returns Assets (the results) based on your query. Presently, it only requires your query to be sent in the body. It is mandatory to include searchable_tags (comma-separated values of tags) or a query string.  If a query is provided, a fuzzy search will be conducted. If searchable tags are provided, a tag-based search will be executed.  If neither are included, a 500 error will be returned.  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.assets_search_assets(query, transferables, searchable_tags, pseudo, async_req=True)
-        >>> result = thread.get()
-
-        :param query: This is a string that you can use to search your assets.
-        :type query: str
-        :param transferables: This is a boolean that will decided if we are want to return the transferable data (default) or not(performance enhancement)
-        :type transferables: bool
-        :param searchable_tags: This is a comma separated value of tags used for search.
-        :type searchable_tags: str
-        :param pseudo: This is helper boolean that will give you the ability to also include your pseudo assets, we will always default to false.
-        :type pseudo: bool
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _request_timeout: timeout setting for this request.
-               If one number provided, it will be total request
-               timeout. It can also be a pair (tuple) of
-               (connection, read) timeouts.
-        :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
-        :rtype: SearchedAssets
-        """
-        kwargs['_return_http_data_only'] = True
-        if '_preload_content' in kwargs:
-            message = "Error! Please call the assets_search_assets_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
-            raise ValueError(message)
-        return self.assets_search_assets_with_http_info(query, transferables, searchable_tags, pseudo, **kwargs)  # noqa: E501
-
-    @validate_arguments
-    def assets_search_assets_with_http_info(self, query : Annotated[Optional[StrictStr], Field(description="This is a string that you can use to search your assets.")] = None, transferables : Annotated[Optional[StrictBool], Field(description="This is a boolean that will decided if we are want to return the transferable data (default) or not(performance enhancement)")] = None, searchable_tags : Annotated[Optional[StrictStr], Field(description="This is a comma separated value of tags used for search.")] = None, pseudo : Annotated[Optional[StrictBool], Field(description="This is helper boolean that will give you the ability to also include your pseudo assets, we will always default to false.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
-        """/assets/search?query=string [GET]  # noqa: E501
-
-        Performs a search across your pieces and returns Assets (the results) based on your query. Presently, it only requires your query to be sent in the body. It is mandatory to include searchable_tags (comma-separated values of tags) or a query string.  If a query is provided, a fuzzy search will be conducted. If searchable tags are provided, a tag-based search will be executed.  If neither are included, a 500 error will be returned.  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.assets_search_assets_with_http_info(query, transferables, searchable_tags, pseudo, async_req=True)
-        >>> result = thread.get()
-
-        :param query: This is a string that you can use to search your assets.
-        :type query: str
-        :param transferables: This is a boolean that will decided if we are want to return the transferable data (default) or not(performance enhancement)
-        :type transferables: bool
-        :param searchable_tags: This is a comma separated value of tags used for search.
-        :type searchable_tags: str
-        :param pseudo: This is helper boolean that will give you the ability to also include your pseudo assets, we will always default to false.
-        :type pseudo: bool
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _preload_content: if False, the ApiResponse.data will
-                                 be set to none and raw_data will store the
-                                 HTTP response body without reading/decoding.
-                                 Default is True.
-        :type _preload_content: bool, optional
-        :param _return_http_data_only: response data instead of ApiResponse
-                                       object with status code, headers, etc
-        :type _return_http_data_only: bool, optional
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the authentication
-                              in the spec for a single request.
-        :type _request_auth: dict, optional
-        :type _content_type: string, optional: force content-type for the request
-        :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
-        :rtype: tuple(SearchedAssets, status_code(int), headers(HTTPHeaderDict))
-        """
-
-        _params = locals()
-
-        _all_params = [
-            'query',
-            'transferables',
-            'searchable_tags',
-            'pseudo'
-        ]
-        _all_params.extend(
-            [
-                'async_req',
-                '_return_http_data_only',
-                '_preload_content',
-                '_request_timeout',
-                '_request_auth',
-                '_content_type',
-                '_headers'
-            ]
-        )
-
-        # validate the arguments
-        for _key, _val in _params['kwargs'].items():
-            if _key not in _all_params:
-                raise ApiTypeError(
-                    "Got an unexpected keyword argument '%s'"
-                    " to method assets_search_assets" % _key
-                )
-            _params[_key] = _val
-        del _params['kwargs']
-
-        _collection_formats = {}
-
-        # process the path parameters
-        _path_params = {}
-
-        # process the query parameters
-        _query_params = []
-        if _params.get('query') is not None:  # noqa: E501
-            _query_params.append(('query', _params['query']))
-
-        if _params.get('transferables') is not None:  # noqa: E501
-            _query_params.append(('transferables', _params['transferables']))
-
-        if _params.get('searchable_tags') is not None:  # noqa: E501
-            _query_params.append(('searchable_tags', _params['searchable_tags']))
-
-        if _params.get('pseudo') is not None:  # noqa: E501
-            _query_params.append(('pseudo', _params['pseudo']))
-
-        # process the header parameters
-        _header_params = dict(_params.get('_headers', {}))
-        # process the form parameters
-        _form_params = []
-        _files = {}
-        # process the body parameter
-        _body_params = None
-        # set the HTTP header `Accept`
-        _header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json', 'text/plain'])  # noqa: E501
-
-        # authentication setting
-        _auth_settings = []  # noqa: E501
-
-        _response_types_map = {
-            '200': "SearchedAssets",
-            '500': "str",
-        }
-
-        return self.api_client.call_api(
-            '/assets/search', 'GET',
-            _path_params,
-            _query_params,
-            _header_params,
-            body=_body_params,
-            post_params=_form_params,
-            files=_files,
-            response_types_map=_response_types_map,
-            auth_settings=_auth_settings,
-            async_req=_params.get('async_req'),
-            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
-            _preload_content=_params.get('_preload_content', True),
-            _request_timeout=_params.get('_request_timeout'),
-            collection_formats=_collection_formats,
-            _request_auth=_params.get('_request_auth'))
-
-    @validate_arguments
     def assets_search_with_filters(self, transferables : Annotated[Optional[StrictBool], Field(description="This is a boolean that will decided if we are want to return the transferable data (default) or not(performance enhancement)")] = None, pseudo : Annotated[Optional[StrictBool], Field(description="This is helper boolean that will give you the ability to also include your pseudo assets, we will always default to false.")] = None, assets_search_with_filters_input : Optional[AssetsSearchWithFiltersInput] = None, **kwargs) -> AssetsSearchWithFiltersOutput:  # noqa: E501
         """/assets/search [POST]  # noqa: E501
 
@@ -2123,6 +1957,171 @@ class AssetsApi:
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
+    def search_assets(self, query : Annotated[Optional[StrictStr], Field(description="This is a string that you can use to search your assets.")] = None, transferables : Annotated[Optional[StrictBool], Field(description="This is a boolean that will decided if we are want to return the transferable data (default) or not(performance enhancement)")] = None, searchable_tags : Annotated[Optional[StrictStr], Field(description="This is a comma separated value of tags used for search.")] = None, pseudo : Annotated[Optional[StrictBool], Field(description="This is helper boolean that will give you the ability to also include your pseudo assets, we will always default to false.")] = None, **kwargs) -> SearchedAssets:  # noqa: E501
+        """/assets/search?query=string [GET]  # noqa: E501
+
+        Performs a search across your pieces and returns Assets (the results) based on your query. Presently, it only requires your query to be sent in the body. It is mandatory to include searchable_tags (comma-separated values of tags) or a query string.  If a query is provided, a fuzzy search will be conducted. If searchable tags are provided, a tag-based search will be executed.  If neither are included, a 500 error will be returned.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.search_assets(query, transferables, searchable_tags, pseudo, async_req=True)
+        >>> result = thread.get()
+
+        :param query: This is a string that you can use to search your assets.
+        :type query: str
+        :param transferables: This is a boolean that will decided if we are want to return the transferable data (default) or not(performance enhancement)
+        :type transferables: bool
+        :param searchable_tags: This is a comma separated value of tags used for search.
+        :type searchable_tags: str
+        :param pseudo: This is helper boolean that will give you the ability to also include your pseudo assets, we will always default to false.
+        :type pseudo: bool
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _request_timeout: timeout setting for this request.
+               If one number provided, it will be total request
+               timeout. It can also be a pair (tuple) of
+               (connection, read) timeouts.
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: SearchedAssets
+        """
+        kwargs['_return_http_data_only'] = True
+        if '_preload_content' in kwargs:
+            message = "Error! Please call the search_assets_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
+            raise ValueError(message)
+        return self.search_assets_with_http_info(query, transferables, searchable_tags, pseudo, **kwargs)  # noqa: E501
+
+    @validate_arguments
+    def search_assets_with_http_info(self, query : Annotated[Optional[StrictStr], Field(description="This is a string that you can use to search your assets.")] = None, transferables : Annotated[Optional[StrictBool], Field(description="This is a boolean that will decided if we are want to return the transferable data (default) or not(performance enhancement)")] = None, searchable_tags : Annotated[Optional[StrictStr], Field(description="This is a comma separated value of tags used for search.")] = None, pseudo : Annotated[Optional[StrictBool], Field(description="This is helper boolean that will give you the ability to also include your pseudo assets, we will always default to false.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
+        """/assets/search?query=string [GET]  # noqa: E501
+
+        Performs a search across your pieces and returns Assets (the results) based on your query. Presently, it only requires your query to be sent in the body. It is mandatory to include searchable_tags (comma-separated values of tags) or a query string.  If a query is provided, a fuzzy search will be conducted. If searchable tags are provided, a tag-based search will be executed.  If neither are included, a 500 error will be returned.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.search_assets_with_http_info(query, transferables, searchable_tags, pseudo, async_req=True)
+        >>> result = thread.get()
+
+        :param query: This is a string that you can use to search your assets.
+        :type query: str
+        :param transferables: This is a boolean that will decided if we are want to return the transferable data (default) or not(performance enhancement)
+        :type transferables: bool
+        :param searchable_tags: This is a comma separated value of tags used for search.
+        :type searchable_tags: str
+        :param pseudo: This is helper boolean that will give you the ability to also include your pseudo assets, we will always default to false.
+        :type pseudo: bool
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _preload_content: if False, the ApiResponse.data will
+                                 be set to none and raw_data will store the
+                                 HTTP response body without reading/decoding.
+                                 Default is True.
+        :type _preload_content: bool, optional
+        :param _return_http_data_only: response data instead of ApiResponse
+                                       object with status code, headers, etc
+        :type _return_http_data_only: bool, optional
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
+        :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: tuple(SearchedAssets, status_code(int), headers(HTTPHeaderDict))
+        """
+
+        _params = locals()
+
+        _all_params = [
+            'query',
+            'transferables',
+            'searchable_tags',
+            'pseudo'
+        ]
+        _all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers'
+            ]
+        )
+
+        # validate the arguments
+        for _key, _val in _params['kwargs'].items():
+            if _key not in _all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method search_assets" % _key
+                )
+            _params[_key] = _val
+        del _params['kwargs']
+
+        _collection_formats = {}
+
+        # process the path parameters
+        _path_params = {}
+
+        # process the query parameters
+        _query_params = []
+        if _params.get('query') is not None:  # noqa: E501
+            _query_params.append(('query', _params['query']))
+
+        if _params.get('transferables') is not None:  # noqa: E501
+            _query_params.append(('transferables', _params['transferables']))
+
+        if _params.get('searchable_tags') is not None:  # noqa: E501
+            _query_params.append(('searchable_tags', _params['searchable_tags']))
+
+        if _params.get('pseudo') is not None:  # noqa: E501
+            _query_params.append(('pseudo', _params['pseudo']))
+
+        # process the header parameters
+        _header_params = dict(_params.get('_headers', {}))
+        # process the form parameters
+        _form_params = []
+        _files = {}
+        # process the body parameter
+        _body_params = None
+        # set the HTTP header `Accept`
+        _header_params['Accept'] = self.api_client.select_header_accept(
+            ['application/json', 'text/plain'])  # noqa: E501
+
+        # authentication setting
+        _auth_settings = []  # noqa: E501
+
+        _response_types_map = {
+            '200': "SearchedAssets",
+            '500': "str",
+        }
+
+        return self.api_client.call_api(
+            '/assets/search', 'GET',
+            _path_params,
+            _query_params,
+            _header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            response_types_map=_response_types_map,
+            auth_settings=_auth_settings,
+            async_req=_params.get('async_req'),
+            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=_params.get('_preload_content', True),
+            _request_timeout=_params.get('_request_timeout'),
+            collection_formats=_collection_formats,
+            _request_auth=_params.get('_request_auth'))
+
+    @validate_arguments
     def stream_assets(self, **kwargs) -> Assets:  # noqa: E501
         """/assets/stream [WS]  # noqa: E501
 
@@ -2239,139 +2238,6 @@ class AssetsApi:
 
         return self.api_client.call_api(
             '/assets/stream', 'GET',
-            _path_params,
-            _query_params,
-            _header_params,
-            body=_body_params,
-            post_params=_form_params,
-            files=_files,
-            response_types_map=_response_types_map,
-            auth_settings=_auth_settings,
-            async_req=_params.get('async_req'),
-            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
-            _preload_content=_params.get('_preload_content', True),
-            _request_timeout=_params.get('_request_timeout'),
-            collection_formats=_collection_formats,
-            _request_auth=_params.get('_request_auth'))
-
-    @validate_arguments
-    def workstream_suggestions_stream(self, **kwargs) -> WorkstreamSuggestions:  # noqa: E501
-        """/workstream/suggestions/stream [WS]  # noqa: E501
-
-        Provides a WebSocket connection that emits changes to your workstream suggestions.  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.workstream_suggestions_stream(async_req=True)
-        >>> result = thread.get()
-
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _request_timeout: timeout setting for this request.
-               If one number provided, it will be total request
-               timeout. It can also be a pair (tuple) of
-               (connection, read) timeouts.
-        :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
-        :rtype: WorkstreamSuggestions
-        """
-        kwargs['_return_http_data_only'] = True
-        if '_preload_content' in kwargs:
-            message = "Error! Please call the workstream_suggestions_stream_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
-            raise ValueError(message)
-        return self.workstream_suggestions_stream_with_http_info(**kwargs)  # noqa: E501
-
-    @validate_arguments
-    def workstream_suggestions_stream_with_http_info(self, **kwargs) -> ApiResponse:  # noqa: E501
-        """/workstream/suggestions/stream [WS]  # noqa: E501
-
-        Provides a WebSocket connection that emits changes to your workstream suggestions.  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.workstream_suggestions_stream_with_http_info(async_req=True)
-        >>> result = thread.get()
-
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _preload_content: if False, the ApiResponse.data will
-                                 be set to none and raw_data will store the
-                                 HTTP response body without reading/decoding.
-                                 Default is True.
-        :type _preload_content: bool, optional
-        :param _return_http_data_only: response data instead of ApiResponse
-                                       object with status code, headers, etc
-        :type _return_http_data_only: bool, optional
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the authentication
-                              in the spec for a single request.
-        :type _request_auth: dict, optional
-        :type _content_type: string, optional: force content-type for the request
-        :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
-        :rtype: tuple(WorkstreamSuggestions, status_code(int), headers(HTTPHeaderDict))
-        """
-
-        _params = locals()
-
-        _all_params = [
-        ]
-        _all_params.extend(
-            [
-                'async_req',
-                '_return_http_data_only',
-                '_preload_content',
-                '_request_timeout',
-                '_request_auth',
-                '_content_type',
-                '_headers'
-            ]
-        )
-
-        # validate the arguments
-        for _key, _val in _params['kwargs'].items():
-            if _key not in _all_params:
-                raise ApiTypeError(
-                    "Got an unexpected keyword argument '%s'"
-                    " to method workstream_suggestions_stream" % _key
-                )
-            _params[_key] = _val
-        del _params['kwargs']
-
-        _collection_formats = {}
-
-        # process the path parameters
-        _path_params = {}
-
-        # process the query parameters
-        _query_params = []
-        # process the header parameters
-        _header_params = dict(_params.get('_headers', {}))
-        # process the form parameters
-        _form_params = []
-        _files = {}
-        # process the body parameter
-        _body_params = None
-        # set the HTTP header `Accept`
-        _header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json', 'text/plain'])  # noqa: E501
-
-        # authentication setting
-        _auth_settings = []  # noqa: E501
-
-        _response_types_map = {
-            '200': "WorkstreamSuggestions",
-            '500': "str",
-        }
-
-        return self.api_client.call_api(
-            '/workstream/suggestions/stream', 'GET',
             _path_params,
             _query_params,
             _header_params,

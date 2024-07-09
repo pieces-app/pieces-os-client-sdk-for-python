@@ -27,7 +27,7 @@ print QGPTRepromptInput.to_json()
 # convert the object into a dict
 qgpt_reprompt_input_dict = qgpt_reprompt_input_instance.to_dict()
 # create an instance of QGPTRepromptInput from a dict
-qgpt_reprompt_input_form_dict = qgpt_reprompt_input.from_dict(qgpt_reprompt_input_dict)
+qgpt_reprompt_input_from_dict = QGPTRepromptInput.from_dict(qgpt_reprompt_input_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

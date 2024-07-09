@@ -33,7 +33,7 @@ print SeededAnnotation.to_json()
 # convert the object into a dict
 seeded_annotation_dict = seeded_annotation_instance.to_dict()
 # create an instance of SeededAnnotation from a dict
-seeded_annotation_form_dict = seeded_annotation.from_dict(seeded_annotation_dict)
+seeded_annotation_from_dict = SeededAnnotation.from_dict(seeded_annotation_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

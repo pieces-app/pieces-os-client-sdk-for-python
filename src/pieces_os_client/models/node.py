@@ -30,7 +30,7 @@ class Node(BaseModel):
     """
     id: StrictStr = Field(...)
     type: NodeTypeEnum = Field(...)
-    root: StrictBool = Field(..., description="This is a boolean to let us know if this node is the root or origin of the relationship graph.")
+    root: StrictBool = Field(default=..., description="This is a boolean to let us know if this node is the root or origin of the relationship graph.")
     created: GroupedTimestamp = Field(...)
     __properties = ["id", "type", "root", "created"]
 

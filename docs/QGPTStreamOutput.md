@@ -13,6 +13,7 @@ Name | Type | Description | Notes
 **status_code** | **float** | This will be provided | [optional] 
 **error_message** | **str** | optional error message is the status code is NOT 200 | [optional] 
 **agent_routes** | [**QGPTAgentRoutes**](QGPTAgentRoutes.md) |  | [optional] 
+**extracted** | [**QGPTStreamedOutputExtractedMaterials**](QGPTStreamedOutputExtractedMaterials.md) |  | [optional] 
 
 ## Example
 
@@ -29,7 +30,7 @@ print QGPTStreamOutput.to_json()
 # convert the object into a dict
 qgpt_stream_output_dict = qgpt_stream_output_instance.to_dict()
 # create an instance of QGPTStreamOutput from a dict
-qgpt_stream_output_form_dict = qgpt_stream_output.from_dict(qgpt_stream_output_dict)
+qgpt_stream_output_from_dict = QGPTStreamOutput.from_dict(qgpt_stream_output_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

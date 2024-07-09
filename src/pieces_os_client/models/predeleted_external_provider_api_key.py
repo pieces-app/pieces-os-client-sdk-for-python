@@ -27,9 +27,9 @@ class PredeletedExternalProviderApiKey(BaseModel):
     """
     This is a predeleted version relating to the /external_provider/api_key/delete endpoint.  This will ensure we remove this specific provider.(anything that is set to true we will reset to null within the database.)  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     user: StrictStr = Field(...)
-    open_ai: Optional[StrictBool] = Field(None, alias="open_AI")
+    open_ai: Optional[StrictBool] = Field(default=None, alias="open_AI")
     __properties = ["schema", "user", "open_AI"]
 
     class Config:

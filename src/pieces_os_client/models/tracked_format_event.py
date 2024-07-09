@@ -30,8 +30,8 @@ class TrackedFormatEvent(BaseModel):
     """
     This is a model that represents a generic event that we may want to track in relation to a format, for example beamed, copied, downloaded, and view. ** Note: This is the model that will get returned by our api, and is. Representative of a full TrackedFormat event. **  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
-    format: TrackedFormat = Field(..., alias=" format")
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
+    format: TrackedFormat = Field(default=..., alias=" format")
     identifier_description_pair: TrackedFormatEventIdentifierDescriptionPairs = Field(...)
     metadata: Optional[TrackedFormatEventMetadata] = None
     __properties = ["schema", " format", "identifier_description_pair", "metadata"]

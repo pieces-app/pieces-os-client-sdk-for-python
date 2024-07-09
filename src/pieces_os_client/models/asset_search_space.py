@@ -28,7 +28,7 @@ class AssetSearchSpace(BaseModel):
     """
     This is provided search spaces, This is a provided assets, TODO in the future we might want to add seeds.  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     identifers: FlattenedAssets = Field(...)
     __properties = ["schema", "identifers"]
 

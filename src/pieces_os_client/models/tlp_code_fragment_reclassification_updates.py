@@ -28,7 +28,7 @@ class TLPCodeFragmentReclassificationUpdates(BaseModel):
     """
     TLPCodeFragmentReclassificationUpdates
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     previous: Classification = Field(...)
     current: Classification = Field(...)
     __properties = ["schema", "previous", "current"]

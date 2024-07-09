@@ -30,7 +30,7 @@ print AllocationCloud.to_json()
 # convert the object into a dict
 allocation_cloud_dict = allocation_cloud_instance.to_dict()
 # create an instance of AllocationCloud from a dict
-allocation_cloud_form_dict = allocation_cloud.from_dict(allocation_cloud_dict)
+allocation_cloud_from_dict = AllocationCloud.from_dict(allocation_cloud_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

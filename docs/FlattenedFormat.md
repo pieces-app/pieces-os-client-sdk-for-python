@@ -40,7 +40,7 @@ print FlattenedFormat.to_json()
 # convert the object into a dict
 flattened_format_dict = flattened_format_instance.to_dict()
 # create an instance of FlattenedFormat from a dict
-flattened_format_form_dict = flattened_format.from_dict(flattened_format_dict)
+flattened_format_from_dict = FlattenedFormat.from_dict(flattened_format_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

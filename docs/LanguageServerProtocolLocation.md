@@ -24,7 +24,7 @@ print LanguageServerProtocolLocation.to_json()
 # convert the object into a dict
 language_server_protocol_location_dict = language_server_protocol_location_instance.to_dict()
 # create an instance of LanguageServerProtocolLocation from a dict
-language_server_protocol_location_form_dict = language_server_protocol_location.from_dict(language_server_protocol_location_dict)
+language_server_protocol_location_from_dict = LanguageServerProtocolLocation.from_dict(language_server_protocol_location_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

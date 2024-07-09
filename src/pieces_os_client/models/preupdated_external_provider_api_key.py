@@ -28,9 +28,9 @@ class PreupdatedExternalProviderApiKey(BaseModel):
     """
     This is the endput model for \"/external_provider/api_key/update\". everything but the uder will be optional, anything that is defined will get an update.  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     user: StrictStr = Field(...)
-    open_ai: Optional[Auth0OpenAIUserMetadata] = Field(None, alias="open_AI")
+    open_ai: Optional[Auth0OpenAIUserMetadata] = Field(default=None, alias="open_AI")
     __properties = ["schema", "user", "open_AI"]
 
     class Config:

@@ -6,12 +6,14 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**asset_associate_anchor**](AssetApi.md#asset_associate_anchor) | **POST** /asset/{asset}/anchors/associate/{anchor} | /asset/{asset}/persons/associate/{anchor} [POST]
 [**asset_associate_conversation**](AssetApi.md#asset_associate_conversation) | **POST** /asset/{asset}/conversations/associate/{conversation} | /asset/{asset}/conversations/associate/{conversation} [POST]
+[**asset_associate_hint**](AssetApi.md#asset_associate_hint) | **POST** /asset/{asset}/hints/associate/{hint} | /asset/{asset}/hints/associate/{hint} [POST]
 [**asset_associate_person**](AssetApi.md#asset_associate_person) | **POST** /asset/{asset}/persons/associate/{person} | /asset/{asset}/persons/associate/{person} [POST]
 [**asset_associate_tag**](AssetApi.md#asset_associate_tag) | **POST** /asset/{asset}/tags/associate/{tag} | /asset/{asset}/tags/associate/{tag} [POST]
 [**asset_associate_website**](AssetApi.md#asset_associate_website) | **POST** /asset/{asset}/websites/associate/{website} | /asset/{asset}/websites/associate/{website} [POST]
 [**asset_associate_workstream_summary**](AssetApi.md#asset_associate_workstream_summary) | **POST** /asset/{asset}/workstream_summaries/associate/{workstream_summary} | /asset/{asset}/workstream_summaries/associate/{workstream_summary} [POST]
 [**asset_disassociate_anchor**](AssetApi.md#asset_disassociate_anchor) | **POST** /asset/{asset}/anchors/disassociate/{anchor} | /asset/{asset}/anchors/disassociate/{anchor} [POST]
 [**asset_disassociate_conversation**](AssetApi.md#asset_disassociate_conversation) | **POST** /asset/{asset}/conversations/disassociate/{conversation} | /asset/{asset}/conversations/disassociate/{conversation} [POST]
+[**asset_disassociate_hint**](AssetApi.md#asset_disassociate_hint) | **POST** /asset/{asset}/hints/disassociate/{hint} | /asset/{asset}/hints/disassociate/{hint} [POST]
 [**asset_disassociate_person**](AssetApi.md#asset_disassociate_person) | **POST** /asset/{asset}/persons/disassociate/{person} | /asset/{asset}/persons/disassociate/{person} [POST]
 [**asset_disassociate_tag**](AssetApi.md#asset_disassociate_tag) | **POST** /asset/{asset}/tags/disassociate/{tag} | /asset/{asset}/tags/disassociate/{tag} [POST]
 [**asset_disassociate_website**](AssetApi.md#asset_disassociate_website) | **POST** /asset/{asset}/websites/disassociate/{website} | /asset/{asset}/websites/disassociate/{website} [POST]
@@ -139,6 +141,73 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **asset** | **str**| The id (uuid) of the asset that you are trying to access. | 
  **conversation** | **str**| This is the uuid of a conversation. | 
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: text/plain
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**204** | No Content |  -  |
+**500** | Internal Server Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **asset_associate_hint**
+> asset_associate_hint(asset, hint)
+
+/asset/{asset}/hints/associate/{hint} [POST]
+
+associates an asset and a hint. It performs the same action as the hint equivalent.
+
+### Example
+
+```python
+import time
+import os
+import pieces_os_client
+from pieces_os_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to http://localhost:1000
+# See configuration.py for a list of all supported configuration parameters.
+configuration = pieces_os_client.Configuration(
+    host = "http://localhost:1000"
+)
+
+
+# Enter a context with an instance of the API client
+with pieces_os_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = pieces_os_client.AssetApi(api_client)
+    asset = '2254f2c8-5797-40e8-ac56-41166dc0e159' # str | The id (uuid) of the asset that you are trying to access.
+    hint = 'hint_example' # str | This is a specific hint uuid
+
+    try:
+        # /asset/{asset}/hints/associate/{hint} [POST]
+        api_instance.asset_associate_hint(asset, hint)
+    except Exception as e:
+        print("Exception when calling AssetApi->asset_associate_hint: %s\n" % e)
+```
+
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **asset** | **str**| The id (uuid) of the asset that you are trying to access. | 
+ **hint** | **str**| This is a specific hint uuid | 
 
 ### Return type
 
@@ -541,6 +610,73 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **asset** | **str**| The id (uuid) of the asset that you are trying to access. | 
  **conversation** | **str**| This is the uuid of a conversation. | 
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: text/plain
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**204** | No Content |  -  |
+**500** | Internal Server Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **asset_disassociate_hint**
+> asset_disassociate_hint(asset, hint)
+
+/asset/{asset}/hints/disassociate/{hint} [POST]
+
+Disassociates an asset from a hint. It performs the same action as the hint equivalent.
+
+### Example
+
+```python
+import time
+import os
+import pieces_os_client
+from pieces_os_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to http://localhost:1000
+# See configuration.py for a list of all supported configuration parameters.
+configuration = pieces_os_client.Configuration(
+    host = "http://localhost:1000"
+)
+
+
+# Enter a context with an instance of the API client
+with pieces_os_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = pieces_os_client.AssetApi(api_client)
+    asset = '2254f2c8-5797-40e8-ac56-41166dc0e159' # str | The id (uuid) of the asset that you are trying to access.
+    hint = 'hint_example' # str | This is a specific hint uuid
+
+    try:
+        # /asset/{asset}/hints/disassociate/{hint} [POST]
+        api_instance.asset_disassociate_hint(asset, hint)
+    except Exception as e:
+        print("Exception when calling AssetApi->asset_disassociate_hint: %s\n" % e)
+```
+
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **asset** | **str**| The id (uuid) of the asset that you are trying to access. | 
+ **hint** | **str**| This is a specific hint uuid | 
 
 ### Return type
 

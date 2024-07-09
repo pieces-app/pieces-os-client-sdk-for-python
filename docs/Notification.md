@@ -26,7 +26,7 @@ print Notification.to_json()
 # convert the object into a dict
 notification_dict = notification_instance.to_dict()
 # create an instance of Notification from a dict
-notification_form_dict = notification.from_dict(notification_dict)
+notification_from_dict = Notification.from_dict(notification_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -24,7 +24,7 @@ print OSProcessingPermissions.to_json()
 # convert the object into a dict
 os_processing_permissions_dict = os_processing_permissions_instance.to_dict()
 # create an instance of OSProcessingPermissions from a dict
-os_processing_permissions_form_dict = os_processing_permissions.from_dict(os_processing_permissions_dict)
+os_processing_permissions_from_dict = OSProcessingPermissions.from_dict(os_processing_permissions_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

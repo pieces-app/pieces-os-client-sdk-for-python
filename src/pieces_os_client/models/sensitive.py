@@ -34,7 +34,7 @@ class Sensitive(BaseModel):
     """
     This is a fully referenced representation of a sensitive pieces of data.  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     id: StrictStr = Field(...)
     created: GroupedTimestamp = Field(...)
     updated: GroupedTimestamp = Field(...)
@@ -47,7 +47,7 @@ class Sensitive(BaseModel):
     name: StrictStr = Field(...)
     description: StrictStr = Field(...)
     metadata: Optional[SensitiveMetadata] = None
-    interactions: Optional[StrictInt] = Field(None, description="This is an optional value that will keep track of the number of times this has been interacted with.")
+    interactions: Optional[StrictInt] = Field(default=None, description="This is an optional value that will keep track of the number of times this has been interacted with.")
     score: Optional[Score] = None
     __properties = ["schema", "id", "created", "updated", "deleted", "asset", "text", "mechanism", "category", "severity", "name", "description", "metadata", "interactions", "score"]
 

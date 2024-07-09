@@ -23,7 +23,7 @@ print UnsegmentedTechnicalLanguage.to_json()
 # convert the object into a dict
 unsegmented_technical_language_dict = unsegmented_technical_language_instance.to_dict()
 # create an instance of UnsegmentedTechnicalLanguage from a dict
-unsegmented_technical_language_form_dict = unsegmented_technical_language.from_dict(unsegmented_technical_language_dict)
+unsegmented_technical_language_from_dict = UnsegmentedTechnicalLanguage.from_dict(unsegmented_technical_language_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

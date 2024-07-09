@@ -28,10 +28,10 @@ class SeededAccessor(BaseModel):
     """
     This is a pre-created accessor that simply takes an os id and an optional user(flattened)  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
-    os: StrictStr = Field(..., description="this is an os id.")
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
+    os: StrictStr = Field(default=..., description="this is an os id.")
     user: Optional[FlattenedUserProfile] = None
-    share: StrictStr = Field(..., description="this is the share that the asset is apart of.")
+    share: StrictStr = Field(default=..., description="this is the share that the asset is apart of.")
     __properties = ["schema", "os", "user", "share"]
 
     class Config:

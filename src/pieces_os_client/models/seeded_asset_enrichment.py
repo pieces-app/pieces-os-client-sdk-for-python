@@ -27,7 +27,7 @@ class SeededAssetEnrichment(BaseModel):
     """
     This is a specific Model for the SeededAsset that will enable the developer to modify the enrichment levels of persons, tags, websites.  These enrichment levels will guarentee that the # of people/tags/websites do not eceeed the provided value, but will not guarentee a minimum.  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     tags: Optional[StrictInt] = None
     websites: Optional[StrictInt] = None
     persons: Optional[StrictInt] = None

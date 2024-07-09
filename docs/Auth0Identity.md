@@ -27,7 +27,7 @@ print Auth0Identity.to_json()
 # convert the object into a dict
 auth0_identity_dict = auth0_identity_instance.to_dict()
 # create an instance of Auth0Identity from a dict
-auth0_identity_form_dict = auth0_identity.from_dict(auth0_identity_dict)
+auth0_identity_from_dict = Auth0Identity.from_dict(auth0_identity_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

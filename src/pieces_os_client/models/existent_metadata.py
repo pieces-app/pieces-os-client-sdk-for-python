@@ -27,7 +27,7 @@ class ExistentMetadata(BaseModel):
     """
     This is a shared output model for all the exists endpoints: /tags/exists : value here is the tag that you want to see if it exists. /websites/exists: value here is the url you want to see if it exists  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     value: StrictStr = Field(...)
     __properties = ["schema", "value"]
 

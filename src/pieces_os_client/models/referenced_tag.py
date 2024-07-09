@@ -27,7 +27,7 @@ class ReferencedTag(BaseModel):
     """
     [DAG Safe] version of a Tag Model.   # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     id: StrictStr = Field(...)
     reference: Optional[FlattenedTag] = None
     __properties = ["schema", "id", "reference"]

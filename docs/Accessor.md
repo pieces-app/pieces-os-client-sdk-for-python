@@ -27,7 +27,7 @@ print Accessor.to_json()
 # convert the object into a dict
 accessor_dict = accessor_instance.to_dict()
 # create an instance of Accessor from a dict
-accessor_form_dict = accessor.from_dict(accessor_dict)
+accessor_from_dict = Accessor.from_dict(accessor_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

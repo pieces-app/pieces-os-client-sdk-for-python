@@ -30,7 +30,7 @@ class IDESelection(BaseModel):
     """
     This is a given bit of text/code that is selected in the IDE, this can be a copy/paste/selection  location: this is the given location provided by the LSP(might need to be a different object we will see)  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     location: Optional[LanguageServerProtocolLocation] = None
     classification: Optional[Classification] = None
     value: Optional[TransferableString] = None

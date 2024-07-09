@@ -28,7 +28,7 @@ class QGPTAgentRoutes(BaseModel):
     """
     This is apart of the Output and will let the plugin developer know if we reccomend to run specific agent functionality/routes. for instance, related.people, code classification...xyz, for now we start with relatedPeople.  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     related: Optional[QGPTAgentRelatedRoutes] = None
     __properties = ["schema", "related"]
 

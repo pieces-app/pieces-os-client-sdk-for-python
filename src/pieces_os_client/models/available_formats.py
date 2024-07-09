@@ -28,7 +28,7 @@ class AvailableFormats(BaseModel):
     """
     This is a specific model here used within the SeededAsset that enables us to return all the available formats on a specific seed that was passed as an input within the '/assets/draft' endpoint  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     iterable: conlist(Classification) = Field(...)
     __properties = ["schema", "iterable"]
 

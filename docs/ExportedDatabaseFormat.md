@@ -23,7 +23,7 @@ print ExportedDatabaseFormat.to_json()
 # convert the object into a dict
 exported_database_format_dict = exported_database_format_instance.to_dict()
 # create an instance of ExportedDatabaseFormat from a dict
-exported_database_format_form_dict = exported_database_format.from_dict(exported_database_format_dict)
+exported_database_format_from_dict = ExportedDatabaseFormat.from_dict(exported_database_format_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

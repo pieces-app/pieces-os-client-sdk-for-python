@@ -28,21 +28,21 @@ class SeededScoreIncrement(BaseModel):
     """
     This is the body for a respective scores increment,  This will enable us to know what material we want to increment, all of which are optional, if it is defined we will attempt to increment the material.  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     asset: Optional[SeededScore] = None
     assets: Optional[SeededScore] = None
     website: Optional[SeededScore] = None
     websites: Optional[SeededScore] = None
     anchor: Optional[SeededScore] = None
     anchors: Optional[SeededScore] = None
-    anchor_point: Optional[SeededScore] = Field(None, alias="anchorPoint")
-    anchor_points: Optional[SeededScore] = Field(None, alias="anchorPoints")
+    anchor_point: Optional[SeededScore] = Field(default=None, alias="anchorPoint")
+    anchor_points: Optional[SeededScore] = Field(default=None, alias="anchorPoints")
     annotation: Optional[SeededScore] = None
     annotations: Optional[SeededScore] = None
     conversation: Optional[SeededScore] = None
     conversations: Optional[SeededScore] = None
-    conversation_message: Optional[SeededScore] = Field(None, alias="conversationMessage")
-    conversation_messages: Optional[SeededScore] = Field(None, alias="conversationMessages")
+    conversation_message: Optional[SeededScore] = Field(default=None, alias="conversationMessage")
+    conversation_messages: Optional[SeededScore] = Field(default=None, alias="conversationMessages")
     share: Optional[SeededScore] = None
     shares: Optional[SeededScore] = None
     sensitive: Optional[SeededScore] = None

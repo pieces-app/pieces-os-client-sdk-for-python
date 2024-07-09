@@ -29,7 +29,7 @@ class SeededAssetsRecommendation(BaseModel):
     """
     This is the input data model for the /assets/recommend [GET] endpoint. It includes both a list of assets but also   # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     assets: Assets = Field(...)
     interactions: InteractedAssets = Field(...)
     __properties = ["schema", "assets", "interactions"]

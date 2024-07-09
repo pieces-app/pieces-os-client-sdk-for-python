@@ -32,16 +32,16 @@ class Application(BaseModel):
     """
     A Model to describe what application a format/analytics event originated.  mechanism: This will let us know where this came from. ie.only 2 enums are used here or else throw and error. default mechanism here is MANUAL- meaning that this came from our user Connecting an application. INTERNAL - means that this came from a shareable link  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
-    id: StrictStr = Field(..., description="The ID of the application at the device level")
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
+    id: StrictStr = Field(default=..., description="The ID of the application at the device level")
     name: ApplicationNameEnum = Field(...)
-    version: StrictStr = Field(..., description="This is the specific version number 0.0.0")
+    version: StrictStr = Field(default=..., description="This is the specific version number 0.0.0")
     platform: PlatformEnum = Field(...)
     onboarded: StrictBool = Field(...)
     privacy: PrivacyEnum = Field(...)
     capabilities: Optional[CapabilitiesEnum] = None
     mechanism: Optional[MechanismEnum] = None
-    automatic_unload: Optional[StrictBool] = Field(None, alias="automaticUnload", description="This is a proper that will let us know if we will proactivity unload all of your machine learning models.by default this is false.")
+    automatic_unload: Optional[StrictBool] = Field(default=None, alias="automaticUnload", description="This is a proper that will let us know if we will proactivity unload all of your machine learning models.by default this is false.")
     __properties = ["schema", "id", "name", "version", "platform", "onboarded", "privacy", "capabilities", "mechanism", "automaticUnload"]
 
     class Config:

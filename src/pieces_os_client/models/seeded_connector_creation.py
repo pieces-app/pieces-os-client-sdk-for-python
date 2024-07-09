@@ -28,7 +28,7 @@ class SeededConnectorCreation(BaseModel):
     """
     A encompasing creation object that can be utilized to create either an asset or a format.  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     asset: Optional[SeededConnectorAsset] = None
     __properties = ["schema", "asset"]
 

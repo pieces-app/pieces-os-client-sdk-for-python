@@ -22,7 +22,7 @@ print TLPCodeFragmentSuggestedReuse.to_json()
 # convert the object into a dict
 tlp_code_fragment_suggested_reuse_dict = tlp_code_fragment_suggested_reuse_instance.to_dict()
 # create an instance of TLPCodeFragmentSuggestedReuse from a dict
-tlp_code_fragment_suggested_reuse_form_dict = tlp_code_fragment_suggested_reuse.from_dict(tlp_code_fragment_suggested_reuse_dict)
+tlp_code_fragment_suggested_reuse_from_dict = TLPCodeFragmentSuggestedReuse.from_dict(tlp_code_fragment_suggested_reuse_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

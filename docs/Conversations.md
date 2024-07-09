@@ -25,7 +25,7 @@ print Conversations.to_json()
 # convert the object into a dict
 conversations_dict = conversations_instance.to_dict()
 # create an instance of Conversations from a dict
-conversations_form_dict = conversations.from_dict(conversations_dict)
+conversations_from_dict = Conversations.from_dict(conversations_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

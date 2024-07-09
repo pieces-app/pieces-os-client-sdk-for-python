@@ -28,7 +28,7 @@ class Activities(BaseModel):
     """
     This is the plural of activity  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     iterable: conlist(Activity) = Field(...)
     __properties = ["schema", "iterable"]
 

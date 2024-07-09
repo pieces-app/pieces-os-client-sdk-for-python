@@ -41,7 +41,7 @@ print FlattenedConversation.to_json()
 # convert the object into a dict
 flattened_conversation_dict = flattened_conversation_instance.to_dict()
 # create an instance of FlattenedConversation from a dict
-flattened_conversation_form_dict = flattened_conversation.from_dict(flattened_conversation_dict)
+flattened_conversation_from_dict = FlattenedConversation.from_dict(flattened_conversation_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

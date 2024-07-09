@@ -27,7 +27,7 @@ class QGPTConversationPipelineForGeneralizedCodeDialog(BaseModel):
     """
     This is for the users that wants to have generalized code conversations without any context.  This is a class so that we can add optional properties in the future.  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     __properties = ["schema"]
 
     class Config:

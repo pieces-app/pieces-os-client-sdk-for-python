@@ -25,7 +25,7 @@ print AssetFilterTimestamp.to_json()
 # convert the object into a dict
 asset_filter_timestamp_dict = asset_filter_timestamp_instance.to_dict()
 # create an instance of AssetFilterTimestamp from a dict
-asset_filter_timestamp_form_dict = asset_filter_timestamp.from_dict(asset_filter_timestamp_dict)
+asset_filter_timestamp_from_dict = AssetFilterTimestamp.from_dict(asset_filter_timestamp_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

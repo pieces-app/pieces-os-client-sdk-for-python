@@ -32,7 +32,7 @@ class SeededAsset(BaseModel):
     """
     This is seed data that will be come an asset.  discovered: if set to true this seededAsset was discovered using one of our discovery endpoints.  pseudo: if this is an asset that a user did NOT explicitly save.  available: This is a model that is used within our '/assets/draft' endpoint that will emitt a seed with all the available format that one can generate based on the original seed that was passed in. ie if a png was passed in, we may  say that there is a text/code format available. If available formats is passed into the '/assets/create' we will short curcuit certain operations to speed up the process, for instance, if we determine that there is no text within this image then there is no sense in running ocr.   # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     metadata: Optional[SeededAssetMetadata] = None
     application: Application = Field(...)
     format: SeededFormat = Field(...)
@@ -40,7 +40,7 @@ class SeededAsset(BaseModel):
     available: Optional[AvailableFormats] = None
     pseudo: Optional[StrictBool] = None
     enrichment: Optional[SeededAssetEnrichment] = None
-    demo: Optional[StrictBool] = Field(None, description="This will let us know if this asset was generated as a 'demo' snippet")
+    demo: Optional[StrictBool] = Field(default=None, description="This will let us know if this asset was generated as a 'demo' snippet")
     __properties = ["schema", "metadata", "application", "format", "discovered", "available", "pseudo", "enrichment", "demo"]
 
     class Config:

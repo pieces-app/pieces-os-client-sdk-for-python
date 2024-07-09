@@ -23,7 +23,7 @@ print SeededConnectorConnection.to_json()
 # convert the object into a dict
 seeded_connector_connection_dict = seeded_connector_connection_instance.to_dict()
 # create an instance of SeededConnectorConnection from a dict
-seeded_connector_connection_form_dict = seeded_connector_connection.from_dict(seeded_connector_connection_dict)
+seeded_connector_connection_from_dict = SeededConnectorConnection.from_dict(seeded_connector_connection_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

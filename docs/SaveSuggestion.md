@@ -23,7 +23,7 @@ print SaveSuggestion.to_json()
 # convert the object into a dict
 save_suggestion_dict = save_suggestion_instance.to_dict()
 # create an instance of SaveSuggestion from a dict
-save_suggestion_form_dict = save_suggestion.from_dict(save_suggestion_dict)
+save_suggestion_from_dict = SaveSuggestion.from_dict(save_suggestion_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

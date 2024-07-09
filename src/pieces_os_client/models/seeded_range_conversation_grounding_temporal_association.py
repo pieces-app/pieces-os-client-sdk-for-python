@@ -27,7 +27,7 @@ class SeededRangeConversationGroundingTemporalAssociation(BaseModel):
     """
     SeededRangeConversationGroundingTemporalAssociation
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     workstream: Optional[StrictBool] = None
     __properties = ["schema", "workstream"]
 

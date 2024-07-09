@@ -21,7 +21,7 @@ print GraphicalOCRDescriptiveStatisticsConfidence.to_json()
 # convert the object into a dict
 graphical_ocr_descriptive_statistics_confidence_dict = graphical_ocr_descriptive_statistics_confidence_instance.to_dict()
 # create an instance of GraphicalOCRDescriptiveStatisticsConfidence from a dict
-graphical_ocr_descriptive_statistics_confidence_form_dict = graphical_ocr_descriptive_statistics_confidence.from_dict(graphical_ocr_descriptive_statistics_confidence_dict)
+graphical_ocr_descriptive_statistics_confidence_from_dict = GraphicalOCRDescriptiveStatisticsConfidence.from_dict(graphical_ocr_descriptive_statistics_confidence_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

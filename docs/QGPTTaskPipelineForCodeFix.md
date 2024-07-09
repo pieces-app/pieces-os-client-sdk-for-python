@@ -23,7 +23,7 @@ print QGPTTaskPipelineForCodeFix.to_json()
 # convert the object into a dict
 qgpt_task_pipeline_for_code_fix_dict = qgpt_task_pipeline_for_code_fix_instance.to_dict()
 # create an instance of QGPTTaskPipelineForCodeFix from a dict
-qgpt_task_pipeline_for_code_fix_form_dict = qgpt_task_pipeline_for_code_fix.from_dict(qgpt_task_pipeline_for_code_fix_dict)
+qgpt_task_pipeline_for_code_fix_from_dict = QGPTTaskPipelineForCodeFix.from_dict(qgpt_task_pipeline_for_code_fix_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

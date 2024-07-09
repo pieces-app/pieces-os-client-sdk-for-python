@@ -22,7 +22,7 @@ print GitHubDistribution.to_json()
 # convert the object into a dict
 git_hub_distribution_dict = git_hub_distribution_instance.to_dict()
 # create an instance of GitHubDistribution from a dict
-git_hub_distribution_form_dict = git_hub_distribution.from_dict(git_hub_distribution_dict)
+git_hub_distribution_from_dict = GitHubDistribution.from_dict(git_hub_distribution_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

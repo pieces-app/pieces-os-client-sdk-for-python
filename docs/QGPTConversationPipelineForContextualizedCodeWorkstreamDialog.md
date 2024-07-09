@@ -22,7 +22,7 @@ print QGPTConversationPipelineForContextualizedCodeWorkstreamDialog.to_json()
 # convert the object into a dict
 qgpt_conversation_pipeline_for_contextualized_code_workstream_dialog_dict = qgpt_conversation_pipeline_for_contextualized_code_workstream_dialog_instance.to_dict()
 # create an instance of QGPTConversationPipelineForContextualizedCodeWorkstreamDialog from a dict
-qgpt_conversation_pipeline_for_contextualized_code_workstream_dialog_form_dict = qgpt_conversation_pipeline_for_contextualized_code_workstream_dialog.from_dict(qgpt_conversation_pipeline_for_contextualized_code_workstream_dialog_dict)
+qgpt_conversation_pipeline_for_contextualized_code_workstream_dialog_from_dict = QGPTConversationPipelineForContextualizedCodeWorkstreamDialog.from_dict(qgpt_conversation_pipeline_for_contextualized_code_workstream_dialog_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -27,8 +27,8 @@ class QGPTAgentRelatedRoutes(BaseModel):
     """
     This is specific for all the related materials, like people, tags, websites... xyz  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
-    people: Optional[StrictBool] = Field(None, description="optional bool, that will say if we reccomend to run related.people on this conversation, IFF set to TRUE.")
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
+    people: Optional[StrictBool] = Field(default=None, description="optional bool, that will say if we reccomend to run related.people on this conversation, IFF set to TRUE.")
     __properties = ["schema", "people"]
 
     class Config:

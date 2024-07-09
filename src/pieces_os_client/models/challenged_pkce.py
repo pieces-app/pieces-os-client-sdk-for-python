@@ -27,12 +27,12 @@ class ChallengedPKCE(BaseModel):
     """
     A model that Generates A PKCE Challenge Object with the needed requirements.  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
-    state: StrictStr = Field(..., description="An opaque value the clients adds to the initial request that Auth0 includes when redirecting the back to the client. This value must be used by the client to prevent CSRF attacks.")
-    nonce: StrictStr = Field(..., description="A local key that is held as the comparator to state, thus they should be the same.")
-    challenge: StrictStr = Field(..., description="Generated challenge from the code_verifier.")
-    method: StrictStr = Field(..., description="Method used to generate the challenge. The PKCE spec defines two methods, S256 and plain, however, Auth0 supports only S256 since the latter is discouraged.")
-    verifier: StrictStr = Field(..., description="Cryptographically random key that was used to generate the code_challenge passed to /authorize.")
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
+    state: StrictStr = Field(default=..., description="An opaque value the clients adds to the initial request that Auth0 includes when redirecting the back to the client. This value must be used by the client to prevent CSRF attacks.")
+    nonce: StrictStr = Field(default=..., description="A local key that is held as the comparator to state, thus they should be the same.")
+    challenge: StrictStr = Field(default=..., description="Generated challenge from the code_verifier.")
+    method: StrictStr = Field(default=..., description="Method used to generate the challenge. The PKCE spec defines two methods, S256 and plain, however, Auth0 supports only S256 since the latter is discouraged.")
+    verifier: StrictStr = Field(default=..., description="Cryptographically random key that was used to generate the code_challenge passed to /authorize.")
     __properties = ["schema", "state", "nonce", "challenge", "method", "verifier"]
 
     @validator('method')

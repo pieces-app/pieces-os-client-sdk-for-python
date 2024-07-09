@@ -28,7 +28,7 @@ print SeededTrackedApplication.to_json()
 # convert the object into a dict
 seeded_tracked_application_dict = seeded_tracked_application_instance.to_dict()
 # create an instance of SeededTrackedApplication from a dict
-seeded_tracked_application_form_dict = seeded_tracked_application.from_dict(seeded_tracked_application_dict)
+seeded_tracked_application_from_dict = SeededTrackedApplication.from_dict(seeded_tracked_application_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

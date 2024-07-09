@@ -24,7 +24,7 @@ print WorkstreamEventContext.to_json()
 # convert the object into a dict
 workstream_event_context_dict = workstream_event_context_instance.to_dict()
 # create an instance of WorkstreamEventContext from a dict
-workstream_event_context_form_dict = workstream_event_context.from_dict(workstream_event_context_dict)
+workstream_event_context_from_dict = WorkstreamEventContext.from_dict(workstream_event_context_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

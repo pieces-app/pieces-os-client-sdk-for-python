@@ -23,7 +23,7 @@ print AvailableFormats.to_json()
 # convert the object into a dict
 available_formats_dict = available_formats_instance.to_dict()
 # create an instance of AvailableFormats from a dict
-available_formats_form_dict = available_formats.from_dict(available_formats_dict)
+available_formats_from_dict = AvailableFormats.from_dict(available_formats_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

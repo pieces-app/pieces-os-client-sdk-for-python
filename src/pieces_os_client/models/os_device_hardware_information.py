@@ -29,7 +29,7 @@ class OSDeviceHardwareInformation(BaseModel):
     """
     this will let us know specific hardware information  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     cpu: Optional[OSDeviceCPUHardwareInformation] = None
     gpu: Optional[OSDeviceGPUHardwareInformation] = None
     __properties = ["schema", "cpu", "gpu"]

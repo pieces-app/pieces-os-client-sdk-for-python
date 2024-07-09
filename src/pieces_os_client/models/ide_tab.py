@@ -33,7 +33,7 @@ class IDETab(BaseModel):
     """
     This is a representation of an IDE Tab  value: is the value of the entire file(that being said we do not recomment passing this over as we can read this file on PieceOS side of things) classification: this is the classifcation of this file  selection: this is a represention of a copy/paste/selection of a bit of code  anchor: this is the file path  range: this is the duration that this user has been on this Tab  current: is a boolean that will let us know if this is the current active tab  contributors: is the people that are extracted via git  lsp: this is the languageserverprotocol this is used for may things such as error,stackstrces, mainly information extracted from the lang server  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     value: Optional[TransferableString] = None
     classification: Optional[Classification] = None
     selections: Optional[IDESelections] = None

@@ -26,7 +26,7 @@ print SeededAnchorPoint.to_json()
 # convert the object into a dict
 seeded_anchor_point_dict = seeded_anchor_point_instance.to_dict()
 # create an instance of SeededAnchorPoint from a dict
-seeded_anchor_point_form_dict = seeded_anchor_point.from_dict(seeded_anchor_point_dict)
+seeded_anchor_point_from_dict = SeededAnchorPoint.from_dict(seeded_anchor_point_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

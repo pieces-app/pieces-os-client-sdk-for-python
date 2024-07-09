@@ -6,7 +6,7 @@ This is the specific event that represent the Shadow Activity ie the copy/paste 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
-**check_in** | **bool** | this is a sort of check-in event(ie when ever your application is in the forground on there is an interaction) | [optional] 
+**check_in** | **bool** | this is a sort of check-in event(ie when ever your application is in the foreground on there is an interaction) | [optional] 
 **copy** | **bool** |  | [optional] 
 **paste** | **bool** |  | [optional] 
 **file_open** | **bool** |  | [optional] 
@@ -36,7 +36,7 @@ print WorkstreamEventTrigger.to_json()
 # convert the object into a dict
 workstream_event_trigger_dict = workstream_event_trigger_instance.to_dict()
 # create an instance of WorkstreamEventTrigger from a dict
-workstream_event_trigger_form_dict = workstream_event_trigger.from_dict(workstream_event_trigger_dict)
+workstream_event_trigger_from_dict = WorkstreamEventTrigger.from_dict(workstream_event_trigger_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

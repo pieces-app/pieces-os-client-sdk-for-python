@@ -27,7 +27,7 @@ class ReferencedShare(BaseModel):
     """
     This is a [DAG SAFE] version of a share. with just a required share ID.  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(None, alias="schema")
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     id: StrictStr = Field(...)
     reference: Optional[FlattenedShare] = None
     __properties = ["schema", "id", "reference"]
