@@ -29,7 +29,7 @@ from pieces_os_client.models.privacy_enum import PrivacyEnum
 
 class SeededTrackedApplication(BaseModel):
     """
-    A Model to describe what application a format/analytics event originated - Specifically NOT requiring an ID  # noqa: E501
+      # noqa: E501
     """
     var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     name: ApplicationNameEnum = Field(...)

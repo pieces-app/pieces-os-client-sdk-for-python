@@ -15,7 +15,7 @@
 """  # noqa: E501
 
 
-__version__ = "2.7.0"
+__version__ = "3.0.0"
 
 # import apis into sdk package
 from pieces_os_client.api.activities_api import ActivitiesApi
@@ -158,6 +158,7 @@ from pieces_os_client.models.backup_status import BackupStatus
 from pieces_os_client.models.backup_status_enum import BackupStatusEnum
 from pieces_os_client.models.backup_streamed_progress import BackupStreamedProgress
 from pieces_os_client.models.backups import Backups
+from pieces_os_client.models.backups_streamed_progress import BackupsStreamedProgress
 from pieces_os_client.models.browser_selection import BrowserSelection
 from pieces_os_client.models.browser_tab import BrowserTab
 from pieces_os_client.models.browser_tab_value import BrowserTabValue
@@ -232,6 +233,7 @@ from pieces_os_client.models.flattened_anchor_points import FlattenedAnchorPoint
 from pieces_os_client.models.flattened_anchors import FlattenedAnchors
 from pieces_os_client.models.flattened_annotation import FlattenedAnnotation
 from pieces_os_client.models.flattened_annotations import FlattenedAnnotations
+from pieces_os_client.models.flattened_application import FlattenedApplication
 from pieces_os_client.models.flattened_asset import FlattenedAsset
 from pieces_os_client.models.flattened_assets import FlattenedAssets
 from pieces_os_client.models.flattened_conversation import FlattenedConversation
@@ -316,6 +318,7 @@ from pieces_os_client.models.mailgun_distribution import MailgunDistribution
 from pieces_os_client.models.mailgun_metadata import MailgunMetadata
 from pieces_os_client.models.mechanism_enum import MechanismEnum
 from pieces_os_client.models.model import Model
+from pieces_os_client.models.model_capabilities import ModelCapabilities
 from pieces_os_client.models.model_delete_cache_input import ModelDeleteCacheInput
 from pieces_os_client.models.model_delete_cache_output import ModelDeleteCacheOutput
 from pieces_os_client.models.model_download_progress import ModelDownloadProgress
@@ -413,6 +416,7 @@ from pieces_os_client.models.referenced_activity import ReferencedActivity
 from pieces_os_client.models.referenced_anchor import ReferencedAnchor
 from pieces_os_client.models.referenced_anchor_point import ReferencedAnchorPoint
 from pieces_os_client.models.referenced_annotation import ReferencedAnnotation
+from pieces_os_client.models.referenced_application import ReferencedApplication
 from pieces_os_client.models.referenced_asset import ReferencedAsset
 from pieces_os_client.models.referenced_conversation import ReferencedConversation
 from pieces_os_client.models.referenced_conversation_message import ReferencedConversationMessage
@@ -598,8 +602,6 @@ from pieces_os_client.models.textually_extracted_material import TextuallyExtrac
 from pieces_os_client.models.textually_extracted_materials import TextuallyExtractedMaterials
 from pieces_os_client.models.theme import Theme
 from pieces_os_client.models.tokenized_pkce import TokenizedPKCE
-from pieces_os_client.models.tracked_application_install import TrackedApplicationInstall
-from pieces_os_client.models.tracked_application_update import TrackedApplicationUpdate
 from pieces_os_client.models.tracked_asset_event_creation_metadata import TrackedAssetEventCreationMetadata
 from pieces_os_client.models.tracked_asset_event_creation_metadata_clipboard import TrackedAssetEventCreationMetadataClipboard
 from pieces_os_client.models.tracked_asset_event_creation_metadata_file import TrackedAssetEventCreationMetadataFile
@@ -613,15 +615,10 @@ from pieces_os_client.models.tracked_assets_event_search_metadata_results import
 from pieces_os_client.models.tracked_conversation_event_identifier_description_pairs import TrackedConversationEventIdentifierDescriptionPairs
 from pieces_os_client.models.tracked_conversation_event_metadata import TrackedConversationEventMetadata
 from pieces_os_client.models.tracked_conversation_event_rename_metadata import TrackedConversationEventRenameMetadata
-from pieces_os_client.models.tracked_format import TrackedFormat
-from pieces_os_client.models.tracked_format_event import TrackedFormatEvent
 from pieces_os_client.models.tracked_format_event_identifier_description_pairs import TrackedFormatEventIdentifierDescriptionPairs
 from pieces_os_client.models.tracked_format_event_metadata import TrackedFormatEventMetadata
-from pieces_os_client.models.tracked_interaction_event import TrackedInteractionEvent
-from pieces_os_client.models.tracked_keyboard_event import TrackedKeyboardEvent
 from pieces_os_client.models.tracked_session_event_identifier_description_pairs import TrackedSessionEventIdentifierDescriptionPairs
 from pieces_os_client.models.tracked_summary_totals import TrackedSummaryTotals
-from pieces_os_client.models.tracked_user_profile import TrackedUserProfile
 from pieces_os_client.models.transferable_bytes import TransferableBytes
 from pieces_os_client.models.transferable_string import TransferableString
 from pieces_os_client.models.unchecked_os_server_update import UncheckedOSServerUpdate

@@ -27,13 +27,8 @@ from typing import Optional
 from pieces_os_client.models.application import Application
 from pieces_os_client.models.applications import Applications
 from pieces_os_client.models.detected_external_applications import DetectedExternalApplications
-from pieces_os_client.models.seeded_tracked_interaction_event import SeededTrackedInteractionEvent
-from pieces_os_client.models.seeded_tracked_keyboard_event import SeededTrackedKeyboardEvent
 from pieces_os_client.models.session import Session
-from pieces_os_client.models.tracked_application_install import TrackedApplicationInstall
-from pieces_os_client.models.tracked_application_update import TrackedApplicationUpdate
-from pieces_os_client.models.tracked_interaction_event import TrackedInteractionEvent
-from pieces_os_client.models.tracked_keyboard_event import TrackedKeyboardEvent
+from pieces_os_client.models.streamed_identifiers import StreamedIdentifiers
 
 from pieces_os_client.api_client import ApiClient
 from pieces_os_client.api_response import ApiResponse
@@ -754,148 +749,6 @@ class ApplicationsApi:
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def applications_session_snapshot(self, session : Annotated[StrictStr, Field(..., description="This is a uuid that points to a session.")], **kwargs) -> Session:  # noqa: E501
-        """(Deprecated) /applications/sessions/{session} [GET]  # noqa: E501
-
-        Fetches detailed information about a specific session, identified by a session UUID, including application usage and engagement data.  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.applications_session_snapshot(session, async_req=True)
-        >>> result = thread.get()
-
-        :param session: This is a uuid that points to a session. (required)
-        :type session: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _request_timeout: timeout setting for this request.
-               If one number provided, it will be total request
-               timeout. It can also be a pair (tuple) of
-               (connection, read) timeouts.
-        :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
-        :rtype: Session
-        """
-        kwargs['_return_http_data_only'] = True
-        if '_preload_content' in kwargs:
-            message = "Error! Please call the applications_session_snapshot_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
-            raise ValueError(message)
-        return self.applications_session_snapshot_with_http_info(session, **kwargs)  # noqa: E501
-
-    @validate_arguments
-    def applications_session_snapshot_with_http_info(self, session : Annotated[StrictStr, Field(..., description="This is a uuid that points to a session.")], **kwargs) -> ApiResponse:  # noqa: E501
-        """(Deprecated) /applications/sessions/{session} [GET]  # noqa: E501
-
-        Fetches detailed information about a specific session, identified by a session UUID, including application usage and engagement data.  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.applications_session_snapshot_with_http_info(session, async_req=True)
-        >>> result = thread.get()
-
-        :param session: This is a uuid that points to a session. (required)
-        :type session: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _preload_content: if False, the ApiResponse.data will
-                                 be set to none and raw_data will store the
-                                 HTTP response body without reading/decoding.
-                                 Default is True.
-        :type _preload_content: bool, optional
-        :param _return_http_data_only: response data instead of ApiResponse
-                                       object with status code, headers, etc
-        :type _return_http_data_only: bool, optional
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the authentication
-                              in the spec for a single request.
-        :type _request_auth: dict, optional
-        :type _content_type: string, optional: force content-type for the request
-        :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
-        :rtype: tuple(Session, status_code(int), headers(HTTPHeaderDict))
-        """
-
-        warnings.warn("GET /applications/sessions/{session} is deprecated.", DeprecationWarning)
-
-        _params = locals()
-
-        _all_params = [
-            'session'
-        ]
-        _all_params.extend(
-            [
-                'async_req',
-                '_return_http_data_only',
-                '_preload_content',
-                '_request_timeout',
-                '_request_auth',
-                '_content_type',
-                '_headers'
-            ]
-        )
-
-        # validate the arguments
-        for _key, _val in _params['kwargs'].items():
-            if _key not in _all_params:
-                raise ApiTypeError(
-                    "Got an unexpected keyword argument '%s'"
-                    " to method applications_session_snapshot" % _key
-                )
-            _params[_key] = _val
-        del _params['kwargs']
-
-        _collection_formats = {}
-
-        # process the path parameters
-        _path_params = {}
-        if _params['session'] is not None:
-            _path_params['session'] = _params['session']
-
-
-        # process the query parameters
-        _query_params = []
-        # process the header parameters
-        _header_params = dict(_params.get('_headers', {}))
-        # process the form parameters
-        _form_params = []
-        _files = {}
-        # process the body parameter
-        _body_params = None
-        # set the HTTP header `Accept`
-        _header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
-
-        # authentication setting
-        _auth_settings = []  # noqa: E501
-
-        _response_types_map = {
-            '200': "Session",
-        }
-
-        return self.api_client.call_api(
-            '/applications/sessions/{session}', 'GET',
-            _path_params,
-            _query_params,
-            _header_params,
-            body=_body_params,
-            post_params=_form_params,
-            files=_files,
-            response_types_map=_response_types_map,
-            auth_settings=_auth_settings,
-            async_req=_params.get('async_req'),
-            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
-            _preload_content=_params.get('_preload_content', True),
-            _request_timeout=_params.get('_request_timeout'),
-            collection_formats=_collection_formats,
-            _request_auth=_params.get('_request_auth'))
-
-    @validate_arguments
     def applications_snapshot(self, **kwargs) -> Applications:  # noqa: E501
         """/applications [GET]  # noqa: E501
 
@@ -1168,18 +1021,16 @@ class ApplicationsApi:
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def applications_usage_engagement_interaction(self, seeded_tracked_interaction_event : Optional[SeededTrackedInteractionEvent] = None, **kwargs) -> TrackedInteractionEvent:  # noqa: E501
-        """(Deprecated) /applications/usage/engagement/interaction [POST] Scoped to Apps  # noqa: E501
+    def applications_stream_identifiers(self, **kwargs) -> StreamedIdentifiers:  # noqa: E501
+        """/applications/stream/identifiers [WS]  # noqa: E501
 
-        Records user interaction events within applications, such as clicks or taps, to analyze engagement patterns and user behavior.  # noqa: E501
+        Provides a WebSocket connection that emits changes to your application identifiers (UUIDs).  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.applications_usage_engagement_interaction(seeded_tracked_interaction_event, async_req=True)
+        >>> thread = api.applications_stream_identifiers(async_req=True)
         >>> result = thread.get()
 
-        :param seeded_tracked_interaction_event: 
-        :type seeded_tracked_interaction_event: SeededTrackedInteractionEvent
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
         :param _request_timeout: timeout setting for this request.
@@ -1189,27 +1040,25 @@ class ApplicationsApi:
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
-        :rtype: TrackedInteractionEvent
+        :rtype: StreamedIdentifiers
         """
         kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
-            message = "Error! Please call the applications_usage_engagement_interaction_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
+            message = "Error! Please call the applications_stream_identifiers_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
-        return self.applications_usage_engagement_interaction_with_http_info(seeded_tracked_interaction_event, **kwargs)  # noqa: E501
+        return self.applications_stream_identifiers_with_http_info(**kwargs)  # noqa: E501
 
     @validate_arguments
-    def applications_usage_engagement_interaction_with_http_info(self, seeded_tracked_interaction_event : Optional[SeededTrackedInteractionEvent] = None, **kwargs) -> ApiResponse:  # noqa: E501
-        """(Deprecated) /applications/usage/engagement/interaction [POST] Scoped to Apps  # noqa: E501
+    def applications_stream_identifiers_with_http_info(self, **kwargs) -> ApiResponse:  # noqa: E501
+        """/applications/stream/identifiers [WS]  # noqa: E501
 
-        Records user interaction events within applications, such as clicks or taps, to analyze engagement patterns and user behavior.  # noqa: E501
+        Provides a WebSocket connection that emits changes to your application identifiers (UUIDs).  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.applications_usage_engagement_interaction_with_http_info(seeded_tracked_interaction_event, async_req=True)
+        >>> thread = api.applications_stream_identifiers_with_http_info(async_req=True)
         >>> result = thread.get()
 
-        :param seeded_tracked_interaction_event: 
-        :type seeded_tracked_interaction_event: SeededTrackedInteractionEvent
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
         :param _preload_content: if False, the ApiResponse.data will
@@ -1232,15 +1081,12 @@ class ApplicationsApi:
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
-        :rtype: tuple(TrackedInteractionEvent, status_code(int), headers(HTTPHeaderDict))
+        :rtype: tuple(StreamedIdentifiers, status_code(int), headers(HTTPHeaderDict))
         """
-
-        warnings.warn("POST /applications/usage/engagement/interaction is deprecated.", DeprecationWarning)
 
         _params = locals()
 
         _all_params = [
-            'seeded_tracked_interaction_event'
         ]
         _all_params.extend(
             [
@@ -1259,7 +1105,7 @@ class ApplicationsApi:
             if _key not in _all_params:
                 raise ApiTypeError(
                     "Got an unexpected keyword argument '%s'"
-                    " to method applications_usage_engagement_interaction" % _key
+                    " to method applications_stream_identifiers" % _key
                 )
             _params[_key] = _val
         del _params['kwargs']
@@ -1278,464 +1124,20 @@ class ApplicationsApi:
         _files = {}
         # process the body parameter
         _body_params = None
-        if _params['seeded_tracked_interaction_event'] is not None:
-            _body_params = _params['seeded_tracked_interaction_event']
-
         # set the HTTP header `Accept`
         _header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
-
-        # set the HTTP header `Content-Type`
-        _content_types_list = _params.get('_content_type',
-            self.api_client.select_header_content_type(
-                ['application/json']))
-        if _content_types_list:
-                _header_params['Content-Type'] = _content_types_list
+            ['application/json', 'text/plain'])  # noqa: E501
 
         # authentication setting
         _auth_settings = []  # noqa: E501
 
         _response_types_map = {
-            '200': "TrackedInteractionEvent",
+            '200': "StreamedIdentifiers",
+            '500': "str",
         }
 
         return self.api_client.call_api(
-            '/applications/usage/engagement/interaction', 'POST',
-            _path_params,
-            _query_params,
-            _header_params,
-            body=_body_params,
-            post_params=_form_params,
-            files=_files,
-            response_types_map=_response_types_map,
-            auth_settings=_auth_settings,
-            async_req=_params.get('async_req'),
-            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
-            _preload_content=_params.get('_preload_content', True),
-            _request_timeout=_params.get('_request_timeout'),
-            collection_formats=_collection_formats,
-            _request_auth=_params.get('_request_auth'))
-
-    @validate_arguments
-    def applications_usage_engagement_keyboard(self, seeded_tracked_keyboard_event : Optional[SeededTrackedKeyboardEvent] = None, **kwargs) -> TrackedKeyboardEvent:  # noqa: E501
-        """(Deprecated) /applications/usage/engagement/keyboard [POST] Scoped to Apps  # noqa: E501
-
-        Captures keyboard interaction events, including shortcuts, within applications to monitor user engagement and productivity enhancements.  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.applications_usage_engagement_keyboard(seeded_tracked_keyboard_event, async_req=True)
-        >>> result = thread.get()
-
-        :param seeded_tracked_keyboard_event: 
-        :type seeded_tracked_keyboard_event: SeededTrackedKeyboardEvent
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _request_timeout: timeout setting for this request.
-               If one number provided, it will be total request
-               timeout. It can also be a pair (tuple) of
-               (connection, read) timeouts.
-        :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
-        :rtype: TrackedKeyboardEvent
-        """
-        kwargs['_return_http_data_only'] = True
-        if '_preload_content' in kwargs:
-            message = "Error! Please call the applications_usage_engagement_keyboard_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
-            raise ValueError(message)
-        return self.applications_usage_engagement_keyboard_with_http_info(seeded_tracked_keyboard_event, **kwargs)  # noqa: E501
-
-    @validate_arguments
-    def applications_usage_engagement_keyboard_with_http_info(self, seeded_tracked_keyboard_event : Optional[SeededTrackedKeyboardEvent] = None, **kwargs) -> ApiResponse:  # noqa: E501
-        """(Deprecated) /applications/usage/engagement/keyboard [POST] Scoped to Apps  # noqa: E501
-
-        Captures keyboard interaction events, including shortcuts, within applications to monitor user engagement and productivity enhancements.  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.applications_usage_engagement_keyboard_with_http_info(seeded_tracked_keyboard_event, async_req=True)
-        >>> result = thread.get()
-
-        :param seeded_tracked_keyboard_event: 
-        :type seeded_tracked_keyboard_event: SeededTrackedKeyboardEvent
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _preload_content: if False, the ApiResponse.data will
-                                 be set to none and raw_data will store the
-                                 HTTP response body without reading/decoding.
-                                 Default is True.
-        :type _preload_content: bool, optional
-        :param _return_http_data_only: response data instead of ApiResponse
-                                       object with status code, headers, etc
-        :type _return_http_data_only: bool, optional
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the authentication
-                              in the spec for a single request.
-        :type _request_auth: dict, optional
-        :type _content_type: string, optional: force content-type for the request
-        :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
-        :rtype: tuple(TrackedKeyboardEvent, status_code(int), headers(HTTPHeaderDict))
-        """
-
-        warnings.warn("POST /applications/usage/engagement/keyboard is deprecated.", DeprecationWarning)
-
-        _params = locals()
-
-        _all_params = [
-            'seeded_tracked_keyboard_event'
-        ]
-        _all_params.extend(
-            [
-                'async_req',
-                '_return_http_data_only',
-                '_preload_content',
-                '_request_timeout',
-                '_request_auth',
-                '_content_type',
-                '_headers'
-            ]
-        )
-
-        # validate the arguments
-        for _key, _val in _params['kwargs'].items():
-            if _key not in _all_params:
-                raise ApiTypeError(
-                    "Got an unexpected keyword argument '%s'"
-                    " to method applications_usage_engagement_keyboard" % _key
-                )
-            _params[_key] = _val
-        del _params['kwargs']
-
-        _collection_formats = {}
-
-        # process the path parameters
-        _path_params = {}
-
-        # process the query parameters
-        _query_params = []
-        # process the header parameters
-        _header_params = dict(_params.get('_headers', {}))
-        # process the form parameters
-        _form_params = []
-        _files = {}
-        # process the body parameter
-        _body_params = None
-        if _params['seeded_tracked_keyboard_event'] is not None:
-            _body_params = _params['seeded_tracked_keyboard_event']
-
-        # set the HTTP header `Accept`
-        _header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
-
-        # set the HTTP header `Content-Type`
-        _content_types_list = _params.get('_content_type',
-            self.api_client.select_header_content_type(
-                ['application/json']))
-        if _content_types_list:
-                _header_params['Content-Type'] = _content_types_list
-
-        # authentication setting
-        _auth_settings = []  # noqa: E501
-
-        _response_types_map = {
-            '200': "TrackedKeyboardEvent",
-        }
-
-        return self.api_client.call_api(
-            '/applications/usage/engagement/keyboard', 'POST',
-            _path_params,
-            _query_params,
-            _header_params,
-            body=_body_params,
-            post_params=_form_params,
-            files=_files,
-            response_types_map=_response_types_map,
-            auth_settings=_auth_settings,
-            async_req=_params.get('async_req'),
-            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
-            _preload_content=_params.get('_preload_content', True),
-            _request_timeout=_params.get('_request_timeout'),
-            collection_formats=_collection_formats,
-            _request_auth=_params.get('_request_auth'))
-
-    @validate_arguments
-    def applications_usage_installation(self, tracked_application_install : Optional[TrackedApplicationInstall] = None, **kwargs) -> None:  # noqa: E501
-        """(Deprecated) /applications/usage/installation [POST]  # noqa: E501
-
-        Logs the installation events of the Pieces application.  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.applications_usage_installation(tracked_application_install, async_req=True)
-        >>> result = thread.get()
-
-        :param tracked_application_install: 
-        :type tracked_application_install: TrackedApplicationInstall
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _request_timeout: timeout setting for this request.
-               If one number provided, it will be total request
-               timeout. It can also be a pair (tuple) of
-               (connection, read) timeouts.
-        :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
-        :rtype: None
-        """
-        kwargs['_return_http_data_only'] = True
-        if '_preload_content' in kwargs:
-            message = "Error! Please call the applications_usage_installation_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
-            raise ValueError(message)
-        return self.applications_usage_installation_with_http_info(tracked_application_install, **kwargs)  # noqa: E501
-
-    @validate_arguments
-    def applications_usage_installation_with_http_info(self, tracked_application_install : Optional[TrackedApplicationInstall] = None, **kwargs) -> ApiResponse:  # noqa: E501
-        """(Deprecated) /applications/usage/installation [POST]  # noqa: E501
-
-        Logs the installation events of the Pieces application.  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.applications_usage_installation_with_http_info(tracked_application_install, async_req=True)
-        >>> result = thread.get()
-
-        :param tracked_application_install: 
-        :type tracked_application_install: TrackedApplicationInstall
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _preload_content: if False, the ApiResponse.data will
-                                 be set to none and raw_data will store the
-                                 HTTP response body without reading/decoding.
-                                 Default is True.
-        :type _preload_content: bool, optional
-        :param _return_http_data_only: response data instead of ApiResponse
-                                       object with status code, headers, etc
-        :type _return_http_data_only: bool, optional
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the authentication
-                              in the spec for a single request.
-        :type _request_auth: dict, optional
-        :type _content_type: string, optional: force content-type for the request
-        :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
-        :rtype: None
-        """
-
-        warnings.warn("POST /applications/usage/installation is deprecated.", DeprecationWarning)
-
-        _params = locals()
-
-        _all_params = [
-            'tracked_application_install'
-        ]
-        _all_params.extend(
-            [
-                'async_req',
-                '_return_http_data_only',
-                '_preload_content',
-                '_request_timeout',
-                '_request_auth',
-                '_content_type',
-                '_headers'
-            ]
-        )
-
-        # validate the arguments
-        for _key, _val in _params['kwargs'].items():
-            if _key not in _all_params:
-                raise ApiTypeError(
-                    "Got an unexpected keyword argument '%s'"
-                    " to method applications_usage_installation" % _key
-                )
-            _params[_key] = _val
-        del _params['kwargs']
-
-        _collection_formats = {}
-
-        # process the path parameters
-        _path_params = {}
-
-        # process the query parameters
-        _query_params = []
-        # process the header parameters
-        _header_params = dict(_params.get('_headers', {}))
-        # process the form parameters
-        _form_params = []
-        _files = {}
-        # process the body parameter
-        _body_params = None
-        if _params['tracked_application_install'] is not None:
-            _body_params = _params['tracked_application_install']
-
-        # set the HTTP header `Content-Type`
-        _content_types_list = _params.get('_content_type',
-            self.api_client.select_header_content_type(
-                ['application/json']))
-        if _content_types_list:
-                _header_params['Content-Type'] = _content_types_list
-
-        # authentication setting
-        _auth_settings = []  # noqa: E501
-
-        _response_types_map = {}
-
-        return self.api_client.call_api(
-            '/applications/usage/installation', 'POST',
-            _path_params,
-            _query_params,
-            _header_params,
-            body=_body_params,
-            post_params=_form_params,
-            files=_files,
-            response_types_map=_response_types_map,
-            auth_settings=_auth_settings,
-            async_req=_params.get('async_req'),
-            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
-            _preload_content=_params.get('_preload_content', True),
-            _request_timeout=_params.get('_request_timeout'),
-            collection_formats=_collection_formats,
-            _request_auth=_params.get('_request_auth'))
-
-    @validate_arguments
-    def post_applications_usage_updated(self, tracked_application_update : Annotated[Optional[TrackedApplicationUpdate], Field(description="Sending over the previous application version, the current version, and the user.")] = None, **kwargs) -> None:  # noqa: E501
-        """(Deprecated) /applications/usage/updated [POST]  # noqa: E501
-
-        Tracks updates to the Pieces application, including version changes.  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.post_applications_usage_updated(tracked_application_update, async_req=True)
-        >>> result = thread.get()
-
-        :param tracked_application_update: Sending over the previous application version, the current version, and the user.
-        :type tracked_application_update: TrackedApplicationUpdate
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _request_timeout: timeout setting for this request.
-               If one number provided, it will be total request
-               timeout. It can also be a pair (tuple) of
-               (connection, read) timeouts.
-        :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
-        :rtype: None
-        """
-        kwargs['_return_http_data_only'] = True
-        if '_preload_content' in kwargs:
-            message = "Error! Please call the post_applications_usage_updated_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
-            raise ValueError(message)
-        return self.post_applications_usage_updated_with_http_info(tracked_application_update, **kwargs)  # noqa: E501
-
-    @validate_arguments
-    def post_applications_usage_updated_with_http_info(self, tracked_application_update : Annotated[Optional[TrackedApplicationUpdate], Field(description="Sending over the previous application version, the current version, and the user.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
-        """(Deprecated) /applications/usage/updated [POST]  # noqa: E501
-
-        Tracks updates to the Pieces application, including version changes.  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.post_applications_usage_updated_with_http_info(tracked_application_update, async_req=True)
-        >>> result = thread.get()
-
-        :param tracked_application_update: Sending over the previous application version, the current version, and the user.
-        :type tracked_application_update: TrackedApplicationUpdate
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _preload_content: if False, the ApiResponse.data will
-                                 be set to none and raw_data will store the
-                                 HTTP response body without reading/decoding.
-                                 Default is True.
-        :type _preload_content: bool, optional
-        :param _return_http_data_only: response data instead of ApiResponse
-                                       object with status code, headers, etc
-        :type _return_http_data_only: bool, optional
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the authentication
-                              in the spec for a single request.
-        :type _request_auth: dict, optional
-        :type _content_type: string, optional: force content-type for the request
-        :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
-        :rtype: None
-        """
-
-        warnings.warn("POST /applications/usage/updated is deprecated.", DeprecationWarning)
-
-        _params = locals()
-
-        _all_params = [
-            'tracked_application_update'
-        ]
-        _all_params.extend(
-            [
-                'async_req',
-                '_return_http_data_only',
-                '_preload_content',
-                '_request_timeout',
-                '_request_auth',
-                '_content_type',
-                '_headers'
-            ]
-        )
-
-        # validate the arguments
-        for _key, _val in _params['kwargs'].items():
-            if _key not in _all_params:
-                raise ApiTypeError(
-                    "Got an unexpected keyword argument '%s'"
-                    " to method post_applications_usage_updated" % _key
-                )
-            _params[_key] = _val
-        del _params['kwargs']
-
-        _collection_formats = {}
-
-        # process the path parameters
-        _path_params = {}
-
-        # process the query parameters
-        _query_params = []
-        # process the header parameters
-        _header_params = dict(_params.get('_headers', {}))
-        # process the form parameters
-        _form_params = []
-        _files = {}
-        # process the body parameter
-        _body_params = None
-        if _params['tracked_application_update'] is not None:
-            _body_params = _params['tracked_application_update']
-
-        # set the HTTP header `Content-Type`
-        _content_types_list = _params.get('_content_type',
-            self.api_client.select_header_content_type(
-                ['application/json']))
-        if _content_types_list:
-                _header_params['Content-Type'] = _content_types_list
-
-        # authentication setting
-        _auth_settings = []  # noqa: E501
-
-        _response_types_map = {}
-
-        return self.api_client.call_api(
-            '/applications/usage/updated', 'POST',
+            '/applications/stream/identifiers', 'GET',
             _path_params,
             _query_params,
             _header_params,

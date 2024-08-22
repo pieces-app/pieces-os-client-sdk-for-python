@@ -39,29 +39,7 @@
 
 ## Introduction
 
-The Pieces SDK is a powerful code engine package designed for writing applications on top of Pieces OS. It facilitates communication with a locally hosted server to enable features such as copilot chats, asset saving, and more.
-
-## Installation
-
-To get started with the Pieces SDK, follow these steps:
-
-1. **Download Pieces OS**: Pieces OS serves as the primary backend service, providing essential functionality for the SDK. Download the appropriate version for your operating system:
-   - [macOS](https://docs.pieces.app/installation-getting-started/macos) 
-   - [Windows](https://docs.pieces.app/installation-getting-started/windows) 
-   - [Linux](https://docs.pieces.app/installation-getting-started/linux)
-
-2. **Install the PyPI Package**: Use pip to install the Pieces SDK package:
-   ```shell
-   pip install pieces_os_client
-   ```
-
-## Usage
-After installing the SDK, you can import the library into your project and start utilizing its features:
-
-```shell
-import pieces_os_client as pos_client
-```
-For detailed usage instructions and examples, refer to the [documentation](https://docs.pieces.app/build).
+The Pieces OS Client SDK is a powerful code engine package designed for writing applications on top of Pieces OS. It facilitates communication with a locally hosted server to enable features such as copilot chats, asset saving, and more.
 
 ## Features
 The Pieces SDK offers the following key features:
@@ -69,38 +47,138 @@ The Pieces SDK offers the following key features:
 1. Copilot Chats: Communicate seamlessly with copilot chats functionality.
 2. Asset Management: Save and manage assets and formats efficiently.
 3. Local Server Interaction: Interact with a locally hosted server for various functionalities.
-4. Multi LLMs support: Use any Pieces supported LLMs to power apps.
+4. Multi LLMs support: Use any Pieces supported LLM to power your app.
 
-## Requirements
-The Pieces SDK has the following system requirements:
+## Installation
 
-- Pieces OS running as a backend service.
-- Python environment with pip for installing the SDK package.
+To get started with the Pieces OS Client SDK, follow these steps:
 
-## Getting Started
+1. **Download Pieces OS**: Pieces OS serves as the primary backend service, providing essential functionality for the SDK. Download the appropriate version for your operating system:
+   - [macOS](https://docs.pieces.app/installation-getting-started/macos) 
+   - [Windows](https://docs.pieces.app/installation-getting-started/windows) 
+   - [Linux](https://docs.pieces.app/installation-getting-started/linux)
 
-First, we will create a Python script to test the connection to the Pieces OS server. This involves creating a `config.py` file to store your configuration info and a `wellknown.py` file to test the connection.
+2. **Install the SDK**: Use pip to install the Pieces OS Client SDK package:
+   ```shell
+   pip install pieces_os_client
+   ```
 
-> It's important to note that the localhost port for Pieces OS is different based on the operating system.
-> 
-> For Linux, you should use `localhost:5323`.
->
-> For macOS and Windows, you should use `localhost:1000`.
+## Basic Usage
 
-Create a `main.py` file and add this code to confirm you have installed the correct package:
+The Pieces OS Client SDK has a built-in wrapper that simplifies the process of interacting with the Pieces OS server. Here's how you can get started with the wrapper.
 
-```python title="main.py"
+### Initialize the Pieces Client
+
+```python
+from pieces_os_client.wrapper import PiecesClient
+import platform
+
+# Defining the port based on the operating system
+platform_info = platform.platform()
+if 'Linux' in platform_info:
+   port = 5323
+else:
+   port = 1000
+
+pieces_client = PiecesClient(config={'baseUrl': f'http://localhost:{port}'})
+```
+
+#### Determining Your Base URL
+
+In the code snippet above, we use the `platform` package to determine the base URL based on the operating system. However, you can also set the base URL manually if you know your application will only run on a specific operating system.
+
+- **Local Instance of Pieces OS:**
+  - On macOS/Windows, use `http://localhost:1000`
+  - On Linux, use `http://localhost:5323`
+- **Remote Instance of Pieces OS:**
+  - Use the URL you have set up for your remote instance
+
+### Create a New Asset
+
+To create a new asset, you can use the `create_asset` method of the Pieces Client. Here's an example of how to create a new asset:
+
+```python
+from pieces_os_client.wrapper import PiecesClient
+from pieces_os_client import FragmentMetadata
+
+# Replace 'your_base_url' with the base URL of your Pieces OS server
+pieces_client = PiecesClient(config={'baseUrl': 'your_base_url'})
+
+# Set the content and metadata for the new asset
+content = "print('Hello, World!')"
+metadata = FragmentMetadata(ext=ClassificationSpecificEnum.PY) # optional metadata
+
+# Create the new asset using the content and metadata
+new_asset_id = pieces_client.create_asset(content, metadata)
+
+print(f"Created asset with ID: {new_asset_id}")
+```
+
+### Get All Assets
+
+To get all your assets, you can use the `assets` method of the Pieces Client. Here's an example of how to get all your assets and print their names:
+
+```python
+from pieces_os_client.wrapper import PiecesClient
+
+# Replace 'your_base_url' with the base URL of your Pieces OS server
+pieces_client = PiecesClient(config={'baseUrl': 'your_base_url'})
+
+# Get all assets and print their names
+assets = pieces_client.assets()
+for asset in assets:
+   logger.info(f"Asset Name: {asset.name}")
+
+```
+
+### Ask a Question to Pieces Copilot
+
+To ask a question to Pieces Copilot and stream the response, you can use the `stream_question` method of the Pieces Client. Here's an example of how to ask a question and stream the response:
+
+```python
+from pieces_os_client.wrapper import PiecesClient
+
+pieces_client = PiecesClient(config={'baseUrl': 'your_base_url'})
+
+# Set the question you want to ask
+question = "What is Object-Oriented Programming?"
+
+# Ask the question and stream the response
+for response in pieces_client.copilot.stream_question(question):
+   if response.question:
+         # Each answer is a chunk of the entire response to the question
+         answers = response.question.answers.iterable
+         for answer in answers:
+            print(answer.text,end="")
+```
+
+### Next Steps
+
+You can explore more features and functionalities of the built-in wrapper by referring to the [Pieces OS Client Wrapper SDK documentation](https://docs.pieces.app/build/sdks/python).
+
+## Advanced Usage
+
+If you want to use the Pieces OS Client SDK directly without the built-in wrapper, you can follow these steps to get started.
+
+### Getting Started
+
+First, we will create a Python script to test the connection to the Pieces OS server.
+
+Create a python file and add the following code to confirm you can connect to your Pieces OS server:
+
+```python
 import pieces_os_client
 import platform
 
-# Defining the port based on the operating system. For Linux, the port is 5323, and for macOS/Windows, the port is 1000.
+# Define the localhost port based on your operating system
+# For Linux, use port 5323, for macOS/Windows, use port 1000
 platform_info = platform.platform()
 if 'Linux' in platform_info:
     port = 5323
 else:
     port = 1000
 
-# The `basePath` defaults to http://localhost:1000, however we need to change it to the correct port based on the operating system.
+# The `basePath` defaults to http://localhost:1000, but in this case we are checking the operating system to correctly set the port
 configuration = pieces_os_client.Configuration(host=f"http://localhost:{port}")
 
 # Initialize the Pieces ApiClient
@@ -108,11 +186,11 @@ api_client = pieces_os_client.ApiClient(configuration)
 
 # Enter a context with an instance of the ApiClient
 with pieces_os_client.ApiClient(configuration) as api_client:
-    # Create an instance of the WellKnownApi class
+    # Create an instance of the WellKnown API
     api_instance = pieces_os_client.WellKnownApi(api_client)
 
     try:
-        # Retrieve the (wellknown) health of the Pieces OS
+        # Retrieve the (wellknown) health of your Pieces OS server
         api_response = api_instance.get_well_known_health()
         print("The response of WellKnownApi().get_well_known_health:")
         print(api_response) # Response: ok
@@ -120,18 +198,11 @@ with pieces_os_client.ApiClient(configuration) as api_client:
         print("Exception when calling WellKnownApi->get_well_known_health: %s\n" % e)
 ```
 
-Run the following command to execute the script:
-
-```shell
-python3 main.py
-```
-
 ## Examples
 Here are some examples of the basic endpoint for getting up and running: 
 
-
 <details>
-<summary>Connect</summary
+<summary>Connect to your Pieces OS Server</summary>
 
    When developing and creating an application on top of Pieces OS, it is important that you authenticate with the application itself when performing requests.
    
@@ -157,7 +228,7 @@ with pieces_os_client.ApiClient(configuration) as api_client:
 </details>
 
 <details>
-<summary>Create a new Asset</summary>
+<summary>Create a New Asset</summary>
    When integrating your application with Pieces OS, creating a new asset is a fundamental task that enables you to manage your resources effectively. This code snippet demonstrates how to accomplish this task using the Pieces OS API.
 
    After establishing a connection with the API client and instantiating the Assets API class, you can call the `assets_create_new_asset` method to create the asset.You can customize the asset creation process by setting parameters such as `transferables` and `seed`.
@@ -183,12 +254,11 @@ with pieces_os_client.ApiClient(configuration) as api_client:
 </details>
 
 <details>
-<summary>Get your Assets Snapshot</summary>
+<summary>Get Your Assets</summary>
 
-   When working with your app implementation you will often need to call the entire asset snapshot in order to get the correct snippet from your storage in Pieces OS. You can use this asset snapshot by passing the asset's ID and a boolean value indicating whether or not to return transferable data. The response from the API is then printed to the console.
+When working with your app implementation you will often need to call the entire asset snapshot in order to get the correct snippet from your storage in Pieces OS. You can use this asset snapshot by passing the asset's ID and a boolean value indicating whether or not to return transferable data. The response from the API is then printed to the console.
 
 ```python
- 
 # Enter a context with an instance of the API client
 with pieces_os_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
@@ -207,13 +277,12 @@ with pieces_os_client.ApiClient(configuration) as api_client:
 ```
 </details>
 
-
 A developer documentation that outlines all the ins and outs of our available endpoints can be found [here](https://docs.pieces.app/build/reference/python/).
 
 ## Learn More / Support
 Explore more about Pieces SDK and get help from the following resources:
 
-- 🚀 [Getting Started Tutorial](https://docs.pieces.app/installation-getting-started/what-am-i-installing)
+- 🚀 [Getting Started with Pieces](https://docs.pieces.app/installation-getting-started/what-am-i-installing)
 - 📜 [Pieces Docs](https://docs.pieces.app/build)
 - 💬 [Discord Community](https://discord.gg/getpieces)
 
