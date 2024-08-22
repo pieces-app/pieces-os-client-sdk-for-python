@@ -27,20 +27,19 @@ import atexit
 import sys
 import importlib.util
 import queue
-from typing import 
 from pieces_os_client import Conversation, StreamedIdentifiers, Asset
 from abc import ABC, abstractmethod
 import threading
-from pieces_os_client_wrapper.copilot import Copilot
-from pieces_os_client_wrapper.basic_identifier.asset import BasicAsset
-from pieces_os_client_wrapper.streamed_identifiers.assets_snapshot import AssetSnapshot
-from websockets import *
-from pieces_os_client_wrapper.client import PiecesClient
-from pieces_os_client_wrapper.basic_identifier.basic import Basic
-from pieces_os_client_wrapper.basic_identifier.message import BasicMessage
-from pieces_os_client_wrapper.basic_identifier.chat import BasicChat
-from pieces_os_client_wrapper.streamed_identifiers._streamed_identifiers import StreamedIdentifiersCache
-from pieces_os_client_wrapper.streamed_identifiers.conversations_snapshot import ConversationsSnapshot
+from pieces_os_client.wrapper.copilot import Copilot
+from pieces_os_client.wrapper.basic_identifier.asset import BasicAsset
+from pieces_os_client.wrapper.streamed_identifiers.assets_snapshot import AssetSnapshot
+from pieces_os_client.wrapper.websockets import *
+from pieces_os_client.wrapper.client import PiecesClient
+from pieces_os_client.wrapper.basic_identifier.basic import Basic
+from pieces_os_client.wrapper.basic_identifier.message import BasicMessage
+from pieces_os_client.wrapper.basic_identifier.chat import BasicChat
+from pieces_os_client.wrapper.streamed_identifiers._streamed_identifiers import StreamedIdentifiersCache
+from pieces_os_client.wrapper.streamed_identifiers.conversations_snapshot import ConversationsSnapshot
 
 class TestBasicChat:
     @pytest.fixture(autouse=True)

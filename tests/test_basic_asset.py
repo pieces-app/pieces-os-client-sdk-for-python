@@ -4,9 +4,9 @@ from pieces_os_client import Asset, Format, ClassificationGenericEnum, Classific
 from datetime import datetime
 import sys
 import importlib.util
-from pieces_os_client_wrapper.basic_identifier import BasicAsset
-from pieces_os_client_wrapper.streamed_identifiers.assets_snapshot import AssetSnapshot
-from pieces_os_client_wrapper.client import PiecesClient
+from pieces_os_client.wrapper.basic_identifier import BasicAsset
+from pieces_os_client.wrapper.streamed_identifiers.assets_snapshot import AssetSnapshot
+from pieces_os_client.wrapper.client import PiecesClient
 
 class BasicAssetTest(BasicAsset):
     def __init__(self, id) -> None:
