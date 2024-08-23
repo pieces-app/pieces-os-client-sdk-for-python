@@ -22,6 +22,7 @@ import json
 from typing import Optional
 from pydantic import BaseModel, Field, StrictStr
 from pieces_os_client.models.embedded_model_schema import EmbeddedModelSchema
+from pieces_os_client.models.referenced_anchor import ReferencedAnchor
 from pieces_os_client.models.referenced_asset import ReferencedAsset
 from pieces_os_client.models.seed import Seed
 
@@ -33,8 +34,9 @@ class RelevantQGPTSeed(BaseModel):
     id: Optional[StrictStr] = None
     seed: Optional[Seed] = None
     path: Optional[StrictStr] = Field(default=None, description="This is an optional file path")
+    anchor: Optional[ReferencedAnchor] = None
     asset: Optional[ReferencedAsset] = None
-    __properties = ["schema", "id", "seed", "path", "asset"]
+    __properties = ["schema", "id", "seed", "path", "anchor", "asset"]
 
     class Config:
         """Pydantic configuration"""
@@ -66,6 +68,9 @@ class RelevantQGPTSeed(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of seed
         if self.seed:
             _dict['seed'] = self.seed.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of anchor
+        if self.anchor:
+            _dict['anchor'] = self.anchor.to_dict()
         # override the default output from pydantic by calling `to_dict()` of asset
         if self.asset:
             _dict['asset'] = self.asset.to_dict()
@@ -85,6 +90,7 @@ class RelevantQGPTSeed(BaseModel):
             "id": obj.get("id"),
             "seed": Seed.from_dict(obj.get("seed")) if obj.get("seed") is not None else None,
             "path": obj.get("path"),
+            "anchor": ReferencedAnchor.from_dict(obj.get("anchor")) if obj.get("anchor") is not None else None,
             "asset": ReferencedAsset.from_dict(obj.get("asset")) if obj.get("asset") is not None else None
         })
         return _obj

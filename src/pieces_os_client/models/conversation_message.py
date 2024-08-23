@@ -23,7 +23,10 @@ from typing import Optional
 from pydantic import BaseModel, Field, StrictStr
 from pieces_os_client.models.conversation_message_sentiment_enum import ConversationMessageSentimentEnum
 from pieces_os_client.models.embedded_model_schema import EmbeddedModelSchema
+from pieces_os_client.models.flattened_anchors import FlattenedAnchors
 from pieces_os_client.models.flattened_annotations import FlattenedAnnotations
+from pieces_os_client.models.flattened_persons import FlattenedPersons
+from pieces_os_client.models.flattened_websites import FlattenedWebsites
 from pieces_os_client.models.fragment_format import FragmentFormat
 from pieces_os_client.models.grouped_timestamp import GroupedTimestamp
 from pieces_os_client.models.model import Model
@@ -47,7 +50,10 @@ class ConversationMessage(BaseModel):
     role: QGPTConversationMessageRoleEnum = Field(...)
     score: Optional[Score] = None
     annotations: Optional[FlattenedAnnotations] = None
-    __properties = ["schema", "id", "created", "updated", "deleted", "model", "fragment", "conversation", "sentiment", "role", "score", "annotations"]
+    websites: Optional[FlattenedWebsites] = None
+    persons: Optional[FlattenedPersons] = None
+    anchors: Optional[FlattenedAnchors] = None
+    __properties = ["schema", "id", "created", "updated", "deleted", "model", "fragment", "conversation", "sentiment", "role", "score", "annotations", "websites", "persons", "anchors"]
 
     class Config:
         """Pydantic configuration"""
@@ -100,6 +106,15 @@ class ConversationMessage(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of annotations
         if self.annotations:
             _dict['annotations'] = self.annotations.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of websites
+        if self.websites:
+            _dict['websites'] = self.websites.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of persons
+        if self.persons:
+            _dict['persons'] = self.persons.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of anchors
+        if self.anchors:
+            _dict['anchors'] = self.anchors.to_dict()
         return _dict
 
     @classmethod
@@ -123,7 +138,10 @@ class ConversationMessage(BaseModel):
             "sentiment": obj.get("sentiment"),
             "role": obj.get("role"),
             "score": Score.from_dict(obj.get("score")) if obj.get("score") is not None else None,
-            "annotations": FlattenedAnnotations.from_dict(obj.get("annotations")) if obj.get("annotations") is not None else None
+            "annotations": FlattenedAnnotations.from_dict(obj.get("annotations")) if obj.get("annotations") is not None else None,
+            "websites": FlattenedWebsites.from_dict(obj.get("websites")) if obj.get("websites") is not None else None,
+            "persons": FlattenedPersons.from_dict(obj.get("persons")) if obj.get("persons") is not None else None,
+            "anchors": FlattenedAnchors.from_dict(obj.get("anchors")) if obj.get("anchors") is not None else None
         })
         return _obj
 

@@ -45,7 +45,10 @@ class FlattenedConversationMessage(BaseModel):
     role: QGPTConversationMessageRoleEnum = Field(...)
     score: Optional[Score] = None
     annotations: Optional[FlattenedAnnotations] = None
-    __properties = ["schema", "id", "created", "updated", "deleted", "model", "fragment", "conversation", "sentiment", "role", "score", "annotations"]
+    anchors: Optional[FlattenedAnchors] = None
+    persons: Optional[FlattenedPersons] = None
+    websites: Optional[FlattenedWebsites] = None
+    __properties = ["schema", "id", "created", "updated", "deleted", "model", "fragment", "conversation", "sentiment", "role", "score", "annotations", "anchors", "persons", "websites"]
 
     class Config:
         """Pydantic configuration"""
@@ -98,6 +101,15 @@ class FlattenedConversationMessage(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of annotations
         if self.annotations:
             _dict['annotations'] = self.annotations.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of anchors
+        if self.anchors:
+            _dict['anchors'] = self.anchors.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of persons
+        if self.persons:
+            _dict['persons'] = self.persons.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of websites
+        if self.websites:
+            _dict['websites'] = self.websites.to_dict()
         return _dict
 
     @classmethod
@@ -121,11 +133,17 @@ class FlattenedConversationMessage(BaseModel):
             "sentiment": obj.get("sentiment"),
             "role": obj.get("role"),
             "score": Score.from_dict(obj.get("score")) if obj.get("score") is not None else None,
-            "annotations": FlattenedAnnotations.from_dict(obj.get("annotations")) if obj.get("annotations") is not None else None
+            "annotations": FlattenedAnnotations.from_dict(obj.get("annotations")) if obj.get("annotations") is not None else None,
+            "anchors": FlattenedAnchors.from_dict(obj.get("anchors")) if obj.get("anchors") is not None else None,
+            "persons": FlattenedPersons.from_dict(obj.get("persons")) if obj.get("persons") is not None else None,
+            "websites": FlattenedWebsites.from_dict(obj.get("websites")) if obj.get("websites") is not None else None
         })
         return _obj
 
+from pieces_os_client.models.flattened_anchors import FlattenedAnchors
 from pieces_os_client.models.flattened_annotations import FlattenedAnnotations
+from pieces_os_client.models.flattened_persons import FlattenedPersons
+from pieces_os_client.models.flattened_websites import FlattenedWebsites
 from pieces_os_client.models.referenced_conversation import ReferencedConversation
 FlattenedConversationMessage.update_forward_refs()
 

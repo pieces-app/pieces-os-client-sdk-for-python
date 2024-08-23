@@ -22,6 +22,7 @@ import json
 from typing import List, Optional
 from pydantic import BaseModel, Field, StrictStr, conlist
 from pieces_os_client.models.embedded_model_schema import EmbeddedModelSchema
+from pieces_os_client.models.flattened_anchors import FlattenedAnchors
 from pieces_os_client.models.flattened_assets import FlattenedAssets
 from pieces_os_client.models.flattened_conversation_messages import FlattenedConversationMessages
 from pieces_os_client.models.qgpt_relevance_input_options import QGPTRelevanceInputOptions
@@ -42,7 +43,8 @@ class QGPTRelevanceInput(BaseModel):
     application: Optional[StrictStr] = Field(default=None, description="optional application id")
     model: Optional[StrictStr] = Field(default=None, description="optional model id")
     temporal: Optional[TemporalRangeGrounding] = None
-    __properties = ["schema", "query", "paths", "seeds", "assets", "messages", "options", "application", "model", "temporal"]
+    anchors: Optional[FlattenedAnchors] = None
+    __properties = ["schema", "query", "paths", "seeds", "assets", "messages", "options", "application", "model", "temporal", "anchors"]
 
     class Config:
         """Pydantic configuration"""
@@ -86,6 +88,9 @@ class QGPTRelevanceInput(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of temporal
         if self.temporal:
             _dict['temporal'] = self.temporal.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of anchors
+        if self.anchors:
+            _dict['anchors'] = self.anchors.to_dict()
         return _dict
 
     @classmethod
@@ -107,7 +112,8 @@ class QGPTRelevanceInput(BaseModel):
             "options": QGPTRelevanceInputOptions.from_dict(obj.get("options")) if obj.get("options") is not None else None,
             "application": obj.get("application"),
             "model": obj.get("model"),
-            "temporal": TemporalRangeGrounding.from_dict(obj.get("temporal")) if obj.get("temporal") is not None else None
+            "temporal": TemporalRangeGrounding.from_dict(obj.get("temporal")) if obj.get("temporal") is not None else None,
+            "anchors": FlattenedAnchors.from_dict(obj.get("anchors")) if obj.get("anchors") is not None else None
         })
         return _obj
 

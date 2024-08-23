@@ -28,7 +28,7 @@ class WorkstreamEventTrigger(BaseModel):
     This is the specific event that represent the Shadow Activity ie the copy/paste ...xyz  # noqa: E501
     """
     var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
-    check_in: Optional[StrictBool] = Field(default=None, description="this is a sort of check-in event(ie when ever your application is in the foreground on there is an interaction)")
+    check_in: Optional[StrictBool] = Field(default=None, description="this is a sort of check-in event(ie when ever your application is in the forground on there is an interaction)")
     copy_field: Optional[StrictBool] = Field(default=None, alias="copy")
     paste: Optional[StrictBool] = None
     file_open: Optional[StrictBool] = None

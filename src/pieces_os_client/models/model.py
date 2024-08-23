@@ -25,6 +25,7 @@ from pieces_os_client.models.byte_descriptor import ByteDescriptor
 from pieces_os_client.models.embedded_model_schema import EmbeddedModelSchema
 from pieces_os_client.models.external_ml_provider_enum import ExternalMLProviderEnum
 from pieces_os_client.models.grouped_timestamp import GroupedTimestamp
+from pieces_os_client.models.model_capabilities import ModelCapabilities
 from pieces_os_client.models.model_foundation_enum import ModelFoundationEnum
 from pieces_os_client.models.model_max_tokens import ModelMaxTokens
 from pieces_os_client.models.model_type_enum import ModelTypeEnum
@@ -55,8 +56,9 @@ class Model(BaseModel):
     cpu: Optional[StrictBool] = Field(default=None, description="This is an optional bool that is optimized for CPU usage.")
     downloading: Optional[StrictBool] = Field(default=None, description="This is a calculated property, that will say if this is currently downloading.")
     max_tokens: Optional[ModelMaxTokens] = Field(default=None, alias="maxTokens")
-    custom: Optional[StrictBool] = None
-    __properties = ["schema", "id", "version", "created", "name", "description", "cloud", "type", "usage", "bytes", "ram", "quantization", "foundation", "downloaded", "loaded", "unique", "parameters", "provider", "cpu", "downloading", "maxTokens", "custom"]
+    custom: Optional[StrictBool] = Field(default=None, description="This will let us know if this is a custom, or fine tuned model imported by the user.")
+    capabilities: Optional[ModelCapabilities] = None
+    __properties = ["schema", "id", "version", "created", "name", "description", "cloud", "type", "usage", "bytes", "ram", "quantization", "foundation", "downloaded", "loaded", "unique", "parameters", "provider", "cpu", "downloading", "maxTokens", "custom", "capabilities"]
 
     class Config:
         """Pydantic configuration"""
@@ -97,6 +99,9 @@ class Model(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of max_tokens
         if self.max_tokens:
             _dict['maxTokens'] = self.max_tokens.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of capabilities
+        if self.capabilities:
+            _dict['capabilities'] = self.capabilities.to_dict()
         # set to None if parameters (nullable) is None
         # and __fields_set__ contains the field
         if self.parameters is None and "parameters" in self.__fields_set__:
@@ -135,7 +140,8 @@ class Model(BaseModel):
             "cpu": obj.get("cpu"),
             "downloading": obj.get("downloading"),
             "max_tokens": ModelMaxTokens.from_dict(obj.get("maxTokens")) if obj.get("maxTokens") is not None else None,
-            "custom": obj.get("custom")
+            "custom": obj.get("custom"),
+            "capabilities": ModelCapabilities.from_dict(obj.get("capabilities")) if obj.get("capabilities") is not None else None
         })
         return _obj
 
