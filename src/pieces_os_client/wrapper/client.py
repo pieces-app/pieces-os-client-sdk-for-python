@@ -28,10 +28,13 @@ from .streamed_identifiers import AssetSnapshot
 from .websockets import *
 
 class PiecesClient:
-    def __init__(self, config: dict, seeded_connector: Optional[SeededConnectorConnection] = None):
-        self.host = config['host']
+    def __init__(self, host:str="",config: dict={}, seeded_connector: Optional[SeededConnectorConnection] = None):
+        if host:
+            self.host = host
+        else:
+            self.host = "http://localhost:5323" if 'Linux' in platform.platform() else "http://localhost:1000"
+
         connect_websockets= True
-        
         if "connect_websockets" in config:
             connect_websockets = config["connect_websockets"]
             del config["connect_websockets"]
