@@ -28,8 +28,13 @@ from .streamed_identifiers import AssetSnapshot
 from .websockets import *
 
 class PiecesClient:
-    def __init__(self, config: dict, seeded_connector: SeededConnectorConnection = None, connect_websockets=True):
+    def __init__(self, config: dict, seeded_connector: Optional[SeededConnectorConnection] = None):
         self.host = config['baseUrl'][:-1] if config['baseUrl'].endswith("/") else config['baseUrl']
+        connect_websockets= True
+        
+        if "connect_websockets" in config:
+            connect_websockets = config["connect_websockets"]
+            del config["connect_websockets"]
 
         self.config = Configuration(
             host=self.host
