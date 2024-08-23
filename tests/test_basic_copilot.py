@@ -1,61 +1,12 @@
 import unittest
-from datetime import datetime
 from queue import Queue
-from unittest.mock import Mock, patch , call
+from unittest.mock import Mock, patch
 from pieces_os_client import (
-    QGPTStreamOutput,
-    RelevantQGPTSeeds,
-    QGPTQuestionOutput,
-    QGPTStreamEnum
-)
-from pieces_os_client.models.qgpt_prompt_pipeline import QGPTPromptPipeline
-from typing import TYPE_CHECKING, Optional, Generator
-import sys
-import importlib.util
-import queue
-from pieces_os_client import Conversation, StreamedIdentifiers, Asset
-from abc import ABC, abstractmethod
-import threading
-import pytest
-from typing import Literal, Optional, List, TYPE_CHECKING ,Generator ,Dict , Union, Callable
-from pieces_os_client import (
-    SeededConversation,
-    QGPTStreamInput,
-    RelevantQGPTSeeds,
-    QGPTQuestionInput,
-    QGPTStreamOutput,
     QGPTStreamEnum,
-    QGPTQuestionOutput,
-    ApiClient,
-    Application,
-    Configuration,
-    ConversationApi,
-    ConversationMessageApi,
-    ConversationMessagesApi,
-    ConversationsApi,
-    QGPTApi,
-    UserApi,
-    FormatApi,
-    ConnectorApi,
-    SeededConnectorConnection,
-    SeededTrackedApplication,
-    AssetApi,
-    AssetsApi,
-    FragmentMetadata,
-    ModelsApi,
-    AnnotationApi
 )
-import platform
-import atexit
-from pieces_os_client.wrapper.websockets import *
+from pieces_os_client.wrapper.websockets import AskStreamWS
 from pieces_os_client.wrapper.copilot import Copilot
-from pieces_os_client.wrapper.client import PiecesClient
-from pieces_os_client.wrapper.basic_identifier.asset import BasicAsset
-from pieces_os_client.wrapper.basic_identifier.basic import Basic
-from pieces_os_client.wrapper.basic_identifier.message import BasicMessage
 from pieces_os_client.wrapper.basic_identifier.chat import BasicChat
-from pieces_os_client.wrapper.streamed_identifiers.assets_snapshot import AssetSnapshot
-from pieces_os_client.wrapper.streamed_identifiers._streamed_identifiers import StreamedIdentifiersCache
 from pieces_os_client.wrapper.streamed_identifiers.conversations_snapshot import ConversationsSnapshot
 
 class BasicCopilotTest(unittest.TestCase):

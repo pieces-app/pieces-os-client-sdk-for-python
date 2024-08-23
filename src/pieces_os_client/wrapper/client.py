@@ -28,7 +28,7 @@ from .streamed_identifiers import AssetSnapshot
 from .websockets import *
 
 class PiecesClient:
-    def __init__(self, config: dict, seeded_connector: SeededConnectorConnection = None,connect_websockets=True):
+    def __init__(self, config: dict, seeded_connector: SeededConnectorConnection = None, connect_websockets=True):
         self.host = config['baseUrl'][:-1] if config['baseUrl'].endswith("/") else config['baseUrl']
 
         self.config = Configuration(
@@ -77,6 +77,7 @@ class PiecesClient:
 
             # Start all initilized websockets
             BaseWebsocket.start_all()
+        
         self.models = None
         self.model_name = "GPT-3.5-turbo Chat Model"
 

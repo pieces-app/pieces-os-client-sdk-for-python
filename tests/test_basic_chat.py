@@ -1,44 +1,7 @@
 import pytest
 from unittest.mock import Mock, patch, call
-from typing import Literal, Optional,TYPE_CHECKING , Dict, List, Union, Callable
-from pieces_os_client import (
-    ApiClient,
-    Application,
-    Configuration,
-    ConversationApi,
-    ConversationMessageApi,
-    ConversationMessagesApi,
-    ConversationsApi,
-    QGPTApi,
-    UserApi,
-    FormatApi,
-    ConnectorApi,
-    SeededConnectorConnection,
-    SeededTrackedApplication,
-    AssetApi,
-    AssetsApi,
-    FragmentMetadata,
-    ModelsApi,
-    AnnotationApi
-)
-from typing import Optional,Dict
-import platform
-import atexit
-import sys
-import importlib.util
-import queue
-from pieces_os_client import Conversation, StreamedIdentifiers, Asset
-from abc import ABC, abstractmethod
-import threading
-from pieces_os_client.wrapper.copilot import Copilot
-from pieces_os_client.wrapper.basic_identifier.asset import BasicAsset
-from pieces_os_client.wrapper.streamed_identifiers.assets_snapshot import AssetSnapshot
-from pieces_os_client.wrapper.websockets import *
-from pieces_os_client.wrapper.client import PiecesClient
-from pieces_os_client.wrapper.basic_identifier.basic import Basic
 from pieces_os_client.wrapper.basic_identifier.message import BasicMessage
 from pieces_os_client.wrapper.basic_identifier.chat import BasicChat
-from pieces_os_client.wrapper.streamed_identifiers._streamed_identifiers import StreamedIdentifiersCache
 from pieces_os_client.wrapper.streamed_identifiers.conversations_snapshot import ConversationsSnapshot
 
 class TestBasicChat:

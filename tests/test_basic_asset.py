@@ -1,9 +1,7 @@
 import pytest
-from unittest.mock import Mock, patch, MagicMock
+from unittest.mock import patch, MagicMock
 from pieces_os_client import Asset, Format, ClassificationGenericEnum, ClassificationSpecificEnum, Annotations, Annotation
 from datetime import datetime
-import sys
-import importlib.util
 from pieces_os_client.wrapper.basic_identifier import BasicAsset
 from pieces_os_client.wrapper.streamed_identifiers.assets_snapshot import AssetSnapshot
 from pieces_os_client.wrapper.client import PiecesClient
