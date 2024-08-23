@@ -16,7 +16,7 @@ class BasicAssetTest(BasicAsset):
 
 @pytest.fixture(scope="function")
 def pieces_client():
-    return PiecesClient(config={'host': 'http://localhost:1000'})
+    return PiecesClient()
 
 @pytest.fixture(scope="function", autouse=True)
 def setup_asset_snapshot(pieces_client):
