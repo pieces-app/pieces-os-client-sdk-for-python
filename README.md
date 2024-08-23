@@ -80,7 +80,7 @@ if 'Linux' in platform_info:
 else:
    port = 1000
 
-pieces_client = PiecesClient(config={'baseUrl': f'http://localhost:{port}'})
+pieces_client = PiecesClient(config={'host': f'http://localhost:{port}'})
 ```
 
 #### Determining Your Base URL
@@ -102,7 +102,7 @@ from pieces_os_client.wrapper import PiecesClient
 from pieces_os_client import FragmentMetadata
 
 # Replace 'your_base_url' with the base URL of your Pieces OS server
-pieces_client = PiecesClient(config={'baseUrl': 'your_base_url'})
+pieces_client = PiecesClient(config={'host': 'your_base_url'})
 
 # Set the content and metadata for the new asset
 content = "print('Hello, World!')"
@@ -122,7 +122,7 @@ To get all your assets, you can use the `assets` method of the Pieces Client. He
 from pieces_os_client.wrapper import PiecesClient
 
 # Replace 'your_base_url' with the base URL of your Pieces OS server
-pieces_client = PiecesClient(config={'baseUrl': 'your_base_url'})
+pieces_client = PiecesClient(config={'host': 'your_base_url'})
 
 # Get all assets and print their names
 assets = pieces_client.assets()
@@ -138,7 +138,7 @@ To ask a question to Pieces Copilot and stream the response, you can use the `st
 ```python
 from pieces_os_client.wrapper import PiecesClient
 
-pieces_client = PiecesClient(config={'baseUrl': 'your_base_url'})
+pieces_client = PiecesClient(config={'host': 'your_base_url'})
 
 # Set the question you want to ask
 question = "What is Object-Oriented Programming?"
