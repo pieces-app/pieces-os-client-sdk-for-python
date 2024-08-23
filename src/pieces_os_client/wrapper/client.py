@@ -29,16 +29,14 @@ from .websockets import *
 
 class PiecesClient:
     def __init__(self, config: dict, seeded_connector: Optional[SeededConnectorConnection] = None):
-        self.host = config['baseUrl'][:-1] if config['baseUrl'].endswith("/") else config['baseUrl']
+        self.host = config['host']
         connect_websockets= True
         
         if "connect_websockets" in config:
             connect_websockets = config["connect_websockets"]
             del config["connect_websockets"]
 
-        self.config = Configuration(
-            host=self.host
-        )
+        self.config = Configuration(**config)
 
         self.api_client = ApiClient(self.config)
 
