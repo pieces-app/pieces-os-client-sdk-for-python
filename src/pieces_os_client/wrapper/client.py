@@ -60,7 +60,7 @@ class PiecesClient:
         self.linkfy_api = LinkifyApi(self.api_client)
 
         # Websocket urls
-        if self.host.startswith("http"):
+        if not self.host.startswith("http"):
             raise TypeError("Invalid host url\n Host should start with http or https")
         ws_base_url:str = self.host.replace('http','ws')
         
