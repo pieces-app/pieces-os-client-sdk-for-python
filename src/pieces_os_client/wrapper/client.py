@@ -1,6 +1,5 @@
 from pieces_os_client import (
     ApiClient,
-    Application,
     Configuration,
     ConversationApi,
     ConversationMessageApi,
@@ -16,7 +15,12 @@ from pieces_os_client import (
     AssetsApi,
     FragmentMetadata,
     ModelsApi,
-    AnnotationApi
+    AnnotationApi,
+    LinkifyApi,
+    WellKnownApi,
+    OSApi,
+    AllocationsApi,
+    __version__
 )
 from typing import Optional,Dict
 import platform
@@ -28,20 +32,14 @@ from .streamed_identifiers import AssetSnapshot
 from .websockets import *
 
 class PiecesClient:
-    def __init__(self, host:str="",config: dict={}, seeded_connector: Optional[SeededConnectorConnection] = None):
+    def __init__(self, host:str="", seeded_connector: Optional[SeededConnectorConnection] = None,**kwargs):
         if host:
             self.host = host
         else:
             self.host = "http://localhost:5323" if 'Linux' in platform.platform() else "http://localhost:1000"
 
-        connect_websockets= True
-        if "connect_websockets" in config:
-            connect_websockets = config["connect_websockets"]
-            del config["connect_websockets"]
 
-        self.config = Configuration(**config)
-
-        self.api_client = ApiClient(self.config)
+        self.api_client = ApiClient(Configuration(self.host))
 
         self.conversation_message_api = ConversationMessageApi(self.api_client)
         self.conversation_messages_api = ConversationMessagesApi(self.api_client)
@@ -55,9 +53,13 @@ class PiecesClient:
         self.connector_api = ConnectorApi(self.api_client)
         self.models_api = ModelsApi(self.api_client)
         self.annotation_api = AnnotationApi(self.api_client)
+        self.well_known_api = WellKnownApi(self.api_client)
+        self.os_api = OSApi(self.api_client)
+        self.allocations_api = AllocationsApi(self.api_client)
+        self.linkfy_api = LinkifyApi(self.api_client)
 
         # Websocket urls
-        if 'http' not in self.host:
+        if self.host.startswith("http"):
             raise TypeError("Invalid host url\n Host should start with http or https")
         ws_base_url:str = self.host.replace('http','ws')
         
@@ -73,11 +75,11 @@ class PiecesClient:
             application=SeededTrackedApplication(
                 name = "OPEN_SOURCE",
                 platform = local_os,
-                version = "0.0.1"))
+                version = __version__)) 
 
         self.tracked_application = self.connector_api.connect(seeded_connector_connection=seeded_connector).application
 
-        if connect_websockets:
+        if kwargs.get("connect_wesockets",True):
             self.conversation_ws = ConversationWS(self)
             self.assets_ws = AssetsIdentifiersWS(self)
 
@@ -86,6 +88,7 @@ class PiecesClient:
         
         self.models = None
         self.model_name = "GPT-3.5-turbo Chat Model"
+        self.copilot = Copilot(self)
 
 
     def assets(self):
@@ -131,10 +134,6 @@ class PiecesClient:
     @property
     def available_models_names(self) -> list:
         return list(self.get_models().keys())
-
-    @property
-    def copilot(self):
-        return Copilot(self)
 
     def ensure_initialization(self):
         """
