@@ -157,7 +157,7 @@ class PiecesClient:
             Returns True Pieces OS health is ok else False
         """
         try:
-            return self.well_known_api.get_well_known_health().startswith("ok")
+            return self.well_known_api.get_well_known_health_with_http_info().status_code == 200
         except:
             pass
         return False
