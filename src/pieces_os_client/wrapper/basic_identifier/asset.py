@@ -22,7 +22,7 @@ from pieces_os_client import (
 )
 
 from typing import Optional
-from .basic import Basic
+from .basic import Basic,BasicUser
 
 # Friendly wrapper (to avoid interacting with the pieces_os_client sdks models)
 
@@ -320,7 +320,7 @@ class BasicAsset(Basic):
 		else:
 			kwargs = {"seed" : seed}
 
-		user = AssetSnapshot.pieces_client.user_api.user_snapshot().user
+		user = BasicUser.user_profile
 
 		if not user:
 			raise PermissionError("You need to be logged in to generate a shareable link")

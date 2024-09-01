@@ -26,8 +26,9 @@ from typing import Optional,Dict
 import platform
 import atexit
 
+
 from .copilot import Copilot
-from .basic_identifier import BasicAsset
+from .basic_identifier import BasicAsset,BasicUser
 from .streamed_identifiers import AssetSnapshot
 from .websockets import *
 
@@ -79,10 +80,12 @@ class PiecesClient:
 
         self.tracked_application = self.connector_api.connect(seeded_connector_connection=seeded_connector).application
 
+        self.user = BasicUser(self)
+
         if kwargs.get("connect_wesockets",True):
             self.conversation_ws = ConversationWS(self)
             self.assets_ws = AssetsIdentifiersWS(self)
-
+            self.user_websocket = AuthWS(self,self.user.on_user_callback)
             # Start all initilized websockets
             BaseWebsocket.start_all()
         
@@ -103,13 +106,6 @@ class PiecesClient:
     def create_asset(content:str,metadata:Optional[FragmentMetadata]=None):
         return BasicAsset.create(content,metadata)
 
-    def get_user_profile_picture(self) -> Optional[str]:
-        try:
-            user_res = self.user_api.user_snapshot()
-            return user_res.user.picture or None
-        except Exception as error:
-            print(f'Error getting user profile picture: {error}')
-            return None
 
     def get_models(self) -> Dict[str, str]:
         if self.models:
