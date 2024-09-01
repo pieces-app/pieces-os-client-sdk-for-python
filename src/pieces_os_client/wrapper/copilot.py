@@ -141,3 +141,19 @@ class Copilot:
         self._chat = chat
 
 
+    def create_chat(self, name:Optional[str]=None):
+        """
+            Creates a New Chat and change the current Copilot chat state to the new generated one
+        """
+        new_conversation = self.pieces_client.conversations_api.conversations_create_specific_conversation(
+            seeded_conversation={
+                'name': name,
+                'type': 'COPILOT',
+            }
+        )
+
+        ConversationsSnapshot.identifiers_snapshot[new_conversation.id] = new_conversation # Make sure to update the cache
+        self.chat = BasicChat(new_conversation.id)
+
+        return self.chat
+
