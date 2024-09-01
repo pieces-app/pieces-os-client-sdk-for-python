@@ -147,6 +147,20 @@ class PiecesClient:
         """
         BaseWebsocket.close_all()
 
+    @property
+    def version(self) -> str:
+        """
+            Returns Pieces OS Version
+        """
+        return self.well_known_api.get_well_known_version()
+    
+    @property
+    def health(self) -> str:
+        """
+            Returns Pieces OS health
+        """
+        return self.well_known_api.get_well_known_health()
+
 # Register the function to be called on exit
 atexit.register(BaseWebsocket.close_all)
 
