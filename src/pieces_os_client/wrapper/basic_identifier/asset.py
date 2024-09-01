@@ -205,18 +205,18 @@ class BasicAsset(Basic):
 		AssetSnapshot.pieces_client.assets_api.assets_delete_asset(self.id)
 
 	@classmethod
-	def create(cls,raw: str, metadata: Optional[FragmentMetadata] = None) -> str:
+	def create(cls,raw_content: str, metadata: Optional[FragmentMetadata] = None) -> str:
 		"""
 		Create a new asset.
 
 		Args:
-			raw (str): The raw content of the asset.
+			raw_content (str): The raw content of the asset.
 			metadata (Optional[FragmentMetadata]): The metadata of the asset.
 
 		Returns:
 			str: The ID of the created asset.
 		"""
-		seed = cls._get_seed(raw,metadata)
+		seed = cls._get_seed(raw_content,metadata)
 
 		created_asset_id = AssetSnapshot.pieces_client.assets_api.assets_create_new_asset(transferables=False, seed=seed).id
 		return created_asset_id
@@ -232,10 +232,13 @@ class BasicAsset(Basic):
 
 
 	@classmethod
-	def share_raw_content(cls,raw_content) -> Shares:
+	def share_raw_content(cls,raw_content:str) -> Shares:
 		"""
 		Generates a shareable link for the given user raw content.
 		Note: this will create an asset
+
+		Args:
+			raw_content (str): The raw content of the asset that will be shared.
 
 		Raises:
 		PermissionError: If the user is not logged in or is not connected to the cloud.
