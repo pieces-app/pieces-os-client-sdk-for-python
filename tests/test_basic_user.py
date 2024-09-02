@@ -15,3 +15,9 @@ class BasicUserTest(unittest.TestCase):
         self.basic_user.login(connect_after_login=False)
         self.mock_pieces_client.os_api.sign_into_os.assert_called_once_with(async_req=True)
 
+    def test_login_and_connect(self):
+        self.mock_pieces_client.os_api.sign_into_os.return_value = MagicMock()
+        with patch('threading.Thread') as mock_thread:
+            self.basic_user.login(connect_after_login=True)
+            mock_thread.assert_called_once()
+
