@@ -19,7 +19,7 @@ class TestBasicChat:
 
     def test_init_invalid_id(self):
         with pytest.raises(ValueError, match="Conversation not found"):
-            BasicChat("invalid_id")
+            b = BasicChat("invalid_id").conversation # Call the conversation to check if it is vaild
 
     def test_name_property(self):
         chat = BasicChat("test_id")
@@ -35,19 +35,18 @@ class TestBasicChat:
         assert chat.name == "New Conversation"
 
     @patch.object(BasicMessage, '__init__', return_value=None)
-    @patch.object(BasicChat, '_get_message')
-    def test_messages(self, mock_get_message, mock_basic_message_init):
+    def test_messages(self, mock_basic_message_init):
+        ConversationsSnapshot.identifiers_snapshot["test_id"].messages = Mock()
         ConversationsSnapshot.identifiers_snapshot["test_id"].messages.indices = {
             "msg1": 0,
             "msg2": 1,
             "msg3": -1  # Deleted message
         }
 
-        # Mock the _get_message method to return a Mock object
-        mock_get_message.side_effect = lambda message_id: Mock(id=message_id)
 
         chat = BasicChat("test_id")
         messages = chat.messages()
+        
 
         assert len(messages) == 2
         assert all(isinstance(msg, BasicMessage) for msg in messages)
@@ -55,16 +54,10 @@ class TestBasicChat:
         # Check that BasicMessage.__init__ was called twice
         assert mock_basic_message_init.call_count == 2
 
-        # Check that _get_message was called with the correct message IDs
-        mock_get_message.assert_has_calls([
-            call("msg1"),
-            call("msg2")
-        ], any_order=True)
-
         # Check that BasicMessage.__init__ was called with the results of _get_message
         for call_args in mock_basic_message_init.call_args_list:
             assert isinstance(call_args[0][0], Mock)
-            assert call_args[0][0].id in ["msg1", "msg2"]
+            assert call_args[0][1] in ["msg1", "msg2"]
 
     def test_annotations_property(self):
         mock_annotations = Mock(iterable=["annotation1", "annotation2"])
@@ -91,3 +84,7 @@ class TestBasicChat:
         BasicChat._edit_conversation(mock_conversation)
         
         mock_pieces_client.conversation_api.conversation_update.assert_called_once_with(False, mock_conversation)
+
+if __name__ == '__main__':
+    pytest.main([__file__])
+
