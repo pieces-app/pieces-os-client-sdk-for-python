@@ -33,3 +33,8 @@ class BasicUserTest(unittest.TestCase):
         self.basic_user.user_profile = None
         with self.assertRaises(PermissionError):
             self.basic_user.connect()
+
+    def test_disconnect(self):
+        self.mock_user_profile.allocation = MagicMock()
+        self.basic_user.disconnect()
+        self.mock_pieces_client.api_client.allocations_api.allocations_disconnect_cloud.assert_called_once_with(self.mock_user_profile.allocation)
