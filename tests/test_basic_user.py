@@ -25,3 +25,7 @@ class BasicUserTest(unittest.TestCase):
         self.basic_user.logout()
         self.mock_pieces_client.api_client.os_api.sign_out_of_os.assert_called_once()
 
+    def test_connect(self):
+        self.basic_user.connect()
+        self.mock_pieces_client.allocations_api.allocations_connect_new_cloud.assert_called_once_with(self.mock_user_profile)
+
