@@ -59,3 +59,9 @@ class BasicUserTest(unittest.TestCase):
     def test_vanity_name_property(self):
         self.mock_user_profile.vanityname = "johnatpieces"
         self.assertEqual(self.basic_user.vanity_name, "johnatpieces")
+
+    def test_cloud_status_property(self):
+        mock_allocation = MagicMock()
+        mock_allocation.status.cloud = AllocationStatusEnum.RUNNING  # Use a valid enum value
+        self.mock_user_profile.allocation = mock_allocation
+        self.assertEqual(self.basic_user.cloud_status, AllocationStatusEnum.RUNNING)
