@@ -47,7 +47,3 @@ class VersionCheckResult:
     def __init__(self, compatible, update:Optional[UpdateEnum]=None):
         self.compatible = compatible
         self.update = update
-
-if __name__ == '__main__':
-    result = VersionChecker("1.0.0", "2.0.0", "1.0.0").version_check()
-    print(result.compatible)
