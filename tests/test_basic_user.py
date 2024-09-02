@@ -51,3 +51,7 @@ class BasicUserTest(unittest.TestCase):
     def test_name_property(self):
         self.mock_user_profile.name = "John Doe"
         self.assertEqual(self.basic_user.name, "John Doe")
+
+    def test_email_property(self):
+        self.mock_user_profile.email = "john.doe@example.com"
+        self.assertEqual(self.basic_user.email, "john.doe@example.com")
