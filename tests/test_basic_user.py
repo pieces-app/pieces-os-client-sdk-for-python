@@ -43,3 +43,7 @@ class BasicUserTest(unittest.TestCase):
         self.basic_user.user_profile = None
         with self.assertRaises(PermissionError):
             self.basic_user.disconnect()
+
+    def test_picture_property(self):
+        self.mock_user_profile.picture = "http://example.com/picture.jpg"
+        self.assertEqual(self.basic_user.picture, "http://example.com/picture.jpg")
