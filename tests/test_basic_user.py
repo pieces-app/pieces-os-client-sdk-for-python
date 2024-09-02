@@ -1,9 +1,9 @@
 import unittest
 from unittest.mock import MagicMock, patch
 from pieces_os_client import UserProfile, AllocationStatusEnum
+from pieces_os_client.wrapper.basic_identifier import BasicUser
 
 class BasicUserTest(unittest.TestCase):
-
     def setUp(self):
         self.mock_pieces_client = MagicMock()
         self.basic_user = BasicUser(self.mock_pieces_client)
@@ -65,3 +65,6 @@ class BasicUserTest(unittest.TestCase):
         mock_allocation.status.cloud = AllocationStatusEnum.RUNNING  # Use a valid enum value
         self.mock_user_profile.allocation = mock_allocation
         self.assertEqual(self.basic_user.cloud_status, AllocationStatusEnum.RUNNING)
+
+if __name__ == '__main__':
+    unittest.main()
