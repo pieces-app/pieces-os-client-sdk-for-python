@@ -47,3 +47,7 @@ class BasicUserTest(unittest.TestCase):
     def test_picture_property(self):
         self.mock_user_profile.picture = "http://example.com/picture.jpg"
         self.assertEqual(self.basic_user.picture, "http://example.com/picture.jpg")
+
+    def test_name_property(self):
+        self.mock_user_profile.name = "John Doe"
+        self.assertEqual(self.basic_user.name, "John Doe")
