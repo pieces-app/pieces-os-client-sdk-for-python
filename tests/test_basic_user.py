@@ -21,3 +21,7 @@ class BasicUserTest(unittest.TestCase):
             self.basic_user.login(connect_after_login=True)
             mock_thread.assert_called_once()
 
+    def test_logout(self):
+        self.basic_user.logout()
+        self.mock_pieces_client.api_client.os_api.sign_out_of_os.assert_called_once()
+
