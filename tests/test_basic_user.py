@@ -29,3 +29,7 @@ class BasicUserTest(unittest.TestCase):
         self.basic_user.connect()
         self.mock_pieces_client.allocations_api.allocations_connect_new_cloud.assert_called_once_with(self.mock_user_profile)
 
+    def test_connect_without_login(self):
+        self.basic_user.user_profile = None
+        with self.assertRaises(PermissionError):
+            self.basic_user.connect()
