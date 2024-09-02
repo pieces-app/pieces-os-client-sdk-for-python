@@ -55,3 +55,7 @@ class BasicUserTest(unittest.TestCase):
     def test_email_property(self):
         self.mock_user_profile.email = "john.doe@example.com"
         self.assertEqual(self.basic_user.email, "john.doe@example.com")
+
+    def test_vanity_name_property(self):
+        self.mock_user_profile.vanityname = "johnatpieces"
+        self.assertEqual(self.basic_user.vanity_name, "johnatpieces")
