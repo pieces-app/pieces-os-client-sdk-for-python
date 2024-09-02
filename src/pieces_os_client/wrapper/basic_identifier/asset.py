@@ -22,7 +22,8 @@ from pieces_os_client import (
 )
 
 from typing import Optional
-from .basic import Basic,BasicUser
+from .basic import Basic
+from .user import BasicUser
 
 # Friendly wrapper (to avoid interacting with the pieces_os_client sdks models)
 
@@ -326,7 +327,7 @@ class BasicAsset(Basic):
 			raise PermissionError("You need to be logged in to generate a shareable link")
 
 		if not user.allocation:
-			raise PermissionError("You need to connect to the cloud to generate a shareable link"):
+			raise PermissionError("You need to connect to the cloud to generate a shareable link")
 
 		return AssetSnapshot.pieces_client.linkfy_api.linkify(
 			linkify=Linkify(
