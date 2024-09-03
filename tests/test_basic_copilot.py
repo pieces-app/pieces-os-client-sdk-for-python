@@ -3,6 +3,7 @@ from queue import Queue
 from unittest.mock import Mock, patch
 from pieces_os_client import (
     QGPTStreamEnum,
+    RelevantQGPTSeeds
 )
 from pieces_os_client.wrapper.websockets import AskStreamWS
 from pieces_os_client.wrapper.copilot import Copilot
@@ -16,16 +17,15 @@ class BasicCopilotTest(unittest.TestCase):
         self.mock_client.model_id = "mock_model_id"
         self.mock_client.qgpt_api = Mock()
         
-        # Define a real BasicChat class for testing
-        global BasicChat
-        class BasicChat:
-            def __init__(self, id):
-                self.id = id
-        
         self.copilot = Copilot(self.mock_client)
 
-        # Mock ConversationsSnapshot
-        self.mock_conversations = patch('__main__.ConversationsSnapshot.identifiers_snapshot', {"test_conversation_id": Mock()}).start()
+        self.mock_conversation = Mock()
+        self.mock_conversation.id = "test_conversation_id"
+        self.mock_conversations_snapshot = patch(
+            'pieces_os_client.wrapper.streamed_identifiers.conversations_snapshot.ConversationsSnapshot.identifiers_snapshot',
+            {"test_conversation_id": self.mock_conversation}
+        ).start()
+        self.addCleanup(patch.stopall)
 
     def tearDown(self):
         patch.stopall()
@@ -37,22 +37,28 @@ class BasicCopilotTest(unittest.TestCase):
         self.assertIsInstance(self.copilot.ask_stream_ws, AskStreamWS)
         self.assertIsNone(self.copilot._chat)
 
-    @patch('__main__.AskStreamWS')
+    @patch('pieces_os_client.wrapper.websockets.AskStreamWS')
     def test_ask(self, mock_ask_stream_ws):
+        conversation_id = "test_conversation_id"
         query = "Test query"
-        mock_output = Mock(status=QGPTStreamEnum.COMPLETED, conversation="test_conversation_id", text="Test response")
+        mock_output = Mock(status=QGPTStreamEnum.COMPLETED, conversation=conversation_id, text="Test response")
         self.copilot._on_message_queue.put(mock_output)
         
         # Create a mock for send_message
         mock_send_message = Mock()
         self.copilot.ask_stream_ws.send_message = mock_send_message
+        self.copilot.context._relevance_api = lambda query: RelevantQGPTSeeds(iterable=[])# Mock the contexts for now
+        result = list(self.copilot.stream_question(query))
         
-        result = list(self.copilot.ask(query))
-        
+        # Mock the conversation created
+        mock_conversation = Mock()
+        mock_conversation.name = "Test Conversation"
+        mock_conversation.id = conversation_id
+        ConversationsSnapshot.identifiers_snapshot = {conversation_id: mock_conversation}
         self.assertEqual(len(result), 1)
         self.assertEqual(result[0], mock_output)
         self.assertIsInstance(self.copilot.chat, BasicChat)
-        self.assertEqual(self.copilot.chat.id, "test_conversation_id")
+        self.assertEqual(self.copilot.chat.id, conversation_id)
         
         # Assert that send_message was called once
         mock_send_message.assert_called_once()
@@ -84,3 +90,9 @@ class BasicCopilotTest(unittest.TestCase):
         
         with self.assertRaises(ValueError):
             self.copilot.chat = "invalid_chat"
+        self.copilot.chat = None
+        self.assertEqual(self.copilot.chat, None)
+
+if __name__ == '__main__':
+    unittest.main()
+

@@ -98,7 +98,7 @@ class StreamedIdentifiersCache(ABC):
             id_value = cls._api_call(identifier)
             with cls._lock:
                 cls.identifiers_snapshot[identifier] = id_value
-            cls.on_update(id_value)
+                cls.on_update(id_value)
             return id_value
         except Exception as e:
             print(f"Error updating identifier {identifier}: {e}")

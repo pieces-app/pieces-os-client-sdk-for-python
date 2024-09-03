@@ -16,10 +16,14 @@ from pieces_os_client import (
 	SeededFragment,
 	TransferableString,
 	FragmentMetadata,
-	AssetReclassification)
+	AssetReclassification,
+	Linkify,
+	Shares
+)
 
 from typing import Optional
 from .basic import Basic
+from .user import BasicUser
 
 # Friendly wrapper (to avoid interacting with the pieces_os_client sdks models)
 
@@ -202,21 +206,45 @@ class BasicAsset(Basic):
 		AssetSnapshot.pieces_client.assets_api.assets_delete_asset(self.id)
 
 	@classmethod
-	def create(cls,raw: str, metadata: Optional[FragmentMetadata] = None) -> str:
+	def create(cls,raw_content: str, metadata: Optional[FragmentMetadata] = None) -> str:
 		"""
 		Create a new asset.
 
 		Args:
-			raw (str): The raw content of the asset.
+			raw_content (str): The raw content of the asset.
 			metadata (Optional[FragmentMetadata]): The metadata of the asset.
 
 		Returns:
 			str: The ID of the created asset.
 		"""
-		seed = cls._get_seed(raw,metadata)
+		seed = cls._get_seed(raw_content,metadata)
 
 		created_asset_id = AssetSnapshot.pieces_client.assets_api.assets_create_new_asset(transferables=False, seed=seed).id
 		return created_asset_id
+
+	def share(self) -> Shares:
+		"""
+		Generates a shareable link for the given asset.
+
+		Raises:
+		PermissionError: If the user is not logged in or is not connected to the cloud.
+		"""
+		return self._share(self.asset)
+
+
+	@classmethod
+	def share_raw_content(cls,raw_content:str) -> Shares:
+		"""
+		Generates a shareable link for the given user raw content.
+		Note: this will create an asset
+
+		Args:
+			raw_content (str): The raw content of the asset that will be shared.
+
+		Raises:
+		PermissionError: If the user is not logged in or is not connected to the cloud.
+		"""
+		return cls._share(seed = cls._get_seed(raw_content))
 
 	@staticmethod
 	def _get_seed(raw: str, metadata: Optional[FragmentMetadata] = None) -> Seed:
@@ -283,4 +311,27 @@ class BasicAsset(Basic):
 	def _edit_asset(asset):
 		AssetSnapshot.pieces_client.asset_api.asset_update(False,asset)
 
+	@staticmethod
+	def _share(asset=None,seed=None):
+		"""
+			You need to either give the seed or the asset_id
+		"""
+		if asset:
+			kwargs = {"asset" : asset}
+		else:
+			kwargs = {"seed" : seed}
 
+		user = BasicUser.user_profile
+
+		if not user:
+			raise PermissionError("You need to be logged in to generate a shareable link")
+
+		if not user.allocation:
+			raise PermissionError("You need to connect to the cloud to generate a shareable link")
+
+		return AssetSnapshot.pieces_client.linkfy_api.linkify(
+			linkify=Linkify(
+				access="PUBLIC",
+				**kwargs
+				)
+			)
