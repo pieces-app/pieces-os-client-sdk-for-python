@@ -28,6 +28,9 @@ jobs:
           pip install poetry -U
           poetry install
 
+      - name: Show dependencies
+        run: poetry show
+
       - name: Run the tests
         run: poetry run pytest --doctest-modules --junitxml=junit/test-results.xml --cov=com --cov-report=xml --cov-report=html
 
