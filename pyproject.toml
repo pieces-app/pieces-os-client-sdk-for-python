@@ -19,7 +19,6 @@ websocket-client = "^1.8.0"
 
 [tool.poetry.dev-dependencies]
 pytest = ">=7.2.1"
-pytest-cov = ">=5.0.0"
 tox = ">=3.9.0"
 flake8 = ">=4.0.0"
 
