@@ -12,6 +12,7 @@ from pieces_os_client.wrapper.streamed_identifiers.conversations_snapshot import
 
 class BasicCopilotTest(unittest.TestCase):
     def setUp(self):
+        self.assertEqual(1,2)
         self.mock_client = Mock()
         self.mock_client.tracked_application = Mock(id="mock_app_id")
         self.mock_client.model_id = "mock_model_id"
