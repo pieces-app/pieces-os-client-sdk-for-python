@@ -19,8 +19,13 @@ class BasicCopilotTest(unittest.TestCase):
         
         self.copilot = Copilot(self.mock_client)
 
-        # Mock ConversationsSnapshot
-        self.mock_conversations = patch('__main__.ConversationsSnapshot.identifiers_snapshot', {"test_conversation_id": Mock()}).start()
+        self.mock_conversation = Mock()
+        self.mock_conversation.id = "test_conversation_id"
+        self.mock_conversations_snapshot = patch(
+            'pieces_os_client.wrapper.streamed_identifiers.conversations_snapshot.ConversationsSnapshot.identifiers_snapshot',
+            {"test_conversation_id": self.mock_conversation}
+        ).start()
+        self.addCleanup(patch.stopall)
 
     def tearDown(self):
         patch.stopall()
@@ -32,7 +37,7 @@ class BasicCopilotTest(unittest.TestCase):
         self.assertIsInstance(self.copilot.ask_stream_ws, AskStreamWS)
         self.assertIsNone(self.copilot._chat)
 
-    @patch('__main__.AskStreamWS')
+    @patch('pieces_os_client.wrapper.websockets.AskStreamWS')
     def test_ask(self, mock_ask_stream_ws):
         conversation_id = "test_conversation_id"
         query = "Test query"
@@ -85,6 +90,8 @@ class BasicCopilotTest(unittest.TestCase):
         
         with self.assertRaises(ValueError):
             self.copilot.chat = "invalid_chat"
+        self.copilot.chat = None
+        self.assertEqual(self.copilot.chat, None)
 
 if __name__ == '__main__':
     unittest.main()
