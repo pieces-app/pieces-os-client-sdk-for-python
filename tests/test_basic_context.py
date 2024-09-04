@@ -110,3 +110,13 @@ class TestContext(unittest.TestCase):
         mock_exists.return_value = False
         with self.assertRaises(ValueError):
             Context._check_paths(["/invalid"])
+
+    @patch('pieces_os_client.wrapper.basic_identifier.asset.AssetSnapshot.pieces_client')
+    @patch('pieces_os_client.wrapper.basic_identifier.asset.BasicAsset._get_seed')
+    def test_check_raw_assets(self, mock_get_seed, mock_pieces_client):
+        mock_seed = MagicMock()
+        mock_get_seed.return_value = mock_seed
+        raw_assets = ["test1", "test2"]
+        result = Context._check_raw_assets(raw_assets)
+        self.assertIsInstance(result, Seeds)
+        self.assertEqual(len(result.iterable), 2)
