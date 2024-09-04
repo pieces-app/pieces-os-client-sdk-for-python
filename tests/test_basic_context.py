@@ -100,3 +100,13 @@ class TestContext(unittest.TestCase):
         result = Context._check_assets(assets)
         self.assertIsInstance(result, FlattenedAssets)
         self.assertEqual(len(result.iterable), 2)
+
+    @patch('os.path.exists')
+    def test_check_paths(self, mock_exists):
+        mock_exists.return_value = True
+        Context._check_paths(["/tmp"])
+        mock_exists.assert_called_once_with("/tmp")
+
+        mock_exists.return_value = False
+        with self.assertRaises(ValueError):
+            Context._check_paths(["/invalid"])
