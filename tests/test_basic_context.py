@@ -87,3 +87,16 @@ class TestContext(unittest.TestCase):
         result = Context._check_messages(messages)
         self.assertIsInstance(result, FlattenedConversationMessages)
         self.assertEqual(len(result.iterable), 2)
+
+    @patch('pieces_os_client.wrapper.basic_identifier.asset.AssetSnapshot.identifiers_snapshot')
+    @patch('pieces_os_client.wrapper.basic_identifier.asset.BasicAsset')
+    def test_check_assets(self, mock_basic_asset, mock_identifiers_snapshot):
+        mock_identifiers_snapshot.get.return_value = Mock()
+        mock_asset = MagicMock(spec=BasicAsset)
+        mock_asset.asset = "test_asset"
+        mock_basic_asset.return_value = mock_asset
+
+        assets = [mock_asset, mock_asset]
+        result = Context._check_assets(assets)
+        self.assertIsInstance(result, FlattenedAssets)
+        self.assertEqual(len(result.iterable), 2)
