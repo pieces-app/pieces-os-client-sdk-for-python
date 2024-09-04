@@ -9,3 +9,12 @@ import os
 if TYPE_CHECKING:
 	from . import PiecesClient
 
+class TestContext(unittest.TestCase):
+    def setUp(self):
+        self.mock_client = Mock()
+        self.context = Context(self.mock_client)
+        # Mock AssetSnapshot.pieces_client
+        AssetSnapshot.pieces_client = MagicMock()
+
+
+
