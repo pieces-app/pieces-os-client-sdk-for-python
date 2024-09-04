@@ -25,6 +25,23 @@ class TestContext(unittest.TestCase):
         self.assertEqual(self.context.assets, [])
         self.assertEqual(self.context.messages, [])
 
+    @patch('pieces_os_client.wrapper.basic_identifier.message.BasicMessage')
+    @patch('pieces_os_client.wrapper.basic_identifier.asset.BasicAsset')
+    def test_clear(self, mock_basic_asset, mock_basic_message):
+        mock_asset = MagicMock(spec=BasicAsset)
+        mock_message = MagicMock(spec=BasicMessage)
+        mock_basic_asset.return_value = mock_asset
+        mock_basic_message.return_value = mock_message
+
+        self.context.raw_assets = ["test"]
+        self.context.paths = ["test"]
+        self.context.assets = [mock_asset]
+        self.context.messages = [mock_message]
+        self.context.clear()
+        self.assertEqual(self.context.raw_assets, [])
+        self.assertEqual(self.context.paths, [])
+        self.assertEqual(self.context.assets, [])
+        self.assertEqual(self.context.messages, [])
 	
 
 
