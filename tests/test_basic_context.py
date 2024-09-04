@@ -76,3 +76,14 @@ class TestContext(unittest.TestCase):
         self.assertFalse(self.context._check_relevant_existance())
         self.context.paths = ["/tmp"]
         self.assertTrue(self.context._check_relevant_existance())
+
+    @patch('pieces_os_client.wrapper.basic_identifier.message.BasicMessage')
+    def test_check_messages(self, mock_basic_message):
+        mock_message = MagicMock(spec=BasicMessage)
+        mock_message.message = "test_message"
+        mock_basic_message.return_value = mock_message
+
+        messages = [mock_message, mock_message]
+        result = Context._check_messages(messages)
+        self.assertIsInstance(result, FlattenedConversationMessages)
+        self.assertEqual(len(result.iterable), 2)
