@@ -16,5 +16,15 @@ class TestContext(unittest.TestCase):
         # Mock AssetSnapshot.pieces_client
         AssetSnapshot.pieces_client = MagicMock()
 
+    @patch('pieces_os_client.wrapper.basic_identifier.message.BasicMessage')
+    @patch('pieces_os_client.wrapper.basic_identifier.asset.BasicAsset')
+    def test_init(self, mock_basic_asset, mock_basic_message):
+        self.assertEqual(self.context.pieces_client, self.mock_client)
+        self.assertEqual(self.context.raw_assets, [])
+        self.assertEqual(self.context.paths, [])
+        self.assertEqual(self.context.assets, [])
+        self.assertEqual(self.context.messages, [])
+
+	
 
 
