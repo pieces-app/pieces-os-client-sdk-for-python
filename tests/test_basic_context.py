@@ -9,7 +9,7 @@ import os
 if TYPE_CHECKING:
 	from . import PiecesClient
 
-class TestContext(unittest.TestCase):
+class BasicTestContext(unittest.TestCase):
     def setUp(self):
         self.mock_client = Mock()
         self.context = Context(self.mock_client)
@@ -42,7 +42,7 @@ class TestContext(unittest.TestCase):
         self.assertEqual(self.context.paths, [])
         self.assertEqual(self.context.assets, [])
         self.assertEqual(self.context.messages, [])
-	
+
     @patch('pieces_os_client.wrapper.context.os.path.exists', return_value=True)
     @patch('pieces_os_client.wrapper.basic_identifier.asset.AssetSnapshot.identifiers_snapshot')
     @patch('pieces_os_client.wrapper.basic_identifier.message.BasicMessage')
@@ -150,3 +150,4 @@ class TestContext(unittest.TestCase):
             messages=FlattenedConversationMessages(iterable=[])
         )
         self.context.pieces_client.qgpt_api.relevance.assert_called_once()
+
