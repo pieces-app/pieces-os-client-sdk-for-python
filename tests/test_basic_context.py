@@ -72,3 +72,7 @@ class TestContext(unittest.TestCase):
         self.assertIsInstance(result["assets"], FlattenedAssets)
         self.assertIsInstance(result["messages"], FlattenedConversationMessages)
 
+    def test_check_relevant_existence(self):
+        self.assertFalse(self.context._check_relevant_existance())
+        self.context.paths = ["/tmp"]
+        self.assertTrue(self.context._check_relevant_existance())
