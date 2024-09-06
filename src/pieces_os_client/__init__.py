@@ -14,8 +14,7 @@
     Do not edit the class manually.
 """  # noqa: E501
 
-
-__version__ = "3.1.0"
+from pieces_os_client._version import __version__
 
 # import apis into sdk package
 from pieces_os_client.api.activities_api import ActivitiesApi
