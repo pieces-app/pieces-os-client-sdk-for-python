@@ -1,4 +1,4 @@
-from pieces_os_client.models.conversation import Conversation,Annotations
+from pieces_os_client import Conversation,Annotations
 from ..streamed_identifiers import ConversationsSnapshot
 from typing import Optional, List
 from .basic import Basic

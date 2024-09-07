@@ -1,5 +1,5 @@
 from ..streamed_identifiers.assets_snapshot import AssetSnapshot
-from Pieces._pieces_lib.pieces_os_client import (
+from pieces_os_client import (
 	Asset, 
 	AssetsApi,
 	AssetApi,
