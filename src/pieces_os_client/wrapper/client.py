@@ -23,12 +23,12 @@ from pieces_os_client import (
     SearchApi,
     __version__
 )
-import socket
 from typing import Optional,Dict
 import platform
 import atexit
 import subprocess
-from urllib.parse import urlparse
+import urllib.request
+import urllib.error
 
 from .copilot import Copilot
 from .basic_identifier import BasicAsset,BasicUser
@@ -83,13 +83,13 @@ class PiecesClient:
         self._is_started_runned = True
 
 
-    @_check_startup
     @property
+    @_check_startup
     def user(self):
         return self._user
 
-    @_check_startup
     @property
+    @_check_startup
     def copilot(self):
         return self._copilot
 
@@ -98,13 +98,10 @@ class PiecesClient:
         return self._host
 
     @host.setter
-    def host(self,host):
+    def host(self,host:str):
         if not host.startswith("http"):
             raise TypeError("Invalid host url\n Host should start with http or https")
-
-        parsed_url = urlparse(host)
-        self.hostname = parsed_url.hostname
-        self.port = parsed_url.port
+        host = host[:-1] if host.endswith("/") else host
 
         self._host = host
         self.api_client = ApiClient(Configuration(host))
@@ -198,7 +195,8 @@ class PiecesClient:
     @property
     def health(self) -> str:
         """
-            Returns True Pieces OS health is ok else False
+            Calls the well known health api
+            /.well-known/health [GET]
         """
         return self.well_known_api.get_well_known_health()
 
@@ -214,18 +212,22 @@ class PiecesClient:
             subprocess.run(["open","pieces://launch"])
         elif self.local_os == "LINUX":
             subprocess.run(["xdg-open","pieces://launch"])
-        return self.is_pos_running(timeout=8) # Wait maxium 8 sec
+        return self.is_pos_running(maxium_retries=3)
 
-    def is_pos_running(self,timeout=1) -> bool:
+
+    def is_pos_running(self,maxium_retries=1) -> bool:
         """
             Checks if Pieces OS is running or not
+
+            Returns (bool): true if Pieces OS is running 
         """
-        try:
-            # Create a socket object
-            with socket.create_connection((self.hostname + "/.well-known/health",self.port), timeout=timeout):
-                return True
-        except (socket.timeout, socket.error):
-            return False
+        for i in range(maxium_retries):
+            try:
+                with urllib.request.urlopen(f"{self.host}/.well-known/health", timeout=1) as response:
+                    return response.status == 200
+            except (urllib.error.URLError, urllib.error.HTTPError):
+                pass
+        return False
 
 
 # Register the function to be called on exit
