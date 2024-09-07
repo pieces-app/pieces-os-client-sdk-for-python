@@ -102,7 +102,7 @@ class BaseWebsocket(ABC):
 		"""
 		Close the websocket connection and stop the thread.
 		"""
-		if self.running:
+		if self.running and self.ws:
 			self.ws.close()
 			self.thread.join()
 			self.running = False
