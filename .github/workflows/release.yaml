@@ -37,7 +37,7 @@ jobs:
         run: |
           echo "Version: ${{ github.event.release.tag_name }}"
           poetry version ${{ github.event.release.tag_name }}
-          sed -i "s/__version__ = .*/__version__ = \"${{ github.event.release.tag_name }}\"/" _version.py
+          sed -i "s/__version__ = .*/__version__ = \"${{ github.event.release.tag_name }}\"/" __init__.py
 
       - name: Build and publish
         if: startsWith(github.ref, 'refs/tags/v')

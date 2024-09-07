@@ -20,7 +20,6 @@ import sys
 import urllib3
 
 import http.client as httplib
-from pieces_os_client._version import __version__
 
 JSON_SCHEMA_VALIDATION_KEYWORDS = {
     'multipleOf', 'maximum', 'exclusiveMaximum',
@@ -413,8 +412,8 @@ class Configuration:
                "OS: {env}\n"\
                "Python Version: {pyversion}\n"\
                "Version of the API: 1.0\n"\
-               "SDK Package Version: {__version__}".\
-               format(env=sys.platform, pyversion=sys.version, __version__=__version__)
+               "SDK Package Version: 3.1.0".\
+               format(env=sys.platform, pyversion=sys.version)
 
     def get_host_settings(self):
         """Gets an array of host settings

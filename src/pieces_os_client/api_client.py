@@ -30,7 +30,7 @@ from pieces_os_client.api_response import ApiResponse
 import pieces_os_client.models
 from pieces_os_client import rest
 from pieces_os_client.exceptions import ApiValueError, ApiException
-from pieces_os_client._version import __version__
+
 
 class ApiClient:
     """Generic API client for OpenAPI client library builds.
@@ -77,7 +77,7 @@ class ApiClient:
             self.default_headers[header_name] = header_value
         self.cookie = cookie
         # Set default User-Agent.
-        self.user_agent = f'OpenAPI-Generator/{__version__}/python'
+        self.user_agent = 'OpenAPI-Generator/3.1.0/python'
         self.client_side_validation = configuration.client_side_validation
 
     def __enter__(self):
