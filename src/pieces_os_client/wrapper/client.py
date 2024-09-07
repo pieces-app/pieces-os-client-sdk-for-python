@@ -1,4 +1,4 @@
-from pieces_os_client import (
+from Pieces._pieces_lib.pieces_os_client import (
     ApiClient,
     Configuration,
     ConversationApi,
@@ -20,6 +20,7 @@ from pieces_os_client import (
     WellKnownApi,
     OSApi,
     AllocationsApi,
+    SearchApi,
     __version__
 )
 from typing import Optional,Dict
@@ -40,37 +41,7 @@ class PiecesClient:
         else:
             self.host = "http://localhost:5323" if 'Linux' in platform.platform() else "http://localhost:1000"
 
-
-        self.api_client = ApiClient(Configuration(self.host))
-
-        self.conversation_message_api = ConversationMessageApi(self.api_client)
-        self.conversation_messages_api = ConversationMessagesApi(self.api_client)
-        self.conversations_api = ConversationsApi(self.api_client)
-        self.conversation_api = ConversationApi(self.api_client)
-        self.qgpt_api = QGPTApi(self.api_client)
-        self.user_api = UserApi(self.api_client)
-        self.assets_api = AssetsApi(self.api_client)
-        self.asset_api = AssetApi(self.api_client)
-        self.format_api = FormatApi(self.api_client)
-        self.connector_api = ConnectorApi(self.api_client)
-        self.models_api = ModelsApi(self.api_client)
-        self.annotation_api = AnnotationApi(self.api_client)
-        self.well_known_api = WellKnownApi(self.api_client)
-        self.os_api = OSApi(self.api_client)
-        self.allocations_api = AllocationsApi(self.api_client)
-        self.linkfy_api = LinkifyApi(self.api_client)
-
-        # Websocket urls
-        if not self.host.startswith("http"):
-            raise ValueError("Invalid host url\n Host should start with http or https")
-        ws_base_url:str = self.host.replace('http','ws')
-        
-        self.ASSETS_IDENTIFIERS_WS_URL = ws_base_url + "/assets/stream/identifiers"
-        self.AUTH_WS_URL = ws_base_url + "/user/stream"
-        self.ASK_STREAM_WS_URL = ws_base_url + "/qgpt/stream"
-        self.CONVERSATION_WS_URL = ws_base_url + "/conversations/stream/identifiers"
-        self.HEALTH_WS_URL = ws_base_url + "/.well-known/stream/health"
-
+        self.init_host(self.host)
         self.local_os = platform.system().upper() if platform.system().upper() in ["WINDOWS","LINUX","DARWIN"] else "WEB"
         self.local_os = "MACOS" if self.local_os == "DARWIN" else self.local_os
         seeded_connector = seeded_connector or SeededConnectorConnection(
@@ -94,6 +65,36 @@ class PiecesClient:
         self.model_name = "GPT-3.5-turbo Chat Model"
         self.copilot = Copilot(self)
 
+    def init_host(self,host):
+        self.api_client = ApiClient(Configuration(host))
+        self.conversation_message_api = ConversationMessageApi(self.api_client)
+        self.conversation_messages_api = ConversationMessagesApi(self.api_client)
+        self.conversations_api = ConversationsApi(self.api_client)
+        self.conversation_api = ConversationApi(self.api_client)
+        self.qgpt_api = QGPTApi(self.api_client)
+        self.user_api = UserApi(self.api_client)
+        self.assets_api = AssetsApi(self.api_client)
+        self.asset_api = AssetApi(self.api_client)
+        self.format_api = FormatApi(self.api_client)
+        self.connector_api = ConnectorApi(self.api_client)
+        self.models_api = ModelsApi(self.api_client)
+        self.annotation_api = AnnotationApi(self.api_client)
+        self.well_known_api = WellKnownApi(self.api_client)
+        self.os_api = OSApi(self.api_client)
+        self.allocations_api = AllocationsApi(self.api_client)
+        self.linkfy_api = LinkifyApi(self.api_client)
+        self.search_api = SearchApi(self.api_client)
+
+        # Websocket urls
+        if not self.host.startswith("http"):
+            raise ValueError("Invalid host url\n Host should start with http or https")
+        ws_base_url:str = self.host.replace('http','ws')
+        
+        self.ASSETS_IDENTIFIERS_WS_URL = ws_base_url + "/assets/stream/identifiers"
+        self.AUTH_WS_URL = ws_base_url + "/user/stream"
+        self.ASK_STREAM_WS_URL = ws_base_url + "/qgpt/stream"
+        self.CONVERSATION_WS_URL = ws_base_url + "/conversations/stream/identifiers"
+        self.HEALTH_WS_URL = ws_base_url + "/.well-known/stream/health"
 
     def assets(self):
         self.ensure_initialization()

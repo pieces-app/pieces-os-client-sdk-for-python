@@ -1,4 +1,4 @@
-from pieces_os_client.models.conversation import Conversation
+from pieces_os_client.models.conversation import Conversation,Annotations
 from ..streamed_identifiers import ConversationsSnapshot
 from typing import Optional, List
 from .basic import Basic
@@ -16,7 +16,7 @@ class BasicChat(Basic):
         return conversation
 
     @property
-    def id(self):
+    def id(self) -> str:
         """
         Gets the ID of the conversation.
 
@@ -62,7 +62,7 @@ class BasicChat(Basic):
 
 
     @property
-    def annotations(self):
+    def annotations(self) -> Optional[Annotations]:
         """
         Gets the annotations of the conversation.
 
@@ -86,4 +86,5 @@ class BasicChat(Basic):
             conversation: The conversation to edit.
         """
         ConversationsSnapshot.pieces_client.conversation_api.conversation_update(False, conversation)
+
 

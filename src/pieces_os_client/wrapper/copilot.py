@@ -1,4 +1,4 @@
-from typing import TYPE_CHECKING, Optional, Generator
+from typing import TYPE_CHECKING, List, Optional, Generator
 from pieces_os_client import (SeededConversation,
     QGPTStreamInput,
     RelevantQGPTSeeds,
@@ -104,7 +104,7 @@ class Copilot:
 
         return self.pieces_client.qgpt_api.question(gpt_input)
 
-    def chats(self) -> list[BasicChat]:
+    def chats(self) -> List[BasicChat]:
         """
         Retrieves a list of all chat identifiers.
 
