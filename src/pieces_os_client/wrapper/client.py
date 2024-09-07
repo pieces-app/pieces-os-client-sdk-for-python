@@ -58,7 +58,7 @@ class PiecesClient:
 
     def _startup(self) -> bool:
         if self._is_started_runned: return True
-        if not self.is_pos_running(): return False
+        if not self.is_pieces_running(): return False
 
         self._is_started_runned = True
         self.tracked_application = self.connector_api.connect(seeded_connector_connection=self._seeded_connector).application
@@ -184,17 +184,17 @@ class PiecesClient:
 
             Returns (bool): true if Pieces OS runned successfully else false 
         """
-        if self.is_pos_running(): return True
+        if self.is_pieces_running(): return True
         if self.local_os == "WINDOWS":
             subprocess.run(["start", "pieces://launch"], shell=True)
         elif self.local_os == "MACOS":
             subprocess.run(["open","pieces://launch"])
         elif self.local_os == "LINUX":
             subprocess.run(["xdg-open","pieces://launch"])
-        return self.is_pos_running(maxium_retries=3)
+        return self.is_pieces_running(maxium_retries=3)
 
 
-    def is_pos_running(self,maxium_retries=1) -> bool:
+    def is_pieces_running(self,maxium_retries=1) -> bool:
         """
             Checks if Pieces OS is running or not
 
