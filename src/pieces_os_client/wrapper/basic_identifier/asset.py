@@ -63,11 +63,16 @@ class BasicAsset(Basic):
 				raise ValueError('Unable to get OCR content')
 			return content
 		else:
-			return (
-				self.asset.original.reference.fragment.string.raw or
-				self.asset.preview.base.reference.fragment.string.raw or
-				''
-			)
+			try:
+				fragment_raw = self.asset.original.reference.fragment.string.raw
+			except AttributeError:
+				fragment_raw = ""
+			try:
+				preview_raw = self.asset.preview.base.reference.fragment.string.raw
+			except AttributeError:
+				preview_raw = ""
+
+			return preview_raw or fragment_raw or ''
 
 	@raw_content.setter
 	def raw_content(self, content: str) -> str:
