@@ -184,7 +184,18 @@ class TestBasicAsset:
             with pytest.raises(PermissionError, match="You need to connect to the cloud to generate a shareable link"):
                 basic_asset._share(asset=basic_asset.asset)
 
+    def test_classification_setter(self):
+        asset = BasicAssetSearch("test_asset_id")
+        new_classification = ClassificationSpecificEnum.JS
 
+        with patch.object(AssetSnapshot.pieces_client.asset_api, 'asset_reclassify') as mock_reclassify:
+            asset.classification = new_classification
+
+            mock_reclassify.assert_called_once_with(
+                asset_reclassification=AssetReclassification(
+                    ext=new_classification, asset=asset.asset),
+                transferables=False
+            )
 
 if __name__ == '__main__':
     pytest.main([__file__])
