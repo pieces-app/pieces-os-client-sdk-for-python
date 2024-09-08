@@ -197,6 +197,18 @@ class TestBasicAsset:
                 transferables=False
             )
 
+    def test_classification_setter_with_string(self):
+        asset = BasicAssetSearch("test_asset_id")
+        new_classification = "js"
+
+        with patch.object(AssetSnapshot.pieces_client.asset_api, 'asset_reclassify') as mock_reclassify:
+            asset.classification = new_classification
+
+            mock_reclassify.assert_called_once_with(
+                asset_reclassification=AssetReclassification(
+                    ext=ClassificationSpecificEnum.JS, asset=asset.asset),
+                transferables=False
+            )
 if __name__ == '__main__':
     pytest.main([__file__])
 
