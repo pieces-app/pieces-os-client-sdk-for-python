@@ -16,7 +16,7 @@ class AssetsIdentifiersWS(BaseWebsocket):
 		on_asset_remove (Optional[Callable[[Asset], None]]): Callback function to handle asset removals.
 		on_open_callback (Optional[Callable[[WebSocketApp], None]]): Callback function to handle WebSocket opening.
 		on_error (Optional[Callable[[WebSocketApp, Exception], None]]): Callback function to handle WebSocket errors.
-		on_close (Optional[Callable[[WebSocketApp], None]]): Callback function to handle WebSocket closing.
+		on_close (Optional[Callable[[WebSocketApp, str, str], None]]): Callback function to handle WebSocket closing.
 	"""
 
 	def __init__(self, pieces_client: "PiecesClient", 
@@ -24,7 +24,7 @@ class AssetsIdentifiersWS(BaseWebsocket):
 				 on_asset_remove: Optional[Callable[[Asset], None]] = None,
 				 on_open_callback: Optional[Callable[[WebSocketApp], None]] = None, 
 				 on_error: Optional[Callable[[WebSocketApp, Exception], None]] = None, 
-				 on_close: Optional[Callable[[WebSocketApp], None]] = None):
+				 on_close: Optional[Callable[[WebSocketApp, str, str], None]] = None):
 		"""
 		Initializes the AssetsIdentifiersWS instance.
 
@@ -34,7 +34,7 @@ class AssetsIdentifiersWS(BaseWebsocket):
 			on_asset_remove (Optional[Callable[[Asset], None]]): Callback function to handle asset removals.
 			on_open_callback (Optional[Callable[[WebSocketApp], None]]): Callback function to handle WebSocket opening.
 			on_error (Optional[Callable[[WebSocketApp, Exception], None]]): Callback function to handle WebSocket errors.
-			on_close (Optional[Callable[[WebSocketApp], None]]): Callback function to handle WebSocket closing.
+			on_close (Optional[Callable[[WebSocketApp, str, str], None]]): Callback function to handle WebSocket closing.
 		"""
 		AssetSnapshot.pieces_client = pieces_client
 		if on_asset_update:

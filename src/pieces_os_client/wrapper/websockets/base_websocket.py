@@ -23,7 +23,7 @@ class BaseWebsocket(ABC):
 				 on_message_callback: Callable[[str], None],
 				 on_open_callback: Optional[Callable[[websocket.WebSocketApp], None]] = None,
 				 on_error: Optional[Callable[[websocket.WebSocketApp, Exception], None]] = None,
-				 on_close: Optional[Callable[[websocket.WebSocketApp], None]] = None):
+				 on_close: Optional[Callable[[websocket.WebSocketApp, str, str], None]] = None):
 		"""
 		Initialize the BaseWebsocket instance.
 
