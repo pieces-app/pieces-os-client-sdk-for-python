@@ -6,7 +6,9 @@ from pieces_os_client import (Asset,
     ClassificationSpecificEnum,
     Annotations,
     Annotation,
-    Linkify)
+    Linkify,
+    AssetReclassification,
+    Shares)
 from datetime import datetime
 from pieces_os_client.wrapper.basic_identifier import BasicAsset
 from pieces_os_client.wrapper.streamed_identifiers.assets_snapshot import AssetSnapshot
