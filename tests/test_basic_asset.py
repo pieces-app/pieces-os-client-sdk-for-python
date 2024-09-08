@@ -282,7 +282,24 @@ class TestBasicAsset:
             assert len(results) == 2
             mock_init.assert_any_call("exact_id")
             mock_init.assert_any_call("suggested_id")
-                    
+
+    def test_search_fuzzy(self):
+        query = "test query"
+        mock_result = Mock()
+        mock_result.iterable = [
+            Mock(exact=True, identifier="exact_id"),
+            Mock(exact=False, identifier="suggested_id")
+        ]
+
+        with patch.object(AssetSnapshot.pieces_client.assets_api, 'search_assets', return_value=mock_result) as mock_fuzzy, \
+             patch.object(BasicAssetSearch, '__init__', return_value=None) as mock_init:
+
+            results = BasicAssetSearch.search(query, search_type="fuzzy")
+
+            mock_fuzzy.assert_called_once_with(query=query, transferables=False)
+            assert len(results) == 2
+            mock_init.assert_any_call("exact_id")
+            mock_init.assert_any_call("suggested_id")
 if __name__ == '__main__':
     pytest.main([__file__])
 
