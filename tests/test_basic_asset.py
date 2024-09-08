@@ -317,6 +317,19 @@ class TestBasicAsset:
 
         with pytest.raises(ValueError, match="Pieces OS is not running"):
             c.copilot.question("HI")
+
+    @patch('pieces_os_client.wrapper.client.PiecesClient')
+    def test_open_pieces_os(self, mock_pieces_client_class):
+        mock_client = mock_pieces_client_class.return_value
+        mock_client.is_pieces_running = Mock(side_effect=[False, True])
+        mock_client.open_pieces_os = Mock(return_value=True)
+
+        c = mock_client
+
+        assert not c.is_pieces_running()
+        assert c.open_pieces_os()
+        assert c.is_pieces_running()
+        
 if __name__ == '__main__':
     pytest.main([__file__])
 
