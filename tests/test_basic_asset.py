@@ -246,6 +246,24 @@ class TestBasicAsset:
             mock_get_seed.assert_called_once_with(raw_content)
             mock_share.assert_called_once_with(seed=mock_seed)
             assert result == mock_shares
+
+    def test_search(self):
+        query = "test query"
+        mock_result = Mock()
+        mock_result.iterable = [
+            Mock(exact=True, identifier="exact_id"),
+            Mock(exact=False, identifier="suggested_id")
+        ]
+
+        with patch.object(AssetSnapshot.pieces_client.search_api, 'full_text_search', return_value=mock_result) as mock_fts, \
+             patch.object(BasicAssetSearch, '__init__', return_value=None) as mock_init:
+
+            results = BasicAssetSearch.search(query)
+
+            mock_fts.assert_called_once_with(query=query)
+            assert len(results) == 2
+            mock_init.assert_any_call("exact_id")
+            mock_init.assert_any_call("suggested_id")
                  
 if __name__ == '__main__':
     pytest.main([__file__])
