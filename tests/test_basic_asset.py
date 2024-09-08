@@ -184,8 +184,165 @@ class TestBasicAsset:
             with pytest.raises(PermissionError, match="You need to connect to the cloud to generate a shareable link"):
                 basic_asset._share(asset=basic_asset.asset)
 
+    def test_classification_setter(self):
+        asset = BasicAsset("test_asset_id")
+        new_classification = ClassificationSpecificEnum.JS
 
+        with patch.object(AssetSnapshot.pieces_client.asset_api, 'asset_reclassify') as mock_reclassify:
+            asset.classification = new_classification
 
+            mock_reclassify.assert_called_once_with(
+                asset_reclassification=AssetReclassification(
+                    ext=new_classification, asset=asset.asset),
+                transferables=False
+            )
+
+    def test_classification_setter_with_string(self):
+        asset = BasicAsset("test_asset_id")
+        new_classification = "js"
+
+        with patch.object(AssetSnapshot.pieces_client.asset_api, 'asset_reclassify') as mock_reclassify:
+            asset.classification = new_classification
+
+            mock_reclassify.assert_called_once_with(
+                asset_reclassification=AssetReclassification(
+                    ext=ClassificationSpecificEnum.JS, asset=asset.asset),
+                transferables=False
+            )
+
+    def test_classification_setter_invalid_classification(self):
+        asset = BasicAsset("test_asset_id")
+
+        with pytest.raises(ValueError, match="Invalid classification"):
+            asset.classification = 123
+
+    def test_classification_setter_image_reclassification(self):
+        asset = BasicAsset("test_asset_id")
+        self.mock_asset.original.reference.classification.generic = ClassificationGenericEnum.IMAGE
+
+        with pytest.raises(NotImplementedError, match="Error in reclassify asset: Image reclassification is not supported"):
+            asset.classification = ClassificationSpecificEnum.JS
+
+    def test_share(self):
+        asset = BasicAsset("test_asset_id")
+        mock_shares = Mock(spec=Shares)
+
+        with patch.object(BasicAsset, '_share', return_value=mock_shares) as mock_share:
+            result = asset.share()
+
+            mock_share.assert_called_once_with(asset.asset)
+            assert result == mock_shares
+
+    def test_share_raw_content(self):
+        raw_content = "Test raw content"
+        mock_seed = Mock()
+        mock_shares = Mock(spec=Shares)
+
+        with patch.object(BasicAsset, '_get_seed', return_value=mock_seed) as mock_get_seed, \
+             patch.object(BasicAsset, '_share', return_value=mock_shares) as mock_share:
+
+            result = BasicAsset.share_raw_content(raw_content)
+
+            mock_get_seed.assert_called_once_with(raw_content)
+            mock_share.assert_called_once_with(seed=mock_seed)
+            assert result == mock_shares
+
+    def test_search(self):
+        query = "test query"
+        mock_result = Mock()
+        mock_result.iterable = [
+            Mock(exact=True, identifier="exact_id"),
+            Mock(exact=False, identifier="suggested_id")
+        ]
+
+        with patch.object(AssetSnapshot.pieces_client.search_api, 'full_text_search', return_value=mock_result) as mock_fts, \
+             patch.object(BasicAsset, '__init__', return_value=None) as mock_init:
+
+            results = BasicAsset.search(query)
+
+            mock_fts.assert_called_once_with(query=query)
+            assert len(results) == 2
+            mock_init.assert_any_call("exact_id")
+            mock_init.assert_any_call("suggested_id")
+
+    def test_search_ncs(self):
+        query = "test query"
+        mock_result = Mock()
+        mock_result.iterable = [
+            Mock(exact=True, identifier="exact_id"),
+            Mock(exact=False, identifier="suggested_id")
+        ]
+
+        with patch.object(AssetSnapshot.pieces_client.search_api, 'neural_code_search', return_value=mock_result) as mock_ncs, \
+                patch.object(BasicAsset, '__init__', return_value=None) as mock_init:
+
+            results = BasicAsset.search(query, search_type="ncs")
+
+            mock_ncs.assert_called_once_with(query=query)
+            assert len(results) == 2
+            mock_init.assert_any_call("exact_id")
+            mock_init.assert_any_call("suggested_id")
+
+    def test_search_fuzzy(self):
+        query = "test query"
+        mock_result = Mock()
+        mock_result.iterable = [
+            Mock(exact=True, identifier="exact_id"),
+            Mock(exact=False, identifier="suggested_id")
+        ]
+
+        with patch.object(AssetSnapshot.pieces_client.assets_api, 'search_assets', return_value=mock_result) as mock_fuzzy, \
+             patch.object(BasicAsset, '__init__', return_value=None) as mock_init:
+
+            results = BasicAsset.search(query, search_type="fuzzy")
+
+            mock_fuzzy.assert_called_once_with(query=query, transferables=False)
+            assert len(results) == 2
+            mock_init.assert_any_call("exact_id")
+            mock_init.assert_any_call("suggested_id")
+
+    @patch('pieces_os_client.wrapper.client.PiecesClient')
+    def test_pieces_os_not_running(self, mock_pieces_client_class):
+        mock_client = mock_pieces_client_class.return_value
+        mock_client.is_pieces_running = Mock(return_value=False)
+        
+        # Create a mock copilot that raises ValueError when Pieces OS is not running
+        mock_copilot = MagicMock()
+        mock_copilot.question.side_effect = ValueError("Pieces OS is not running")
+        mock_client.copilot = mock_copilot
+
+        c = mock_client
+
+        assert not c.is_pieces_running()
+
+        with pytest.raises(ValueError, match="Pieces OS is not running"):
+            c.copilot.question("HI")
+
+    @patch('pieces_os_client.wrapper.client.PiecesClient')
+    def test_open_pieces_os(self, mock_pieces_client_class):
+        mock_client = mock_pieces_client_class.return_value
+        mock_client.is_pieces_running = Mock(side_effect=[False, True])
+        mock_client.open_pieces_os = Mock(return_value=True)
+
+        c = mock_client
+
+        assert not c.is_pieces_running()
+        assert c.open_pieces_os()
+        assert c.is_pieces_running()
+
+    @patch('pieces_os_client.wrapper.client.PiecesClient')
+    def test_copilot_after_pieces_os_running(self, mock_pieces_client_class):
+        mock_client = mock_pieces_client_class.return_value
+        mock_client.is_pieces_running = Mock(return_value=True)
+        mock_client.copilot = MagicMock()
+
+        c = mock_client
+
+        assert c.is_pieces_running()
+        
+        c.copilot.question("HI")
+        mock_client.copilot.question.assert_called_once_with("HI")
+        
 if __name__ == '__main__':
     pytest.main([__file__])
 
