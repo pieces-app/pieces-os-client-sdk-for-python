@@ -222,6 +222,16 @@ class TestBasicAsset:
 
         with pytest.raises(NotImplementedError, match="Error in reclassify asset: Image reclassification is not supported"):
             asset.classification = ClassificationSpecificEnum.JS
+
+    def test_share(self):
+        asset = BasicAssetSearch("test_asset_id")
+        mock_shares = Mock(spec=Shares)
+
+        with patch.object(BasicAssetSearch, '_share', return_value=mock_shares) as mock_share:
+            result = asset.share()
+
+            mock_share.assert_called_once_with(asset.asset)
+            assert result == mock_shares
             
 if __name__ == '__main__':
     pytest.main([__file__])
