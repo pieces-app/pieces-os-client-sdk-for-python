@@ -329,6 +329,19 @@ class TestBasicAsset:
         assert not c.is_pieces_running()
         assert c.open_pieces_os()
         assert c.is_pieces_running()
+
+    @patch('pieces_os_client.wrapper.client.PiecesClient')
+    def test_copilot_after_pieces_os_running(self, mock_pieces_client_class):
+        mock_client = mock_pieces_client_class.return_value
+        mock_client.is_pieces_running = Mock(return_value=True)
+        mock_client.copilot = MagicMock()
+
+        c = mock_client
+
+        assert c.is_pieces_running()
+        
+        c.copilot.question("HI")
+        mock_client.copilot.question.assert_called_once_with("HI")
         
 if __name__ == '__main__':
     pytest.main([__file__])
