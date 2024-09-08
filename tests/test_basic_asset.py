@@ -232,7 +232,21 @@ class TestBasicAsset:
 
             mock_share.assert_called_once_with(asset.asset)
             assert result == mock_shares
-            
+
+    def test_share_raw_content(self):
+        raw_content = "Test raw content"
+        mock_seed = Mock()
+        mock_shares = Mock(spec=Shares)
+
+        with patch.object(BasicAssetSearch, '_get_seed', return_value=mock_seed) as mock_get_seed, \
+             patch.object(BasicAssetSearch, '_share', return_value=mock_shares) as mock_share:
+
+            result = BasicAssetSearch.share_raw_content(raw_content)
+
+            mock_get_seed.assert_called_once_with(raw_content)
+            mock_share.assert_called_once_with(seed=mock_seed)
+            assert result == mock_shares
+                 
 if __name__ == '__main__':
     pytest.main([__file__])
 
