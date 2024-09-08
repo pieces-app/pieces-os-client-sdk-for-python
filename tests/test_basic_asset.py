@@ -300,6 +300,23 @@ class TestBasicAsset:
             assert len(results) == 2
             mock_init.assert_any_call("exact_id")
             mock_init.assert_any_call("suggested_id")
+
+    @patch('pieces_os_client.wrapper.client.PiecesClient')
+    def test_pieces_os_not_running(self, mock_pieces_client_class):
+        mock_client = mock_pieces_client_class.return_value
+        mock_client.is_pieces_running = Mock(return_value=False)
+        
+        # Create a mock copilot that raises ValueError when Pieces OS is not running
+        mock_copilot = MagicMock()
+        mock_copilot.question.side_effect = ValueError("Pieces OS is not running")
+        mock_client.copilot = mock_copilot
+
+        c = mock_client
+
+        assert not c.is_pieces_running()
+
+        with pytest.raises(ValueError, match="Pieces OS is not running"):
+            c.copilot.question("HI")
 if __name__ == '__main__':
     pytest.main([__file__])
 
