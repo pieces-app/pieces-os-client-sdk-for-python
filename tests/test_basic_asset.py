@@ -185,7 +185,7 @@ class TestBasicAsset:
                 basic_asset._share(asset=basic_asset.asset)
 
     def test_classification_setter(self):
-        asset = BasicAssetSearch("test_asset_id")
+        asset = BasicAsset("test_asset_id")
         new_classification = ClassificationSpecificEnum.JS
 
         with patch.object(AssetSnapshot.pieces_client.asset_api, 'asset_reclassify') as mock_reclassify:
@@ -198,7 +198,7 @@ class TestBasicAsset:
             )
 
     def test_classification_setter_with_string(self):
-        asset = BasicAssetSearch("test_asset_id")
+        asset = BasicAsset("test_asset_id")
         new_classification = "js"
 
         with patch.object(AssetSnapshot.pieces_client.asset_api, 'asset_reclassify') as mock_reclassify:
@@ -211,23 +211,23 @@ class TestBasicAsset:
             )
 
     def test_classification_setter_invalid_classification(self):
-        asset = BasicAssetSearch("test_asset_id")
+        asset = BasicAsset("test_asset_id")
 
         with pytest.raises(ValueError, match="Invalid classification"):
             asset.classification = 123
 
     def test_classification_setter_image_reclassification(self):
-        asset = BasicAssetSearch("test_asset_id")
+        asset = BasicAsset("test_asset_id")
         self.mock_asset.original.reference.classification.generic = ClassificationGenericEnum.IMAGE
 
         with pytest.raises(NotImplementedError, match="Error in reclassify asset: Image reclassification is not supported"):
             asset.classification = ClassificationSpecificEnum.JS
 
     def test_share(self):
-        asset = BasicAssetSearch("test_asset_id")
+        asset = BasicAsset("test_asset_id")
         mock_shares = Mock(spec=Shares)
 
-        with patch.object(BasicAssetSearch, '_share', return_value=mock_shares) as mock_share:
+        with patch.object(BasicAsset, '_share', return_value=mock_shares) as mock_share:
             result = asset.share()
 
             mock_share.assert_called_once_with(asset.asset)
@@ -238,10 +238,10 @@ class TestBasicAsset:
         mock_seed = Mock()
         mock_shares = Mock(spec=Shares)
 
-        with patch.object(BasicAssetSearch, '_get_seed', return_value=mock_seed) as mock_get_seed, \
-             patch.object(BasicAssetSearch, '_share', return_value=mock_shares) as mock_share:
+        with patch.object(BasicAsset, '_get_seed', return_value=mock_seed) as mock_get_seed, \
+             patch.object(BasicAsset, '_share', return_value=mock_shares) as mock_share:
 
-            result = BasicAssetSearch.share_raw_content(raw_content)
+            result = BasicAsset.share_raw_content(raw_content)
 
             mock_get_seed.assert_called_once_with(raw_content)
             mock_share.assert_called_once_with(seed=mock_seed)
@@ -256,9 +256,9 @@ class TestBasicAsset:
         ]
 
         with patch.object(AssetSnapshot.pieces_client.search_api, 'full_text_search', return_value=mock_result) as mock_fts, \
-             patch.object(BasicAssetSearch, '__init__', return_value=None) as mock_init:
+             patch.object(BasicAsset, '__init__', return_value=None) as mock_init:
 
-            results = BasicAssetSearch.search(query)
+            results = BasicAsset.search(query)
 
             mock_fts.assert_called_once_with(query=query)
             assert len(results) == 2
@@ -274,9 +274,9 @@ class TestBasicAsset:
         ]
 
         with patch.object(AssetSnapshot.pieces_client.search_api, 'neural_code_search', return_value=mock_result) as mock_ncs, \
-                patch.object(BasicAssetSearch, '__init__', return_value=None) as mock_init:
+                patch.object(BasicAsset, '__init__', return_value=None) as mock_init:
 
-            results = BasicAssetSearch.search(query, search_type="ncs")
+            results = BasicAsset.search(query, search_type="ncs")
 
             mock_ncs.assert_called_once_with(query=query)
             assert len(results) == 2
@@ -292,9 +292,9 @@ class TestBasicAsset:
         ]
 
         with patch.object(AssetSnapshot.pieces_client.assets_api, 'search_assets', return_value=mock_result) as mock_fuzzy, \
-             patch.object(BasicAssetSearch, '__init__', return_value=None) as mock_init:
+             patch.object(BasicAsset, '__init__', return_value=None) as mock_init:
 
-            results = BasicAssetSearch.search(query, search_type="fuzzy")
+            results = BasicAsset.search(query, search_type="fuzzy")
 
             mock_fuzzy.assert_called_once_with(query=query, transferables=False)
             assert len(results) == 2
