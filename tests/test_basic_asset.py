@@ -215,6 +215,13 @@ class TestBasicAsset:
 
         with pytest.raises(ValueError, match="Invalid classification"):
             asset.classification = 123
+
+    def test_classification_setter_image_reclassification(self):
+        asset = BasicAssetSearch("test_asset_id")
+        self.mock_asset.original.reference.classification.generic = ClassificationGenericEnum.IMAGE
+
+        with pytest.raises(NotImplementedError, match="Error in reclassify asset: Image reclassification is not supported"):
+            asset.classification = ClassificationSpecificEnum.JS
             
 if __name__ == '__main__':
     pytest.main([__file__])
