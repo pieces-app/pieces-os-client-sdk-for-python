@@ -209,6 +209,13 @@ class TestBasicAsset:
                     ext=ClassificationSpecificEnum.JS, asset=asset.asset),
                 transferables=False
             )
+
+    def test_classification_setter_invalid_classification(self):
+        asset = BasicAssetSearch("test_asset_id")
+
+        with pytest.raises(ValueError, match="Invalid classification"):
+            asset.classification = 123
+            
 if __name__ == '__main__':
     pytest.main([__file__])
 
