@@ -264,7 +264,25 @@ class TestBasicAsset:
             assert len(results) == 2
             mock_init.assert_any_call("exact_id")
             mock_init.assert_any_call("suggested_id")
-                 
+
+    def test_search_ncs(self):
+        query = "test query"
+        mock_result = Mock()
+        mock_result.iterable = [
+            Mock(exact=True, identifier="exact_id"),
+            Mock(exact=False, identifier="suggested_id")
+        ]
+
+        with patch.object(AssetSnapshot.pieces_client.search_api, 'neural_code_search', return_value=mock_result) as mock_ncs, \
+                patch.object(BasicAssetSearch, '__init__', return_value=None) as mock_init:
+
+            results = BasicAssetSearch.search(query, search_type="ncs")
+
+            mock_ncs.assert_called_once_with(query=query)
+            assert len(results) == 2
+            mock_init.assert_any_call("exact_id")
+            mock_init.assert_any_call("suggested_id")
+                    
 if __name__ == '__main__':
     pytest.main([__file__])
 
