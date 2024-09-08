@@ -1,4 +1,4 @@
-from typing import TYPE_CHECKING
+from typing import TYPE_CHECKING, List
 
 from .basic_identifier import BasicAsset,BasicMessage
 import os
@@ -10,10 +10,10 @@ if TYPE_CHECKING:
 class Context:
 	def __init__(self,
 		pieces_client:"PiecesClient",
-		paths:list[str] = [],
-		raw_assets:list[str] = [],
-		assets:list[BasicAsset] = [],
-		messages:list[BasicMessage] = []):
+		paths:List[str] = [],
+		raw_assets:List[str] = [],
+		assets:List[BasicAsset] = [],
+		messages:List[BasicMessage] = []):
 		self.pieces_client = pieces_client
 		self.raw_assets = raw_assets
 		self.paths = paths
@@ -67,7 +67,7 @@ class Context:
 				raise ValueError("Invalid path in the context")
 
 	@staticmethod
-	def _check_raw_assets(assets:list[str]):
+	def _check_raw_assets(assets:List[str]):
 		seed_list = Seeds(iterable=[])
 		for raw in assets:
 			if not isinstance(raw,str):

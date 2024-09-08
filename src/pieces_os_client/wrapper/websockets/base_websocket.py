@@ -1,5 +1,4 @@
-from typing import Callable, Optional,TYPE_CHECKING
-from typing_extensions import Self
+from typing import Callable, Optional,TYPE_CHECKING, List
 import websocket
 import threading
 from abc import ABC, abstractmethod
@@ -9,7 +8,7 @@ if TYPE_CHECKING:
 
 class BaseWebsocket(ABC):
 	instances = []
-	_initialized_events:list[threading.Event] = []
+	_initialized_events:List[threading.Event] = []
 
 	def __new__(cls, *args, **kwargs):
 		"""
@@ -24,7 +23,7 @@ class BaseWebsocket(ABC):
 				 on_message_callback: Callable[[str], None],
 				 on_open_callback: Optional[Callable[[websocket.WebSocketApp], None]] = None,
 				 on_error: Optional[Callable[[websocket.WebSocketApp, Exception], None]] = None,
-				 on_close: Optional[Callable[[websocket.WebSocketApp], None]] = None):
+				 on_close: Optional[Callable[[websocket.WebSocketApp, str, str], None]] = None):
 		"""
 		Initialize the BaseWebsocket instance.
 
@@ -103,7 +102,7 @@ class BaseWebsocket(ABC):
 		"""
 		Close the websocket connection and stop the thread.
 		"""
-		if self.running:
+		if self.running and self.ws:
 			self.ws.close()
 			self.thread.join()
 			self.running = False

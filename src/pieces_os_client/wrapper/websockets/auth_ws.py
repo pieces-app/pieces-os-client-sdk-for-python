@@ -16,7 +16,7 @@ class AuthWS(BaseWebsocket):
 		on_message_callback (Callable[[Optional[UserProfile]], None]): Callback function to handle incoming messages.
 		on_open_callback (Optional[Callable[[WebSocketApp], None]]): Optional callback function to handle WebSocket opening.
 		on_error (Optional[Callable[[WebSocketApp, Exception], None]]): Optional callback function to handle errors.
-		on_close (Optional[Callable[[WebSocketApp], None]]): Optional callback function to handle WebSocket closing.
+		on_close (Optional[Callable[[WebSocketApp, str, str], None]]): Optional callback function to handle WebSocket closing.
 	"""
 
 	def __init__(self, 
@@ -24,7 +24,7 @@ class AuthWS(BaseWebsocket):
 				 on_message_callback: Callable[[Optional[UserProfile]], None],
 				 on_open_callback: Optional[Callable[[WebSocketApp], None]] = None, 
 				 on_error: Optional[Callable[[WebSocketApp, Exception], None]] = None, 
-				 on_close: Optional[Callable[[WebSocketApp], None]] = None):
+				 on_close: Optional[Callable[[WebSocketApp, str, str], None]] = None):
 		"""
 		Initializes the AuthWS instance.
 
@@ -33,7 +33,7 @@ class AuthWS(BaseWebsocket):
 			on_message_callback (Callable[[Optional[UserProfile]], None]): Callback function to handle incoming messages.
 			on_open_callback (Optional[Callable[[WebSocketApp], None]]): Optional callback function to handle WebSocket opening.
 			on_error (Optional[Callable[[WebSocketApp, Exception], None]]): Optional callback function to handle errors.
-			on_close (Optional[Callable[[WebSocketApp], None]]): Optional callback function to handle WebSocket closing.
+			on_close (Optional[Callable[[WebSocketApp, str, str], None]]): Optional callback function to handle WebSocket closing.
 		"""
 		super().__init__(pieces_client, on_message_callback, on_open_callback, on_error, on_close)
 

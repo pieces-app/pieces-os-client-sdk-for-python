@@ -13,7 +13,7 @@ class ConversationWS(BaseWebsocket):
 				 on_conversation_remove: Optional[Callable[[Conversation], None]] = None,
 				 on_open_callback: Optional[Callable[[WebSocketApp], None]] = None, 
 				 on_error: Optional[Callable[[WebSocketApp, Exception], None]] = None, 
-				 on_close: Optional[Callable[[WebSocketApp], None]] = None):
+				 on_close: Optional[Callable[[WebSocketApp, str, str], None]] = None):
 		"""
 		Initialize the ConversationWS class.
 
