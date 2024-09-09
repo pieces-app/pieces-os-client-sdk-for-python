@@ -60,7 +60,7 @@ class BasicUser:
 		"""
 		Logs the user out of the OS.
 		"""
-		self.pieces_client.api_client.os_api.sign_out_of_os()
+		self.pieces_client.os_api.sign_out_of_os()
 
 	def connect(self):
 		"""
@@ -84,7 +84,7 @@ class BasicUser:
 		if not self.user_profile:
 			raise PermissionError("You must be logged in to use this feature")
 		if self.user_profile.allocation:  # Check if there is an allocation iterable
-			self.pieces_client.api_client.allocations_api.allocations_disconnect_cloud(self.user_profile.allocation)
+			self.pieces_client.allocations_api.allocations_disconnect_cloud(self.user_profile.allocation)
 
 	@property
 	def picture(self) -> Optional[str]:
