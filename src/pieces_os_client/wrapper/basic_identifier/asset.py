@@ -81,9 +81,6 @@ class BasicAsset(Basic):
 
 		Args:
 			content: The new content to be set.
-
-		Raises:
-			NotImplemented: If the asset is an image.
 		"""
 		format_api = AssetSnapshot.pieces_client.format_api
 		if self.is_image:
@@ -95,6 +92,9 @@ class BasicAsset(Basic):
 			original.fragment.string.raw = content
 		elif original.file and original.file.string and original.file.string.raw:
 			original.file.string.raw = content
+		elif original.file and original.file.bytes and original.file.bytes.raw:
+			original.file.bytes.raw =  list(content.encode('utf-8'))
+
 		format_api.format_update_value(transferable=False, format=original)
 
 	@property
