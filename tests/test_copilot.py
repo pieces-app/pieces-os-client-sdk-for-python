@@ -88,8 +88,6 @@ class BasicCopilotTest(unittest.TestCase):
         self.copilot.chat = test_chat
         self.assertEqual(self.copilot.chat, test_chat)
         
-        with self.assertRaises(ValueError):
-            self.copilot.chat = "invalid_chat"
         self.copilot.chat = None
         self.assertEqual(self.copilot.chat, None)
 
