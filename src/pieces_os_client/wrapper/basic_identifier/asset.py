@@ -75,7 +75,7 @@ class BasicAsset(Basic):
 			return preview_raw or fragment_raw or ''
 
 	@raw_content.setter
-	def raw_content(self, content: str) -> str:
+	def raw_content(self, content: str):
 		"""
 		Edit the original format of the asset.
 
@@ -86,9 +86,10 @@ class BasicAsset(Basic):
 			NotImplemented: If the asset is an image.
 		"""
 		format_api = AssetSnapshot.pieces_client.format_api
-		original = format_api.format_snapshot(self.asset.original.id, transferable=True)
-		if original.classification.generic == ClassificationGenericEnum.IMAGE:
-			raise NotImplemented("Can't edit an image yet")
+		if self.is_image:
+			original = self._get_ocr_format(self.asset)
+		else:
+			original = format_api.format_snapshot(self.asset.original.id, transferable=True)
 
 		if original.fragment and original.fragment.string and original.fragment.string.raw:
 			original.fragment.string.raw = content
@@ -364,7 +365,7 @@ class BasicAsset(Basic):
 		else:
 			kwargs = {"seed" : seed}
 
-		user = BasicUser.user_profile
+		user = AssetSnapshot.pieces_client.user.user_profile
 
 		if not user:
 			raise PermissionError("You need to be logged in to generate a shareable link")
