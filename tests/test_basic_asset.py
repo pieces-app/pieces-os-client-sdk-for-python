@@ -135,7 +135,7 @@ class TestBasicAsset:
         mock_user_profile = MagicMock()
         mock_user_profile.allocation = True
 
-        with patch('pieces_os_client.wrapper.basic_identifier.BasicUser.user_profile', mock_user_profile), \
+        with patch('pieces_os_client.wrapper.streamed_identifiers.assets_snapshot.AssetSnapshot.pieces_client.user.user_profile', mock_user_profile), \
              patch.object(AssetSnapshot.pieces_client.linkfy_api, 'linkify') as mock_linkify:
 
             mock_linkify.return_value = "shareable_link"
@@ -155,7 +155,7 @@ class TestBasicAsset:
         mock_user_profile = MagicMock()
         mock_user_profile.allocation = True
 
-        with patch('pieces_os_client.wrapper.basic_identifier.BasicUser.user_profile', mock_user_profile), \
+        with patch('pieces_os_client.wrapper.streamed_identifiers.assets_snapshot.AssetSnapshot.pieces_client.user.user_profile', mock_user_profile), \
              patch.object(AssetSnapshot.pieces_client.linkfy_api, 'linkify') as mock_linkify:
             
             mock_linkify.return_value = "shareable_link"
@@ -173,7 +173,7 @@ class TestBasicAsset:
     def test_share_without_user_profile(self):
         basic_asset = BasicAsset("test_asset_id")
 
-        with patch('pieces_os_client.wrapper.basic_identifier.BasicUser.user_profile', None):
+        with patch('pieces_os_client.wrapper.streamed_identifiers.assets_snapshot.AssetSnapshot.pieces_client.user.user_profile', None):
             with pytest.raises(PermissionError, match="You need to be logged in to generate a shareable link"):
                 basic_asset._share(asset=basic_asset.asset)
 
@@ -182,7 +182,7 @@ class TestBasicAsset:
         mock_user_profile = MagicMock()
         mock_user_profile.allocation = False
 
-        with patch('pieces_os_client.wrapper.basic_identifier.BasicUser.user_profile', mock_user_profile):
+        with patch('pieces_os_client.wrapper.streamed_identifiers.assets_snapshot.AssetSnapshot.pieces_client.user.user_profile', mock_user_profile):
             with pytest.raises(PermissionError, match="You need to connect to the cloud to generate a shareable link"):
                 basic_asset._share(asset=basic_asset.asset)
 
