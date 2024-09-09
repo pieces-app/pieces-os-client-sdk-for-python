@@ -69,7 +69,9 @@ class Copilot:
                 conversation=id,
             )
         )
+        return self._return_on_message()
 
+    def _return_on_message(self):
         while True:
             message: QGPTStreamOutput = self._on_message_queue.get()
             if message.status != QGPTStreamEnum.IN_MINUS_PROGRESS:  # Loop only while in progress
