@@ -23,7 +23,7 @@ class BasicUserTest(unittest.TestCase):
 
     def test_logout(self):
         self.basic_user.logout()
-        self.mock_pieces_client.api_client.os_api.sign_out_of_os.assert_called_once()
+        self.mock_pieces_client.os_api.sign_out_of_os.assert_called_once()
 
     def test_connect(self):
         self.basic_user.connect()
@@ -37,7 +37,7 @@ class BasicUserTest(unittest.TestCase):
     def test_disconnect(self):
         self.mock_user_profile.allocation = MagicMock()
         self.basic_user.disconnect()
-        self.mock_pieces_client.api_client.allocations_api.allocations_disconnect_cloud.assert_called_once_with(self.mock_user_profile.allocation)
+        self.mock_pieces_client.allocations_api.allocations_disconnect_cloud.assert_called_once_with(self.mock_user_profile.allocation)
 
     def test_disconnect_without_login(self):
         self.basic_user.user_profile = None
