@@ -63,6 +63,7 @@ class PiecesClient:
 
         self._is_started_runned = True
         self.tracked_application = self.connector_api.connect(seeded_connector_connection=self._seeded_connector).application
+        self.api_client.set_default_header("application",self.tracked_application.id)
 
         if self._connect_websockets:
             self.conversation_ws = ConversationWS(self)

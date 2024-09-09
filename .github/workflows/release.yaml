@@ -42,7 +42,7 @@ jobs:
         run: |
           echo "Version: ${{ steps.get_version.outputs.VERSION }}"
           poetry version ${{ steps.get_version.outputs.VERSION }}
-          sed -i "s/__version__ = .*/__version__ = \"${{ steps.get_version.outputs.VERSION }}\"/" __init__.py
+          sed -i "s/__version__ = .*/__version__ = \"${{ steps.get_version.outputs.VERSION }}\"/" src/pieces_os_client/__init__.py
 
       - name: Build and publish
         if: startsWith(github.ref, 'refs/tags/v')
