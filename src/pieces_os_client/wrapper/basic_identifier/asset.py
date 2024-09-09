@@ -365,7 +365,7 @@ class BasicAsset(Basic):
 		else:
 			kwargs = {"seed" : seed}
 
-		user = BasicUser.user_profile
+		user = AssetSnapshot.pieces_client.user.user_profile
 
 		if not user:
 			raise PermissionError("You need to be logged in to generate a shareable link")
