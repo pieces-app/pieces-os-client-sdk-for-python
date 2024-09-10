@@ -49,7 +49,6 @@ jobs:
           sed -i "s/__version__ = .*/__version__ = \"${{ steps.get_version.outputs.version }}\"/" src/pieces_os_client/__init__.py
 
       - name: Build and publish
-        if: startsWith(github.ref, 'refs/tags/*')
         env:
           POETRY_PYPI_TOKEN_PYPI: ${{ secrets.PYPI_API_TOKEN }}
         run: |
