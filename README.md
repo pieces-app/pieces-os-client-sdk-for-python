@@ -1,13 +1,5 @@
 <h1 align="center">
-    <b>
-        <a href="https://pieces.app">
-            <picture>
-                <source srcset="./assets/Logo-light-theme.png" media="(prefers-color-scheme: light)">
-                <source srcset="./assets/Logo-dark-theme.png" media="(prefers-color-scheme: dark)">
-                <img src="./assets/Logo-dark-theme.png" height="125" width="600" />
-            </picture>
-        </a><br>
-    </b>
+[![Pieces](https://raw.githubusercontent.com/pieces-app/pieces-os-client-sdk-for-csharp/main/assets/pieces-logo.png?token=GHSAT0AAAAAACTAEQJM63MDD3OICVSXMCLCZW2LDQQ)](https://pieces.app)
 </h1>
 
 # <p align="center"> Pieces OS Client SDK For Python
