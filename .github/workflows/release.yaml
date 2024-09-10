@@ -24,8 +24,7 @@ jobs:
 
       - name: Get version
         id: get_version
-        run: echo "VERSION=$(echo $GITHUB_REF | cut -d / -f 3)" >> $GITHUB_ENV
-
+        run: echo "::set-output name=VERSION::$(echo $GITHUB_REF | cut -d / -f 3)"
 
       - name: Install dependencies
         run: |
