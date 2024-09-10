@@ -1,6 +1,4 @@
-<h1 align="center">
-[![Pieces](https://raw.githubusercontent.com/pieces-app/pieces-os-client-sdk-for-csharp/main/assets/pieces-logo.png?token=GHSAT0AAAAAACTAEQJM63MDD3OICVSXMCLCZW2LDQQ)](https://pieces.app)
-</h1>
+[Pieces](https://raw.githubusercontent.com/pieces-app/pieces-os-client-sdk-for-csharp/main/assets/pieces-logo.png?token=GHSAT0AAAAAACTAEQJM63MDD3OICVSXMCLCZW2LDQQ)](https://pieces.app)
 
 # <p align="center"> Pieces OS Client SDK For Python
    <p align="center">
