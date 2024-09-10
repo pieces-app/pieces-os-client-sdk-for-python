@@ -1,4 +1,14 @@
-[![Pieces](https://raw.githubusercontent.com/pieces-app/pieces-os-client-sdk-for-csharp/main/assets/pieces-logo.png?token=GHSAT0AAAAAACTAEQJM63MDD3OICVSXMCLCZW2LDQQ)](https://pieces.app)
+<h1 align="center">
+    <b>
+        <a href="https://pieces.app">
+            <picture>
+                <source srcset="https://github.com/user-attachments/assets/6d1c9fc1-11d5-47b0-bb39-a81d40d8fab0" media="(prefers-color-scheme: light)">
+                <source srcset="https://github.com/user-attachments/assets/4529e56f-f614-4743-8ca8-33e0c040b069" media="(prefers-color-scheme: dark)">
+                <img src="https://github.com/user-attachments/assets/4529e56f-f614-4743-8ca8-33e0c040b069" height="125" width="600" />
+            </picture>
+        </a><br>
+    </b>
+</h1>
 
 # <p align="center"> Pieces OS Client SDK For Python
    <p align="center">
