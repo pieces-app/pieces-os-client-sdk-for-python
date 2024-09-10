@@ -2,9 +2,9 @@
     <b>
         <a href="https://pieces.app">
             <picture>
-                <source srcset="./assets/Logo-light-theme.png" media="(prefers-color-scheme: light)">
-                <source srcset="./assets/Logo-dark-theme.png" media="(prefers-color-scheme: dark)">
-                <img src="./assets/Logo-dark-theme.png" height="125" width="600" />
+                <source srcset="https://github.com/user-attachments/assets/6d1c9fc1-11d5-47b0-bb39-a81d40d8fab0" media="(prefers-color-scheme: light)">
+                <source srcset="https://github.com/user-attachments/assets/4529e56f-f614-4743-8ca8-33e0c040b069" media="(prefers-color-scheme: dark)">
+                <img src="https://github.com/user-attachments/assets/4529e56f-f614-4743-8ca8-33e0c040b069" height="125" width="600" />
             </picture>
         </a><br>
     </b>
