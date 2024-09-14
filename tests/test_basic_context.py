@@ -70,9 +70,9 @@ class BasicTestContext(unittest.TestCase):
         self.assertIsInstance(result["messages"], FlattenedConversationMessages)
 
     def test_check_relevant_existence(self):
-        self.assertFalse(self.context._check_relevant_existance())
+        self.assertFalse(self.context._check_relevant_existence())
         self.context.paths = ["/tmp"]
-        self.assertTrue(self.context._check_relevant_existance())
+        self.assertTrue(self.context._check_relevant_existence())
 
     @patch('pieces_os_client.wrapper.basic_identifier.message.BasicMessage')
     def test_check_messages(self, mock_basic_message):
