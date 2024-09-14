@@ -39,7 +39,7 @@ class Context:
 			"messages":messages
 		}
 
-	def _check_relevant_existance(self) -> bool:
+	def _check_relevant_existence(self) -> bool:
 		return bool(self.paths or self.assets or self.raw_assets)
 
 	@staticmethod

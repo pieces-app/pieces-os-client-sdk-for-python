@@ -55,7 +55,7 @@ class Copilot:
             QGPTStreamOutput: The streamed output from the QGPT model.
         """
         self.pieces_client._check_startup()
-        relevant = self.context._relevance_api(query) if self.context._check_relevant_existance else RelevantQGPTSeeds(iterable=[])
+        relevant = self.context._relevance_api(query) if self.context._check_relevant_existence else RelevantQGPTSeeds(iterable=[])
         self.ask_stream_ws.send_message(
             QGPTStreamInput(
                 question=QGPTQuestionInput(
@@ -139,7 +139,7 @@ class Copilot:
         """
         self._chat = chat
         self.context.clear() # clear the context on changing the conversation
-        self._chat_id = chat.id if chat else None
+        self._chat_id = chat._id if chat else None
 
 
     def create_chat(self, name:Optional[str]=None):
