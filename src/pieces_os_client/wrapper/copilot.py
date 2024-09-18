@@ -1,18 +1,18 @@
 from typing import TYPE_CHECKING, List, Optional, Generator
-from pieces_os_client import (SeededConversation,
-    QGPTStreamInput,
-    RelevantQGPTSeeds,
-    QGPTQuestionInput,
-    QGPTStreamOutput,
-    QGPTStreamEnum,
-    QGPTQuestionOutput)
-from pieces_os_client.models.qgpt_prompt_pipeline import QGPTPromptPipeline
+import queue
 
 from .context import Context
 from .basic_identifier.chat import BasicChat
 from .streamed_identifiers.conversations_snapshot import ConversationsSnapshot
 from .websockets import AskStreamWS
-import queue
+
+from pieces_os_client.models.qgpt_stream_input import QGPTStreamInput
+from pieces_os_client.models.relevant_qgpt_seeds import RelevantQGPTSeeds
+from pieces_os_client.models.qgpt_question_input import QGPTQuestionInput
+from pieces_os_client.models.qgpt_stream_output import QGPTStreamOutput
+from pieces_os_client.models.qgpt_stream_enum import QGPTStreamEnum
+from pieces_os_client.models.qgpt_question_output import QGPTQuestionOutput
+from pieces_os_client.models.qgpt_prompt_pipeline import QGPTPromptPipeline
 
 
 if TYPE_CHECKING:

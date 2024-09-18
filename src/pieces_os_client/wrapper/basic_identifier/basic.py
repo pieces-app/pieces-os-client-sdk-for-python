@@ -1,7 +1,8 @@
 from abc import ABC,abstractmethod
-from typing import  Optional
-from pieces_os_client import Annotations, AnnotationTypeEnum
+from typing import Optional
 
+from pieces_os_client.models.annotations import Annotations
+from pieces_os_client.models.annotation_type_enum import AnnotationTypeEnum
 
 class Basic(ABC):
 	def __init__(self, id) -> None:

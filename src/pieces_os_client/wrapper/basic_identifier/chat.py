@@ -1,8 +1,11 @@
-from pieces_os_client import Conversation,Annotations
-from ..streamed_identifiers import ConversationsSnapshot
 from typing import Optional, List
+from ..streamed_identifiers import ConversationsSnapshot
 from .basic import Basic
 from .message import BasicMessage
+
+from pieces_os_client.models.conversation import Conversation
+from pieces_os_client.models.annotations import Annotations
+
 
 class BasicChat(Basic):
     """

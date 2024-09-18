@@ -1,8 +1,10 @@
-from pieces_os_client import StreamedIdentifiers, Conversation
 from .base_websocket import BaseWebsocket
 from ..streamed_identifiers import ConversationsSnapshot
 from websocket import WebSocketApp
 from typing import Optional, Callable,TYPE_CHECKING
+
+from pieces_os_client.models.streamed_identifiers import StreamedIdentifiers
+from pieces_os_client.models.conversation import Conversation
 
 if TYPE_CHECKING:
 	from ..client import PiecesClient

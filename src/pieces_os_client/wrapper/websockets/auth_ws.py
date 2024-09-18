@@ -1,5 +1,5 @@
 from .base_websocket import BaseWebsocket
-from pieces_os_client import UserProfile
+from pieces_os_client.models.user_profile import UserProfile
 import json
 from typing import Callable, Optional,TYPE_CHECKING
 from websocket import WebSocketApp

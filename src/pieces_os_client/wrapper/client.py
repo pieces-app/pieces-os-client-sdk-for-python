@@ -1,34 +1,37 @@
-from pieces_os_client import (
-    ApiClient,
-    Configuration,
-    ConversationApi,
-    ConversationMessageApi,
-    ConversationMessagesApi,
-    ConversationsApi,
-    QGPTApi,
-    UserApi,
-    FormatApi,
-    ConnectorApi,
-    SeededConnectorConnection,
-    SeededTrackedApplication,
-    AssetApi,
-    AssetsApi,
-    FragmentMetadata,
-    ModelsApi,
-    AnnotationApi,
-    LinkifyApi,
-    WellKnownApi,
-    OSApi,
-    AllocationsApi,
-    SearchApi,
-    __version__
-)
 from typing import Optional,Dict
 import platform
 import atexit
 import subprocess
 import urllib.request
 import urllib.error
+
+from pieces_os_client import __version__
+
+from pieces_os_client.api_client import ApiClient
+from pieces_os_client.configuration import Configuration
+
+from pieces_os_client.api.conversation_api import ConversationApi
+from pieces_os_client.api.conversation_message_api import ConversationMessageApi
+from pieces_os_client.api.conversation_messages_api import ConversationMessagesApi
+from pieces_os_client.api.conversations_api import ConversationsApi
+from pieces_os_client.api.qgpt_api import QGPTApi
+from pieces_os_client.api.user_api import UserApi
+from pieces_os_client.api.format_api import FormatApi
+from pieces_os_client.api.connector_api import ConnectorApi
+from pieces_os_client.api.os_api import OSApi
+from pieces_os_client.api.allocations_api import AllocationsApi
+from pieces_os_client.api.search_api import SearchApi
+from pieces_os_client.api.asset_api import AssetApi
+from pieces_os_client.api.well_known_api import WellKnownApi
+from pieces_os_client.api.assets_api import AssetsApi
+from pieces_os_client.api.models_api import ModelsApi
+from pieces_os_client.api.annotation_api import AnnotationApi
+from pieces_os_client.api.linkify_api import LinkifyApi
+
+from pieces_os_client.models.seeded_connector_connection import SeededConnectorConnection
+from pieces_os_client.models.seeded_tracked_application import SeededTrackedApplication
+from pieces_os_client.models.fragment_metadata import FragmentMetadata
+
 
 from .copilot import Copilot
 from .basic_identifier import BasicAsset,BasicUser

@@ -1,6 +1,8 @@
 import unittest
 from unittest.mock import MagicMock, patch
-from pieces_os_client import UserProfile, AllocationStatusEnum
+
+from pieces_os_client.models.user_profile import UserProfile 
+from pieces_os_client.models.allocation_status_enum import AllocationStatusEnum
 from pieces_os_client.wrapper.basic_identifier import BasicUser
 
 class BasicUserTest(unittest.TestCase):

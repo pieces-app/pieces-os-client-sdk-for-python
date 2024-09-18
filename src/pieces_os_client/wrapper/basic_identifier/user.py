@@ -1,6 +1,8 @@
 import threading
-from pieces_os_client import UserProfile,AllocationStatusEnum
 from typing import Optional
+
+from pieces_os_client.models.user_profile import UserProfile
+from pieces_os_client.models.allocation_status_enum import AllocationStatusEnum
 
 ## TODO: Modify the Basic class to be able to fit in the BasicUser
 class BasicUser:
