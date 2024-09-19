@@ -50,5 +50,13 @@ class TestVersionChecker(unittest.TestCase):
         self.assertFalse(result.compatible)
         self.assertEqual(result.update, UpdateEnum.Plugin)
 
+    def test_parse_version(self):
+        checker = VersionChecker("1.0.0", "2.0.0", "1.5.0")
+        self.assertEqual(checker._parse_version("1.2.3"), ((1, 2, 3), ()))
+        self.assertEqual(checker._parse_version("1.2.3-alpha.1"), ((1, 2, 3), ('alpha', '1')))
+        self.assertEqual(checker._parse_version("1.2.3-beta"), ((1, 2, 3), ('beta',)))
+        with self.assertRaises(ValueError):
+            checker._parse_version("invalid.version")
+
 if __name__ == "__main__":
     unittest.main()
