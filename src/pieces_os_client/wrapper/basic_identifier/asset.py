@@ -1,6 +1,6 @@
 from ..streamed_identifiers.assets_snapshot import AssetSnapshot
 from .basic import Basic
-from typing import Literal, Optional, List
+from typing import Literal, Optional, List, TYPE_CHECKING
 
 from pieces_os_client.models.asset import Asset
 from pieces_os_client.models.classification_specific_enum import ClassificationSpecificEnum
@@ -15,7 +15,9 @@ from pieces_os_client.models.fragment_metadata import FragmentMetadata
 from pieces_os_client.models.asset_reclassification import AssetReclassification
 from pieces_os_client.models.linkify import Linkify
 from pieces_os_client.models.shares import Shares
-from pieces_os_client.models.annotations import Annotations
+
+if TYPE_CHECKING:
+	from . import BasicAnnotation, BasicTag
 
 # Friendly wrapper (to avoid interacting with the pieces_os_client sdks models)
 
@@ -75,9 +77,10 @@ class BasicAsset(Basic):
 			content: The new content to be set.
 		"""
 		format_api = AssetSnapshot.pieces_client.format_api
+		original = None
 		if self.is_image:
 			original = self._get_ocr_format(self.asset)
-		else:
+		if not original:
 			original = format_api.format_snapshot(self.asset.original.id, transferable=True)
 
 		if original.fragment and original.fragment.string and original.fragment.string.raw:
@@ -177,24 +180,25 @@ class BasicAsset(Basic):
 		annotations = self.annotations
 		if not annotations:
 			return
-		annotations = sorted(annotations, key=lambda x: x.updated.value, reverse=True)
 		d = None
 		for annotation in annotations:
 			if annotation.type == "DESCRIPTION":
 				d = annotation
 		
-		return d.text if d else None
+		return d.raw_content if d else None
 
 
 	@property
-	def annotations(self) -> Optional[Annotations]:
+	def annotations(self) -> Optional[List["BasicAnnotation"]]:
 		"""
 		Get all annotations of the asset.
 
 		Returns:
 			Optional[Annotations]: The annotations if available, otherwise None.
 		"""
-		return getattr(self.asset.annotations,"iterable",None)
+		from . import BasicAnnotation
+		if self.asset.annotations:
+			return [BasicAnnotation(AssetSnapshot.pieces_client,a) for a in self.asset.annotations.iterable]
 
 
 	def delete(self) -> None:
