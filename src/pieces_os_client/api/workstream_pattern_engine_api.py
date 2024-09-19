@@ -183,7 +183,7 @@ class WorkstreamPatternEngineApi:
                 _header_params['Content-Type'] = _content_types_list
 
         # authentication setting
-        _auth_settings = []  # noqa: E501
+        _auth_settings = ['application']  # noqa: E501
 
         _response_types_map = {
             '200': "WorkstreamIngestion",
@@ -316,7 +316,7 @@ class WorkstreamPatternEngineApi:
             ['application/json', 'text/plain'])  # noqa: E501
 
         # authentication setting
-        _auth_settings = []  # noqa: E501
+        _auth_settings = ['application']  # noqa: E501
 
         _response_types_map = {
             '200': "WorkstreamPatternEngineSources",
@@ -464,7 +464,7 @@ class WorkstreamPatternEngineApi:
                 _header_params['Content-Type'] = _content_types_list
 
         # authentication setting
-        _auth_settings = []  # noqa: E501
+        _auth_settings = ['application']  # noqa: E501
 
         _response_types_map = {
             '200': "WorkstreamPatternEngineStatus",
@@ -598,7 +598,7 @@ class WorkstreamPatternEngineApi:
             ['application/json', 'text/plain'])  # noqa: E501
 
         # authentication setting
-        _auth_settings = []  # noqa: E501
+        _auth_settings = ['application']  # noqa: E501
 
         _response_types_map = {
             '200': "WorkstreamPatternEngineVisionCalibration",
@@ -731,7 +731,7 @@ class WorkstreamPatternEngineApi:
             ['application/json', 'text/plain'])  # noqa: E501
 
         # authentication setting
-        _auth_settings = []  # noqa: E501
+        _auth_settings = ['application']  # noqa: E501
 
         _response_types_map = {
             '200': "WorkstreamPatternEngineVisionCalibration",
@@ -864,7 +864,7 @@ class WorkstreamPatternEngineApi:
             ['application/json', 'text/plain'])  # noqa: E501
 
         # authentication setting
-        _auth_settings = []  # noqa: E501
+        _auth_settings = ['application']  # noqa: E501
 
         _response_types_map = {
             '200': "WorkstreamPatternEngineVisionCalibrations",
@@ -1012,7 +1012,7 @@ class WorkstreamPatternEngineApi:
                 _header_params['Content-Type'] = _content_types_list
 
         # authentication setting
-        _auth_settings = []  # noqa: E501
+        _auth_settings = ['application']  # noqa: E501
 
         _response_types_map = {}
 
@@ -1157,7 +1157,7 @@ class WorkstreamPatternEngineApi:
                 _header_params['Content-Type'] = _content_types_list
 
         # authentication setting
-        _auth_settings = []  # noqa: E501
+        _auth_settings = ['application']  # noqa: E501
 
         _response_types_map = {
             '200': "WorkstreamPatternEngineStatus",
@@ -1299,7 +1299,7 @@ class WorkstreamPatternEngineApi:
             ['text/plain'])  # noqa: E501
 
         # authentication setting
-        _auth_settings = []  # noqa: E501
+        _auth_settings = ['application']  # noqa: E501
 
         _response_types_map = {}
 
@@ -1444,7 +1444,7 @@ class WorkstreamPatternEngineApi:
                 _header_params['Content-Type'] = _content_types_list
 
         # authentication setting
-        _auth_settings = []  # noqa: E501
+        _auth_settings = ['application']  # noqa: E501
 
         _response_types_map = {
             '200': "FlattenedWorkstreamPatternEngineVisionEvents",
@@ -1600,7 +1600,7 @@ class WorkstreamPatternEngineApi:
                 _header_params['Content-Type'] = _content_types_list
 
         # authentication setting
-        _auth_settings = []  # noqa: E501
+        _auth_settings = ['application']  # noqa: E501
 
         _response_types_map = {
             '200': "SearchedWorkstreamPatternEngineVisionEvents",
@@ -1741,7 +1741,7 @@ class WorkstreamPatternEngineApi:
             ['application/json', 'text/plain'])  # noqa: E501
 
         # authentication setting
-        _auth_settings = []  # noqa: E501
+        _auth_settings = ['application']  # noqa: E501
 
         _response_types_map = {
             '200': "WorkstreamPatternEngineVisionEvents",
@@ -1890,7 +1890,7 @@ class WorkstreamPatternEngineApi:
             ['application/json', 'text/plain'])  # noqa: E501
 
         # authentication setting
-        _auth_settings = []  # noqa: E501
+        _auth_settings = ['application']  # noqa: E501
 
         _response_types_map = {
             '200': "WorkstreamPatternEngineVisionEvent",
@@ -2023,7 +2023,7 @@ class WorkstreamPatternEngineApi:
             ['application/json', 'text/plain'])  # noqa: E501
 
         # authentication setting
-        _auth_settings = []  # noqa: E501
+        _auth_settings = ['application']  # noqa: E501
 
         _response_types_map = {
             '200': "WorkstreamPatternEngineVisionMetadata",
@@ -2156,7 +2156,7 @@ class WorkstreamPatternEngineApi:
             ['application/json', 'text/plain'])  # noqa: E501
 
         # authentication setting
-        _auth_settings = []  # noqa: E501
+        _auth_settings = ['application']  # noqa: E501
 
         _response_types_map = {
             '200': "WorkstreamPatternEngineStatus",
@@ -2290,7 +2290,7 @@ class WorkstreamPatternEngineApi:
             ['application/json', 'text/plain'])  # noqa: E501
 
         # authentication setting
-        _auth_settings = []  # noqa: E501
+        _auth_settings = ['application']  # noqa: E501
 
         _response_types_map = {
             '200': "WorkstreamPatternEngineStatus",

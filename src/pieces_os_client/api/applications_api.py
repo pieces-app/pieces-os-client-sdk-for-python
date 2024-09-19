@@ -159,7 +159,7 @@ class ApplicationsApi:
             ['application/json', 'text/plain'])  # noqa: E501
 
         # authentication setting
-        _auth_settings = []  # noqa: E501
+        _auth_settings = ['application']  # noqa: E501
 
         _response_types_map = {
             '200': "DetectedExternalApplications",
@@ -292,7 +292,7 @@ class ApplicationsApi:
             ['application/json', 'text/plain'])  # noqa: E501
 
         # authentication setting
-        _auth_settings = []  # noqa: E501
+        _auth_settings = ['application']  # noqa: E501
 
         _response_types_map = {
             '200': "DetectedExternalApplications",
@@ -442,7 +442,7 @@ class ApplicationsApi:
                 _header_params['Content-Type'] = _content_types_list
 
         # authentication setting
-        _auth_settings = []  # noqa: E501
+        _auth_settings = ['application']  # noqa: E501
 
         _response_types_map = {
             '200': "Application",
@@ -591,7 +591,7 @@ class ApplicationsApi:
                 _header_params['Content-Type'] = _content_types_list
 
         # authentication setting
-        _auth_settings = []  # noqa: E501
+        _auth_settings = ['application']  # noqa: E501
 
         _response_types_map = {
             '200': "Session",
@@ -725,7 +725,7 @@ class ApplicationsApi:
             ['application/json'])  # noqa: E501
 
         # authentication setting
-        _auth_settings = []  # noqa: E501
+        _auth_settings = ['application']  # noqa: E501
 
         _response_types_map = {
             '200': "Session",
@@ -857,7 +857,7 @@ class ApplicationsApi:
             ['application/json'])  # noqa: E501
 
         # authentication setting
-        _auth_settings = []  # noqa: E501
+        _auth_settings = ['application']  # noqa: E501
 
         _response_types_map = {
             '200': "Applications",
@@ -997,7 +997,7 @@ class ApplicationsApi:
             ['application/json'])  # noqa: E501
 
         # authentication setting
-        _auth_settings = []  # noqa: E501
+        _auth_settings = ['application']  # noqa: E501
 
         _response_types_map = {
             '200': "Application",
@@ -1129,7 +1129,7 @@ class ApplicationsApi:
             ['application/json', 'text/plain'])  # noqa: E501
 
         # authentication setting
-        _auth_settings = []  # noqa: E501
+        _auth_settings = ['application']  # noqa: E501
 
         _response_types_map = {
             '200': "StreamedIdentifiers",

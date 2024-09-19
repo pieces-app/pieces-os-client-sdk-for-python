@@ -19,7 +19,7 @@ import re  # noqa: F401
 import json
 
 
-
+from typing import Optional
 from pydantic import BaseModel, Field, StrictInt
 
 class TrackedSummaryTotals(BaseModel):
@@ -43,7 +43,8 @@ class TrackedSummaryTotals(BaseModel):
     anchor_files: StrictInt = Field(...)
     anchor_folders: StrictInt = Field(...)
     isr_reports: StrictInt = Field(...)
-    __properties = ["assets", "tags", "websites", "persons", "sensitives", "shares", "copilot_sends", "copilot_receives", "copilot_sessions", "copilot_conversations", "productivity_score", "searches", "references", "reuses", "anchor_files", "anchor_folders", "isr_reports"]
+    requests: Optional[StrictInt] = None
+    __properties = ["assets", "tags", "websites", "persons", "sensitives", "shares", "copilot_sends", "copilot_receives", "copilot_sessions", "copilot_conversations", "productivity_score", "searches", "references", "reuses", "anchor_files", "anchor_folders", "isr_reports", "requests"]
 
     class Config:
         """Pydantic configuration"""
@@ -69,6 +70,11 @@ class TrackedSummaryTotals(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
+        # set to None if requests (nullable) is None
+        # and __fields_set__ contains the field
+        if self.requests is None and "requests" in self.__fields_set__:
+            _dict['requests'] = None
+
         return _dict
 
     @classmethod
@@ -97,7 +103,8 @@ class TrackedSummaryTotals(BaseModel):
             "reuses": obj.get("reuses"),
             "anchor_files": obj.get("anchor_files"),
             "anchor_folders": obj.get("anchor_folders"),
-            "isr_reports": obj.get("isr_reports")
+            "isr_reports": obj.get("isr_reports"),
+            "requests": obj.get("requests")
         })
         return _obj
 

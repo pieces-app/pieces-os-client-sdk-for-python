@@ -180,7 +180,7 @@ class QGPTApi:
                 _header_params['Content-Type'] = _content_types_list
 
         # authentication setting
-        _auth_settings = []  # noqa: E501
+        _auth_settings = ['application']  # noqa: E501
 
         _response_types_map = {
             '200': "QGPTQuestionOutput",
@@ -336,7 +336,7 @@ class QGPTApi:
                 _header_params['Content-Type'] = _content_types_list
 
         # authentication setting
-        _auth_settings = []  # noqa: E501
+        _auth_settings = ['application']  # noqa: E501
 
         _response_types_map = {
             '200': "QGPTPersonsRelatedOutput",
@@ -484,7 +484,7 @@ class QGPTApi:
                 _header_params['Content-Type'] = _content_types_list
 
         # authentication setting
-        _auth_settings = []  # noqa: E501
+        _auth_settings = ['application']  # noqa: E501
 
         _response_types_map = {
             '200': "QGPTStreamOutput",
@@ -635,7 +635,7 @@ class QGPTApi:
                 _header_params['Content-Type'] = _content_types_list
 
         # authentication setting
-        _auth_settings = []  # noqa: E501
+        _auth_settings = ['application']  # noqa: E501
 
         _response_types_map = {
             '200': "QGPTQuestionOutput",
@@ -786,7 +786,7 @@ class QGPTApi:
                 _header_params['Content-Type'] = _content_types_list
 
         # authentication setting
-        _auth_settings = []  # noqa: E501
+        _auth_settings = ['application']  # noqa: E501
 
         _response_types_map = {
             '200': "QGPTRelevanceOutput",
@@ -937,7 +937,7 @@ class QGPTApi:
                 _header_params['Content-Type'] = _content_types_list
 
         # authentication setting
-        _auth_settings = []  # noqa: E501
+        _auth_settings = ['application']  # noqa: E501
 
         _response_types_map = {
             '200': "QGPTRepromptOutput",
