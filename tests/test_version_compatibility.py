@@ -58,5 +58,15 @@ class TestVersionChecker(unittest.TestCase):
         with self.assertRaises(ValueError):
             checker._parse_version("invalid.version")
 
+    def test_compare(self):
+        self.assertEqual(VersionChecker.compare("1.0.0", "1.0.0"), 0)
+        self.assertEqual(VersionChecker.compare("1.0.0", "1.0.1"), -1)
+        self.assertEqual(VersionChecker.compare("1.1.0", "1.0.1"), 1)
+        self.assertEqual(VersionChecker.compare("1.0.0-alpha", "1.0.0"), -1)
+        self.assertEqual(VersionChecker.compare("1.0.0", "1.0.0-alpha"), 1)
+        self.assertEqual(VersionChecker.compare("1.0.0-alpha.1", "1.0.0-alpha.2"), -1)
+        self.assertEqual(VersionChecker.compare("1.0.0-beta", "1.0.0-alpha"), 1)
+
+
 if __name__ == "__main__":
     unittest.main()
