@@ -78,7 +78,7 @@ class BasicChat(Basic):
         """
         from . import BasicAnnotation
         if self.conversation.annotations:
-            return [BasicAnnotation.annotation_from_id(ConversationsSnapshot.pieces_client,annotation.id)
+            return [BasicAnnotation.from_id(ConversationsSnapshot.pieces_client,annotation.id)
              for annotation in self.conversation.annotations.iterable]
 
     @property
@@ -105,7 +105,7 @@ class BasicChat(Basic):
         from . import BasicWebsite
         if self.conversation.websites:
             return [
-                BasicWebsite.website_from_id(ConversationsSnapshot.pieces_client,webstie.id) 
+                BasicWebsite.from_id(ConversationsSnapshot.pieces_client,webstie.id) 
                 for webstie in self.conversation.websites.iterable
             ]
 

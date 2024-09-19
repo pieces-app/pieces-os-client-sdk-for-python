@@ -33,7 +33,7 @@ class BasicWebsite(Basic):
 
 		
 	@classmethod
-	def website_from_id(cls,pieces_client: "PiecesClient",id:str):
+	def from_id(cls,pieces_client: "PiecesClient",id:str):
 		"""
 		Args:
 		- pieces_client: The PiecesClient object.
@@ -51,7 +51,7 @@ class BasicWebsite(Basic):
 
 
 	@staticmethod
-	def create_website(pieces_client: "PiecesClient", seeded_website: SeededWebsite) -> "BasicWebsite":
+	def create(pieces_client: "PiecesClient", seeded_website: SeededWebsite) -> "BasicWebsite":
 		"""
 		Creates a new website in the Pieces system.
 
@@ -70,7 +70,7 @@ class BasicWebsite(Basic):
 
 
 	@staticmethod
-	def website_exists(pieces_client: "PiecesClient", url:str) -> Optional["BasicWebsite"]:
+	def exists(pieces_client: "PiecesClient", url:str) -> Optional["BasicWebsite"]:
 		"""
 		Checks if a website exists in the Pieces system.
 
@@ -86,11 +86,11 @@ class BasicWebsite(Basic):
 				value=url
 			))
 		if existance.website:
-			return BasicWebsite.website_from_id(pieces_client,existance.website.id)
+			return BasicWebsite.from_id(pieces_client,existance.website.id)
 
 
 	@classmethod
-	def website_from_raw_content(cls, pieces_client: "PiecesClient", url: str) -> "BasicWebsite":
+	def from_raw_content(cls, pieces_client: "PiecesClient", url: str) -> "BasicWebsite":
 		"""
 		Retrieves a BasicWebsite object based on raw content.
 
@@ -101,8 +101,8 @@ class BasicWebsite(Basic):
 		Returns:
 		- BasicWebsite: The BasicWebsite object associated with the URL.
 		"""
-		website = cls.website_exists(pieces_client,url)
-		return website if website else cls.create_website(
+		website = cls.exists(pieces_client,url)
+		return website if website else cls.create(
 				pieces_client,
 				SeededWebsite(url=url,name=url)
 			)

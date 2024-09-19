@@ -30,7 +30,7 @@ class BasicTag(Basic):
 
 
 	@staticmethod
-	def tag_from_id(pieces_client:"PiecesClient", id:str):
+	def from_id(pieces_client:"PiecesClient", id:str):
 		"""
 		Args:
 		- pieces_client (PiecesClient): The client used to interact with the Pieces API.
@@ -47,7 +47,7 @@ class BasicTag(Basic):
 			raise ValueError("Error in retrieving the tag")
 
 	@classmethod
-	def tag_exists(cls,pieces_client:"PiecesClient", raw_content:str) -> Optional["BasicTag"]:
+	def exists(cls,pieces_client:"PiecesClient", raw_content:str) -> Optional["BasicTag"]:
 		"""
 		Checks if a website exists in the Pieces system.
 
@@ -62,10 +62,10 @@ class BasicTag(Basic):
 			value=raw_content
 		))
 		if existance.tag:
-			return cls.tag_from_id(pieces_client,existance.tag.id)
+			return cls.from_id(pieces_client,existance.tag.id)
 
 	@classmethod
-	def tag_from_raw_content(cls, pieces_client: "PiecesClient", raw_content: str) -> "BasicTag":
+	def from_raw_content(cls, pieces_client: "PiecesClient", raw_content: str) -> "BasicTag":
 		"""
 		Creates a BasicTag from the raw content.
 		If found a tag exists it will not create a one
@@ -77,17 +77,17 @@ class BasicTag(Basic):
 		Returns:
 		- BasicTag: The created BasicTag instance.
 		"""
-		tag = cls.tag_exists(pieces_client,raw_content)
+		tag = cls.exists(pieces_client,raw_content)
 		if tag:
 			return tag
 		else:
-			return cls.create_tag(
+			return cls.create(
 				pieces_client,
 				SeededTag(text=raw_content)
 			)
 
 	@staticmethod
-	def create_tag(pieces_client: "PiecesClient", seeded_tag: SeededTag) -> "BasicTag":
+	def create(pieces_client: "PiecesClient", seeded_tag: SeededTag) -> "BasicTag":
 		"""
 		Creates a new tag based on a seeded tag.
 

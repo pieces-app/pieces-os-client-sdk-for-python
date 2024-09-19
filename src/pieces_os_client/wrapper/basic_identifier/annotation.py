@@ -41,7 +41,7 @@ class BasicAnnotation(Basic):
 		return self.annotation.id
 
 	@staticmethod
-	def annotation_from_id(pieces_client: "PiecesClient", id) -> "BasicAnnotation":
+	def from_id(pieces_client: "PiecesClient", id) -> "BasicAnnotation":
 		"""
 		Creates a BasicAnnotation object from the given ID.
 
@@ -110,7 +110,7 @@ class BasicAnnotation(Basic):
 			return BasicChat(self.annotation.conversation.id)
 
 	@staticmethod
-	def create_annotation(pieces_client, seeded_annotation: SeededAnnotation) -> "BasicAnnotation":
+	def create(pieces_client, seeded_annotation: SeededAnnotation) -> "BasicAnnotation":
 		"""
 		Creates a new annotation based on the seeded annotation.
 

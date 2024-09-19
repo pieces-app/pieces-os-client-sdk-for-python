@@ -133,5 +133,5 @@ class BasicMessage(Basic):
         """
         from . import BasicAnnotation
         if self.message.annotations:
-            return [BasicAnnotation.annotation_from_id(self.pieces_client,annotation.id)
+            return [BasicAnnotation.from_id(self.pieces_client,annotation.id)
              for annotation in self.message.annotations.iterable]
