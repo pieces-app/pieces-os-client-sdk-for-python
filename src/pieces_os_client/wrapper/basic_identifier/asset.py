@@ -244,6 +244,15 @@ class BasicAsset(Basic):
 		"""
 		return cls._share(seed = cls._get_seed(raw_content))
 
+	@property
+	def markdown(self) -> Optional[str]:
+		"""
+			returns the asset as a markdown containing the content
+			all tags wesites and other metadata
+		"""
+		res = AssetSnapshot.pieces_client.asset_api.asset_specific_asset_export(self.asset.id,"MD")
+		if res.raw.string:
+			return res.raw.string.raw
 
 	@staticmethod
 	def search(query:str,search_type:Literal["fts","ncs","fuzzy"] = "fts") -> Optional[List["BasicAsset"]]:
