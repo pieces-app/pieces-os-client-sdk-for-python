@@ -80,7 +80,7 @@ class BasicWebsite(Basic):
 
 
 	@classmethod
-	def tag_from_raw_content(cls, pieces_client: "PiecesClient", url: str) -> "BasicWebsite":
+	def website_from_raw_content(cls, pieces_client: "PiecesClient", url: str) -> "BasicWebsite":
 		"""
 		Retrieves a BasicWebsite object based on raw content.
 
