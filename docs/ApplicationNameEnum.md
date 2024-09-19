@@ -3,8 +3,48 @@
 This is a running enumeration for the Names of all the Applications that can be Registered
 
 ## Properties
-Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+- SUBLIME
+- VS_CODE
+- JETBRAINS
+- FIREFOX_ADDON_MV2
+- FIREFOX_ADDON_MV3
+- SAFARI_EXTENSION_MV2
+- SAFARI_EXTENSION_MV3
+- PIECES_FOR_DEVELOPERS
+- PIECES_FOR_DEVELOPERS_CLI
+- OS_SERVER
+- GOOGLE_CHROME_EXTENSION_MV2
+- GOOGLE_CHROME_EXTENSION_MV3
+- ULTRA_EDIT
+- ATOM_PACKAGE
+- ADOBE_ILLUSTRATOR_PIECES_COLOR_SHARE
+- MICROSOFT_TEAMS
+- CHAT_GPT
+- OBSIDIAN
+- JUPYTER_HUB
+- VISUAL_STUDIO
+- MICROSOFT_EDGE
+- BRAVE
+- GOOGLE_CHAT
+- SLACK
+- AZURE_DATA_STUDIO
+- OPEN_SOURCE
+- R_STUDIO
+- VIM
+- NOTION
+- GITHUB_DESKTOP
+- RAYCAST
+- REPLIT
+- ALFRED
+- FIGMA
+- SKETCH
+- ADOBE_ILLUSTRATOR
+- NOTEPAD_PLUS_PLUS
+- EMBEETLE
+- ECLIPSE
+- X_CODE
+- NETBEANS
+- UNKNOWN
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
