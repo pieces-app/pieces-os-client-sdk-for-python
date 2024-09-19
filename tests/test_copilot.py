@@ -1,10 +1,10 @@
 import unittest
 from queue import Queue
 from unittest.mock import Mock, patch
-from pieces_os_client import (
-    QGPTStreamEnum,
-    RelevantQGPTSeeds
-)
+
+
+from pieces_os_client.models.qgpt_stream_enum import QGPTStreamEnum
+from pieces_os_client.models.relevant_qgpt_seeds import RelevantQGPTSeeds
 from pieces_os_client.wrapper.websockets import AskStreamWS
 from pieces_os_client.wrapper.copilot import Copilot
 from pieces_os_client.wrapper.basic_identifier.chat import BasicChat

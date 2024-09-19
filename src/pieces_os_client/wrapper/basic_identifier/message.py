@@ -1,6 +1,11 @@
 from typing import Literal, Optional,TYPE_CHECKING
-from pieces_os_client import ConversationMessage,Annotations
 from .basic import Basic
+
+from pieces_os_client.models.conversation_message import ConversationMessage
+from pieces_os_client.models.annotations import Annotations
+
+
+
 if TYPE_CHECKING:
     from ..client import PiecesClient
 

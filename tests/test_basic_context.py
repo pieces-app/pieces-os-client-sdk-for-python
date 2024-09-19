@@ -1,7 +1,11 @@
 import unittest
 from unittest.mock import Mock, patch, MagicMock
-from typing import List , TYPE_CHECKING
-from pieces_os_client import QGPTRelevanceInput, Seeds, FlattenedAssets, FlattenedConversationMessages
+
+from pieces_os_client.models.qgpt_relevance_input import QGPTRelevanceInput
+from pieces_os_client.models.seeds import Seeds
+from pieces_os_client.models.flattened_assets import FlattenedAssets 
+from pieces_os_client.models.flattened_conversation_messages import FlattenedConversationMessages
+
 from pieces_os_client.wrapper.basic_identifier import BasicAsset, BasicMessage
 from pieces_os_client.wrapper.basic_identifier.asset import AssetSnapshot
 from pieces_os_client.wrapper.context import Context

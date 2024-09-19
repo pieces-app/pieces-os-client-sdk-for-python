@@ -1,9 +1,8 @@
 import pytest
 from unittest.mock import Mock, call
-from pieces_os_client import (
-    AnnotationTypeEnum,
-    Annotations
-)
+
+from pieces_os_client.models.annotation_type_enum import AnnotationTypeEnum
+from pieces_os_client.models.annotations import Annotations
 from pieces_os_client.wrapper.basic_identifier.message import BasicMessage
 
 # Test class

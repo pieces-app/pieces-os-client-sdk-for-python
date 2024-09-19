@@ -1,9 +1,13 @@
 from typing import TYPE_CHECKING, List
+import os
+
+from pieces_os_client.models.qgpt_relevance_input import QGPTRelevanceInput
+from pieces_os_client.models.seeds import Seeds
+from pieces_os_client.models.flattened_assets import FlattenedAssets
+from pieces_os_client.models.flattened_conversation_messages import FlattenedConversationMessages
+
 
 from .basic_identifier import BasicAsset,BasicMessage
-import os
-from pieces_os_client import QGPTRelevanceInput,Seeds,FlattenedAssets,FlattenedConversationMessages
-
 if TYPE_CHECKING:
 	from . import PiecesClient
 

@@ -1,15 +1,17 @@
 import pytest
 from unittest.mock import Mock, patch, MagicMock
-from pieces_os_client import (Asset,
-    Format,
-    ClassificationGenericEnum,
-    ClassificationSpecificEnum,
-    Annotations,
-    Annotation,
-    Linkify,
-    AssetReclassification,
-    Shares)
 from datetime import datetime
+
+from pieces_os_client.models.asset import Asset
+from pieces_os_client.models.format import Format
+from pieces_os_client.models.classification_generic_enum import ClassificationGenericEnum
+from pieces_os_client.models.classification_specific_enum import ClassificationSpecificEnum
+from pieces_os_client.models.annotations import Annotations
+from pieces_os_client.models.annotation import Annotation
+from pieces_os_client.models.linkify import Linkify
+from pieces_os_client.models.asset_reclassification import AssetReclassification
+from pieces_os_client.models.shares import Shares
+
 from pieces_os_client.wrapper.basic_identifier import BasicAsset
 from pieces_os_client.wrapper.streamed_identifiers.assets_snapshot import AssetSnapshot
 

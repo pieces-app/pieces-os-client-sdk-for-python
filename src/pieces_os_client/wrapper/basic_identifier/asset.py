@@ -1,29 +1,21 @@
 from ..streamed_identifiers.assets_snapshot import AssetSnapshot
-from pieces_os_client import (
-	Asset, 
-	AssetsApi,
-	AssetApi,
-	ClassificationSpecificEnum,
-	FormatApi,
-	ClassificationGenericEnum,
-	Annotation,
-	Format,
-	Classification,
-	Annotations,
-	SeededAsset,
-	Seed,
-	SeededFormat,
-	SeededFragment,
-	TransferableString,
-	FragmentMetadata,
-	AssetReclassification,
-	Linkify,
-	Shares
-)
-
-from typing import Literal, Optional, List
 from .basic import Basic
-from .user import BasicUser
+from typing import Literal, Optional, List
+
+from pieces_os_client.models.asset import Asset
+from pieces_os_client.models.classification_specific_enum import ClassificationSpecificEnum
+from pieces_os_client.models.classification_generic_enum import ClassificationGenericEnum
+from pieces_os_client.models.format import Format
+from pieces_os_client.models.seeded_asset import SeededAsset
+from pieces_os_client.models.seed import Seed
+from pieces_os_client.models.seeded_format import SeededFormat
+from pieces_os_client.models.seeded_fragment import SeededFragment
+from pieces_os_client.models.transferable_string import TransferableString
+from pieces_os_client.models.fragment_metadata import FragmentMetadata
+from pieces_os_client.models.asset_reclassification import AssetReclassification
+from pieces_os_client.models.linkify import Linkify
+from pieces_os_client.models.shares import Shares
+from pieces_os_client.models.annotations import Annotations
 
 # Friendly wrapper (to avoid interacting with the pieces_os_client sdks models)
 

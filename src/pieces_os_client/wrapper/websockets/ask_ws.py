@@ -1,8 +1,11 @@
-from pieces_os_client import QGPTStreamOutput, QGPTStreamInput
 from websocket import WebSocketConnectionClosedException, WebSocketApp
 from typing import Callable, Optional,TYPE_CHECKING
 
 from .base_websocket import BaseWebsocket
+
+
+from pieces_os_client.models.qgpt_stream_output import QGPTStreamOutput
+from pieces_os_client.models.qgpt_stream_input import QGPTStreamInput
 
 if TYPE_CHECKING:
 	from ..client import PiecesClient
