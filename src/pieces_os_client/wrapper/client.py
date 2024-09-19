@@ -1,4 +1,3 @@
-from multiprocessing.pool import ThreadPool
 from typing import Optional,Dict
 import platform
 import atexit
@@ -248,8 +247,9 @@ class PiecesClient:
             call the api async without stopping the main thread
             Create thread pool on first request
             avoids instantiating unused threadpool for blocking clients.
+            return the ThreadPool created
         """
-        self.api_client.pool.apply_async(api_call, args)
+        return self.api_client.pool.apply_async(api_call, args)
 
 # Register the function to be called on exit
 atexit.register(PiecesClient.close)

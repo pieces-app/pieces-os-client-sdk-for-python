@@ -54,6 +54,7 @@ class BasicAnnotation(Basic):
 		"""
 		return BasicAnnotation(pieces_client, pieces_client.annotation_api.annotation_specific_annotation_snapshot(id))
 
+	@property
 	def type(self) -> AnnotationTypeEnum:
 		"""
 		Returns the type of the annotation.
