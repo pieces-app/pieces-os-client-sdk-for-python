@@ -20,6 +20,35 @@ class VersionChecker:
         pre_release_tuple = tuple(pre_release.split('.')) if pre_release else ()
         return version_tuple, pre_release_tuple
 
+    @staticmethod
+    def compare(version1: str, version2: str) -> int:
+        """
+        Compare two version strings.
+        
+        Returns:
+        -1 if version1 < version2
+        0 if version1 == version2
+        1 if version1 > version2
+        """
+        v1_parsed, v1_pre_release = VersionChecker._parse_version(version1)
+        v2_parsed, v2_pre_release = VersionChecker._parse_version(version2)
+
+        # Compare major, minor, patch
+        if v1_parsed < v2_parsed:
+            return -1
+        elif v1_parsed > v2_parsed:
+            return 1
+
+        # If major, minor, patch are equal, compare pre-release
+        if v1_pre_release and v2_pre_release:
+            return -1 if v1_pre_release < v2_pre_release else 1 if v1_pre_release > v2_pre_release else 0
+        elif v1_pre_release:  # only v1 has pre-release
+            return -1
+        elif v2_pre_release:  # only v2 has pre-release
+            return 1
+        else:  # both don't have pre-release
+            return 0
+
     def version_check(self):
         """Check if the Pieces OS version is within the supported range."""
         # Parse version numbers
