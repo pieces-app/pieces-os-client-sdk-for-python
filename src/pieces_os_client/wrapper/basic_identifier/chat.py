@@ -105,9 +105,10 @@ class BasicChat(Basic):
         from . import BasicWebsite
         if self.conversation.websites:
             return [
-                BasicWebsite(ConversationsSnapshot.pieces_client,webstie.id) 
+                BasicWebsite.website_from_id(ConversationsSnapshot.pieces_client,webstie.id) 
                 for webstie in self.conversation.websites.iterable
             ]
+
     @staticmethod
     def _edit_conversation(conversation):
         """

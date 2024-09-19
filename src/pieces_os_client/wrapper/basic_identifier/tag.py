@@ -18,11 +18,20 @@ class BasicTag(Basic):
 	- pieces_client (PiecesClient): The client used to interact with the Pieces API.
 	- tag (Tag): The tag object associated with this BasicTag instance.
 	"""
-
-	def __init__(self, pieces_client: "PiecesClient", id: str) -> None:
+	def __init__(self, pieces_client: "PiecesClient", tag: Tag) -> None:
 		"""
 		Initializes a BasicTag instance.
+		
+		Args:
+		- tag (Tag): Pieces OS tag object
+		"""
+		self.tag = tag
+		self.pieces_client = pieces_client
 
+
+	@staticmethod
+	def tag_from_id(pieces_client:"PiecesClient", id:str):
+		"""
 		Args:
 		- pieces_client (PiecesClient): The client used to interact with the Pieces API.
 		- id (str): The ID of the tag.
@@ -31,17 +40,35 @@ class BasicTag(Basic):
 		- ValueError: If there is an error retrieving the tag.
 		"""
 		try:
-			self.tag = pieces_client.tag_api.tags_specific_tag_snapshot(
+			tag = pieces_client.tag_api.tags_specific_tag_snapshot(
 				id, transferables=True)
+			return BasicTag(pieces_client,tag)
 		except:
 			raise ValueError("Error in retrieving the tag")
-		self.pieces_client = pieces_client
-		super().__init__(id)
-	
+
+	@classmethod
+	def tag_exists(cls,pieces_client:"PiecesClient", raw_content:str) -> Optional["BasicTag"]:
+		"""
+		Checks if a website exists in the Pieces system.
+
+		Args:
+		- pieces_client: The PiecesClient object.
+		- url: The URL of the website.
+
+		Returns:
+		- BasicWebsite: The existing BasicWebsite object if found, None otherwise.
+		"""
+		existance = pieces_client.tags_api.tags_exists(ExistentMetadata(
+			value=raw_content
+		))
+		if existance.tag:
+			return cls.tag_from_id(pieces_client,existance.tag.id)
+
 	@classmethod
 	def tag_from_raw_content(cls, pieces_client: "PiecesClient", raw_content: str) -> "BasicTag":
 		"""
-		Creates a BasicTag instance based on raw content.
+		Creates a BasicTag from the raw content.
+		If found a tag exists it will not create a one
 
 		Args:
 		- pieces_client (PiecesClient): The client used to interact with the Pieces API.
@@ -50,11 +77,9 @@ class BasicTag(Basic):
 		Returns:
 		- BasicTag: The created BasicTag instance.
 		"""
-		existance = pieces_client.tags_api.tags_exists(ExistentMetadata(
-			value=raw_content
-		))
-		if existance.tag:
-			return BasicTag(pieces_client,existance.tag.id)
+		tag = cls.tag_exists(pieces_client,raw_content)
+		if tag:
+			return tag
 		else:
 			return cls.create_tag(
 				pieces_client,
@@ -76,8 +101,7 @@ class BasicTag(Basic):
 
 		return BasicTag(pieces_client,
 			pieces_client.tags_api.tags_create_new_tag(
-				transferables=False,
-				seeded_tag=seeded_tag).id
+				seeded_tag=seeded_tag)
 			)
 
 	@property

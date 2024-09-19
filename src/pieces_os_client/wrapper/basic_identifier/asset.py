@@ -257,7 +257,7 @@ class BasicAsset(Basic):
 		"""
 		from . import BasicTag
 		if self.asset.tags and self.asset.tags.iterable:
-			return [BasicTag(AssetSnapshot.pieces_client,tag.id) for tag in self.asset.tags.iterable]
+			return [BasicTag(AssetSnapshot.pieces_client,tag) for tag in self.asset.tags.iterable]
 
 	@property
 	def markdown(self) -> Optional[str]:
@@ -274,7 +274,7 @@ class BasicAsset(Basic):
 		from . import BasicWebsite
 		if self.asset.websites:
 			return [
-				BasicWebsite(AssetSnapshot.pieces_client,webstie.id) 
+				BasicWebsite(AssetSnapshot.pieces_client,webstie) 
 				for webstie in self.asset.websites.iterable
 			]
 

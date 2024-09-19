@@ -20,10 +20,21 @@ class BasicWebsite(Basic):
 	- pieces_client: The PiecesClient object used to interact with the Pieces system.
 	"""
 
-	def __init__(self, pieces_client: "PiecesClient", id: str) -> None:
+	def __init__(self, pieces_client: "PiecesClient", website: Website) -> None:
 		"""
 		Initializes a BasicWebsite object.
 
+		Args:
+		- pieces_client: The PiecesClient object.
+		- website: The website object.
+		"""
+		self.website = website
+		self.pieces_client = pieces_client
+
+		
+	@classmethod
+	def website_from_id(cls,pieces_client: "PiecesClient",id:str):
+		"""
 		Args:
 		- pieces_client: The PiecesClient object.
 		- id: The ID of the website.
@@ -32,11 +43,12 @@ class BasicWebsite(Basic):
 		- ValueError: If there is an error retrieving the website.
 		"""
 		try:
-			self.website = pieces_client.website_api.websites_specific_website_snapshot(
+			website = pieces_client.website_api.websites_specific_website_snapshot(
 				id, transferables=True)
+			return BasicWebsite(pieces_client,website)
 		except:
 			raise ValueError("Error in retrieving the website")
-		self.pieces_client = pieces_client
+
 
 	@staticmethod
 	def create_website(pieces_client: "PiecesClient", seeded_website: SeededWebsite) -> "BasicWebsite":
@@ -53,12 +65,12 @@ class BasicWebsite(Basic):
 		return BasicWebsite(pieces_client,
 			pieces_client.websites_api.websites_create_new_website(
 				transferables=False,
-				seeded_website=seeded_website).id
+				seeded_website=seeded_website)
 			)
 
 
 	@staticmethod
-	def websites_exists(pieces_client, url) -> Optional["BasicWebsite"]:
+	def website_exists(pieces_client: "PiecesClient", url:str) -> Optional["BasicWebsite"]:
 		"""
 		Checks if a website exists in the Pieces system.
 
@@ -74,7 +86,7 @@ class BasicWebsite(Basic):
 				value=url
 			))
 		if existance.website:
-			return BasicWebsite(pieces_client,existance.website.id)
+			return BasicWebsite.website_from_id(pieces_client,existance.website.id)
 
 
 	@classmethod
@@ -89,7 +101,7 @@ class BasicWebsite(Basic):
 		Returns:
 		- BasicWebsite: The BasicWebsite object associated with the URL.
 		"""
-		website = cls.websites_exists(pieces_client,url)
+		website = cls.website_exists(pieces_client,url)
 		return website if website else cls.create_website(
 				pieces_client,
 				SeededWebsite(url=url,name=url)
