@@ -65,14 +65,19 @@ class BasicChat(Basic):
 
 
     @property
-    def annotations(self) -> Optional[Annotations]:
+    def annotations(self) -> Optional[List["BasicAnnotation"]]:
         """
         Gets the annotations of the conversation.
 
         Returns:
             The annotations of the conversation, or None if not available.
+            The BasicAnnotation of the conversation, or None if not available.
         """
         return getattr(self.conversation.annotations, "iterable", None)
+        from . import BasicAnnotation
+        if self.conversation.annotations:
+            return [BasicAnnotation.annotation_from_id(ConversationsSnapshot.pieces_client,annotation.id)
+             for annotation in self.conversation.annotations.iterable]
 
     def delete(self):
         """
