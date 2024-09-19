@@ -1,3 +1,4 @@
+from multiprocessing.pool import ThreadPool
 from typing import Optional,Dict
 import platform
 import atexit
@@ -25,8 +26,13 @@ from pieces_os_client.api.asset_api import AssetApi
 from pieces_os_client.api.well_known_api import WellKnownApi
 from pieces_os_client.api.assets_api import AssetsApi
 from pieces_os_client.api.models_api import ModelsApi
+from pieces_os_client.api.annotations_api import AnnotationsApi
 from pieces_os_client.api.annotation_api import AnnotationApi
 from pieces_os_client.api.linkify_api import LinkifyApi
+from pieces_os_client.api.tags_api import TagsApi
+from pieces_os_client.api.tag_api import TagApi
+from pieces_os_client.api.website_api import WebsiteApi
+from pieces_os_client.api.websites_api import WebsitesApi
 
 from pieces_os_client.models.seeded_connector_connection import SeededConnectorConnection
 from pieces_os_client.models.seeded_tracked_application import SeededTrackedApplication
@@ -43,7 +49,6 @@ class PiecesClient:
     def __init__(self, host:str="", seeded_connector: Optional[SeededConnectorConnection] = None,**kwargs):
         if not host:
             host = "http://localhost:5323" if 'Linux' in platform.platform() else "http://localhost:1000"
-
         self.host = host
         self.models = None
         self._is_started_runned = False
@@ -65,8 +70,8 @@ class PiecesClient:
         if not self.is_pieces_running(): return False
 
         self._is_started_runned = True
-        self.tracked_application = self.connector_api.connect(seeded_connector_connection=self._seeded_connector).application
-        self.api_client.set_default_header("application",self.tracked_application.id)
+        self._tracked_application = self.connector_api.connect(seeded_connector_connection=self._seeded_connector).application
+        self.api_client.set_default_header("application",self._tracked_application.id)
 
         if self._connect_websockets:
             self.conversation_ws = ConversationWS(self)
@@ -77,6 +82,11 @@ class PiecesClient:
         
         self.model_name = "GPT-3.5-turbo Chat Model"
         return True
+
+    @property
+    def tracked_application(self):
+        self._check_startup()
+        return self._tracked_application
 
 
     @property
@@ -102,11 +112,16 @@ class PiecesClient:
         self.connector_api = ConnectorApi(self.api_client)
         self.models_api = ModelsApi(self.api_client)
         self.annotation_api = AnnotationApi(self.api_client)
+        self.annotations_api = AnnotationsApi(self.api_client)
         self.well_known_api = WellKnownApi(self.api_client)
         self.os_api = OSApi(self.api_client)
         self.allocations_api = AllocationsApi(self.api_client)
         self.linkfy_api = LinkifyApi(self.api_client)
         self.search_api = SearchApi(self.api_client)
+        self.tag_api = TagApi(self.api_client)
+        self.tags_api = TagsApi(self.api_client)
+        self.website_api = WebsiteApi(self.api_client)
+        self.websites_api = WebsitesApi(self.api_client)
 
         # Websocket urls
         ws_base_url:str = host.replace('http','ws')
@@ -160,11 +175,14 @@ class PiecesClient:
         self._check_startup()
         BaseWebsocket.wait_all()
 
-    def close(self):
+    @classmethod
+    def close(cls):
         """
             Use this when you exit the app
-        """
+        """ 
         BaseWebsocket.close_all()
+        if hasattr(atexit, 'unregister'):
+            atexit.unregister(cls.close)
 
     @property
     def version(self) -> str:
@@ -216,6 +234,23 @@ class PiecesClient:
         if not self._startup():
             raise ValueError("PiecesClient is not started successfully\nPerhaps Pieces OS is not running")
 
+
+    def __str__(self) -> str:
+        return f"<PiecesClient host={self.host}, pieces_os_status={"Running" if self.is_pieces_running else "Not running"}>"
+
+
+    def __repr__(self) -> str:
+        return f"<PiecesClient(host={self.host})>"
+
+
+    def pool(self,api_call,args):
+        """
+            call the api async without stopping the main thread
+            Create thread pool on first request
+            avoids instantiating unused threadpool for blocking clients.
+        """
+        self.api_client.pool.apply_async(api_call, args)
+
 # Register the function to be called on exit
-atexit.register(BaseWebsocket.close_all)
+atexit.register(PiecesClient.close)
 

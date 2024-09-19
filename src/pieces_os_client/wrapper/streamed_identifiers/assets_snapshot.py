@@ -9,7 +9,7 @@ class AssetSnapshot(StreamedIdentifiersCache):
 
 	@classmethod
 	def _api_call(cls, id):
-		asset = cls.pieces_client.asset_api.asset_snapshot(id)
+		asset = cls.pieces_client.asset_api.asset_snapshot(id,transferables=False)
 		# cls.on_update(asset)
 		return asset
 
