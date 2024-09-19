@@ -245,6 +245,17 @@ class BasicAsset(Basic):
 		return cls._share(seed = cls._get_seed(raw_content))
 
 	@property
+	def tags(self) -> Optional[List["BasicTag"]]:
+		"""
+		Get all the tags associate with the asset
+
+		returns a list of BasicTag if there is a tag associated else None
+		"""
+		from . import BasicTag
+		if self.asset.tags and self.asset.tags.iterable:
+			return [BasicTag(AssetSnapshot.pieces_client,tag.id) for tag in self.asset.tags.iterable]
+
+	@property
 	def markdown(self) -> Optional[str]:
 		"""
 			returns the asset as a markdown containing the content
