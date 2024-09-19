@@ -17,7 +17,7 @@ from pieces_os_client.models.linkify import Linkify
 from pieces_os_client.models.shares import Shares
 
 if TYPE_CHECKING:
-	from . import BasicAnnotation, BasicTag
+	from . import BasicAnnotation, BasicTag, BasicWebsite
 
 # Friendly wrapper (to avoid interacting with the pieces_os_client sdks models)
 
@@ -268,6 +268,15 @@ class BasicAsset(Basic):
 		res = AssetSnapshot.pieces_client.asset_api.asset_specific_asset_export(self.asset.id,"MD")
 		if res.raw.string:
 			return res.raw.string.raw
+
+	@property
+	def websites(self) -> Optional[List["BasicWebsite"]]:
+		from . import BasicWebsite
+		if self.asset.websites:
+			return [
+				BasicWebsite(AssetSnapshot.pieces_client,webstie.id) 
+				for webstie in self.asset.websites.iterable
+			]
 
 	@staticmethod
 	def search(query:str,search_type:Literal["fts","ncs","fuzzy"] = "fts") -> Optional[List["BasicAsset"]]:

@@ -4,6 +4,7 @@ from .message import BasicMessage
 from .user import BasicUser
 from .tag import BasicTag
 from .annotation import BasicAnnotation
+from .website import BasicWebsite
 
 __all__ = [
 	"BasicAsset",
@@ -11,5 +12,6 @@ __all__ = [
 	"BasicMessage",
 	"BasicUser",
 	"BasicTag",
-	"BasicAnnotation"
+	"BasicAnnotation",
+	"BasicWebsite"
 ]

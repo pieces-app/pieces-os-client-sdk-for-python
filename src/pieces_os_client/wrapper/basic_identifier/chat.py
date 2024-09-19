@@ -8,7 +8,7 @@ from pieces_os_client.models.annotation_type_enum import AnnotationTypeEnum
 
 
 if TYPE_CHECKING:
-    from . import BasicMessage,BasicAnnotation
+    from . import BasicMessage,BasicAnnotation,BasicWebsite
 
 class BasicChat(Basic):
     """
@@ -100,6 +100,14 @@ class BasicChat(Basic):
         """
         ConversationsSnapshot.pieces_client.conversations_api.conversations_delete_specific_conversation(self.id)
 
+    @property
+    def websites(self) -> Optional[List["BasicWebsite"]]:
+        from . import BasicWebsite
+        if self.conversation.websites:
+            return [
+                BasicWebsite(ConversationsSnapshot.pieces_client,webstie.id) 
+                for webstie in self.conversation.websites.iterable
+            ]
     @staticmethod
     def _edit_conversation(conversation):
         """

@@ -1,10 +1,8 @@
 from typing import TYPE_CHECKING, List, Optional
 
-from pieces_os_client.models import website
 from pieces_os_client.models.existent_metadata import ExistentMetadata
 from pieces_os_client.models.seeded_website import SeededWebsite
 from pieces_os_client.models.website import Website
-import urllib.parse
 
 from .basic import Basic
 
@@ -94,7 +92,7 @@ class BasicWebsite(Basic):
 		website = cls.websites_exists(pieces_client,url)
 		return website if website else cls.create_website(
 				pieces_client,
-				SeededWebsite(url=url,name=urllib.parse.urlparse(url).netloc)
+				SeededWebsite(url=url,name=url)
 			)
 
 	@property
