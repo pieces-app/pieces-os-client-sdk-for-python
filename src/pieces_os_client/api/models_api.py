@@ -175,7 +175,7 @@ class ModelsApi:
                 _header_params['Content-Type'] = _content_types_list
 
         # authentication setting
-        _auth_settings = ['application']  # noqa: E501
+        _auth_settings = []  # noqa: E501
 
         _response_types_map = {
             '200': "Model",
@@ -316,7 +316,7 @@ class ModelsApi:
             ['text/plain'])  # noqa: E501
 
         # authentication setting
-        _auth_settings = ['application']  # noqa: E501
+        _auth_settings = []  # noqa: E501
 
         _response_types_map = {}
 
@@ -469,7 +469,7 @@ class ModelsApi:
                 _header_params['Content-Type'] = _content_types_list
 
         # authentication setting
-        _auth_settings = ['application']  # noqa: E501
+        _auth_settings = []  # noqa: E501
 
         _response_types_map = {
             '200': "ModelDeleteCacheOutput",
@@ -602,7 +602,7 @@ class ModelsApi:
             ['application/json', 'text/plain'])  # noqa: E501
 
         # authentication setting
-        _auth_settings = ['application']  # noqa: E501
+        _auth_settings = []  # noqa: E501
 
         _response_types_map = {
             '200': "Models",
@@ -735,7 +735,7 @@ class ModelsApi:
             ['application/json', 'text/plain'])  # noqa: E501
 
         # authentication setting
-        _auth_settings = ['application']  # noqa: E501
+        _auth_settings = []  # noqa: E501
 
         _response_types_map = {
             '200': "StreamedIdentifiers",
@@ -868,7 +868,7 @@ class ModelsApi:
             ['text/plain'])  # noqa: E501
 
         # authentication setting
-        _auth_settings = ['application']  # noqa: E501
+        _auth_settings = []  # noqa: E501
 
         _response_types_map = {}
 

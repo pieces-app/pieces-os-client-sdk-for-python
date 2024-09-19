@@ -163,7 +163,7 @@ class AnalysesApi:
             ['application/json', 'text/plain'])  # noqa: E501
 
         # authentication setting
-        _auth_settings = ['application']  # noqa: E501
+        _auth_settings = []  # noqa: E501
 
         _response_types_map = {
             '200': "Analyses",

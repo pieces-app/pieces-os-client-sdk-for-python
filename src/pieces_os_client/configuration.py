@@ -55,25 +55,6 @@ class Configuration:
       in PEM format.
 
     :Example:
-
-    API Key Authentication Example.
-    Given the following security scheme in the OpenAPI specification:
-      components:
-        securitySchemes:
-          cookieAuth:         # name for the security scheme
-            type: apiKey
-            in: cookie
-            name: JSESSIONID  # cookie name
-
-    You can programmatically set the cookie:
-
-conf = pieces_os_client.Configuration(
-    api_key={'cookieAuth': 'abc123'}
-    api_key_prefix={'cookieAuth': 'JSESSIONID'}
-)
-
-    The following cookie will be added to the HTTP request:
-       Cookie: JSESSIONID abc123
     """
 
     _default = None
@@ -420,15 +401,6 @@ conf = pieces_os_client.Configuration(
                 'key': 'Authorization',
                 'value': 'Bearer ' + self.access_token
             }
-        if 'application' in self.api_key:
-            auth['application'] = {
-                'type': 'api_key',
-                'in': 'header',
-                'key': 'X-Application-ID',
-                'value': self.get_api_key_with_prefix(
-                    'application',
-                ),
-            }
         return auth
 
     def to_debug_report(self):
@@ -440,7 +412,7 @@ conf = pieces_os_client.Configuration(
                "OS: {env}\n"\
                "Python Version: {pyversion}\n"\
                "Version of the API: 1.0\n"\
-               "SDK Package Version: 4.0.0".\
+               "SDK Package Version: 3.1.0".\
                format(env=sys.platform, pyversion=sys.version)
 
     def get_host_settings(self):

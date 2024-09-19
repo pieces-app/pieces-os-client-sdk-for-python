@@ -26,7 +26,6 @@ from pieces_os_client.models.capabilities_enum import CapabilitiesEnum
 from pieces_os_client.models.embedded_model_schema import EmbeddedModelSchema
 from pieces_os_client.models.platform_enum import PlatformEnum
 from pieces_os_client.models.privacy_enum import PrivacyEnum
-from pieces_os_client.models.seeded_asset_enrichment import SeededAssetEnrichment
 
 class SeededTrackedApplication(BaseModel):
     """
@@ -39,8 +38,7 @@ class SeededTrackedApplication(BaseModel):
     capabilities: Optional[CapabilitiesEnum] = None
     privacy: Optional[PrivacyEnum] = None
     automatic_unload: Optional[StrictBool] = Field(default=None, alias="automaticUnload", description="This is a proper that will let us know if we will proactivity unload all of your machine learning models.by default this is false.")
-    enrichment: Optional[SeededAssetEnrichment] = None
-    __properties = ["schema", "name", "version", "platform", "capabilities", "privacy", "automaticUnload", "enrichment"]
+    __properties = ["schema", "name", "version", "platform", "capabilities", "privacy", "automaticUnload"]
 
     class Config:
         """Pydantic configuration"""
@@ -69,9 +67,6 @@ class SeededTrackedApplication(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of var_schema
         if self.var_schema:
             _dict['schema'] = self.var_schema.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of enrichment
-        if self.enrichment:
-            _dict['enrichment'] = self.enrichment.to_dict()
         return _dict
 
     @classmethod
@@ -90,8 +85,7 @@ class SeededTrackedApplication(BaseModel):
             "platform": obj.get("platform"),
             "capabilities": obj.get("capabilities"),
             "privacy": obj.get("privacy"),
-            "automatic_unload": obj.get("automaticUnload"),
-            "enrichment": SeededAssetEnrichment.from_dict(obj.get("enrichment")) if obj.get("enrichment") is not None else None
+            "automatic_unload": obj.get("automaticUnload")
         })
         return _obj
 

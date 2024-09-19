@@ -185,7 +185,7 @@ class WebsitesApi:
                 _header_params['Content-Type'] = _content_types_list
 
         # authentication setting
-        _auth_settings = ['application']  # noqa: E501
+        _auth_settings = []  # noqa: E501
 
         _response_types_map = {
             '200': "SearchedWebsites",
@@ -341,7 +341,7 @@ class WebsitesApi:
                 _header_params['Content-Type'] = _content_types_list
 
         # authentication setting
-        _auth_settings = ['application']  # noqa: E501
+        _auth_settings = []  # noqa: E501
 
         _response_types_map = {
             '200': "Website",
@@ -482,7 +482,7 @@ class WebsitesApi:
             ['text/plain'])  # noqa: E501
 
         # authentication setting
-        _auth_settings = ['application']  # noqa: E501
+        _auth_settings = []  # noqa: E501
 
         _response_types_map = {}
 
@@ -627,7 +627,7 @@ class WebsitesApi:
                 _header_params['Content-Type'] = _content_types_list
 
         # authentication setting
-        _auth_settings = ['application']  # noqa: E501
+        _auth_settings = []  # noqa: E501
 
         _response_types_map = {
             '200': "ExistingMetadata",
@@ -768,7 +768,7 @@ class WebsitesApi:
             ['application/json', 'text/plain'])  # noqa: E501
 
         # authentication setting
-        _auth_settings = ['application']  # noqa: E501
+        _auth_settings = []  # noqa: E501
 
         _response_types_map = {
             '200': "Websites",
@@ -901,7 +901,7 @@ class WebsitesApi:
             ['application/json', 'text/plain'])  # noqa: E501
 
         # authentication setting
-        _auth_settings = ['application']  # noqa: E501
+        _auth_settings = []  # noqa: E501
 
         _response_types_map = {
             '200': "StreamedIdentifiers",

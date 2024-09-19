@@ -35,8 +35,7 @@ class TLPCodeFragmentReclassification(BaseModel):
     updates: TLPCodeFragmentReclassificationUpdates = Field(...)
     user: StrictStr = Field(default=..., description="this is the user that is reclassifying")
     context: StrictStr = Field(default=..., description="this is the application is which this is from.")
-    os: StrictStr = Field(...)
-    __properties = ["schema", "asset", "model", "created", "updates", "user", "context", "os"]
+    __properties = ["schema", "asset", "model", "created", "updates", "user", "context"]
 
     class Config:
         """Pydantic configuration"""
@@ -86,8 +85,7 @@ class TLPCodeFragmentReclassification(BaseModel):
             "created": obj.get("created"),
             "updates": TLPCodeFragmentReclassificationUpdates.from_dict(obj.get("updates")) if obj.get("updates") is not None else None,
             "user": obj.get("user"),
-            "context": obj.get("context"),
-            "os": obj.get("os")
+            "context": obj.get("context")
         })
         return _obj
 

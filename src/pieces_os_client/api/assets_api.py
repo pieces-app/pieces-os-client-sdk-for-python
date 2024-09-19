@@ -188,7 +188,7 @@ class AssetsApi:
                 _header_params['Content-Type'] = _content_types_list
 
         # authentication setting
-        _auth_settings = ['application']  # noqa: E501
+        _auth_settings = []  # noqa: E501
 
         _response_types_map = {
             '200': "Asset",
@@ -328,7 +328,7 @@ class AssetsApi:
             ['text/plain'])  # noqa: E501
 
         # authentication setting
-        _auth_settings = ['application']  # noqa: E501
+        _auth_settings = []  # noqa: E501
 
         _response_types_map = {
             '200': "str",
@@ -483,7 +483,7 @@ class AssetsApi:
                 _header_params['Content-Type'] = _content_types_list
 
         # authentication setting
-        _auth_settings = ['application']  # noqa: E501
+        _auth_settings = []  # noqa: E501
 
         _response_types_map = {
             '200': "Seed",
@@ -631,7 +631,7 @@ class AssetsApi:
                 _header_params['Content-Type'] = _content_types_list
 
         # authentication setting
-        _auth_settings = ['application']  # noqa: E501
+        _auth_settings = []  # noqa: E501
 
         _response_types_map = {
             '200': "Assets",
@@ -778,7 +778,7 @@ class AssetsApi:
                 _header_params['Content-Type'] = _content_types_list
 
         # authentication setting
-        _auth_settings = ['application']  # noqa: E501
+        _auth_settings = []  # noqa: E501
 
         _response_types_map = {
             '200': "Assets",
@@ -918,7 +918,7 @@ class AssetsApi:
             ['application/json', 'text/plain'])  # noqa: E501
 
         # authentication setting
-        _auth_settings = ['application']  # noqa: E501
+        _auth_settings = []  # noqa: E501
 
         _response_types_map = {
             '200': "FlattenedAssets",
@@ -1051,7 +1051,7 @@ class AssetsApi:
             ['application/json', 'text/plain'])  # noqa: E501
 
         # authentication setting
-        _auth_settings = ['application']  # noqa: E501
+        _auth_settings = []  # noqa: E501
 
         _response_types_map = {
             '200': "PseudoAssets",
@@ -1215,7 +1215,7 @@ class AssetsApi:
                 _header_params['Content-Type'] = _content_types_list
 
         # authentication setting
-        _auth_settings = ['application']  # noqa: E501
+        _auth_settings = []  # noqa: E501
 
         _response_types_map = {
             '200': "AssetsSearchWithFiltersOutput",
@@ -1372,7 +1372,7 @@ class AssetsApi:
             ['application/json'])  # noqa: E501
 
         # authentication setting
-        _auth_settings = ['application']  # noqa: E501
+        _auth_settings = []  # noqa: E501
 
         _response_types_map = {
             '200': "Assets",
@@ -1520,7 +1520,7 @@ class AssetsApi:
             ['application/json'])  # noqa: E501
 
         # authentication setting
-        _auth_settings = ['application']  # noqa: E501
+        _auth_settings = []  # noqa: E501
 
         _response_types_map = {
             '200': "Formats",
@@ -1668,7 +1668,7 @@ class AssetsApi:
             ['application/json', 'text/plain'])  # noqa: E501
 
         # authentication setting
-        _auth_settings = ['application']  # noqa: E501
+        _auth_settings = []  # noqa: E501
 
         _response_types_map = {
             '200': "Asset",
@@ -1801,7 +1801,7 @@ class AssetsApi:
             ['application/json'])  # noqa: E501
 
         # authentication setting
-        _auth_settings = ['application']  # noqa: E501
+        _auth_settings = []  # noqa: E501
 
         _response_types_map = {
             '200': "StreamedIdentifiers",
@@ -1933,7 +1933,7 @@ class AssetsApi:
             ['application/json'])  # noqa: E501
 
         # authentication setting
-        _auth_settings = ['application']  # noqa: E501
+        _auth_settings = []  # noqa: E501
 
         _response_types_map = {
             '200': "Assets",
@@ -2097,7 +2097,7 @@ class AssetsApi:
             ['application/json', 'text/plain'])  # noqa: E501
 
         # authentication setting
-        _auth_settings = ['application']  # noqa: E501
+        _auth_settings = []  # noqa: E501
 
         _response_types_map = {
             '200': "SearchedAssets",
@@ -2230,7 +2230,7 @@ class AssetsApi:
             ['application/json'])  # noqa: E501
 
         # authentication setting
-        _auth_settings = ['application']  # noqa: E501
+        _auth_settings = []  # noqa: E501
 
         _response_types_map = {
             '200': "Assets",
