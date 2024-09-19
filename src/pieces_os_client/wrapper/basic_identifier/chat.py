@@ -1,11 +1,14 @@
-from typing import Optional, List
+from typing import Optional, List, TYPE_CHECKING
+
 from ..streamed_identifiers import ConversationsSnapshot
 from .basic import Basic
-from .message import BasicMessage
 
 from pieces_os_client.models.conversation import Conversation
-from pieces_os_client.models.annotations import Annotations
+from pieces_os_client.models.annotation_type_enum import AnnotationTypeEnum
 
+
+if TYPE_CHECKING:
+    from . import BasicMessage,BasicAnnotation
 
 class BasicChat(Basic):
     """
@@ -49,13 +52,14 @@ class BasicChat(Basic):
         self.conversation.name = name
         self._edit_conversation(self.conversation)
 
-    def messages(self) -> List[BasicMessage]:
+    def messages(self) -> List["BasicMessage"]:
         """
         Retrieves the messages in the conversation.
 
         Returns:
             A list of BasicMessage instances representing the messages in the conversation.
         """
+        from .message import BasicMessage
         out = []
         for message_id, index in (self.conversation.messages.indices or {}).items():
             if index == -1:  # Deleted message
@@ -70,14 +74,25 @@ class BasicChat(Basic):
         Gets the annotations of the conversation.
 
         Returns:
-            The annotations of the conversation, or None if not available.
             The BasicAnnotation of the conversation, or None if not available.
         """
-        return getattr(self.conversation.annotations, "iterable", None)
         from . import BasicAnnotation
         if self.conversation.annotations:
             return [BasicAnnotation.annotation_from_id(ConversationsSnapshot.pieces_client,annotation.id)
              for annotation in self.conversation.annotations.iterable]
+
+    @property
+    def summary(self)-> Optional[str]:
+        annotations = self.annotations
+        if not annotations:
+            return
+        d = None
+        for annotation in annotations:
+            if annotation.type == AnnotationTypeEnum.SUMMARY:
+                d = annotation
+        
+        return d.raw_content if d else None
+
 
     def delete(self):
         """
