@@ -126,3 +126,8 @@ class TestBasicWebsite(unittest.TestCase):
             chat_ids = [chat.id for chat in chats]
             self.assertIn("chat_id_1", chat_ids)
             self.assertIn("chat_id_2", chat_ids)
+
+    def test_delete(self):
+        basic_website = BasicWebsite(self.mock_client, self.mock_website)
+        basic_website.delete()
+        self.mock_client.websites_api.websites_delete_specific_website.assert_called_once_with("test_id")
