@@ -44,3 +44,9 @@ class TestBasicWebsite(unittest.TestCase):
             result = BasicWebsite.from_raw_content(self.mock_client, "https://test.com")
             mock_exists.assert_called_once_with(self.mock_client, "https://test.com")
             self.assertIsInstance(result, BasicWebsite)
+
+    @patch('pieces_os_client.wrapper.basic_identifier.website.BasicWebsite.create')
+    def test_from_raw_content_new(self, mock_create):
+        with patch.object(BasicWebsite, 'exists', return_value=None):
+            BasicWebsite.from_raw_content(self.mock_client, "https://test.com")
+            mock_create.assert_called_once_with(self.mock_client, SeededWebsite(url="https://test.com", name="https://test.com"))
