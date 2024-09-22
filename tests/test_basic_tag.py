@@ -57,3 +57,12 @@ class TestBasicTag(unittest.TestCase):
         self.assertIsInstance(result, BasicTag)
         mock_exists.assert_called_once_with(self.mock_client, "test_content")
         mock_create.assert_called_once_with(self.mock_client, SeededTag(text="test_content"))
+
+    def test_create(self):
+        self.mock_client.tags_api.tags_create_new_tag.return_value = self.mock_tag
+        seeded_tag = SeededTag(text="test_content")
+        
+        result = BasicTag.create(self.mock_client, seeded_tag)
+        
+        self.assertIsInstance(result, BasicTag)
+        self.mock_client.tags_api.tags_create_new_tag.assert_called_once_with(seeded_tag=seeded_tag)
