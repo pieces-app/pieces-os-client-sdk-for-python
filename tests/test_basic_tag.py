@@ -94,3 +94,12 @@ class TestBasicTag(unittest.TestCase):
         self.assertIsNotNone(assets)
         self.assertEqual(len(assets), 1)
         mock_basic_asset.assert_called_once_with("test_asset_id")
+
+    def test_associate_asset(self):
+        basic_tag = BasicTag(self.mock_client, self.mock_tag)
+        mock_asset = Mock()
+        mock_asset.id = "test_asset_id"
+        
+        basic_tag.associate_asset(mock_asset)
+        
+        self.mock_client.tag_api.tag_associate_asset.assert_called_once_with("test_asset_id", "test_tag_id")
