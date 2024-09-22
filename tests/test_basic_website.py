@@ -12,9 +12,13 @@ class TestBasicWebsite(unittest.TestCase):
         self.mock_website.name = "Test Website"
         self.mock_website.url = "https://test.com"
 
+    @patch('pieces_os_client.wrapper.basic_identifier.website.BasicWebsite')
     def test_init(self):
         basic_website = BasicWebsite(self.mock_client, self.mock_website)
         self.assertEqual(basic_website.website, self.mock_website)
         self.assertEqual(basic_website.pieces_client, self.mock_client)
 
-    
+    def test_from_id_error(self):
+        self.mock_client.website_api.websites_specific_website_snapshot.side_effect = Exception("API Error")
+        with self.assertRaises(ValueError):
+            BasicWebsite.from_id(self.mock_client, "test_id")
