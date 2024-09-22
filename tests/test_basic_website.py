@@ -66,3 +66,12 @@ class TestBasicWebsite(unittest.TestCase):
         basic_website.url = "https://newtest.com"
         self.assertEqual(basic_website.website.text, "https://newtest.com")
         self.mock_client.website_api.website_update.assert_called()
+
+    def test_associate_asset(self):
+        basic_website = BasicWebsite(self.mock_client, self.mock_website)
+        mock_asset = Mock()
+        mock_asset.id = "asset_id"
+
+        # Test associate_asset
+        basic_website.associate_asset(mock_asset)
+        self.mock_client.website_api.website_associate_asset.assert_called_once_with("asset_id", "test_id")
