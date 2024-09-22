@@ -71,3 +71,9 @@ class TestBasicTag(unittest.TestCase):
         basic_tag = BasicTag(self.mock_client, self.mock_tag)
         self.assertEqual(basic_tag.id, "test_tag_id")
         self.assertEqual(basic_tag.raw_content, "test_tag_text")
+
+    def test_raw_content_setter(self):
+        basic_tag = BasicTag(self.mock_client, self.mock_tag)
+        basic_tag.raw_content = "new_content"
+        self.assertEqual(basic_tag.tag.text, "new_content")
+        self.mock_client.tag_api.tag_update.assert_called_once_with(False, basic_tag.tag)
