@@ -131,3 +131,31 @@ class TestBasicWebsite(unittest.TestCase):
         basic_website = BasicWebsite(self.mock_client, self.mock_website)
         basic_website.delete()
         self.mock_client.websites_api.websites_delete_specific_website.assert_called_once_with("test_id")
+
+    def test_assets_property(self):
+        basic_website = BasicWebsite(self.mock_client, self.mock_website)
+        
+        # Mock the assets attribute
+        mock_asset1 = Mock()
+        mock_asset1.id = "asset_id_1"
+        mock_asset2 = Mock()
+        mock_asset2.id = "asset_id_2"
+        
+        self.mock_website.assets = Mock()
+        self.mock_website.assets.iterable = [mock_asset1, mock_asset2]
+        
+        # Test the assets property
+        with patch('pieces_os_client.wrapper.basic_identifier.asset.BasicAsset') as MockBasicAsset:
+            MockBasicAsset.return_value = Mock()
+            
+            assets = basic_website.assets
+            
+            self.assertIsNotNone(assets)
+            self.assertEqual(len(assets), 2)
+            
+            # Check if BasicAsset was instantiated with the correct IDs
+            MockBasicAsset.assert_any_call("asset_id_1")
+            MockBasicAsset.assert_any_call("asset_id_2")
+            
+            # Check if the returned assets are instances of MockBasicAsset
+            self.assertTrue(all(isinstance(asset, MockBasicAsset.return_value.__class__) for asset in assets))
