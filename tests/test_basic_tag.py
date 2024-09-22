@@ -45,3 +45,15 @@ class TestBasicTag(unittest.TestCase):
         self.assertIsInstance(result, BasicTag)
         mock_exists.assert_called_once_with(self.mock_client, "test_content")
         mock_create.assert_not_called()
+
+    @patch('pieces_os_client.wrapper.basic_identifier.tag.BasicTag.exists')
+    @patch('pieces_os_client.wrapper.basic_identifier.tag.BasicTag.create')
+    def test_from_raw_content_new(self, mock_create, mock_exists):
+        mock_exists.return_value = None
+        mock_create.return_value = BasicTag(self.mock_client, self.mock_tag)
+        
+        result = BasicTag.from_raw_content(self.mock_client, "test_content")
+        
+        self.assertIsInstance(result, BasicTag)
+        mock_exists.assert_called_once_with(self.mock_client, "test_content")
+        mock_create.assert_called_once_with(self.mock_client, SeededTag(text="test_content"))
