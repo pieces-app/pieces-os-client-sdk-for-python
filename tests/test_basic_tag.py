@@ -77,3 +77,20 @@ class TestBasicTag(unittest.TestCase):
         basic_tag.raw_content = "new_content"
         self.assertEqual(basic_tag.tag.text, "new_content")
         self.mock_client.tag_api.tag_update.assert_called_once_with(False, basic_tag.tag)
+
+    @patch.dict('sys.modules', {'pieces_os_client.wrapper.basic_identifier': MagicMock()})
+    def test_assets(self):
+        mock_basic_asset = MagicMock()
+        import sys
+        sys.modules['pieces_os_client.wrapper.basic_identifier'].BasicAsset = mock_basic_asset
+
+        mock_asset = Mock()
+        mock_asset.id = "test_asset_id"
+        self.mock_tag.assets = Mock(iterable=[mock_asset])
+        basic_tag = BasicTag(self.mock_client, self.mock_tag)
+        
+        assets = basic_tag.assets
+        
+        self.assertIsNotNone(assets)
+        self.assertEqual(len(assets), 1)
+        mock_basic_asset.assert_called_once_with("test_asset_id")
