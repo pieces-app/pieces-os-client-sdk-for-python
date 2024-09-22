@@ -94,4 +94,35 @@ class TestBasicWebsite(unittest.TestCase):
         basic_website.associate_chat(mock_chat)
         self.mock_client.website_api.website_associate_conversation.assert_called_once_with("chat_id", "test_id")
 
-    
+    def test_chats_property(self):
+        basic_website = BasicWebsite(self.mock_client, self.mock_website)
+        
+        # Mock the conversations attribute
+        mock_conversation1 = Mock()
+        mock_conversation1.id = "chat_id_1"
+        mock_conversation2 = Mock()
+        mock_conversation2.id = "chat_id_2"
+        
+        self.mock_website.conversations = Mock()
+        self.mock_website.conversations.iterable = [mock_conversation1, mock_conversation2]
+        
+        # Create a mock ConversationsSnapshot
+        mock_snapshot = Mock()
+        mock_snapshot.identifiers_snapshot = {
+            "chat_id_1": mock_conversation1,
+            "chat_id_2": mock_conversation2
+        }
+        mock_snapshot.pieces_client = self.mock_client
+
+        # Test the chats property
+        with patch('pieces_os_client.wrapper.basic_identifier.chat.ConversationsSnapshot', mock_snapshot):
+            chats = basic_website.chats
+            # print("Chats:", chats)
+            
+            self.assertIsNotNone(chats)
+            self.assertEqual(len(chats), 2)
+            
+            # Check if the returned chats have the correct IDs
+            chat_ids = [chat.id for chat in chats]
+            self.assertIn("chat_id_1", chat_ids)
+            self.assertIn("chat_id_2", chat_ids)
