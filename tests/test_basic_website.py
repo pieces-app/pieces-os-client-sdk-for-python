@@ -38,3 +38,9 @@ class TestBasicWebsite(unittest.TestCase):
         BasicWebsite.exists(self.mock_client, "https://test.com")
         self.mock_client.websites_api.websites_exists.assert_called_once_with(ExistentMetadata(value="https://test.com"))
         mock_from_id.assert_called_once_with(self.mock_client, "test_id")
+
+    def test_from_raw_content_existing(self):
+        with patch.object(BasicWebsite, 'exists', return_value=Mock(spec=BasicWebsite)) as mock_exists:
+            result = BasicWebsite.from_raw_content(self.mock_client, "https://test.com")
+            mock_exists.assert_called_once_with(self.mock_client, "https://test.com")
+            self.assertIsInstance(result, BasicWebsite)
