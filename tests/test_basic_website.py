@@ -75,3 +75,12 @@ class TestBasicWebsite(unittest.TestCase):
         # Test associate_asset
         basic_website.associate_asset(mock_asset)
         self.mock_client.website_api.website_associate_asset.assert_called_once_with("asset_id", "test_id")
+
+    def test_disassociate_asset(self):
+        basic_website = BasicWebsite(self.mock_client, self.mock_website)
+        mock_asset = Mock()
+        mock_asset.id = "asset_id"
+
+        # Test disassociate_asset
+        basic_website.disassociate_asset(mock_asset)
+        self.mock_client.website_api.website_disassociate_asset.assert_called_once_with("test_id", "asset_id")
