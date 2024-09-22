@@ -93,3 +93,5 @@ class TestBasicWebsite(unittest.TestCase):
         # Test associate_chat
         basic_website.associate_chat(mock_chat)
         self.mock_client.website_api.website_associate_conversation.assert_called_once_with("chat_id", "test_id")
+
+    
