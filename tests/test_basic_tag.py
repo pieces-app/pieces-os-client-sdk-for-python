@@ -117,3 +117,6 @@ class TestBasicTag(unittest.TestCase):
         basic_tag = BasicTag(self.mock_client, self.mock_tag)
         basic_tag.delete()
         self.mock_client.tags_api.tags_delete_specific_tag.assert_called_once_with("test_tag_id")
+
+if __name__ == '__main__':
+    unittest.main()
