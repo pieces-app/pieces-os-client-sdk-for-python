@@ -11,3 +11,8 @@ class TestBasicWebsite(unittest.TestCase):
         self.mock_website.id = "test_id"
         self.mock_website.name = "Test Website"
         self.mock_website.url = "https://test.com"
+
+    def test_init(self):
+        basic_website = BasicWebsite(self.mock_client, self.mock_website)
+        self.assertEqual(basic_website.website, self.mock_website)
+        self.assertEqual(basic_website.pieces_client, self.mock_client)
