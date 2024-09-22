@@ -66,3 +66,8 @@ class TestBasicTag(unittest.TestCase):
         
         self.assertIsInstance(result, BasicTag)
         self.mock_client.tags_api.tags_create_new_tag.assert_called_once_with(seeded_tag=seeded_tag)
+
+    def test_properties(self):
+        basic_tag = BasicTag(self.mock_client, self.mock_tag)
+        self.assertEqual(basic_tag.id, "test_tag_id")
+        self.assertEqual(basic_tag.raw_content, "test_tag_text")
