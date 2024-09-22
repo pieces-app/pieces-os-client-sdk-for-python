@@ -15,3 +15,10 @@ class TestBasicTag(unittest.TestCase):
         basic_tag = BasicTag(self.mock_client, self.mock_tag)
         self.assertEqual(basic_tag.pieces_client, self.mock_client)
         self.assertEqual(basic_tag.tag, self.mock_tag)
+
+    @patch('pieces_os_client.wrapper.basic_identifier.tag.BasicTag.from_id')
+    def test_from_id(self, mock_from_id):
+        mock_from_id.return_value = BasicTag(self.mock_client, self.mock_tag)
+        result = BasicTag.from_id(self.mock_client, "test_id")
+        self.assertIsInstance(result, BasicTag)
+        mock_from_id.assert_called_once_with(self.mock_client, "test_id")
