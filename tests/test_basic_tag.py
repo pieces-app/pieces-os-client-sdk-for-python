@@ -103,3 +103,12 @@ class TestBasicTag(unittest.TestCase):
         basic_tag.associate_asset(mock_asset)
         
         self.mock_client.tag_api.tag_associate_asset.assert_called_once_with("test_asset_id", "test_tag_id")
+
+    def test_disassociate_asset(self):
+        basic_tag = BasicTag(self.mock_client, self.mock_tag)
+        mock_asset = Mock()
+        mock_asset.id = "test_asset_id"
+        
+        basic_tag.disassociate_asset(mock_asset)
+        
+        self.mock_client.tag_api.tag_disassociate_asset.assert_called_once_with("test_tag_id", "test_asset_id")
