@@ -12,11 +12,17 @@ class TestBasicWebsite(unittest.TestCase):
         self.mock_website.name = "Test Website"
         self.mock_website.url = "https://test.com"
 
-    @patch('pieces_os_client.wrapper.basic_identifier.website.BasicWebsite')
     def test_init(self):
         basic_website = BasicWebsite(self.mock_client, self.mock_website)
         self.assertEqual(basic_website.website, self.mock_website)
         self.assertEqual(basic_website.pieces_client, self.mock_client)
+
+    @patch('pieces_os_client.wrapper.basic_identifier.website.BasicWebsite')
+    def test_from_id(self, mock_basic_website):
+        self.mock_client.website_api.websites_specific_website_snapshot.return_value = self.mock_website
+        BasicWebsite.from_id(self.mock_client, "test_id")
+        self.mock_client.website_api.websites_specific_website_snapshot.assert_called_once_with("test_id", transferables=True)
+        mock_basic_website.assert_called_once_with(self.mock_client, self.mock_website)
 
     def test_from_id_error(self):
         self.mock_client.website_api.websites_specific_website_snapshot.side_effect = Exception("API Error")
@@ -94,6 +100,15 @@ class TestBasicWebsite(unittest.TestCase):
         basic_website.associate_chat(mock_chat)
         self.mock_client.website_api.website_associate_conversation.assert_called_once_with("chat_id", "test_id")
 
+    def test_disassociate_chat(self):
+        basic_website = BasicWebsite(self.mock_client, self.mock_website)
+        mock_chat = Mock()
+        mock_chat.id = "chat_id"
+
+        # Test disassociate_chat
+        basic_website.disassociate_chat(mock_chat)
+        self.mock_client.website_api.website_disassociate_conversation.assert_called_once_with("test_id", "chat_id")
+
     def test_chats_property(self):
         basic_website = BasicWebsite(self.mock_client, self.mock_website)
         
@@ -117,7 +132,6 @@ class TestBasicWebsite(unittest.TestCase):
         # Test the chats property
         with patch('pieces_os_client.wrapper.basic_identifier.chat.ConversationsSnapshot', mock_snapshot):
             chats = basic_website.chats
-            # print("Chats:", chats)
             
             self.assertIsNotNone(chats)
             self.assertEqual(len(chats), 2)
@@ -159,3 +173,6 @@ class TestBasicWebsite(unittest.TestCase):
             
             # Check if the returned assets are instances of MockBasicAsset
             self.assertTrue(all(isinstance(asset, MockBasicAsset.return_value.__class__) for asset in assets))
+
+if __name__ == '__main__':
+    unittest.main()
