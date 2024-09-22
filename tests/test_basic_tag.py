@@ -22,3 +22,15 @@ class TestBasicTag(unittest.TestCase):
         result = BasicTag.from_id(self.mock_client, "test_id")
         self.assertIsInstance(result, BasicTag)
         mock_from_id.assert_called_once_with(self.mock_client, "test_id")
+
+    @patch('pieces_os_client.wrapper.basic_identifier.tag.BasicTag.from_id')
+    def test_exists(self, mock_from_id):
+        self.mock_client.tags_api.tags_exists.return_value = Mock(tag=self.mock_tag)
+        mock_from_id.return_value = BasicTag(self.mock_client, self.mock_tag)
+        
+        result = BasicTag.exists(self.mock_client, "test_content")
+        
+        self.assertIsInstance(result, BasicTag)
+        self.mock_client.tags_api.tags_exists.assert_called_once_with(
+            ExistentMetadata(value="test_content")
+        )
