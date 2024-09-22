@@ -29,3 +29,12 @@ class TestBasicWebsite(unittest.TestCase):
         basic_website = BasicWebsite.create(self.mock_client, seeded_website)
         self.mock_client.websites_api.websites_create_new_website.assert_called_once_with(transferables=False, seeded_website=seeded_website)
         self.assertIsInstance(basic_website, BasicWebsite)
+
+    @patch('pieces_os_client.wrapper.basic_identifier.website.BasicWebsite.from_id')
+    def test_exists(self, mock_from_id):
+        mock_existent = Mock()
+        mock_existent.website = Mock(id="test_id")
+        self.mock_client.websites_api.websites_exists.return_value = mock_existent
+        BasicWebsite.exists(self.mock_client, "https://test.com")
+        self.mock_client.websites_api.websites_exists.assert_called_once_with(ExistentMetadata(value="https://test.com"))
+        mock_from_id.assert_called_once_with(self.mock_client, "test_id")
