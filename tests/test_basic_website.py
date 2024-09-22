@@ -16,3 +16,5 @@ class TestBasicWebsite(unittest.TestCase):
         basic_website = BasicWebsite(self.mock_client, self.mock_website)
         self.assertEqual(basic_website.website, self.mock_website)
         self.assertEqual(basic_website.pieces_client, self.mock_client)
+
+    
