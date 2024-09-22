@@ -22,3 +22,10 @@ class TestBasicWebsite(unittest.TestCase):
         self.mock_client.website_api.websites_specific_website_snapshot.side_effect = Exception("API Error")
         with self.assertRaises(ValueError):
             BasicWebsite.from_id(self.mock_client, "test_id")
+
+    def test_create(self):
+        seeded_website = SeededWebsite(url="https://test.com", name="Test Website")
+        self.mock_client.websites_api.websites_create_new_website.return_value = self.mock_website
+        basic_website = BasicWebsite.create(self.mock_client, seeded_website)
+        self.mock_client.websites_api.websites_create_new_website.assert_called_once_with(transferables=False, seeded_website=seeded_website)
+        self.assertIsInstance(basic_website, BasicWebsite)
