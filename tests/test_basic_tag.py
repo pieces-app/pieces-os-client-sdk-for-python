@@ -112,3 +112,8 @@ class TestBasicTag(unittest.TestCase):
         basic_tag.disassociate_asset(mock_asset)
         
         self.mock_client.tag_api.tag_disassociate_asset.assert_called_once_with("test_tag_id", "test_asset_id")
+
+    def test_delete(self):
+        basic_tag = BasicTag(self.mock_client, self.mock_tag)
+        basic_tag.delete()
+        self.mock_client.tags_api.tags_delete_specific_tag.assert_called_once_with("test_tag_id")
