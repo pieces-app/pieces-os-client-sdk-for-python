@@ -56,3 +56,13 @@ class TestBasicWebsite(unittest.TestCase):
         self.assertEqual(basic_website.name, "Test Website")
         self.assertEqual(basic_website.id, "test_id")
         self.assertEqual(basic_website.url, "https://test.com")
+
+    def test_setters(self):
+        basic_website = BasicWebsite(self.mock_client, self.mock_website)
+        basic_website.name = "New Name"
+        self.assertEqual(basic_website.website.name, "New Name")
+        self.mock_client.website_api.website_update.assert_called_once()
+
+        basic_website.url = "https://newtest.com"
+        self.assertEqual(basic_website.website.text, "https://newtest.com")
+        self.mock_client.website_api.website_update.assert_called()
