@@ -50,3 +50,9 @@ class TestBasicWebsite(unittest.TestCase):
         with patch.object(BasicWebsite, 'exists', return_value=None):
             BasicWebsite.from_raw_content(self.mock_client, "https://test.com")
             mock_create.assert_called_once_with(self.mock_client, SeededWebsite(url="https://test.com", name="https://test.com"))
+
+    def test_properties(self):
+        basic_website = BasicWebsite(self.mock_client, self.mock_website)
+        self.assertEqual(basic_website.name, "Test Website")
+        self.assertEqual(basic_website.id, "test_id")
+        self.assertEqual(basic_website.url, "https://test.com")
