@@ -1,6 +1,10 @@
 import unittest
 from unittest.mock import Mock, patch, MagicMock
-from pieces_os_client.models import Tag, SeededTag, ExistentMetadata
+
+from pieces_os_client.models.tag import Tag
+from pieces_os_client.models.seeded_tag import SeededTag
+from pieces_os_client.models.existent_metadata import ExistentMetadata
+
 from pieces_os_client.wrapper.basic_identifier.tag import BasicTag
 
 class TestBasicTag(unittest.TestCase):
