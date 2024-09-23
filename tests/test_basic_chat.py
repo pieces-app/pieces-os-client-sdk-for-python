@@ -97,6 +97,19 @@ class TestBasicChat:
         chat = BasicChat("test_id")
         assert chat.annotations is None
 
+    @patch('pieces_os_client.wrapper.basic_identifier.chat.BasicChat')
+    def test_summary_property(self, MockBasicChat):
+        mock_chat = Mock()
+        MockBasicChat.return_value = mock_chat
+
+        mock_summary_annotation = Mock(type=AnnotationTypeEnum.SUMMARY, raw_content="Test summary")
+        mock_other_annotation = Mock(type=AnnotationTypeEnum.COMMENT, raw_content="Other content")
+        
+        mock_chat.annotations = [mock_other_annotation, mock_summary_annotation]
+        mock_chat.summary = BasicChat.summary.fget(mock_chat)  # Call the original summary method
+        
+        assert mock_chat.summary == "Test summary"
+        
     def test_delete(self):
         chat = BasicChat("test_id")
         chat.delete()
