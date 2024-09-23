@@ -21,3 +21,10 @@ class TestBasicAnnotation(unittest.TestCase):
 
     def test_id_property(self):
         self.assertEqual(self.basic_annotation.id, "test_annotation_id")
+
+    @patch('pieces_os_client.wrapper.basic_identifier.annotation.BasicAnnotation')
+    def test_from_id(self, mock_basic_annotation):
+        mock_basic_annotation.return_value = self.basic_annotation
+        result = BasicAnnotation.from_id(self.mock_pieces_client, "test_annotation_id")
+        self.assertEqual(result, self.basic_annotation)
+        self.mock_pieces_client.annotation_api.annotation_specific_annotation_snapshot.assert_called_once_with("test_annotation_id")
