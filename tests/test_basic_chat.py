@@ -55,6 +55,10 @@ class TestBasicChat:
         assert isinstance(chat.conversation, Conversation)
         assert chat.conversation.id == "test_id"
 
+    def test_id_property(self):
+        chat = BasicChat("test_id")
+        assert chat.id == "test_id"
+
     @patch.object(BasicMessage, '__init__', return_value=None)
     def test_messages(self, mock_basic_message_init):
         ConversationsSnapshot.identifiers_snapshot["test_id"].messages = Mock()
