@@ -143,6 +143,10 @@ class TestBasicChat:
         chat = BasicChat("test_id")
         assert str(chat) == "ID: test_id, Name: Test Conversation"
 
+    def test_repr_representation(self):
+        chat = BasicChat("test_id")
+        assert repr(chat) == "<BasicChat(id=test_id)>"
+        
     @patch.object(ConversationsSnapshot, 'pieces_client')
     def test_edit_conversation(self, mock_pieces_client):
         mock_conversation = Mock()
