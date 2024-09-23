@@ -1,4 +1,4 @@
-from typing import Optional,Dict
+from typing import TYPE_CHECKING, Optional,Dict
 import platform
 import atexit
 import subprocess
@@ -25,12 +25,16 @@ from pieces_os_client.api.asset_api import AssetApi
 from pieces_os_client.api.well_known_api import WellKnownApi
 from pieces_os_client.api.assets_api import AssetsApi
 from pieces_os_client.api.models_api import ModelsApi
+from pieces_os_client.api.annotations_api import AnnotationsApi
 from pieces_os_client.api.annotation_api import AnnotationApi
 from pieces_os_client.api.linkify_api import LinkifyApi
+from pieces_os_client.api.tags_api import TagsApi
+from pieces_os_client.api.tag_api import TagApi
+from pieces_os_client.api.website_api import WebsiteApi
+from pieces_os_client.api.websites_api import WebsitesApi
 
 from pieces_os_client.models.seeded_connector_connection import SeededConnectorConnection
 from pieces_os_client.models.seeded_tracked_application import SeededTrackedApplication
-from pieces_os_client.models.fragment_metadata import FragmentMetadata
 
 
 from .copilot import Copilot
@@ -38,14 +42,18 @@ from .basic_identifier import BasicAsset,BasicUser
 from .streamed_identifiers import AssetSnapshot
 from .websockets import *
 
+if TYPE_CHECKING:
+    from pieces_os_client.models.fragment_metadata import FragmentMetadata
+    from pieces_os_client.models.model import Model
 
 class PiecesClient:
     def __init__(self, host:str="", seeded_connector: Optional[SeededConnectorConnection] = None,**kwargs):
-        if not host:
-            host = "http://localhost:5323" if 'Linux' in platform.platform() else "http://localhost:1000"
+        self.models:Dict[str, str] = {} # Maps model_name to the model_id
+        self.models_object: list[Model] = []
 
+        if not host:
+            host = "http://127.0.0.1:5323" if 'Linux' in platform.platform() else "http://127.0.0.1:1000"
         self.host = host
-        self.models = None
         self._is_started_runned = False
         self.local_os = platform.system().upper() if platform.system().upper() in ["WINDOWS","LINUX","DARWIN"] else "WEB"
         self.local_os = "MACOS" if self.local_os == "DARWIN" else self.local_os
@@ -65,8 +73,8 @@ class PiecesClient:
         if not self.is_pieces_running(): return False
 
         self._is_started_runned = True
-        self.tracked_application = self.connector_api.connect(seeded_connector_connection=self._seeded_connector).application
-        self.api_client.set_default_header("application",self.tracked_application.id)
+        self._tracked_application = self.connector_api.connect(seeded_connector_connection=self._seeded_connector).application
+        self.api_client.set_default_header("application",self._tracked_application.id)
 
         if self._connect_websockets:
             self.conversation_ws = ConversationWS(self)
@@ -77,6 +85,11 @@ class PiecesClient:
         
         self.model_name = "GPT-3.5-turbo Chat Model"
         return True
+
+    @property
+    def tracked_application(self):
+        self._check_startup()
+        return self._tracked_application
 
 
     @property
@@ -102,11 +115,16 @@ class PiecesClient:
         self.connector_api = ConnectorApi(self.api_client)
         self.models_api = ModelsApi(self.api_client)
         self.annotation_api = AnnotationApi(self.api_client)
+        self.annotations_api = AnnotationsApi(self.api_client)
         self.well_known_api = WellKnownApi(self.api_client)
         self.os_api = OSApi(self.api_client)
         self.allocations_api = AllocationsApi(self.api_client)
         self.linkfy_api = LinkifyApi(self.api_client)
         self.search_api = SearchApi(self.api_client)
+        self.tag_api = TagApi(self.api_client)
+        self.tags_api = TagsApi(self.api_client)
+        self.website_api = WebsiteApi(self.api_client)
+        self.websites_api = WebsitesApi(self.api_client)
 
         # Websocket urls
         ws_base_url:str = host.replace('http','ws')
@@ -117,6 +135,9 @@ class PiecesClient:
         self.HEALTH_WS_URL = ws_base_url + "/.well-known/stream/health"
 
     def assets(self):
+        """
+            Retruns all the assets after the caching process is done
+        """
         self.ensure_initialization()
         return [BasicAsset(id) for id in AssetSnapshot.identifiers_snapshot.keys()]
 
@@ -125,17 +146,21 @@ class PiecesClient:
         return BasicAsset(asset_id)
 
     @staticmethod
-    def create_asset(content:str,metadata:Optional[FragmentMetadata]=None):
+    def create_asset(content:str, metadata:Optional["FragmentMetadata"]=None):
+        """
+            Create an asset
+        """
         return BasicAsset.create(content,metadata)
 
 
     def get_models(self) -> Dict[str, str]:
-        if self.models:
-            return self.models
-        api_response = self.models_api.models_snapshot()
-        models = {model.name: model.id for model in api_response.iterable if model.cloud or model.downloaded} # getting the models that are available in the cloud or is downloaded
-        self.models = models
-        return models
+        """
+            Returns a dict of the {model_name: model_id}
+        """
+        if not self.models:
+            self.models_object = self.models_api.models_snapshot().iterable
+            self.models = {model.name: model.id for model in self.models_object if model.cloud or model.downloaded} # getting the models that are available in the cloud or is downloaded
+        return self.models
 
     @property
     def model_name(self):
@@ -151,6 +176,9 @@ class PiecesClient:
 
     @property
     def available_models_names(self) -> list:
+        """
+            Returns all available models names
+        """
         return list(self.get_models().keys())
 
     def ensure_initialization(self):
@@ -160,11 +188,14 @@ class PiecesClient:
         self._check_startup()
         BaseWebsocket.wait_all()
 
-    def close(self):
+    @classmethod
+    def close(cls):
         """
             Use this when you exit the app
-        """
+        """ 
         BaseWebsocket.close_all()
+        if hasattr(atexit, 'unregister'):
+            atexit.unregister(cls.close)
 
     @property
     def version(self) -> str:
@@ -216,6 +247,24 @@ class PiecesClient:
         if not self._startup():
             raise ValueError("PiecesClient is not started successfully\nPerhaps Pieces OS is not running")
 
+
+    def __str__(self) -> str:
+        return f"<PiecesClient host={self.host}, pieces_os_status={'Running' if self.is_pieces_running else 'Not running'}>"
+
+
+    def __repr__(self) -> str:
+        return f"<PiecesClient(host={self.host})>"
+
+
+    def pool(self,api_call,args):
+        """
+            call the api async without stopping the main thread
+            Create thread pool on first request
+            avoids instantiating unused threadpool for blocking clients.
+            return the ThreadPool created
+        """
+        return self.api_client.pool.apply_async(api_call, args)
+
 # Register the function to be called on exit
-atexit.register(BaseWebsocket.close_all)
+atexit.register(PiecesClient.close)
 
