@@ -67,3 +67,16 @@ class TestBasicAnnotation(unittest.TestCase):
         self.assertIsNotNone(result)
         self.assertEqual(result, mock_basic_chat)
         MockBasicChat.assert_called_once_with("test_conversation_id")
+
+    @patch('pieces_os_client.wrapper.basic_identifier.annotation.BasicAnnotation')
+    def test_create(self, mock_basic_annotation):
+        mock_seeded_annotation = Mock(spec=SeededAnnotation)
+        mock_created_annotation = Mock(spec=Annotation)
+        self.mock_pieces_client.annotations_api.annotations_create_new_annotation.return_value = mock_created_annotation
+        mock_basic_annotation.return_value = "Created BasicAnnotation"
+
+        result = BasicAnnotation.create(self.mock_pieces_client, mock_seeded_annotation)
+        
+        self.assertEqual(result, "Created BasicAnnotation")
+        self.mock_pieces_client.annotations_api.annotations_create_new_annotation.assert_called_once_with(mock_seeded_annotation)
+        mock_basic_annotation.assert_called_once_with(self.mock_pieces_client, mock_created_annotation)
