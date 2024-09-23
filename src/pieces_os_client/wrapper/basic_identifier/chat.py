@@ -77,9 +77,10 @@ class BasicChat(Basic):
             The BasicAnnotation of the conversation, or None if not available.
         """
         from . import BasicAnnotation
-        if self.conversation.annotations:
-            return [BasicAnnotation.from_id(ConversationsSnapshot.pieces_client,annotation.id)
-             for annotation in self.conversation.annotations.iterable]
+        return self._from_indices(
+            getattr(self.conversation.annotations,"indices"),
+            lambda id:BasicAnnotation.from_id(ConversationsSnapshot.pieces_client,id)
+        )
 
     @property
     def summary(self)-> Optional[str]:
@@ -103,11 +104,10 @@ class BasicChat(Basic):
     @property
     def websites(self) -> Optional[List["BasicWebsite"]]:
         from . import BasicWebsite
-        if self.conversation.websites:
-            return [
-                BasicWebsite.from_id(ConversationsSnapshot.pieces_client,webstie.id) 
-                for webstie in self.conversation.websites.iterable
-            ]
+        return self._from_indices(
+            getattr(self.conversation.websites,"indices"),
+            lambda id:BasicWebsite.from_id(ConversationsSnapshot.pieces_client,id)
+        )
 
     @staticmethod
     def _edit_conversation(conversation):

@@ -1,4 +1,5 @@
 from abc import ABC,abstractmethod
+from typing import Any, Callable, Dict, Optional, List
 
 class Basic(ABC):
 	def __init__(self, id) -> None:
@@ -13,6 +14,11 @@ class Basic(ABC):
 	@abstractmethod
 	def id(self) -> str:
 		pass
+
+	def _from_indices(self, indices: Optional[Dict[str, Any]], object_call: Callable[[str], Any]) -> List[Any]:
+		if indices:
+			return [object_call(id)
+	             for id in indices.keys()]
 
 	def __repr__(self):
 		"""

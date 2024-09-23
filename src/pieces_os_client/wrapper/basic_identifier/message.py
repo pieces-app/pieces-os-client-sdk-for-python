@@ -132,6 +132,7 @@ class BasicMessage(Basic):
             The BasicAnnotation of the message, or None if not available.
         """
         from . import BasicAnnotation
-        if self.message.annotations:
-            return [BasicAnnotation.from_id(self.pieces_client,annotation.id)
-             for annotation in self.message.annotations.iterable]
+        return self._from_indices(
+            getattr(self.message.annotations,"indices"),
+            lambda id:BasicAnnotation.from_id(self.pieces_client,id)
+        )
