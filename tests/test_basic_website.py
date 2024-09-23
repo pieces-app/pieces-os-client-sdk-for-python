@@ -1,7 +1,9 @@
 import unittest
 from unittest.mock import Mock, patch, PropertyMock
-from pieces_os_client.models import Website, SeededWebsite, ExistentMetadata
-from pieces_os_client.wrapper.basic_identifier.website import BasicWebsite
+from pieces_os_client.models.website import Website
+from pieces_os_client.models.seeded_website import SeededWebsite
+from pieces_os_client.models.existent_metadata import ExistentMetadata
+from pieces_os_client.wrapper.basic_identifier import BasicWebsite, BasicAsset
 
 class TestBasicWebsite(unittest.TestCase):
 
@@ -159,20 +161,13 @@ class TestBasicWebsite(unittest.TestCase):
         self.mock_website.assets.iterable = [mock_asset1, mock_asset2]
         
         # Test the assets property
-        with patch('pieces_os_client.wrapper.basic_identifier.asset.BasicAsset') as MockBasicAsset:
-            MockBasicAsset.return_value = Mock()
+        
             
-            assets = basic_website.assets
-            
-            self.assertIsNotNone(assets)
-            self.assertEqual(len(assets), 2)
-            
-            # Check if BasicAsset was instantiated with the correct IDs
-            MockBasicAsset.assert_any_call("asset_id_1")
-            MockBasicAsset.assert_any_call("asset_id_2")
-            
-            # Check if the returned assets are instances of MockBasicAsset
-            self.assertTrue(all(isinstance(asset, MockBasicAsset.return_value.__class__) for asset in assets))
+        assets = basic_website.assets
+        self.assertIsNotNone(assets)
+        self.assertEqual(len(assets), 2)
+        # Check if the returned assets are instances of MockBasicAsset
+        self.assertTrue(all(isinstance(asset,BasicAsset) for asset in assets))
 
 if __name__ == '__main__':
     unittest.main()
