@@ -121,6 +121,17 @@ class TestBasicChat:
         mock_chat.summary = BasicChat.summary.fget(mock_chat)  # Call the original summary method
         
         assert mock_chat.summary is None
+
+    def test_websites_property(self):
+        mock_website1 = Mock(id="web1")
+        mock_website2 = Mock(id="web2")
+        self.mock_conversation.websites = Mock(iterable=[mock_website1, mock_website2])
+        
+        chat = BasicChat("test_id")
+        websites = chat.websites
+        
+        assert websites is not None
+        assert len(websites) == 2
         
     def test_delete(self):
         chat = BasicChat("test_id")
