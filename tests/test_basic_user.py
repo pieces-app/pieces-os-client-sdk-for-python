@@ -12,6 +12,10 @@ class BasicUserTest(unittest.TestCase):
         self.mock_user_profile = MagicMock(spec=UserProfile)
         self.basic_user.user_profile = self.mock_user_profile
 
+    def test_id_property(self):
+        self.mock_user_profile.id = "user123"
+        self.assertEqual(self.basic_user.id, "user123")
+        
     def test_login(self):
         self.mock_pieces_client.os_api.sign_into_os.return_value = MagicMock()
         self.basic_user.login(connect_after_login=False)
