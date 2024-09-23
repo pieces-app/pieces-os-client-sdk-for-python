@@ -91,6 +91,31 @@ class TestBasicMessage:
             assert len(call_args) >= 1  # Ensure there is at least one argument
             assert call_args[-1] == "test_conversation_id"  # The last argument should be the conversation ID
 
+    def test_annotations_property(self):
+        # Create mock annotations
+        mock_annotation1 = Mock(id="annotation1")
+        mock_annotation2 = Mock(id="annotation2")
+        self.mock_message.annotations = Mock(iterable=[mock_annotation1, mock_annotation2])
+
+        # Create a BasicMessage instance
+        message = BasicMessage(self.mock_pieces_client, "test_message_id")
+
+        # Mock the BasicAnnotation.from_id method
+        with patch('pieces_os_client.wrapper.basic_identifier.BasicAnnotation') as MockBasicAnnotation:
+            MockBasicAnnotation.from_id.side_effect = lambda client, id: f"BasicAnnotation({id})"
+
+            # Get the annotations
+            annotations = message.annotations
+
+        # Assert that the annotations are correct
+        assert annotations == ["BasicAnnotation(annotation1)", "BasicAnnotation(annotation2)"]
+
+        # Verify that BasicAnnotation.from_id was called with the correct arguments
+        MockBasicAnnotation.from_id.assert_has_calls([
+            call(self.mock_pieces_client, "annotation1"),
+            call(self.mock_pieces_client, "annotation2")
+        ])
+        
     def test_description_property_no_annotations(self):
         message = BasicMessage(self.mock_pieces_client, "test_message_id")
         assert message.description is None
