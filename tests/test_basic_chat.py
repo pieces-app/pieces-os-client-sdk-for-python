@@ -155,6 +155,10 @@ class TestBasicChat:
         assert chat1 == chat2
         assert chat1 != chat3
         assert chat1 != "test_id"
+
+    def test_hash(self):
+        chat = BasicChat("test_id")
+        assert hash(chat) == hash("test_id")
         
     @patch.object(ConversationsSnapshot, 'pieces_client')
     def test_edit_conversation(self, mock_pieces_client):
