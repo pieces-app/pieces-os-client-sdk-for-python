@@ -276,7 +276,14 @@ class TestBasicAsset:
 
         ocr_content = BasicAsset._ocr_from_format(mock_format)
         assert ocr_content == "OCR content"
+
+    def test_edit_asset(self):
+        mock_asset = MagicMock()
         
+        with patch.object(AssetSnapshot.pieces_client.asset_api, 'asset_update') as mock_update:
+            BasicAsset._edit_asset(mock_asset)
+            mock_update.assert_called_once_with(False, mock_asset)
+            
     def test_search(self):
         query = "test query"
         mock_result = Mock()
