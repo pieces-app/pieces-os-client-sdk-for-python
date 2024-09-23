@@ -53,3 +53,17 @@ class TestBasicAnnotation(unittest.TestCase):
         self.assertIsNotNone(result)
         self.assertEqual(result, mock_basic_asset)
         MockBasicAsset.assert_called_once_with("test_asset_id")
+
+    @patch('pieces_os_client.wrapper.basic_identifier.chat.BasicChat')
+    def test_chat_property(self, MockBasicChat):
+        mock_conversation = Mock()
+        mock_conversation.id = "test_conversation_id"
+        self.mock_annotation.conversation = mock_conversation
+        
+        mock_basic_chat = MockBasicChat.return_value
+        mock_basic_chat.name = "Test Chat"
+
+        result = self.basic_annotation.chat
+        self.assertIsNotNone(result)
+        self.assertEqual(result, mock_basic_chat)
+        MockBasicChat.assert_called_once_with("test_conversation_id")
