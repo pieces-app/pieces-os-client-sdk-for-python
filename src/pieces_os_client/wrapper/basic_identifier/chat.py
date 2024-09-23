@@ -69,7 +69,7 @@ class BasicChat(Basic):
 
 
     @property
-    def annotations(self) -> Optional[List["BasicAnnotation"]]:
+    def annotations(self) -> List["BasicAnnotation"]:
         """
         Gets the annotations of the conversation.
 
@@ -102,7 +102,7 @@ class BasicChat(Basic):
         ConversationsSnapshot.pieces_client.conversations_api.conversations_delete_specific_conversation(self.id)
 
     @property
-    def websites(self) -> Optional[List["BasicWebsite"]]:
+    def websites(self) -> List["BasicWebsite"]:
         from . import BasicWebsite
         return self._from_indices(
             getattr(self.conversation.websites,"indices",{}),
