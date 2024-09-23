@@ -259,7 +259,17 @@ class TestBasicAsset:
         with patch.object(BasicAsset, '_get_ocr_format', return_value=mock_format):
             ocr_content = asset._get_ocr_content()
             assert ocr_content == "OCR content"
-            
+
+    def test_get_ocr_format(self):
+        mock_asset = MagicMock()
+        mock_asset.original.reference.analysis.image.ocr.raw.id = "ocr_format_id"
+        mock_format = MagicMock()
+        mock_format.id = "ocr_format_id"
+        mock_asset.formats.iterable = [mock_format]
+
+        ocr_format = BasicAsset._get_ocr_format(mock_asset)
+        assert ocr_format == mock_format
+        
     def test_search(self):
         query = "test query"
         mock_result = Mock()
