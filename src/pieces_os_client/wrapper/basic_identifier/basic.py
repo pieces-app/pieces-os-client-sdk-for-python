@@ -15,10 +15,9 @@ class Basic(ABC):
 	def id(self) -> str:
 		pass
 
-	def _from_indices(self, indices: Optional[Dict[str, Any]], object_call: Callable[[str], Any]) -> List[Any]:
-		if indices:
-			return [object_call(id)
-	             for id in indices.keys()]
+	def _from_indices(self, indices: Dict[str, Any], object_call: Callable[[str], Any]) -> List[Any]:
+		return [object_call(id)
+             for id in indices.keys()]
 
 	def __repr__(self):
 		"""

@@ -78,7 +78,7 @@ class BasicChat(Basic):
         """
         from . import BasicAnnotation
         return self._from_indices(
-            getattr(self.conversation.annotations,"indices"),
+            getattr(self.conversation.annotations, "indices", {}),
             lambda id:BasicAnnotation.from_id(ConversationsSnapshot.pieces_client,id)
         )
 
@@ -105,7 +105,7 @@ class BasicChat(Basic):
     def websites(self) -> Optional[List["BasicWebsite"]]:
         from . import BasicWebsite
         return self._from_indices(
-            getattr(self.conversation.websites,"indices"),
+            getattr(self.conversation.websites,"indices",{}),
             lambda id:BasicWebsite.from_id(ConversationsSnapshot.pieces_client,id)
         )
 

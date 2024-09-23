@@ -2,9 +2,6 @@ from typing import Literal, Optional,TYPE_CHECKING, List
 from .basic import Basic
 
 from pieces_os_client.models.conversation_message import ConversationMessage
-from pieces_os_client.models.annotations import Annotations
-
-
 
 if TYPE_CHECKING:
     from ..client import PiecesClient
@@ -133,6 +130,6 @@ class BasicMessage(Basic):
         """
         from . import BasicAnnotation
         return self._from_indices(
-            getattr(self.message.annotations,"indices"),
+            getattr(self.message.annotations, "indices", {}),
             lambda id:BasicAnnotation.from_id(self.pieces_client,id)
         )
