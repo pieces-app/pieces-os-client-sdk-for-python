@@ -31,3 +31,6 @@ class TestBasicAnnotation(unittest.TestCase):
 
     def test_type_property(self):
         self.assertEqual(self.basic_annotation.type, AnnotationTypeEnum.COMMENT)
+
+    def test_raw_content_property(self):
+        self.assertEqual(self.basic_annotation.raw_content, "Test annotation text")
