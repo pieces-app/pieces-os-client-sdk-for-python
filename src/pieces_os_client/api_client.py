@@ -27,7 +27,7 @@ from urllib.parse import quote
 
 from pieces_os_client.configuration import Configuration
 from pieces_os_client.api_response import ApiResponse
-import pieces_os_client.models
+import importlib
 from pieces_os_client import rest
 from pieces_os_client.exceptions import ApiValueError, ApiException
 
@@ -345,7 +345,11 @@ class ApiClient:
             if klass in self.NATIVE_TYPES_MAPPING:
                 klass = self.NATIVE_TYPES_MAPPING[klass]
             else:
-                klass = getattr(pieces_os_client.models, klass)
+                # Convert the class to snake case
+                snake_case = re.sub(r'(?<!^)(?=[A-Z])', '_', klass).lower()
+                # Import the class
+                module = importlib.import_module(f"pieces_os_client.models.{snake_case}")
+                klass = getattr(module, klass)
 
         if klass in self.PRIMITIVE_TYPES:
             return self.__deserialize_primitive(data, klass)
