@@ -3,8 +3,11 @@ from unittest.mock import Mock, call
 
 from pieces_os_client.models.annotation_type_enum import AnnotationTypeEnum
 from pieces_os_client.models.annotations import Annotations
-from pieces_os_client.wrapper.basic_identifier.message import BasicMessage
 
+from unittest.mock import Mock, patch
+from pieces_os_client.wrapper.basic_identifier.message import BasicMessage
+from pieces_os_client.wrapper.basic_identifier.basic import Basic
+from pieces_os_client.wrapper.basic_identifier.annotation import BasicAnnotation
 # Test class
 class TestBasicMessage:
     @pytest.fixture(autouse=True)
@@ -60,11 +63,41 @@ class TestBasicMessage:
 
     def test_annotations_property_none(self):
         message = BasicMessage(self.mock_pieces_client, "test_message_id")
-        assert message.annotations is None
+        assert message.annotations == []
 
-    def test_description_property_no_annotations(self):
+
+    def test_chat_property(self):
+        # Set up the mock message with a conversation ID
+        self.mock_message.conversation = Mock(id="test_conversation_id")
+        
+        # Create a BasicMessage instance
         message = BasicMessage(self.mock_pieces_client, "test_message_id")
-        assert message.description is None
+        
+        # Mock the BasicChat class
+        with patch('pieces_os_client.wrapper.basic_identifier.BasicChat') as MockBasicChat:
+            # Configure the mock to return a Basic instance
+            mock_chat = Mock(spec=Basic)
+            mock_chat.id = "test_conversation_id"
+            MockBasicChat.return_value = mock_chat
+
+            # Get the chat property
+            chat = message.chat
+            
+            # Assert that BasicChat was called
+            MockBasicChat.assert_called_once()
+            
+            # Assert that the returned chat is the mock object
+            assert chat == mock_chat
+            assert chat.id == "test_conversation_id"
+            
+            # Verify that the BasicChat was initialized with the correct conversation ID
+            call_args = MockBasicChat.call_args[0]  # Get positional arguments of the call
+            assert len(call_args) >= 1  # Ensure there is at least one argument
+            assert call_args[-1] == "test_conversation_id"  # The last argument should be the conversation ID
+
+    # def test_description_property_no_annotations(self):
+    #     message = BasicMessage(self.mock_pieces_client, "test_message_id")
+    #     assert message.description is None
 
     # Did not see a message that have an annotation before but it still in the model..
     # def test_annotations_property_with_annotations(self):

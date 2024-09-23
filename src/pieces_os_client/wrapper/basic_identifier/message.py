@@ -121,7 +121,7 @@ class BasicMessage(Basic):
         )
 
     @property
-    def annotations(self) -> Optional[List["BasicAnnotation"]]:
+    def annotations(self) -> List["BasicAnnotation"]:
         """
         Gets the annotations of the message.
 

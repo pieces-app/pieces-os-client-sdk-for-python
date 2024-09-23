@@ -19,8 +19,8 @@ class VersionChecker:
         pre_release_tuple = tuple(pre_release.split('.')) if pre_release else ()
         return version_tuple, pre_release_tuple
 
-    @staticmethod
-    def compare(version1: str, version2: str) -> int:
+    @classmethod
+    def compare(cls, version1: str, version2: str) -> int:
         """
         Compare two version strings.
         
@@ -29,8 +29,9 @@ class VersionChecker:
         0 if version1 == version2
         1 if version1 > version2
         """
-        v1_parsed, v1_pre_release = VersionChecker._parse_version(version1)
-        v2_parsed, v2_pre_release = VersionChecker._parse_version(version2)
+
+        v1_parsed, v1_pre_release = cls._parse_version(version1)
+        v2_parsed, v2_pre_release = cls._parse_version(version2)
 
         # Compare major, minor, patch
         if v1_parsed < v2_parsed:
@@ -52,7 +53,7 @@ class VersionChecker:
         """Check if the Pieces OS version is within the supported range."""
         if self.compare(self.pieces_os_version, self.min_version) < 0:
             return VersionCheckResult(False, UpdateEnum.PiecesOS)
-        elif self.compare(self.pieces_os_version, self.max_version) > 0:
+        elif self.compare(self.pieces_os_version, self.max_version) >= 0:
             return VersionCheckResult(False, UpdateEnum.Plugin)
         return VersionCheckResult(True)
 
@@ -65,3 +66,7 @@ class VersionCheckResult:
     def __init__(self, compatible: bool, update: Optional[UpdateEnum] = None):
         self.compatible = compatible
         self.update = update
+
+    def __str__(self):
+        update_plugin = f", Update required: {self.update.name}" if self.update else ""
+        return f"VersionCheckResult(compatible={self.compatible}{update_plugin})"
