@@ -109,6 +109,18 @@ class TestBasicChat:
         mock_chat.summary = BasicChat.summary.fget(mock_chat)  # Call the original summary method
         
         assert mock_chat.summary == "Test summary"
+
+    @patch('pieces_os_client.wrapper.basic_identifier.chat.BasicChat')
+    def test_summary_property_no_summary(self, MockBasicChat):
+        mock_chat = Mock()
+        MockBasicChat.return_value = mock_chat
+
+        mock_other_annotation = Mock(type=AnnotationTypeEnum.COMMENT, raw_content="Other content")
+        
+        mock_chat.annotations = [mock_other_annotation]
+        mock_chat.summary = BasicChat.summary.fget(mock_chat)  # Call the original summary method
+        
+        assert mock_chat.summary is None
         
     def test_delete(self):
         chat = BasicChat("test_id")
