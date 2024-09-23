@@ -18,3 +18,6 @@ class TestBasicAnnotation(unittest.TestCase):
         self.assertEqual(self.basic_annotation.pieces_client, self.mock_pieces_client)
         self.assertEqual(self.basic_annotation.annotation, self.mock_annotation)
         self.assertEqual(self.basic_annotation.id, "test_annotation_id")
+
+    def test_id_property(self):
+        self.assertEqual(self.basic_annotation.id, "test_annotation_id")
