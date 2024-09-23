@@ -62,6 +62,35 @@ class TestBasicMessage:
         message = BasicMessage(self.mock_pieces_client, "test_message_id")
         assert message.annotations is None
 
+    def test_chat_property(self):
+        # Set up the mock message with a conversation ID
+        self.mock_message.conversation = Mock(id="test_conversation_id")
+        
+        # Create a BasicMessage instance
+        message = BasicMessage(self.mock_pieces_client, "test_message_id")
+        
+        # Mock the BasicChat class
+        with patch('pieces_os_client.wrapper.basic_identifier.BasicChat') as MockBasicChat:
+            # Configure the mock to return a Basic instance
+            mock_chat = Mock(spec=Basic)
+            mock_chat.id = "test_conversation_id"
+            MockBasicChat.return_value = mock_chat
+
+            # Get the chat property
+            chat = message.chat
+            
+            # Assert that BasicChat was called
+            MockBasicChat.assert_called_once()
+            
+            # Assert that the returned chat is the mock object
+            assert chat == mock_chat
+            assert chat.id == "test_conversation_id"
+            
+            # Verify that the BasicChat was initialized with the correct conversation ID
+            call_args = MockBasicChat.call_args[0]  # Get positional arguments of the call
+            assert len(call_args) >= 1  # Ensure there is at least one argument
+            assert call_args[-1] == "test_conversation_id"  # The last argument should be the conversation ID
+
     def test_description_property_no_annotations(self):
         message = BasicMessage(self.mock_pieces_client, "test_message_id")
         assert message.description is None
@@ -71,7 +100,7 @@ class TestBasicMessage:
     #     mock_annotation = Mock()
     #     mock_annotation.id = "test_annotation_id"
     #     self.mock_message.annotations = Mock(iterable=[Mock(id="test_annotation_id")])
-    #     self.mock_pieces_client.annotation_api.annotation_specific_annotation_snapshot.return_value = mock_annotation
+    #     self.mock_pieces_client.źnnotation_api.annotation_specific_annotation_snapshot.return_value = mock_annotation
 
     #     message = BasicMessage(self.mock_pieces_client, "test_message_id")
     #     annotations = message.annotations
