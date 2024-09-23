@@ -139,6 +139,10 @@ class TestBasicChat:
         
         ConversationsSnapshot.pieces_client.conversations_api.conversations_delete_specific_conversation.assert_called_once_with("test_id")
 
+    def test_str_representation(self):
+        chat = BasicChat("test_id")
+        assert str(chat) == "ID: test_id, Name: Test Conversation"
+
     @patch.object(ConversationsSnapshot, 'pieces_client')
     def test_edit_conversation(self, mock_pieces_client):
         mock_conversation = Mock()
