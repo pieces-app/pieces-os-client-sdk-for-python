@@ -43,6 +43,13 @@ class TestBasicAsset:
         asset = BasicAsset("test_asset_id")
         assert asset.raw_content == "Test content"
 
+    def test_raw_content_property_image(self):
+        self.mock_asset.original.reference.classification.generic = ClassificationGenericEnum.IMAGE
+        asset = BasicAsset("test_asset_id")
+        
+        with patch.object(BasicAsset, '_get_ocr_content', return_value="OCR content"):
+            assert asset.raw_content == "OCR content"
+            
     def test_is_image(self):
         asset = BasicAsset("test_asset_id")
         assert not asset.is_image
