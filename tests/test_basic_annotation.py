@@ -39,3 +39,17 @@ class TestBasicAnnotation(unittest.TestCase):
         self.basic_annotation.raw_content = "New annotation text"
         self.assertEqual(self.mock_annotation.text, "New annotation text")
         self.mock_pieces_client.annotation_api.annotation_update.assert_called_once_with(self.mock_annotation)
+
+    @patch('pieces_os_client.wrapper.basic_identifier.asset.BasicAsset')
+    def test_asset_property(self, MockBasicAsset):
+        mock_asset = Mock()
+        mock_asset.id = "test_asset_id"
+        self.mock_annotation.asset = mock_asset
+        
+        mock_basic_asset = MockBasicAsset.return_value
+        mock_basic_asset.name = "Test Asset"
+
+        result = self.basic_annotation.asset
+        self.assertIsNotNone(result)
+        self.assertEqual(result, mock_basic_asset)
+        MockBasicAsset.assert_called_once_with("test_asset_id")
