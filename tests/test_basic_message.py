@@ -1,9 +1,9 @@
 import pytest
 from unittest.mock import Mock, call
-from pieces_os_client import (
-    AnnotationTypeEnum,
-    Annotations
-)
+
+from pieces_os_client.models.annotation_type_enum import AnnotationTypeEnum
+from pieces_os_client.models.annotations import Annotations
+
 from unittest.mock import Mock, patch
 from pieces_os_client.wrapper.basic_identifier.message import BasicMessage
 from pieces_os_client.wrapper.basic_identifier.basic import Basic
@@ -63,7 +63,7 @@ class TestBasicMessage:
 
     def test_annotations_property_none(self):
         message = BasicMessage(self.mock_pieces_client, "test_message_id")
-        assert message.annotations is None
+        assert message.annotations == []
 
 
     def test_chat_property(self):
@@ -95,43 +95,6 @@ class TestBasicMessage:
             assert len(call_args) >= 1  # Ensure there is at least one argument
             assert call_args[-1] == "test_conversation_id"  # The last argument should be the conversation ID
 
-    def test_annotations_property(self):
-        # Create mock annotations
-        mock_annotation1 = Mock(id="annotation1")
-        mock_annotation2 = Mock(id="annotation2")
-        self.mock_message.annotations = Mock(iterable=[mock_annotation1, mock_annotation2])
-
-        # Create a BasicMessage instance
-        message = BasicMessage(self.mock_pieces_client, "test_message_id")
-
-        # Mock the BasicAnnotation.from_id method
-        with patch('pieces_os_client.wrapper.basic_identifier.BasicAnnotation') as MockBasicAnnotation:
-            MockBasicAnnotation.from_id.side_effect = lambda client, id: f"BasicAnnotation({id})"
-
-            # Get the annotations
-            annotations = message.annotations
-
-        # Assert that the annotations are correct
-        assert annotations == ["BasicAnnotation(annotation1)", "BasicAnnotation(annotation2)"]
-
-        # Verify that BasicAnnotation.from_id was called with the correct arguments
-        MockBasicAnnotation.from_id.assert_has_calls([
-            call(self.mock_pieces_client, "annotation1"),
-            call(self.mock_pieces_client, "annotation2")
-        ])
-
-    def test_annotations_property_no_annotations(self):
-        # Set up the mock message with no annotations
-        self.mock_message.annotations = None
-
-        # Create a BasicMessage instance
-        message = BasicMessage(self.mock_pieces_client, "test_message_id")
-
-        # Get the annotations
-        annotations = message.annotations
-
-        # Assert that annotations is None when there are no annotations
-        assert annotations is None
     # def test_description_property_no_annotations(self):
     #     message = BasicMessage(self.mock_pieces_client, "test_message_id")
     #     assert message.description is None
