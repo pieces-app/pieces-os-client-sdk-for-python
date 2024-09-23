@@ -242,6 +242,16 @@ class TestBasicAsset:
         with pytest.raises(NotImplementedError, match="Error in reclassify asset: Image reclassification is not supported"):
             asset.classification = ClassificationSpecificEnum.JS
 
+    def test_classification_property_image(self):
+        self.mock_asset.original.reference.classification.generic = ClassificationGenericEnum.IMAGE
+        asset = BasicAsset("test_asset_id")
+
+        mock_ocr_format = Mock()
+        mock_ocr_format.classification.specific = ClassificationSpecificEnum.TXT
+
+        with patch.object(BasicAsset, '_get_ocr_format', return_value=mock_ocr_format):
+            assert asset.classification == ClassificationSpecificEnum.TXT
+
     def test_share(self):
         asset = BasicAsset("test_asset_id")
         mock_shares = Mock(spec=Shares)
