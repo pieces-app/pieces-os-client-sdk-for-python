@@ -1,8 +1,5 @@
 from abc import ABC,abstractmethod
-from typing import Optional
-
-from pieces_os_client.models.annotations import Annotations
-from pieces_os_client.models.annotation_type_enum import AnnotationTypeEnum
+from typing import Any, Callable, Dict, Optional, List
 
 class Basic(ABC):
 	def __init__(self, id) -> None:
@@ -14,41 +11,13 @@ class Basic(ABC):
 		self._id = id
 
 	@property
-	def description(self) -> Optional[str]:
-		"""
-		Retrieve the description.
-
-		:return: The description text or None if not available.
-		"""
-		annotations = self.annotations
-		if not annotations:
-			return
-		d = None
-		for annotation in annotations.iterable:
-			if annotation.type == AnnotationTypeEnum.DESCRIPTION:
-				d = annotation
-		
-		return d.text if d else None
-
-	@property
-	@abstractmethod
-	def annotations(self)  -> Optional[Annotations]:
-		"""
-		Get all the annotations.
-
-		Returns:
-			Optional[Annotations]: The annotations if available, otherwise None.
-		"""
-		pass
-
-	@property
 	@abstractmethod
 	def id(self) -> str:
 		pass
 
-	@abstractmethod
-	def delete(self) -> None:
-		pass
+	def _from_indices(self, indices: Dict[str, Any], object_call: Callable[[str], Any]) -> List[Any]:
+		return [object_call(id)
+             for id in indices.keys()]
 
 	def __repr__(self):
 		"""
