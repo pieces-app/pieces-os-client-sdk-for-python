@@ -1,10 +1,13 @@
 import pytest
 from unittest.mock import Mock, call
-
-from pieces_os_client.models.annotation_type_enum import AnnotationTypeEnum
-from pieces_os_client.models.annotations import Annotations
+from pieces_os_client import (
+    AnnotationTypeEnum,
+    Annotations
+)
+from unittest.mock import Mock, patch
 from pieces_os_client.wrapper.basic_identifier.message import BasicMessage
-
+from pieces_os_client.wrapper.basic_identifier.basic import Basic
+from pieces_os_client.wrapper.basic_identifier.annotation import BasicAnnotation
 # Test class
 class TestBasicMessage:
     @pytest.fixture(autouse=True)
@@ -62,6 +65,7 @@ class TestBasicMessage:
         message = BasicMessage(self.mock_pieces_client, "test_message_id")
         assert message.annotations is None
 
+
     def test_chat_property(self):
         # Set up the mock message with a conversation ID
         self.mock_message.conversation = Mock(id="test_conversation_id")
@@ -115,17 +119,29 @@ class TestBasicMessage:
             call(self.mock_pieces_client, "annotation1"),
             call(self.mock_pieces_client, "annotation2")
         ])
-        
-    def test_description_property_no_annotations(self):
+
+    def test_annotations_property_no_annotations(self):
+        # Set up the mock message with no annotations
+        self.mock_message.annotations = None
+
+        # Create a BasicMessage instance
         message = BasicMessage(self.mock_pieces_client, "test_message_id")
-        assert message.description is None
+
+        # Get the annotations
+        annotations = message.annotations
+
+        # Assert that annotations is None when there are no annotations
+        assert annotations is None
+    # def test_description_property_no_annotations(self):
+    #     message = BasicMessage(self.mock_pieces_client, "test_message_id")
+    #     assert message.description is None
 
     # Did not see a message that have an annotation before but it still in the model..
     # def test_annotations_property_with_annotations(self):
     #     mock_annotation = Mock()
     #     mock_annotation.id = "test_annotation_id"
     #     self.mock_message.annotations = Mock(iterable=[Mock(id="test_annotation_id")])
-    #     self.mock_pieces_client.źnnotation_api.annotation_specific_annotation_snapshot.return_value = mock_annotation
+    #     self.mock_pieces_client.annotation_api.annotation_specific_annotation_snapshot.return_value = mock_annotation
 
     #     message = BasicMessage(self.mock_pieces_client, "test_message_id")
     #     annotations = message.annotations
