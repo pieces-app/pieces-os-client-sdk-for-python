@@ -84,3 +84,8 @@ class TestBasicAnnotation(unittest.TestCase):
     def test_delete(self):
         self.basic_annotation.delete()
         self.mock_pieces_client.annotations_api.annotations_delete_specific_annotation.assert_called_once_with("test_annotation_id")
+
+    def test_edit_annotation(self):
+        mock_annotation = Mock(spec=Annotation)
+        self.basic_annotation._edit_annotation(mock_annotation)
+        self.mock_pieces_client.annotation_api.annotation_update.assert_called_once_with(mock_annotation)
