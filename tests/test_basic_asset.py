@@ -1,19 +1,25 @@
 import pytest
 from unittest.mock import Mock, patch, MagicMock
+from pieces_os_client import (
+    Asset,
+    Format,
+    ClassificationGenericEnum,
+    ClassificationSpecificEnum,
+    Annotations,
+    Annotation,
+    Linkify,
+    Shares,
+    FragmentMetadata,
+    SeededAsset,
+    Seed,
+    SeededFormat,
+    SeededFragment,
+    TransferableString
+)
 from datetime import datetime
-
-from pieces_os_client.models.asset import Asset
-from pieces_os_client.models.format import Format
-from pieces_os_client.models.classification_generic_enum import ClassificationGenericEnum
-from pieces_os_client.models.classification_specific_enum import ClassificationSpecificEnum
-from pieces_os_client.models.annotations import Annotations
-from pieces_os_client.models.annotation import Annotation
-from pieces_os_client.models.linkify import Linkify
-from pieces_os_client.models.asset_reclassification import AssetReclassification
-from pieces_os_client.models.shares import Shares
-
 from pieces_os_client.wrapper.basic_identifier import BasicAsset
 from pieces_os_client.wrapper.streamed_identifiers.assets_snapshot import AssetSnapshot
+from pieces_os_client.wrapper.basic_identifier.annotation import BasicAnnotation
 
 class TestBasicAsset:
     @pytest.fixture(autouse=True)
@@ -57,7 +63,7 @@ class TestBasicAsset:
         with patch.object(BasicAsset, '_get_ocr_content', return_value=None):
             with pytest.raises(ValueError, match="Unable to get OCR content"):
                 _ = asset.raw_content
-                
+
     def test_is_image(self):
         asset = BasicAsset("test_asset_id")
         assert not asset.is_image
@@ -68,6 +74,16 @@ class TestBasicAsset:
     def test_classification_property(self):
         asset = BasicAsset("test_asset_id")
         assert asset.classification == ClassificationSpecificEnum.PY
+
+    def test_classification_property_image(self):
+        self.mock_asset.original.reference.classification.generic = ClassificationGenericEnum.IMAGE
+        asset = BasicAsset("test_asset_id")
+        
+        mock_ocr_format = Mock()
+        mock_ocr_format.classification.specific = ClassificationSpecificEnum.TXT
+        
+        with patch.object(BasicAsset, '_get_ocr_format', return_value=mock_ocr_format):
+            assert asset.classification == ClassificationSpecificEnum.TXT
 
     def test_edit_content(self):
         asset = BasicAsset("test_asset_id")
@@ -108,23 +124,28 @@ class TestBasicAsset:
         asset = BasicAsset("test_asset_id")
         mock_annotation = MagicMock(spec=Annotation)
         mock_annotation.type = "DESCRIPTION"
-        mock_annotation.text = "Test description"
+        mock_annotation.raw_content = "Test description"
         mock_annotation.updated = MagicMock()
         mock_annotation.updated.value = datetime.now()
         mock_annotations = [
             mock_annotation,
-            MagicMock(spec=Annotation, type="OTHER", text="Other annotation", updated=MagicMock(value=datetime.now()))
+            MagicMock(spec=Annotation, type="OTHER", raw_content="Other annotation", updated=MagicMock(value=datetime.now()))
         ]
         self.mock_asset.annotations = MagicMock(spec=Annotations, iterable=mock_annotations)
-
-        assert asset.description == "Test description"
+        
+        with patch('pieces_os_client.wrapper.basic_identifier.asset.BasicAnnotation', MagicMock(return_value=mock_annotation)):
+            assert asset.description == "Test description"
 
     def test_annotations_property(self):
         asset = BasicAsset("test_asset_id")
         mock_annotations = [MagicMock(spec=Annotation), MagicMock(spec=Annotation)]
         self.mock_asset.annotations = MagicMock(spec=Annotations, iterable=mock_annotations)
+        
+        with patch('pieces_os_client.wrapper.basic_identifier.asset.BasicAnnotation', MagicMock(side_effect=lambda _, a: a)):
+            annotations = asset.annotations
+            assert len(annotations) == 2
+            assert all(isinstance(annotation, MagicMock) for annotation in annotations)
 
-        assert asset.annotations == mock_annotations
 
     def test_delete(self):
         asset = BasicAsset("test_asset_id")
@@ -242,39 +263,34 @@ class TestBasicAsset:
         with pytest.raises(NotImplementedError, match="Error in reclassify asset: Image reclassification is not supported"):
             asset.classification = ClassificationSpecificEnum.JS
 
-    def test_classification_property_image(self):
-        self.mock_asset.original.reference.classification.generic = ClassificationGenericEnum.IMAGE
-        asset = BasicAsset("test_asset_id")
-
-        mock_ocr_format = Mock()
-        mock_ocr_format.classification.specific = ClassificationSpecificEnum.TXT
-
-        with patch.object(BasicAsset, '_get_ocr_format', return_value=mock_ocr_format):
-            assert asset.classification == ClassificationSpecificEnum.TXT
 
     def test_share(self):
         asset = BasicAsset("test_asset_id")
-        mock_shares = Mock(spec=Shares)
+        mock_user_profile = MagicMock()
+        mock_user_profile.allocation = True
 
-        with patch.object(BasicAsset, '_share', return_value=mock_shares) as mock_share:
+        with patch('pieces_os_client.wrapper.basic_identifier.BasicAsset._share') as mock_share:
+            mock_share.return_value = MagicMock(spec=Shares)
+            
             result = asset.share()
-
+            
             mock_share.assert_called_once_with(asset.asset)
-            assert result == mock_shares
+            assert isinstance(result, Shares)
 
     def test_share_raw_content(self):
-        raw_content = "Test raw content"
-        mock_seed = Mock()
-        mock_shares = Mock(spec=Shares)
+        raw_content = "Content to share"
+        mock_seed = MagicMock()
 
         with patch.object(BasicAsset, '_get_seed', return_value=mock_seed) as mock_get_seed, \
-             patch.object(BasicAsset, '_share', return_value=mock_shares) as mock_share:
-
+             patch('pieces_os_client.wrapper.basic_identifier.BasicAsset._share') as mock_share:
+            
+            mock_share.return_value = MagicMock(spec=Shares)
+            
             result = BasicAsset.share_raw_content(raw_content)
-
+            
             mock_get_seed.assert_called_once_with(raw_content)
             mock_share.assert_called_once_with(seed=mock_seed)
-            assert result == mock_shares
+            assert isinstance(result, Shares)
 
     def test_get_ocr_content(self):
         asset = BasicAsset("test_asset_id")
@@ -308,7 +324,50 @@ class TestBasicAsset:
         with patch.object(AssetSnapshot.pieces_client.asset_api, 'asset_update') as mock_update:
             BasicAsset._edit_asset(mock_asset)
             mock_update.assert_called_once_with(False, mock_asset)
-            
+
+
+    @patch('pieces_os_client.wrapper.client.PiecesClient')
+    def test_pieces_os_not_running(self, mock_pieces_client_class):
+        mock_client = mock_pieces_client_class.return_value
+        mock_client.is_pieces_running = Mock(return_value=False)
+        
+        # Create a mock copilot that raises ValueError when Pieces OS is not running
+        mock_copilot = MagicMock()
+        mock_copilot.question.side_effect = ValueError("Pieces OS is not running")
+        mock_client.copilot = mock_copilot
+
+        c = mock_client
+
+        assert not c.is_pieces_running()
+
+        with pytest.raises(ValueError, match="Pieces OS is not running"):
+            c.copilot.question("HI")
+
+    @patch('pieces_os_client.wrapper.client.PiecesClient')
+    def test_open_pieces_os(self, mock_pieces_client_class):
+        mock_client = mock_pieces_client_class.return_value
+        mock_client.is_pieces_running = Mock(side_effect=[False, True])
+        mock_client.open_pieces_os = Mock(return_value=True)
+
+        c = mock_client
+
+        assert not c.is_pieces_running()
+        assert c.open_pieces_os()
+        assert c.is_pieces_running()
+
+    @patch('pieces_os_client.wrapper.client.PiecesClient')
+    def test_copilot_after_pieces_os_running(self, mock_pieces_client_class):
+        mock_client = mock_pieces_client_class.return_value
+        mock_client.is_pieces_running = Mock(return_value=True)
+        mock_client.copilot = MagicMock()
+
+        c = mock_client
+
+        assert c.is_pieces_running()
+        
+        c.copilot.question("HI")
+        mock_client.copilot.question.assert_called_once_with("HI")
+ 
     def test_search(self):
         query = "test query"
         mock_result = Mock()
@@ -363,48 +422,6 @@ class TestBasicAsset:
             mock_init.assert_any_call("exact_id")
             mock_init.assert_any_call("suggested_id")
 
-    @patch('pieces_os_client.wrapper.client.PiecesClient')
-    def test_pieces_os_not_running(self, mock_pieces_client_class):
-        mock_client = mock_pieces_client_class.return_value
-        mock_client.is_pieces_running = Mock(return_value=False)
-        
-        # Create a mock copilot that raises ValueError when Pieces OS is not running
-        mock_copilot = MagicMock()
-        mock_copilot.question.side_effect = ValueError("Pieces OS is not running")
-        mock_client.copilot = mock_copilot
-
-        c = mock_client
-
-        assert not c.is_pieces_running()
-
-        with pytest.raises(ValueError, match="Pieces OS is not running"):
-            c.copilot.question("HI")
-
-    @patch('pieces_os_client.wrapper.client.PiecesClient')
-    def test_open_pieces_os(self, mock_pieces_client_class):
-        mock_client = mock_pieces_client_class.return_value
-        mock_client.is_pieces_running = Mock(side_effect=[False, True])
-        mock_client.open_pieces_os = Mock(return_value=True)
-
-        c = mock_client
-
-        assert not c.is_pieces_running()
-        assert c.open_pieces_os()
-        assert c.is_pieces_running()
-
-    @patch('pieces_os_client.wrapper.client.PiecesClient')
-    def test_copilot_after_pieces_os_running(self, mock_pieces_client_class):
-        mock_client = mock_pieces_client_class.return_value
-        mock_client.is_pieces_running = Mock(return_value=True)
-        mock_client.copilot = MagicMock()
-
-        c = mock_client
-
-        assert c.is_pieces_running()
-        
-        c.copilot.question("HI")
-        mock_client.copilot.question.assert_called_once_with("HI")
-        
+    
 if __name__ == '__main__':
     pytest.main([__file__])
-
