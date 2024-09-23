@@ -1,25 +1,21 @@
 import pytest
 from unittest.mock import Mock, patch, MagicMock
-from pieces_os_client import (
-    Asset,
-    Format,
-    ClassificationGenericEnum,
-    ClassificationSpecificEnum,
-    Annotations,
-    Annotation,
-    Linkify,
-    Shares,
-    FragmentMetadata,
-    SeededAsset,
-    Seed,
-    SeededFormat,
-    SeededFragment,
-    TransferableString
-)
-from datetime import datetime
+
+from pieces_os_client.models.asset import Asset
+from pieces_os_client.models.format import Format
+from pieces_os_client.models.classification_generic_enum import ClassificationGenericEnum
+from pieces_os_client.models.classification_specific_enum import ClassificationSpecificEnum
+from pieces_os_client.models.annotations import Annotations
+from pieces_os_client.models.annotation import Annotation
+from pieces_os_client.models.linkify import Linkify
+from pieces_os_client.models.asset_reclassification import AssetReclassification
+from pieces_os_client.models.shares import Shares
+
 from pieces_os_client.wrapper.basic_identifier import BasicAsset
 from pieces_os_client.wrapper.streamed_identifiers.assets_snapshot import AssetSnapshot
 from pieces_os_client.wrapper.basic_identifier.annotation import BasicAnnotation
+
+from datetime import datetime
 
 class TestBasicAsset:
     @pytest.fixture(autouse=True)
@@ -133,7 +129,7 @@ class TestBasicAsset:
         ]
         self.mock_asset.annotations = MagicMock(spec=Annotations, iterable=mock_annotations)
         
-        with patch('pieces_os_client.wrapper.basic_identifier.asset.BasicAnnotation', MagicMock(return_value=mock_annotation)):
+        with patch('pieces_os_client.wrapper.basic_identifier.BasicAnnotation', MagicMock(return_value=mock_annotation)):
             assert asset.description == "Test description"
 
     def test_annotations_property(self):
@@ -141,7 +137,7 @@ class TestBasicAsset:
         mock_annotations = [MagicMock(spec=Annotation), MagicMock(spec=Annotation)]
         self.mock_asset.annotations = MagicMock(spec=Annotations, iterable=mock_annotations)
         
-        with patch('pieces_os_client.wrapper.basic_identifier.asset.BasicAnnotation', MagicMock(side_effect=lambda _, a: a)):
+        with patch('pieces_os_client.wrapper.basic_identifier.BasicAnnotation', MagicMock(side_effect=lambda _, a: a)):
             annotations = asset.annotations
             assert len(annotations) == 2
             assert all(isinstance(annotation, MagicMock) for annotation in annotations)
