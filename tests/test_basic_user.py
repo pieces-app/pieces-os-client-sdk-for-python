@@ -73,9 +73,13 @@ class BasicUserTest(unittest.TestCase):
 
     def test_cloud_status_property(self):
         mock_allocation = MagicMock()
-        mock_allocation.status.cloud = AllocationStatusEnum.RUNNING  # Use a valid enum value
+        mock_allocation.status.cloud = AllocationStatusEnum.RUNNING  
         self.mock_user_profile.allocation = mock_allocation
         self.assertEqual(self.basic_user.cloud_status, AllocationStatusEnum.RUNNING)
 
+    def test_repr(self):
+        expected_repr = f"<BasicUser(pieces_client={self.mock_pieces_client})>"
+        self.assertEqual(repr(self.basic_user), expected_repr)
+        
 if __name__ == '__main__':
     unittest.main()
