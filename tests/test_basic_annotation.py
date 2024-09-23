@@ -89,3 +89,6 @@ class TestBasicAnnotation(unittest.TestCase):
         mock_annotation = Mock(spec=Annotation)
         self.basic_annotation._edit_annotation(mock_annotation)
         self.mock_pieces_client.annotation_api.annotation_update.assert_called_once_with(mock_annotation)
+
+if __name__ == '__main__':
+    unittest.main()
