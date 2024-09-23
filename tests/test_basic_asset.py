@@ -251,6 +251,15 @@ class TestBasicAsset:
             mock_share.assert_called_once_with(seed=mock_seed)
             assert result == mock_shares
 
+    def test_get_ocr_content(self):
+        asset = BasicAsset("test_asset_id")
+        mock_format = MagicMock()
+        mock_format.file.bytes.raw = b"OCR content"
+
+        with patch.object(BasicAsset, '_get_ocr_format', return_value=mock_format):
+            ocr_content = asset._get_ocr_content()
+            assert ocr_content == "OCR content"
+            
     def test_search(self):
         query = "test query"
         mock_result = Mock()
