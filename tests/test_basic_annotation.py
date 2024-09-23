@@ -80,3 +80,7 @@ class TestBasicAnnotation(unittest.TestCase):
         self.assertEqual(result, "Created BasicAnnotation")
         self.mock_pieces_client.annotations_api.annotations_create_new_annotation.assert_called_once_with(mock_seeded_annotation)
         mock_basic_annotation.assert_called_once_with(self.mock_pieces_client, mock_created_annotation)
+
+    def test_delete(self):
+        self.basic_annotation.delete()
+        self.mock_pieces_client.annotations_api.annotations_delete_specific_annotation.assert_called_once_with("test_annotation_id")
