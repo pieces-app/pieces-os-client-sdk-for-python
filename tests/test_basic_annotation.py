@@ -13,3 +13,8 @@ class TestBasicAnnotation(unittest.TestCase):
         self.mock_annotation.type = AnnotationTypeEnum.COMMENT
         self.mock_annotation.text = "Test annotation text"
         self.basic_annotation = BasicAnnotation(self.mock_pieces_client, self.mock_annotation)
+
+    def test_init(self):
+        self.assertEqual(self.basic_annotation.pieces_client, self.mock_pieces_client)
+        self.assertEqual(self.basic_annotation.annotation, self.mock_annotation)
+        self.assertEqual(self.basic_annotation.id, "test_annotation_id")
