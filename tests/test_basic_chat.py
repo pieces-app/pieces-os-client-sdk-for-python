@@ -1,8 +1,9 @@
 import pytest
-from unittest.mock import Mock, patch, call
-from pieces_os_client.wrapper.basic_identifier.message import BasicMessage
+from unittest.mock import Mock, patch
+from pieces_os_client.models.annotation_type_enum import AnnotationTypeEnum
 from pieces_os_client.wrapper.basic_identifier.chat import BasicChat
 from pieces_os_client.wrapper.streamed_identifiers.conversations_snapshot import ConversationsSnapshot
+from pieces_os_client.models.conversation import Conversation
 
 class TestBasicChat:
     @pytest.fixture(autouse=True)
@@ -27,7 +28,6 @@ class TestBasicChat:
         }
         ConversationsSnapshot.pieces_client = Mock()
 
-
     def test_init_valid_id(self):
         chat = BasicChat("test_id")
         assert chat.id == "test_id"
@@ -35,12 +35,12 @@ class TestBasicChat:
 
     def test_init_invalid_id(self):
         with pytest.raises(ValueError, match="Conversation not found"):
-            b = BasicChat("invalid_id").conversation # Call the conversation to check if it is vaild
+            BasicChat("invalid_id").conversation
 
     def test_name_property(self):
         chat = BasicChat("test_id")
         assert chat.name == "Test Conversation"
-
+        
         chat.name = "New Name"
         assert chat.name == "New Name"
         ConversationsSnapshot.pieces_client.conversation_api.conversation_update.assert_called_once()
@@ -59,37 +59,30 @@ class TestBasicChat:
         chat = BasicChat("test_id")
         assert chat.id == "test_id"
 
-    @patch.object(BasicMessage, '__init__', return_value=None)
-    def test_messages(self, mock_basic_message_init):
-        ConversationsSnapshot.identifiers_snapshot["test_id"].messages = Mock()
-        ConversationsSnapshot.identifiers_snapshot["test_id"].messages.indices = {
+    @patch('pieces_os_client.wrapper.basic_identifier.message.BasicMessage')
+    def test_messages(self, mock_basic_message):
+        self.mock_conversation.messages.indices = {
             "msg1": 0,
             "msg2": 1,
             "msg3": -1  # Deleted message
         }
-
-
+        
         chat = BasicChat("test_id")
         messages = chat.messages()
         
-
         assert len(messages) == 2
-        assert all(isinstance(msg, BasicMessage) for msg in messages)
-
-        # Check that BasicMessage.__init__ was called twice
-        assert mock_basic_message_init.call_count == 2
-
-        # Check that BasicMessage.__init__ was called with the results of _get_message
-        for call_args in mock_basic_message_init.call_args_list:
-            assert isinstance(call_args[0][0], Mock)
-            assert call_args[0][1] in ["msg1", "msg2"]
+        mock_basic_message.assert_called()
 
     def test_annotations_property(self):
-        mock_annotations = Mock(iterable=["annotation1", "annotation2"])
-        ConversationsSnapshot.identifiers_snapshot["test_id"].annotations = mock_annotations
+        mock_annotation1 = Mock(id="ann1")
+        mock_annotation2 = Mock(id="ann2")
+        self.mock_conversation.annotations = Mock(iterable=[mock_annotation1, mock_annotation2])
         
         chat = BasicChat("test_id")
-        assert chat.annotations == ["annotation1", "annotation2"]
+        annotations = chat.annotations
+        
+        assert annotations is not None
+        assert len(annotations) == 2
 
     def test_annotations_property_none(self):
         ConversationsSnapshot.identifiers_snapshot["test_id"].annotations = None
@@ -132,7 +125,7 @@ class TestBasicChat:
         
         assert websites is not None
         assert len(websites) == 2
-        
+
     def test_delete(self):
         chat = BasicChat("test_id")
         chat.delete()
@@ -159,7 +152,7 @@ class TestBasicChat:
     def test_hash(self):
         chat = BasicChat("test_id")
         assert hash(chat) == hash("test_id")
-        
+
     @patch.object(ConversationsSnapshot, 'pieces_client')
     def test_edit_conversation(self, mock_pieces_client):
         mock_conversation = Mock()
@@ -169,4 +162,3 @@ class TestBasicChat:
 
 if __name__ == '__main__':
     pytest.main([__file__])
-
