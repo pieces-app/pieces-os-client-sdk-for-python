@@ -35,8 +35,8 @@ class TestVersionChecker(unittest.TestCase):
     def test_version_with_pre_release(self):
         checker = VersionChecker("1.0.0", "2.0.0", "1.0.0-alpha")
         result = checker.version_check()
-        self.assertTrue(result.compatible)
-        self.assertIsNone(result.update)
+        self.assertFalse(result.compatible)
+        self.assertEqual(result.update,UpdateEnum.PiecesOS)
 
     def test_version_below_minimum_with_pre_release(self):
         checker = VersionChecker("1.0.0", "2.0.0", "0.9.0-beta")
@@ -90,7 +90,7 @@ class TestVersionChecker(unittest.TestCase):
         checker = VersionChecker("1.0.0", "2.0.0", "1.0.0")
         self.assertTrue(checker.version_check().compatible)
         checker = VersionChecker("1.0.0", "2.0.0", "2.0.0")
-        self.assertTrue(checker.version_check().compatible)
+        self.assertFalse(checker.version_check().compatible)
 
 if __name__ == "__main__":
     unittest.main()
