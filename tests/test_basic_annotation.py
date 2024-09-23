@@ -28,3 +28,6 @@ class TestBasicAnnotation(unittest.TestCase):
         result = BasicAnnotation.from_id(self.mock_pieces_client, "test_annotation_id")
         self.assertEqual(result, self.basic_annotation)
         self.mock_pieces_client.annotation_api.annotation_specific_annotation_snapshot.assert_called_once_with("test_annotation_id")
+
+    def test_type_property(self):
+        self.assertEqual(self.basic_annotation.type, AnnotationTypeEnum.COMMENT)
