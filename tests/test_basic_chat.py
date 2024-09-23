@@ -73,22 +73,24 @@ class TestBasicChat:
         assert len(messages) == 2
         mock_basic_message.assert_called()
 
-    def test_annotations_property(self):
+    @patch('pieces_os_client.wrapper.basic_identifier.BasicAnnotation')
+    def test_annotations_property(self, mock_basic_annotation):
         mock_annotation1 = Mock(id="ann1")
-        mock_annotation2 = Mock(id="ann2")
-        self.mock_conversation.annotations = Mock(iterable=[mock_annotation1, mock_annotation2])
+        mock_basic_annotation.from_id.return_value = mock_annotation1
+
+        self.mock_conversation.annotations = Mock(indices={"ann1":1})
         
         chat = BasicChat("test_id")
         annotations = chat.annotations
         
         assert annotations is not None
-        assert len(annotations) == 2
+        assert len(annotations) == 1
 
     def test_annotations_property_none(self):
         ConversationsSnapshot.identifiers_snapshot["test_id"].annotations = None
         
         chat = BasicChat("test_id")
-        assert chat.annotations is None
+        assert chat.annotations == []
 
     @patch('pieces_os_client.wrapper.basic_identifier.chat.BasicChat')
     def test_summary_property(self, MockBasicChat):
@@ -115,16 +117,16 @@ class TestBasicChat:
         
         assert mock_chat.summary is None
 
-    def test_websites_property(self):
+    @patch('pieces_os_client.wrapper.basic_identifier.BasicWebsite')
+    def test_websites_property(self, mock_bacic_website):
         mock_website1 = Mock(id="web1")
-        mock_website2 = Mock(id="web2")
-        self.mock_conversation.websites = Mock(iterable=[mock_website1, mock_website2])
-        
+        self.mock_conversation.websites = Mock(indices={mock_website1:"1"})
+        mock_bacic_website.from_id.return_value = mock_website1
         chat = BasicChat("test_id")
         websites = chat.websites
         
         assert websites is not None
-        assert len(websites) == 2
+        assert len(websites) == 1
 
     def test_delete(self):
         chat = BasicChat("test_id")
