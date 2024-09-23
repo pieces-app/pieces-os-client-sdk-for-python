@@ -269,6 +269,13 @@ class TestBasicAsset:
 
         ocr_format = BasicAsset._get_ocr_format(mock_asset)
         assert ocr_format == mock_format
+
+    def test_ocr_from_format(self):
+        mock_format = MagicMock()
+        mock_format.file.bytes.raw = b"OCR content"
+
+        ocr_content = BasicAsset._ocr_from_format(mock_format)
+        assert ocr_content == "OCR content"
         
     def test_search(self):
         query = "test query"
