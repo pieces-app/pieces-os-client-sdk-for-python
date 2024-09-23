@@ -34,3 +34,8 @@ class TestBasicAnnotation(unittest.TestCase):
 
     def test_raw_content_property(self):
         self.assertEqual(self.basic_annotation.raw_content, "Test annotation text")
+
+    def test_raw_content_setter(self):
+        self.basic_annotation.raw_content = "New annotation text"
+        self.assertEqual(self.mock_annotation.text, "New annotation text")
+        self.mock_pieces_client.annotation_api.annotation_update.assert_called_once_with(self.mock_annotation)
