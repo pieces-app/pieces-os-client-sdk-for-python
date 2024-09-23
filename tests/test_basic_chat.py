@@ -7,10 +7,26 @@ from pieces_os_client.wrapper.streamed_identifiers.conversations_snapshot import
 class TestBasicChat:
     @pytest.fixture(autouse=True)
     def setup(self):
-        self.mock_conversation = Mock(id="test_id", messages=Mock(indices={}), annotations=None)
+        self.mock_conversation = Mock(spec=Conversation)
         self.mock_conversation.name = "Test Conversation"
-        ConversationsSnapshot.identifiers_snapshot = {"test_id": self.mock_conversation}
+        self.mock_conversation.id = "test_id"
+        self.mock_conversation.messages = Mock(indices={})
+        self.mock_conversation.annotations = None
+        self.mock_conversation.websites = None
+        
+        self.mock_conversation_other = Mock(spec=Conversation)
+        self.mock_conversation_other.name = "Other Conversation"
+        self.mock_conversation_other.id = "other_id"
+        self.mock_conversation_other.messages = Mock(indices={})
+        self.mock_conversation_other.annotations = None
+        self.mock_conversation_other.websites = None
+        
+        ConversationsSnapshot.identifiers_snapshot = {
+            "test_id": self.mock_conversation,
+            "other_id": self.mock_conversation_other
+        }
         ConversationsSnapshot.pieces_client = Mock()
+
 
     def test_init_valid_id(self):
         chat = BasicChat("test_id")
