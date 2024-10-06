@@ -37,6 +37,7 @@ class Copilot:
         self.context = Context(pieces_client)
         self._chat = None
         self._chat_id = None
+        self.context_response:Optional[RelevantQGPTSeeds] = None
 
     def stream_question(self,
             query: str,
@@ -55,11 +56,11 @@ class Copilot:
             QGPTStreamOutput: The streamed output from the QGPT model.
         """
         self.pieces_client._check_startup()
-        relevant = self.context._relevance_api(query) if self.context._check_relevant_existence else RelevantQGPTSeeds(iterable=[])
+        self.context_response = self.context._relevance_api(query) if self.context._check_relevant_existence else RelevantQGPTSeeds(iterable=[])
         self.ask_stream_ws.send_message(
             QGPTStreamInput(
                 question=QGPTQuestionInput(
-                    relevant=relevant,
+                    relevant=self.context_response,
                     query=query,
                     application=self.pieces_client.tracked_application.id,
                     model=self.pieces_client.model_id,
