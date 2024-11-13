@@ -227,7 +227,7 @@ class PiecesClient:
             subprocess.run(["open","pieces://launch"])
         elif self.local_os == "LINUX":
             subprocess.run(["xdg-open","pieces://launch"])
-        return self.is_pieces_running(maxium_retries=3)
+        return self.is_pieces_running(maxium_retries=8)
 
 
     def is_pieces_running(self,maxium_retries=1) -> bool:
@@ -242,7 +242,7 @@ class PiecesClient:
                     return response.status == 200
             except:
                 if maxium_retries != 1:
-                    time.sleep(1)
+                    time.sleep(0.5)
         return False
 
     def _check_startup(self):
