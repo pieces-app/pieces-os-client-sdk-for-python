@@ -4,6 +4,7 @@ import atexit
 import subprocess
 import urllib.request
 import urllib.error
+import time
 
 from pieces_os_client import __version__
 
@@ -226,7 +227,7 @@ class PiecesClient:
             subprocess.run(["open","pieces://launch"])
         elif self.local_os == "LINUX":
             subprocess.run(["xdg-open","pieces://launch"])
-        return self.is_pieces_running(maxium_retries=3)
+        return self.is_pieces_running(maxium_retries=8)
 
 
     def is_pieces_running(self,maxium_retries=1) -> bool:
@@ -240,7 +241,8 @@ class PiecesClient:
                 with urllib.request.urlopen(f"{self.host}/.well-known/health", timeout=1) as response:
                     return response.status == 200
             except:
-                pass
+                if maxium_retries != 1:
+                    time.sleep(0.5)
         return False
 
     def _check_startup(self):
