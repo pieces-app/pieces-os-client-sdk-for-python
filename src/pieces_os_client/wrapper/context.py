@@ -79,11 +79,3 @@ class Context:
 			seed_list.iterable.append(BasicAsset._get_seed(raw))
 		return seed_list
 
-	def _relevance_api(self,query):
-		return self.pieces_client.qgpt_api.relevance(
-			QGPTRelevanceInput(
-				query=query,
-				application=self.pieces_client.tracked_application.id,
-				model=self.pieces_client.model_id,
-				**self._get_relevant_dict()
-			)).relevant

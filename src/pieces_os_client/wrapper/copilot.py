@@ -13,7 +13,8 @@ from pieces_os_client.models.qgpt_stream_output import QGPTStreamOutput
 from pieces_os_client.models.qgpt_stream_enum import QGPTStreamEnum
 from pieces_os_client.models.qgpt_question_output import QGPTQuestionOutput
 from pieces_os_client.models.qgpt_prompt_pipeline import QGPTPromptPipeline
-
+from pieces_os_client.models.qgpt_relevance_input import QGPTRelevanceInput
+from pieces_os_client.models.qgpt_relevance_input_options import QGPTRelevanceInputOptions
 
 if TYPE_CHECKING:
     from .client import PiecesClient
@@ -56,17 +57,19 @@ class Copilot:
             QGPTStreamOutput: The streamed output from the QGPT model.
         """
         self.pieces_client._check_startup()
-        self.relevant_context = self.context._relevance_api(query) if self.context._check_relevant_existence else RelevantQGPTSeeds(iterable=[])
         self.ask_stream_ws.send_message(
             QGPTStreamInput(
-                question=QGPTQuestionInput(
-                    relevant=self.relevant_context,
-                    query=query,
-                    application=self.pieces_client.tracked_application.id,
-                    model=self.pieces_client.model_id,
-                    pipeline=pipeline
-                ),
                 conversation=self._chat_id,
+                relevance=QGPTRelevanceInput(
+                    application=self.pieces_client.tracked_application.id,
+                    query=query,
+                    model=self.pieces_client.model_id,
+                    options=QGPTRelevanceInputOptions(
+                        pipeline=pipeline,
+                        question=True
+                    ),
+                    **self.context._get_relevant_dict()
+                ),
             )
         )
         return self._return_on_message()
