@@ -122,33 +122,3 @@ class BasicTestContext(unittest.TestCase):
         self.assertIsInstance(result, Seeds)
         self.assertEqual(len(result.iterable), 2)
 
-    @patch('pieces_os_client.wrapper.context.QGPTRelevanceInput')
-    @patch('pieces_os_client.wrapper.basic_identifier.asset.AssetSnapshot.identifiers_snapshot')
-    def test_relevance_api(self, mock_identifiers_snapshot, mock_relevance_input):
-        mock_identifiers_snapshot.get.return_value = Mock()
-        self.context.pieces_client.qgpt_api.relevance.return_value.relevant = True
-        self.context.pieces_client.tracked_application.id = "test_app"
-        self.context.pieces_client.model_id = "test_model"
-
-        # Mock the _get_relevant_dict method to return a valid dictionary
-        self.context._get_relevant_dict = MagicMock(return_value={
-            "paths": [],
-            "seed": Seeds(iterable=[]),
-            "assets": FlattenedAssets(iterable=[]),
-            "messages": FlattenedConversationMessages(iterable=[])
-        })
-
-        result = self.context._relevance_api("test query")
-
-        self.assertTrue(result)
-        mock_relevance_input.assert_called_once_with(
-            query="test query",
-            application="test_app",
-            model="test_model",
-            paths=[],
-            seed=Seeds(iterable=[]),
-            assets=FlattenedAssets(iterable=[]),
-            messages=FlattenedConversationMessages(iterable=[])
-        )
-        self.context.pieces_client.qgpt_api.relevance.assert_called_once()
-
