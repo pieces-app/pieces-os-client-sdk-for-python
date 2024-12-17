@@ -5,10 +5,10 @@ This is similar to an SeededWebsite, where this is the minimum information of a 
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**mechanism** | [**MechanismEnum**](MechanismEnum.md) |  | [optional] 
-**name** | **str** |  | 
 **var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 **url** | **str** |  | 
+**name** | **str** |  | 
+**mechanism** | [**MechanismEnum**](MechanismEnum.md) |  | [optional] 
 
 ## Example
 

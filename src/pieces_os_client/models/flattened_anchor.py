@@ -30,23 +30,23 @@ class FlattenedAnchor(BaseModel):
     """
     FlattenedAnchor
     """
-    annotations: Optional[FlattenedAnnotations] = None
-    assets: Optional[FlattenedAssets] = None
-    conversations: Optional[FlattenedConversations] = None
-    created: GroupedTimestamp = Field(...)
-    deleted: Optional[GroupedTimestamp] = None
-    id: StrictStr = Field(...)
-    messages: Optional[FlattenedConversationMessages] = None
-    name: Optional[StrictStr] = None
-    persons: Optional[FlattenedPersons] = None
-    points: FlattenedAnchorPoints = Field(...)
     var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
+    id: StrictStr = Field(...)
+    type: AnchorTypeEnum = Field(...)
+    watch: Optional[StrictBool] = None
+    points: FlattenedAnchorPoints = Field(...)
+    created: GroupedTimestamp = Field(...)
+    updated: GroupedTimestamp = Field(...)
+    deleted: Optional[GroupedTimestamp] = None
+    assets: Optional[FlattenedAssets] = None
+    name: Optional[StrictStr] = None
+    annotations: Optional[FlattenedAnnotations] = None
+    conversations: Optional[FlattenedConversations] = None
     score: Optional[Score] = None
     summaries: Optional[FlattenedWorkstreamSummaries] = None
-    type: AnchorTypeEnum = Field(...)
-    updated: GroupedTimestamp = Field(...)
-    watch: Optional[StrictBool] = None
-    __properties = ["annotations", "assets", "conversations", "created", "deleted", "id", "messages", "name", "persons", "points", "schema", "score", "summaries", "type", "updated", "watch"]
+    persons: Optional[FlattenedPersons] = None
+    messages: Optional[FlattenedConversationMessages] = None
+    __properties = ["schema", "id", "type", "watch", "points", "created", "updated", "deleted", "assets", "name", "annotations", "conversations", "score", "summaries", "persons", "messages"]
 
     class Config:
         """Pydantic configuration"""
@@ -72,42 +72,42 @@ class FlattenedAnchor(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of annotations
-        if self.annotations:
-            _dict['annotations'] = self.annotations.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of assets
-        if self.assets:
-            _dict['assets'] = self.assets.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of conversations
-        if self.conversations:
-            _dict['conversations'] = self.conversations.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of created
-        if self.created:
-            _dict['created'] = self.created.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of deleted
-        if self.deleted:
-            _dict['deleted'] = self.deleted.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of messages
-        if self.messages:
-            _dict['messages'] = self.messages.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of persons
-        if self.persons:
-            _dict['persons'] = self.persons.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of points
-        if self.points:
-            _dict['points'] = self.points.to_dict()
         # override the default output from pydantic by calling `to_dict()` of var_schema
         if self.var_schema:
             _dict['schema'] = self.var_schema.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of points
+        if self.points:
+            _dict['points'] = self.points.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of created
+        if self.created:
+            _dict['created'] = self.created.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of updated
+        if self.updated:
+            _dict['updated'] = self.updated.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of deleted
+        if self.deleted:
+            _dict['deleted'] = self.deleted.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of assets
+        if self.assets:
+            _dict['assets'] = self.assets.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of annotations
+        if self.annotations:
+            _dict['annotations'] = self.annotations.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of conversations
+        if self.conversations:
+            _dict['conversations'] = self.conversations.to_dict()
         # override the default output from pydantic by calling `to_dict()` of score
         if self.score:
             _dict['score'] = self.score.to_dict()
         # override the default output from pydantic by calling `to_dict()` of summaries
         if self.summaries:
             _dict['summaries'] = self.summaries.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of updated
-        if self.updated:
-            _dict['updated'] = self.updated.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of persons
+        if self.persons:
+            _dict['persons'] = self.persons.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of messages
+        if self.messages:
+            _dict['messages'] = self.messages.to_dict()
         return _dict
 
     @classmethod
@@ -120,22 +120,22 @@ class FlattenedAnchor(BaseModel):
             return FlattenedAnchor.parse_obj(obj)
 
         _obj = FlattenedAnchor.parse_obj({
-            "annotations": FlattenedAnnotations.from_dict(obj.get("annotations")) if obj.get("annotations") is not None else None,
-            "assets": FlattenedAssets.from_dict(obj.get("assets")) if obj.get("assets") is not None else None,
-            "conversations": FlattenedConversations.from_dict(obj.get("conversations")) if obj.get("conversations") is not None else None,
-            "created": GroupedTimestamp.from_dict(obj.get("created")) if obj.get("created") is not None else None,
-            "deleted": GroupedTimestamp.from_dict(obj.get("deleted")) if obj.get("deleted") is not None else None,
-            "id": obj.get("id"),
-            "messages": FlattenedConversationMessages.from_dict(obj.get("messages")) if obj.get("messages") is not None else None,
-            "name": obj.get("name"),
-            "persons": FlattenedPersons.from_dict(obj.get("persons")) if obj.get("persons") is not None else None,
-            "points": FlattenedAnchorPoints.from_dict(obj.get("points")) if obj.get("points") is not None else None,
             "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
+            "id": obj.get("id"),
+            "type": obj.get("type"),
+            "watch": obj.get("watch"),
+            "points": FlattenedAnchorPoints.from_dict(obj.get("points")) if obj.get("points") is not None else None,
+            "created": GroupedTimestamp.from_dict(obj.get("created")) if obj.get("created") is not None else None,
+            "updated": GroupedTimestamp.from_dict(obj.get("updated")) if obj.get("updated") is not None else None,
+            "deleted": GroupedTimestamp.from_dict(obj.get("deleted")) if obj.get("deleted") is not None else None,
+            "assets": FlattenedAssets.from_dict(obj.get("assets")) if obj.get("assets") is not None else None,
+            "name": obj.get("name"),
+            "annotations": FlattenedAnnotations.from_dict(obj.get("annotations")) if obj.get("annotations") is not None else None,
+            "conversations": FlattenedConversations.from_dict(obj.get("conversations")) if obj.get("conversations") is not None else None,
             "score": Score.from_dict(obj.get("score")) if obj.get("score") is not None else None,
             "summaries": FlattenedWorkstreamSummaries.from_dict(obj.get("summaries")) if obj.get("summaries") is not None else None,
-            "type": obj.get("type"),
-            "updated": GroupedTimestamp.from_dict(obj.get("updated")) if obj.get("updated") is not None else None,
-            "watch": obj.get("watch")
+            "persons": FlattenedPersons.from_dict(obj.get("persons")) if obj.get("persons") is not None else None,
+            "messages": FlattenedConversationMessages.from_dict(obj.get("messages")) if obj.get("messages") is not None else None
         })
         return _obj
 

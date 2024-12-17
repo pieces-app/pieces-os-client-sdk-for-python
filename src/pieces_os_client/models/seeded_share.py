@@ -31,13 +31,13 @@ class SeededShare(BaseModel):
     """
      required to pass in an asset or assets.  # noqa: E501
     """
-    access: AccessEnum = Field(...)
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     asset: Optional[Asset] = None
+    users: Optional[conlist(SeededUser)] = Field(default=None, description="if private please specificy some users you want to share this with.")
+    access: AccessEnum = Field(...)
     assets: Optional[Assets] = None
     name: Optional[StrictStr] = Field(default=None, description="optional name, if it is available. and must be unique.")
-    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
-    users: Optional[conlist(SeededUser)] = Field(default=None, description="if private please specificy some users you want to share this with.")
-    __properties = ["access", "asset", "assets", "name", "schema", "users"]
+    __properties = ["schema", "asset", "users", "access", "assets", "name"]
 
     class Config:
         """Pydantic configuration"""
@@ -63,15 +63,12 @@ class SeededShare(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of asset
-        if self.asset:
-            _dict['asset'] = self.asset.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of assets
-        if self.assets:
-            _dict['assets'] = self.assets.to_dict()
         # override the default output from pydantic by calling `to_dict()` of var_schema
         if self.var_schema:
             _dict['schema'] = self.var_schema.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of asset
+        if self.asset:
+            _dict['asset'] = self.asset.to_dict()
         # override the default output from pydantic by calling `to_dict()` of each item in users (list)
         _items = []
         if self.users:
@@ -79,6 +76,9 @@ class SeededShare(BaseModel):
                 if _item:
                     _items.append(_item.to_dict())
             _dict['users'] = _items
+        # override the default output from pydantic by calling `to_dict()` of assets
+        if self.assets:
+            _dict['assets'] = self.assets.to_dict()
         return _dict
 
     @classmethod
@@ -91,12 +91,12 @@ class SeededShare(BaseModel):
             return SeededShare.parse_obj(obj)
 
         _obj = SeededShare.parse_obj({
-            "access": obj.get("access"),
-            "asset": Asset.from_dict(obj.get("asset")) if obj.get("asset") is not None else None,
-            "assets": Assets.from_dict(obj.get("assets")) if obj.get("assets") is not None else None,
-            "name": obj.get("name"),
             "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
-            "users": [SeededUser.from_dict(_item) for _item in obj.get("users")] if obj.get("users") is not None else None
+            "asset": Asset.from_dict(obj.get("asset")) if obj.get("asset") is not None else None,
+            "users": [SeededUser.from_dict(_item) for _item in obj.get("users")] if obj.get("users") is not None else None,
+            "access": obj.get("access"),
+            "assets": Assets.from_dict(obj.get("assets")) if obj.get("assets") is not None else None,
+            "name": obj.get("name")
         })
         return _obj
 

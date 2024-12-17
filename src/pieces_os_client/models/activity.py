@@ -34,19 +34,19 @@ class Activity(BaseModel):
     """
     consider a rename to Event? That being said if we go with event we need to think about a word to pre/post fix event because it is likely to be a reserved word.  additional documentation: https://www.notion.so/getpieces/Activity-4da8de193733441f85f87b510235fb74   Notes: - user/asset/format are all optional, NOT required that one of these are present. - if mechanism == internal we will not display to the user.  Thoughts around additional properties. - hmm dismissed array here, that is an array of strings, where the string is the userId that dismissed this notification? or we could potentially do it based on the os_ID. -   # noqa: E501
     """
-    application: Application = Field(...)
-    asset: Optional[FlattenedAsset] = None
-    created: GroupedTimestamp = Field(...)
-    deleted: Optional[GroupedTimestamp] = None
-    event: SeededConnectorTracking = Field(...)
-    format: Optional[FlattenedFormat] = None
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     id: StrictStr = Field(...)
+    created: GroupedTimestamp = Field(...)
+    updated: GroupedTimestamp = Field(...)
+    event: SeededConnectorTracking = Field(...)
+    application: Application = Field(...)
+    deleted: Optional[GroupedTimestamp] = None
+    asset: Optional[FlattenedAsset] = None
+    user: Optional[FlattenedUserProfile] = None
+    format: Optional[FlattenedFormat] = None
     mechanism: MechanismEnum = Field(...)
     rank: Optional[StrictInt] = Field(default=None, description="This is the numeric value assigned for this activity event. This number is based off the the type of activity event calcaulated on the server side.DO NOT MODIFY. To see what the value qualilates to, please refer to the function within the common sdk. The number here is based on the fib series. from 0 -> infinity but rn there arnt any value over 8.")
-    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
-    updated: GroupedTimestamp = Field(...)
-    user: Optional[FlattenedUserProfile] = None
-    __properties = ["application", "asset", "created", "deleted", "event", "format", "id", "mechanism", "rank", "schema", "updated", "user"]
+    __properties = ["schema", "id", "created", "updated", "event", "application", "deleted", "asset", "user", "format", "mechanism", "rank"]
 
     class Config:
         """Pydantic configuration"""
@@ -72,33 +72,33 @@ class Activity(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of application
-        if self.application:
-            _dict['application'] = self.application.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of asset
-        if self.asset:
-            _dict['asset'] = self.asset.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of created
-        if self.created:
-            _dict['created'] = self.created.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of deleted
-        if self.deleted:
-            _dict['deleted'] = self.deleted.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of event
-        if self.event:
-            _dict['event'] = self.event.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of format
-        if self.format:
-            _dict['format'] = self.format.to_dict()
         # override the default output from pydantic by calling `to_dict()` of var_schema
         if self.var_schema:
             _dict['schema'] = self.var_schema.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of created
+        if self.created:
+            _dict['created'] = self.created.to_dict()
         # override the default output from pydantic by calling `to_dict()` of updated
         if self.updated:
             _dict['updated'] = self.updated.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of event
+        if self.event:
+            _dict['event'] = self.event.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of application
+        if self.application:
+            _dict['application'] = self.application.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of deleted
+        if self.deleted:
+            _dict['deleted'] = self.deleted.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of asset
+        if self.asset:
+            _dict['asset'] = self.asset.to_dict()
         # override the default output from pydantic by calling `to_dict()` of user
         if self.user:
             _dict['user'] = self.user.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of format
+        if self.format:
+            _dict['format'] = self.format.to_dict()
         return _dict
 
     @classmethod
@@ -111,18 +111,18 @@ class Activity(BaseModel):
             return Activity.parse_obj(obj)
 
         _obj = Activity.parse_obj({
-            "application": Application.from_dict(obj.get("application")) if obj.get("application") is not None else None,
-            "asset": FlattenedAsset.from_dict(obj.get("asset")) if obj.get("asset") is not None else None,
-            "created": GroupedTimestamp.from_dict(obj.get("created")) if obj.get("created") is not None else None,
-            "deleted": GroupedTimestamp.from_dict(obj.get("deleted")) if obj.get("deleted") is not None else None,
-            "event": SeededConnectorTracking.from_dict(obj.get("event")) if obj.get("event") is not None else None,
-            "format": FlattenedFormat.from_dict(obj.get("format")) if obj.get("format") is not None else None,
-            "id": obj.get("id"),
-            "mechanism": obj.get("mechanism"),
-            "rank": obj.get("rank"),
             "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
+            "id": obj.get("id"),
+            "created": GroupedTimestamp.from_dict(obj.get("created")) if obj.get("created") is not None else None,
             "updated": GroupedTimestamp.from_dict(obj.get("updated")) if obj.get("updated") is not None else None,
-            "user": FlattenedUserProfile.from_dict(obj.get("user")) if obj.get("user") is not None else None
+            "event": SeededConnectorTracking.from_dict(obj.get("event")) if obj.get("event") is not None else None,
+            "application": Application.from_dict(obj.get("application")) if obj.get("application") is not None else None,
+            "deleted": GroupedTimestamp.from_dict(obj.get("deleted")) if obj.get("deleted") is not None else None,
+            "asset": FlattenedAsset.from_dict(obj.get("asset")) if obj.get("asset") is not None else None,
+            "user": FlattenedUserProfile.from_dict(obj.get("user")) if obj.get("user") is not None else None,
+            "format": FlattenedFormat.from_dict(obj.get("format")) if obj.get("format") is not None else None,
+            "mechanism": obj.get("mechanism"),
+            "rank": obj.get("rank")
         })
         return _obj
 

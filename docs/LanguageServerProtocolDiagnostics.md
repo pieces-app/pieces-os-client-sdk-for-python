@@ -5,8 +5,8 @@ TODO
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**iterable** | [**List[LanguageServerProtocolDiagnostic]**](LanguageServerProtocolDiagnostic.md) |  | 
 **var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
+**iterable** | [**List[LanguageServerProtocolDiagnostic]**](LanguageServerProtocolDiagnostic.md) |  | 
 
 ## Example
 

@@ -28,9 +28,9 @@ class ConversationSummarizeInput(BaseModel):
     """
     Optionally you may pass in a list of conversation message that you would like to use for the summary.  # noqa: E501
     """
-    messages: Optional[FlattenedConversationMessages] = None
     var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
-    __properties = ["messages", "schema"]
+    messages: Optional[FlattenedConversationMessages] = None
+    __properties = ["schema", "messages"]
 
     class Config:
         """Pydantic configuration"""
@@ -56,12 +56,12 @@ class ConversationSummarizeInput(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of messages
-        if self.messages:
-            _dict['messages'] = self.messages.to_dict()
         # override the default output from pydantic by calling `to_dict()` of var_schema
         if self.var_schema:
             _dict['schema'] = self.var_schema.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of messages
+        if self.messages:
+            _dict['messages'] = self.messages.to_dict()
         return _dict
 
     @classmethod
@@ -74,8 +74,8 @@ class ConversationSummarizeInput(BaseModel):
             return ConversationSummarizeInput.parse_obj(obj)
 
         _obj = ConversationSummarizeInput.parse_obj({
-            "messages": FlattenedConversationMessages.from_dict(obj.get("messages")) if obj.get("messages") is not None else None,
-            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None
+            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
+            "messages": FlattenedConversationMessages.from_dict(obj.get("messages")) if obj.get("messages") is not None else None
         })
         return _obj
 

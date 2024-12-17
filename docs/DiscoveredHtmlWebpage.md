@@ -5,8 +5,8 @@ This will return assets that were extracted from the html webpage. This will con
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**assets** | [**DiscoveredAssets**](DiscoveredAssets.md) |  | 
 **var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
+**assets** | [**DiscoveredAssets**](DiscoveredAssets.md) |  | 
 **url** | **str** |  | 
 
 ## Example

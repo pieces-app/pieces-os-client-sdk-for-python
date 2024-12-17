@@ -5,9 +5,9 @@ This is a model that will represent the miminum properties required to update th
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 **ext** | [**ClassificationSpecificEnum**](ClassificationSpecificEnum.md) |  | 
 **format** | [**Format**](Format.md) |  | 
-**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 
 ## Example
 

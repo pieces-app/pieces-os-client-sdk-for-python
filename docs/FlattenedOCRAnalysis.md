@@ -5,12 +5,12 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**hocr** | [**ReferencedFormat**](ReferencedFormat.md) |  | 
-**id** | **str** |  | 
-**image** | **str** | this is a refernece to the image analysis. | 
-**model** | [**Model**](Model.md) |  | 
-**raw** | [**ReferencedFormat**](ReferencedFormat.md) |  | 
 **var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
+**id** | **str** |  | 
+**raw** | [**ReferencedFormat**](ReferencedFormat.md) |  | 
+**hocr** | [**ReferencedFormat**](ReferencedFormat.md) |  | 
+**model** | [**Model**](Model.md) |  | 
+**image** | **str** | this is a refernece to the image analysis. | 
 
 ## Example
 

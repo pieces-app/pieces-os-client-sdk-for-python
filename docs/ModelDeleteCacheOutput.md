@@ -5,8 +5,8 @@ This is the output model for '/model/{model}/delete/cache'
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**model** | [**ReferencedModel**](ReferencedModel.md) |  | 
 **var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
+**model** | [**ReferencedModel**](ReferencedModel.md) |  | 
 
 ## Example
 

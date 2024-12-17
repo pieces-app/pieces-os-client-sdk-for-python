@@ -28,9 +28,9 @@ class UpdatedExternalProviderApiKey(BaseModel):
     """
     This is the update Auth0UserMetadata object, and the specific update output model for \"/external_provider/api_key/update\"  # noqa: E501
     """
-    metadata: Auth0UserMetadata = Field(...)
     var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
-    __properties = ["metadata", "schema"]
+    metadata: Auth0UserMetadata = Field(...)
+    __properties = ["schema", "metadata"]
 
     class Config:
         """Pydantic configuration"""
@@ -56,12 +56,12 @@ class UpdatedExternalProviderApiKey(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of metadata
-        if self.metadata:
-            _dict['metadata'] = self.metadata.to_dict()
         # override the default output from pydantic by calling `to_dict()` of var_schema
         if self.var_schema:
             _dict['schema'] = self.var_schema.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of metadata
+        if self.metadata:
+            _dict['metadata'] = self.metadata.to_dict()
         return _dict
 
     @classmethod
@@ -74,8 +74,8 @@ class UpdatedExternalProviderApiKey(BaseModel):
             return UpdatedExternalProviderApiKey.parse_obj(obj)
 
         _obj = UpdatedExternalProviderApiKey.parse_obj({
-            "metadata": Auth0UserMetadata.from_dict(obj.get("metadata")) if obj.get("metadata") is not None else None,
-            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None
+            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
+            "metadata": Auth0UserMetadata.from_dict(obj.get("metadata")) if obj.get("metadata") is not None else None
         })
         return _obj
 

@@ -5,19 +5,19 @@ This is a pre-Conversation object.  This will hold together a conversation. Ie a
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**anchors** | [**List[SeededAnchor]**](SeededAnchor.md) |  | [optional] 
-**annotations** | [**List[SeededAnnotation]**](SeededAnnotation.md) |  | [optional] 
-**application** | [**Application**](Application.md) |  | [optional] 
-**assets** | [**FlattenedAssets**](FlattenedAssets.md) |  | [optional] 
-**demo** | **bool** | This will let us know if this conversation was generated as a &#39;demo&#39; conversation | [optional] 
+**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
+**name** | **str** | This is a name that is customized. | [optional] 
 **favorited** | **bool** |  | [optional] 
+**application** | [**Application**](Application.md) |  | [optional] 
+**annotations** | [**List[SeededAnnotation]**](SeededAnnotation.md) |  | [optional] 
 **messages** | [**List[SeededConversationMessage]**](SeededConversationMessage.md) |  | [optional] 
 **model** | [**ReferencedModel**](ReferencedModel.md) |  | [optional] 
-**name** | **str** | This is a name that is customized. | [optional] 
-**pipeline** | [**QGPTPromptPipeline**](QGPTPromptPipeline.md) |  | [optional] 
-**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
-**type** | [**ConversationTypeEnum**](ConversationTypeEnum.md) |  | 
+**assets** | [**FlattenedAssets**](FlattenedAssets.md) |  | [optional] 
 **websites** | [**FlattenedWebsites**](FlattenedWebsites.md) |  | [optional] 
+**anchors** | [**List[SeededAnchor]**](SeededAnchor.md) |  | [optional] 
+**type** | [**ConversationTypeEnum**](ConversationTypeEnum.md) |  | 
+**pipeline** | [**QGPTPromptPipeline**](QGPTPromptPipeline.md) |  | [optional] 
+**demo** | **bool** | This will let us know if this conversation was generated as a &#39;demo&#39; conversation | [optional] 
 
 ## Example
 

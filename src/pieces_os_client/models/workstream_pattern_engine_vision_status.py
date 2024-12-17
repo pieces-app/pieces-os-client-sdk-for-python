@@ -28,10 +28,10 @@ class WorkstreamPatternEngineVisionStatus(BaseModel):
     """
     activation: can be active for forever w/ continous true, or it can be activated for the next couple hours  deactivation: here can be deactivated for forever w/ continuous true, or it can be deactivated for the next couple hours  Note: one or the other will be set and both are nullable.  # noqa: E501
     """
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     activation: Optional[AnonymousTemporalRange] = None
     deactivation: Optional[AnonymousTemporalRange] = None
-    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
-    __properties = ["activation", "deactivation", "schema"]
+    __properties = ["schema", "activation", "deactivation"]
 
     class Config:
         """Pydantic configuration"""
@@ -57,15 +57,15 @@ class WorkstreamPatternEngineVisionStatus(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
+        # override the default output from pydantic by calling `to_dict()` of var_schema
+        if self.var_schema:
+            _dict['schema'] = self.var_schema.to_dict()
         # override the default output from pydantic by calling `to_dict()` of activation
         if self.activation:
             _dict['activation'] = self.activation.to_dict()
         # override the default output from pydantic by calling `to_dict()` of deactivation
         if self.deactivation:
             _dict['deactivation'] = self.deactivation.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of var_schema
-        if self.var_schema:
-            _dict['schema'] = self.var_schema.to_dict()
         return _dict
 
     @classmethod
@@ -78,9 +78,9 @@ class WorkstreamPatternEngineVisionStatus(BaseModel):
             return WorkstreamPatternEngineVisionStatus.parse_obj(obj)
 
         _obj = WorkstreamPatternEngineVisionStatus.parse_obj({
+            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
             "activation": AnonymousTemporalRange.from_dict(obj.get("activation")) if obj.get("activation") is not None else None,
-            "deactivation": AnonymousTemporalRange.from_dict(obj.get("deactivation")) if obj.get("deactivation") is not None else None,
-            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None
+            "deactivation": AnonymousTemporalRange.from_dict(obj.get("deactivation")) if obj.get("deactivation") is not None else None
         })
         return _obj
 

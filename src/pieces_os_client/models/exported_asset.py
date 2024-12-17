@@ -28,11 +28,11 @@ class ExportedAsset(BaseModel):
     """
     This is a model for a minimum exported version of an asset.  # noqa: E501
     """
-    created: GroupedTimestamp = Field(...)
-    description: StrictStr = Field(default=..., description="this is the description of the asset")
     name: StrictStr = Field(default=..., description="this is the title of the asset ")
+    description: StrictStr = Field(default=..., description="this is the description of the asset")
+    created: GroupedTimestamp = Field(...)
     raw: FileFormat = Field(...)
-    __properties = ["created", "description", "name", "raw"]
+    __properties = ["name", "description", "created", "raw"]
 
     class Config:
         """Pydantic configuration"""
@@ -76,9 +76,9 @@ class ExportedAsset(BaseModel):
             return ExportedAsset.parse_obj(obj)
 
         _obj = ExportedAsset.parse_obj({
-            "created": GroupedTimestamp.from_dict(obj.get("created")) if obj.get("created") is not None else None,
-            "description": obj.get("description"),
             "name": obj.get("name"),
+            "description": obj.get("description"),
+            "created": GroupedTimestamp.from_dict(obj.get("created")) if obj.get("created") is not None else None,
             "raw": FileFormat.from_dict(obj.get("raw")) if obj.get("raw") is not None else None
         })
         return _obj

@@ -5,8 +5,8 @@ This is just an iterable of our individual share models.
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**iterable** | [**List[FlattenedShare]**](FlattenedShare.md) |  | 
 **var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
+**iterable** | [**List[FlattenedShare]**](FlattenedShare.md) |  | 
 **score** | [**Score**](Score.md) |  | [optional] 
 
 ## Example

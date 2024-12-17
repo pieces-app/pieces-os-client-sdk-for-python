@@ -28,9 +28,9 @@ class SeededConnectorCreation(BaseModel):
     """
     A encompasing creation object that can be utilized to create either an asset or a format.  # noqa: E501
     """
-    asset: Optional[SeededConnectorAsset] = None
     var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
-    __properties = ["asset", "schema"]
+    asset: Optional[SeededConnectorAsset] = None
+    __properties = ["schema", "asset"]
 
     class Config:
         """Pydantic configuration"""
@@ -56,12 +56,12 @@ class SeededConnectorCreation(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of asset
-        if self.asset:
-            _dict['asset'] = self.asset.to_dict()
         # override the default output from pydantic by calling `to_dict()` of var_schema
         if self.var_schema:
             _dict['schema'] = self.var_schema.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of asset
+        if self.asset:
+            _dict['asset'] = self.asset.to_dict()
         return _dict
 
     @classmethod
@@ -74,8 +74,8 @@ class SeededConnectorCreation(BaseModel):
             return SeededConnectorCreation.parse_obj(obj)
 
         _obj = SeededConnectorCreation.parse_obj({
-            "asset": SeededConnectorAsset.from_dict(obj.get("asset")) if obj.get("asset") is not None else None,
-            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None
+            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
+            "asset": SeededConnectorAsset.from_dict(obj.get("asset")) if obj.get("asset") is not None else None
         })
         return _obj
 

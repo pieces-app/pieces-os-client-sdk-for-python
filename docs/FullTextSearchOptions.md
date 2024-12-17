@@ -5,9 +5,9 @@ similarity: you will want to pass in a value from 0-1. (where 1 is exact and 0 i
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**exact** | **bool** |  | [optional] 
 **var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 **similarity** | **float** |  | [optional] 
+**exact** | **bool** |  | [optional] 
 
 ## Example
 

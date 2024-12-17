@@ -5,8 +5,8 @@ This is the output model for the /open_ai/models/list endpoint.
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**models** | [**SeededModels**](SeededModels.md) |  | 
 **var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
+**models** | [**SeededModels**](SeededModels.md) |  | 
 
 ## Example
 

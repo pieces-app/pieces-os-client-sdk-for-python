@@ -5,8 +5,8 @@ This is the plural Model used to return many SearchedSensitive.
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**iterable** | [**List[SearchedSensitive]**](SearchedSensitive.md) |  | 
 **var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
+**iterable** | [**List[SearchedSensitive]**](SearchedSensitive.md) |  | 
 
 ## Example
 

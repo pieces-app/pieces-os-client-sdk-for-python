@@ -29,13 +29,13 @@ class SeededDiscoverableRelatedTag(BaseModel):
     """
       # noqa: E501
     """
-    asset: StrictStr = Field(default=..., description="this is a uuid that references an asset.")
-    category: Optional[TagCategoryEnum] = None
-    format: Optional[StrictStr] = Field(default=None, description="(optionally) you can attach a tag to a format. so when you delete a format this tag will get removed from the asset as well.")
-    mechanism: Optional[MechanismEnum] = None
     var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     text: StrictStr = Field(default=..., description="This is the description of the tag.")
-    __properties = ["asset", "category", "format", "mechanism", "schema", "text"]
+    asset: StrictStr = Field(default=..., description="this is a uuid that references an asset.")
+    mechanism: Optional[MechanismEnum] = None
+    format: Optional[StrictStr] = Field(default=None, description="(optionally) you can attach a tag to a format. so when you delete a format this tag will get removed from the asset as well.")
+    category: Optional[TagCategoryEnum] = None
+    __properties = ["schema", "text", "asset", "mechanism", "format", "category"]
 
     class Config:
         """Pydantic configuration"""
@@ -76,12 +76,12 @@ class SeededDiscoverableRelatedTag(BaseModel):
             return SeededDiscoverableRelatedTag.parse_obj(obj)
 
         _obj = SeededDiscoverableRelatedTag.parse_obj({
-            "asset": obj.get("asset"),
-            "category": obj.get("category"),
-            "format": obj.get("format"),
-            "mechanism": obj.get("mechanism"),
             "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
-            "text": obj.get("text")
+            "text": obj.get("text"),
+            "asset": obj.get("asset"),
+            "mechanism": obj.get("mechanism"),
+            "format": obj.get("format"),
+            "category": obj.get("category")
         })
         return _obj
 

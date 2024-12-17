@@ -5,13 +5,13 @@ This will determine the type of search that will run  These are all different se
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
+**query** | **str** |  | [optional] 
 **embeddings** | [**EmbeddingsSearchOptions**](EmbeddingsSearchOptions.md) |  | [optional] 
 **full_text** | [**FullTextSearchOptions**](FullTextSearchOptions.md) |  | [optional] 
-**operations** | [**SearchEngines**](SearchEngines.md) |  | [optional] 
-**query** | **str** |  | [optional] 
-**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 **temporal** | [**TemporalSearchOptions**](TemporalSearchOptions.md) |  | [optional] 
 **workstream** | [**WorkstreamSearchOptions**](WorkstreamSearchOptions.md) |  | [optional] 
+**operations** | [**SearchEngines**](SearchEngines.md) |  | [optional] 
 
 ## Example
 

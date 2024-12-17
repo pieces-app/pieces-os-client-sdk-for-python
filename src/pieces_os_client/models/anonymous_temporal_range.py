@@ -28,12 +28,12 @@ class AnonymousTemporalRange(BaseModel):
     """
     if you want a range between you can use from && to.  if you want anything before, use to and NO from.  if you want anything after, use from and NO to.  # noqa: E501
     """
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
+    var_from: Optional[GroupedTimestamp] = Field(default=None, alias="from")
+    to: Optional[GroupedTimestamp] = None
     between: Optional[StrictBool] = None
     continuous: Optional[StrictBool] = None
-    var_from: Optional[GroupedTimestamp] = Field(default=None, alias="from")
-    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
-    to: Optional[GroupedTimestamp] = None
-    __properties = ["between", "continuous", "from", "schema", "to"]
+    __properties = ["schema", "from", "to", "between", "continuous"]
 
     class Config:
         """Pydantic configuration"""
@@ -59,12 +59,12 @@ class AnonymousTemporalRange(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of var_from
-        if self.var_from:
-            _dict['from'] = self.var_from.to_dict()
         # override the default output from pydantic by calling `to_dict()` of var_schema
         if self.var_schema:
             _dict['schema'] = self.var_schema.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of var_from
+        if self.var_from:
+            _dict['from'] = self.var_from.to_dict()
         # override the default output from pydantic by calling `to_dict()` of to
         if self.to:
             _dict['to'] = self.to.to_dict()
@@ -80,11 +80,11 @@ class AnonymousTemporalRange(BaseModel):
             return AnonymousTemporalRange.parse_obj(obj)
 
         _obj = AnonymousTemporalRange.parse_obj({
-            "between": obj.get("between"),
-            "continuous": obj.get("continuous"),
-            "var_from": GroupedTimestamp.from_dict(obj.get("from")) if obj.get("from") is not None else None,
             "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
-            "to": GroupedTimestamp.from_dict(obj.get("to")) if obj.get("to") is not None else None
+            "var_from": GroupedTimestamp.from_dict(obj.get("from")) if obj.get("from") is not None else None,
+            "to": GroupedTimestamp.from_dict(obj.get("to")) if obj.get("to") is not None else None,
+            "between": obj.get("between"),
+            "continuous": obj.get("continuous")
         })
         return _obj
 

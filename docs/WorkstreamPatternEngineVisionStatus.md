@@ -5,9 +5,9 @@ activation: can be active for forever w/ continous true, or it can be activated 
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 **activation** | [**AnonymousTemporalRange**](AnonymousTemporalRange.md) |  | [optional] 
 **deactivation** | [**AnonymousTemporalRange**](AnonymousTemporalRange.md) |  | [optional] 
-**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 
 ## Example
 

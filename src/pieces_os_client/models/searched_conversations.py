@@ -28,9 +28,9 @@ class SearchedConversations(BaseModel):
     """
     This is the plural Model used to return many SearchedConversation.  # noqa: E501
     """
-    iterable: conlist(SearchedConversation) = Field(...)
     var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
-    __properties = ["iterable", "schema"]
+    iterable: conlist(SearchedConversation) = Field(...)
+    __properties = ["schema", "iterable"]
 
     class Config:
         """Pydantic configuration"""
@@ -56,6 +56,9 @@ class SearchedConversations(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
+        # override the default output from pydantic by calling `to_dict()` of var_schema
+        if self.var_schema:
+            _dict['schema'] = self.var_schema.to_dict()
         # override the default output from pydantic by calling `to_dict()` of each item in iterable (list)
         _items = []
         if self.iterable:
@@ -63,9 +66,6 @@ class SearchedConversations(BaseModel):
                 if _item:
                     _items.append(_item.to_dict())
             _dict['iterable'] = _items
-        # override the default output from pydantic by calling `to_dict()` of var_schema
-        if self.var_schema:
-            _dict['schema'] = self.var_schema.to_dict()
         return _dict
 
     @classmethod
@@ -78,8 +78,8 @@ class SearchedConversations(BaseModel):
             return SearchedConversations.parse_obj(obj)
 
         _obj = SearchedConversations.parse_obj({
-            "iterable": [SearchedConversation.from_dict(_item) for _item in obj.get("iterable")] if obj.get("iterable") is not None else None,
-            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None
+            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
+            "iterable": [SearchedConversation.from_dict(_item) for _item in obj.get("iterable")] if obj.get("iterable") is not None else None
         })
         return _obj
 

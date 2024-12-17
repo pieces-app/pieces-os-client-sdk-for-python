@@ -29,11 +29,11 @@ class WorkstreamPatternEngineVisionCalibration(BaseModel):
     """
     This model is used for the dimensions of the copilot/feed/xyz window.  if dimensions/captured are null this means we do not have the dimensions for this given window.  TODO: consider adding 5 markers here for the qr codes(ie location of these as wel) NOTE: will want to add type of calibration for this specific dimension(ie copilot/feed/xyz)  # noqa: E501
     """
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
+    foreground: StrictStr = Field(default=..., description="This is the name of the window(foreground window).(this will always be present)")
     captured: Optional[GroupedTimestamp] = None
     dimensions: Optional[WindowDimensions] = None
-    foreground: StrictStr = Field(default=..., description="This is the name of the window(foreground window).(this will always be present)")
-    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
-    __properties = ["captured", "dimensions", "foreground", "schema"]
+    __properties = ["schema", "foreground", "captured", "dimensions"]
 
     class Config:
         """Pydantic configuration"""
@@ -59,15 +59,15 @@ class WorkstreamPatternEngineVisionCalibration(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
+        # override the default output from pydantic by calling `to_dict()` of var_schema
+        if self.var_schema:
+            _dict['schema'] = self.var_schema.to_dict()
         # override the default output from pydantic by calling `to_dict()` of captured
         if self.captured:
             _dict['captured'] = self.captured.to_dict()
         # override the default output from pydantic by calling `to_dict()` of dimensions
         if self.dimensions:
             _dict['dimensions'] = self.dimensions.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of var_schema
-        if self.var_schema:
-            _dict['schema'] = self.var_schema.to_dict()
         return _dict
 
     @classmethod
@@ -80,10 +80,10 @@ class WorkstreamPatternEngineVisionCalibration(BaseModel):
             return WorkstreamPatternEngineVisionCalibration.parse_obj(obj)
 
         _obj = WorkstreamPatternEngineVisionCalibration.parse_obj({
-            "captured": GroupedTimestamp.from_dict(obj.get("captured")) if obj.get("captured") is not None else None,
-            "dimensions": WindowDimensions.from_dict(obj.get("dimensions")) if obj.get("dimensions") is not None else None,
+            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
             "foreground": obj.get("foreground"),
-            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None
+            "captured": GroupedTimestamp.from_dict(obj.get("captured")) if obj.get("captured") is not None else None,
+            "dimensions": WindowDimensions.from_dict(obj.get("dimensions")) if obj.get("dimensions") is not None else None
         })
         return _obj
 

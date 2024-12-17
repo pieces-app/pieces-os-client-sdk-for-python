@@ -5,18 +5,18 @@ consider a rename to Event? That being said if we go with event we need to think
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**application** | [**Application**](Application.md) |  | 
-**asset** | [**FlattenedAsset**](FlattenedAsset.md) |  | [optional] 
-**created** | [**GroupedTimestamp**](GroupedTimestamp.md) |  | 
-**deleted** | [**GroupedTimestamp**](GroupedTimestamp.md) |  | [optional] 
-**event** | [**SeededConnectorTracking**](SeededConnectorTracking.md) |  | 
-**format** | [**FlattenedFormat**](FlattenedFormat.md) |  | [optional] 
+**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 **id** | **str** |  | 
+**created** | [**GroupedTimestamp**](GroupedTimestamp.md) |  | 
+**updated** | [**GroupedTimestamp**](GroupedTimestamp.md) |  | 
+**event** | [**SeededConnectorTracking**](SeededConnectorTracking.md) |  | 
+**application** | [**Application**](Application.md) |  | 
+**deleted** | [**GroupedTimestamp**](GroupedTimestamp.md) |  | [optional] 
+**asset** | [**FlattenedAsset**](FlattenedAsset.md) |  | [optional] 
+**user** | [**FlattenedUserProfile**](FlattenedUserProfile.md) |  | [optional] 
+**format** | [**FlattenedFormat**](FlattenedFormat.md) |  | [optional] 
 **mechanism** | [**MechanismEnum**](MechanismEnum.md) |  | 
 **rank** | **int** | This is the numeric value assigned for this activity event. This number is based off the the type of activity event calcaulated on the server side.DO NOT MODIFY. To see what the value qualilates to, please refer to the function within the common sdk. The number here is based on the fib series. from 0 -&gt; infinity but rn there arnt any value over 8. | [optional] 
-**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
-**updated** | [**GroupedTimestamp**](GroupedTimestamp.md) |  | 
-**user** | [**FlattenedUserProfile**](FlattenedUserProfile.md) |  | [optional] 
 
 ## Example
 

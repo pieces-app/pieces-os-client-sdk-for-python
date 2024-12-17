@@ -5,8 +5,8 @@ TODO
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**port** | **int** |  | 
 **var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
+**port** | **int** |  | 
 **type** | [**OSAppletEnum**](OSAppletEnum.md) |  | 
 
 ## Example

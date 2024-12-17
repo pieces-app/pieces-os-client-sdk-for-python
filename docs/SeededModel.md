@@ -5,26 +5,26 @@ This is Precursor to a Model.  bytes: here is the size of the model in a file lo
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**bytes** | [**ByteDescriptor**](ByteDescriptor.md) |  | [optional] 
-**capabilities** | [**ModelCapabilities**](ModelCapabilities.md) |  | [optional] 
-**cloud** | **bool** | This will inform the user if this was a model that is hosted in the cloud | 
-**cpu** | **bool** | This is an optional bool that is optimized for CPU usage. | [optional] 
+**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
+**version** | **str** | this is a version of the model. | 
 **created** | [**GroupedTimestamp**](GroupedTimestamp.md) |  | 
-**custom** | **bool** | This is reserved to customly register models. | [optional] 
-**description** | **str** | An Optional Description of the model itself. | [optional] 
-**downloaded** | **bool** | This is an optional bool to let us know if this model has been downloaded locally. | [optional] 
-**foundation** | [**ModelFoundationEnum**](ModelFoundationEnum.md) |  | [optional] 
-**max_tokens** | [**ModelMaxTokens**](ModelMaxTokens.md) |  | [optional] 
 **name** | **str** | This is an Optional Name of the Model. | 
+**description** | **str** | An Optional Description of the model itself. | [optional] 
+**cloud** | **bool** | This will inform the user if this was a model that is hosted in the cloud | 
+**type** | [**ModelTypeEnum**](ModelTypeEnum.md) |  | 
+**usage** | [**ModelUsageEnum**](ModelUsageEnum.md) |  | 
+**bytes** | [**ByteDescriptor**](ByteDescriptor.md) |  | [optional] 
+**ram** | [**ByteDescriptor**](ByteDescriptor.md) |  | [optional] 
+**quantization** | **str** | quantization is a string like: q8f16_0,  q4f16_1, etc... | [optional] 
+**foundation** | [**ModelFoundationEnum**](ModelFoundationEnum.md) |  | [optional] 
+**downloaded** | **bool** | This is an optional bool to let us know if this model has been downloaded locally. | [optional] 
+**unique** | **str** | This is the unique model name used to load the model. | [optional] 
 **parameters** | **float** | This is the number of parameters in terms of billions. | [optional] 
 **provider** | [**ExternalMLProviderEnum**](ExternalMLProviderEnum.md) |  | [optional] 
-**quantization** | **str** | quantization is a string like: q8f16_0,  q4f16_1, etc... | [optional] 
-**ram** | [**ByteDescriptor**](ByteDescriptor.md) |  | [optional] 
-**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
-**type** | [**ModelTypeEnum**](ModelTypeEnum.md) |  | 
-**unique** | **str** | This is the unique model name used to load the model. | [optional] 
-**usage** | [**ModelUsageEnum**](ModelUsageEnum.md) |  | 
-**version** | **str** | this is a version of the model. | 
+**cpu** | **bool** | This is an optional bool that is optimized for CPU usage. | [optional] 
+**max_tokens** | [**ModelMaxTokens**](ModelMaxTokens.md) |  | [optional] 
+**custom** | **bool** | This is reserved to customly register models. | [optional] 
+**capabilities** | [**ModelCapabilities**](ModelCapabilities.md) |  | [optional] 
 
 ## Example
 

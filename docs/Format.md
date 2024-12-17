@@ -5,25 +5,25 @@ A representation of Data for a particular Form Factor of an Asset.  Below asset 
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**activities** | [**Activities**](Activities.md) |  | [optional] 
-**analysis** | [**Analysis**](Analysis.md) |  | [optional] 
+**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
+**id** | **str** |  | 
+**creator** | **str** |  | 
+**classification** | [**Classification**](Classification.md) |  | 
+**icon** | **str** |  | [optional] 
+**role** | [**Role**](Role.md) |  | 
 **application** | [**Application**](Application.md) |  | 
 **asset** | [**FlattenedAsset**](FlattenedAsset.md) |  | 
 **bytes** | [**ByteDescriptor**](ByteDescriptor.md) |  | 
-**classification** | [**Classification**](Classification.md) |  | 
-**cloud** | **str** | This is a path used to determine what path this format lives at within the cloud. | [optional] 
 **created** | [**GroupedTimestamp**](GroupedTimestamp.md) |  | 
-**creator** | **str** |  | 
-**deleted** | [**GroupedTimestamp**](GroupedTimestamp.md) |  | [optional] 
-**file** | [**FileFormat**](FileFormat.md) |  | [optional] 
-**fragment** | [**FragmentFormat**](FragmentFormat.md) |  | [optional] 
-**icon** | **str** |  | [optional] 
-**id** | **str** |  | 
-**relationship** | [**Relationship**](Relationship.md) |  | [optional] 
-**role** | [**Role**](Role.md) |  | 
-**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
-**synced** | [**GroupedTimestamp**](GroupedTimestamp.md) |  | [optional] 
 **updated** | [**GroupedTimestamp**](GroupedTimestamp.md) |  | 
+**deleted** | [**GroupedTimestamp**](GroupedTimestamp.md) |  | [optional] 
+**synced** | [**GroupedTimestamp**](GroupedTimestamp.md) |  | [optional] 
+**cloud** | **str** | This is a path used to determine what path this format lives at within the cloud. | [optional] 
+**fragment** | [**FragmentFormat**](FragmentFormat.md) |  | [optional] 
+**file** | [**FileFormat**](FileFormat.md) |  | [optional] 
+**analysis** | [**Analysis**](Analysis.md) |  | [optional] 
+**relationship** | [**Relationship**](Relationship.md) |  | [optional] 
+**activities** | [**Activities**](Activities.md) |  | [optional] 
 
 ## Example
 

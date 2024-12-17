@@ -28,10 +28,10 @@ class DiscoveredSensitives(BaseModel):
     """
       # noqa: E501
     """
-    application: StrictStr = Field(...)
-    iterable: conlist(DiscoveredSensitive) = Field(...)
     var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
-    __properties = ["application", "iterable", "schema"]
+    iterable: conlist(DiscoveredSensitive) = Field(...)
+    application: StrictStr = Field(...)
+    __properties = ["schema", "iterable", "application"]
 
     class Config:
         """Pydantic configuration"""
@@ -57,6 +57,9 @@ class DiscoveredSensitives(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
+        # override the default output from pydantic by calling `to_dict()` of var_schema
+        if self.var_schema:
+            _dict['schema'] = self.var_schema.to_dict()
         # override the default output from pydantic by calling `to_dict()` of each item in iterable (list)
         _items = []
         if self.iterable:
@@ -64,9 +67,6 @@ class DiscoveredSensitives(BaseModel):
                 if _item:
                     _items.append(_item.to_dict())
             _dict['iterable'] = _items
-        # override the default output from pydantic by calling `to_dict()` of var_schema
-        if self.var_schema:
-            _dict['schema'] = self.var_schema.to_dict()
         return _dict
 
     @classmethod
@@ -79,9 +79,9 @@ class DiscoveredSensitives(BaseModel):
             return DiscoveredSensitives.parse_obj(obj)
 
         _obj = DiscoveredSensitives.parse_obj({
-            "application": obj.get("application"),
+            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
             "iterable": [DiscoveredSensitive.from_dict(_item) for _item in obj.get("iterable")] if obj.get("iterable") is not None else None,
-            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None
+            "application": obj.get("application")
         })
         return _obj
 

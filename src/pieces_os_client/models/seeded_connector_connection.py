@@ -28,9 +28,9 @@ class SeededConnectorConnection(BaseModel):
     """
     A model that is passed to the context API at bootup  # noqa: E501
     """
-    application: SeededTrackedApplication = Field(...)
     var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
-    __properties = ["application", "schema"]
+    application: SeededTrackedApplication = Field(...)
+    __properties = ["schema", "application"]
 
     class Config:
         """Pydantic configuration"""
@@ -56,12 +56,12 @@ class SeededConnectorConnection(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of application
-        if self.application:
-            _dict['application'] = self.application.to_dict()
         # override the default output from pydantic by calling `to_dict()` of var_schema
         if self.var_schema:
             _dict['schema'] = self.var_schema.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of application
+        if self.application:
+            _dict['application'] = self.application.to_dict()
         return _dict
 
     @classmethod
@@ -74,8 +74,8 @@ class SeededConnectorConnection(BaseModel):
             return SeededConnectorConnection.parse_obj(obj)
 
         _obj = SeededConnectorConnection.parse_obj({
-            "application": SeededTrackedApplication.from_dict(obj.get("application")) if obj.get("application") is not None else None,
-            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None
+            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
+            "application": SeededTrackedApplication.from_dict(obj.get("application")) if obj.get("application") is not None else None
         })
         return _obj
 

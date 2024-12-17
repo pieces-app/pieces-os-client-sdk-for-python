@@ -4,8 +4,8 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**iterable** | [**List[ImageAnalysis]**](ImageAnalysis.md) |  | 
 **var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
+**iterable** | [**List[ImageAnalysis]**](ImageAnalysis.md) |  | 
 
 ## Example
 

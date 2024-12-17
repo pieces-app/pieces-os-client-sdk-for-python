@@ -27,9 +27,9 @@ class LanguageServerProtocolCodeDescription(BaseModel):
     """
     modeled off of (https://microsoft.github.io/language-server-protocol/specifications/lsp/3.17/specification/#codeDescription)  # noqa: E501
     """
-    href: StrictStr = Field(...)
     var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
-    __properties = ["href", "schema"]
+    href: StrictStr = Field(...)
+    __properties = ["schema", "href"]
 
     class Config:
         """Pydantic configuration"""
@@ -70,8 +70,8 @@ class LanguageServerProtocolCodeDescription(BaseModel):
             return LanguageServerProtocolCodeDescription.parse_obj(obj)
 
         _obj = LanguageServerProtocolCodeDescription.parse_obj({
-            "href": obj.get("href"),
-            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None
+            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
+            "href": obj.get("href")
         })
         return _obj
 

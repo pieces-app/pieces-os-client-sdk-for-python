@@ -4,9 +4,9 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**page** | **str** | page&#39;s html as a string | 
 **var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 **url** | **str** | The route of the page  | 
+**page** | **str** | page&#39;s html as a string | 
 
 ## Example
 

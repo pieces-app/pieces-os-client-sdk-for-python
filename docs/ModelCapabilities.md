@@ -5,13 +5,13 @@ This will let us know what capabilities the model is aloud to be used for.
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**assets** | **bool** | True if the model can leverage saved assets &amp; their metadata in its context window. | [optional] 
-**codebases** | **bool** | True if the model can leverage entire code bases/snippetized code bases in its context window | [optional] 
-**documents** | **bool** | True if the model can leverage code/text/other files in it&#39;s context window | [optional] 
-**images** | **bool** | True if the model can leverage images and graphical material files in it&#39;s context window | [optional] 
 **var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 **temporal** | **bool** | True if model is able to support live context and any other temporally powered RAG Capabilities i.e. \&quot;What did I do yesterday?\&quot; | [optional] 
+**images** | **bool** | True if the model can leverage images and graphical material files in it&#39;s context window | [optional] 
 **videos** | **bool** | True if the model can leverage videos files in it&#39;s context window | [optional] 
+**documents** | **bool** | True if the model can leverage code/text/other files in it&#39;s context window | [optional] 
+**codebases** | **bool** | True if the model can leverage entire code bases/snippetized code bases in its context window | [optional] 
+**assets** | **bool** | True if the model can leverage saved assets &amp; their metadata in its context window. | [optional] 
 **websites** | **bool** | True if the model can leverage websites in its context window. | [optional] 
 
 ## Example

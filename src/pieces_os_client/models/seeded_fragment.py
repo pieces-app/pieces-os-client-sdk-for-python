@@ -30,11 +30,11 @@ class SeededFragment(BaseModel):
     """
     This will be either a TransferableString or TransferableBytes that represent your fragment. ONLY Pass one or the other DONT pass both or neither.  # noqa: E501
     """
-    bytes: Optional[TransferableBytes] = None
-    metadata: Optional[FragmentMetadata] = None
     var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     string: Optional[TransferableString] = None
-    __properties = ["bytes", "metadata", "schema", "string"]
+    bytes: Optional[TransferableBytes] = None
+    metadata: Optional[FragmentMetadata] = None
+    __properties = ["schema", "string", "bytes", "metadata"]
 
     class Config:
         """Pydantic configuration"""
@@ -60,18 +60,18 @@ class SeededFragment(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of bytes
-        if self.bytes:
-            _dict['bytes'] = self.bytes.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of metadata
-        if self.metadata:
-            _dict['metadata'] = self.metadata.to_dict()
         # override the default output from pydantic by calling `to_dict()` of var_schema
         if self.var_schema:
             _dict['schema'] = self.var_schema.to_dict()
         # override the default output from pydantic by calling `to_dict()` of string
         if self.string:
             _dict['string'] = self.string.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of bytes
+        if self.bytes:
+            _dict['bytes'] = self.bytes.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of metadata
+        if self.metadata:
+            _dict['metadata'] = self.metadata.to_dict()
         return _dict
 
     @classmethod
@@ -84,10 +84,10 @@ class SeededFragment(BaseModel):
             return SeededFragment.parse_obj(obj)
 
         _obj = SeededFragment.parse_obj({
-            "bytes": TransferableBytes.from_dict(obj.get("bytes")) if obj.get("bytes") is not None else None,
-            "metadata": FragmentMetadata.from_dict(obj.get("metadata")) if obj.get("metadata") is not None else None,
             "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
-            "string": TransferableString.from_dict(obj.get("string")) if obj.get("string") is not None else None
+            "string": TransferableString.from_dict(obj.get("string")) if obj.get("string") is not None else None,
+            "bytes": TransferableBytes.from_dict(obj.get("bytes")) if obj.get("bytes") is not None else None,
+            "metadata": FragmentMetadata.from_dict(obj.get("metadata")) if obj.get("metadata") is not None else None
         })
         return _obj
 

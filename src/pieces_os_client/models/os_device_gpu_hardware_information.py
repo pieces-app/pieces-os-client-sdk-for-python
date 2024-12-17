@@ -20,7 +20,7 @@ import json
 
 
 from typing import Optional, Union
-from pydantic import BaseModel, Field, StrictFloat, StrictInt, StrictStr
+from pydantic import BaseModel, Field, StrictBool, StrictFloat, StrictInt, StrictStr
 from pieces_os_client.models.embedded_model_schema import EmbeddedModelSchema
 from pieces_os_client.models.os_device_gpu_hardware_capabilities_information import OSDeviceGPUHardwareCapabilitiesInformation
 
@@ -28,11 +28,12 @@ class OSDeviceGPUHardwareInformation(BaseModel):
     """
     This will let us know specific hardware information related to the GPU.  # noqa: E501
     """
-    capabilities: Optional[OSDeviceGPUHardwareCapabilitiesInformation] = None
-    memory: Optional[Union[StrictFloat, StrictInt]] = None
-    name: Optional[StrictStr] = None
     var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
-    __properties = ["capabilities", "memory", "name", "schema"]
+    name: Optional[StrictStr] = None
+    memory: Optional[Union[StrictFloat, StrictInt]] = None
+    shared_memory: Optional[StrictBool] = None
+    capabilities: Optional[OSDeviceGPUHardwareCapabilitiesInformation] = None
+    __properties = ["schema", "name", "memory", "shared_memory", "capabilities"]
 
     class Config:
         """Pydantic configuration"""
@@ -58,12 +59,17 @@ class OSDeviceGPUHardwareInformation(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of capabilities
-        if self.capabilities:
-            _dict['capabilities'] = self.capabilities.to_dict()
         # override the default output from pydantic by calling `to_dict()` of var_schema
         if self.var_schema:
             _dict['schema'] = self.var_schema.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of capabilities
+        if self.capabilities:
+            _dict['capabilities'] = self.capabilities.to_dict()
+        # set to None if shared_memory (nullable) is None
+        # and __fields_set__ contains the field
+        if self.shared_memory is None and "shared_memory" in self.__fields_set__:
+            _dict['shared_memory'] = None
+
         return _dict
 
     @classmethod
@@ -76,10 +82,11 @@ class OSDeviceGPUHardwareInformation(BaseModel):
             return OSDeviceGPUHardwareInformation.parse_obj(obj)
 
         _obj = OSDeviceGPUHardwareInformation.parse_obj({
-            "capabilities": OSDeviceGPUHardwareCapabilitiesInformation.from_dict(obj.get("capabilities")) if obj.get("capabilities") is not None else None,
-            "memory": obj.get("memory"),
+            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
             "name": obj.get("name"),
-            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None
+            "memory": obj.get("memory"),
+            "shared_memory": obj.get("shared_memory"),
+            "capabilities": OSDeviceGPUHardwareCapabilitiesInformation.from_dict(obj.get("capabilities")) if obj.get("capabilities") is not None else None
         })
         return _obj
 

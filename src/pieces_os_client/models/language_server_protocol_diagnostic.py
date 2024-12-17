@@ -31,14 +31,14 @@ class LanguageServerProtocolDiagnostic(BaseModel):
     """
     TODO  # noqa: E501
     """
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
+    range: LanguageServerProtocolLocationRange = Field(...)
+    severity: Optional[LanguageServerProtocolSeverityEnum] = None
     code: Optional[LanguageServerProtocolCode] = None
     code_description: Optional[LanguageServerProtocolCodeDescription] = Field(default=None, alias="codeDescription")
-    message: StrictStr = Field(...)
-    range: LanguageServerProtocolLocationRange = Field(...)
-    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
-    severity: Optional[LanguageServerProtocolSeverityEnum] = None
     source: Optional[StrictStr] = None
-    __properties = ["code", "codeDescription", "message", "range", "schema", "severity", "source"]
+    message: StrictStr = Field(...)
+    __properties = ["schema", "range", "severity", "code", "codeDescription", "source", "message"]
 
     class Config:
         """Pydantic configuration"""
@@ -64,18 +64,18 @@ class LanguageServerProtocolDiagnostic(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
+        # override the default output from pydantic by calling `to_dict()` of var_schema
+        if self.var_schema:
+            _dict['schema'] = self.var_schema.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of range
+        if self.range:
+            _dict['range'] = self.range.to_dict()
         # override the default output from pydantic by calling `to_dict()` of code
         if self.code:
             _dict['code'] = self.code.to_dict()
         # override the default output from pydantic by calling `to_dict()` of code_description
         if self.code_description:
             _dict['codeDescription'] = self.code_description.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of range
-        if self.range:
-            _dict['range'] = self.range.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of var_schema
-        if self.var_schema:
-            _dict['schema'] = self.var_schema.to_dict()
         return _dict
 
     @classmethod
@@ -88,13 +88,13 @@ class LanguageServerProtocolDiagnostic(BaseModel):
             return LanguageServerProtocolDiagnostic.parse_obj(obj)
 
         _obj = LanguageServerProtocolDiagnostic.parse_obj({
+            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
+            "range": LanguageServerProtocolLocationRange.from_dict(obj.get("range")) if obj.get("range") is not None else None,
+            "severity": obj.get("severity"),
             "code": LanguageServerProtocolCode.from_dict(obj.get("code")) if obj.get("code") is not None else None,
             "code_description": LanguageServerProtocolCodeDescription.from_dict(obj.get("codeDescription")) if obj.get("codeDescription") is not None else None,
-            "message": obj.get("message"),
-            "range": LanguageServerProtocolLocationRange.from_dict(obj.get("range")) if obj.get("range") is not None else None,
-            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
-            "severity": obj.get("severity"),
-            "source": obj.get("source")
+            "source": obj.get("source"),
+            "message": obj.get("message")
         })
         return _obj
 

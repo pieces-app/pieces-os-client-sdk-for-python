@@ -5,15 +5,15 @@ This is a representation of an IDE Tab  value: is the value of the entire file(t
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**anchor** | [**SeededAnchor**](SeededAnchor.md) |  | 
-**classification** | [**Classification**](Classification.md) |  | [optional] 
-**contributors** | [**DocumentContributors**](DocumentContributors.md) |  | [optional] 
-**current** | **bool** |  | [optional] 
-**lsp** | [**LanguageServerProtocol**](LanguageServerProtocol.md) |  | [optional] 
-**range** | [**AnonymousTemporalRange**](AnonymousTemporalRange.md) |  | [optional] 
 **var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
-**selections** | [**IDESelections**](IDESelections.md) |  | [optional] 
 **value** | [**TransferableString**](TransferableString.md) |  | [optional] 
+**classification** | [**Classification**](Classification.md) |  | [optional] 
+**selections** | [**IDESelections**](IDESelections.md) |  | [optional] 
+**anchor** | [**SeededAnchor**](SeededAnchor.md) |  | 
+**range** | [**AnonymousTemporalRange**](AnonymousTemporalRange.md) |  | [optional] 
+**current** | **bool** |  | [optional] 
+**contributors** | [**DocumentContributors**](DocumentContributors.md) |  | [optional] 
+**lsp** | [**LanguageServerProtocol**](LanguageServerProtocol.md) |  | [optional] 
 
 ## Example
 

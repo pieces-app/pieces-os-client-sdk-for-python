@@ -4,9 +4,9 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**indices** | **Dict[str, int]** | This is a Map&lt;String, int&gt; where the the key is an AnchorPoint id. | [optional] 
-**iterable** | [**List[ReferencedAnchorPoint]**](ReferencedAnchorPoint.md) |  | 
 **var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
+**iterable** | [**List[ReferencedAnchorPoint]**](ReferencedAnchorPoint.md) |  | 
+**indices** | **Dict[str, int]** | This is a Map&lt;String, int&gt; where the the key is an AnchorPoint id. | [optional] 
 **score** | [**Score**](Score.md) |  | [optional] 
 
 ## Example

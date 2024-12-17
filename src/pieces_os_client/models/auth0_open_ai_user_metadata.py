@@ -27,11 +27,11 @@ class Auth0OpenAIUserMetadata(BaseModel):
     """
     Only supporting a single api key per user.  # noqa: E501
     """
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     api_key: Optional[StrictStr] = None
     api_key_name: Optional[StrictStr] = None
     organization_key: Optional[StrictStr] = None
-    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
-    __properties = ["api_key", "api_key_name", "organization_key", "schema"]
+    __properties = ["schema", "api_key", "api_key_name", "organization_key"]
 
     class Config:
         """Pydantic configuration"""
@@ -72,10 +72,10 @@ class Auth0OpenAIUserMetadata(BaseModel):
             return Auth0OpenAIUserMetadata.parse_obj(obj)
 
         _obj = Auth0OpenAIUserMetadata.parse_obj({
+            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
             "api_key": obj.get("api_key"),
             "api_key_name": obj.get("api_key_name"),
-            "organization_key": obj.get("organization_key"),
-            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None
+            "organization_key": obj.get("organization_key")
         })
         return _obj
 

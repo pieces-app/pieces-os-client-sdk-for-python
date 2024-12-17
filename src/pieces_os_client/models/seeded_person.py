@@ -33,15 +33,15 @@ class SeededPerson(BaseModel):
     """
     This is a per-cursor to a full person.  Will throw an error, if asset is passed in but acces.scope is undefined.  can optionally pass in our mechanism here, as the default will be manual unless specified.  TODO consider updating these asset, format to referenced Models  Note: model, access, mechanism will only be added if the asset is passed in.  # noqa: E501
     """
-    access: Optional[PersonAccess] = None
-    anchors: Optional[FlattenedAnchors] = None
-    annotations: Optional[conlist(SeededAnnotation)] = None
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     asset: Optional[StrictStr] = None
     mechanism: Optional[MechanismEnum] = None
-    model: Optional[PersonModel] = None
-    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
+    access: Optional[PersonAccess] = None
     type: PersonType = Field(...)
-    __properties = ["access", "anchors", "annotations", "asset", "mechanism", "model", "schema", "type"]
+    model: Optional[PersonModel] = None
+    annotations: Optional[conlist(SeededAnnotation)] = None
+    anchors: Optional[FlattenedAnchors] = None
+    __properties = ["schema", "asset", "mechanism", "access", "type", "model", "annotations", "anchors"]
 
     class Config:
         """Pydantic configuration"""
@@ -67,12 +67,18 @@ class SeededPerson(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
+        # override the default output from pydantic by calling `to_dict()` of var_schema
+        if self.var_schema:
+            _dict['schema'] = self.var_schema.to_dict()
         # override the default output from pydantic by calling `to_dict()` of access
         if self.access:
             _dict['access'] = self.access.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of anchors
-        if self.anchors:
-            _dict['anchors'] = self.anchors.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of type
+        if self.type:
+            _dict['type'] = self.type.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of model
+        if self.model:
+            _dict['model'] = self.model.to_dict()
         # override the default output from pydantic by calling `to_dict()` of each item in annotations (list)
         _items = []
         if self.annotations:
@@ -80,15 +86,9 @@ class SeededPerson(BaseModel):
                 if _item:
                     _items.append(_item.to_dict())
             _dict['annotations'] = _items
-        # override the default output from pydantic by calling `to_dict()` of model
-        if self.model:
-            _dict['model'] = self.model.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of var_schema
-        if self.var_schema:
-            _dict['schema'] = self.var_schema.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of type
-        if self.type:
-            _dict['type'] = self.type.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of anchors
+        if self.anchors:
+            _dict['anchors'] = self.anchors.to_dict()
         return _dict
 
     @classmethod
@@ -101,14 +101,14 @@ class SeededPerson(BaseModel):
             return SeededPerson.parse_obj(obj)
 
         _obj = SeededPerson.parse_obj({
-            "access": PersonAccess.from_dict(obj.get("access")) if obj.get("access") is not None else None,
-            "anchors": FlattenedAnchors.from_dict(obj.get("anchors")) if obj.get("anchors") is not None else None,
-            "annotations": [SeededAnnotation.from_dict(_item) for _item in obj.get("annotations")] if obj.get("annotations") is not None else None,
+            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
             "asset": obj.get("asset"),
             "mechanism": obj.get("mechanism"),
+            "access": PersonAccess.from_dict(obj.get("access")) if obj.get("access") is not None else None,
+            "type": PersonType.from_dict(obj.get("type")) if obj.get("type") is not None else None,
             "model": PersonModel.from_dict(obj.get("model")) if obj.get("model") is not None else None,
-            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
-            "type": PersonType.from_dict(obj.get("type")) if obj.get("type") is not None else None
+            "annotations": [SeededAnnotation.from_dict(_item) for _item in obj.get("annotations")] if obj.get("annotations") is not None else None,
+            "anchors": FlattenedAnchors.from_dict(obj.get("anchors")) if obj.get("anchors") is not None else None
         })
         return _obj
 

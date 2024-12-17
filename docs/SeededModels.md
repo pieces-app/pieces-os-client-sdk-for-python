@@ -5,8 +5,8 @@ This is a Model that will hold an iterable of SeededModels.
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**iterable** | [**List[SeededModel]**](SeededModel.md) |  | 
 **var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
+**iterable** | [**List[SeededModel]**](SeededModel.md) |  | 
 
 ## Example
 

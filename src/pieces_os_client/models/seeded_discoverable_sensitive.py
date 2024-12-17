@@ -31,16 +31,16 @@ class SeededDiscoverableSensitive(BaseModel):
     """
     This is the SeededDiscoverableSensitive, this has every property that the seededSensitive has except this one is all optionally passed in. and will override our classification if provided.  # noqa: E501
     """
-    asset: StrictStr = Field(...)
-    category: Optional[SensitiveCategoryEnum] = None
-    description: Optional[StrictStr] = None
-    mechanism: Optional[MechanismEnum] = None
-    metadata: Optional[SensitiveMetadata] = None
-    name: Optional[StrictStr] = None
     var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
-    severity: Optional[SensitiveSeverityEnum] = None
+    asset: StrictStr = Field(...)
     text: StrictStr = Field(default=..., description="this is the string representative of the sensative piece of data.")
-    __properties = ["asset", "category", "description", "mechanism", "metadata", "name", "schema", "severity", "text"]
+    mechanism: Optional[MechanismEnum] = None
+    category: Optional[SensitiveCategoryEnum] = None
+    severity: Optional[SensitiveSeverityEnum] = None
+    name: Optional[StrictStr] = None
+    description: Optional[StrictStr] = None
+    metadata: Optional[SensitiveMetadata] = None
+    __properties = ["schema", "asset", "text", "mechanism", "category", "severity", "name", "description", "metadata"]
 
     class Config:
         """Pydantic configuration"""
@@ -66,12 +66,12 @@ class SeededDiscoverableSensitive(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of metadata
-        if self.metadata:
-            _dict['metadata'] = self.metadata.to_dict()
         # override the default output from pydantic by calling `to_dict()` of var_schema
         if self.var_schema:
             _dict['schema'] = self.var_schema.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of metadata
+        if self.metadata:
+            _dict['metadata'] = self.metadata.to_dict()
         return _dict
 
     @classmethod
@@ -84,15 +84,15 @@ class SeededDiscoverableSensitive(BaseModel):
             return SeededDiscoverableSensitive.parse_obj(obj)
 
         _obj = SeededDiscoverableSensitive.parse_obj({
-            "asset": obj.get("asset"),
-            "category": obj.get("category"),
-            "description": obj.get("description"),
-            "mechanism": obj.get("mechanism"),
-            "metadata": SensitiveMetadata.from_dict(obj.get("metadata")) if obj.get("metadata") is not None else None,
-            "name": obj.get("name"),
             "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
+            "asset": obj.get("asset"),
+            "text": obj.get("text"),
+            "mechanism": obj.get("mechanism"),
+            "category": obj.get("category"),
             "severity": obj.get("severity"),
-            "text": obj.get("text")
+            "name": obj.get("name"),
+            "description": obj.get("description"),
+            "metadata": SensitiveMetadata.from_dict(obj.get("metadata")) if obj.get("metadata") is not None else None
         })
         return _obj
 

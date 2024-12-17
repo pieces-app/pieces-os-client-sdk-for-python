@@ -4,16 +4,16 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**anchor** | [**ReferencedAnchor**](ReferencedAnchor.md) |  | 
-**created** | [**GroupedTimestamp**](GroupedTimestamp.md) |  | 
-**deleted** | [**GroupedTimestamp**](GroupedTimestamp.md) |  | [optional] 
-**fullpath** | **str** | This is the text of the path. | 
-**id** | **str** |  | 
-**platform** | [**PlatformEnum**](PlatformEnum.md) |  | [optional] 
 **var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
-**score** | [**Score**](Score.md) |  | [optional] 
-**updated** | [**GroupedTimestamp**](GroupedTimestamp.md) |  | 
+**id** | **str** |  | 
 **verified** | **bool** |  | [optional] 
+**fullpath** | **str** | This is the text of the path. | 
+**created** | [**GroupedTimestamp**](GroupedTimestamp.md) |  | 
+**updated** | [**GroupedTimestamp**](GroupedTimestamp.md) |  | 
+**deleted** | [**GroupedTimestamp**](GroupedTimestamp.md) |  | [optional] 
+**platform** | [**PlatformEnum**](PlatformEnum.md) |  | [optional] 
+**anchor** | [**ReferencedAnchor**](ReferencedAnchor.md) |  | 
+**score** | [**Score**](Score.md) |  | [optional] 
 
 ## Example
 

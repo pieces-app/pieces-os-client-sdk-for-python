@@ -5,8 +5,8 @@ This is the plural Model used to return many SearchedWorkstreamSummary.
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**iterable** | [**List[SearchedWorkstreamSummary]**](SearchedWorkstreamSummary.md) |  | 
 **var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
+**iterable** | [**List[SearchedWorkstreamSummary]**](SearchedWorkstreamSummary.md) |  | 
 
 ## Example
 

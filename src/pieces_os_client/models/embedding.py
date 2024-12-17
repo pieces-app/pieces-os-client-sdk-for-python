@@ -28,12 +28,12 @@ class Embedding(BaseModel):
     """
       # noqa: E501
     """
-    created: GroupedTimestamp = Field(...)
-    deleted: Optional[GroupedTimestamp] = None
-    model: Model = Field(...)
     raw: conlist(Union[StrictFloat, StrictInt]) = Field(default=..., description="this is the raw value of the embedding")
+    model: Model = Field(...)
+    created: GroupedTimestamp = Field(...)
     updated: GroupedTimestamp = Field(...)
-    __properties = ["created", "deleted", "model", "raw", "updated"]
+    deleted: Optional[GroupedTimestamp] = None
+    __properties = ["raw", "model", "created", "updated", "deleted"]
 
     class Config:
         """Pydantic configuration"""
@@ -59,18 +59,18 @@ class Embedding(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of created
-        if self.created:
-            _dict['created'] = self.created.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of deleted
-        if self.deleted:
-            _dict['deleted'] = self.deleted.to_dict()
         # override the default output from pydantic by calling `to_dict()` of model
         if self.model:
             _dict['model'] = self.model.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of created
+        if self.created:
+            _dict['created'] = self.created.to_dict()
         # override the default output from pydantic by calling `to_dict()` of updated
         if self.updated:
             _dict['updated'] = self.updated.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of deleted
+        if self.deleted:
+            _dict['deleted'] = self.deleted.to_dict()
         return _dict
 
     @classmethod
@@ -83,11 +83,11 @@ class Embedding(BaseModel):
             return Embedding.parse_obj(obj)
 
         _obj = Embedding.parse_obj({
-            "created": GroupedTimestamp.from_dict(obj.get("created")) if obj.get("created") is not None else None,
-            "deleted": GroupedTimestamp.from_dict(obj.get("deleted")) if obj.get("deleted") is not None else None,
-            "model": Model.from_dict(obj.get("model")) if obj.get("model") is not None else None,
             "raw": obj.get("raw"),
-            "updated": GroupedTimestamp.from_dict(obj.get("updated")) if obj.get("updated") is not None else None
+            "model": Model.from_dict(obj.get("model")) if obj.get("model") is not None else None,
+            "created": GroupedTimestamp.from_dict(obj.get("created")) if obj.get("created") is not None else None,
+            "updated": GroupedTimestamp.from_dict(obj.get("updated")) if obj.get("updated") is not None else None,
+            "deleted": GroupedTimestamp.from_dict(obj.get("deleted")) if obj.get("deleted") is not None else None
         })
         return _obj
 

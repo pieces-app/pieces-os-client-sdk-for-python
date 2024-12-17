@@ -27,9 +27,9 @@ class ReuseReaction(BaseModel):
     """
     if reuse was used in the reaction then we can provide the uuid of the asset that was reused.  # noqa: E501
     """
-    asset: StrictStr = Field(...)
     var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
-    __properties = ["asset", "schema"]
+    asset: StrictStr = Field(...)
+    __properties = ["schema", "asset"]
 
     class Config:
         """Pydantic configuration"""
@@ -70,8 +70,8 @@ class ReuseReaction(BaseModel):
             return ReuseReaction.parse_obj(obj)
 
         _obj = ReuseReaction.parse_obj({
-            "asset": obj.get("asset"),
-            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None
+            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
+            "asset": obj.get("asset")
         })
         return _obj
 

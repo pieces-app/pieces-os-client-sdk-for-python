@@ -5,8 +5,8 @@ This is provided search spaces, This is a provided assets, TODO in the future we
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**identifers** | [**FlattenedAssets**](FlattenedAssets.md) |  | 
 **var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
+**identifers** | [**FlattenedAssets**](FlattenedAssets.md) |  | 
 
 ## Example
 

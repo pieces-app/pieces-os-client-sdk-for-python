@@ -5,8 +5,8 @@ NOTE: if we want to remove all the data the from would be unset, the to will be 
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**ranges** | [**List[AnonymousTemporalRange]**](AnonymousTemporalRange.md) |  | [optional] 
 **var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
+**ranges** | [**List[AnonymousTemporalRange]**](AnonymousTemporalRange.md) |  | [optional] 
 
 ## Example
 

@@ -5,9 +5,9 @@ This is the model that is sent over our ws for streaming the progress of a model
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**percentage** | **float** | Optionally if the download is in progress you will recieve a download percent(from 0-100). | [optional] 
 **var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 **status** | [**ModelDownloadProgressStatusEnum**](ModelDownloadProgressStatusEnum.md) |  | [optional] 
+**percentage** | **float** | Optionally if the download is in progress you will recieve a download percent(from 0-100). | [optional] 
 
 ## Example
 

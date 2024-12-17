@@ -5,19 +5,19 @@ This is a Flattened Version of a Tag.
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**assets** | [**FlattenedAssets**](FlattenedAssets.md) |  | [optional] 
-**category** | [**TagCategoryEnum**](TagCategoryEnum.md) |  | 
-**created** | [**GroupedTimestamp**](GroupedTimestamp.md) |  | 
-**deleted** | [**GroupedTimestamp**](GroupedTimestamp.md) |  | [optional] 
-**id** | **str** |  | 
-**interactions** | **int** | This is an optional value that will keep track of the number of times this has been interacted with. | [optional] 
-**mechanisms** | [**Dict[str, MechanismEnum]**](MechanismEnum.md) | This is a Map&lt;String, MechanismEnum&gt; where the the key is an asset id. | [optional] 
-**persons** | [**FlattenedPersons**](FlattenedPersons.md) |  | [optional] 
-**relationship** | [**Relationship**](Relationship.md) |  | [optional] 
 **var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
-**score** | [**Score**](Score.md) |  | [optional] 
+**id** | **str** |  | 
 **text** | **str** |  | 
+**mechanisms** | [**Dict[str, MechanismEnum]**](MechanismEnum.md) | This is a Map&lt;String, MechanismEnum&gt; where the the key is an asset id. | [optional] 
+**assets** | [**FlattenedAssets**](FlattenedAssets.md) |  | [optional] 
+**created** | [**GroupedTimestamp**](GroupedTimestamp.md) |  | 
 **updated** | [**GroupedTimestamp**](GroupedTimestamp.md) |  | 
+**deleted** | [**GroupedTimestamp**](GroupedTimestamp.md) |  | [optional] 
+**category** | [**TagCategoryEnum**](TagCategoryEnum.md) |  | 
+**relationship** | [**Relationship**](Relationship.md) |  | [optional] 
+**interactions** | **int** | This is an optional value that will keep track of the number of times this has been interacted with. | [optional] 
+**persons** | [**FlattenedPersons**](FlattenedPersons.md) |  | [optional] 
+**score** | [**Score**](Score.md) |  | [optional] 
 
 ## Example
 

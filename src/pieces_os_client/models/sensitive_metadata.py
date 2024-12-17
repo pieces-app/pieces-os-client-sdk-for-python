@@ -28,10 +28,10 @@ class SensitiveMetadata(BaseModel):
     """
     This is optional metatdata attached to a sensitive piece of data.  # noqa: E501
     """
-    entropy: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="entropy of the sensitive")
-    match: Optional[TextMatch] = None
     var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
-    __properties = ["entropy", "match", "schema"]
+    match: Optional[TextMatch] = None
+    entropy: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="entropy of the sensitive")
+    __properties = ["schema", "match", "entropy"]
 
     class Config:
         """Pydantic configuration"""
@@ -57,12 +57,12 @@ class SensitiveMetadata(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of match
-        if self.match:
-            _dict['match'] = self.match.to_dict()
         # override the default output from pydantic by calling `to_dict()` of var_schema
         if self.var_schema:
             _dict['schema'] = self.var_schema.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of match
+        if self.match:
+            _dict['match'] = self.match.to_dict()
         return _dict
 
     @classmethod
@@ -75,9 +75,9 @@ class SensitiveMetadata(BaseModel):
             return SensitiveMetadata.parse_obj(obj)
 
         _obj = SensitiveMetadata.parse_obj({
-            "entropy": obj.get("entropy"),
+            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
             "match": TextMatch.from_dict(obj.get("match")) if obj.get("match") is not None else None,
-            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None
+            "entropy": obj.get("entropy")
         })
         return _obj
 

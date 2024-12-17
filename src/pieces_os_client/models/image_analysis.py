@@ -27,11 +27,11 @@ class ImageAnalysis(BaseModel):
     """
     This is a model that represents all the information collected during the processing of an image.  # noqa: E501
     """
-    analysis: StrictStr = Field(default=..., description="this is a reference to the analysis.")
-    id: StrictStr = Field(default=..., description="this is a uuid that represents a imageAnalysis.")
-    ocr: Optional[OCRAnalysis] = None
     var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
-    __properties = ["analysis", "id", "ocr", "schema"]
+    id: StrictStr = Field(default=..., description="this is a uuid that represents a imageAnalysis.")
+    analysis: StrictStr = Field(default=..., description="this is a reference to the analysis.")
+    ocr: Optional[OCRAnalysis] = None
+    __properties = ["schema", "id", "analysis", "ocr"]
 
     class Config:
         """Pydantic configuration"""
@@ -57,12 +57,12 @@ class ImageAnalysis(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of ocr
-        if self.ocr:
-            _dict['ocr'] = self.ocr.to_dict()
         # override the default output from pydantic by calling `to_dict()` of var_schema
         if self.var_schema:
             _dict['schema'] = self.var_schema.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of ocr
+        if self.ocr:
+            _dict['ocr'] = self.ocr.to_dict()
         return _dict
 
     @classmethod
@@ -75,10 +75,10 @@ class ImageAnalysis(BaseModel):
             return ImageAnalysis.parse_obj(obj)
 
         _obj = ImageAnalysis.parse_obj({
-            "analysis": obj.get("analysis"),
+            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
             "id": obj.get("id"),
-            "ocr": OCRAnalysis.from_dict(obj.get("ocr")) if obj.get("ocr") is not None else None,
-            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None
+            "analysis": obj.get("analysis"),
+            "ocr": OCRAnalysis.from_dict(obj.get("ocr")) if obj.get("ocr") is not None else None
         })
         return _obj
 

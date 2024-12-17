@@ -6,9 +6,9 @@ This is a PersonSpecific Model. and will let us know for all the assets that get
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **asset** | [**ReferencedAsset**](ReferencedAsset.md) |  | [optional] 
+**model** | [**ReferencedModel**](ReferencedModel.md) |  | [optional] 
 **deleted** | [**GroupedTimestamp**](GroupedTimestamp.md) |  | [optional] 
 **explanation** | [**ReferencedAnnotation**](ReferencedAnnotation.md) |  | [optional] 
-**model** | [**ReferencedModel**](ReferencedModel.md) |  | [optional] 
 
 ## Example
 

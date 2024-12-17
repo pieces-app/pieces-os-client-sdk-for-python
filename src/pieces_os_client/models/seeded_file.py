@@ -30,11 +30,11 @@ class SeededFile(BaseModel):
     """
     This is a base model for a File(Seeded).  We will Throw an Error, if the text and the bytes properties are both null && if both the text and bytes properties are both defined. Ensure that you pass either a text or bytes property.  bytes and string are both optionl but, if both are null or both are defined we will throw an error. So You will be required to pass one or the other, NOT both.  # noqa: E501
     """
-    bytes: Optional[TransferableBytes] = None
-    metadata: Optional[FileMetadata] = None
     var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
+    bytes: Optional[TransferableBytes] = None
     string: Optional[TransferableString] = None
-    __properties = ["bytes", "metadata", "schema", "string"]
+    metadata: Optional[FileMetadata] = None
+    __properties = ["schema", "bytes", "string", "metadata"]
 
     class Config:
         """Pydantic configuration"""
@@ -60,18 +60,18 @@ class SeededFile(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of bytes
-        if self.bytes:
-            _dict['bytes'] = self.bytes.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of metadata
-        if self.metadata:
-            _dict['metadata'] = self.metadata.to_dict()
         # override the default output from pydantic by calling `to_dict()` of var_schema
         if self.var_schema:
             _dict['schema'] = self.var_schema.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of bytes
+        if self.bytes:
+            _dict['bytes'] = self.bytes.to_dict()
         # override the default output from pydantic by calling `to_dict()` of string
         if self.string:
             _dict['string'] = self.string.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of metadata
+        if self.metadata:
+            _dict['metadata'] = self.metadata.to_dict()
         return _dict
 
     @classmethod
@@ -84,10 +84,10 @@ class SeededFile(BaseModel):
             return SeededFile.parse_obj(obj)
 
         _obj = SeededFile.parse_obj({
-            "bytes": TransferableBytes.from_dict(obj.get("bytes")) if obj.get("bytes") is not None else None,
-            "metadata": FileMetadata.from_dict(obj.get("metadata")) if obj.get("metadata") is not None else None,
             "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
-            "string": TransferableString.from_dict(obj.get("string")) if obj.get("string") is not None else None
+            "bytes": TransferableBytes.from_dict(obj.get("bytes")) if obj.get("bytes") is not None else None,
+            "string": TransferableString.from_dict(obj.get("string")) if obj.get("string") is not None else None,
+            "metadata": FileMetadata.from_dict(obj.get("metadata")) if obj.get("metadata") is not None else None
         })
         return _obj
 

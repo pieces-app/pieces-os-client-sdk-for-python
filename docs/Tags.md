@@ -5,9 +5,9 @@ This is a model that represents multiple Tag Models
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**indices** | **Dict[str, int]** | This is a Map&lt;String, int&gt; where the the key is an tag id. | [optional] 
-**iterable** | [**List[Tag]**](Tag.md) |  | 
 **var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
+**iterable** | [**List[Tag]**](Tag.md) |  | 
+**indices** | **Dict[str, int]** | This is a Map&lt;String, int&gt; where the the key is an tag id. | [optional] 
 **score** | [**Score**](Score.md) |  | [optional] 
 
 ## Example

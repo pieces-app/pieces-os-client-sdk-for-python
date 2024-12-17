@@ -5,8 +5,8 @@ This is a health model used to determine the \"health\" of the os server and clo
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**os** | [**OSHealth**](OSHealth.md) |  | 
 **var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
+**os** | [**OSHealth**](OSHealth.md) |  | 
 
 ## Example
 

@@ -5,8 +5,8 @@ A model which contains a list of InteractedAssets with potentially additional pr
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**iterable** | [**List[InteractedAsset]**](InteractedAsset.md) |  | 
 **var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
+**iterable** | [**List[InteractedAsset]**](InteractedAsset.md) |  | 
 
 ## Example
 

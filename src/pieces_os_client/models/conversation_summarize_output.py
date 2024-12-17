@@ -29,10 +29,10 @@ class ConversationSummarizeOutput(BaseModel):
     """
     This is the output model for \"/conversation/{conversation}/summarize  # noqa: E501
     """
-    annotation: ReferencedAnnotation = Field(...)
-    conversation: ReferencedConversation = Field(...)
     var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
-    __properties = ["annotation", "conversation", "schema"]
+    conversation: ReferencedConversation = Field(...)
+    annotation: ReferencedAnnotation = Field(...)
+    __properties = ["schema", "conversation", "annotation"]
 
     class Config:
         """Pydantic configuration"""
@@ -58,15 +58,15 @@ class ConversationSummarizeOutput(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of annotation
-        if self.annotation:
-            _dict['annotation'] = self.annotation.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of conversation
-        if self.conversation:
-            _dict['conversation'] = self.conversation.to_dict()
         # override the default output from pydantic by calling `to_dict()` of var_schema
         if self.var_schema:
             _dict['schema'] = self.var_schema.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of conversation
+        if self.conversation:
+            _dict['conversation'] = self.conversation.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of annotation
+        if self.annotation:
+            _dict['annotation'] = self.annotation.to_dict()
         return _dict
 
     @classmethod
@@ -79,9 +79,9 @@ class ConversationSummarizeOutput(BaseModel):
             return ConversationSummarizeOutput.parse_obj(obj)
 
         _obj = ConversationSummarizeOutput.parse_obj({
-            "annotation": ReferencedAnnotation.from_dict(obj.get("annotation")) if obj.get("annotation") is not None else None,
+            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
             "conversation": ReferencedConversation.from_dict(obj.get("conversation")) if obj.get("conversation") is not None else None,
-            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None
+            "annotation": ReferencedAnnotation.from_dict(obj.get("annotation")) if obj.get("annotation") is not None else None
         })
         return _obj
 

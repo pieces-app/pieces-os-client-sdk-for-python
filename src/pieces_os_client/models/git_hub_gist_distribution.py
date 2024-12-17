@@ -29,17 +29,17 @@ class GitHubGistDistribution(BaseModel):
     """
     This is a published Github Gist.  # noqa: E501
     """
-    created: GroupedTimestamp = Field(...)
-    deleted: Optional[GroupedTimestamp] = None
-    description: Optional[StrictStr] = Field(default=None, description="This is the description of the Gist Distribution")
-    github_id: StrictStr = Field(default=..., description="This is the id that github uses to represent the gist.")
-    name: StrictStr = Field(default=..., description="This is the name of the gist you will add.")
-    public: StrictBool = Field(default=..., description="This will let us know if the gist is public or private.")
-    recipients: Recipients = Field(...)
     var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
+    recipients: Recipients = Field(...)
+    public: StrictBool = Field(default=..., description="This will let us know if the gist is public or private.")
+    description: Optional[StrictStr] = Field(default=None, description="This is the description of the Gist Distribution")
+    name: StrictStr = Field(default=..., description="This is the name of the gist you will add.")
+    created: GroupedTimestamp = Field(...)
     updated: GroupedTimestamp = Field(...)
+    deleted: Optional[GroupedTimestamp] = None
+    github_id: StrictStr = Field(default=..., description="This is the id that github uses to represent the gist.")
     url: StrictStr = Field(default=..., description="This is the url where the gist is.")
-    __properties = ["created", "deleted", "description", "github_id", "name", "public", "recipients", "schema", "updated", "url"]
+    __properties = ["schema", "recipients", "public", "description", "name", "created", "updated", "deleted", "github_id", "url"]
 
     class Config:
         """Pydantic configuration"""
@@ -65,21 +65,21 @@ class GitHubGistDistribution(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of created
-        if self.created:
-            _dict['created'] = self.created.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of deleted
-        if self.deleted:
-            _dict['deleted'] = self.deleted.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of recipients
-        if self.recipients:
-            _dict['recipients'] = self.recipients.to_dict()
         # override the default output from pydantic by calling `to_dict()` of var_schema
         if self.var_schema:
             _dict['schema'] = self.var_schema.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of recipients
+        if self.recipients:
+            _dict['recipients'] = self.recipients.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of created
+        if self.created:
+            _dict['created'] = self.created.to_dict()
         # override the default output from pydantic by calling `to_dict()` of updated
         if self.updated:
             _dict['updated'] = self.updated.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of deleted
+        if self.deleted:
+            _dict['deleted'] = self.deleted.to_dict()
         return _dict
 
     @classmethod
@@ -92,15 +92,15 @@ class GitHubGistDistribution(BaseModel):
             return GitHubGistDistribution.parse_obj(obj)
 
         _obj = GitHubGistDistribution.parse_obj({
-            "created": GroupedTimestamp.from_dict(obj.get("created")) if obj.get("created") is not None else None,
-            "deleted": GroupedTimestamp.from_dict(obj.get("deleted")) if obj.get("deleted") is not None else None,
-            "description": obj.get("description"),
-            "github_id": obj.get("github_id"),
-            "name": obj.get("name"),
-            "public": obj.get("public"),
-            "recipients": Recipients.from_dict(obj.get("recipients")) if obj.get("recipients") is not None else None,
             "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
+            "recipients": Recipients.from_dict(obj.get("recipients")) if obj.get("recipients") is not None else None,
+            "public": obj.get("public"),
+            "description": obj.get("description"),
+            "name": obj.get("name"),
+            "created": GroupedTimestamp.from_dict(obj.get("created")) if obj.get("created") is not None else None,
             "updated": GroupedTimestamp.from_dict(obj.get("updated")) if obj.get("updated") is not None else None,
+            "deleted": GroupedTimestamp.from_dict(obj.get("deleted")) if obj.get("deleted") is not None else None,
+            "github_id": obj.get("github_id"),
             "url": obj.get("url")
         })
         return _obj

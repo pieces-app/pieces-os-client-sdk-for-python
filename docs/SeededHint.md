@@ -4,12 +4,12 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**asset** | **str** | This is an asset id that we are using to link this to an asset. | [optional] 
-**mechanism** | [**MechanismEnum**](MechanismEnum.md) |  | [optional] 
-**model** | **str** | this is a model id. that we are using to link this to a model. | [optional] 
 **var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
-**text** | **str** | This is the text of the hint. | 
+**mechanism** | [**MechanismEnum**](MechanismEnum.md) |  | [optional] 
+**asset** | **str** | This is an asset id that we are using to link this to an asset. | [optional] 
 **type** | [**HintTypeEnum**](HintTypeEnum.md) |  | 
+**text** | **str** | This is the text of the hint. | 
+**model** | **str** | this is a model id. that we are using to link this to a model. | [optional] 
 
 ## Example
 

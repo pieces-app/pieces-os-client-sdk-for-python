@@ -5,8 +5,8 @@ This is a detected External Application that comes from our endpoint that will g
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**name** | **str** | this is the name of the application | 
 **var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
+**name** | **str** | this is the name of the application | 
 **version** | **str** |  | [optional] 
 
 ## Example

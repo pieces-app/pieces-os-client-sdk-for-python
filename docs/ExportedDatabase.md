@@ -4,37 +4,38 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**activities** | **List[int]** |  | [optional] 
 **analyses** | **List[int]** |  | 
-**anchor_points** | **List[int]** |  | [optional] 
-**anchors** | **List[int]** |  | [optional] 
-**annotations** | **List[int]** |  | [optional] 
 **applications** | **List[int]** |  | 
 **assets** | **List[int]** |  | 
 **code_analyses** | **List[int]** |  | 
-**conversation_messages** | **List[int]** |  | [optional] 
-**conversations** | **List[int]** |  | [optional] 
 **files** | **List[int]** |  | 
 **format_metrics** | **List[int]** |  | 
 **formats** | **List[int]** |  | 
 **fragments** | **List[int]** |  | 
-**hints** | **List[int]** |  | [optional] 
 **image_analyses** | **List[int]** |  | 
-**message_values** | [**ExportedDatabaseFormats**](ExportedDatabaseFormats.md) |  | [optional] 
 **models** | **List[int]** |  | 
 **ocr_analyses** | **List[int]** |  | 
 **persons** | **List[int]** |  | 
-**ranges** | **List[int]** |  | [optional] 
-**relationships** | **List[int]** |  | [optional] 
-**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 **sensitives** | **List[int]** |  | 
 **tags** | **List[int]** |  | 
+**websites** | **List[int]** |  | 
 **values** | [**ExportedDatabaseFormats**](ExportedDatabaseFormats.md) |  | 
 **version** | **str** | This is the version of your os_server or cloud_server that we we exporting from. | 
-**websites** | **List[int]** |  | 
-**workstream_event_values** | [**ExportedDatabaseFormats**](ExportedDatabaseFormats.md) |  | [optional] 
+**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
+**relationships** | **List[int]** |  | [optional] 
+**activities** | **List[int]** |  | [optional] 
+**annotations** | **List[int]** |  | [optional] 
+**hints** | **List[int]** |  | [optional] 
+**anchors** | **List[int]** |  | [optional] 
+**anchor_points** | **List[int]** |  | [optional] 
+**conversations** | **List[int]** |  | [optional] 
+**conversation_messages** | **List[int]** |  | [optional] 
 **workstream_events** | **List[int]** |  | [optional] 
+**ranges** | **List[int]** |  | [optional] 
 **workstream_summaries** | **List[int]** |  | [optional] 
+**workstream_pattern_engine_sources** | **List[int]** |  | [optional] 
+**message_values** | [**ExportedDatabaseFormats**](ExportedDatabaseFormats.md) |  | [optional] 
+**workstream_event_values** | [**ExportedDatabaseFormats**](ExportedDatabaseFormats.md) |  | [optional] 
 
 ## Example
 

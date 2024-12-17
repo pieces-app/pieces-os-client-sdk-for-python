@@ -5,9 +5,9 @@ modeled after this (https://microsoft.github.io/language-server-protocol/specifi
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**end** | [**LanguageServerProtocolLocationRangePosition**](LanguageServerProtocolLocationRangePosition.md) |  | 
 **var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 **start** | [**LanguageServerProtocolLocationRangePosition**](LanguageServerProtocolLocationRangePosition.md) |  | 
+**end** | [**LanguageServerProtocolLocationRangePosition**](LanguageServerProtocolLocationRangePosition.md) |  | 
 
 ## Example
 

@@ -28,11 +28,11 @@ class Node(BaseModel):
     """
     This describes a node within a relationship graph used to related like types. ie asset to asset, tag to tag, ...etc  created: is here to let us know when the node was attached.  id: this is the the id of the type ie, if the type is Asset the id here points to the asset that this node represents.  # noqa: E501
     """
-    created: GroupedTimestamp = Field(...)
     id: StrictStr = Field(...)
-    root: StrictBool = Field(default=..., description="This is a boolean to let us know if this node is the root or origin of the relationship graph.")
     type: NodeTypeEnum = Field(...)
-    __properties = ["created", "id", "root", "type"]
+    root: StrictBool = Field(default=..., description="This is a boolean to let us know if this node is the root or origin of the relationship graph.")
+    created: GroupedTimestamp = Field(...)
+    __properties = ["id", "type", "root", "created"]
 
     class Config:
         """Pydantic configuration"""
@@ -73,10 +73,10 @@ class Node(BaseModel):
             return Node.parse_obj(obj)
 
         _obj = Node.parse_obj({
-            "created": GroupedTimestamp.from_dict(obj.get("created")) if obj.get("created") is not None else None,
             "id": obj.get("id"),
+            "type": obj.get("type"),
             "root": obj.get("root"),
-            "type": obj.get("type")
+            "created": GroupedTimestamp.from_dict(obj.get("created")) if obj.get("created") is not None else None
         })
         return _obj
 

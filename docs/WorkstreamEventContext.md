@@ -5,9 +5,9 @@ This is a free form data object that will enable additional data to be passed in
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**browser** | [**WorkstreamEventTriggerContextBrowser**](WorkstreamEventTriggerContextBrowser.md) |  | [optional] 
-**ide** | [**WorkstreamEventTriggerContextIDE**](WorkstreamEventTriggerContextIDE.md) |  | [optional] 
 **var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
+**ide** | [**WorkstreamEventTriggerContextIDE**](WorkstreamEventTriggerContextIDE.md) |  | [optional] 
+**browser** | [**WorkstreamEventTriggerContextBrowser**](WorkstreamEventTriggerContextBrowser.md) |  | [optional] 
 
 ## Example
 

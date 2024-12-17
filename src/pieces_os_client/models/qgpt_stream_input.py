@@ -28,14 +28,14 @@ class QGPTStreamInput(BaseModel):
     """
     This is the input for the /qgpt/stream endpoint.  # noqa: E501
     """
-    agent: Optional[StrictBool] = Field(default=None, description="This will let us know if we want to run the agent routing as well, this is default to true. However if set to false you will save on processing and you will recieve null for the agentRoutes class on the QGPTStreamOutput.")
-    conversation: Optional[StrictStr] = Field(default=None, description="This is the ID of a predefined persisted conversation, if this is not present we will create a new conversation for the input/output.(in the case of a question)")
-    question: Optional[QGPTQuestionInput] = None
     relevance: Optional[QGPTRelevanceInput] = None
+    question: Optional[QGPTQuestionInput] = None
     request: Optional[StrictStr] = Field(default=None, description="This is an optional Id you can use to identify the result from your request.")
-    reset: Optional[StrictBool] = Field(default=None, description="This will fully reset all current Activity within the QGPT stream Flows.")
+    conversation: Optional[StrictStr] = Field(default=None, description="This is the ID of a predefined persisted conversation, if this is not present we will create a new conversation for the input/output.(in the case of a question)")
     stop: Optional[StrictBool] = Field(default=None, description="This will stop the output of the current LLM")
-    __properties = ["agent", "conversation", "question", "relevance", "request", "reset", "stop"]
+    reset: Optional[StrictBool] = Field(default=None, description="This will fully reset all current Activity within the QGPT stream Flows.")
+    agent: Optional[StrictBool] = Field(default=None, description="This will let us know if we want to run the agent routing as well, this is default to true. However if set to false you will save on processing and you will recieve null for the agentRoutes class on the QGPTStreamOutput.")
+    __properties = ["relevance", "question", "request", "conversation", "stop", "reset", "agent"]
 
     class Config:
         """Pydantic configuration"""
@@ -61,12 +61,12 @@ class QGPTStreamInput(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of question
-        if self.question:
-            _dict['question'] = self.question.to_dict()
         # override the default output from pydantic by calling `to_dict()` of relevance
         if self.relevance:
             _dict['relevance'] = self.relevance.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of question
+        if self.question:
+            _dict['question'] = self.question.to_dict()
         return _dict
 
     @classmethod
@@ -79,13 +79,13 @@ class QGPTStreamInput(BaseModel):
             return QGPTStreamInput.parse_obj(obj)
 
         _obj = QGPTStreamInput.parse_obj({
-            "agent": obj.get("agent"),
-            "conversation": obj.get("conversation"),
-            "question": QGPTQuestionInput.from_dict(obj.get("question")) if obj.get("question") is not None else None,
             "relevance": QGPTRelevanceInput.from_dict(obj.get("relevance")) if obj.get("relevance") is not None else None,
+            "question": QGPTQuestionInput.from_dict(obj.get("question")) if obj.get("question") is not None else None,
             "request": obj.get("request"),
+            "conversation": obj.get("conversation"),
+            "stop": obj.get("stop"),
             "reset": obj.get("reset"),
-            "stop": obj.get("stop")
+            "agent": obj.get("agent")
         })
         return _obj
 

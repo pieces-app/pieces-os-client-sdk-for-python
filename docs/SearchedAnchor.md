@@ -5,13 +5,13 @@ This is used for the Anchors searching endpoint.  anchor here is only provided i
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**anchor** | [**Anchor**](Anchor.md) |  | [optional] 
-**exact** | **bool** |  | 
-**identifier** | **str** | This is the uuid of the anchor. | 
-**points** | [**SearchedAnchorPoints**](SearchedAnchorPoints.md) |  | [optional] 
 **var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
+**anchor** | [**Anchor**](Anchor.md) |  | [optional] 
+**points** | [**SearchedAnchorPoints**](SearchedAnchorPoints.md) |  | [optional] 
+**exact** | **bool** |  | 
 **similarity** | **float** |  | 
 **temporal** | **bool** |  | [optional] 
+**identifier** | **str** | This is the uuid of the anchor. | 
 
 ## Example
 

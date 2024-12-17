@@ -4,16 +4,16 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**annotations** | [**List[SeededAnnotation]**](SeededAnnotation.md) |  | [optional] 
-**asset** | **str** | You may associate a SeededAnchor with an asset | [optional] 
-**conversation** | **str** |  | [optional] 
-**fullpath** | **str** |  | 
-**name** | **str** |  | [optional] 
-**persons** | [**FlattenedPersons**](FlattenedPersons.md) |  | [optional] 
-**platform** | [**PlatformEnum**](PlatformEnum.md) |  | [optional] 
 **var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 **type** | [**AnchorTypeEnum**](AnchorTypeEnum.md) |  | 
 **watch** | **bool** |  | [optional] 
+**fullpath** | **str** |  | 
+**asset** | **str** | You may associate a SeededAnchor with an asset | [optional] 
+**platform** | [**PlatformEnum**](PlatformEnum.md) |  | [optional] 
+**name** | **str** |  | [optional] 
+**annotations** | [**List[SeededAnnotation]**](SeededAnnotation.md) |  | [optional] 
+**conversation** | **str** |  | [optional] 
+**persons** | [**FlattenedPersons**](FlattenedPersons.md) |  | [optional] 
 
 ## Example
 

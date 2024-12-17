@@ -28,13 +28,13 @@ class Accessor(BaseModel):
     """
     This is used to determine who has accessed a share. and how many times.  The user here is the user that accessed this Piece.(optional) if undefined then this user was not logged in yet.  # noqa: E501
     """
-    count: StrictInt = Field(default=..., description="how many times this user accessed this piece.")
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     id: StrictStr = Field(...)
     os: StrictStr = Field(default=..., description="this is an os id.")
-    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     share: StrictStr = Field(...)
+    count: StrictInt = Field(default=..., description="how many times this user accessed this piece.")
     user: Optional[FlattenedUserProfile] = None
-    __properties = ["count", "id", "os", "schema", "share", "user"]
+    __properties = ["schema", "id", "os", "share", "count", "user"]
 
     class Config:
         """Pydantic configuration"""
@@ -78,11 +78,11 @@ class Accessor(BaseModel):
             return Accessor.parse_obj(obj)
 
         _obj = Accessor.parse_obj({
-            "count": obj.get("count"),
+            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
             "id": obj.get("id"),
             "os": obj.get("os"),
-            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
             "share": obj.get("share"),
+            "count": obj.get("count"),
             "user": FlattenedUserProfile.from_dict(obj.get("user")) if obj.get("user") is not None else None
         })
         return _obj

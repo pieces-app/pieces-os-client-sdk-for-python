@@ -5,8 +5,8 @@ This is a plural representation of the DocumentContributor
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**iterable** | [**List[DocumentContributor]**](DocumentContributor.md) |  | 
 **var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
+**iterable** | [**List[DocumentContributor]**](DocumentContributor.md) |  | 
 
 ## Example
 

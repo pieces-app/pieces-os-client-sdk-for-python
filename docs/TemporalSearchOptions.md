@@ -5,8 +5,8 @@ created: will return the materials based on if the range is satisfied w/ this cr
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**created** | [**AnonymousTemporalRange**](AnonymousTemporalRange.md) |  | [optional] 
 **var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
+**created** | [**AnonymousTemporalRange**](AnonymousTemporalRange.md) |  | [optional] 
 **updated** | [**AnonymousTemporalRange**](AnonymousTemporalRange.md) |  | [optional] 
 
 ## Example

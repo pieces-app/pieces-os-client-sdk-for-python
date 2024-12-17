@@ -5,8 +5,8 @@ This is a model of all optional properties, that will get returned from /assets/
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**identifiers** | [**FlattenedAssets**](FlattenedAssets.md) |  | [optional] 
 **var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
+**identifiers** | [**FlattenedAssets**](FlattenedAssets.md) |  | [optional] 
 
 ## Example
 

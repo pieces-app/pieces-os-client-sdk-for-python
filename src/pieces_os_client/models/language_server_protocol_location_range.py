@@ -28,10 +28,10 @@ class LanguageServerProtocolLocationRange(BaseModel):
     """
     modeled after this (https://microsoft.github.io/language-server-protocol/specifications/lsp/3.17/specification/#range)  # noqa: E501
     """
-    end: LanguageServerProtocolLocationRangePosition = Field(...)
     var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     start: LanguageServerProtocolLocationRangePosition = Field(...)
-    __properties = ["end", "schema", "start"]
+    end: LanguageServerProtocolLocationRangePosition = Field(...)
+    __properties = ["schema", "start", "end"]
 
     class Config:
         """Pydantic configuration"""
@@ -57,15 +57,15 @@ class LanguageServerProtocolLocationRange(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of end
-        if self.end:
-            _dict['end'] = self.end.to_dict()
         # override the default output from pydantic by calling `to_dict()` of var_schema
         if self.var_schema:
             _dict['schema'] = self.var_schema.to_dict()
         # override the default output from pydantic by calling `to_dict()` of start
         if self.start:
             _dict['start'] = self.start.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of end
+        if self.end:
+            _dict['end'] = self.end.to_dict()
         return _dict
 
     @classmethod
@@ -78,9 +78,9 @@ class LanguageServerProtocolLocationRange(BaseModel):
             return LanguageServerProtocolLocationRange.parse_obj(obj)
 
         _obj = LanguageServerProtocolLocationRange.parse_obj({
-            "end": LanguageServerProtocolLocationRangePosition.from_dict(obj.get("end")) if obj.get("end") is not None else None,
             "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
-            "start": LanguageServerProtocolLocationRangePosition.from_dict(obj.get("start")) if obj.get("start") is not None else None
+            "start": LanguageServerProtocolLocationRangePosition.from_dict(obj.get("start")) if obj.get("start") is not None else None,
+            "end": LanguageServerProtocolLocationRangePosition.from_dict(obj.get("end")) if obj.get("end") is not None else None
         })
         return _obj
 

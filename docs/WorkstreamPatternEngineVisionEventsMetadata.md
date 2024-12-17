@@ -5,11 +5,11 @@ This is specific model that will return the size of the WPE in bytes
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**bytes** | [**ByteDescriptor**](ByteDescriptor.md) |  | 
-**newest** | [**WorkstreamPatternEngineVisionEvent**](WorkstreamPatternEngineVisionEvent.md) |  | [optional] 
-**oldest** | [**WorkstreamPatternEngineVisionEvent**](WorkstreamPatternEngineVisionEvent.md) |  | [optional] 
 **var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
+**bytes** | [**ByteDescriptor**](ByteDescriptor.md) |  | 
 **total** | **int** | This is the total number of events. | 
+**oldest** | [**WorkstreamPatternEngineVisionEvent**](WorkstreamPatternEngineVisionEvent.md) |  | [optional] 
+**newest** | [**WorkstreamPatternEngineVisionEvent**](WorkstreamPatternEngineVisionEvent.md) |  | [optional] 
 
 ## Example
 

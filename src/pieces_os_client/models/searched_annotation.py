@@ -28,13 +28,13 @@ class SearchedAnnotation(BaseModel):
     """
     This is used for the Annotation searching endpoint  annotation here is only provided if transferables are set to true.  temporal: if this is provided this means that their material matched the input via a timestamp.  TODO will want to consider returning related materials to this material potentially both associated/ and not associated materials ie suggestion: WorkstreamSuggestions  # noqa: E501
     """
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     annotation: Optional[Annotation] = None
     exact: StrictBool = Field(...)
-    identifier: StrictStr = Field(default=..., description="This is the uuid of the annotation.")
-    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     similarity: Union[StrictFloat, StrictInt] = Field(...)
     temporal: Optional[StrictBool] = None
-    __properties = ["annotation", "exact", "identifier", "schema", "similarity", "temporal"]
+    identifier: StrictStr = Field(default=..., description="This is the uuid of the annotation.")
+    __properties = ["schema", "annotation", "exact", "similarity", "temporal", "identifier"]
 
     class Config:
         """Pydantic configuration"""
@@ -60,12 +60,12 @@ class SearchedAnnotation(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of annotation
-        if self.annotation:
-            _dict['annotation'] = self.annotation.to_dict()
         # override the default output from pydantic by calling `to_dict()` of var_schema
         if self.var_schema:
             _dict['schema'] = self.var_schema.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of annotation
+        if self.annotation:
+            _dict['annotation'] = self.annotation.to_dict()
         return _dict
 
     @classmethod
@@ -78,12 +78,12 @@ class SearchedAnnotation(BaseModel):
             return SearchedAnnotation.parse_obj(obj)
 
         _obj = SearchedAnnotation.parse_obj({
+            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
             "annotation": Annotation.from_dict(obj.get("annotation")) if obj.get("annotation") is not None else None,
             "exact": obj.get("exact"),
-            "identifier": obj.get("identifier"),
-            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
             "similarity": obj.get("similarity"),
-            "temporal": obj.get("temporal")
+            "temporal": obj.get("temporal"),
+            "identifier": obj.get("identifier")
         })
         return _obj
 

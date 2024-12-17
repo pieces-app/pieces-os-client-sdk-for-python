@@ -26,45 +26,45 @@ class ExternalProviderProfileData(BaseModel):
     """
     All of these will be optional.  Will support ProfileData from all our social providers.  # noqa: E501
     """
-    anchor: Optional[StrictStr] = None
-    bio: Optional[StrictStr] = None
-    blog: Optional[StrictStr] = None
-    collaborators: Optional[StrictInt] = None
-    company: Optional[StrictStr] = None
-    created_at: Optional[StrictStr] = None
-    disk_usage: Optional[StrictInt] = None
+    name: Optional[StrictStr] = None
+    picture: Optional[StrictStr] = None
+    nickname: Optional[StrictStr] = None
     email: Optional[StrictStr] = None
     email_verified: Optional[StrictBool] = None
-    events_url: Optional[StrictStr] = None
-    followers: Optional[StrictInt] = None
+    node_id: Optional[StrictStr] = None
+    gravatar_id: Optional[StrictStr] = None
+    url: Optional[StrictStr] = None
+    html_url: Optional[StrictStr] = None
     followers_url: Optional[StrictStr] = None
-    following: Optional[StrictInt] = None
     following_url: Optional[StrictStr] = None
     gists_url: Optional[StrictStr] = None
-    gravatar_id: Optional[StrictStr] = None
-    hireable: Optional[StrictBool] = None
-    html_url: Optional[StrictStr] = None
-    name: Optional[StrictStr] = None
-    nickname: Optional[StrictStr] = None
-    node_id: Optional[StrictStr] = None
-    organizations_url: Optional[StrictStr] = None
-    owned_private_repos: Optional[StrictInt] = None
-    picture: Optional[StrictStr] = None
-    private_gists: Optional[StrictInt] = None
-    public_gists: Optional[StrictInt] = None
-    public_repos: Optional[StrictInt] = None
-    received_events_url: Optional[StrictStr] = None
-    repos_url: Optional[StrictStr] = None
-    site_admin: Optional[StrictBool] = None
     starred_url: Optional[StrictStr] = None
     subscriptions_url: Optional[StrictStr] = None
-    total_private_repos: Optional[StrictInt] = None
-    twitter_username: Optional[StrictStr] = None
-    two_factor_authentication: Optional[StrictBool] = None
+    organizations_url: Optional[StrictStr] = None
+    repos_url: Optional[StrictStr] = None
+    events_url: Optional[StrictStr] = None
+    received_events_url: Optional[StrictStr] = None
     type: Optional[StrictStr] = None
+    site_admin: Optional[StrictBool] = None
+    company: Optional[StrictStr] = None
+    blog: Optional[StrictStr] = None
+    anchor: Optional[StrictStr] = None
+    hireable: Optional[StrictBool] = None
+    bio: Optional[StrictStr] = None
+    twitter_username: Optional[StrictStr] = None
+    public_repos: Optional[StrictInt] = None
+    public_gists: Optional[StrictInt] = None
+    followers: Optional[StrictInt] = None
+    following: Optional[StrictInt] = None
+    created_at: Optional[StrictStr] = None
     updated_at: Optional[StrictStr] = None
-    url: Optional[StrictStr] = None
-    __properties = ["anchor", "bio", "blog", "collaborators", "company", "created_at", "disk_usage", "email", "email_verified", "events_url", "followers", "followers_url", "following", "following_url", "gists_url", "gravatar_id", "hireable", "html_url", "name", "nickname", "node_id", "organizations_url", "owned_private_repos", "picture", "private_gists", "public_gists", "public_repos", "received_events_url", "repos_url", "site_admin", "starred_url", "subscriptions_url", "total_private_repos", "twitter_username", "two_factor_authentication", "type", "updated_at", "url"]
+    private_gists: Optional[StrictInt] = None
+    total_private_repos: Optional[StrictInt] = None
+    owned_private_repos: Optional[StrictInt] = None
+    disk_usage: Optional[StrictInt] = None
+    collaborators: Optional[StrictInt] = None
+    two_factor_authentication: Optional[StrictBool] = None
+    __properties = ["name", "picture", "nickname", "email", "email_verified", "node_id", "gravatar_id", "url", "html_url", "followers_url", "following_url", "gists_url", "starred_url", "subscriptions_url", "organizations_url", "repos_url", "events_url", "received_events_url", "type", "site_admin", "company", "blog", "anchor", "hireable", "bio", "twitter_username", "public_repos", "public_gists", "followers", "following", "created_at", "updated_at", "private_gists", "total_private_repos", "owned_private_repos", "disk_usage", "collaborators", "two_factor_authentication"]
 
     class Config:
         """Pydantic configuration"""
@@ -102,44 +102,44 @@ class ExternalProviderProfileData(BaseModel):
             return ExternalProviderProfileData.parse_obj(obj)
 
         _obj = ExternalProviderProfileData.parse_obj({
-            "anchor": obj.get("anchor"),
-            "bio": obj.get("bio"),
-            "blog": obj.get("blog"),
-            "collaborators": obj.get("collaborators"),
-            "company": obj.get("company"),
-            "created_at": obj.get("created_at"),
-            "disk_usage": obj.get("disk_usage"),
+            "name": obj.get("name"),
+            "picture": obj.get("picture"),
+            "nickname": obj.get("nickname"),
             "email": obj.get("email"),
             "email_verified": obj.get("email_verified"),
-            "events_url": obj.get("events_url"),
-            "followers": obj.get("followers"),
+            "node_id": obj.get("node_id"),
+            "gravatar_id": obj.get("gravatar_id"),
+            "url": obj.get("url"),
+            "html_url": obj.get("html_url"),
             "followers_url": obj.get("followers_url"),
-            "following": obj.get("following"),
             "following_url": obj.get("following_url"),
             "gists_url": obj.get("gists_url"),
-            "gravatar_id": obj.get("gravatar_id"),
-            "hireable": obj.get("hireable"),
-            "html_url": obj.get("html_url"),
-            "name": obj.get("name"),
-            "nickname": obj.get("nickname"),
-            "node_id": obj.get("node_id"),
-            "organizations_url": obj.get("organizations_url"),
-            "owned_private_repos": obj.get("owned_private_repos"),
-            "picture": obj.get("picture"),
-            "private_gists": obj.get("private_gists"),
-            "public_gists": obj.get("public_gists"),
-            "public_repos": obj.get("public_repos"),
-            "received_events_url": obj.get("received_events_url"),
-            "repos_url": obj.get("repos_url"),
-            "site_admin": obj.get("site_admin"),
             "starred_url": obj.get("starred_url"),
             "subscriptions_url": obj.get("subscriptions_url"),
-            "total_private_repos": obj.get("total_private_repos"),
-            "twitter_username": obj.get("twitter_username"),
-            "two_factor_authentication": obj.get("two_factor_authentication"),
+            "organizations_url": obj.get("organizations_url"),
+            "repos_url": obj.get("repos_url"),
+            "events_url": obj.get("events_url"),
+            "received_events_url": obj.get("received_events_url"),
             "type": obj.get("type"),
+            "site_admin": obj.get("site_admin"),
+            "company": obj.get("company"),
+            "blog": obj.get("blog"),
+            "anchor": obj.get("anchor"),
+            "hireable": obj.get("hireable"),
+            "bio": obj.get("bio"),
+            "twitter_username": obj.get("twitter_username"),
+            "public_repos": obj.get("public_repos"),
+            "public_gists": obj.get("public_gists"),
+            "followers": obj.get("followers"),
+            "following": obj.get("following"),
+            "created_at": obj.get("created_at"),
             "updated_at": obj.get("updated_at"),
-            "url": obj.get("url")
+            "private_gists": obj.get("private_gists"),
+            "total_private_repos": obj.get("total_private_repos"),
+            "owned_private_repos": obj.get("owned_private_repos"),
+            "disk_usage": obj.get("disk_usage"),
+            "collaborators": obj.get("collaborators"),
+            "two_factor_authentication": obj.get("two_factor_authentication")
         })
         return _obj
 

@@ -28,13 +28,13 @@ class SearchedWebsite(BaseModel):
     """
     This is used for the Websites searching endpoint.  website here is only provided if transferables are set to true.  temporal: if this is provided this means that their material matched the input via a timestamp.  TODO will want to consider returning related materials to this material potentially both associated/ and not associated materials ie suggestion: WorkstreamSuggestions  # noqa: E501
     """
-    exact: StrictBool = Field(...)
-    identifier: StrictStr = Field(default=..., description="This is the uuid of the website.")
     var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
+    website: Optional[Website] = None
+    exact: StrictBool = Field(...)
     similarity: Union[StrictFloat, StrictInt] = Field(...)
     temporal: Optional[StrictBool] = None
-    website: Optional[Website] = None
-    __properties = ["exact", "identifier", "schema", "similarity", "temporal", "website"]
+    identifier: StrictStr = Field(default=..., description="This is the uuid of the website.")
+    __properties = ["schema", "website", "exact", "similarity", "temporal", "identifier"]
 
     class Config:
         """Pydantic configuration"""
@@ -78,12 +78,12 @@ class SearchedWebsite(BaseModel):
             return SearchedWebsite.parse_obj(obj)
 
         _obj = SearchedWebsite.parse_obj({
-            "exact": obj.get("exact"),
-            "identifier": obj.get("identifier"),
             "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
+            "website": Website.from_dict(obj.get("website")) if obj.get("website") is not None else None,
+            "exact": obj.get("exact"),
             "similarity": obj.get("similarity"),
             "temporal": obj.get("temporal"),
-            "website": Website.from_dict(obj.get("website")) if obj.get("website") is not None else None
+            "identifier": obj.get("identifier")
         })
         return _obj
 

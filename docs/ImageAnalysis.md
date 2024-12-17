@@ -5,10 +5,10 @@ This is a model that represents all the information collected during the process
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**analysis** | **str** | this is a reference to the analysis. | 
-**id** | **str** | this is a uuid that represents a imageAnalysis. | 
-**ocr** | [**OCRAnalysis**](OCRAnalysis.md) |  | [optional] 
 **var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
+**id** | **str** | this is a uuid that represents a imageAnalysis. | 
+**analysis** | **str** | this is a reference to the analysis. | 
+**ocr** | [**OCRAnalysis**](OCRAnalysis.md) |  | [optional] 
 
 ## Example
 

@@ -5,9 +5,9 @@ TODO if we add another distribution add to this, Distribution, and flattenedDist
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**github** | [**SeededGitHubDistribution**](SeededGitHubDistribution.md) |  | [optional] 
-**mailgun** | [**MailgunDistribution**](MailgunDistribution.md) |  | [optional] 
 **var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
+**mailgun** | [**MailgunDistribution**](MailgunDistribution.md) |  | [optional] 
+**github** | [**SeededGitHubDistribution**](SeededGitHubDistribution.md) |  | [optional] 
 
 ## Example
 

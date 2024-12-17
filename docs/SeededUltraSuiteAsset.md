@@ -5,11 +5,11 @@ A SeededUEAsset is the minimum data sent from UE required to create an asset wit
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**description** | **str** |  | [optional] 
+**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
+**name** | **str** | (optional) name is the name of the file | [optional] 
 **ext** | [**ClassificationSpecificEnum**](ClassificationSpecificEnum.md) |  | [optional] 
 **format** | [**SeededFormat**](SeededFormat.md) |  | 
-**name** | **str** | (optional) name is the name of the file | [optional] 
-**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
+**description** | **str** |  | [optional] 
 
 ## Example
 

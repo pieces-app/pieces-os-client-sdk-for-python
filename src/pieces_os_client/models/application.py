@@ -27,22 +27,24 @@ from pieces_os_client.models.embedded_model_schema import EmbeddedModelSchema
 from pieces_os_client.models.mechanism_enum import MechanismEnum
 from pieces_os_client.models.platform_enum import PlatformEnum
 from pieces_os_client.models.privacy_enum import PrivacyEnum
+from pieces_os_client.models.seeded_asset_enrichment import SeededAssetEnrichment
 
 class Application(BaseModel):
     """
     A Model to describe what application a format/analytics event originated.  mechanism: This will let us know where this came from. ie.only 2 enums are used here or else throw and error. default mechanism here is MANUAL- meaning that this came from our user Connecting an application. INTERNAL - means that this came from a shareable link  # noqa: E501
     """
-    automatic_unload: Optional[StrictBool] = Field(default=None, alias="automaticUnload", description="This is a proper that will let us know if we will proactivity unload all of your machine learning models.by default this is false.")
-    capabilities: Optional[CapabilitiesEnum] = None
-    id: StrictStr = Field(default=..., description="The ID of the application at the device level")
-    mechanism: Optional[MechanismEnum] = None
-    name: ApplicationNameEnum = Field(...)
-    onboarded: StrictBool = Field(...)
-    platform: PlatformEnum = Field(...)
-    privacy: PrivacyEnum = Field(...)
     var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
+    id: StrictStr = Field(default=..., description="The ID of the application at the device level")
+    name: ApplicationNameEnum = Field(...)
     version: StrictStr = Field(default=..., description="This is the specific version number 0.0.0")
-    __properties = ["automaticUnload", "capabilities", "id", "mechanism", "name", "onboarded", "platform", "privacy", "schema", "version"]
+    platform: PlatformEnum = Field(...)
+    onboarded: StrictBool = Field(...)
+    privacy: PrivacyEnum = Field(...)
+    capabilities: Optional[CapabilitiesEnum] = None
+    mechanism: Optional[MechanismEnum] = None
+    automatic_unload: Optional[StrictBool] = Field(default=None, alias="automaticUnload", description="This is a proper that will let us know if we will proactivity unload all of your machine learning models.by default this is false.")
+    enrichment: Optional[SeededAssetEnrichment] = None
+    __properties = ["schema", "id", "name", "version", "platform", "onboarded", "privacy", "capabilities", "mechanism", "automaticUnload", "enrichment"]
 
     class Config:
         """Pydantic configuration"""
@@ -71,6 +73,9 @@ class Application(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of var_schema
         if self.var_schema:
             _dict['schema'] = self.var_schema.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of enrichment
+        if self.enrichment:
+            _dict['enrichment'] = self.enrichment.to_dict()
         return _dict
 
     @classmethod
@@ -83,16 +88,17 @@ class Application(BaseModel):
             return Application.parse_obj(obj)
 
         _obj = Application.parse_obj({
-            "automatic_unload": obj.get("automaticUnload"),
-            "capabilities": obj.get("capabilities"),
-            "id": obj.get("id"),
-            "mechanism": obj.get("mechanism"),
-            "name": obj.get("name"),
-            "onboarded": obj.get("onboarded"),
-            "platform": obj.get("platform"),
-            "privacy": obj.get("privacy"),
             "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
-            "version": obj.get("version")
+            "id": obj.get("id"),
+            "name": obj.get("name"),
+            "version": obj.get("version"),
+            "platform": obj.get("platform"),
+            "onboarded": obj.get("onboarded"),
+            "privacy": obj.get("privacy"),
+            "capabilities": obj.get("capabilities"),
+            "mechanism": obj.get("mechanism"),
+            "automatic_unload": obj.get("automaticUnload"),
+            "enrichment": SeededAssetEnrichment.from_dict(obj.get("enrichment")) if obj.get("enrichment") is not None else None
         })
         return _obj
 

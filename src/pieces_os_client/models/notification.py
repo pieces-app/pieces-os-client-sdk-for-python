@@ -27,12 +27,12 @@ class Notification(BaseModel):
     """
     config model for notification invoking  # noqa: E501
     """
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     id: StrictInt = Field(...)
+    title: Optional[StrictStr] = None
     message: Optional[StrictStr] = None
     payload: Optional[StrictStr] = None
-    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
-    title: Optional[StrictStr] = None
-    __properties = ["id", "message", "payload", "schema", "title"]
+    __properties = ["schema", "id", "title", "message", "payload"]
 
     class Config:
         """Pydantic configuration"""
@@ -73,11 +73,11 @@ class Notification(BaseModel):
             return Notification.parse_obj(obj)
 
         _obj = Notification.parse_obj({
-            "id": obj.get("id"),
-            "message": obj.get("message"),
-            "payload": obj.get("payload"),
             "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
-            "title": obj.get("title")
+            "id": obj.get("id"),
+            "title": obj.get("title"),
+            "message": obj.get("message"),
+            "payload": obj.get("payload")
         })
         return _obj
 

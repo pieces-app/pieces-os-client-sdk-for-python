@@ -27,10 +27,10 @@ class SeededGithubGistsImport(BaseModel):
     """
     This is the body of the /github/gists/import,  by default we will look for everything from your private gists, (TODO hook up public gists.)&& get clever  currently we will not ensure that this is a good pieces for you but we will just get you the gist and let you do what you want with it(room for improvement, if we want to layer in advanced pieces discovery)  For the future, we might want to add a max number of assets that are returned from this.  # noqa: E501
     """
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     application: StrictStr = Field(default=..., description="application id.")
     public: Optional[StrictBool] = Field(default=None, description="This will default to false.(ie private), currently not supporting pulling public gists.")
-    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
-    __properties = ["application", "public", "schema"]
+    __properties = ["schema", "application", "public"]
 
     class Config:
         """Pydantic configuration"""
@@ -71,9 +71,9 @@ class SeededGithubGistsImport(BaseModel):
             return SeededGithubGistsImport.parse_obj(obj)
 
         _obj = SeededGithubGistsImport.parse_obj({
+            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
             "application": obj.get("application"),
-            "public": obj.get("public"),
-            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None
+            "public": obj.get("public")
         })
         return _obj
 

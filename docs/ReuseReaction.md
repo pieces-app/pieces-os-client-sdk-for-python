@@ -5,8 +5,8 @@ if reuse was used in the reaction then we can provide the uuid of the asset that
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**asset** | **str** |  | 
 **var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
+**asset** | **str** |  | 
 
 ## Example
 

@@ -5,11 +5,11 @@ This is used to determine who has accessed a share. and how many times.  The use
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**count** | **int** | how many times this user accessed this piece. | 
+**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 **id** | **str** |  | 
 **os** | **str** | this is an os id. | 
-**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 **share** | **str** |  | 
+**count** | **int** | how many times this user accessed this piece. | 
 **user** | [**FlattenedUserProfile**](FlattenedUserProfile.md) |  | [optional] 
 
 ## Example

@@ -5,12 +5,12 @@ This is the model return by the connector's suggest endpoint.  Note: assets are 
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**assets** | [**Assets**](Assets.md) |  | 
-**distribution** | **Dict[str, float]** |  | [optional] 
+**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 **reuse** | [**ReuseSuggestion**](ReuseSuggestion.md) |  | 
 **save** | [**SaveSuggestion**](SaveSuggestion.md) |  | 
-**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 **target** | [**SuggestionTarget**](SuggestionTarget.md) |  | 
+**assets** | [**Assets**](Assets.md) |  | 
+**distribution** | **Dict[str, float]** |  | [optional] 
 
 ## Example
 

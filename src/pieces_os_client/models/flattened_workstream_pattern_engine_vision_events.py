@@ -28,9 +28,9 @@ class FlattenedWorkstreamPatternEngineVisionEvents(BaseModel):
     """
     This is a plural snapshot of all of the events within WPE qdrant(Referenced)  # noqa: E501
     """
-    iterable: conlist(ReferencedWorkstreamPatternEngineVisionEvent) = Field(...)
     var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
-    __properties = ["iterable", "schema"]
+    iterable: conlist(ReferencedWorkstreamPatternEngineVisionEvent) = Field(...)
+    __properties = ["schema", "iterable"]
 
     class Config:
         """Pydantic configuration"""
@@ -56,6 +56,9 @@ class FlattenedWorkstreamPatternEngineVisionEvents(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
+        # override the default output from pydantic by calling `to_dict()` of var_schema
+        if self.var_schema:
+            _dict['schema'] = self.var_schema.to_dict()
         # override the default output from pydantic by calling `to_dict()` of each item in iterable (list)
         _items = []
         if self.iterable:
@@ -63,9 +66,6 @@ class FlattenedWorkstreamPatternEngineVisionEvents(BaseModel):
                 if _item:
                     _items.append(_item.to_dict())
             _dict['iterable'] = _items
-        # override the default output from pydantic by calling `to_dict()` of var_schema
-        if self.var_schema:
-            _dict['schema'] = self.var_schema.to_dict()
         return _dict
 
     @classmethod
@@ -78,8 +78,8 @@ class FlattenedWorkstreamPatternEngineVisionEvents(BaseModel):
             return FlattenedWorkstreamPatternEngineVisionEvents.parse_obj(obj)
 
         _obj = FlattenedWorkstreamPatternEngineVisionEvents.parse_obj({
-            "iterable": [ReferencedWorkstreamPatternEngineVisionEvent.from_dict(_item) for _item in obj.get("iterable")] if obj.get("iterable") is not None else None,
-            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None
+            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
+            "iterable": [ReferencedWorkstreamPatternEngineVisionEvent.from_dict(_item) for _item in obj.get("iterable")] if obj.get("iterable") is not None else None
         })
         return _obj
 

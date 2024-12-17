@@ -27,16 +27,16 @@ class WindowDimensions(BaseModel):
     """
     note: this is modeled off of the browsers bounding box DOMRect https://developer.mozilla.org/en-US/docs/Web/API/Element/getBoundingClientRect  # noqa: E501
     """
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     bottom: Union[StrictFloat, StrictInt] = Field(...)
     height: Union[StrictFloat, StrictInt] = Field(...)
     left: Union[StrictFloat, StrictInt] = Field(...)
     right: Union[StrictFloat, StrictInt] = Field(...)
-    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     top: Union[StrictFloat, StrictInt] = Field(...)
     width: Union[StrictFloat, StrictInt] = Field(...)
     x: Union[StrictFloat, StrictInt] = Field(...)
     y: Union[StrictFloat, StrictInt] = Field(...)
-    __properties = ["bottom", "height", "left", "right", "schema", "top", "width", "x", "y"]
+    __properties = ["schema", "bottom", "height", "left", "right", "top", "width", "x", "y"]
 
     class Config:
         """Pydantic configuration"""
@@ -77,11 +77,11 @@ class WindowDimensions(BaseModel):
             return WindowDimensions.parse_obj(obj)
 
         _obj = WindowDimensions.parse_obj({
+            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
             "bottom": obj.get("bottom"),
             "height": obj.get("height"),
             "left": obj.get("left"),
             "right": obj.get("right"),
-            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
             "top": obj.get("top"),
             "width": obj.get("width"),
             "x": obj.get("x"),

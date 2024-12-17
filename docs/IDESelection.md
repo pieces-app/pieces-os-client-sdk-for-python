@@ -5,9 +5,9 @@ This is a given bit of text/code that is selected in the IDE, this can be a copy
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**classification** | [**Classification**](Classification.md) |  | [optional] 
-**location** | [**LanguageServerProtocolLocation**](LanguageServerProtocolLocation.md) |  | [optional] 
 **var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
+**location** | [**LanguageServerProtocolLocation**](LanguageServerProtocolLocation.md) |  | [optional] 
+**classification** | [**Classification**](Classification.md) |  | [optional] 
 **value** | [**TransferableString**](TransferableString.md) |  | [optional] 
 
 ## Example

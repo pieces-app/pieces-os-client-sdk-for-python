@@ -4,8 +4,8 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**cloud** | [**AllocationStatusEnum**](AllocationStatusEnum.md) |  | 
 **var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
+**cloud** | [**AllocationStatusEnum**](AllocationStatusEnum.md) |  | 
 
 ## Example
 

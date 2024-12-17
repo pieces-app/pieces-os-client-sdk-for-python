@@ -5,10 +5,10 @@ This describes a node within a relationship graph used to related like types. ie
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**created** | [**GroupedTimestamp**](GroupedTimestamp.md) |  | 
 **id** | **str** |  | 
-**root** | **bool** | This is a boolean to let us know if this node is the root or origin of the relationship graph. | 
 **type** | [**NodeTypeEnum**](NodeTypeEnum.md) |  | 
+**root** | **bool** | This is a boolean to let us know if this node is the root or origin of the relationship graph. | 
+**created** | [**GroupedTimestamp**](GroupedTimestamp.md) |  | 
 
 ## Example
 

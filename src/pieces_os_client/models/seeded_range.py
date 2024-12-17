@@ -30,13 +30,13 @@ class SeededRange(BaseModel):
     """
     This is a preIdentified version of a Range.  conversation: this is here to specify the relationship that we want to set up with the Range.  IE for this case we want to associate a Range with a Conversation.grounding.temporal.workstream. Otherwise, if this was a conversation we would have no way to know what relationship that we want to set up on the conversation w/ the range. (because this will be set up for many relationShip opportunities that have different functionalities)  # noqa: E501
     """
-    between: Optional[StrictBool] = None
-    conversation: Optional[SeededRangeConversationAssociation] = None
-    var_from: Optional[GroupedTimestamp] = Field(default=None, alias="from")
     var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
-    summary: Optional[ReferencedWorkstreamSummary] = None
     to: Optional[GroupedTimestamp] = None
-    __properties = ["between", "conversation", "from", "schema", "summary", "to"]
+    var_from: Optional[GroupedTimestamp] = Field(default=None, alias="from")
+    between: Optional[StrictBool] = None
+    summary: Optional[ReferencedWorkstreamSummary] = None
+    conversation: Optional[SeededRangeConversationAssociation] = None
+    __properties = ["schema", "to", "from", "between", "summary", "conversation"]
 
     class Config:
         """Pydantic configuration"""
@@ -62,21 +62,21 @@ class SeededRange(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of conversation
-        if self.conversation:
-            _dict['conversation'] = self.conversation.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of var_from
-        if self.var_from:
-            _dict['from'] = self.var_from.to_dict()
         # override the default output from pydantic by calling `to_dict()` of var_schema
         if self.var_schema:
             _dict['schema'] = self.var_schema.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of summary
-        if self.summary:
-            _dict['summary'] = self.summary.to_dict()
         # override the default output from pydantic by calling `to_dict()` of to
         if self.to:
             _dict['to'] = self.to.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of var_from
+        if self.var_from:
+            _dict['from'] = self.var_from.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of summary
+        if self.summary:
+            _dict['summary'] = self.summary.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of conversation
+        if self.conversation:
+            _dict['conversation'] = self.conversation.to_dict()
         return _dict
 
     @classmethod
@@ -89,12 +89,12 @@ class SeededRange(BaseModel):
             return SeededRange.parse_obj(obj)
 
         _obj = SeededRange.parse_obj({
-            "between": obj.get("between"),
-            "conversation": SeededRangeConversationAssociation.from_dict(obj.get("conversation")) if obj.get("conversation") is not None else None,
-            "var_from": GroupedTimestamp.from_dict(obj.get("from")) if obj.get("from") is not None else None,
             "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
+            "to": GroupedTimestamp.from_dict(obj.get("to")) if obj.get("to") is not None else None,
+            "var_from": GroupedTimestamp.from_dict(obj.get("from")) if obj.get("from") is not None else None,
+            "between": obj.get("between"),
             "summary": ReferencedWorkstreamSummary.from_dict(obj.get("summary")) if obj.get("summary") is not None else None,
-            "to": GroupedTimestamp.from_dict(obj.get("to")) if obj.get("to") is not None else None
+            "conversation": SeededRangeConversationAssociation.from_dict(obj.get("conversation")) if obj.get("conversation") is not None else None
         })
         return _obj
 

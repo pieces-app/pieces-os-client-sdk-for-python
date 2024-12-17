@@ -5,9 +5,9 @@ modeled after this (https://microsoft.github.io/language-server-protocol/specifi
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**character** | **int** |  | 
-**line** | **int** |  | 
 **var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
+**line** | **int** |  | 
+**character** | **int** |  | 
 
 ## Example
 

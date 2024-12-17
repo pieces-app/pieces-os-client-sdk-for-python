@@ -5,12 +5,12 @@ This is a preIdentified version of a Range.  conversation: this is here to speci
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**between** | **bool** |  | [optional] 
-**conversation** | [**SeededRangeConversationAssociation**](SeededRangeConversationAssociation.md) |  | [optional] 
-**var_from** | [**GroupedTimestamp**](GroupedTimestamp.md) |  | [optional] 
 **var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
-**summary** | [**ReferencedWorkstreamSummary**](ReferencedWorkstreamSummary.md) |  | [optional] 
 **to** | [**GroupedTimestamp**](GroupedTimestamp.md) |  | [optional] 
+**var_from** | [**GroupedTimestamp**](GroupedTimestamp.md) |  | [optional] 
+**between** | **bool** |  | [optional] 
+**summary** | [**ReferencedWorkstreamSummary**](ReferencedWorkstreamSummary.md) |  | [optional] 
+**conversation** | [**SeededRangeConversationAssociation**](SeededRangeConversationAssociation.md) |  | [optional] 
 
 ## Example
 

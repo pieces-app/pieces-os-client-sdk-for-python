@@ -5,8 +5,8 @@ This is a specific Distribution for mailgun specific information.
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**recipients** | [**Recipients**](Recipients.md) |  | 
 **var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
+**recipients** | [**Recipients**](Recipients.md) |  | 
 
 ## Example
 

@@ -28,14 +28,14 @@ class SeededWebsite(BaseModel):
     """
     This is the minimum information required to create a website for a specific asset.  you can optionally add an asset, or person id to attach this website directly to it  TODO consider updating these asset,format to referenced Models  # noqa: E501
     """
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     asset: Optional[StrictStr] = Field(default=None, description="This is the specific asset that this website is going to get attached to!!")
     conversation: Optional[StrictStr] = Field(default=None, description="This is the specific conversation that this website is going to get attached to!!")
-    mechanism: Optional[MechanismEnum] = None
-    name: StrictStr = Field(default=..., description="name of the website.(customizable and updateable as well.)")
-    person: Optional[StrictStr] = Field(default=None, description="this is a uuid of a person that we are going to add the website too.")
-    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     url: StrictStr = Field(default=..., description="this is the url of the website.")
-    __properties = ["asset", "conversation", "mechanism", "name", "person", "schema", "url"]
+    name: StrictStr = Field(default=..., description="name of the website.(customizable and updateable as well.)")
+    mechanism: Optional[MechanismEnum] = None
+    person: Optional[StrictStr] = Field(default=None, description="this is a uuid of a person that we are going to add the website too.")
+    __properties = ["schema", "asset", "conversation", "url", "name", "mechanism", "person"]
 
     class Config:
         """Pydantic configuration"""
@@ -76,13 +76,13 @@ class SeededWebsite(BaseModel):
             return SeededWebsite.parse_obj(obj)
 
         _obj = SeededWebsite.parse_obj({
+            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
             "asset": obj.get("asset"),
             "conversation": obj.get("conversation"),
-            "mechanism": obj.get("mechanism"),
+            "url": obj.get("url"),
             "name": obj.get("name"),
-            "person": obj.get("person"),
-            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
-            "url": obj.get("url")
+            "mechanism": obj.get("mechanism"),
+            "person": obj.get("person")
         })
         return _obj
 

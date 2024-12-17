@@ -5,8 +5,8 @@ This is currently only used within /assets/steam/identifiers && /conversations/s
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**iterable** | [**List[StreamedIdentifier]**](StreamedIdentifier.md) |  | 
 **var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
+**iterable** | [**List[StreamedIdentifier]**](StreamedIdentifier.md) |  | 
 
 ## Example
 

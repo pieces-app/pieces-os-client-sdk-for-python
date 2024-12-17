@@ -28,10 +28,10 @@ class ActiveOSServerApplet(BaseModel):
     """
     TODO  # noqa: E501
     """
-    port: StrictInt = Field(...)
     var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
+    port: StrictInt = Field(...)
     type: OSAppletEnum = Field(...)
-    __properties = ["port", "schema", "type"]
+    __properties = ["schema", "port", "type"]
 
     class Config:
         """Pydantic configuration"""
@@ -72,8 +72,8 @@ class ActiveOSServerApplet(BaseModel):
             return ActiveOSServerApplet.parse_obj(obj)
 
         _obj = ActiveOSServerApplet.parse_obj({
-            "port": obj.get("port"),
             "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
+            "port": obj.get("port"),
             "type": obj.get("type")
         })
         return _obj

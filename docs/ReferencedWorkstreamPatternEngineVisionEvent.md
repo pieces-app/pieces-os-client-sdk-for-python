@@ -5,9 +5,9 @@ This will return a specific event for the WPE.  note: value is nullable here bec
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 **id** | **str** |  | 
 **reference** | [**FlattenedWorkstreamPatternEngineVisionEvent**](FlattenedWorkstreamPatternEngineVisionEvent.md) |  | [optional] 
-**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 
 ## Example
 

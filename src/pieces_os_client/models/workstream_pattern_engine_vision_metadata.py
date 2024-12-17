@@ -28,9 +28,9 @@ class WorkstreamPatternEngineVisionMetadata(BaseModel):
     """
     This will return all the WPE vision specific metadata  # noqa: E501
     """
-    events: Optional[WorkstreamPatternEngineVisionEventsMetadata] = None
     var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
-    __properties = ["events", "schema"]
+    events: Optional[WorkstreamPatternEngineVisionEventsMetadata] = None
+    __properties = ["schema", "events"]
 
     class Config:
         """Pydantic configuration"""
@@ -56,12 +56,12 @@ class WorkstreamPatternEngineVisionMetadata(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of events
-        if self.events:
-            _dict['events'] = self.events.to_dict()
         # override the default output from pydantic by calling `to_dict()` of var_schema
         if self.var_schema:
             _dict['schema'] = self.var_schema.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of events
+        if self.events:
+            _dict['events'] = self.events.to_dict()
         return _dict
 
     @classmethod
@@ -74,8 +74,8 @@ class WorkstreamPatternEngineVisionMetadata(BaseModel):
             return WorkstreamPatternEngineVisionMetadata.parse_obj(obj)
 
         _obj = WorkstreamPatternEngineVisionMetadata.parse_obj({
-            "events": WorkstreamPatternEngineVisionEventsMetadata.from_dict(obj.get("events")) if obj.get("events") is not None else None,
-            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None
+            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
+            "events": WorkstreamPatternEngineVisionEventsMetadata.from_dict(obj.get("events")) if obj.get("events") is not None else None
         })
         return _obj
 

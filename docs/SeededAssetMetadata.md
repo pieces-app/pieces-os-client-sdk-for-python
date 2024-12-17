@@ -5,16 +5,16 @@ This is optional metadata sent with the SeededAsset and other SeededAssets ie (U
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**anchors** | [**List[SeededAnchor]**](SeededAnchor.md) |  | [optional] 
-**annotations** | [**List[SeededAnnotation]**](SeededAnnotation.md) |  | [optional] 
-**hints** | [**List[SeededHint]**](SeededHint.md) |  | [optional] 
-**mechanism** | [**MechanismEnum**](MechanismEnum.md) |  | [optional] 
-**name** | **str** | This is the name of the asset. | [optional] 
-**persons** | [**List[SeededPerson]**](SeededPerson.md) |  | [optional] 
 **var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
-**sensitives** | [**List[SeededAssetSensitive]**](SeededAssetSensitive.md) |  | [optional] 
+**name** | **str** | This is the name of the asset. | [optional] 
+**mechanism** | [**MechanismEnum**](MechanismEnum.md) |  | [optional] 
 **tags** | [**List[SeededAssetTag]**](SeededAssetTag.md) | (optional) can add some tags to associate to this asset. | [optional] 
 **websites** | [**List[SeededAssetWebsite]**](SeededAssetWebsite.md) |  | [optional] 
+**sensitives** | [**List[SeededAssetSensitive]**](SeededAssetSensitive.md) |  | [optional] 
+**persons** | [**List[SeededPerson]**](SeededPerson.md) |  | [optional] 
+**annotations** | [**List[SeededAnnotation]**](SeededAnnotation.md) |  | [optional] 
+**hints** | [**List[SeededHint]**](SeededHint.md) |  | [optional] 
+**anchors** | [**List[SeededAnchor]**](SeededAnchor.md) |  | [optional] 
 
 ## Example
 

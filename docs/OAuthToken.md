@@ -5,13 +5,13 @@ A model representing a returnable response for a OAuthGroup Token
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**access_token** | **str** | The Access Token | 
-**expires_in** | **int** |  | 
-**id_token** | **str** |  | [optional] 
-**refresh_token** | **str** |  | [optional] 
 **var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
-**scope** | **str** |  | 
+**access_token** | **str** | The Access Token | 
 **token_type** | **str** |  | 
+**expires_in** | **int** |  | 
+**scope** | **str** |  | 
+**refresh_token** | **str** |  | [optional] 
+**id_token** | **str** |  | [optional] 
 
 ## Example
 

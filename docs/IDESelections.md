@@ -5,8 +5,8 @@ Plural model that represent many selections in the browser
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**iterable** | [**List[IDESelection]**](IDESelection.md) |  | 
 **var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
+**iterable** | [**List[IDESelection]**](IDESelection.md) |  | 
 
 ## Example
 

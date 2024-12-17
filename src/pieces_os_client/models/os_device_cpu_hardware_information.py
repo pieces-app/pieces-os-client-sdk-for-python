@@ -20,17 +20,22 @@ import json
 
 
 from typing import Optional, Union
-from pydantic import BaseModel, Field, StrictFloat, StrictInt, StrictStr
+from pydantic import BaseModel, Field, StrictBool, StrictFloat, StrictInt, StrictStr
 from pieces_os_client.models.embedded_model_schema import EmbeddedModelSchema
 
 class OSDeviceCPUHardwareInformation(BaseModel):
     """
     This will let us know specific hardware information related to the CPU.  # noqa: E501
     """
-    memory: Optional[Union[StrictFloat, StrictInt]] = None
-    name: Optional[StrictStr] = None
     var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
-    __properties = ["memory", "name", "schema"]
+    name: Optional[StrictStr] = None
+    l1_cache: Optional[Union[StrictFloat, StrictInt]] = None
+    l2_cache: Optional[Union[StrictFloat, StrictInt]] = None
+    l3_cache: Optional[Union[StrictFloat, StrictInt]] = None
+    shared_memory: Optional[StrictBool] = None
+    cores: Optional[Union[StrictFloat, StrictInt]] = None
+    clock_cycle_speed: Optional[Union[StrictFloat, StrictInt]] = None
+    __properties = ["schema", "name", "l1_cache", "l2_cache", "l3_cache", "shared_memory", "cores", "clock_cycle_speed"]
 
     class Config:
         """Pydantic configuration"""
@@ -59,6 +64,11 @@ class OSDeviceCPUHardwareInformation(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of var_schema
         if self.var_schema:
             _dict['schema'] = self.var_schema.to_dict()
+        # set to None if shared_memory (nullable) is None
+        # and __fields_set__ contains the field
+        if self.shared_memory is None and "shared_memory" in self.__fields_set__:
+            _dict['shared_memory'] = None
+
         return _dict
 
     @classmethod
@@ -71,9 +81,14 @@ class OSDeviceCPUHardwareInformation(BaseModel):
             return OSDeviceCPUHardwareInformation.parse_obj(obj)
 
         _obj = OSDeviceCPUHardwareInformation.parse_obj({
-            "memory": obj.get("memory"),
+            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
             "name": obj.get("name"),
-            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None
+            "l1_cache": obj.get("l1_cache"),
+            "l2_cache": obj.get("l2_cache"),
+            "l3_cache": obj.get("l3_cache"),
+            "shared_memory": obj.get("shared_memory"),
+            "cores": obj.get("cores"),
+            "clock_cycle_speed": obj.get("clock_cycle_speed")
         })
         return _obj
 

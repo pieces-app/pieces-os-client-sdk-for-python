@@ -5,8 +5,8 @@ This is a model for plural Engine. This means that you can run multiple searches
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**iterable** | [**List[SearchEngine]**](SearchEngine.md) |  | 
 **var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
+**iterable** | [**List[SearchEngine]**](SearchEngine.md) |  | 
 **type** | [**FilterOperationTypeEnum**](FilterOperationTypeEnum.md) |  | [optional] 
 
 ## Example

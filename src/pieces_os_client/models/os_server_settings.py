@@ -27,9 +27,9 @@ class OSServerSettings(BaseModel):
     """
     This is the model for the PiecesOS specific settings.  autoboot: refers to both the bootup of POS on the system login, default is false  # noqa: E501
     """
-    autoboot: Optional[StrictBool] = None
     var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
-    __properties = ["autoboot", "schema"]
+    autoboot: Optional[StrictBool] = None
+    __properties = ["schema", "autoboot"]
 
     class Config:
         """Pydantic configuration"""
@@ -70,8 +70,8 @@ class OSServerSettings(BaseModel):
             return OSServerSettings.parse_obj(obj)
 
         _obj = OSServerSettings.parse_obj({
-            "autoboot": obj.get("autoboot"),
-            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None
+            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
+            "autoboot": obj.get("autoboot")
         })
         return _obj
 

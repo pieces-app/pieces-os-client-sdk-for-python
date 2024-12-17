@@ -5,9 +5,9 @@ This is a model for metadata of a file!
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**ext** | [**ClassificationSpecificEnum**](ClassificationSpecificEnum.md) |  | [optional] 
-**name** | **str** | This is the name of your file. | [optional] 
 **var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
+**name** | **str** | This is the name of your file. | [optional] 
+**ext** | [**ClassificationSpecificEnum**](ClassificationSpecificEnum.md) |  | [optional] 
 **size** | **int** | This is the size(in bytes) | [optional] 
 
 ## Example

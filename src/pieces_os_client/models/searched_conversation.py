@@ -30,15 +30,15 @@ class SearchedConversation(BaseModel):
     """
     This is used for the Conversations searching endpoint.  conversation here is only provided if transferables are set to true.  temporal: if this is provided this means that their material matched the input via a timestamp.  TODO will want to consider returning related materials to this material potentially both associated/ and not associated materials ie suggestion: WorkstreamSuggestions  # noqa: E501
     """
-    annotations: Optional[SearchedAnnotations] = None
-    conversation: Optional[Conversation] = None
-    exact: StrictBool = Field(...)
-    identifier: StrictStr = Field(default=..., description="This is the uuid of the conversation.")
-    messages: Optional[SearchedConversationMessages] = None
     var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
+    conversation: Optional[Conversation] = None
+    messages: Optional[SearchedConversationMessages] = None
+    annotations: Optional[SearchedAnnotations] = None
+    exact: StrictBool = Field(...)
     similarity: Union[StrictFloat, StrictInt] = Field(...)
     temporal: Optional[StrictBool] = None
-    __properties = ["annotations", "conversation", "exact", "identifier", "messages", "schema", "similarity", "temporal"]
+    identifier: StrictStr = Field(default=..., description="This is the uuid of the conversation.")
+    __properties = ["schema", "conversation", "messages", "annotations", "exact", "similarity", "temporal", "identifier"]
 
     class Config:
         """Pydantic configuration"""
@@ -64,18 +64,18 @@ class SearchedConversation(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of annotations
-        if self.annotations:
-            _dict['annotations'] = self.annotations.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of var_schema
+        if self.var_schema:
+            _dict['schema'] = self.var_schema.to_dict()
         # override the default output from pydantic by calling `to_dict()` of conversation
         if self.conversation:
             _dict['conversation'] = self.conversation.to_dict()
         # override the default output from pydantic by calling `to_dict()` of messages
         if self.messages:
             _dict['messages'] = self.messages.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of var_schema
-        if self.var_schema:
-            _dict['schema'] = self.var_schema.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of annotations
+        if self.annotations:
+            _dict['annotations'] = self.annotations.to_dict()
         return _dict
 
     @classmethod
@@ -88,14 +88,14 @@ class SearchedConversation(BaseModel):
             return SearchedConversation.parse_obj(obj)
 
         _obj = SearchedConversation.parse_obj({
-            "annotations": SearchedAnnotations.from_dict(obj.get("annotations")) if obj.get("annotations") is not None else None,
-            "conversation": Conversation.from_dict(obj.get("conversation")) if obj.get("conversation") is not None else None,
-            "exact": obj.get("exact"),
-            "identifier": obj.get("identifier"),
-            "messages": SearchedConversationMessages.from_dict(obj.get("messages")) if obj.get("messages") is not None else None,
             "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
+            "conversation": Conversation.from_dict(obj.get("conversation")) if obj.get("conversation") is not None else None,
+            "messages": SearchedConversationMessages.from_dict(obj.get("messages")) if obj.get("messages") is not None else None,
+            "annotations": SearchedAnnotations.from_dict(obj.get("annotations")) if obj.get("annotations") is not None else None,
+            "exact": obj.get("exact"),
             "similarity": obj.get("similarity"),
-            "temporal": obj.get("temporal")
+            "temporal": obj.get("temporal"),
+            "identifier": obj.get("identifier")
         })
         return _obj
 

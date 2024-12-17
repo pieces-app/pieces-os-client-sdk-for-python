@@ -4,10 +4,10 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**analysis** | **str** | this is a reference to our (parent)analysis | 
+**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 **id** | **str** |  | 
 **ocr** | [**FlattenedOCRAnalysis**](FlattenedOCRAnalysis.md) |  | [optional] 
-**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
+**analysis** | **str** | this is a reference to our (parent)analysis | 
 
 ## Example
 

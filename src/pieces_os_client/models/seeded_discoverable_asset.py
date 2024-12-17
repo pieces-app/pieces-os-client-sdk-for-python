@@ -30,12 +30,12 @@ class SeededDiscoverableAsset(BaseModel):
     """
     Assumption: filters applied in this model will overwrite filters passed in SeededDiscoverableAssets  # noqa: E501
     """
-    directory: Optional[StrictStr] = None
-    file: Optional[SeededFile] = None
-    filters: Optional[TLPDirectedDiscoveryFilters] = None
-    fragment: Optional[SeededFragment] = None
     var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
-    __properties = ["directory", "file", "filters", "fragment", "schema"]
+    file: Optional[SeededFile] = None
+    fragment: Optional[SeededFragment] = None
+    directory: Optional[StrictStr] = None
+    filters: Optional[TLPDirectedDiscoveryFilters] = None
+    __properties = ["schema", "file", "fragment", "directory", "filters"]
 
     class Config:
         """Pydantic configuration"""
@@ -61,18 +61,18 @@ class SeededDiscoverableAsset(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of file
-        if self.file:
-            _dict['file'] = self.file.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of filters
-        if self.filters:
-            _dict['filters'] = self.filters.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of fragment
-        if self.fragment:
-            _dict['fragment'] = self.fragment.to_dict()
         # override the default output from pydantic by calling `to_dict()` of var_schema
         if self.var_schema:
             _dict['schema'] = self.var_schema.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of file
+        if self.file:
+            _dict['file'] = self.file.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of fragment
+        if self.fragment:
+            _dict['fragment'] = self.fragment.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of filters
+        if self.filters:
+            _dict['filters'] = self.filters.to_dict()
         return _dict
 
     @classmethod
@@ -85,11 +85,11 @@ class SeededDiscoverableAsset(BaseModel):
             return SeededDiscoverableAsset.parse_obj(obj)
 
         _obj = SeededDiscoverableAsset.parse_obj({
-            "directory": obj.get("directory"),
+            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
             "file": SeededFile.from_dict(obj.get("file")) if obj.get("file") is not None else None,
-            "filters": TLPDirectedDiscoveryFilters.from_dict(obj.get("filters")) if obj.get("filters") is not None else None,
             "fragment": SeededFragment.from_dict(obj.get("fragment")) if obj.get("fragment") is not None else None,
-            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None
+            "directory": obj.get("directory"),
+            "filters": TLPDirectedDiscoveryFilters.from_dict(obj.get("filters")) if obj.get("filters") is not None else None
         })
         return _obj
 

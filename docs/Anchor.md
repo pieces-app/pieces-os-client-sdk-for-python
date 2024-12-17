@@ -4,22 +4,22 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**annotations** | [**FlattenedAnnotations**](FlattenedAnnotations.md) |  | [optional] 
-**assets** | [**FlattenedAssets**](FlattenedAssets.md) |  | [optional] 
-**conversations** | [**FlattenedConversations**](FlattenedConversations.md) |  | [optional] 
-**created** | [**GroupedTimestamp**](GroupedTimestamp.md) |  | 
-**deleted** | [**GroupedTimestamp**](GroupedTimestamp.md) |  | [optional] 
-**id** | **str** |  | 
-**messages** | [**FlattenedConversationMessages**](FlattenedConversationMessages.md) |  | [optional] 
-**name** | **str** |  | [optional] 
-**persons** | [**FlattenedPersons**](FlattenedPersons.md) |  | [optional] 
-**points** | [**FlattenedAnchorPoints**](FlattenedAnchorPoints.md) |  | 
 **var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
+**id** | **str** |  | 
+**name** | **str** |  | [optional] 
+**type** | [**AnchorTypeEnum**](AnchorTypeEnum.md) |  | 
+**watch** | **bool** |  | [optional] 
+**points** | [**FlattenedAnchorPoints**](FlattenedAnchorPoints.md) |  | 
+**created** | [**GroupedTimestamp**](GroupedTimestamp.md) |  | 
+**updated** | [**GroupedTimestamp**](GroupedTimestamp.md) |  | 
+**deleted** | [**GroupedTimestamp**](GroupedTimestamp.md) |  | [optional] 
+**assets** | [**FlattenedAssets**](FlattenedAssets.md) |  | [optional] 
+**annotations** | [**FlattenedAnnotations**](FlattenedAnnotations.md) |  | [optional] 
+**conversations** | [**FlattenedConversations**](FlattenedConversations.md) |  | [optional] 
 **score** | [**Score**](Score.md) |  | [optional] 
 **summaries** | [**FlattenedWorkstreamSummaries**](FlattenedWorkstreamSummaries.md) |  | [optional] 
-**type** | [**AnchorTypeEnum**](AnchorTypeEnum.md) |  | 
-**updated** | [**GroupedTimestamp**](GroupedTimestamp.md) |  | 
-**watch** | **bool** |  | [optional] 
+**persons** | [**FlattenedPersons**](FlattenedPersons.md) |  | [optional] 
+**messages** | [**FlattenedConversationMessages**](FlattenedConversationMessages.md) |  | [optional] 
 
 ## Example
 

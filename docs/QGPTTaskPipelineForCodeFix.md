@@ -5,8 +5,8 @@ This task is for fixing a bit of code.  This is a class so that we can add optio
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**error** | **str** | This is the error message provided from the IDE, that we can use to provide the solution. | [optional] 
 **var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
+**error** | **str** | This is the error message provided from the IDE, that we can use to provide the solution. | [optional] 
 
 ## Example
 

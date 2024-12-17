@@ -29,10 +29,10 @@ class FormatReclassification(BaseModel):
     """
     This is a model that will represent the miminum properties required to update the classification of this format.  # noqa: E501
     """
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     ext: ClassificationSpecificEnum = Field(...)
     format: Format = Field(...)
-    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
-    __properties = ["ext", "format", "schema"]
+    __properties = ["schema", "ext", "format"]
 
     class Config:
         """Pydantic configuration"""
@@ -58,12 +58,12 @@ class FormatReclassification(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of format
-        if self.format:
-            _dict['format'] = self.format.to_dict()
         # override the default output from pydantic by calling `to_dict()` of var_schema
         if self.var_schema:
             _dict['schema'] = self.var_schema.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of format
+        if self.format:
+            _dict['format'] = self.format.to_dict()
         return _dict
 
     @classmethod
@@ -76,9 +76,9 @@ class FormatReclassification(BaseModel):
             return FormatReclassification.parse_obj(obj)
 
         _obj = FormatReclassification.parse_obj({
+            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
             "ext": obj.get("ext"),
-            "format": Format.from_dict(obj.get("format")) if obj.get("format") is not None else None,
-            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None
+            "format": Format.from_dict(obj.get("format")) if obj.get("format") is not None else None
         })
         return _obj
 

@@ -5,8 +5,8 @@ A encompasing creation object that can be utilized to create either an asset or 
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**asset** | [**SeededConnectorAsset**](SeededConnectorAsset.md) |  | [optional] 
 **var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
+**asset** | [**SeededConnectorAsset**](SeededConnectorAsset.md) |  | [optional] 
 
 ## Example
 

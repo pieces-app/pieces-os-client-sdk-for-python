@@ -5,8 +5,8 @@ A model that is passed to the context API at bootup
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**application** | [**SeededTrackedApplication**](SeededTrackedApplication.md) |  | 
 **var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
+**application** | [**SeededTrackedApplication**](SeededTrackedApplication.md) |  | 
 
 ## Example
 

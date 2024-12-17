@@ -5,8 +5,8 @@ This is the outputmodel for /external_provider/api_key/create
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**metadata** | [**Auth0UserMetadata**](Auth0UserMetadata.md) |  | 
 **var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
+**metadata** | [**Auth0UserMetadata**](Auth0UserMetadata.md) |  | 
 
 ## Example
 

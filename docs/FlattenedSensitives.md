@@ -5,8 +5,8 @@ This is a flattened representation of multiple sensitive pieces of data.
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**iterable** | [**List[ReferencedSensitive]**](ReferencedSensitive.md) |  | 
 **var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
+**iterable** | [**List[ReferencedSensitive]**](ReferencedSensitive.md) |  | 
 **score** | [**Score**](Score.md) |  | [optional] 
 
 ## Example

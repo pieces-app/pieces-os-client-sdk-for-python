@@ -5,16 +5,16 @@ This is a DAG-Safe minimal representation of a Range.
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**between** | **bool** |  | [optional] 
-**conversations** | [**FlattenedConversations**](FlattenedConversations.md) |  | [optional] 
-**created** | [**GroupedTimestamp**](GroupedTimestamp.md) |  | 
-**var_from** | [**GroupedTimestamp**](GroupedTimestamp.md) |  | [optional] 
-**id** | **str** |  | 
 **var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
+**id** | **str** |  | 
 **score** | [**Score**](Score.md) |  | [optional] 
-**summaries** | [**FlattenedWorkstreamSummaries**](FlattenedWorkstreamSummaries.md) |  | [optional] 
-**to** | [**GroupedTimestamp**](GroupedTimestamp.md) |  | [optional] 
+**created** | [**GroupedTimestamp**](GroupedTimestamp.md) |  | 
 **updated** | [**GroupedTimestamp**](GroupedTimestamp.md) |  | 
+**to** | [**GroupedTimestamp**](GroupedTimestamp.md) |  | [optional] 
+**var_from** | [**GroupedTimestamp**](GroupedTimestamp.md) |  | [optional] 
+**between** | **bool** |  | [optional] 
+**summaries** | [**FlattenedWorkstreamSummaries**](FlattenedWorkstreamSummaries.md) |  | [optional] 
+**conversations** | [**FlattenedConversations**](FlattenedConversations.md) |  | [optional] 
 
 ## Example
 

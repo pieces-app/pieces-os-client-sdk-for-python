@@ -28,9 +28,9 @@ class MailgunDistribution(BaseModel):
     """
     This is a specific Distribution for mailgun specific information.  # noqa: E501
     """
-    recipients: Recipients = Field(...)
     var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
-    __properties = ["recipients", "schema"]
+    recipients: Recipients = Field(...)
+    __properties = ["schema", "recipients"]
 
     class Config:
         """Pydantic configuration"""
@@ -56,12 +56,12 @@ class MailgunDistribution(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of recipients
-        if self.recipients:
-            _dict['recipients'] = self.recipients.to_dict()
         # override the default output from pydantic by calling `to_dict()` of var_schema
         if self.var_schema:
             _dict['schema'] = self.var_schema.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of recipients
+        if self.recipients:
+            _dict['recipients'] = self.recipients.to_dict()
         return _dict
 
     @classmethod
@@ -74,8 +74,8 @@ class MailgunDistribution(BaseModel):
             return MailgunDistribution.parse_obj(obj)
 
         _obj = MailgunDistribution.parse_obj({
-            "recipients": Recipients.from_dict(obj.get("recipients")) if obj.get("recipients") is not None else None,
-            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None
+            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
+            "recipients": Recipients.from_dict(obj.get("recipients")) if obj.get("recipients") is not None else None
         })
         return _obj
 

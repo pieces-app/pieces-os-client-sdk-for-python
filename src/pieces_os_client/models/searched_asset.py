@@ -29,14 +29,14 @@ class SearchedAsset(BaseModel):
     """
     This is a modle that will represent a searched asset!  # noqa: E501
     """
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     asset: Optional[Asset] = None
     exact: StrictBool = Field(...)
-    identifier: StrictStr = Field(default=..., description="This is the uuid of the asset.")
-    match: SearchedMatchEnum = Field(...)
-    pseudo: Optional[StrictBool] = Field(default=None, description="If this is a pseudo asset that was also returned.")
-    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     score: Union[StrictFloat, StrictInt] = Field(...)
-    __properties = ["asset", "exact", "identifier", "match", "pseudo", "schema", "score"]
+    match: SearchedMatchEnum = Field(...)
+    identifier: StrictStr = Field(default=..., description="This is the uuid of the asset.")
+    pseudo: Optional[StrictBool] = Field(default=None, description="If this is a pseudo asset that was also returned.")
+    __properties = ["schema", "asset", "exact", "score", "match", "identifier", "pseudo"]
 
     class Config:
         """Pydantic configuration"""
@@ -62,12 +62,12 @@ class SearchedAsset(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of asset
-        if self.asset:
-            _dict['asset'] = self.asset.to_dict()
         # override the default output from pydantic by calling `to_dict()` of var_schema
         if self.var_schema:
             _dict['schema'] = self.var_schema.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of asset
+        if self.asset:
+            _dict['asset'] = self.asset.to_dict()
         return _dict
 
     @classmethod
@@ -80,13 +80,13 @@ class SearchedAsset(BaseModel):
             return SearchedAsset.parse_obj(obj)
 
         _obj = SearchedAsset.parse_obj({
+            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
             "asset": Asset.from_dict(obj.get("asset")) if obj.get("asset") is not None else None,
             "exact": obj.get("exact"),
-            "identifier": obj.get("identifier"),
+            "score": obj.get("score"),
             "match": obj.get("match"),
-            "pseudo": obj.get("pseudo"),
-            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
-            "score": obj.get("score")
+            "identifier": obj.get("identifier"),
+            "pseudo": obj.get("pseudo")
         })
         return _obj
 

@@ -5,9 +5,10 @@ this will let us know specific hardware information
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**cpu** | [**OSDeviceCPUHardwareInformation**](OSDeviceCPUHardwareInformation.md) |  | [optional] 
-**gpu** | [**OSDeviceGPUHardwareInformation**](OSDeviceGPUHardwareInformation.md) |  | [optional] 
 **var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
+**cpus** | [**List[OSDeviceCPUHardwareInformation]**](OSDeviceCPUHardwareInformation.md) |  | [optional] 
+**gpus** | [**List[OSDeviceGPUHardwareInformation]**](OSDeviceGPUHardwareInformation.md) |  | [optional] 
+**ram** | [**OSDeviceRAMHardwareInformation**](OSDeviceRAMHardwareInformation.md) |  | [optional] 
 
 ## Example
 

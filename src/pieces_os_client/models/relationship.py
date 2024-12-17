@@ -30,14 +30,14 @@ class Relationship(BaseModel):
     """
     A relationship expresses a graph of like types, to build a relationship graph.   To get the type of relationship, this is for ie Asset, tag, website, format ...etc, you will need to iterate through the edges and get the root or you can just get the first edge's type as a relationship can only be expressed through same type  # noqa: E501
     """
-    created: GroupedTimestamp = Field(...)
-    deleted: Optional[GroupedTimestamp] = None
-    edges: Edges = Field(...)
-    embeddings: Embeddings = Field(...)
     id: StrictStr = Field(...)
     var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
+    embeddings: Embeddings = Field(...)
+    edges: Edges = Field(...)
+    created: GroupedTimestamp = Field(...)
     updated: GroupedTimestamp = Field(...)
-    __properties = ["created", "deleted", "edges", "embeddings", "id", "schema", "updated"]
+    deleted: Optional[GroupedTimestamp] = None
+    __properties = ["id", "schema", "embeddings", "edges", "created", "updated", "deleted"]
 
     class Config:
         """Pydantic configuration"""
@@ -63,24 +63,24 @@ class Relationship(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of created
-        if self.created:
-            _dict['created'] = self.created.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of deleted
-        if self.deleted:
-            _dict['deleted'] = self.deleted.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of edges
-        if self.edges:
-            _dict['edges'] = self.edges.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of embeddings
-        if self.embeddings:
-            _dict['embeddings'] = self.embeddings.to_dict()
         # override the default output from pydantic by calling `to_dict()` of var_schema
         if self.var_schema:
             _dict['schema'] = self.var_schema.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of embeddings
+        if self.embeddings:
+            _dict['embeddings'] = self.embeddings.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of edges
+        if self.edges:
+            _dict['edges'] = self.edges.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of created
+        if self.created:
+            _dict['created'] = self.created.to_dict()
         # override the default output from pydantic by calling `to_dict()` of updated
         if self.updated:
             _dict['updated'] = self.updated.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of deleted
+        if self.deleted:
+            _dict['deleted'] = self.deleted.to_dict()
         return _dict
 
     @classmethod
@@ -93,13 +93,13 @@ class Relationship(BaseModel):
             return Relationship.parse_obj(obj)
 
         _obj = Relationship.parse_obj({
-            "created": GroupedTimestamp.from_dict(obj.get("created")) if obj.get("created") is not None else None,
-            "deleted": GroupedTimestamp.from_dict(obj.get("deleted")) if obj.get("deleted") is not None else None,
-            "edges": Edges.from_dict(obj.get("edges")) if obj.get("edges") is not None else None,
-            "embeddings": Embeddings.from_dict(obj.get("embeddings")) if obj.get("embeddings") is not None else None,
             "id": obj.get("id"),
             "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
-            "updated": GroupedTimestamp.from_dict(obj.get("updated")) if obj.get("updated") is not None else None
+            "embeddings": Embeddings.from_dict(obj.get("embeddings")) if obj.get("embeddings") is not None else None,
+            "edges": Edges.from_dict(obj.get("edges")) if obj.get("edges") is not None else None,
+            "created": GroupedTimestamp.from_dict(obj.get("created")) if obj.get("created") is not None else None,
+            "updated": GroupedTimestamp.from_dict(obj.get("updated")) if obj.get("updated") is not None else None,
+            "deleted": GroupedTimestamp.from_dict(obj.get("deleted")) if obj.get("deleted") is not None else None
         })
         return _obj
 

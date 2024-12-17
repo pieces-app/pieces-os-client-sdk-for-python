@@ -5,9 +5,9 @@ These are the permissions relating to the vision models.
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**accessibility** | **bool** | if true it is granted, if not then it is not granted. | [optional] 
 **var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 **vision** | **bool** | if true it is granted, if not then it is not granted. | [optional] 
+**accessibility** | **bool** | if true it is granted, if not then it is not granted. | [optional] 
 
 ## Example
 

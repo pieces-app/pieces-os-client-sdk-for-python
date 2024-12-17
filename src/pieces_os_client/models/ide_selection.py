@@ -30,11 +30,11 @@ class IDESelection(BaseModel):
     """
     This is a given bit of text/code that is selected in the IDE, this can be a copy/paste/selection  location: this is the given location provided by the LSP(might need to be a different object we will see)  # noqa: E501
     """
-    classification: Optional[Classification] = None
-    location: Optional[LanguageServerProtocolLocation] = None
     var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
+    location: Optional[LanguageServerProtocolLocation] = None
+    classification: Optional[Classification] = None
     value: Optional[TransferableString] = None
-    __properties = ["classification", "location", "schema", "value"]
+    __properties = ["schema", "location", "classification", "value"]
 
     class Config:
         """Pydantic configuration"""
@@ -60,15 +60,15 @@ class IDESelection(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of classification
-        if self.classification:
-            _dict['classification'] = self.classification.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of location
-        if self.location:
-            _dict['location'] = self.location.to_dict()
         # override the default output from pydantic by calling `to_dict()` of var_schema
         if self.var_schema:
             _dict['schema'] = self.var_schema.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of location
+        if self.location:
+            _dict['location'] = self.location.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of classification
+        if self.classification:
+            _dict['classification'] = self.classification.to_dict()
         # override the default output from pydantic by calling `to_dict()` of value
         if self.value:
             _dict['value'] = self.value.to_dict()
@@ -84,9 +84,9 @@ class IDESelection(BaseModel):
             return IDESelection.parse_obj(obj)
 
         _obj = IDESelection.parse_obj({
-            "classification": Classification.from_dict(obj.get("classification")) if obj.get("classification") is not None else None,
-            "location": LanguageServerProtocolLocation.from_dict(obj.get("location")) if obj.get("location") is not None else None,
             "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
+            "location": LanguageServerProtocolLocation.from_dict(obj.get("location")) if obj.get("location") is not None else None,
+            "classification": Classification.from_dict(obj.get("classification")) if obj.get("classification") is not None else None,
             "value": TransferableString.from_dict(obj.get("value")) if obj.get("value") is not None else None
         })
         return _obj

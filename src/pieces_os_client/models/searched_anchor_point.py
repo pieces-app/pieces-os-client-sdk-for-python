@@ -28,13 +28,13 @@ class SearchedAnchorPoint(BaseModel):
     """
     This is used for the AnchorPoints searching endpoint.  point here is only provided if transferables are set to true.  temporal: if this is provided this means that their material matched the input via a timestamp.  TODO will want to consider returning related materials to this material potentially both associated/ and not associated materials ie suggestion: WorkstreamSuggestions  # noqa: E501
     """
-    exact: StrictBool = Field(...)
-    identifier: StrictStr = Field(default=..., description="This is the uuid of the anchorPoint.")
-    point: Optional[AnchorPoint] = None
     var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
+    point: Optional[AnchorPoint] = None
+    exact: StrictBool = Field(...)
     similarity: Union[StrictFloat, StrictInt] = Field(...)
     temporal: Optional[StrictBool] = None
-    __properties = ["exact", "identifier", "point", "schema", "similarity", "temporal"]
+    identifier: StrictStr = Field(default=..., description="This is the uuid of the anchorPoint.")
+    __properties = ["schema", "point", "exact", "similarity", "temporal", "identifier"]
 
     class Config:
         """Pydantic configuration"""
@@ -60,12 +60,12 @@ class SearchedAnchorPoint(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of point
-        if self.point:
-            _dict['point'] = self.point.to_dict()
         # override the default output from pydantic by calling `to_dict()` of var_schema
         if self.var_schema:
             _dict['schema'] = self.var_schema.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of point
+        if self.point:
+            _dict['point'] = self.point.to_dict()
         return _dict
 
     @classmethod
@@ -78,12 +78,12 @@ class SearchedAnchorPoint(BaseModel):
             return SearchedAnchorPoint.parse_obj(obj)
 
         _obj = SearchedAnchorPoint.parse_obj({
-            "exact": obj.get("exact"),
-            "identifier": obj.get("identifier"),
-            "point": AnchorPoint.from_dict(obj.get("point")) if obj.get("point") is not None else None,
             "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
+            "point": AnchorPoint.from_dict(obj.get("point")) if obj.get("point") is not None else None,
+            "exact": obj.get("exact"),
             "similarity": obj.get("similarity"),
-            "temporal": obj.get("temporal")
+            "temporal": obj.get("temporal"),
+            "identifier": obj.get("identifier")
         })
         return _obj
 

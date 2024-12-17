@@ -29,10 +29,10 @@ class BrowserSelection(BaseModel):
     """
     This is a given bit of text/code that is selected in the browser, this can be a copy/paste/selection  # noqa: E501
     """
-    classification: Classification = Field(...)
     var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
+    classification: Classification = Field(...)
     value: TransferableString = Field(...)
-    __properties = ["classification", "schema", "value"]
+    __properties = ["schema", "classification", "value"]
 
     class Config:
         """Pydantic configuration"""
@@ -58,12 +58,12 @@ class BrowserSelection(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of classification
-        if self.classification:
-            _dict['classification'] = self.classification.to_dict()
         # override the default output from pydantic by calling `to_dict()` of var_schema
         if self.var_schema:
             _dict['schema'] = self.var_schema.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of classification
+        if self.classification:
+            _dict['classification'] = self.classification.to_dict()
         # override the default output from pydantic by calling `to_dict()` of value
         if self.value:
             _dict['value'] = self.value.to_dict()
@@ -79,8 +79,8 @@ class BrowserSelection(BaseModel):
             return BrowserSelection.parse_obj(obj)
 
         _obj = BrowserSelection.parse_obj({
-            "classification": Classification.from_dict(obj.get("classification")) if obj.get("classification") is not None else None,
             "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
+            "classification": Classification.from_dict(obj.get("classification")) if obj.get("classification") is not None else None,
             "value": TransferableString.from_dict(obj.get("value")) if obj.get("value") is not None else None
         })
         return _obj

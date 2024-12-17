@@ -28,9 +28,9 @@ class GitHubDistribution(BaseModel):
     """
     GitHubDistribution
     """
-    gist: Optional[GitHubGistDistribution] = None
     var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
-    __properties = ["gist", "schema"]
+    gist: Optional[GitHubGistDistribution] = None
+    __properties = ["schema", "gist"]
 
     class Config:
         """Pydantic configuration"""
@@ -56,12 +56,12 @@ class GitHubDistribution(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of gist
-        if self.gist:
-            _dict['gist'] = self.gist.to_dict()
         # override the default output from pydantic by calling `to_dict()` of var_schema
         if self.var_schema:
             _dict['schema'] = self.var_schema.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of gist
+        if self.gist:
+            _dict['gist'] = self.gist.to_dict()
         return _dict
 
     @classmethod
@@ -74,8 +74,8 @@ class GitHubDistribution(BaseModel):
             return GitHubDistribution.parse_obj(obj)
 
         _obj = GitHubDistribution.parse_obj({
-            "gist": GitHubGistDistribution.from_dict(obj.get("gist")) if obj.get("gist") is not None else None,
-            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None
+            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
+            "gist": GitHubGistDistribution.from_dict(obj.get("gist")) if obj.get("gist") is not None else None
         })
         return _obj
 

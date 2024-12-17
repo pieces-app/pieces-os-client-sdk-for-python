@@ -28,14 +28,14 @@ class VerifiedOSFilesystemPath(BaseModel):
     """
     This will return is the given path was verified/ or it was invalid.  and if it is valid if it is a file/folder  note: file/directory are both null.  # noqa: E501
     """
-    bytes: Optional[ByteDescriptor] = None
-    denied: Optional[StrictBool] = Field(default=None, description="This means that attempting to access the file was not aloud(ie no permission)")
-    directory: Optional[StrictBool] = None
-    file: Optional[StrictBool] = None
-    path: StrictStr = Field(...)
     var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
+    path: StrictStr = Field(...)
+    file: Optional[StrictBool] = None
+    directory: Optional[StrictBool] = None
     verified: StrictBool = Field(default=..., description="This means if the path(file/folder) exists on the machine.")
-    __properties = ["bytes", "denied", "directory", "file", "path", "schema", "verified"]
+    denied: Optional[StrictBool] = Field(default=None, description="This means that attempting to access the file was not aloud(ie no permission)")
+    bytes: Optional[ByteDescriptor] = None
+    __properties = ["schema", "path", "file", "directory", "verified", "denied", "bytes"]
 
     class Config:
         """Pydantic configuration"""
@@ -61,12 +61,12 @@ class VerifiedOSFilesystemPath(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of bytes
-        if self.bytes:
-            _dict['bytes'] = self.bytes.to_dict()
         # override the default output from pydantic by calling `to_dict()` of var_schema
         if self.var_schema:
             _dict['schema'] = self.var_schema.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of bytes
+        if self.bytes:
+            _dict['bytes'] = self.bytes.to_dict()
         return _dict
 
     @classmethod
@@ -79,13 +79,13 @@ class VerifiedOSFilesystemPath(BaseModel):
             return VerifiedOSFilesystemPath.parse_obj(obj)
 
         _obj = VerifiedOSFilesystemPath.parse_obj({
-            "bytes": ByteDescriptor.from_dict(obj.get("bytes")) if obj.get("bytes") is not None else None,
-            "denied": obj.get("denied"),
-            "directory": obj.get("directory"),
-            "file": obj.get("file"),
-            "path": obj.get("path"),
             "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
-            "verified": obj.get("verified")
+            "path": obj.get("path"),
+            "file": obj.get("file"),
+            "directory": obj.get("directory"),
+            "verified": obj.get("verified"),
+            "denied": obj.get("denied"),
+            "bytes": ByteDescriptor.from_dict(obj.get("bytes")) if obj.get("bytes") is not None else None
         })
         return _obj
 

@@ -5,12 +5,12 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**access** | [**AccessEnum**](AccessEnum.md) |  | 
+**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 **asset** | [**Asset**](Asset.md) |  | [optional] 
+**users** | [**List[SeededUser]**](SeededUser.md) | if private please specificy some users you want to share this with. | [optional] 
+**access** | [**AccessEnum**](AccessEnum.md) |  | 
 **assets** | [**Assets**](Assets.md) |  | [optional] 
 **name** | **str** | optional name, if it is available. and must be unique. | [optional] 
-**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
-**users** | [**List[SeededUser]**](SeededUser.md) | if private please specificy some users you want to share this with. | [optional] 
 
 ## Example
 

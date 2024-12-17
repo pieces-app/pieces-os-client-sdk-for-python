@@ -5,9 +5,9 @@ This is an input body for the /machine_learning/text/technical_processing/genera
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 **languages** | **List[str]** |  | [optional] 
 **personas** | **List[str]** |  | [optional] 
-**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 
 ## Example
 

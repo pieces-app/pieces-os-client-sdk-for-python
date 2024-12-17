@@ -5,14 +5,14 @@ This is a fully referenced version of a Distribution. TODO add additional distri
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**created** | [**GroupedTimestamp**](GroupedTimestamp.md) |  | 
-**deleted** | [**GroupedTimestamp**](GroupedTimestamp.md) |  | [optional] 
-**github** | [**GitHubDistribution**](GitHubDistribution.md) |  | [optional] 
-**id** | **str** |  | 
-**mailgun** | [**MailgunDistribution**](MailgunDistribution.md) |  | [optional] 
 **var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
+**id** | **str** |  | 
 **share** | [**FlattenedShare**](FlattenedShare.md) |  | 
+**created** | [**GroupedTimestamp**](GroupedTimestamp.md) |  | 
 **updated** | [**GroupedTimestamp**](GroupedTimestamp.md) |  | 
+**deleted** | [**GroupedTimestamp**](GroupedTimestamp.md) |  | [optional] 
+**mailgun** | [**MailgunDistribution**](MailgunDistribution.md) |  | [optional] 
+**github** | [**GitHubDistribution**](GitHubDistribution.md) |  | [optional] 
 
 ## Example
 

@@ -5,9 +5,9 @@ This is the plural of AnchorPoint.
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**indices** | **Dict[str, int]** | This is a Map&lt;String, int&gt; where the the key is an AnchorPoint id. | [optional] 
-**iterable** | [**List[AnchorPoint]**](AnchorPoint.md) |  | 
 **var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
+**iterable** | [**List[AnchorPoint]**](AnchorPoint.md) |  | 
+**indices** | **Dict[str, int]** | This is a Map&lt;String, int&gt; where the the key is an AnchorPoint id. | [optional] 
 **score** | [**Score**](Score.md) |  | [optional] 
 
 ## Example

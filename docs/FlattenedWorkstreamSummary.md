@@ -5,22 +5,22 @@ This is a DAG-Safe minimal representation of a workstream summary
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**anchors** | [**FlattenedAnchors**](FlattenedAnchors.md) |  | [optional] 
+**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
+**id** | **str** |  | 
+**score** | [**Score**](Score.md) |  | [optional] 
+**created** | [**GroupedTimestamp**](GroupedTimestamp.md) |  | 
+**updated** | [**GroupedTimestamp**](GroupedTimestamp.md) |  | 
+**events** | [**FlattenedWorkstreamEvents**](FlattenedWorkstreamEvents.md) |  | [optional] 
+**name** | **str** |  | 
 **annotations** | [**FlattenedAnnotations**](FlattenedAnnotations.md) |  | [optional] 
-**applications** | [**Applications**](Applications.md) |  | [optional] 
+**ranges** | [**FlattenedRanges**](FlattenedRanges.md) |  | [optional] 
+**model** | [**Model**](Model.md) |  | 
+**websites** | [**FlattenedWebsites**](FlattenedWebsites.md) |  | [optional] 
+**anchors** | [**FlattenedAnchors**](FlattenedAnchors.md) |  | [optional] 
 **assets** | [**FlattenedAssets**](FlattenedAssets.md) |  | [optional] 
 **conversations** | [**FlattenedConversations**](FlattenedConversations.md) |  | [optional] 
-**created** | [**GroupedTimestamp**](GroupedTimestamp.md) |  | 
-**events** | [**FlattenedWorkstreamEvents**](FlattenedWorkstreamEvents.md) |  | [optional] 
-**id** | **str** |  | 
-**model** | [**Model**](Model.md) |  | 
-**name** | **str** |  | 
 **persons** | [**FlattenedPersons**](FlattenedPersons.md) |  | [optional] 
-**ranges** | [**FlattenedRanges**](FlattenedRanges.md) |  | [optional] 
-**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
-**score** | [**Score**](Score.md) |  | [optional] 
-**updated** | [**GroupedTimestamp**](GroupedTimestamp.md) |  | 
-**websites** | [**FlattenedWebsites**](FlattenedWebsites.md) |  | [optional] 
+**applications** | [**Applications**](Applications.md) |  | [optional] 
 
 ## Example
 

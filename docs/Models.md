@@ -5,8 +5,9 @@ This is a List of MachineLearning Models
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**iterable** | [**List[Model]**](Model.md) |  | 
 **var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
+**iterable** | [**List[Model]**](Model.md) |  | 
+**score** | [**Score**](Score.md) |  | [optional] 
 
 ## Example
 

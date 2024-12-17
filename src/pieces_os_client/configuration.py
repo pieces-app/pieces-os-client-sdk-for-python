@@ -55,6 +55,25 @@ class Configuration:
       in PEM format.
 
     :Example:
+
+    API Key Authentication Example.
+    Given the following security scheme in the OpenAPI specification:
+      components:
+        securitySchemes:
+          cookieAuth:         # name for the security scheme
+            type: apiKey
+            in: cookie
+            name: JSESSIONID  # cookie name
+
+    You can programmatically set the cookie:
+
+conf = pieces_os_client.Configuration(
+    api_key={'cookieAuth': 'abc123'}
+    api_key_prefix={'cookieAuth': 'JSESSIONID'}
+)
+
+    The following cookie will be added to the HTTP request:
+       Cookie: JSESSIONID abc123
     """
 
     _default = None
@@ -401,6 +420,15 @@ class Configuration:
                 'key': 'Authorization',
                 'value': 'Bearer ' + self.access_token
             }
+        if 'application' in self.api_key:
+            auth['application'] = {
+                'type': 'api_key',
+                'in': 'header',
+                'key': 'X-Application-ID',
+                'value': self.get_api_key_with_prefix(
+                    'application',
+                ),
+            }
         return auth
 
     def to_debug_report(self):
@@ -423,11 +451,23 @@ class Configuration:
         return [
             {
                 'url': "http://localhost:1000",
-                'description': "Local Pieces OS Server for macOS & Windows",
+                'description': "Local Generated Mock Data",
             },
             {
-                'url': "http://localhost:5323",
-                'description': "Local Pieces OS Server for Linux",
+                'url': "https://stoplight.io/mocks/pieces/platform-openapi:main/13067253",
+                'description': "Stoplight Static Mock Data",
+            },
+            {
+                'url': "https://auth.pieces.services",
+                'description': "Authentication Domain",
+            },
+            {
+                'url': "https://api.pieces.services",
+                'description': "API Domain",
+            },
+            {
+                'url': "https://pieces.us.auth0.com",
+                'description': "Auth0",
             }
         ]
 

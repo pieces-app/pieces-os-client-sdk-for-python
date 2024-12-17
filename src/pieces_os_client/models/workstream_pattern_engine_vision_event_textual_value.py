@@ -29,10 +29,10 @@ class WorkstreamPatternEngineVisionEventTextualValue(BaseModel):
     """
     note: we could add a summarize property. TODO: might need an extracted bool to say to aggregate the extracted  # noqa: E501
     """
-    extracted: Optional[TextuallyExtractedMaterial] = None
-    ocr: Optional[TransferableString] = None
     var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
-    __properties = ["extracted", "ocr", "schema"]
+    ocr: Optional[TransferableString] = None
+    extracted: Optional[TextuallyExtractedMaterial] = None
+    __properties = ["schema", "ocr", "extracted"]
 
     class Config:
         """Pydantic configuration"""
@@ -58,15 +58,15 @@ class WorkstreamPatternEngineVisionEventTextualValue(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of extracted
-        if self.extracted:
-            _dict['extracted'] = self.extracted.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of ocr
-        if self.ocr:
-            _dict['ocr'] = self.ocr.to_dict()
         # override the default output from pydantic by calling `to_dict()` of var_schema
         if self.var_schema:
             _dict['schema'] = self.var_schema.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of ocr
+        if self.ocr:
+            _dict['ocr'] = self.ocr.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of extracted
+        if self.extracted:
+            _dict['extracted'] = self.extracted.to_dict()
         return _dict
 
     @classmethod
@@ -79,9 +79,9 @@ class WorkstreamPatternEngineVisionEventTextualValue(BaseModel):
             return WorkstreamPatternEngineVisionEventTextualValue.parse_obj(obj)
 
         _obj = WorkstreamPatternEngineVisionEventTextualValue.parse_obj({
-            "extracted": TextuallyExtractedMaterial.from_dict(obj.get("extracted")) if obj.get("extracted") is not None else None,
+            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
             "ocr": TransferableString.from_dict(obj.get("ocr")) if obj.get("ocr") is not None else None,
-            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None
+            "extracted": TextuallyExtractedMaterial.from_dict(obj.get("extracted")) if obj.get("extracted") is not None else None
         })
         return _obj
 

@@ -29,15 +29,15 @@ class Backup(BaseModel):
     """
     This is a cloud Backup. This is specific metadata needed inorder to retrieve a Backup.  # noqa: E501
     """
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
+    id: StrictStr = Field(...)
+    version: StrictStr = Field(...)
+    timestamp: StrictStr = Field(...)
     bytes: Union[StrictFloat, StrictInt] = Field(...)
     created: GroupedTimestamp = Field(...)
     device_name: StrictStr = Field(...)
-    id: StrictStr = Field(...)
     platform: PlatformEnum = Field(...)
-    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
-    timestamp: StrictStr = Field(...)
-    version: StrictStr = Field(...)
-    __properties = ["bytes", "created", "device_name", "id", "platform", "schema", "timestamp", "version"]
+    __properties = ["schema", "id", "version", "timestamp", "bytes", "created", "device_name", "platform"]
 
     class Config:
         """Pydantic configuration"""
@@ -63,12 +63,12 @@ class Backup(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of created
-        if self.created:
-            _dict['created'] = self.created.to_dict()
         # override the default output from pydantic by calling `to_dict()` of var_schema
         if self.var_schema:
             _dict['schema'] = self.var_schema.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of created
+        if self.created:
+            _dict['created'] = self.created.to_dict()
         return _dict
 
     @classmethod
@@ -81,14 +81,14 @@ class Backup(BaseModel):
             return Backup.parse_obj(obj)
 
         _obj = Backup.parse_obj({
+            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
+            "id": obj.get("id"),
+            "version": obj.get("version"),
+            "timestamp": obj.get("timestamp"),
             "bytes": obj.get("bytes"),
             "created": GroupedTimestamp.from_dict(obj.get("created")) if obj.get("created") is not None else None,
             "device_name": obj.get("device_name"),
-            "id": obj.get("id"),
-            "platform": obj.get("platform"),
-            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
-            "timestamp": obj.get("timestamp"),
-            "version": obj.get("version")
+            "platform": obj.get("platform")
         })
         return _obj
 

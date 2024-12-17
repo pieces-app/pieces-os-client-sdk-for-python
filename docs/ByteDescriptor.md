@@ -5,9 +5,9 @@ This is a nice microclass to help with managing the size of a File or Fragment i
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**readable** | **str** |  | 
 **var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 **value** | **int** |  | 
+**readable** | **str** |  | 
 
 ## Example
 

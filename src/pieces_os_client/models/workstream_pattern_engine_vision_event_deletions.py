@@ -29,10 +29,10 @@ class WorkstreamPatternEngineVisionEventDeletions(BaseModel):
     """
     note: recomended to use the search option here(where you can pass in workstream. note: \"scope\" here will run a search with the given scope and then remove these events.  # noqa: E501
     """
-    identifiers: Optional[FlattenedWorkstreamPatternEngineVisionEvents] = None
     var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     search_scope: Optional[SearchInput] = None
-    __properties = ["identifiers", "schema", "search_scope"]
+    identifiers: Optional[FlattenedWorkstreamPatternEngineVisionEvents] = None
+    __properties = ["schema", "search_scope", "identifiers"]
 
     class Config:
         """Pydantic configuration"""
@@ -58,15 +58,15 @@ class WorkstreamPatternEngineVisionEventDeletions(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of identifiers
-        if self.identifiers:
-            _dict['identifiers'] = self.identifiers.to_dict()
         # override the default output from pydantic by calling `to_dict()` of var_schema
         if self.var_schema:
             _dict['schema'] = self.var_schema.to_dict()
         # override the default output from pydantic by calling `to_dict()` of search_scope
         if self.search_scope:
             _dict['search_scope'] = self.search_scope.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of identifiers
+        if self.identifiers:
+            _dict['identifiers'] = self.identifiers.to_dict()
         return _dict
 
     @classmethod
@@ -79,9 +79,9 @@ class WorkstreamPatternEngineVisionEventDeletions(BaseModel):
             return WorkstreamPatternEngineVisionEventDeletions.parse_obj(obj)
 
         _obj = WorkstreamPatternEngineVisionEventDeletions.parse_obj({
-            "identifiers": FlattenedWorkstreamPatternEngineVisionEvents.from_dict(obj.get("identifiers")) if obj.get("identifiers") is not None else None,
             "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
-            "search_scope": SearchInput.from_dict(obj.get("search_scope")) if obj.get("search_scope") is not None else None
+            "search_scope": SearchInput.from_dict(obj.get("search_scope")) if obj.get("search_scope") is not None else None,
+            "identifiers": FlattenedWorkstreamPatternEngineVisionEvents.from_dict(obj.get("identifiers")) if obj.get("identifiers") is not None else None
         })
         return _obj
 

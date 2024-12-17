@@ -5,9 +5,9 @@ This will return a specific event for the WPE.  note: value is nullable here bec
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**created** | [**GroupedTimestamp**](GroupedTimestamp.md) |  | 
-**id** | **str** |  | 
 **var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
+**id** | **str** |  | 
+**created** | [**GroupedTimestamp**](GroupedTimestamp.md) |  | 
 **source** | [**WorkstreamPatternEngineSource**](WorkstreamPatternEngineSource.md) |  | [optional] 
 **textual** | [**WorkstreamPatternEngineVisionEventTextualValue**](WorkstreamPatternEngineVisionEventTextualValue.md) |  | [optional] 
 

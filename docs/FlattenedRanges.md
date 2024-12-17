@@ -5,11 +5,11 @@ This is a DAG-Safe minimal representation of many Ranges.
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**continuous** | **bool** |  | [optional] 
-**indices** | **Dict[str, int]** | This is a Map&lt;String, int&gt; where the the key is an range id. | [optional] 
-**iterable** | [**List[ReferencedRange]**](ReferencedRange.md) |  | 
 **var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
+**iterable** | [**List[ReferencedRange]**](ReferencedRange.md) |  | 
+**indices** | **Dict[str, int]** | This is a Map&lt;String, int&gt; where the the key is an range id. | [optional] 
 **score** | [**Score**](Score.md) |  | [optional] 
+**continuous** | **bool** |  | [optional] 
 
 ## Example
 

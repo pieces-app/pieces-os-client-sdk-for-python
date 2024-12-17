@@ -29,17 +29,17 @@ class SeededAnchor(BaseModel):
     """
     SeededAnchor
     """
-    annotations: Optional[conlist(SeededAnnotation)] = None
-    asset: Optional[StrictStr] = Field(default=None, description="You may associate a SeededAnchor with an asset")
-    conversation: Optional[StrictStr] = None
-    fullpath: StrictStr = Field(...)
-    name: Optional[StrictStr] = None
-    persons: Optional[FlattenedPersons] = None
-    platform: Optional[PlatformEnum] = None
     var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     type: AnchorTypeEnum = Field(...)
     watch: Optional[StrictBool] = None
-    __properties = ["annotations", "asset", "conversation", "fullpath", "name", "persons", "platform", "schema", "type", "watch"]
+    fullpath: StrictStr = Field(...)
+    asset: Optional[StrictStr] = Field(default=None, description="You may associate a SeededAnchor with an asset")
+    platform: Optional[PlatformEnum] = None
+    name: Optional[StrictStr] = None
+    annotations: Optional[conlist(SeededAnnotation)] = None
+    conversation: Optional[StrictStr] = None
+    persons: Optional[FlattenedPersons] = None
+    __properties = ["schema", "type", "watch", "fullpath", "asset", "platform", "name", "annotations", "conversation", "persons"]
 
     class Config:
         """Pydantic configuration"""
@@ -65,6 +65,9 @@ class SeededAnchor(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
+        # override the default output from pydantic by calling `to_dict()` of var_schema
+        if self.var_schema:
+            _dict['schema'] = self.var_schema.to_dict()
         # override the default output from pydantic by calling `to_dict()` of each item in annotations (list)
         _items = []
         if self.annotations:
@@ -75,9 +78,6 @@ class SeededAnchor(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of persons
         if self.persons:
             _dict['persons'] = self.persons.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of var_schema
-        if self.var_schema:
-            _dict['schema'] = self.var_schema.to_dict()
         return _dict
 
     @classmethod
@@ -90,16 +90,16 @@ class SeededAnchor(BaseModel):
             return SeededAnchor.parse_obj(obj)
 
         _obj = SeededAnchor.parse_obj({
-            "annotations": [SeededAnnotation.from_dict(_item) for _item in obj.get("annotations")] if obj.get("annotations") is not None else None,
-            "asset": obj.get("asset"),
-            "conversation": obj.get("conversation"),
-            "fullpath": obj.get("fullpath"),
-            "name": obj.get("name"),
-            "persons": FlattenedPersons.from_dict(obj.get("persons")) if obj.get("persons") is not None else None,
-            "platform": obj.get("platform"),
             "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
             "type": obj.get("type"),
-            "watch": obj.get("watch")
+            "watch": obj.get("watch"),
+            "fullpath": obj.get("fullpath"),
+            "asset": obj.get("asset"),
+            "platform": obj.get("platform"),
+            "name": obj.get("name"),
+            "annotations": [SeededAnnotation.from_dict(_item) for _item in obj.get("annotations")] if obj.get("annotations") is not None else None,
+            "conversation": obj.get("conversation"),
+            "persons": FlattenedPersons.from_dict(obj.get("persons")) if obj.get("persons") is not None else None
         })
         return _obj
 

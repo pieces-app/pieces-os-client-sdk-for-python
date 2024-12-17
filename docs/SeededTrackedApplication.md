@@ -5,13 +5,14 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**automatic_unload** | **bool** | This is a proper that will let us know if we will proactivity unload all of your machine learning models.by default this is false. | [optional] 
-**capabilities** | [**CapabilitiesEnum**](CapabilitiesEnum.md) |  | [optional] 
-**name** | [**ApplicationNameEnum**](ApplicationNameEnum.md) |  | 
-**platform** | [**PlatformEnum**](PlatformEnum.md) |  | 
-**privacy** | [**PrivacyEnum**](PrivacyEnum.md) |  | [optional] 
 **var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
+**name** | [**ApplicationNameEnum**](ApplicationNameEnum.md) |  | 
 **version** | **str** | This is the specific version number 0.0.0 | 
+**platform** | [**PlatformEnum**](PlatformEnum.md) |  | 
+**capabilities** | [**CapabilitiesEnum**](CapabilitiesEnum.md) |  | [optional] 
+**privacy** | [**PrivacyEnum**](PrivacyEnum.md) |  | [optional] 
+**automatic_unload** | **bool** | This is a proper that will let us know if we will proactivity unload all of your machine learning models.by default this is false. | [optional] 
+**enrichment** | [**SeededAssetEnrichment**](SeededAssetEnrichment.md) |  | [optional] 
 
 ## Example
 

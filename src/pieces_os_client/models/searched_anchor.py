@@ -29,14 +29,14 @@ class SearchedAnchor(BaseModel):
     """
     This is used for the Anchors searching endpoint.  anchor here is only provided if transferables are set to true.  temporal: if this is provided this means that their material matched the input via a timestamp.  TODO will want to consider returning related materials to this material potentially both associated/ and not associated materials ie suggestion: WorkstreamSuggestions  note: if we match a specific anchorPoint we will provide this as well.  # noqa: E501
     """
-    anchor: Optional[Anchor] = None
-    exact: StrictBool = Field(...)
-    identifier: StrictStr = Field(default=..., description="This is the uuid of the anchor.")
-    points: Optional[SearchedAnchorPoints] = None
     var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
+    anchor: Optional[Anchor] = None
+    points: Optional[SearchedAnchorPoints] = None
+    exact: StrictBool = Field(...)
     similarity: Union[StrictFloat, StrictInt] = Field(...)
     temporal: Optional[StrictBool] = None
-    __properties = ["anchor", "exact", "identifier", "points", "schema", "similarity", "temporal"]
+    identifier: StrictStr = Field(default=..., description="This is the uuid of the anchor.")
+    __properties = ["schema", "anchor", "points", "exact", "similarity", "temporal", "identifier"]
 
     class Config:
         """Pydantic configuration"""
@@ -62,15 +62,15 @@ class SearchedAnchor(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
+        # override the default output from pydantic by calling `to_dict()` of var_schema
+        if self.var_schema:
+            _dict['schema'] = self.var_schema.to_dict()
         # override the default output from pydantic by calling `to_dict()` of anchor
         if self.anchor:
             _dict['anchor'] = self.anchor.to_dict()
         # override the default output from pydantic by calling `to_dict()` of points
         if self.points:
             _dict['points'] = self.points.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of var_schema
-        if self.var_schema:
-            _dict['schema'] = self.var_schema.to_dict()
         return _dict
 
     @classmethod
@@ -83,13 +83,13 @@ class SearchedAnchor(BaseModel):
             return SearchedAnchor.parse_obj(obj)
 
         _obj = SearchedAnchor.parse_obj({
-            "anchor": Anchor.from_dict(obj.get("anchor")) if obj.get("anchor") is not None else None,
-            "exact": obj.get("exact"),
-            "identifier": obj.get("identifier"),
-            "points": SearchedAnchorPoints.from_dict(obj.get("points")) if obj.get("points") is not None else None,
             "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
+            "anchor": Anchor.from_dict(obj.get("anchor")) if obj.get("anchor") is not None else None,
+            "points": SearchedAnchorPoints.from_dict(obj.get("points")) if obj.get("points") is not None else None,
+            "exact": obj.get("exact"),
             "similarity": obj.get("similarity"),
-            "temporal": obj.get("temporal")
+            "temporal": obj.get("temporal"),
+            "identifier": obj.get("identifier")
         })
         return _obj
 

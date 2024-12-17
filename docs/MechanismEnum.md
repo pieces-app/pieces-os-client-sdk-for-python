@@ -14,6 +14,8 @@ This will let us know how an asset was uploaded.  MANUAL: this is an event such 
 
 * `DELETED` (value: `'DELETED'`)
 
+* `UNKNOWN` (value: `'UNKNOWN'`)
+
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
 

@@ -30,12 +30,12 @@ class ProjectModule(BaseModel):
     """
     This is a representation of a Module or a Project  anchor: is the folder path of this repo/module  contributors: is a nice to have is all the contributors of this repo/module  range: is the amount of time this user has been working on this repo  classifications: if all the languages that are used within this repo/module  # noqa: E501
     """
-    anchor: SeededAnchor = Field(...)
-    classifications: Optional[Classifications] = None
-    contributors: Optional[DocumentContributors] = None
-    range: Optional[AnonymousTemporalRange] = None
     var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
-    __properties = ["anchor", "classifications", "contributors", "range", "schema"]
+    anchor: SeededAnchor = Field(...)
+    range: Optional[AnonymousTemporalRange] = None
+    contributors: Optional[DocumentContributors] = None
+    classifications: Optional[Classifications] = None
+    __properties = ["schema", "anchor", "range", "contributors", "classifications"]
 
     class Config:
         """Pydantic configuration"""
@@ -61,21 +61,21 @@ class ProjectModule(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of anchor
-        if self.anchor:
-            _dict['anchor'] = self.anchor.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of classifications
-        if self.classifications:
-            _dict['classifications'] = self.classifications.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of contributors
-        if self.contributors:
-            _dict['contributors'] = self.contributors.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of range
-        if self.range:
-            _dict['range'] = self.range.to_dict()
         # override the default output from pydantic by calling `to_dict()` of var_schema
         if self.var_schema:
             _dict['schema'] = self.var_schema.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of anchor
+        if self.anchor:
+            _dict['anchor'] = self.anchor.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of range
+        if self.range:
+            _dict['range'] = self.range.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of contributors
+        if self.contributors:
+            _dict['contributors'] = self.contributors.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of classifications
+        if self.classifications:
+            _dict['classifications'] = self.classifications.to_dict()
         return _dict
 
     @classmethod
@@ -88,11 +88,11 @@ class ProjectModule(BaseModel):
             return ProjectModule.parse_obj(obj)
 
         _obj = ProjectModule.parse_obj({
+            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
             "anchor": SeededAnchor.from_dict(obj.get("anchor")) if obj.get("anchor") is not None else None,
-            "classifications": Classifications.from_dict(obj.get("classifications")) if obj.get("classifications") is not None else None,
-            "contributors": DocumentContributors.from_dict(obj.get("contributors")) if obj.get("contributors") is not None else None,
             "range": AnonymousTemporalRange.from_dict(obj.get("range")) if obj.get("range") is not None else None,
-            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None
+            "contributors": DocumentContributors.from_dict(obj.get("contributors")) if obj.get("contributors") is not None else None,
+            "classifications": Classifications.from_dict(obj.get("classifications")) if obj.get("classifications") is not None else None
         })
         return _obj
 

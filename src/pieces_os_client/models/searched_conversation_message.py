@@ -28,13 +28,13 @@ class SearchedConversationMessage(BaseModel):
     """
     This is used for the ConversationMessages searching endpoint && the specific Conversation search && ConversationsSearch  conversation here is only provided if transferables are set to true.  temporal: if this is provided this means that their material matched the input via a timestamp.  TODO will want to consider returning related materials to this material potentially both associated/ and not associated materials ie suggestion: WorkstreamSuggestions  # noqa: E501
     """
-    exact: StrictBool = Field(...)
-    identifier: StrictStr = Field(default=..., description="This is the uuid of the ConversationMessage.")
-    message: Optional[ConversationMessage] = None
     var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
+    message: Optional[ConversationMessage] = None
+    exact: StrictBool = Field(...)
     similarity: Union[StrictFloat, StrictInt] = Field(...)
     temporal: Optional[StrictBool] = None
-    __properties = ["exact", "identifier", "message", "schema", "similarity", "temporal"]
+    identifier: StrictStr = Field(default=..., description="This is the uuid of the ConversationMessage.")
+    __properties = ["schema", "message", "exact", "similarity", "temporal", "identifier"]
 
     class Config:
         """Pydantic configuration"""
@@ -60,12 +60,12 @@ class SearchedConversationMessage(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of message
-        if self.message:
-            _dict['message'] = self.message.to_dict()
         # override the default output from pydantic by calling `to_dict()` of var_schema
         if self.var_schema:
             _dict['schema'] = self.var_schema.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of message
+        if self.message:
+            _dict['message'] = self.message.to_dict()
         return _dict
 
     @classmethod
@@ -78,12 +78,12 @@ class SearchedConversationMessage(BaseModel):
             return SearchedConversationMessage.parse_obj(obj)
 
         _obj = SearchedConversationMessage.parse_obj({
-            "exact": obj.get("exact"),
-            "identifier": obj.get("identifier"),
-            "message": ConversationMessage.from_dict(obj.get("message")) if obj.get("message") is not None else None,
             "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
+            "message": ConversationMessage.from_dict(obj.get("message")) if obj.get("message") is not None else None,
+            "exact": obj.get("exact"),
             "similarity": obj.get("similarity"),
-            "temporal": obj.get("temporal")
+            "temporal": obj.get("temporal"),
+            "identifier": obj.get("identifier")
         })
         return _obj
 

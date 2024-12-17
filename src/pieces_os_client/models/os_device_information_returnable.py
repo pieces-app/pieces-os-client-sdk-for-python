@@ -29,12 +29,12 @@ class OSDeviceInformationReturnable(BaseModel):
     """
     This is the returnable model for the /os/device/information.  # noqa: E501
     """
-    dependencies: Optional[OSDeviceDependenciesInformation] = None
-    hardware: Optional[OSDeviceHardwareInformation] = None
-    name: Optional[StrictStr] = Field(default=None, description="this is the name of the device")
     var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
+    dependencies: Optional[OSDeviceDependenciesInformation] = None
+    name: Optional[StrictStr] = Field(default=None, description="this is the name of the device")
     version: Optional[StrictStr] = Field(default=None, description="this is the version of the device")
-    __properties = ["dependencies", "hardware", "name", "schema", "version"]
+    hardware: Optional[OSDeviceHardwareInformation] = None
+    __properties = ["schema", "dependencies", "name", "version", "hardware"]
 
     class Config:
         """Pydantic configuration"""
@@ -60,15 +60,15 @@ class OSDeviceInformationReturnable(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
+        # override the default output from pydantic by calling `to_dict()` of var_schema
+        if self.var_schema:
+            _dict['schema'] = self.var_schema.to_dict()
         # override the default output from pydantic by calling `to_dict()` of dependencies
         if self.dependencies:
             _dict['dependencies'] = self.dependencies.to_dict()
         # override the default output from pydantic by calling `to_dict()` of hardware
         if self.hardware:
             _dict['hardware'] = self.hardware.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of var_schema
-        if self.var_schema:
-            _dict['schema'] = self.var_schema.to_dict()
         return _dict
 
     @classmethod
@@ -81,11 +81,11 @@ class OSDeviceInformationReturnable(BaseModel):
             return OSDeviceInformationReturnable.parse_obj(obj)
 
         _obj = OSDeviceInformationReturnable.parse_obj({
-            "dependencies": OSDeviceDependenciesInformation.from_dict(obj.get("dependencies")) if obj.get("dependencies") is not None else None,
-            "hardware": OSDeviceHardwareInformation.from_dict(obj.get("hardware")) if obj.get("hardware") is not None else None,
-            "name": obj.get("name"),
             "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
-            "version": obj.get("version")
+            "dependencies": OSDeviceDependenciesInformation.from_dict(obj.get("dependencies")) if obj.get("dependencies") is not None else None,
+            "name": obj.get("name"),
+            "version": obj.get("version"),
+            "hardware": OSDeviceHardwareInformation.from_dict(obj.get("hardware")) if obj.get("hardware") is not None else None
         })
         return _obj
 

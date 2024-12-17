@@ -5,8 +5,8 @@ This is a plural model for multiple Seed.
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**iterable** | [**List[Seed]**](Seed.md) |  | 
 **var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
+**iterable** | [**List[Seed]**](Seed.md) |  | 
 
 ## Example
 

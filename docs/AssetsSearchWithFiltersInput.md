@@ -4,11 +4,11 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**casing** | **bool** | This is an optional bool that will let us know, if we want to ignore case or not.(default is to allow casing)ie casing:true. | [optional] 
-**filters** | [**AssetFilters**](AssetFilters.md) |  | [optional] 
-**query** | **str** |  | [optional] 
 **var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
+**query** | **str** |  | [optional] 
 **space** | [**AssetSearchSpace**](AssetSearchSpace.md) |  | [optional] 
+**filters** | [**AssetFilters**](AssetFilters.md) |  | [optional] 
+**casing** | **bool** | This is an optional bool that will let us know, if we want to ignore case or not.(default is to allow casing)ie casing:true. | [optional] 
 
 ## Example
 

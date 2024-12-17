@@ -28,14 +28,14 @@ class SearchedWorkstreamPatternEngineVisionEvent(BaseModel):
     """
     This will return a list of the returned events.  # noqa: E501
     """
-    application: Optional[StrictStr] = None
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     event: Optional[WorkstreamPatternEngineVisionEvent] = None
     exact: Optional[StrictBool] = None
-    identifier: StrictStr = Field(default=..., description="This is the uuid of the event.")
-    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     similarity: Optional[Union[StrictFloat, StrictInt]] = None
     temporal: Optional[StrictBool] = None
-    __properties = ["application", "event", "exact", "identifier", "schema", "similarity", "temporal"]
+    application: Optional[StrictStr] = None
+    identifier: StrictStr = Field(default=..., description="This is the uuid of the event.")
+    __properties = ["schema", "event", "exact", "similarity", "temporal", "application", "identifier"]
 
     class Config:
         """Pydantic configuration"""
@@ -61,12 +61,12 @@ class SearchedWorkstreamPatternEngineVisionEvent(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of event
-        if self.event:
-            _dict['event'] = self.event.to_dict()
         # override the default output from pydantic by calling `to_dict()` of var_schema
         if self.var_schema:
             _dict['schema'] = self.var_schema.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of event
+        if self.event:
+            _dict['event'] = self.event.to_dict()
         return _dict
 
     @classmethod
@@ -79,13 +79,13 @@ class SearchedWorkstreamPatternEngineVisionEvent(BaseModel):
             return SearchedWorkstreamPatternEngineVisionEvent.parse_obj(obj)
 
         _obj = SearchedWorkstreamPatternEngineVisionEvent.parse_obj({
-            "application": obj.get("application"),
+            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
             "event": WorkstreamPatternEngineVisionEvent.from_dict(obj.get("event")) if obj.get("event") is not None else None,
             "exact": obj.get("exact"),
-            "identifier": obj.get("identifier"),
-            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
             "similarity": obj.get("similarity"),
-            "temporal": obj.get("temporal")
+            "temporal": obj.get("temporal"),
+            "application": obj.get("application"),
+            "identifier": obj.get("identifier")
         })
         return _obj
 

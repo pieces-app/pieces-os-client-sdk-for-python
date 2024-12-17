@@ -34,22 +34,22 @@ class Sensitive(BaseModel):
     """
     This is a fully referenced representation of a sensitive pieces of data.  # noqa: E501
     """
-    asset: FlattenedAsset = Field(...)
-    category: SensitiveCategoryEnum = Field(...)
-    created: GroupedTimestamp = Field(...)
-    deleted: Optional[GroupedTimestamp] = None
-    description: StrictStr = Field(...)
-    id: StrictStr = Field(...)
-    interactions: Optional[StrictInt] = Field(default=None, description="This is an optional value that will keep track of the number of times this has been interacted with.")
-    mechanism: MechanismEnum = Field(...)
-    metadata: Optional[SensitiveMetadata] = None
-    name: StrictStr = Field(...)
     var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
-    score: Optional[Score] = None
-    severity: SensitiveSeverityEnum = Field(...)
-    text: StrictStr = Field(...)
+    id: StrictStr = Field(...)
+    created: GroupedTimestamp = Field(...)
     updated: GroupedTimestamp = Field(...)
-    __properties = ["asset", "category", "created", "deleted", "description", "id", "interactions", "mechanism", "metadata", "name", "schema", "score", "severity", "text", "updated"]
+    deleted: Optional[GroupedTimestamp] = None
+    asset: FlattenedAsset = Field(...)
+    text: StrictStr = Field(...)
+    mechanism: MechanismEnum = Field(...)
+    category: SensitiveCategoryEnum = Field(...)
+    severity: SensitiveSeverityEnum = Field(...)
+    name: StrictStr = Field(...)
+    description: StrictStr = Field(...)
+    metadata: Optional[SensitiveMetadata] = None
+    interactions: Optional[StrictInt] = Field(default=None, description="This is an optional value that will keep track of the number of times this has been interacted with.")
+    score: Optional[Score] = None
+    __properties = ["schema", "id", "created", "updated", "deleted", "asset", "text", "mechanism", "category", "severity", "name", "description", "metadata", "interactions", "score"]
 
     class Config:
         """Pydantic configuration"""
@@ -75,27 +75,27 @@ class Sensitive(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of asset
-        if self.asset:
-            _dict['asset'] = self.asset.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of created
-        if self.created:
-            _dict['created'] = self.created.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of deleted
-        if self.deleted:
-            _dict['deleted'] = self.deleted.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of metadata
-        if self.metadata:
-            _dict['metadata'] = self.metadata.to_dict()
         # override the default output from pydantic by calling `to_dict()` of var_schema
         if self.var_schema:
             _dict['schema'] = self.var_schema.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of score
-        if self.score:
-            _dict['score'] = self.score.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of created
+        if self.created:
+            _dict['created'] = self.created.to_dict()
         # override the default output from pydantic by calling `to_dict()` of updated
         if self.updated:
             _dict['updated'] = self.updated.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of deleted
+        if self.deleted:
+            _dict['deleted'] = self.deleted.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of asset
+        if self.asset:
+            _dict['asset'] = self.asset.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of metadata
+        if self.metadata:
+            _dict['metadata'] = self.metadata.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of score
+        if self.score:
+            _dict['score'] = self.score.to_dict()
         return _dict
 
     @classmethod
@@ -108,21 +108,21 @@ class Sensitive(BaseModel):
             return Sensitive.parse_obj(obj)
 
         _obj = Sensitive.parse_obj({
-            "asset": FlattenedAsset.from_dict(obj.get("asset")) if obj.get("asset") is not None else None,
-            "category": obj.get("category"),
-            "created": GroupedTimestamp.from_dict(obj.get("created")) if obj.get("created") is not None else None,
-            "deleted": GroupedTimestamp.from_dict(obj.get("deleted")) if obj.get("deleted") is not None else None,
-            "description": obj.get("description"),
-            "id": obj.get("id"),
-            "interactions": obj.get("interactions"),
-            "mechanism": obj.get("mechanism"),
-            "metadata": SensitiveMetadata.from_dict(obj.get("metadata")) if obj.get("metadata") is not None else None,
-            "name": obj.get("name"),
             "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
-            "score": Score.from_dict(obj.get("score")) if obj.get("score") is not None else None,
-            "severity": obj.get("severity"),
+            "id": obj.get("id"),
+            "created": GroupedTimestamp.from_dict(obj.get("created")) if obj.get("created") is not None else None,
+            "updated": GroupedTimestamp.from_dict(obj.get("updated")) if obj.get("updated") is not None else None,
+            "deleted": GroupedTimestamp.from_dict(obj.get("deleted")) if obj.get("deleted") is not None else None,
+            "asset": FlattenedAsset.from_dict(obj.get("asset")) if obj.get("asset") is not None else None,
             "text": obj.get("text"),
-            "updated": GroupedTimestamp.from_dict(obj.get("updated")) if obj.get("updated") is not None else None
+            "mechanism": obj.get("mechanism"),
+            "category": obj.get("category"),
+            "severity": obj.get("severity"),
+            "name": obj.get("name"),
+            "description": obj.get("description"),
+            "metadata": SensitiveMetadata.from_dict(obj.get("metadata")) if obj.get("metadata") is not None else None,
+            "interactions": obj.get("interactions"),
+            "score": Score.from_dict(obj.get("score")) if obj.get("score") is not None else None
         })
         return _obj
 

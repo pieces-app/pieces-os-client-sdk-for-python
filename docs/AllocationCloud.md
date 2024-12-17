@@ -5,15 +5,15 @@ update && version: will be present only if your cloud was successfully spun up &
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **str** | This is a uuid that represents this cloud.(this is the same as the userid) | 
-**project** | **str** | This is the project that this is attached to. | 
-**region** | **str** | this is the region where the project is defined. | [optional] 
 **var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
-**status** | [**AllocationCloudStatus**](AllocationCloudStatus.md) |  | 
-**updated** | [**GroupedTimestamp**](GroupedTimestamp.md) |  | [optional] 
-**urls** | [**AllocationCloudUrls**](AllocationCloudUrls.md) |  | 
+**id** | **str** | This is a uuid that represents this cloud.(this is the same as the userid) | 
 **user** | **str** | this is your useruuid. | 
+**urls** | [**AllocationCloudUrls**](AllocationCloudUrls.md) |  | 
+**status** | [**AllocationCloudStatus**](AllocationCloudStatus.md) |  | 
+**project** | **str** | This is the project that this is attached to. | 
+**updated** | [**GroupedTimestamp**](GroupedTimestamp.md) |  | [optional] 
 **version** | **str** | this is the current version of the server. | [optional] 
+**region** | **str** | this is the region where the project is defined. | [optional] 
 
 ## Example
 

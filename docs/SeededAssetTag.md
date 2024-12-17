@@ -5,10 +5,10 @@ This is similar to an SeededTag, where this is the minimum information of a tag,
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**category** | [**TagCategoryEnum**](TagCategoryEnum.md) |  | [optional] 
-**mechanism** | [**MechanismEnum**](MechanismEnum.md) |  | [optional] 
 **var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 **text** | **str** | this is the text that represents the tag. | 
+**mechanism** | [**MechanismEnum**](MechanismEnum.md) |  | [optional] 
+**category** | [**TagCategoryEnum**](TagCategoryEnum.md) |  | [optional] 
 
 ## Example
 

@@ -5,9 +5,9 @@ This is a collection of many Shadow Activity events.
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**indices** | **Dict[str, int]** | This is a Map&lt;String, int&gt; where the the key is an activity id. | [optional] 
-**iterable** | [**List[WorkstreamEvent]**](WorkstreamEvent.md) |  | 
 **var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
+**iterable** | [**List[WorkstreamEvent]**](WorkstreamEvent.md) |  | 
+**indices** | **Dict[str, int]** | This is a Map&lt;String, int&gt; where the the key is an activity id. | [optional] 
 **score** | [**Score**](Score.md) |  | [optional] 
 
 ## Example

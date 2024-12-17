@@ -5,8 +5,8 @@ This is the model for the output for the \"/conversations/create/from_asset/{ass
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**conversation** | [**ReferencedConversation**](ReferencedConversation.md) |  | 
 **var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
+**conversation** | [**ReferencedConversation**](ReferencedConversation.md) |  | 
 
 ## Example
 

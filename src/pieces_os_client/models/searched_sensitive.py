@@ -28,13 +28,13 @@ class SearchedSensitive(BaseModel):
     """
     This is used for the Sensitives searching endpoint.  sensitive here is only provided if transferables are set to true.  temporal: if this is provided this means that their material matched the input via a timestamp.  TODO will want to consider returning related materials to this material potentially both associated/ and not associated materials ie suggestion: WorkstreamSuggestions  # noqa: E501
     """
-    exact: StrictBool = Field(...)
-    identifier: StrictStr = Field(default=..., description="This is the uuid of the sensitive.")
     var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     sensitive: Optional[Sensitive] = None
+    exact: StrictBool = Field(...)
     similarity: Union[StrictFloat, StrictInt] = Field(...)
     temporal: Optional[StrictBool] = None
-    __properties = ["exact", "identifier", "schema", "sensitive", "similarity", "temporal"]
+    identifier: StrictStr = Field(default=..., description="This is the uuid of the sensitive.")
+    __properties = ["schema", "sensitive", "exact", "similarity", "temporal", "identifier"]
 
     class Config:
         """Pydantic configuration"""
@@ -78,12 +78,12 @@ class SearchedSensitive(BaseModel):
             return SearchedSensitive.parse_obj(obj)
 
         _obj = SearchedSensitive.parse_obj({
-            "exact": obj.get("exact"),
-            "identifier": obj.get("identifier"),
             "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
             "sensitive": Sensitive.from_dict(obj.get("sensitive")) if obj.get("sensitive") is not None else None,
+            "exact": obj.get("exact"),
             "similarity": obj.get("similarity"),
-            "temporal": obj.get("temporal")
+            "temporal": obj.get("temporal"),
+            "identifier": obj.get("identifier")
         })
         return _obj
 

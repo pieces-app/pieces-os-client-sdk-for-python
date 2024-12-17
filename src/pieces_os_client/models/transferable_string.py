@@ -27,12 +27,12 @@ class TransferableString(BaseModel):
     """
     This is a String representaion of any of these changes.  [NOT IMPLEMENTED] base64, base64_url, data_url [IMPLEMENTED] raw  # noqa: E501
     """
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
+    raw: Optional[StrictStr] = Field(default=None, description="IMPLEMENTED")
     var_base64: Optional[StrictStr] = Field(default=None, alias="base64", description="NOT IMPLEMENTED")
     base64_url: Optional[StrictStr] = Field(default=None, description="NOT IMPLEMENTED")
     data_url: Optional[StrictStr] = Field(default=None, description="NOT IMPLEMENTED")
-    raw: Optional[StrictStr] = Field(default=None, description="IMPLEMENTED")
-    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
-    __properties = ["base64", "base64_url", "data_url", "raw", "schema"]
+    __properties = ["schema", "raw", "base64", "base64_url", "data_url"]
 
     class Config:
         """Pydantic configuration"""
@@ -73,11 +73,11 @@ class TransferableString(BaseModel):
             return TransferableString.parse_obj(obj)
 
         _obj = TransferableString.parse_obj({
+            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
+            "raw": obj.get("raw"),
             "var_base64": obj.get("base64"),
             "base64_url": obj.get("base64_url"),
-            "data_url": obj.get("data_url"),
-            "raw": obj.get("raw"),
-            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None
+            "data_url": obj.get("data_url")
         })
         return _obj
 

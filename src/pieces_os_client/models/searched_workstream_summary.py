@@ -29,14 +29,14 @@ class SearchedWorkstreamSummary(BaseModel):
     """
     This is used for the WorkstreamSummaries searching endpoint  WorkstreamSummary here is only provided if transferables are set to true.  temporal: if this is provided this means that their material matched the input via a timestamp.  TODO will want to consider returning related materials to this material potentially both associated/ and not associated materials ie suggestion: WorkstreamSuggestions  annotations: this is provided if we match a specific annotation on a WorkstreamSummary  # noqa: E501
     """
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
+    summary: Optional[WorkstreamSummary] = None
     annotations: Optional[SearchedAnnotations] = None
     exact: StrictBool = Field(...)
-    identifier: StrictStr = Field(default=..., description="This is the uuid of the WorkstreamSummary.")
-    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     similarity: Union[StrictFloat, StrictInt] = Field(...)
-    summary: Optional[WorkstreamSummary] = None
     temporal: Optional[StrictBool] = None
-    __properties = ["annotations", "exact", "identifier", "schema", "similarity", "summary", "temporal"]
+    identifier: StrictStr = Field(default=..., description="This is the uuid of the WorkstreamSummary.")
+    __properties = ["schema", "summary", "annotations", "exact", "similarity", "temporal", "identifier"]
 
     class Config:
         """Pydantic configuration"""
@@ -62,15 +62,15 @@ class SearchedWorkstreamSummary(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of annotations
-        if self.annotations:
-            _dict['annotations'] = self.annotations.to_dict()
         # override the default output from pydantic by calling `to_dict()` of var_schema
         if self.var_schema:
             _dict['schema'] = self.var_schema.to_dict()
         # override the default output from pydantic by calling `to_dict()` of summary
         if self.summary:
             _dict['summary'] = self.summary.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of annotations
+        if self.annotations:
+            _dict['annotations'] = self.annotations.to_dict()
         return _dict
 
     @classmethod
@@ -83,13 +83,13 @@ class SearchedWorkstreamSummary(BaseModel):
             return SearchedWorkstreamSummary.parse_obj(obj)
 
         _obj = SearchedWorkstreamSummary.parse_obj({
+            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
+            "summary": WorkstreamSummary.from_dict(obj.get("summary")) if obj.get("summary") is not None else None,
             "annotations": SearchedAnnotations.from_dict(obj.get("annotations")) if obj.get("annotations") is not None else None,
             "exact": obj.get("exact"),
-            "identifier": obj.get("identifier"),
-            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
             "similarity": obj.get("similarity"),
-            "summary": WorkstreamSummary.from_dict(obj.get("summary")) if obj.get("summary") is not None else None,
-            "temporal": obj.get("temporal")
+            "temporal": obj.get("temporal"),
+            "identifier": obj.get("identifier")
         })
         return _obj
 

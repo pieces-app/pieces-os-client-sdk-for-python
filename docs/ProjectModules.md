@@ -5,8 +5,8 @@ This is a plural representation of the ProjectModule
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**iterable** | [**List[ProjectModule]**](ProjectModule.md) |  | 
 **var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
+**iterable** | [**List[ProjectModule]**](ProjectModule.md) |  | 
 
 ## Example
 

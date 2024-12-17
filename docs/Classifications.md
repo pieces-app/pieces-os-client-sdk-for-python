@@ -5,8 +5,8 @@ This is a plural representation of a Classification
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**iterable** | [**List[Classification]**](Classification.md) |  | 
 **var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
+**iterable** | [**List[Classification]**](Classification.md) |  | 
 
 ## Example
 

@@ -5,12 +5,12 @@ This is the incoming linkify model.  if access is PRIVATE then please provide an
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**access** | [**AccessEnum**](AccessEnum.md) |  | 
-**asset** | [**Asset**](Asset.md) |  | [optional] 
-**distributions** | [**SeededDistributions**](SeededDistributions.md) |  | [optional] 
 **var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 **seed** | [**Seed**](Seed.md) |  | [optional] 
+**asset** | [**Asset**](Asset.md) |  | [optional] 
 **users** | [**List[SeededUser]**](SeededUser.md) | this is an array of users. | [optional] 
+**access** | [**AccessEnum**](AccessEnum.md) |  | 
+**distributions** | [**SeededDistributions**](SeededDistributions.md) |  | [optional] 
 
 ## Example
 

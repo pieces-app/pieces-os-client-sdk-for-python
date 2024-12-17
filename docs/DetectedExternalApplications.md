@@ -5,8 +5,8 @@ This is used as the returnable for the /applications/external && /applications/e
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**iterable** | [**List[DetectedExternalApplication]**](DetectedExternalApplication.md) |  | 
 **var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
+**iterable** | [**List[DetectedExternalApplication]**](DetectedExternalApplication.md) |  | 
 
 ## Example
 

@@ -5,10 +5,10 @@ This will be either a TransferableString or TransferableBytes that represent you
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**bytes** | [**TransferableBytes**](TransferableBytes.md) |  | [optional] 
-**metadata** | [**FragmentMetadata**](FragmentMetadata.md) |  | [optional] 
 **var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 **string** | [**TransferableString**](TransferableString.md) |  | [optional] 
+**bytes** | [**TransferableBytes**](TransferableBytes.md) |  | [optional] 
+**metadata** | [**FragmentMetadata**](FragmentMetadata.md) |  | [optional] 
 
 ## Example
 

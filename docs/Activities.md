@@ -5,8 +5,8 @@ This is the plural of activity
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**iterable** | [**List[Activity]**](Activity.md) |  | 
 **var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
+**iterable** | [**List[Activity]**](Activity.md) |  | 
 
 ## Example
 

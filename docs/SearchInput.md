@@ -5,8 +5,8 @@ generic endpoint body for the searching endpoints  query: this is optional, but 
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**engines** | [**SearchEngines**](SearchEngines.md) |  | 
 **var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
+**engines** | [**SearchEngines**](SearchEngines.md) |  | 
 
 ## Example
 

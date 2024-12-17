@@ -5,12 +5,12 @@ Query is your followup question.  Conversation is a list of the back and fourth 
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**application** | **str** | optional application id | [optional] 
+**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
+**query** | **str** |  | 
 **conversation** | [**QGPTConversation**](QGPTConversation.md) |  | 
+**application** | **str** | optional application id | [optional] 
 **model** | **str** | optional model id | [optional] 
 **pipeline** | [**QGPTPromptPipeline**](QGPTPromptPipeline.md) |  | [optional] 
-**query** | **str** |  | 
-**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 
 ## Example
 

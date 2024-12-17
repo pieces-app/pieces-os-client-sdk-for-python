@@ -5,8 +5,8 @@ This is the plural Model used to return many SearchedAnnotation.
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**iterable** | [**List[SearchedAnnotation]**](SearchedAnnotation.md) |  | 
 **var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
+**iterable** | [**List[SearchedAnnotation]**](SearchedAnnotation.md) |  | 
 
 ## Example
 

@@ -26,10 +26,10 @@ class InteractedAssetInteractions(BaseModel):
     """
     InteractedAssetInteractions
     """
-    scrolled: Optional[StrictBool] = Field(default=False, description="If the user scrolled over the asset.")
-    touched: Optional[StrictBool] = Field(default=False, description="If the user touched or panned over the asset.")
     viewed: constr(strict=True) = Field(default=..., description="https://en.wikipedia.org/wiki/ISO_8601#Time_intervals")
-    __properties = ["scrolled", "touched", "viewed"]
+    touched: Optional[StrictBool] = Field(default=False, description="If the user touched or panned over the asset.")
+    scrolled: Optional[StrictBool] = Field(default=False, description="If the user scrolled over the asset.")
+    __properties = ["viewed", "touched", "scrolled"]
 
     @validator('viewed')
     def viewed_validate_regular_expression(cls, value):
@@ -74,9 +74,9 @@ class InteractedAssetInteractions(BaseModel):
             return InteractedAssetInteractions.parse_obj(obj)
 
         _obj = InteractedAssetInteractions.parse_obj({
-            "scrolled": obj.get("scrolled") if obj.get("scrolled") is not None else False,
+            "viewed": obj.get("viewed"),
             "touched": obj.get("touched") if obj.get("touched") is not None else False,
-            "viewed": obj.get("viewed")
+            "scrolled": obj.get("scrolled") if obj.get("scrolled") is not None else False
         })
         return _obj
 

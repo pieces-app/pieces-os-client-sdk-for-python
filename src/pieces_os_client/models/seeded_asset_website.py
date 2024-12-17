@@ -28,11 +28,11 @@ class SeededAssetWebsite(BaseModel):
     """
     This is similar to an SeededWebsite, where this is the minimum information of a website, but this can get added to a seededAsset,  where you may not yet have an asset id.  # noqa: E501
     """
-    mechanism: Optional[MechanismEnum] = None
-    name: StrictStr = Field(...)
     var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     url: StrictStr = Field(...)
-    __properties = ["mechanism", "name", "schema", "url"]
+    name: StrictStr = Field(...)
+    mechanism: Optional[MechanismEnum] = None
+    __properties = ["schema", "url", "name", "mechanism"]
 
     class Config:
         """Pydantic configuration"""
@@ -73,10 +73,10 @@ class SeededAssetWebsite(BaseModel):
             return SeededAssetWebsite.parse_obj(obj)
 
         _obj = SeededAssetWebsite.parse_obj({
-            "mechanism": obj.get("mechanism"),
-            "name": obj.get("name"),
             "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
-            "url": obj.get("url")
+            "url": obj.get("url"),
+            "name": obj.get("name"),
+            "mechanism": obj.get("mechanism")
         })
         return _obj
 

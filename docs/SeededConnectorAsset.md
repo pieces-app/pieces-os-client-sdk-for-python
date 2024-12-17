@@ -5,9 +5,9 @@ A generic model to use with the Connector API that requires little to no additio
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**format** | [**SeededFormat**](SeededFormat.md) |  | 
-**metadata** | [**SeededAssetMetadata**](SeededAssetMetadata.md) |  | [optional] 
 **var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
+**metadata** | [**SeededAssetMetadata**](SeededAssetMetadata.md) |  | [optional] 
+**format** | [**SeededFormat**](SeededFormat.md) |  | 
 
 ## Example
 

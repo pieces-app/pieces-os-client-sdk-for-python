@@ -28,10 +28,10 @@ class TextMatch(BaseModel):
     """
     Thext Match currently used for sensitive for scales for people, and anything related to text matching.  group: is the entire match subgroup is the inner match within the group.(optional)  # noqa: E501
     """
-    group: TextLocation = Field(...)
     var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
+    group: TextLocation = Field(...)
     subgroup: Optional[TextLocation] = None
-    __properties = ["group", "schema", "subgroup"]
+    __properties = ["schema", "group", "subgroup"]
 
     class Config:
         """Pydantic configuration"""
@@ -57,12 +57,12 @@ class TextMatch(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of group
-        if self.group:
-            _dict['group'] = self.group.to_dict()
         # override the default output from pydantic by calling `to_dict()` of var_schema
         if self.var_schema:
             _dict['schema'] = self.var_schema.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of group
+        if self.group:
+            _dict['group'] = self.group.to_dict()
         # override the default output from pydantic by calling `to_dict()` of subgroup
         if self.subgroup:
             _dict['subgroup'] = self.subgroup.to_dict()
@@ -78,8 +78,8 @@ class TextMatch(BaseModel):
             return TextMatch.parse_obj(obj)
 
         _obj = TextMatch.parse_obj({
-            "group": TextLocation.from_dict(obj.get("group")) if obj.get("group") is not None else None,
             "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
+            "group": TextLocation.from_dict(obj.get("group")) if obj.get("group") is not None else None,
             "subgroup": TextLocation.from_dict(obj.get("subgroup")) if obj.get("subgroup") is not None else None
         })
         return _obj

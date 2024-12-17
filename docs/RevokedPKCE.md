@@ -5,8 +5,8 @@ A model to support revoking a Token Generated Through PKCE  The behaviour of thi
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**client_id** | **str** | Your application&#39;s Client ID. The application should match the one the Refresh Token was issued for. | 
 **var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
+**client_id** | **str** | Your application&#39;s Client ID. The application should match the one the Refresh Token was issued for. | 
 **token** | **str** | The Refresh Token you want to revoke. | 
 
 ## Example

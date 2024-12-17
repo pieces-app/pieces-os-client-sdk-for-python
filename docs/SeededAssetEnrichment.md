@@ -5,11 +5,11 @@ This is a specific Model for the SeededAsset that will enable the developer to m
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**hints** | **int** |  | [optional] 
-**persons** | **int** |  | [optional] 
 **var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 **tags** | **int** |  | [optional] 
 **websites** | **int** |  | [optional] 
+**persons** | **int** |  | [optional] 
+**hints** | **int** |  | [optional] 
 
 ## Example
 

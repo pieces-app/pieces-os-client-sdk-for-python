@@ -27,9 +27,9 @@ class OrderedMetrics(BaseModel):
     """
     This is a returnable for the metrics/formats/ordered  # noqa: E501
     """
-    ordered: conlist(StrictStr) = Field(...)
     var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
-    __properties = ["ordered", "schema"]
+    ordered: conlist(StrictStr) = Field(...)
+    __properties = ["schema", "ordered"]
 
     class Config:
         """Pydantic configuration"""
@@ -70,8 +70,8 @@ class OrderedMetrics(BaseModel):
             return OrderedMetrics.parse_obj(obj)
 
         _obj = OrderedMetrics.parse_obj({
-            "ordered": obj.get("ordered"),
-            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None
+            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
+            "ordered": obj.get("ordered")
         })
         return _obj
 

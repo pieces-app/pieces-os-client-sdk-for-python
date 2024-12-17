@@ -4,9 +4,9 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**grounding** | [**SeededRangeConversationGroundingAssociation**](SeededRangeConversationGroundingAssociation.md) |  | [optional] 
-**reference** | [**ReferencedConversation**](ReferencedConversation.md) |  | 
 **var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
+**reference** | [**ReferencedConversation**](ReferencedConversation.md) |  | 
+**grounding** | [**SeededRangeConversationGroundingAssociation**](SeededRangeConversationGroundingAssociation.md) |  | [optional] 
 
 ## Example
 

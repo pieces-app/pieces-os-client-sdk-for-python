@@ -5,8 +5,8 @@ This is the plural Model used to return many SearchedAnchorPoint.
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**iterable** | [**List[SearchedAnchorPoint]**](SearchedAnchorPoint.md) |  | 
 **var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
+**iterable** | [**List[SearchedAnchorPoint]**](SearchedAnchorPoint.md) |  | 
 
 ## Example
 

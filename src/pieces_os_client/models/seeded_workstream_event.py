@@ -32,14 +32,14 @@ class SeededWorkstreamEvent(BaseModel):
     """
     This is a precreated version of a WorkstreamEvent event, this will be used ingested into PiecesOS and PiecesOS will do all the magic to transform this into relevant data show in the workstream feed.  # noqa: E501
     """
-    application: Application = Field(...)
-    context: Optional[WorkstreamEventContext] = None
-    internal_identifier: Optional[StrictStr] = Field(default=None, description="This is used to override the event identifier, if this was an event that was originally in the internal events collection.")
     var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     score: Optional[Score] = None
-    summary: Optional[ReferencedWorkstreamSummary] = None
+    application: Application = Field(...)
     trigger: WorkstreamEventTrigger = Field(...)
-    __properties = ["application", "context", "internal_identifier", "schema", "score", "summary", "trigger"]
+    context: Optional[WorkstreamEventContext] = None
+    summary: Optional[ReferencedWorkstreamSummary] = None
+    internal_identifier: Optional[StrictStr] = Field(default=None, description="This is used to override the event identifier, if this was an event that was originally in the internal events collection.")
+    __properties = ["schema", "score", "application", "trigger", "context", "summary", "internal_identifier"]
 
     class Config:
         """Pydantic configuration"""
@@ -65,24 +65,24 @@ class SeededWorkstreamEvent(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of application
-        if self.application:
-            _dict['application'] = self.application.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of context
-        if self.context:
-            _dict['context'] = self.context.to_dict()
         # override the default output from pydantic by calling `to_dict()` of var_schema
         if self.var_schema:
             _dict['schema'] = self.var_schema.to_dict()
         # override the default output from pydantic by calling `to_dict()` of score
         if self.score:
             _dict['score'] = self.score.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of summary
-        if self.summary:
-            _dict['summary'] = self.summary.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of application
+        if self.application:
+            _dict['application'] = self.application.to_dict()
         # override the default output from pydantic by calling `to_dict()` of trigger
         if self.trigger:
             _dict['trigger'] = self.trigger.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of context
+        if self.context:
+            _dict['context'] = self.context.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of summary
+        if self.summary:
+            _dict['summary'] = self.summary.to_dict()
         return _dict
 
     @classmethod
@@ -95,13 +95,13 @@ class SeededWorkstreamEvent(BaseModel):
             return SeededWorkstreamEvent.parse_obj(obj)
 
         _obj = SeededWorkstreamEvent.parse_obj({
-            "application": Application.from_dict(obj.get("application")) if obj.get("application") is not None else None,
-            "context": WorkstreamEventContext.from_dict(obj.get("context")) if obj.get("context") is not None else None,
-            "internal_identifier": obj.get("internal_identifier"),
             "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
             "score": Score.from_dict(obj.get("score")) if obj.get("score") is not None else None,
+            "application": Application.from_dict(obj.get("application")) if obj.get("application") is not None else None,
+            "trigger": WorkstreamEventTrigger.from_dict(obj.get("trigger")) if obj.get("trigger") is not None else None,
+            "context": WorkstreamEventContext.from_dict(obj.get("context")) if obj.get("context") is not None else None,
             "summary": ReferencedWorkstreamSummary.from_dict(obj.get("summary")) if obj.get("summary") is not None else None,
-            "trigger": WorkstreamEventTrigger.from_dict(obj.get("trigger")) if obj.get("trigger") is not None else None
+            "internal_identifier": obj.get("internal_identifier")
         })
         return _obj
 

@@ -27,14 +27,14 @@ class FlattenedUserProfile(BaseModel):
     """
     This is a FlattenedUserProfile that includes information that is not sensative in relation to a user.  # noqa: E501
     """
-    email: Optional[StrictStr] = None
-    id: StrictStr = Field(default=..., description="this is the uuid that identifies a user.")
-    name: Optional[StrictStr] = None
-    picture: Optional[StrictStr] = None
     var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
+    id: StrictStr = Field(default=..., description="this is the uuid that identifies a user.")
+    email: Optional[StrictStr] = None
+    name: Optional[StrictStr] = None
     username: Optional[StrictStr] = None
+    picture: Optional[StrictStr] = None
     vanityname: Optional[StrictStr] = None
-    __properties = ["email", "id", "name", "picture", "schema", "username", "vanityname"]
+    __properties = ["schema", "id", "email", "name", "username", "picture", "vanityname"]
 
     class Config:
         """Pydantic configuration"""
@@ -75,12 +75,12 @@ class FlattenedUserProfile(BaseModel):
             return FlattenedUserProfile.parse_obj(obj)
 
         _obj = FlattenedUserProfile.parse_obj({
-            "email": obj.get("email"),
-            "id": obj.get("id"),
-            "name": obj.get("name"),
-            "picture": obj.get("picture"),
             "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
+            "id": obj.get("id"),
+            "email": obj.get("email"),
+            "name": obj.get("name"),
             "username": obj.get("username"),
+            "picture": obj.get("picture"),
             "vanityname": obj.get("vanityname")
         })
         return _obj

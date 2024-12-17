@@ -26,6 +26,7 @@ from typing import Optional
 
 from pieces_os_client.models.onboarded_persona_details import OnboardedPersonaDetails
 from pieces_os_client.models.preonboarded_persona_details import PreonboardedPersonaDetails
+from pieces_os_client.models.segmented_technical_language import SegmentedTechnicalLanguage
 from pieces_os_client.models.unsegmented_technical_language import UnsegmentedTechnicalLanguage
 
 from pieces_os_client.api_client import ApiClient
@@ -172,7 +173,7 @@ class MachineLearningApi:
                 _header_params['Content-Type'] = _content_types_list
 
         # authentication setting
-        _auth_settings = []  # noqa: E501
+        _auth_settings = ['application']  # noqa: E501
 
         _response_types_map = {
             '200': "OnboardedPersonaDetails",
@@ -197,7 +198,7 @@ class MachineLearningApi:
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def segment_technical_language(self, classify : Annotated[Optional[StrictBool], Field(description="This will let us know if you want us to classifiy your code, this is default to false.")] = None, unsegmented_technical_language : Optional[UnsegmentedTechnicalLanguage] = None, **kwargs) -> None:  # noqa: E501
+    def segment_technical_language(self, classify : Annotated[Optional[StrictBool], Field(description="This will let us know if you want us to classifiy your code, this is default to false.")] = None, unsegmented_technical_language : Optional[UnsegmentedTechnicalLanguage] = None, **kwargs) -> SegmentedTechnicalLanguage:  # noqa: E501
         """/machine_learning/text/technical_language/parsers/segmentation [POST]  # noqa: E501
 
         This is a functional endpoint that will parse a message or text in to text or code.  if the optional query param is passed along 'classify' then we will optionally classify the just the code that is segmented.  # noqa: E501
@@ -220,7 +221,7 @@ class MachineLearningApi:
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
-        :rtype: None
+        :rtype: SegmentedTechnicalLanguage
         """
         kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
@@ -265,7 +266,7 @@ class MachineLearningApi:
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
-        :rtype: None
+        :rtype: tuple(SegmentedTechnicalLanguage, status_code(int), headers(HTTPHeaderDict))
         """
 
         _params = locals()
@@ -318,7 +319,7 @@ class MachineLearningApi:
 
         # set the HTTP header `Accept`
         _header_params['Accept'] = self.api_client.select_header_accept(
-            ['text/plain'])  # noqa: E501
+            ['application/json', 'text/plain'])  # noqa: E501
 
         # set the HTTP header `Content-Type`
         _content_types_list = _params.get('_content_type',
@@ -328,9 +329,12 @@ class MachineLearningApi:
                 _header_params['Content-Type'] = _content_types_list
 
         # authentication setting
-        _auth_settings = []  # noqa: E501
+        _auth_settings = ['application']  # noqa: E501
 
-        _response_types_map = {}
+        _response_types_map = {
+            '200': "SegmentedTechnicalLanguage",
+            '500': "str",
+        }
 
         return self.api_client.call_api(
             '/machine_learning/text/technical_language/parsers/segmentation', 'POST',

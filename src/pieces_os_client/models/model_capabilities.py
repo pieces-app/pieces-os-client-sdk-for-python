@@ -27,15 +27,15 @@ class ModelCapabilities(BaseModel):
     """
     This will let us know what capabilities the model is aloud to be used for.  # noqa: E501
     """
-    assets: Optional[StrictBool] = Field(default=None, description="True if the model can leverage saved assets & their metadata in its context window.")
-    codebases: Optional[StrictBool] = Field(default=None, description="True if the model can leverage entire code bases/snippetized code bases in its context window")
-    documents: Optional[StrictBool] = Field(default=None, description="True if the model can leverage code/text/other files in it's context window")
-    images: Optional[StrictBool] = Field(default=None, description="True if the model can leverage images and graphical material files in it's context window")
     var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     temporal: Optional[StrictBool] = Field(default=None, description="True if model is able to support live context and any other temporally powered RAG Capabilities i.e. \"What did I do yesterday?\"")
+    images: Optional[StrictBool] = Field(default=None, description="True if the model can leverage images and graphical material files in it's context window")
     videos: Optional[StrictBool] = Field(default=None, description="True if the model can leverage videos files in it's context window")
+    documents: Optional[StrictBool] = Field(default=None, description="True if the model can leverage code/text/other files in it's context window")
+    codebases: Optional[StrictBool] = Field(default=None, description="True if the model can leverage entire code bases/snippetized code bases in its context window")
+    assets: Optional[StrictBool] = Field(default=None, description="True if the model can leverage saved assets & their metadata in its context window.")
     websites: Optional[StrictBool] = Field(default=None, description="True if the model can leverage websites in its context window.")
-    __properties = ["assets", "codebases", "documents", "images", "schema", "temporal", "videos", "websites"]
+    __properties = ["schema", "temporal", "images", "videos", "documents", "codebases", "assets", "websites"]
 
     class Config:
         """Pydantic configuration"""
@@ -76,13 +76,13 @@ class ModelCapabilities(BaseModel):
             return ModelCapabilities.parse_obj(obj)
 
         _obj = ModelCapabilities.parse_obj({
-            "assets": obj.get("assets"),
-            "codebases": obj.get("codebases"),
-            "documents": obj.get("documents"),
-            "images": obj.get("images"),
             "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
             "temporal": obj.get("temporal"),
+            "images": obj.get("images"),
             "videos": obj.get("videos"),
+            "documents": obj.get("documents"),
+            "codebases": obj.get("codebases"),
+            "assets": obj.get("assets"),
             "websites": obj.get("websites")
         })
         return _obj

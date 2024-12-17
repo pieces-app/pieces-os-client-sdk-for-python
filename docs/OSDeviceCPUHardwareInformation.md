@@ -5,9 +5,14 @@ This will let us know specific hardware information related to the CPU.
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**memory** | **float** |  | [optional] 
-**name** | **str** |  | [optional] 
 **var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
+**name** | **str** |  | [optional] 
+**l1_cache** | **float** |  | [optional] 
+**l2_cache** | **float** |  | [optional] 
+**l3_cache** | **float** |  | [optional] 
+**shared_memory** | **bool** |  | [optional] 
+**cores** | **float** |  | [optional] 
+**clock_cycle_speed** | **float** |  | [optional] 
 
 ## Example
 

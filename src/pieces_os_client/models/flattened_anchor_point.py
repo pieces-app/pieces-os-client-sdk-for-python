@@ -30,17 +30,17 @@ class FlattenedAnchorPoint(BaseModel):
     """
     FlattenedAnchorPoint
     """
-    anchor: ReferencedAnchor = Field(...)
-    created: GroupedTimestamp = Field(...)
-    deleted: Optional[GroupedTimestamp] = None
-    fullpath: StrictStr = Field(default=..., description="This is the text of the path.")
-    id: StrictStr = Field(...)
-    platform: Optional[PlatformEnum] = None
     var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
-    score: Optional[Score] = None
-    updated: GroupedTimestamp = Field(...)
+    id: StrictStr = Field(...)
     verified: Optional[StrictBool] = None
-    __properties = ["anchor", "created", "deleted", "fullpath", "id", "platform", "schema", "score", "updated", "verified"]
+    fullpath: StrictStr = Field(default=..., description="This is the text of the path.")
+    created: GroupedTimestamp = Field(...)
+    updated: GroupedTimestamp = Field(...)
+    deleted: Optional[GroupedTimestamp] = None
+    platform: Optional[PlatformEnum] = None
+    anchor: ReferencedAnchor = Field(...)
+    score: Optional[Score] = None
+    __properties = ["schema", "id", "verified", "fullpath", "created", "updated", "deleted", "platform", "anchor", "score"]
 
     class Config:
         """Pydantic configuration"""
@@ -66,24 +66,24 @@ class FlattenedAnchorPoint(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of anchor
-        if self.anchor:
-            _dict['anchor'] = self.anchor.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of created
-        if self.created:
-            _dict['created'] = self.created.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of deleted
-        if self.deleted:
-            _dict['deleted'] = self.deleted.to_dict()
         # override the default output from pydantic by calling `to_dict()` of var_schema
         if self.var_schema:
             _dict['schema'] = self.var_schema.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of score
-        if self.score:
-            _dict['score'] = self.score.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of created
+        if self.created:
+            _dict['created'] = self.created.to_dict()
         # override the default output from pydantic by calling `to_dict()` of updated
         if self.updated:
             _dict['updated'] = self.updated.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of deleted
+        if self.deleted:
+            _dict['deleted'] = self.deleted.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of anchor
+        if self.anchor:
+            _dict['anchor'] = self.anchor.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of score
+        if self.score:
+            _dict['score'] = self.score.to_dict()
         return _dict
 
     @classmethod
@@ -96,16 +96,16 @@ class FlattenedAnchorPoint(BaseModel):
             return FlattenedAnchorPoint.parse_obj(obj)
 
         _obj = FlattenedAnchorPoint.parse_obj({
-            "anchor": ReferencedAnchor.from_dict(obj.get("anchor")) if obj.get("anchor") is not None else None,
-            "created": GroupedTimestamp.from_dict(obj.get("created")) if obj.get("created") is not None else None,
-            "deleted": GroupedTimestamp.from_dict(obj.get("deleted")) if obj.get("deleted") is not None else None,
-            "fullpath": obj.get("fullpath"),
-            "id": obj.get("id"),
-            "platform": obj.get("platform"),
             "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
-            "score": Score.from_dict(obj.get("score")) if obj.get("score") is not None else None,
+            "id": obj.get("id"),
+            "verified": obj.get("verified"),
+            "fullpath": obj.get("fullpath"),
+            "created": GroupedTimestamp.from_dict(obj.get("created")) if obj.get("created") is not None else None,
             "updated": GroupedTimestamp.from_dict(obj.get("updated")) if obj.get("updated") is not None else None,
-            "verified": obj.get("verified")
+            "deleted": GroupedTimestamp.from_dict(obj.get("deleted")) if obj.get("deleted") is not None else None,
+            "platform": obj.get("platform"),
+            "anchor": ReferencedAnchor.from_dict(obj.get("anchor")) if obj.get("anchor") is not None else None,
+            "score": Score.from_dict(obj.get("score")) if obj.get("score") is not None else None
         })
         return _obj
 

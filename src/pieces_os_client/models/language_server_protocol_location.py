@@ -28,10 +28,10 @@ class LanguageServerProtocolLocation(BaseModel):
     """
     modeled after this (https://microsoft.github.io/language-server-protocol/specifications/lsp/3.17/specification/#location)  uri: is jsut a file path  range: here is the location of where this item is within the file.  # noqa: E501
     """
-    range: LanguageServerProtocolLocationRange = Field(...)
     var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     uri: StrictStr = Field(...)
-    __properties = ["range", "schema", "uri"]
+    range: LanguageServerProtocolLocationRange = Field(...)
+    __properties = ["schema", "uri", "range"]
 
     class Config:
         """Pydantic configuration"""
@@ -57,12 +57,12 @@ class LanguageServerProtocolLocation(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of range
-        if self.range:
-            _dict['range'] = self.range.to_dict()
         # override the default output from pydantic by calling `to_dict()` of var_schema
         if self.var_schema:
             _dict['schema'] = self.var_schema.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of range
+        if self.range:
+            _dict['range'] = self.range.to_dict()
         return _dict
 
     @classmethod
@@ -75,9 +75,9 @@ class LanguageServerProtocolLocation(BaseModel):
             return LanguageServerProtocolLocation.parse_obj(obj)
 
         _obj = LanguageServerProtocolLocation.parse_obj({
-            "range": LanguageServerProtocolLocationRange.from_dict(obj.get("range")) if obj.get("range") is not None else None,
             "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
-            "uri": obj.get("uri")
+            "uri": obj.get("uri"),
+            "range": LanguageServerProtocolLocationRange.from_dict(obj.get("range")) if obj.get("range") is not None else None
         })
         return _obj
 

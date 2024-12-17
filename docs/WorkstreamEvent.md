@@ -5,15 +5,15 @@ This is a Shadow Activity event:  This is used to for 2 collections the internal
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**application** | [**Application**](Application.md) |  | 
-**context** | [**WorkstreamEventContext**](WorkstreamEventContext.md) |  | [optional] 
-**created** | [**GroupedTimestamp**](GroupedTimestamp.md) |  | 
-**id** | **str** |  | 
 **var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
+**id** | **str** |  | 
 **score** | [**Score**](Score.md) |  | [optional] 
-**summaries** | [**FlattenedWorkstreamSummaries**](FlattenedWorkstreamSummaries.md) |  | [optional] 
-**trigger** | [**WorkstreamEventTrigger**](WorkstreamEventTrigger.md) |  | 
+**application** | [**Application**](Application.md) |  | 
+**created** | [**GroupedTimestamp**](GroupedTimestamp.md) |  | 
 **updated** | [**GroupedTimestamp**](GroupedTimestamp.md) |  | 
+**trigger** | [**WorkstreamEventTrigger**](WorkstreamEventTrigger.md) |  | 
+**context** | [**WorkstreamEventContext**](WorkstreamEventContext.md) |  | [optional] 
+**summaries** | [**FlattenedWorkstreamSummaries**](FlattenedWorkstreamSummaries.md) |  | [optional] 
 
 ## Example
 

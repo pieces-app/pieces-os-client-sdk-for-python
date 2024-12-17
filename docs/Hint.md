@@ -5,17 +5,17 @@ This is a hint that is attached to an asset, used for suggested_queries, and hin
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**assets** | [**FlattenedAssets**](FlattenedAssets.md) |  | [optional] 
-**created** | [**GroupedTimestamp**](GroupedTimestamp.md) |  | 
-**deleted** | [**GroupedTimestamp**](GroupedTimestamp.md) |  | [optional] 
-**id** | **str** |  | 
-**mechanisms** | [**Dict[str, MechanismEnum]**](MechanismEnum.md) | This is a Map&lt;String, MechanismEnum&gt; where the the key is an asset id. | [optional] 
-**model** | [**ReferencedModel**](ReferencedModel.md) |  | [optional] 
 **var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
-**score** | [**Score**](Score.md) |  | [optional] 
-**text** | **str** | This is the text of the hint. | 
-**type** | [**HintTypeEnum**](HintTypeEnum.md) |  | 
+**id** | **str** |  | 
+**created** | [**GroupedTimestamp**](GroupedTimestamp.md) |  | 
 **updated** | [**GroupedTimestamp**](GroupedTimestamp.md) |  | 
+**deleted** | [**GroupedTimestamp**](GroupedTimestamp.md) |  | [optional] 
+**mechanisms** | [**Dict[str, MechanismEnum]**](MechanismEnum.md) | This is a Map&lt;String, MechanismEnum&gt; where the the key is an asset id. | [optional] 
+**assets** | [**FlattenedAssets**](FlattenedAssets.md) |  | [optional] 
+**type** | [**HintTypeEnum**](HintTypeEnum.md) |  | 
+**text** | **str** | This is the text of the hint. | 
+**model** | [**ReferencedModel**](ReferencedModel.md) |  | [optional] 
+**score** | [**Score**](Score.md) |  | [optional] 
 
 ## Example
 

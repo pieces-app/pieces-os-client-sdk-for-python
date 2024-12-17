@@ -32,13 +32,13 @@ class TextuallyExtractedMaterial(BaseModel):
     """
     This is an extraction, this was a person/website/anchor that was extracted  this will return the text location where this was found within the extraction.  as well return the material itself that was extracted.  Note: - seeds: will only be extracted people if provided, because the website/anchors will be created if extracted. - basically only thing that is different about the extracted people, if that if we extract a person that was not already saved,   then we will not save them, however if there are related people then we will add them as well.  # noqa: E501
     """
-    anchors: Optional[FlattenedAnchors] = None
-    match: TextLocation = Field(...)
-    persons: Optional[FlattenedPersons] = None
     var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
-    seeds: Optional[Seeds] = None
+    match: TextLocation = Field(...)
     websites: Optional[FlattenedWebsites] = None
-    __properties = ["anchors", "match", "persons", "schema", "seeds", "websites"]
+    anchors: Optional[FlattenedAnchors] = None
+    persons: Optional[FlattenedPersons] = None
+    seeds: Optional[Seeds] = None
+    __properties = ["schema", "match", "websites", "anchors", "persons", "seeds"]
 
     class Config:
         """Pydantic configuration"""
@@ -64,24 +64,24 @@ class TextuallyExtractedMaterial(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of anchors
-        if self.anchors:
-            _dict['anchors'] = self.anchors.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of match
-        if self.match:
-            _dict['match'] = self.match.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of persons
-        if self.persons:
-            _dict['persons'] = self.persons.to_dict()
         # override the default output from pydantic by calling `to_dict()` of var_schema
         if self.var_schema:
             _dict['schema'] = self.var_schema.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of seeds
-        if self.seeds:
-            _dict['seeds'] = self.seeds.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of match
+        if self.match:
+            _dict['match'] = self.match.to_dict()
         # override the default output from pydantic by calling `to_dict()` of websites
         if self.websites:
             _dict['websites'] = self.websites.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of anchors
+        if self.anchors:
+            _dict['anchors'] = self.anchors.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of persons
+        if self.persons:
+            _dict['persons'] = self.persons.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of seeds
+        if self.seeds:
+            _dict['seeds'] = self.seeds.to_dict()
         return _dict
 
     @classmethod
@@ -94,12 +94,12 @@ class TextuallyExtractedMaterial(BaseModel):
             return TextuallyExtractedMaterial.parse_obj(obj)
 
         _obj = TextuallyExtractedMaterial.parse_obj({
-            "anchors": FlattenedAnchors.from_dict(obj.get("anchors")) if obj.get("anchors") is not None else None,
-            "match": TextLocation.from_dict(obj.get("match")) if obj.get("match") is not None else None,
-            "persons": FlattenedPersons.from_dict(obj.get("persons")) if obj.get("persons") is not None else None,
             "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
-            "seeds": Seeds.from_dict(obj.get("seeds")) if obj.get("seeds") is not None else None,
-            "websites": FlattenedWebsites.from_dict(obj.get("websites")) if obj.get("websites") is not None else None
+            "match": TextLocation.from_dict(obj.get("match")) if obj.get("match") is not None else None,
+            "websites": FlattenedWebsites.from_dict(obj.get("websites")) if obj.get("websites") is not None else None,
+            "anchors": FlattenedAnchors.from_dict(obj.get("anchors")) if obj.get("anchors") is not None else None,
+            "persons": FlattenedPersons.from_dict(obj.get("persons")) if obj.get("persons") is not None else None,
+            "seeds": Seeds.from_dict(obj.get("seeds")) if obj.get("seeds") is not None else None
         })
         return _obj
 

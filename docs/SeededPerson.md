@@ -5,14 +5,14 @@ This is a per-cursor to a full person.  Will throw an error, if asset is passed 
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**access** | [**PersonAccess**](PersonAccess.md) |  | [optional] 
-**anchors** | [**FlattenedAnchors**](FlattenedAnchors.md) |  | [optional] 
-**annotations** | [**List[SeededAnnotation]**](SeededAnnotation.md) |  | [optional] 
+**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 **asset** | **str** |  | [optional] 
 **mechanism** | [**MechanismEnum**](MechanismEnum.md) |  | [optional] 
-**model** | [**PersonModel**](PersonModel.md) |  | [optional] 
-**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
+**access** | [**PersonAccess**](PersonAccess.md) |  | [optional] 
 **type** | [**PersonType**](PersonType.md) |  | 
+**model** | [**PersonModel**](PersonModel.md) |  | [optional] 
+**annotations** | [**List[SeededAnnotation]**](SeededAnnotation.md) |  | [optional] 
+**anchors** | [**FlattenedAnchors**](FlattenedAnchors.md) |  | [optional] 
 
 ## Example
 

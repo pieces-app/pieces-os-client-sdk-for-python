@@ -5,8 +5,8 @@ This is a plural representation of the BrowserTab
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**iterable** | [**List[BrowserTab]**](BrowserTab.md) |  | 
 **var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
+**iterable** | [**List[BrowserTab]**](BrowserTab.md) |  | 
 
 ## Example
 

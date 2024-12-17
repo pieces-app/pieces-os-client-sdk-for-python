@@ -5,15 +5,15 @@ This is a published Github Gist.
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**created** | [**GroupedTimestamp**](GroupedTimestamp.md) |  | 
-**deleted** | [**GroupedTimestamp**](GroupedTimestamp.md) |  | [optional] 
-**description** | **str** | This is the description of the Gist Distribution | [optional] 
-**github_id** | **str** | This is the id that github uses to represent the gist. | 
-**name** | **str** | This is the name of the gist you will add. | 
-**public** | **bool** | This will let us know if the gist is public or private. | 
-**recipients** | [**Recipients**](Recipients.md) |  | 
 **var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
+**recipients** | [**Recipients**](Recipients.md) |  | 
+**public** | **bool** | This will let us know if the gist is public or private. | 
+**description** | **str** | This is the description of the Gist Distribution | [optional] 
+**name** | **str** | This is the name of the gist you will add. | 
+**created** | [**GroupedTimestamp**](GroupedTimestamp.md) |  | 
 **updated** | [**GroupedTimestamp**](GroupedTimestamp.md) |  | 
+**deleted** | [**GroupedTimestamp**](GroupedTimestamp.md) |  | [optional] 
+**github_id** | **str** | This is the id that github uses to represent the gist. | 
 **url** | **str** | This is the url where the gist is. | 
 
 ## Example

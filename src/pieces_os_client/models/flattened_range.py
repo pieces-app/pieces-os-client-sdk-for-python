@@ -29,17 +29,17 @@ class FlattenedRange(BaseModel):
     """
     This is a DAG-Safe minimal representation of a Range.  # noqa: E501
     """
-    between: Optional[StrictBool] = None
-    conversations: Optional[FlattenedConversations] = None
-    created: GroupedTimestamp = Field(...)
-    var_from: Optional[GroupedTimestamp] = Field(default=None, alias="from")
-    id: StrictStr = Field(...)
     var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
+    id: StrictStr = Field(...)
     score: Optional[Score] = None
-    summaries: Optional[FlattenedWorkstreamSummaries] = None
-    to: Optional[GroupedTimestamp] = None
+    created: GroupedTimestamp = Field(...)
     updated: GroupedTimestamp = Field(...)
-    __properties = ["between", "conversations", "created", "from", "id", "schema", "score", "summaries", "to", "updated"]
+    to: Optional[GroupedTimestamp] = None
+    var_from: Optional[GroupedTimestamp] = Field(default=None, alias="from")
+    between: Optional[StrictBool] = None
+    summaries: Optional[FlattenedWorkstreamSummaries] = None
+    conversations: Optional[FlattenedConversations] = None
+    __properties = ["schema", "id", "score", "created", "updated", "to", "from", "between", "summaries", "conversations"]
 
     class Config:
         """Pydantic configuration"""
@@ -65,30 +65,30 @@ class FlattenedRange(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of conversations
-        if self.conversations:
-            _dict['conversations'] = self.conversations.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of created
-        if self.created:
-            _dict['created'] = self.created.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of var_from
-        if self.var_from:
-            _dict['from'] = self.var_from.to_dict()
         # override the default output from pydantic by calling `to_dict()` of var_schema
         if self.var_schema:
             _dict['schema'] = self.var_schema.to_dict()
         # override the default output from pydantic by calling `to_dict()` of score
         if self.score:
             _dict['score'] = self.score.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of summaries
-        if self.summaries:
-            _dict['summaries'] = self.summaries.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of to
-        if self.to:
-            _dict['to'] = self.to.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of created
+        if self.created:
+            _dict['created'] = self.created.to_dict()
         # override the default output from pydantic by calling `to_dict()` of updated
         if self.updated:
             _dict['updated'] = self.updated.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of to
+        if self.to:
+            _dict['to'] = self.to.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of var_from
+        if self.var_from:
+            _dict['from'] = self.var_from.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of summaries
+        if self.summaries:
+            _dict['summaries'] = self.summaries.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of conversations
+        if self.conversations:
+            _dict['conversations'] = self.conversations.to_dict()
         return _dict
 
     @classmethod
@@ -101,16 +101,16 @@ class FlattenedRange(BaseModel):
             return FlattenedRange.parse_obj(obj)
 
         _obj = FlattenedRange.parse_obj({
-            "between": obj.get("between"),
-            "conversations": FlattenedConversations.from_dict(obj.get("conversations")) if obj.get("conversations") is not None else None,
-            "created": GroupedTimestamp.from_dict(obj.get("created")) if obj.get("created") is not None else None,
-            "var_from": GroupedTimestamp.from_dict(obj.get("from")) if obj.get("from") is not None else None,
-            "id": obj.get("id"),
             "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
+            "id": obj.get("id"),
             "score": Score.from_dict(obj.get("score")) if obj.get("score") is not None else None,
-            "summaries": FlattenedWorkstreamSummaries.from_dict(obj.get("summaries")) if obj.get("summaries") is not None else None,
+            "created": GroupedTimestamp.from_dict(obj.get("created")) if obj.get("created") is not None else None,
+            "updated": GroupedTimestamp.from_dict(obj.get("updated")) if obj.get("updated") is not None else None,
             "to": GroupedTimestamp.from_dict(obj.get("to")) if obj.get("to") is not None else None,
-            "updated": GroupedTimestamp.from_dict(obj.get("updated")) if obj.get("updated") is not None else None
+            "var_from": GroupedTimestamp.from_dict(obj.get("from")) if obj.get("from") is not None else None,
+            "between": obj.get("between"),
+            "summaries": FlattenedWorkstreamSummaries.from_dict(obj.get("summaries")) if obj.get("summaries") is not None else None,
+            "conversations": FlattenedConversations.from_dict(obj.get("conversations")) if obj.get("conversations") is not None else None
         })
         return _obj
 

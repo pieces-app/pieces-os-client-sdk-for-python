@@ -28,11 +28,11 @@ class FlattenedWorkstreamEvents(BaseModel):
     """
     This is a plural (DAG Safe) version of a WorkstreamEvents.  # noqa: E501
     """
-    indices: Optional[Dict[str, StrictInt]] = Field(default=None, description="This is a Map<String, int> where the the key is an activity id.")
-    iterable: conlist(ReferencedWorkstreamEvent) = Field(...)
     var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
+    iterable: conlist(ReferencedWorkstreamEvent) = Field(...)
+    indices: Optional[Dict[str, StrictInt]] = Field(default=None, description="This is a Map<String, int> where the the key is an activity id.")
     score: Optional[Score] = None
-    __properties = ["indices", "iterable", "schema", "score"]
+    __properties = ["schema", "iterable", "indices", "score"]
 
     class Config:
         """Pydantic configuration"""
@@ -58,6 +58,9 @@ class FlattenedWorkstreamEvents(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
+        # override the default output from pydantic by calling `to_dict()` of var_schema
+        if self.var_schema:
+            _dict['schema'] = self.var_schema.to_dict()
         # override the default output from pydantic by calling `to_dict()` of each item in iterable (list)
         _items = []
         if self.iterable:
@@ -65,9 +68,6 @@ class FlattenedWorkstreamEvents(BaseModel):
                 if _item:
                     _items.append(_item.to_dict())
             _dict['iterable'] = _items
-        # override the default output from pydantic by calling `to_dict()` of var_schema
-        if self.var_schema:
-            _dict['schema'] = self.var_schema.to_dict()
         # override the default output from pydantic by calling `to_dict()` of score
         if self.score:
             _dict['score'] = self.score.to_dict()
@@ -83,9 +83,9 @@ class FlattenedWorkstreamEvents(BaseModel):
             return FlattenedWorkstreamEvents.parse_obj(obj)
 
         _obj = FlattenedWorkstreamEvents.parse_obj({
-            "indices": obj.get("indices"),
-            "iterable": [ReferencedWorkstreamEvent.from_dict(_item) for _item in obj.get("iterable")] if obj.get("iterable") is not None else None,
             "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
+            "iterable": [ReferencedWorkstreamEvent.from_dict(_item) for _item in obj.get("iterable")] if obj.get("iterable") is not None else None,
+            "indices": obj.get("indices"),
             "score": Score.from_dict(obj.get("score")) if obj.get("score") is not None else None
         })
         return _obj

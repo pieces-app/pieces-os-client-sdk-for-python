@@ -28,10 +28,10 @@ class WorkstreamSuggestions(BaseModel):
     """
     This is a list of the materials used in the workstream suggestions.  The feed will return a list of individual material that will be required to be fetched and re-referenced.(the materials that is.)  Considering if we want to have all the materaials just being referenced( ie ReferencedWebsite/ReferencedWorkstreamSummary/...xyz) && rebuilt  # noqa: E501
     """
-    iterable: conlist(WorkstreamSuggestion) = Field(...)
     var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
+    iterable: conlist(WorkstreamSuggestion) = Field(...)
     types: Optional[conlist(WorkstreamSuggestionType)] = Field(default=None, description="This is iterable <WorkstreamSuggestionType>[] that gives the type of each of the items in the iterable. I.E. types[0] is the suggestion type of the item at iterable[0].")
-    __properties = ["iterable", "schema", "types"]
+    __properties = ["schema", "iterable", "types"]
 
     class Config:
         """Pydantic configuration"""
@@ -57,6 +57,9 @@ class WorkstreamSuggestions(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
+        # override the default output from pydantic by calling `to_dict()` of var_schema
+        if self.var_schema:
+            _dict['schema'] = self.var_schema.to_dict()
         # override the default output from pydantic by calling `to_dict()` of each item in iterable (list)
         _items = []
         if self.iterable:
@@ -64,9 +67,6 @@ class WorkstreamSuggestions(BaseModel):
                 if _item:
                     _items.append(_item.to_dict())
             _dict['iterable'] = _items
-        # override the default output from pydantic by calling `to_dict()` of var_schema
-        if self.var_schema:
-            _dict['schema'] = self.var_schema.to_dict()
         # override the default output from pydantic by calling `to_dict()` of each item in types (list)
         _items = []
         if self.types:
@@ -86,8 +86,8 @@ class WorkstreamSuggestions(BaseModel):
             return WorkstreamSuggestions.parse_obj(obj)
 
         _obj = WorkstreamSuggestions.parse_obj({
-            "iterable": [WorkstreamSuggestion.from_dict(_item) for _item in obj.get("iterable")] if obj.get("iterable") is not None else None,
             "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
+            "iterable": [WorkstreamSuggestion.from_dict(_item) for _item in obj.get("iterable")] if obj.get("iterable") is not None else None,
             "types": [WorkstreamSuggestionType.from_dict(_item) for _item in obj.get("types")] if obj.get("types") is not None else None
         })
         return _obj

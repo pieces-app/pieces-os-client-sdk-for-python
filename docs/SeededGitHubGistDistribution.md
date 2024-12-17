@@ -5,11 +5,11 @@ This is the minimum information needed to distribute a Piece to a Gist.
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
+**recipients** | [**Recipients**](Recipients.md) |  | [optional] 
+**public** | **bool** | we will default to true | [optional] 
 **description** | **str** | This is the description of the Gist Distribution | [optional] 
 **name** | **str** | This is the name of the gist you will add. | 
-**public** | **bool** | we will default to true | [optional] 
-**recipients** | [**Recipients**](Recipients.md) |  | [optional] 
-**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 
 ## Example
 

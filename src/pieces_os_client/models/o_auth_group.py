@@ -28,9 +28,9 @@ class OAuthGroup(BaseModel):
     """
     A model to group all of the properties associated with OAuthGroup  # noqa: E501
     """
-    account: Optional[OAuthAccount] = None
     token: Optional[OAuthToken] = None
-    __properties = ["account", "token"]
+    account: Optional[OAuthAccount] = None
+    __properties = ["token", "account"]
 
     class Config:
         """Pydantic configuration"""
@@ -56,12 +56,12 @@ class OAuthGroup(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of account
-        if self.account:
-            _dict['account'] = self.account.to_dict()
         # override the default output from pydantic by calling `to_dict()` of token
         if self.token:
             _dict['token'] = self.token.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of account
+        if self.account:
+            _dict['account'] = self.account.to_dict()
         return _dict
 
     @classmethod
@@ -74,8 +74,8 @@ class OAuthGroup(BaseModel):
             return OAuthGroup.parse_obj(obj)
 
         _obj = OAuthGroup.parse_obj({
-            "account": OAuthAccount.from_dict(obj.get("account")) if obj.get("account") is not None else None,
-            "token": OAuthToken.from_dict(obj.get("token")) if obj.get("token") is not None else None
+            "token": OAuthToken.from_dict(obj.get("token")) if obj.get("token") is not None else None,
+            "account": OAuthAccount.from_dict(obj.get("account")) if obj.get("account") is not None else None
         })
         return _obj
 

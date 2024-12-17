@@ -5,10 +5,10 @@ This model is used for the dimensions of the copilot/feed/xyz window.  if dimens
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
+**foreground** | **str** | This is the name of the window(foreground window).(this will always be present) | 
 **captured** | [**GroupedTimestamp**](GroupedTimestamp.md) |  | [optional] 
 **dimensions** | [**WindowDimensions**](WindowDimensions.md) |  | [optional] 
-**foreground** | **str** | This is the name of the window(foreground window).(this will always be present) | 
-**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 
 ## Example
 

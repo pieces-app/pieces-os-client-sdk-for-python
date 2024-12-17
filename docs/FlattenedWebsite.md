@@ -5,21 +5,21 @@ This is a specific model for related websites to an asset.[DAG SAFE]
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**assets** | [**FlattenedAssets**](FlattenedAssets.md) |  | [optional] 
-**conversations** | [**FlattenedConversations**](FlattenedConversations.md) |  | [optional] 
-**created** | [**GroupedTimestamp**](GroupedTimestamp.md) |  | 
-**deleted** | [**GroupedTimestamp**](GroupedTimestamp.md) |  | [optional] 
-**id** | **str** | this is aspecific uuid that represents | 
-**interactions** | **int** | This is an optional value that will keep track of the number of times this has been interacted with. | [optional] 
-**mechanisms** | [**Dict[str, MechanismEnum]**](MechanismEnum.md) | This is a Map&lt;String, MechanismEnum&gt; where the the key is an asset id. | [optional] 
-**messages** | [**FlattenedConversationMessages**](FlattenedConversationMessages.md) |  | [optional] 
-**name** | **str** | A customizable name. | 
-**persons** | [**FlattenedPersons**](FlattenedPersons.md) |  | [optional] 
 **var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
+**id** | **str** | this is aspecific uuid that represents | 
+**assets** | [**FlattenedAssets**](FlattenedAssets.md) |  | [optional] 
+**name** | **str** | A customizable name. | 
+**url** | **str** | The true url or the website. | 
+**created** | [**GroupedTimestamp**](GroupedTimestamp.md) |  | 
+**updated** | [**GroupedTimestamp**](GroupedTimestamp.md) |  | 
+**deleted** | [**GroupedTimestamp**](GroupedTimestamp.md) |  | [optional] 
+**mechanisms** | [**Dict[str, MechanismEnum]**](MechanismEnum.md) | This is a Map&lt;String, MechanismEnum&gt; where the the key is an asset id. | [optional] 
+**interactions** | **int** | This is an optional value that will keep track of the number of times this has been interacted with. | [optional] 
+**persons** | [**FlattenedPersons**](FlattenedPersons.md) |  | [optional] 
+**conversations** | [**FlattenedConversations**](FlattenedConversations.md) |  | [optional] 
 **score** | [**Score**](Score.md) |  | [optional] 
 **summaries** | [**FlattenedWorkstreamSummaries**](FlattenedWorkstreamSummaries.md) |  | [optional] 
-**updated** | [**GroupedTimestamp**](GroupedTimestamp.md) |  | 
-**url** | **str** | The true url or the website. | 
+**messages** | [**FlattenedConversationMessages**](FlattenedConversationMessages.md) |  | [optional] 
 
 ## Example
 

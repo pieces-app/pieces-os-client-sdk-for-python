@@ -8,6 +8,8 @@ This is the hint enum used to describe a type of hint.
 
 * `QGPT_HINT` (value: `'QGPT_HINT'`)
 
+* `UNKNOWN` (value: `'UNKNOWN'`)
+
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
 

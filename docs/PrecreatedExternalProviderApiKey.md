@@ -5,9 +5,9 @@ This is the input model for /external_provider/api_key/create
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**open_ai** | [**Auth0OpenAIUserMetadata**](Auth0OpenAIUserMetadata.md) |  | [optional] 
 **var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 **user** | **str** | This is the ID of the User. | 
+**open_ai** | [**Auth0OpenAIUserMetadata**](Auth0OpenAIUserMetadata.md) |  | [optional] 
 
 ## Example
 

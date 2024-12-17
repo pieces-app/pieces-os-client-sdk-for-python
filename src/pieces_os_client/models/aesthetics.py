@@ -29,10 +29,10 @@ class Aesthetics(BaseModel):
     """
     These are aesthetics properties that will ensure the darkmode + font size and other aesthetics properties persist:)  # noqa: E501
     """
-    font: Font = Field(...)
     var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     theme: Theme = Field(...)
-    __properties = ["font", "schema", "theme"]
+    font: Font = Field(...)
+    __properties = ["schema", "theme", "font"]
 
     class Config:
         """Pydantic configuration"""
@@ -58,15 +58,15 @@ class Aesthetics(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of font
-        if self.font:
-            _dict['font'] = self.font.to_dict()
         # override the default output from pydantic by calling `to_dict()` of var_schema
         if self.var_schema:
             _dict['schema'] = self.var_schema.to_dict()
         # override the default output from pydantic by calling `to_dict()` of theme
         if self.theme:
             _dict['theme'] = self.theme.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of font
+        if self.font:
+            _dict['font'] = self.font.to_dict()
         return _dict
 
     @classmethod
@@ -79,9 +79,9 @@ class Aesthetics(BaseModel):
             return Aesthetics.parse_obj(obj)
 
         _obj = Aesthetics.parse_obj({
-            "font": Font.from_dict(obj.get("font")) if obj.get("font") is not None else None,
             "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
-            "theme": Theme.from_dict(obj.get("theme")) if obj.get("theme") is not None else None
+            "theme": Theme.from_dict(obj.get("theme")) if obj.get("theme") is not None else None,
+            "font": Font.from_dict(obj.get("font")) if obj.get("font") is not None else None
         })
         return _obj
 

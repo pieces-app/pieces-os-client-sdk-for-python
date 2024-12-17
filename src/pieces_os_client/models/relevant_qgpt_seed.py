@@ -22,19 +22,23 @@ import json
 from typing import Optional
 from pydantic import BaseModel, Field, StrictStr
 from pieces_os_client.models.embedded_model_schema import EmbeddedModelSchema
+from pieces_os_client.models.referenced_anchor import ReferencedAnchor
 from pieces_os_client.models.referenced_asset import ReferencedAsset
 from pieces_os_client.models.seed import Seed
+from pieces_os_client.models.text_location import TextLocation
 
 class RelevantQGPTSeed(BaseModel):
     """
-    This is a generic model used, to wrap a seed, as well as give an identifier used to further identifiy this snippet.  Seed is optional here because you may just want to provide the id, and not the original seed.  id is also optional here as you may provide an id or not here.(however with specific endpoint this ID is a guarentee.)  # noqa: E501
+    This is a generic model used, to wrap a seed, as well as give an identifier used to further identifiy this snippet.  Seed is optional here because you may just want to provide the id, and not the original seed.  id is also optional here as you may provide an id or not here.(however with specific endpoint this ID is a guarentee.)  location:(optional) if a path or an anchor is passed in, this will let us know the specific location within the 'file' that this relevant seed is located           note: if this is null and a path/anchor is present then we will use the entire file that is provided.(this logic will be determined within the relevance flow & not by the user)  # noqa: E501
     """
-    asset: Optional[ReferencedAsset] = None
-    id: Optional[StrictStr] = None
-    path: Optional[StrictStr] = Field(default=None, description="This is an optional file path")
     var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
+    id: Optional[StrictStr] = None
     seed: Optional[Seed] = None
-    __properties = ["asset", "id", "path", "schema", "seed"]
+    path: Optional[StrictStr] = Field(default=None, description="This is an optional file path")
+    anchor: Optional[ReferencedAnchor] = None
+    asset: Optional[ReferencedAsset] = None
+    location: Optional[TextLocation] = None
+    __properties = ["schema", "id", "seed", "path", "anchor", "asset", "location"]
 
     class Config:
         """Pydantic configuration"""
@@ -60,15 +64,21 @@ class RelevantQGPTSeed(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of asset
-        if self.asset:
-            _dict['asset'] = self.asset.to_dict()
         # override the default output from pydantic by calling `to_dict()` of var_schema
         if self.var_schema:
             _dict['schema'] = self.var_schema.to_dict()
         # override the default output from pydantic by calling `to_dict()` of seed
         if self.seed:
             _dict['seed'] = self.seed.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of anchor
+        if self.anchor:
+            _dict['anchor'] = self.anchor.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of asset
+        if self.asset:
+            _dict['asset'] = self.asset.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of location
+        if self.location:
+            _dict['location'] = self.location.to_dict()
         return _dict
 
     @classmethod
@@ -81,11 +91,13 @@ class RelevantQGPTSeed(BaseModel):
             return RelevantQGPTSeed.parse_obj(obj)
 
         _obj = RelevantQGPTSeed.parse_obj({
-            "asset": ReferencedAsset.from_dict(obj.get("asset")) if obj.get("asset") is not None else None,
-            "id": obj.get("id"),
-            "path": obj.get("path"),
             "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
-            "seed": Seed.from_dict(obj.get("seed")) if obj.get("seed") is not None else None
+            "id": obj.get("id"),
+            "seed": Seed.from_dict(obj.get("seed")) if obj.get("seed") is not None else None,
+            "path": obj.get("path"),
+            "anchor": ReferencedAnchor.from_dict(obj.get("anchor")) if obj.get("anchor") is not None else None,
+            "asset": ReferencedAsset.from_dict(obj.get("asset")) if obj.get("asset") is not None else None,
+            "location": TextLocation.from_dict(obj.get("location")) if obj.get("location") is not None else None
         })
         return _obj
 

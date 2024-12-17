@@ -28,9 +28,9 @@ class QGPTAgentRoutes(BaseModel):
     """
     This is apart of the Output and will let the plugin developer know if we reccomend to run specific agent functionality/routes. for instance, related.people, code classification...xyz, for now we start with relatedPeople.  # noqa: E501
     """
-    related: Optional[QGPTAgentRelatedRoutes] = None
     var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
-    __properties = ["related", "schema"]
+    related: Optional[QGPTAgentRelatedRoutes] = None
+    __properties = ["schema", "related"]
 
     class Config:
         """Pydantic configuration"""
@@ -56,12 +56,12 @@ class QGPTAgentRoutes(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of related
-        if self.related:
-            _dict['related'] = self.related.to_dict()
         # override the default output from pydantic by calling `to_dict()` of var_schema
         if self.var_schema:
             _dict['schema'] = self.var_schema.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of related
+        if self.related:
+            _dict['related'] = self.related.to_dict()
         return _dict
 
     @classmethod
@@ -74,8 +74,8 @@ class QGPTAgentRoutes(BaseModel):
             return QGPTAgentRoutes.parse_obj(obj)
 
         _obj = QGPTAgentRoutes.parse_obj({
-            "related": QGPTAgentRelatedRoutes.from_dict(obj.get("related")) if obj.get("related") is not None else None,
-            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None
+            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
+            "related": QGPTAgentRelatedRoutes.from_dict(obj.get("related")) if obj.get("related") is not None else None
         })
         return _obj
 

@@ -29,19 +29,19 @@ class SeededAnnotation(BaseModel):
     """
     This is the percursor to a fully referenced Annotation.  # noqa: E501
     """
-    anchor: Optional[StrictStr] = None
-    asset: Optional[StrictStr] = None
-    conversation: Optional[StrictStr] = None
-    favorited: Optional[StrictBool] = None
-    mechanism: Optional[MechanismEnum] = None
-    messages: Optional[FlattenedConversationMessages] = None
-    model: Optional[StrictStr] = None
-    person: Optional[StrictStr] = None
-    pseudo: Optional[StrictBool] = None
     var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
-    text: StrictStr = Field(default=..., description="This is the text of the annotation.")
+    mechanism: Optional[MechanismEnum] = None
+    asset: Optional[StrictStr] = None
+    person: Optional[StrictStr] = None
     type: AnnotationTypeEnum = Field(...)
-    __properties = ["anchor", "asset", "conversation", "favorited", "mechanism", "messages", "model", "person", "pseudo", "schema", "text", "type"]
+    text: StrictStr = Field(default=..., description="This is the text of the annotation.")
+    model: Optional[StrictStr] = None
+    pseudo: Optional[StrictBool] = None
+    favorited: Optional[StrictBool] = None
+    anchor: Optional[StrictStr] = None
+    conversation: Optional[StrictStr] = None
+    messages: Optional[FlattenedConversationMessages] = None
+    __properties = ["schema", "mechanism", "asset", "person", "type", "text", "model", "pseudo", "favorited", "anchor", "conversation", "messages"]
 
     class Config:
         """Pydantic configuration"""
@@ -67,12 +67,12 @@ class SeededAnnotation(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of messages
-        if self.messages:
-            _dict['messages'] = self.messages.to_dict()
         # override the default output from pydantic by calling `to_dict()` of var_schema
         if self.var_schema:
             _dict['schema'] = self.var_schema.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of messages
+        if self.messages:
+            _dict['messages'] = self.messages.to_dict()
         return _dict
 
     @classmethod
@@ -85,18 +85,18 @@ class SeededAnnotation(BaseModel):
             return SeededAnnotation.parse_obj(obj)
 
         _obj = SeededAnnotation.parse_obj({
-            "anchor": obj.get("anchor"),
-            "asset": obj.get("asset"),
-            "conversation": obj.get("conversation"),
-            "favorited": obj.get("favorited"),
-            "mechanism": obj.get("mechanism"),
-            "messages": FlattenedConversationMessages.from_dict(obj.get("messages")) if obj.get("messages") is not None else None,
-            "model": obj.get("model"),
-            "person": obj.get("person"),
-            "pseudo": obj.get("pseudo"),
             "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
+            "mechanism": obj.get("mechanism"),
+            "asset": obj.get("asset"),
+            "person": obj.get("person"),
+            "type": obj.get("type"),
             "text": obj.get("text"),
-            "type": obj.get("type")
+            "model": obj.get("model"),
+            "pseudo": obj.get("pseudo"),
+            "favorited": obj.get("favorited"),
+            "anchor": obj.get("anchor"),
+            "conversation": obj.get("conversation"),
+            "messages": FlattenedConversationMessages.from_dict(obj.get("messages")) if obj.get("messages") is not None else None
         })
         return _obj
 

@@ -5,12 +5,12 @@ snippet: these are extracted code blocks selection: here is a copy/paste/selecti
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 **html** | [**TransferableString**](TransferableString.md) |  | [optional] 
 **md** | [**TransferableString**](TransferableString.md) |  | [optional] 
-**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
-**selection** | [**BrowserSelection**](BrowserSelection.md) |  | [optional] 
-**snippet** | [**BrowserSelection**](BrowserSelection.md) |  | [optional] 
 **text** | [**TransferableString**](TransferableString.md) |  | [optional] 
+**snippet** | [**BrowserSelection**](BrowserSelection.md) |  | [optional] 
+**selection** | [**BrowserSelection**](BrowserSelection.md) |  | [optional] 
 
 ## Example
 

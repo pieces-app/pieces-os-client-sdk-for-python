@@ -29,11 +29,11 @@ class InactiveOSServerApplet(BaseModel):
     """
     Note: parent is optional here in the case that (parent here is the integration that wants the module launched(VSCode))  # noqa: E501
     """
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     parent: Optional[Application] = None
     port: Optional[StrictInt] = Field(default=None, description="This is the port number in which we want to serve the copilot at.")
-    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     type: OSAppletEnum = Field(...)
-    __properties = ["parent", "port", "schema", "type"]
+    __properties = ["schema", "parent", "port", "type"]
 
     class Config:
         """Pydantic configuration"""
@@ -59,12 +59,12 @@ class InactiveOSServerApplet(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of parent
-        if self.parent:
-            _dict['parent'] = self.parent.to_dict()
         # override the default output from pydantic by calling `to_dict()` of var_schema
         if self.var_schema:
             _dict['schema'] = self.var_schema.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of parent
+        if self.parent:
+            _dict['parent'] = self.parent.to_dict()
         # set to None if port (nullable) is None
         # and __fields_set__ contains the field
         if self.port is None and "port" in self.__fields_set__:
@@ -82,9 +82,9 @@ class InactiveOSServerApplet(BaseModel):
             return InactiveOSServerApplet.parse_obj(obj)
 
         _obj = InactiveOSServerApplet.parse_obj({
+            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
             "parent": Application.from_dict(obj.get("parent")) if obj.get("parent") is not None else None,
             "port": obj.get("port"),
-            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
             "type": obj.get("type")
         })
         return _obj

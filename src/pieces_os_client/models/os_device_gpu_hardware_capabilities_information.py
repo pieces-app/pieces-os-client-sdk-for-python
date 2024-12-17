@@ -27,9 +27,9 @@ class OSDeviceGPUHardwareCapabilitiesInformation(BaseModel):
     """
     This will give specific information on task specific capibilites for GPU.  # noqa: E501
     """
-    llm: Optional[StrictBool] = Field(default=None, description="This will let us know if in the case we have a gpu and our gpu has the capabilities to use llms")
     var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
-    __properties = ["llm", "schema"]
+    llm: Optional[StrictBool] = Field(default=None, description="This will let us know if in the case we have a gpu and our gpu has the capabilities to use llms")
+    __properties = ["schema", "llm"]
 
     class Config:
         """Pydantic configuration"""
@@ -70,8 +70,8 @@ class OSDeviceGPUHardwareCapabilitiesInformation(BaseModel):
             return OSDeviceGPUHardwareCapabilitiesInformation.parse_obj(obj)
 
         _obj = OSDeviceGPUHardwareCapabilitiesInformation.parse_obj({
-            "llm": obj.get("llm"),
-            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None
+            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
+            "llm": obj.get("llm")
         })
         return _obj
 

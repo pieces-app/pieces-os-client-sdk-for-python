@@ -4,8 +4,8 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**annotation** | [**AnnotationTypeEnum**](AnnotationTypeEnum.md) |  | [optional] 
 **var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
+**annotation** | [**AnnotationTypeEnum**](AnnotationTypeEnum.md) |  | [optional] 
 
 ## Example
 

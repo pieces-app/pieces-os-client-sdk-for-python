@@ -4,11 +4,87 @@ All URIs are relative to *http://localhost:1000*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**conversation_messages_stream_identifiers**](ConversationMessagesApi.md#conversation_messages_stream_identifiers) | **GET** /messages/stream/identifiers | /messages/stream/identifiers [WS]
 [**messages_create_specific_message**](ConversationMessagesApi.md#messages_create_specific_message) | **POST** /messages/create | /messages/create [POST]
 [**messages_delete_specific_message**](ConversationMessagesApi.md#messages_delete_specific_message) | **POST** /messages/{message}/delete | /messages/{message}/delete [POST]
 [**messages_snapshot**](ConversationMessagesApi.md#messages_snapshot) | **GET** /messages | /messages [GET]
 [**search_messages**](ConversationMessagesApi.md#search_messages) | **POST** /messages/search | /messages/search [POST]
 
+
+# **conversation_messages_stream_identifiers**
+> StreamedIdentifiers conversation_messages_stream_identifiers()
+
+/messages/stream/identifiers [WS]
+
+Provides a WebSocket connection that emits changes to your conversation messages identifiers (UUIDs).
+
+### Example
+
+* Api Key Authentication (application):
+```python
+import time
+import os
+import pieces_os_client
+from pieces_os_client.models.streamed_identifiers import StreamedIdentifiers
+from pieces_os_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to http://localhost:1000
+# See configuration.py for a list of all supported configuration parameters.
+configuration = pieces_os_client.Configuration(
+    host = "http://localhost:1000"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: application
+configuration.api_key['application'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['application'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with pieces_os_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = pieces_os_client.ConversationMessagesApi(api_client)
+
+    try:
+        # /messages/stream/identifiers [WS]
+        api_response = api_instance.conversation_messages_stream_identifiers()
+        print("The response of ConversationMessagesApi->conversation_messages_stream_identifiers:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling ConversationMessagesApi->conversation_messages_stream_identifiers: %s\n" % e)
+```
+
+
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+[**StreamedIdentifiers**](StreamedIdentifiers.md)
+
+### Authorization
+
+[application](../README.md#application)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json, text/plain
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**500** | Internal Server Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **messages_create_specific_message**
 > ConversationMessage messages_create_specific_message(transferables=transferables, seeded_conversation_message=seeded_conversation_message)
@@ -19,6 +95,7 @@ This will create a Message on a specific conversation.
 
 ### Example
 
+* Api Key Authentication (application):
 ```python
 import time
 import os
@@ -34,6 +111,16 @@ configuration = pieces_os_client.Configuration(
     host = "http://localhost:1000"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: application
+configuration.api_key['application'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['application'] = 'Bearer'
 
 # Enter a context with an instance of the API client
 with pieces_os_client.ApiClient(configuration) as api_client:
@@ -66,7 +153,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[application](../README.md#application)
 
 ### HTTP request headers
 
@@ -90,6 +177,7 @@ This will delete a specific message.
 
 ### Example
 
+* Api Key Authentication (application):
 ```python
 import time
 import os
@@ -103,6 +191,16 @@ configuration = pieces_os_client.Configuration(
     host = "http://localhost:1000"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: application
+configuration.api_key['application'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['application'] = 'Bearer'
 
 # Enter a context with an instance of the API client
 with pieces_os_client.ApiClient(configuration) as api_client:
@@ -131,7 +229,7 @@ void (empty response body)
 
 ### Authorization
 
-No authorization required
+[application](../README.md#application)
 
 ### HTTP request headers
 
@@ -155,6 +253,7 @@ This will get all the messages.
 
 ### Example
 
+* Api Key Authentication (application):
 ```python
 import time
 import os
@@ -169,6 +268,16 @@ configuration = pieces_os_client.Configuration(
     host = "http://localhost:1000"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: application
+configuration.api_key['application'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['application'] = 'Bearer'
 
 # Enter a context with an instance of the API client
 with pieces_os_client.ApiClient(configuration) as api_client:
@@ -199,7 +308,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[application](../README.md#application)
 
 ### HTTP request headers
 
@@ -223,6 +332,7 @@ This will search your conversationMessages for a specific conversation_message  
 
 ### Example
 
+* Api Key Authentication (application):
 ```python
 import time
 import os
@@ -238,6 +348,16 @@ configuration = pieces_os_client.Configuration(
     host = "http://localhost:1000"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: application
+configuration.api_key['application'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['application'] = 'Bearer'
 
 # Enter a context with an instance of the API client
 with pieces_os_client.ApiClient(configuration) as api_client:
@@ -270,7 +390,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[application](../README.md#application)
 
 ### HTTP request headers
 

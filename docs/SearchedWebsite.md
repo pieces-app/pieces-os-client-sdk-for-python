@@ -5,12 +5,12 @@ This is used for the Websites searching endpoint.  website here is only provided
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**exact** | **bool** |  | 
-**identifier** | **str** | This is the uuid of the website. | 
 **var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
+**website** | [**Website**](Website.md) |  | [optional] 
+**exact** | **bool** |  | 
 **similarity** | **float** |  | 
 **temporal** | **bool** |  | [optional] 
-**website** | [**Website**](Website.md) |  | [optional] 
+**identifier** | **str** | This is the uuid of the website. | 
 
 ## Example
 

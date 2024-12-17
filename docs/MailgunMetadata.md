@@ -5,8 +5,8 @@ TODO add additional properties. TODO eventually modify this model to look like t
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**message_id** | **str** | This is the id given to us from mailgun when the email was sent successfully. | 
 **var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
+**message_id** | **str** | This is the id given to us from mailgun when the email was sent successfully. | 
 
 ## Example
 

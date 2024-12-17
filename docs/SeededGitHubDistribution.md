@@ -4,8 +4,8 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**gist** | [**SeededGitHubGistDistribution**](SeededGitHubGistDistribution.md) |  | [optional] 
 **var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
+**gist** | [**SeededGitHubGistDistribution**](SeededGitHubGistDistribution.md) |  | [optional] 
 
 ## Example
 

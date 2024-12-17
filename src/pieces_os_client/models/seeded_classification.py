@@ -30,11 +30,11 @@ class SeededClassification(BaseModel):
     """
     This is the specific classification of an Asset's Format.(This is on a per format basis b/c an asset could have different formats that are different format representations of the Asset.)  # noqa: E501
     """
-    generic: Optional[ClassificationGenericEnum] = None
-    rendering: Optional[ClassificationRenderingEnum] = None
     var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
+    generic: Optional[ClassificationGenericEnum] = None
     specific: Optional[ClassificationSpecificEnum] = None
-    __properties = ["generic", "rendering", "schema", "specific"]
+    rendering: Optional[ClassificationRenderingEnum] = None
+    __properties = ["schema", "generic", "specific", "rendering"]
 
     class Config:
         """Pydantic configuration"""
@@ -75,10 +75,10 @@ class SeededClassification(BaseModel):
             return SeededClassification.parse_obj(obj)
 
         _obj = SeededClassification.parse_obj({
-            "generic": obj.get("generic"),
-            "rendering": obj.get("rendering"),
             "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
-            "specific": obj.get("specific")
+            "generic": obj.get("generic"),
+            "specific": obj.get("specific"),
+            "rendering": obj.get("rendering")
         })
         return _obj
 

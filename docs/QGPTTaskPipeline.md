@@ -5,12 +5,12 @@ This model is specifically for QGPT Task pipelines, the model is used to group o
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**code_commentation** | [**QGPTTaskPipelineForCodeCommentation**](QGPTTaskPipelineForCodeCommentation.md) |  | [optional] 
-**code_completion** | [**QGPTTaskPipelineForCodeCompletion**](QGPTTaskPipelineForCodeCompletion.md) |  | [optional] 
+**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 **code_explanation** | [**QGPTTaskPipelineForCodeExplanation**](QGPTTaskPipelineForCodeExplanation.md) |  | [optional] 
+**code_commentation** | [**QGPTTaskPipelineForCodeCommentation**](QGPTTaskPipelineForCodeCommentation.md) |  | [optional] 
 **code_fix** | [**QGPTTaskPipelineForCodeFix**](QGPTTaskPipelineForCodeFix.md) |  | [optional] 
 **code_modification** | [**QGPTTaskPipelineForCodeModification**](QGPTTaskPipelineForCodeModification.md) |  | [optional] 
-**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
+**code_completion** | [**QGPTTaskPipelineForCodeCompletion**](QGPTTaskPipelineForCodeCompletion.md) |  | [optional] 
 
 ## Example
 

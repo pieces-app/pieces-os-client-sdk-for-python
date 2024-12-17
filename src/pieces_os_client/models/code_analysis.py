@@ -29,18 +29,18 @@ class CodeAnalysis(BaseModel):
     """
     This is the ML Analysis object Specific to code.  prediction and similarity are custom types. ** please dont not modify **  # noqa: E501
     """
-    analysis: StrictStr = Field(default=..., description="this is just a reference to the analysis parent object.")
-    id: StrictStr = Field(...)
-    language: Optional[StrictStr] = None
-    model: Model = Field(...)
-    prediction: Optional[Dict[str, Union[StrictFloat, StrictInt]]] = None
     var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
-    similarity: Optional[Dict[str, Union[StrictFloat, StrictInt]]] = None
     tokenized: Optional[conlist(StrictStr)] = None
+    language: Optional[StrictStr] = None
+    type: ClassificationGenericEnum = Field(...)
+    prediction: Optional[Dict[str, Union[StrictFloat, StrictInt]]] = None
+    similarity: Optional[Dict[str, Union[StrictFloat, StrictInt]]] = None
     top5_colors: Optional[conlist(StrictInt)] = Field(default=None, alias="top5Colors")
     top5_sorted: Optional[conlist(StrictStr)] = Field(default=None, alias="top5Sorted")
-    type: ClassificationGenericEnum = Field(...)
-    __properties = ["analysis", "id", "language", "model", "prediction", "schema", "similarity", "tokenized", "top5Colors", "top5Sorted", "type"]
+    id: StrictStr = Field(...)
+    analysis: StrictStr = Field(default=..., description="this is just a reference to the analysis parent object.")
+    model: Model = Field(...)
+    __properties = ["schema", "tokenized", "language", "type", "prediction", "similarity", "top5Colors", "top5Sorted", "id", "analysis", "model"]
 
     class Config:
         """Pydantic configuration"""
@@ -66,12 +66,12 @@ class CodeAnalysis(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of model
-        if self.model:
-            _dict['model'] = self.model.to_dict()
         # override the default output from pydantic by calling `to_dict()` of var_schema
         if self.var_schema:
             _dict['schema'] = self.var_schema.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of model
+        if self.model:
+            _dict['model'] = self.model.to_dict()
         return _dict
 
     @classmethod
@@ -84,17 +84,17 @@ class CodeAnalysis(BaseModel):
             return CodeAnalysis.parse_obj(obj)
 
         _obj = CodeAnalysis.parse_obj({
-            "analysis": obj.get("analysis"),
-            "id": obj.get("id"),
-            "language": obj.get("language"),
-            "model": Model.from_dict(obj.get("model")) if obj.get("model") is not None else None,
-            "prediction": obj.get("prediction"),
             "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
-            "similarity": obj.get("similarity"),
             "tokenized": obj.get("tokenized"),
+            "language": obj.get("language"),
+            "type": obj.get("type"),
+            "prediction": obj.get("prediction"),
+            "similarity": obj.get("similarity"),
             "top5_colors": obj.get("top5Colors"),
             "top5_sorted": obj.get("top5Sorted"),
-            "type": obj.get("type")
+            "id": obj.get("id"),
+            "analysis": obj.get("analysis"),
+            "model": Model.from_dict(obj.get("model")) if obj.get("model") is not None else None
         })
         return _obj
 

@@ -28,9 +28,9 @@ class AssetSearchSpace(BaseModel):
     """
     This is provided search spaces, This is a provided assets, TODO in the future we might want to add seeds.  # noqa: E501
     """
-    identifers: FlattenedAssets = Field(...)
     var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
-    __properties = ["identifers", "schema"]
+    identifers: FlattenedAssets = Field(...)
+    __properties = ["schema", "identifers"]
 
     class Config:
         """Pydantic configuration"""
@@ -56,12 +56,12 @@ class AssetSearchSpace(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of identifers
-        if self.identifers:
-            _dict['identifers'] = self.identifers.to_dict()
         # override the default output from pydantic by calling `to_dict()` of var_schema
         if self.var_schema:
             _dict['schema'] = self.var_schema.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of identifers
+        if self.identifers:
+            _dict['identifers'] = self.identifers.to_dict()
         return _dict
 
     @classmethod
@@ -74,8 +74,8 @@ class AssetSearchSpace(BaseModel):
             return AssetSearchSpace.parse_obj(obj)
 
         _obj = AssetSearchSpace.parse_obj({
-            "identifers": FlattenedAssets.from_dict(obj.get("identifers")) if obj.get("identifers") is not None else None,
-            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None
+            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
+            "identifers": FlattenedAssets.from_dict(obj.get("identifers")) if obj.get("identifers") is not None else None
         })
         return _obj
 

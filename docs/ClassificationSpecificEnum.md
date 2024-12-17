@@ -440,6 +440,8 @@
 
 * `LUA` (value: `'lua'`)
 
+* `LUAU` (value: `'luau'`)
+
 * `MD` (value: `'md'`)
 
 * `MDOWN` (value: `'mdown'`)
@@ -1007,6 +1009,8 @@
 * `HCL` (value: `'hcl'`)
 
 * `ABAP` (value: `'abap'`)
+
+* `NIM` (value: `'nim'`)
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

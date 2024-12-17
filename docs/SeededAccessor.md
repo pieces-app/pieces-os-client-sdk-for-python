@@ -5,10 +5,10 @@ This is a pre-created accessor that simply takes an os id and an optional user(f
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**os** | **str** | this is an os id. | 
 **var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
-**share** | **str** | this is the share that the asset is apart of. | 
+**os** | **str** | this is an os id. | 
 **user** | [**FlattenedUserProfile**](FlattenedUserProfile.md) |  | [optional] 
+**share** | **str** | this is the share that the asset is apart of. | 
 
 ## Example
 

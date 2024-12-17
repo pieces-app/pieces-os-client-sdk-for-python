@@ -28,10 +28,10 @@ class SeededMacOSAsset(BaseModel):
     """
     An Seeded Asset specific to MacOS which takes in a Value, and Application  # noqa: E501
     """
-    application: Optional[Application] = None
     var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
+    application: Optional[Application] = None
     value: StrictStr = Field(default=..., description="The value of the text that you want to save as an asset.")
-    __properties = ["application", "schema", "value"]
+    __properties = ["schema", "application", "value"]
 
     class Config:
         """Pydantic configuration"""
@@ -57,12 +57,12 @@ class SeededMacOSAsset(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of application
-        if self.application:
-            _dict['application'] = self.application.to_dict()
         # override the default output from pydantic by calling `to_dict()` of var_schema
         if self.var_schema:
             _dict['schema'] = self.var_schema.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of application
+        if self.application:
+            _dict['application'] = self.application.to_dict()
         return _dict
 
     @classmethod
@@ -75,8 +75,8 @@ class SeededMacOSAsset(BaseModel):
             return SeededMacOSAsset.parse_obj(obj)
 
         _obj = SeededMacOSAsset.parse_obj({
-            "application": Application.from_dict(obj.get("application")) if obj.get("application") is not None else None,
             "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
+            "application": Application.from_dict(obj.get("application")) if obj.get("application") is not None else None,
             "value": obj.get("value")
         })
         return _obj

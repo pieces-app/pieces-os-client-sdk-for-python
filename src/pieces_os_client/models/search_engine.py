@@ -31,14 +31,14 @@ class SearchEngine(BaseModel):
     """
     This will determine the type of search that will run  These are all different searching methods all of which are exclusive. Meaning that you cannot mix & match types.  operations: is here if you want to build complex searching behavior. (A || B) && (B || C) , note this can get very complex but can be as flexible as you need.  # noqa: E501
     """
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
+    query: Optional[StrictStr] = None
     embeddings: Optional[EmbeddingsSearchOptions] = None
     full_text: Optional[FullTextSearchOptions] = None
-    operations: Optional[SearchEngines] = None
-    query: Optional[StrictStr] = None
-    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     temporal: Optional[TemporalSearchOptions] = None
     workstream: Optional[WorkstreamSearchOptions] = None
-    __properties = ["embeddings", "full_text", "operations", "query", "schema", "temporal", "workstream"]
+    operations: Optional[SearchEngines] = None
+    __properties = ["schema", "query", "embeddings", "full_text", "temporal", "workstream", "operations"]
 
     class Config:
         """Pydantic configuration"""
@@ -64,24 +64,24 @@ class SearchEngine(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
+        # override the default output from pydantic by calling `to_dict()` of var_schema
+        if self.var_schema:
+            _dict['schema'] = self.var_schema.to_dict()
         # override the default output from pydantic by calling `to_dict()` of embeddings
         if self.embeddings:
             _dict['embeddings'] = self.embeddings.to_dict()
         # override the default output from pydantic by calling `to_dict()` of full_text
         if self.full_text:
             _dict['full_text'] = self.full_text.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of operations
-        if self.operations:
-            _dict['operations'] = self.operations.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of var_schema
-        if self.var_schema:
-            _dict['schema'] = self.var_schema.to_dict()
         # override the default output from pydantic by calling `to_dict()` of temporal
         if self.temporal:
             _dict['temporal'] = self.temporal.to_dict()
         # override the default output from pydantic by calling `to_dict()` of workstream
         if self.workstream:
             _dict['workstream'] = self.workstream.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of operations
+        if self.operations:
+            _dict['operations'] = self.operations.to_dict()
         return _dict
 
     @classmethod
@@ -94,13 +94,13 @@ class SearchEngine(BaseModel):
             return SearchEngine.parse_obj(obj)
 
         _obj = SearchEngine.parse_obj({
+            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
+            "query": obj.get("query"),
             "embeddings": EmbeddingsSearchOptions.from_dict(obj.get("embeddings")) if obj.get("embeddings") is not None else None,
             "full_text": FullTextSearchOptions.from_dict(obj.get("full_text")) if obj.get("full_text") is not None else None,
-            "operations": SearchEngines.from_dict(obj.get("operations")) if obj.get("operations") is not None else None,
-            "query": obj.get("query"),
-            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
             "temporal": TemporalSearchOptions.from_dict(obj.get("temporal")) if obj.get("temporal") is not None else None,
-            "workstream": WorkstreamSearchOptions.from_dict(obj.get("workstream")) if obj.get("workstream") is not None else None
+            "workstream": WorkstreamSearchOptions.from_dict(obj.get("workstream")) if obj.get("workstream") is not None else None,
+            "operations": SearchEngines.from_dict(obj.get("operations")) if obj.get("operations") is not None else None
         })
         return _obj
 

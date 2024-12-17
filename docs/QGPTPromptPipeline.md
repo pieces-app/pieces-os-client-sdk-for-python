@@ -5,9 +5,9 @@ This is a model related to switching between different prompts based on if we ar
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**conversation** | [**QGPTConversationPipeline**](QGPTConversationPipeline.md) |  | [optional] 
 **var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 **task** | [**QGPTTaskPipeline**](QGPTTaskPipeline.md) |  | [optional] 
+**conversation** | [**QGPTConversationPipeline**](QGPTConversationPipeline.md) |  | [optional] 
 
 ## Example
 

@@ -5,9 +5,9 @@ This will the the Request body of the Request Endpoint.  Reuse will not be requi
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**reuse** | [**ReuseReaction**](ReuseReaction.md) |  | [optional] 
-**save** | **bool** | This will just be a simple boolean here that will say if the use should save the asset or not. | 
 **var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
+**save** | **bool** | This will just be a simple boolean here that will say if the use should save the asset or not. | 
+**reuse** | [**ReuseReaction**](ReuseReaction.md) |  | [optional] 
 **seed** | [**SeededConnectorCreation**](SeededConnectorCreation.md) |  | 
 
 ## Example

@@ -5,8 +5,8 @@ This is used as the input in the Context ingestion endpoint for the feed.  This 
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**event** | [**SeededWorkstreamEvent**](SeededWorkstreamEvent.md) |  | 
 **var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
+**event** | [**SeededWorkstreamEvent**](SeededWorkstreamEvent.md) |  | 
 
 ## Example
 

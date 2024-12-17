@@ -5,8 +5,8 @@ This is the plural Model used to return many SearchedConversation.
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**iterable** | [**List[SearchedConversation]**](SearchedConversation.md) |  | 
 **var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
+**iterable** | [**List[SearchedConversation]**](SearchedConversation.md) |  | 
 
 ## Example
 

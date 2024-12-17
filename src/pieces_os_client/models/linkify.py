@@ -32,13 +32,13 @@ class Linkify(BaseModel):
     """
     This is the incoming linkify model.  if access is PRIVATE then please provide and array of users to enable the link for.   # noqa: E501
     """
-    access: AccessEnum = Field(...)
-    asset: Optional[Asset] = None
-    distributions: Optional[SeededDistributions] = None
     var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     seed: Optional[Seed] = None
+    asset: Optional[Asset] = None
     users: Optional[conlist(SeededUser)] = Field(default=None, description="this is an array of users.")
-    __properties = ["access", "asset", "distributions", "schema", "seed", "users"]
+    access: AccessEnum = Field(...)
+    distributions: Optional[SeededDistributions] = None
+    __properties = ["schema", "seed", "asset", "users", "access", "distributions"]
 
     class Config:
         """Pydantic configuration"""
@@ -64,18 +64,15 @@ class Linkify(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of asset
-        if self.asset:
-            _dict['asset'] = self.asset.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of distributions
-        if self.distributions:
-            _dict['distributions'] = self.distributions.to_dict()
         # override the default output from pydantic by calling `to_dict()` of var_schema
         if self.var_schema:
             _dict['schema'] = self.var_schema.to_dict()
         # override the default output from pydantic by calling `to_dict()` of seed
         if self.seed:
             _dict['seed'] = self.seed.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of asset
+        if self.asset:
+            _dict['asset'] = self.asset.to_dict()
         # override the default output from pydantic by calling `to_dict()` of each item in users (list)
         _items = []
         if self.users:
@@ -83,6 +80,9 @@ class Linkify(BaseModel):
                 if _item:
                     _items.append(_item.to_dict())
             _dict['users'] = _items
+        # override the default output from pydantic by calling `to_dict()` of distributions
+        if self.distributions:
+            _dict['distributions'] = self.distributions.to_dict()
         return _dict
 
     @classmethod
@@ -95,12 +95,12 @@ class Linkify(BaseModel):
             return Linkify.parse_obj(obj)
 
         _obj = Linkify.parse_obj({
-            "access": obj.get("access"),
-            "asset": Asset.from_dict(obj.get("asset")) if obj.get("asset") is not None else None,
-            "distributions": SeededDistributions.from_dict(obj.get("distributions")) if obj.get("distributions") is not None else None,
             "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
             "seed": Seed.from_dict(obj.get("seed")) if obj.get("seed") is not None else None,
-            "users": [SeededUser.from_dict(_item) for _item in obj.get("users")] if obj.get("users") is not None else None
+            "asset": Asset.from_dict(obj.get("asset")) if obj.get("asset") is not None else None,
+            "users": [SeededUser.from_dict(_item) for _item in obj.get("users")] if obj.get("users") is not None else None,
+            "access": obj.get("access"),
+            "distributions": SeededDistributions.from_dict(obj.get("distributions")) if obj.get("distributions") is not None else None
         })
         return _obj
 

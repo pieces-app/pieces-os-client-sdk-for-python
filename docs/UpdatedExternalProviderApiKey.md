@@ -5,8 +5,8 @@ This is the update Auth0UserMetadata object, and the specific update output mode
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**metadata** | [**Auth0UserMetadata**](Auth0UserMetadata.md) |  | 
 **var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
+**metadata** | [**Auth0UserMetadata**](Auth0UserMetadata.md) |  | 
 
 ## Example
 

@@ -27,10 +27,10 @@ class ExportedDatabaseFormat(BaseModel):
     """
     ExportedDatabaseFormat
     """
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     id: StrictStr = Field(default=..., description="this is the id of the format")
     raw: conlist(StrictInt) = Field(default=..., description="these are bytes.")
-    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
-    __properties = ["id", "raw", "schema"]
+    __properties = ["schema", "id", "raw"]
 
     class Config:
         """Pydantic configuration"""
@@ -71,9 +71,9 @@ class ExportedDatabaseFormat(BaseModel):
             return ExportedDatabaseFormat.parse_obj(obj)
 
         _obj = ExportedDatabaseFormat.parse_obj({
+            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
             "id": obj.get("id"),
-            "raw": obj.get("raw"),
-            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None
+            "raw": obj.get("raw")
         })
         return _obj
 

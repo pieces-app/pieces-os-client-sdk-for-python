@@ -4,12 +4,12 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
+**value** | **str** |  | [optional] 
 **annotation** | **bool** |  | [optional] 
+**title** | **bool** |  | [optional] 
 **content** | **bool** |  | [optional] 
 **options** | [**AssetFilterPhraseOptions**](AssetFilterPhraseOptions.md) |  | [optional] 
-**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
-**title** | **bool** |  | [optional] 
-**value** | **str** |  | [optional] 
 
 ## Example
 

@@ -27,9 +27,9 @@ class QGPTRepromptOutput(BaseModel):
     """
     QGPTRepromptOutput
     """
-    query: StrictStr = Field(...)
     var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
-    __properties = ["query", "schema"]
+    query: StrictStr = Field(...)
+    __properties = ["schema", "query"]
 
     class Config:
         """Pydantic configuration"""
@@ -70,8 +70,8 @@ class QGPTRepromptOutput(BaseModel):
             return QGPTRepromptOutput.parse_obj(obj)
 
         _obj = QGPTRepromptOutput.parse_obj({
-            "query": obj.get("query"),
-            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None
+            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
+            "query": obj.get("query")
         })
         return _obj
 

@@ -4,8 +4,8 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**iterable** | [**List[ExportedDatabaseFormat]**](ExportedDatabaseFormat.md) |  | 
 **var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
+**iterable** | [**List[ExportedDatabaseFormat]**](ExportedDatabaseFormat.md) |  | 
 
 ## Example
 

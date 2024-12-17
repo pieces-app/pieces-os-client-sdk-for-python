@@ -28,13 +28,13 @@ class SearchedHint(BaseModel):
     """
     This is used for the Hint searching endpoint  hint here is only provided if transferables are set to true.  temporal: if this is provided this means that their material matched the input via a timestamp.  TODO will want to consider returning related materials to this material potentially both associated/ and not associated materials ie suggestion: WorkstreamSuggestions  # noqa: E501
     """
-    exact: StrictBool = Field(...)
-    hint: Optional[Hint] = None
-    identifier: StrictStr = Field(default=..., description="This is the uuid of the hint.")
     var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
+    hint: Optional[Hint] = None
+    exact: StrictBool = Field(...)
     similarity: Union[StrictFloat, StrictInt] = Field(...)
     temporal: Optional[StrictBool] = None
-    __properties = ["exact", "hint", "identifier", "schema", "similarity", "temporal"]
+    identifier: StrictStr = Field(default=..., description="This is the uuid of the hint.")
+    __properties = ["schema", "hint", "exact", "similarity", "temporal", "identifier"]
 
     class Config:
         """Pydantic configuration"""
@@ -60,12 +60,12 @@ class SearchedHint(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of hint
-        if self.hint:
-            _dict['hint'] = self.hint.to_dict()
         # override the default output from pydantic by calling `to_dict()` of var_schema
         if self.var_schema:
             _dict['schema'] = self.var_schema.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of hint
+        if self.hint:
+            _dict['hint'] = self.hint.to_dict()
         return _dict
 
     @classmethod
@@ -78,12 +78,12 @@ class SearchedHint(BaseModel):
             return SearchedHint.parse_obj(obj)
 
         _obj = SearchedHint.parse_obj({
-            "exact": obj.get("exact"),
-            "hint": Hint.from_dict(obj.get("hint")) if obj.get("hint") is not None else None,
-            "identifier": obj.get("identifier"),
             "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
+            "hint": Hint.from_dict(obj.get("hint")) if obj.get("hint") is not None else None,
+            "exact": obj.get("exact"),
             "similarity": obj.get("similarity"),
-            "temporal": obj.get("temporal")
+            "temporal": obj.get("temporal"),
+            "identifier": obj.get("identifier")
         })
         return _obj
 

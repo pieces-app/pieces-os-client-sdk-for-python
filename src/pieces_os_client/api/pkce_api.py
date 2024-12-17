@@ -154,7 +154,7 @@ class PKCEApi:
         # process the body parameter
         _body_params = None
         # authentication setting
-        _auth_settings = []  # noqa: E501
+        _auth_settings = ['application']  # noqa: E501
 
         _response_types_map = {}
 
@@ -299,7 +299,7 @@ class PKCEApi:
                 _header_params['Content-Type'] = _content_types_list
 
         # authentication setting
-        _auth_settings = []  # noqa: E501
+        _auth_settings = ['application']  # noqa: E501
 
         _response_types_map = {
             '200': "PKCE",
@@ -446,7 +446,7 @@ class PKCEApi:
                 _header_params['Content-Type'] = _content_types_list
 
         # authentication setting
-        _auth_settings = []  # noqa: E501
+        _auth_settings = ['application']  # noqa: E501
 
         _response_types_map = {
             '200': "PKCE",
@@ -578,7 +578,7 @@ class PKCEApi:
             ['application/json'])  # noqa: E501
 
         # authentication setting
-        _auth_settings = []  # noqa: E501
+        _auth_settings = ['application']  # noqa: E501
 
         _response_types_map = {
             '200': "PKCE",
@@ -718,11 +718,11 @@ class PKCEApi:
         # process the form parameters
         _form_params = []
         _files = {}
-        if _params['code'] is not None:
-            _form_params.append(('code', _params['code']))
-
         if _params['var_schema'] is not None:
             _form_params.append(('schema', _params['var_schema']))
+
+        if _params['code'] is not None:
+            _form_params.append(('code', _params['code']))
 
         if _params['state'] is not None:
             _form_params.append(('state', _params['state']))
@@ -741,7 +741,7 @@ class PKCEApi:
                 _header_params['Content-Type'] = _content_types_list
 
         # authentication setting
-        _auth_settings = []  # noqa: E501
+        _auth_settings = ['application']  # noqa: E501
 
         _response_types_map = {
             '200': "PKCE",

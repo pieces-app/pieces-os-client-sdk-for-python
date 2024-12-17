@@ -29,15 +29,15 @@ class PersonBasicType(BaseModel):
     """
     This is all optional properties around the most basic information around a non-pieces user.  A Basic type will NOT have a scope as it is not an actual pieces user.  # noqa: E501
     """
-    email: Optional[StrictStr] = Field(default=None, description="an email that was extracted.")
-    mailgun: Optional[MailgunMetadata] = None
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
+    username: Optional[StrictStr] = Field(default=None, description="username or twitter handle...etc")
     name: Optional[StrictStr] = Field(default=None, description="This is the name of the basic user.")
     picture: Optional[StrictStr] = Field(default=None, description="this is a url picture representation of a user.")
-    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
+    email: Optional[StrictStr] = Field(default=None, description="an email that was extracted.")
     sourced: Optional[ExternallySourcedEnum] = None
     url: Optional[StrictStr] = Field(default=None, description="This is a specific url that this basic user came from.")
-    username: Optional[StrictStr] = Field(default=None, description="username or twitter handle...etc")
-    __properties = ["email", "mailgun", "name", "picture", "schema", "sourced", "url", "username"]
+    mailgun: Optional[MailgunMetadata] = None
+    __properties = ["schema", "username", "name", "picture", "email", "sourced", "url", "mailgun"]
 
     class Config:
         """Pydantic configuration"""
@@ -63,12 +63,12 @@ class PersonBasicType(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of mailgun
-        if self.mailgun:
-            _dict['mailgun'] = self.mailgun.to_dict()
         # override the default output from pydantic by calling `to_dict()` of var_schema
         if self.var_schema:
             _dict['schema'] = self.var_schema.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of mailgun
+        if self.mailgun:
+            _dict['mailgun'] = self.mailgun.to_dict()
         return _dict
 
     @classmethod
@@ -81,14 +81,14 @@ class PersonBasicType(BaseModel):
             return PersonBasicType.parse_obj(obj)
 
         _obj = PersonBasicType.parse_obj({
-            "email": obj.get("email"),
-            "mailgun": MailgunMetadata.from_dict(obj.get("mailgun")) if obj.get("mailgun") is not None else None,
+            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
+            "username": obj.get("username"),
             "name": obj.get("name"),
             "picture": obj.get("picture"),
-            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
+            "email": obj.get("email"),
             "sourced": obj.get("sourced"),
             "url": obj.get("url"),
-            "username": obj.get("username")
+            "mailgun": MailgunMetadata.from_dict(obj.get("mailgun")) if obj.get("mailgun") is not None else None
         })
         return _obj
 

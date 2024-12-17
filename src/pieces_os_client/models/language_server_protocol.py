@@ -28,9 +28,9 @@ class LanguageServerProtocol(BaseModel):
     """
     TODO  # noqa: E501
     """
-    diagnostics: Optional[LanguageServerProtocolDiagnostics] = None
     var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
-    __properties = ["diagnostics", "schema"]
+    diagnostics: Optional[LanguageServerProtocolDiagnostics] = None
+    __properties = ["schema", "diagnostics"]
 
     class Config:
         """Pydantic configuration"""
@@ -56,12 +56,12 @@ class LanguageServerProtocol(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of diagnostics
-        if self.diagnostics:
-            _dict['diagnostics'] = self.diagnostics.to_dict()
         # override the default output from pydantic by calling `to_dict()` of var_schema
         if self.var_schema:
             _dict['schema'] = self.var_schema.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of diagnostics
+        if self.diagnostics:
+            _dict['diagnostics'] = self.diagnostics.to_dict()
         return _dict
 
     @classmethod
@@ -74,8 +74,8 @@ class LanguageServerProtocol(BaseModel):
             return LanguageServerProtocol.parse_obj(obj)
 
         _obj = LanguageServerProtocol.parse_obj({
-            "diagnostics": LanguageServerProtocolDiagnostics.from_dict(obj.get("diagnostics")) if obj.get("diagnostics") is not None else None,
-            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None
+            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
+            "diagnostics": LanguageServerProtocolDiagnostics.from_dict(obj.get("diagnostics")) if obj.get("diagnostics") is not None else None
         })
         return _obj
 

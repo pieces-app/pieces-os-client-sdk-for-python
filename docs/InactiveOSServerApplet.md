@@ -5,9 +5,9 @@ Note: parent is optional here in the case that (parent here is the integration t
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 **parent** | [**Application**](Application.md) |  | [optional] 
 **port** | **int** | This is the port number in which we want to serve the copilot at. | [optional] 
-**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 **type** | [**OSAppletEnum**](OSAppletEnum.md) |  | 
 
 ## Example

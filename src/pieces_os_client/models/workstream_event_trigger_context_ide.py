@@ -27,11 +27,11 @@ class WorkstreamEventTriggerContextIDE(BaseModel):
     """
     This is the given context for an IDE.  tabs: this here refers to the tabs w/in the IDE.  Modules here are the given repositories  Name: this is the name of a workspace, but not required.  # noqa: E501
     """
-    modules: Optional[ProjectModules] = None
-    name: Optional[StrictStr] = None
     var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     tabs: Optional[IDETabs] = None
-    __properties = ["modules", "name", "schema", "tabs"]
+    modules: Optional[ProjectModules] = None
+    name: Optional[StrictStr] = None
+    __properties = ["schema", "tabs", "modules", "name"]
 
     class Config:
         """Pydantic configuration"""
@@ -57,15 +57,15 @@ class WorkstreamEventTriggerContextIDE(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of modules
-        if self.modules:
-            _dict['modules'] = self.modules.to_dict()
         # override the default output from pydantic by calling `to_dict()` of var_schema
         if self.var_schema:
             _dict['schema'] = self.var_schema.to_dict()
         # override the default output from pydantic by calling `to_dict()` of tabs
         if self.tabs:
             _dict['tabs'] = self.tabs.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of modules
+        if self.modules:
+            _dict['modules'] = self.modules.to_dict()
         return _dict
 
     @classmethod
@@ -78,10 +78,10 @@ class WorkstreamEventTriggerContextIDE(BaseModel):
             return WorkstreamEventTriggerContextIDE.parse_obj(obj)
 
         _obj = WorkstreamEventTriggerContextIDE.parse_obj({
-            "modules": ProjectModules.from_dict(obj.get("modules")) if obj.get("modules") is not None else None,
-            "name": obj.get("name"),
             "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
-            "tabs": IDETabs.from_dict(obj.get("tabs")) if obj.get("tabs") is not None else None
+            "tabs": IDETabs.from_dict(obj.get("tabs")) if obj.get("tabs") is not None else None,
+            "modules": ProjectModules.from_dict(obj.get("modules")) if obj.get("modules") is not None else None,
+            "name": obj.get("name")
         })
         return _obj
 

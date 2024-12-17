@@ -31,13 +31,13 @@ class Suggestion(BaseModel):
     """
     This is the model return by the connector's suggest endpoint.  Note: assets are the assets that this target was ran against.  distribution is the distribution that we generated from comparing the target to the asset's vectors.(currently uuid(assetid) : value that is the difference between the asset and the target) **could potentially make an additional model here that is an array from most to least relevent.  *** distribution is required but we are currently unable to reflect that with our current dart generation.  # noqa: E501
     """
-    assets: Assets = Field(...)
-    distribution: Optional[Dict[str, Union[StrictFloat, StrictInt]]] = None
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     reuse: ReuseSuggestion = Field(...)
     save: SaveSuggestion = Field(...)
-    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     target: SuggestionTarget = Field(...)
-    __properties = ["assets", "distribution", "reuse", "save", "schema", "target"]
+    assets: Assets = Field(...)
+    distribution: Optional[Dict[str, Union[StrictFloat, StrictInt]]] = None
+    __properties = ["schema", "reuse", "save", "target", "assets", "distribution"]
 
     class Config:
         """Pydantic configuration"""
@@ -63,21 +63,21 @@ class Suggestion(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of assets
-        if self.assets:
-            _dict['assets'] = self.assets.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of var_schema
+        if self.var_schema:
+            _dict['schema'] = self.var_schema.to_dict()
         # override the default output from pydantic by calling `to_dict()` of reuse
         if self.reuse:
             _dict['reuse'] = self.reuse.to_dict()
         # override the default output from pydantic by calling `to_dict()` of save
         if self.save:
             _dict['save'] = self.save.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of var_schema
-        if self.var_schema:
-            _dict['schema'] = self.var_schema.to_dict()
         # override the default output from pydantic by calling `to_dict()` of target
         if self.target:
             _dict['target'] = self.target.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of assets
+        if self.assets:
+            _dict['assets'] = self.assets.to_dict()
         return _dict
 
     @classmethod
@@ -90,12 +90,12 @@ class Suggestion(BaseModel):
             return Suggestion.parse_obj(obj)
 
         _obj = Suggestion.parse_obj({
-            "assets": Assets.from_dict(obj.get("assets")) if obj.get("assets") is not None else None,
-            "distribution": obj.get("distribution"),
+            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
             "reuse": ReuseSuggestion.from_dict(obj.get("reuse")) if obj.get("reuse") is not None else None,
             "save": SaveSuggestion.from_dict(obj.get("save")) if obj.get("save") is not None else None,
-            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
-            "target": SuggestionTarget.from_dict(obj.get("target")) if obj.get("target") is not None else None
+            "target": SuggestionTarget.from_dict(obj.get("target")) if obj.get("target") is not None else None,
+            "assets": Assets.from_dict(obj.get("assets")) if obj.get("assets") is not None else None,
+            "distribution": obj.get("distribution")
         })
         return _obj
 

@@ -5,14 +5,14 @@ This is use as the score for an asset.  Manual: will be the raw sum of the asset
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**automatic** | **int** | These are point assigned via automatic activity events. | 
-**manual** | **int** | These are points assigned via manual user driven events. | 
-**priority** | **int** |  | [optional] 
-**reference** | **int** |  | [optional] 
-**reuse** | **int** |  | [optional] 
 **var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
-**searched** | **int** |  | [optional] 
+**manual** | **int** | These are points assigned via manual user driven events. | 
+**automatic** | **int** | These are point assigned via automatic activity events. | 
+**priority** | **int** |  | [optional] 
+**reuse** | **int** |  | [optional] 
 **update** | **int** |  | [optional] 
+**reference** | **int** |  | [optional] 
+**searched** | **int** |  | [optional] 
 
 ## Example
 

@@ -5,9 +5,9 @@ This is used in the backups plural stream to stream the changes to all the resto
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 **backups** | [**List[BackupStreamedProgress]**](BackupStreamedProgress.md) |  | [optional] 
 **restorations** | [**List[BackupStreamedProgress]**](BackupStreamedProgress.md) |  | [optional] 
-**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 
 ## Example
 

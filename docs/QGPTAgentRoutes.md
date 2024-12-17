@@ -5,8 +5,8 @@ This is apart of the Output and will let the plugin developer know if we reccome
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**related** | [**QGPTAgentRelatedRoutes**](QGPTAgentRelatedRoutes.md) |  | [optional] 
 **var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
+**related** | [**QGPTAgentRelatedRoutes**](QGPTAgentRelatedRoutes.md) |  | [optional] 
 
 ## Example
 

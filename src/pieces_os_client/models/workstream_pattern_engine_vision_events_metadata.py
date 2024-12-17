@@ -29,12 +29,12 @@ class WorkstreamPatternEngineVisionEventsMetadata(BaseModel):
     """
     This is specific model that will return the size of the WPE in bytes  # noqa: E501
     """
-    bytes: ByteDescriptor = Field(...)
-    newest: Optional[WorkstreamPatternEngineVisionEvent] = None
-    oldest: Optional[WorkstreamPatternEngineVisionEvent] = None
     var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
+    bytes: ByteDescriptor = Field(...)
     total: StrictInt = Field(default=..., description="This is the total number of events.")
-    __properties = ["bytes", "newest", "oldest", "schema", "total"]
+    oldest: Optional[WorkstreamPatternEngineVisionEvent] = None
+    newest: Optional[WorkstreamPatternEngineVisionEvent] = None
+    __properties = ["schema", "bytes", "total", "oldest", "newest"]
 
     class Config:
         """Pydantic configuration"""
@@ -60,18 +60,18 @@ class WorkstreamPatternEngineVisionEventsMetadata(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of bytes
-        if self.bytes:
-            _dict['bytes'] = self.bytes.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of newest
-        if self.newest:
-            _dict['newest'] = self.newest.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of oldest
-        if self.oldest:
-            _dict['oldest'] = self.oldest.to_dict()
         # override the default output from pydantic by calling `to_dict()` of var_schema
         if self.var_schema:
             _dict['schema'] = self.var_schema.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of bytes
+        if self.bytes:
+            _dict['bytes'] = self.bytes.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of oldest
+        if self.oldest:
+            _dict['oldest'] = self.oldest.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of newest
+        if self.newest:
+            _dict['newest'] = self.newest.to_dict()
         return _dict
 
     @classmethod
@@ -84,11 +84,11 @@ class WorkstreamPatternEngineVisionEventsMetadata(BaseModel):
             return WorkstreamPatternEngineVisionEventsMetadata.parse_obj(obj)
 
         _obj = WorkstreamPatternEngineVisionEventsMetadata.parse_obj({
-            "bytes": ByteDescriptor.from_dict(obj.get("bytes")) if obj.get("bytes") is not None else None,
-            "newest": WorkstreamPatternEngineVisionEvent.from_dict(obj.get("newest")) if obj.get("newest") is not None else None,
-            "oldest": WorkstreamPatternEngineVisionEvent.from_dict(obj.get("oldest")) if obj.get("oldest") is not None else None,
             "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
-            "total": obj.get("total")
+            "bytes": ByteDescriptor.from_dict(obj.get("bytes")) if obj.get("bytes") is not None else None,
+            "total": obj.get("total"),
+            "oldest": WorkstreamPatternEngineVisionEvent.from_dict(obj.get("oldest")) if obj.get("oldest") is not None else None,
+            "newest": WorkstreamPatternEngineVisionEvent.from_dict(obj.get("newest")) if obj.get("newest") is not None else None
         })
         return _obj
 

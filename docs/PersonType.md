@@ -5,9 +5,9 @@ basic or platform is absolutely required here. basic: if provided is just inform
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 **basic** | [**PersonBasicType**](PersonBasicType.md) |  | [optional] 
 **platform** | [**UserProfile**](UserProfile.md) |  | [optional] 
-**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 
 ## Example
 

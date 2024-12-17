@@ -4,11 +4,11 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**code** | [**CodeAnalysis**](CodeAnalysis.md) |  | [optional] 
-**format** | **str** | this is a reference to the format that it belongs too. | 
-**id** | **str** |  | 
-**image** | [**FlattenedImageAnalysis**](FlattenedImageAnalysis.md) |  | [optional] 
 **var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
+**code** | [**CodeAnalysis**](CodeAnalysis.md) |  | [optional] 
+**id** | **str** |  | 
+**format** | **str** | this is a reference to the format that it belongs too. | 
+**image** | [**FlattenedImageAnalysis**](FlattenedImageAnalysis.md) |  | [optional] 
 
 ## Example
 

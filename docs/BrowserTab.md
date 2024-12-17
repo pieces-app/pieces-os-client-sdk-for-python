@@ -5,13 +5,13 @@ a tab can have many values because you might want to pass in a value that repres
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**anchor** | [**SeededAnchor**](SeededAnchor.md) |  | [optional] 
-**contributors** | [**DocumentContributors**](DocumentContributors.md) |  | [optional] 
-**current** | **bool** |  | [optional] 
-**range** | [**AnonymousTemporalRange**](AnonymousTemporalRange.md) |  | [optional] 
 **var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 **values** | [**BrowserTabValues**](BrowserTabValues.md) |  | [optional] 
+**anchor** | [**SeededAnchor**](SeededAnchor.md) |  | [optional] 
 **website** | [**SeededWebsite**](SeededWebsite.md) |  | [optional] 
+**range** | [**AnonymousTemporalRange**](AnonymousTemporalRange.md) |  | [optional] 
+**current** | **bool** |  | [optional] 
+**contributors** | [**DocumentContributors**](DocumentContributors.md) |  | [optional] 
 
 ## Example
 

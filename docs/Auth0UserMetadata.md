@@ -5,14 +5,14 @@ User Metadata from Auth0
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**allocation** | [**Auth0UserAllocationMetadata**](Auth0UserAllocationMetadata.md) |  | [optional] 
-**beta** | [**AnonymousTemporalRange**](AnonymousTemporalRange.md) |  | [optional] 
-**cloud_key** | **str** |  | [optional] 
-**global_id** | **str** |  | 
-**open_ai** | [**Auth0OpenAIUserMetadata**](Auth0OpenAIUserMetadata.md) |  | [optional] 
 **var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
+**global_id** | **str** |  | 
+**cloud_key** | **str** |  | [optional] 
 **stripe_customer_id** | **str** | A customer ID that is added to the user in the case of payments | [optional] 
 **vanityname** | **str** | this is the vanityname of the user.(set from their custom CNAME dns record.) ie mark.pieces.cloud where \&quot;mark\&quot; is the vanityname. | [optional] 
+**allocation** | [**Auth0UserAllocationMetadata**](Auth0UserAllocationMetadata.md) |  | [optional] 
+**open_ai** | [**Auth0OpenAIUserMetadata**](Auth0OpenAIUserMetadata.md) |  | [optional] 
+**beta** | [**AnonymousTemporalRange**](AnonymousTemporalRange.md) |  | [optional] 
 
 ## Example
 

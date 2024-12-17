@@ -160,6 +160,8 @@ This is used to describe the foundational models used within POS.  Note: LATEST 
 
 * `GEMINI_1_DOT_5` (value: `'GEMINI_1.5'`)
 
+* `GEMINI_2` (value: `'GEMINI_2'`)
+
 * `FAST_TEXT` (value: `'FAST_TEXT'`)
 
 * `UNIXCODER` (value: `'UNIXCODER'`)
@@ -247,6 +249,36 @@ This is used to describe the foundational models used within POS.  Note: LATEST 
 * `PERPLEXITY_DEFAULT` (value: `'PERPLEXITY_DEFAULT'`)
 
 * `PERPLEXITY_CUSTOM` (value: `'PERPLEXITY_CUSTOM'`)
+
+* `CODESTRAL_LATEST` (value: `'CODESTRAL_LATEST'`)
+
+* `DEEPSEEK_LATEST` (value: `'DEEPSEEK_LATEST'`)
+
+* `LLAVA_LATEST` (value: `'LLAVA_LATEST'`)
+
+* `MIXTRAL_LATEST` (value: `'MIXTRAL_LATEST'`)
+
+* `MISTRAL_LATEST` (value: `'MISTRAL_LATEST'`)
+
+* `ORCA_LATEST` (value: `'ORCA_LATEST'`)
+
+* `QWEN_CODER_LATEST` (value: `'QWEN_CODER_LATEST'`)
+
+* `QWEN_LATEST` (value: `'QWEN_LATEST'`)
+
+* `QWQ_LATEST` (value: `'QWQ_LATEST'`)
+
+* `STARCODER_LATEST` (value: `'STARCODER_LATEST'`)
+
+* `TINYLLAMA_LATEST` (value: `'TINYLLAMA_LATEST'`)
+
+* `VICUNA_LATEST` (value: `'VICUNA_LATEST'`)
+
+* `WIZARD_LATEST` (value: `'WIZARD_LATEST'`)
+
+* `ZEPHYR_LATEST` (value: `'ZEPHYR_LATEST'`)
+
+* `UNKNOWN` (value: `'UNKNOWN'`)
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

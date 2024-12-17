@@ -5,11 +5,11 @@ This is the incoming linkify model.  if access is PRIVATE then please provide an
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**access** | [**AccessEnum**](AccessEnum.md) |  | 
-**assets** | **List[str]** | This is an array or string that represents an already backed up asset. That will be added to a collection. | 
-**name** | **str** | optionally can give the collection a name if you want. | [optional] 
 **var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
+**assets** | **List[str]** | This is an array or string that represents an already backed up asset. That will be added to a collection. | 
 **users** | [**List[SeededUser]**](SeededUser.md) | this is an array of users. | [optional] 
+**access** | [**AccessEnum**](AccessEnum.md) |  | 
+**name** | **str** | optionally can give the collection a name if you want. | [optional] 
 
 ## Example
 

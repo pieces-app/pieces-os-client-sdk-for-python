@@ -5,9 +5,9 @@ These are aesthetics properties that will ensure the darkmode + font size and ot
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**font** | [**Font**](Font.md) |  | 
 **var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 **theme** | [**Theme**](Theme.md) |  | 
+**font** | [**Font**](Font.md) |  | 
 
 ## Example
 

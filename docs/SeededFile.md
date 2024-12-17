@@ -5,10 +5,10 @@ This is a base model for a File(Seeded).  We will Throw an Error, if the text an
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**bytes** | [**TransferableBytes**](TransferableBytes.md) |  | [optional] 
-**metadata** | [**FileMetadata**](FileMetadata.md) |  | [optional] 
 **var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
+**bytes** | [**TransferableBytes**](TransferableBytes.md) |  | [optional] 
 **string** | [**TransferableString**](TransferableString.md) |  | [optional] 
+**metadata** | [**FileMetadata**](FileMetadata.md) |  | [optional] 
 
 ## Example
 

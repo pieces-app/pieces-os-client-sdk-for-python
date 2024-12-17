@@ -5,8 +5,8 @@ TODO
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**diagnostics** | [**LanguageServerProtocolDiagnostics**](LanguageServerProtocolDiagnostics.md) |  | [optional] 
 **var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
+**diagnostics** | [**LanguageServerProtocolDiagnostics**](LanguageServerProtocolDiagnostics.md) |  | [optional] 
 
 ## Example
 

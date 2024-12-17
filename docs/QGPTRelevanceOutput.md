@@ -5,9 +5,9 @@ This is the returned value from /code_gpt/relevance.  This will return the snipp
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 **answer** | [**QGPTQuestionOutput**](QGPTQuestionOutput.md) |  | [optional] 
 **relevant** | [**RelevantQGPTSeeds**](RelevantQGPTSeeds.md) |  | 
-**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 
 ## Example
 

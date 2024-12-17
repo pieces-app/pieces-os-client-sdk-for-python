@@ -5,8 +5,8 @@ This will give specific information on task specific capibilites for GPU.
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**llm** | **bool** | This will let us know if in the case we have a gpu and our gpu has the capabilities to use llms | [optional] 
 **var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
+**llm** | **bool** | This will let us know if in the case we have a gpu and our gpu has the capabilities to use llms | [optional] 
 
 ## Example
 

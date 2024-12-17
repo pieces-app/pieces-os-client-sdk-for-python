@@ -27,12 +27,12 @@ class SeededAssetEnrichment(BaseModel):
     """
     This is a specific Model for the SeededAsset that will enable the developer to modify the enrichment levels of persons, tags, websites.  These enrichment levels will guarentee that the # of people/tags/websites do not eceeed the provided value, but will not guarentee a minimum.  # noqa: E501
     """
-    hints: Optional[StrictInt] = None
-    persons: Optional[StrictInt] = None
     var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     tags: Optional[StrictInt] = None
     websites: Optional[StrictInt] = None
-    __properties = ["hints", "persons", "schema", "tags", "websites"]
+    persons: Optional[StrictInt] = None
+    hints: Optional[StrictInt] = None
+    __properties = ["schema", "tags", "websites", "persons", "hints"]
 
     class Config:
         """Pydantic configuration"""
@@ -73,11 +73,11 @@ class SeededAssetEnrichment(BaseModel):
             return SeededAssetEnrichment.parse_obj(obj)
 
         _obj = SeededAssetEnrichment.parse_obj({
-            "hints": obj.get("hints"),
-            "persons": obj.get("persons"),
             "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
             "tags": obj.get("tags"),
-            "websites": obj.get("websites")
+            "websites": obj.get("websites"),
+            "persons": obj.get("persons"),
+            "hints": obj.get("hints")
         })
         return _obj
 

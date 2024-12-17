@@ -5,12 +5,12 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**directory** | **str** |  | [optional] 
-**file** | [**SeededFile**](SeededFile.md) |  | [optional] 
-**filters** | [**TLPDirectedDiscoveryFilters**](TLPDirectedDiscoveryFilters.md) |  | [optional] 
-**fragment** | [**SeededFragment**](SeededFragment.md) |  | [optional] 
-**metadata** | [**SeededAssetMetadata**](SeededAssetMetadata.md) |  | [optional] 
 **var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
+**file** | [**SeededFile**](SeededFile.md) |  | [optional] 
+**fragment** | [**SeededFragment**](SeededFragment.md) |  | [optional] 
+**directory** | **str** |  | [optional] 
+**metadata** | [**SeededAssetMetadata**](SeededAssetMetadata.md) |  | [optional] 
+**filters** | [**TLPDirectedDiscoveryFilters**](TLPDirectedDiscoveryFilters.md) |  | [optional] 
 
 ## Example
 

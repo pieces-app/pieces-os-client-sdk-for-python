@@ -31,12 +31,12 @@ class DocumentContributor(BaseModel):
     """
     A DocumentContributor is a preseeded representation of a Person  This can be used in the case of the browser, or in the IDE  If they are apart of an IDE, we can in the future provide git information (IE add a Git object for their commits)  person: this is most important part which is the email/name xyz  # noqa: E501
     """
-    classification: Optional[Classification] = None
-    person: PersonBasicType = Field(...)
     var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
-    updated: Optional[GroupedTimestamp] = None
+    classification: Optional[Classification] = None
     value: Optional[TransferableString] = None
-    __properties = ["classification", "person", "schema", "updated", "value"]
+    person: PersonBasicType = Field(...)
+    updated: Optional[GroupedTimestamp] = None
+    __properties = ["schema", "classification", "value", "person", "updated"]
 
     class Config:
         """Pydantic configuration"""
@@ -62,21 +62,21 @@ class DocumentContributor(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of classification
-        if self.classification:
-            _dict['classification'] = self.classification.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of person
-        if self.person:
-            _dict['person'] = self.person.to_dict()
         # override the default output from pydantic by calling `to_dict()` of var_schema
         if self.var_schema:
             _dict['schema'] = self.var_schema.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of updated
-        if self.updated:
-            _dict['updated'] = self.updated.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of classification
+        if self.classification:
+            _dict['classification'] = self.classification.to_dict()
         # override the default output from pydantic by calling `to_dict()` of value
         if self.value:
             _dict['value'] = self.value.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of person
+        if self.person:
+            _dict['person'] = self.person.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of updated
+        if self.updated:
+            _dict['updated'] = self.updated.to_dict()
         return _dict
 
     @classmethod
@@ -89,11 +89,11 @@ class DocumentContributor(BaseModel):
             return DocumentContributor.parse_obj(obj)
 
         _obj = DocumentContributor.parse_obj({
-            "classification": Classification.from_dict(obj.get("classification")) if obj.get("classification") is not None else None,
-            "person": PersonBasicType.from_dict(obj.get("person")) if obj.get("person") is not None else None,
             "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
-            "updated": GroupedTimestamp.from_dict(obj.get("updated")) if obj.get("updated") is not None else None,
-            "value": TransferableString.from_dict(obj.get("value")) if obj.get("value") is not None else None
+            "classification": Classification.from_dict(obj.get("classification")) if obj.get("classification") is not None else None,
+            "value": TransferableString.from_dict(obj.get("value")) if obj.get("value") is not None else None,
+            "person": PersonBasicType.from_dict(obj.get("person")) if obj.get("person") is not None else None,
+            "updated": GroupedTimestamp.from_dict(obj.get("updated")) if obj.get("updated") is not None else None
         })
         return _obj
 

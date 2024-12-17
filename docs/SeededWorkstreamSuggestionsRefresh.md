@@ -5,9 +5,9 @@ This is used in the input of the /workstream/feed/refresh  The application here 
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 **application** | [**Application**](Application.md) |  | 
 **context** | [**WorkstreamEventContext**](WorkstreamEventContext.md) |  | [optional] 
-**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 
 ## Example
 

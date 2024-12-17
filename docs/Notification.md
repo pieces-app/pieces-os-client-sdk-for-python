@@ -5,11 +5,11 @@ config model for notification invoking
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 **id** | **int** |  | 
+**title** | **str** |  | [optional] 
 **message** | **str** |  | [optional] 
 **payload** | **str** |  | [optional] 
-**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
-**title** | **str** |  | [optional] 
 
 ## Example
 

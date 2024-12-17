@@ -5,9 +5,9 @@ This is the body of the /github/gists/import,  by default we will look for every
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 **application** | **str** | application id. | 
 **public** | **bool** | This will default to false.(ie private), currently not supporting pulling public gists. | [optional] 
-**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 
 ## Example
 

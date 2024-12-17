@@ -21,19 +21,47 @@ import json
 
 from typing import Optional
 from pydantic import BaseModel, Field, StrictBool
+from pieces_os_client.models.referenced_activity import ReferencedActivity
+from pieces_os_client.models.referenced_anchor import ReferencedAnchor
+from pieces_os_client.models.referenced_anchor_point import ReferencedAnchorPoint
 from pieces_os_client.models.referenced_annotation import ReferencedAnnotation
+from pieces_os_client.models.referenced_application import ReferencedApplication
 from pieces_os_client.models.referenced_asset import ReferencedAsset
 from pieces_os_client.models.referenced_conversation import ReferencedConversation
+from pieces_os_client.models.referenced_conversation_message import ReferencedConversationMessage
+from pieces_os_client.models.referenced_format import ReferencedFormat
+from pieces_os_client.models.referenced_hint import ReferencedHint
+from pieces_os_client.models.referenced_identified_workstream_pattern_engine_source import ReferencedIdentifiedWorkstreamPatternEngineSource
+from pieces_os_client.models.referenced_model import ReferencedModel
+from pieces_os_client.models.referenced_person import ReferencedPerson
+from pieces_os_client.models.referenced_range import ReferencedRange
+from pieces_os_client.models.referenced_sensitive import ReferencedSensitive
+from pieces_os_client.models.referenced_tag import ReferencedTag
+from pieces_os_client.models.referenced_website import ReferencedWebsite
 
 class StreamedIdentifier(BaseModel):
     """
     This is currently only used within /assets/steam/identifiers && /conversations/steam/identifiers && annotations but can be used with other as well, if we want to expand this class.  # noqa: E501
     """
-    annotation: Optional[ReferencedAnnotation] = None
     asset: Optional[ReferencedAsset] = None
     conversation: Optional[ReferencedConversation] = None
+    annotation: Optional[ReferencedAnnotation] = None
+    activity: Optional[ReferencedActivity] = None
+    anchor: Optional[ReferencedAnchor] = None
+    anchor_point: Optional[ReferencedAnchorPoint] = Field(default=None, alias="anchorPoint")
+    hint: Optional[ReferencedHint] = None
+    conversation_message: Optional[ReferencedConversationMessage] = Field(default=None, alias="conversationMessage")
+    format: Optional[ReferencedFormat] = None
+    person: Optional[ReferencedPerson] = None
+    range: Optional[ReferencedRange] = None
+    sensitive: Optional[ReferencedSensitive] = None
+    tag: Optional[ReferencedTag] = None
+    website: Optional[ReferencedWebsite] = None
+    application: Optional[ReferencedApplication] = None
+    model: Optional[ReferencedModel] = None
+    workstream_pattern_engine_source: Optional[ReferencedIdentifiedWorkstreamPatternEngineSource] = Field(default=None, alias="workstreamPatternEngineSource")
     deleted: Optional[StrictBool] = Field(default=None, description="This is a specific bool that will let us know if we deleted an Identifierfrom the db.")
-    __properties = ["annotation", "asset", "conversation", "deleted"]
+    __properties = ["asset", "conversation", "annotation", "activity", "anchor", "anchorPoint", "hint", "conversationMessage", "format", "person", "range", "sensitive", "tag", "website", "application", "model", "workstreamPatternEngineSource", "deleted"]
 
     class Config:
         """Pydantic configuration"""
@@ -59,15 +87,57 @@ class StreamedIdentifier(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of annotation
-        if self.annotation:
-            _dict['annotation'] = self.annotation.to_dict()
         # override the default output from pydantic by calling `to_dict()` of asset
         if self.asset:
             _dict['asset'] = self.asset.to_dict()
         # override the default output from pydantic by calling `to_dict()` of conversation
         if self.conversation:
             _dict['conversation'] = self.conversation.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of annotation
+        if self.annotation:
+            _dict['annotation'] = self.annotation.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of activity
+        if self.activity:
+            _dict['activity'] = self.activity.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of anchor
+        if self.anchor:
+            _dict['anchor'] = self.anchor.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of anchor_point
+        if self.anchor_point:
+            _dict['anchorPoint'] = self.anchor_point.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of hint
+        if self.hint:
+            _dict['hint'] = self.hint.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of conversation_message
+        if self.conversation_message:
+            _dict['conversationMessage'] = self.conversation_message.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of format
+        if self.format:
+            _dict['format'] = self.format.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of person
+        if self.person:
+            _dict['person'] = self.person.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of range
+        if self.range:
+            _dict['range'] = self.range.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of sensitive
+        if self.sensitive:
+            _dict['sensitive'] = self.sensitive.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of tag
+        if self.tag:
+            _dict['tag'] = self.tag.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of website
+        if self.website:
+            _dict['website'] = self.website.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of application
+        if self.application:
+            _dict['application'] = self.application.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of model
+        if self.model:
+            _dict['model'] = self.model.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of workstream_pattern_engine_source
+        if self.workstream_pattern_engine_source:
+            _dict['workstreamPatternEngineSource'] = self.workstream_pattern_engine_source.to_dict()
         return _dict
 
     @classmethod
@@ -80,9 +150,23 @@ class StreamedIdentifier(BaseModel):
             return StreamedIdentifier.parse_obj(obj)
 
         _obj = StreamedIdentifier.parse_obj({
-            "annotation": ReferencedAnnotation.from_dict(obj.get("annotation")) if obj.get("annotation") is not None else None,
             "asset": ReferencedAsset.from_dict(obj.get("asset")) if obj.get("asset") is not None else None,
             "conversation": ReferencedConversation.from_dict(obj.get("conversation")) if obj.get("conversation") is not None else None,
+            "annotation": ReferencedAnnotation.from_dict(obj.get("annotation")) if obj.get("annotation") is not None else None,
+            "activity": ReferencedActivity.from_dict(obj.get("activity")) if obj.get("activity") is not None else None,
+            "anchor": ReferencedAnchor.from_dict(obj.get("anchor")) if obj.get("anchor") is not None else None,
+            "anchor_point": ReferencedAnchorPoint.from_dict(obj.get("anchorPoint")) if obj.get("anchorPoint") is not None else None,
+            "hint": ReferencedHint.from_dict(obj.get("hint")) if obj.get("hint") is not None else None,
+            "conversation_message": ReferencedConversationMessage.from_dict(obj.get("conversationMessage")) if obj.get("conversationMessage") is not None else None,
+            "format": ReferencedFormat.from_dict(obj.get("format")) if obj.get("format") is not None else None,
+            "person": ReferencedPerson.from_dict(obj.get("person")) if obj.get("person") is not None else None,
+            "range": ReferencedRange.from_dict(obj.get("range")) if obj.get("range") is not None else None,
+            "sensitive": ReferencedSensitive.from_dict(obj.get("sensitive")) if obj.get("sensitive") is not None else None,
+            "tag": ReferencedTag.from_dict(obj.get("tag")) if obj.get("tag") is not None else None,
+            "website": ReferencedWebsite.from_dict(obj.get("website")) if obj.get("website") is not None else None,
+            "application": ReferencedApplication.from_dict(obj.get("application")) if obj.get("application") is not None else None,
+            "model": ReferencedModel.from_dict(obj.get("model")) if obj.get("model") is not None else None,
+            "workstream_pattern_engine_source": ReferencedIdentifiedWorkstreamPatternEngineSource.from_dict(obj.get("workstreamPatternEngineSource")) if obj.get("workstreamPatternEngineSource") is not None else None,
             "deleted": obj.get("deleted")
         })
         return _obj

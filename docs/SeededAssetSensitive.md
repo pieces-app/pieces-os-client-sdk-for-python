@@ -5,14 +5,14 @@ This is the seededAssetSensitive, this does not have an id yet as we will add it
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**category** | [**SensitiveCategoryEnum**](SensitiveCategoryEnum.md) |  | 
-**description** | **str** |  | 
-**mechanism** | [**MechanismEnum**](MechanismEnum.md) |  | [optional] 
-**metadata** | [**SensitiveMetadata**](SensitiveMetadata.md) |  | [optional] 
-**name** | **str** |  | 
 **var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
-**severity** | [**SensitiveSeverityEnum**](SensitiveSeverityEnum.md) |  | 
 **text** | **str** | this is the string representative of the sensative piece of data. | 
+**mechanism** | [**MechanismEnum**](MechanismEnum.md) |  | [optional] 
+**category** | [**SensitiveCategoryEnum**](SensitiveCategoryEnum.md) |  | 
+**severity** | [**SensitiveSeverityEnum**](SensitiveSeverityEnum.md) |  | 
+**name** | **str** |  | 
+**description** | **str** |  | 
+**metadata** | [**SensitiveMetadata**](SensitiveMetadata.md) |  | [optional] 
 
 ## Example
 

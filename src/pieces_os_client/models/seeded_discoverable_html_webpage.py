@@ -27,10 +27,10 @@ class SeededDiscoverableHtmlWebpage(BaseModel):
     """
     SeededDiscoverableHtmlWebpage
     """
-    page: StrictStr = Field(default=..., description="page's html as a string")
     var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     url: StrictStr = Field(default=..., description="The route of the page ")
-    __properties = ["page", "schema", "url"]
+    page: StrictStr = Field(default=..., description="page's html as a string")
+    __properties = ["schema", "url", "page"]
 
     class Config:
         """Pydantic configuration"""
@@ -71,9 +71,9 @@ class SeededDiscoverableHtmlWebpage(BaseModel):
             return SeededDiscoverableHtmlWebpage.parse_obj(obj)
 
         _obj = SeededDiscoverableHtmlWebpage.parse_obj({
-            "page": obj.get("page"),
             "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
-            "url": obj.get("url")
+            "url": obj.get("url"),
+            "page": obj.get("page")
         })
         return _obj
 

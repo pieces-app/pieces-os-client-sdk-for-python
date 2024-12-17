@@ -5,8 +5,8 @@ A model to group all of the properties associated with OAuthGroup
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**account** | [**OAuthAccount**](OAuthAccount.md) |  | [optional] 
 **token** | [**OAuthToken**](OAuthToken.md) |  | [optional] 
+**account** | [**OAuthAccount**](OAuthAccount.md) |  | [optional] 
 
 ## Example
 

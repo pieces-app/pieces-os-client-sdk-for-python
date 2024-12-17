@@ -5,9 +5,9 @@ This is the input model for the FilePicker
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**allow_multiple** | **bool** | default behavior is set to true | [optional] 
-**allowed_extensions** | **List[str]** |  | [optional] 
 **var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
+**allowed_extensions** | **List[str]** |  | [optional] 
+**allow_multiple** | **bool** | default behavior is set to true | [optional] 
 
 ## Example
 

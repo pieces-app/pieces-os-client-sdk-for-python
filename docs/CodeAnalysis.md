@@ -5,17 +5,17 @@ This is the ML Analysis object Specific to code.  prediction and similarity are 
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**analysis** | **str** | this is just a reference to the analysis parent object. | 
-**id** | **str** |  | 
-**language** | **str** |  | [optional] 
-**model** | [**Model**](Model.md) |  | 
-**prediction** | **Dict[str, float]** |  | [optional] 
 **var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
-**similarity** | **Dict[str, float]** |  | [optional] 
 **tokenized** | **List[str]** |  | [optional] 
+**language** | **str** |  | [optional] 
+**type** | [**ClassificationGenericEnum**](ClassificationGenericEnum.md) |  | 
+**prediction** | **Dict[str, float]** |  | [optional] 
+**similarity** | **Dict[str, float]** |  | [optional] 
 **top5_colors** | **List[int]** |  | [optional] 
 **top5_sorted** | **List[str]** |  | [optional] 
-**type** | [**ClassificationGenericEnum**](ClassificationGenericEnum.md) |  | 
+**id** | **str** |  | 
+**analysis** | **str** | this is just a reference to the analysis parent object. | 
+**model** | [**Model**](Model.md) |  | 
 
 ## Example
 

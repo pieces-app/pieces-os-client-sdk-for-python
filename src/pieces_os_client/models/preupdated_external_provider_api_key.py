@@ -28,10 +28,10 @@ class PreupdatedExternalProviderApiKey(BaseModel):
     """
     This is the endput model for \"/external_provider/api_key/update\". everything but the uder will be optional, anything that is defined will get an update.  # noqa: E501
     """
-    open_ai: Optional[Auth0OpenAIUserMetadata] = Field(default=None, alias="open_AI")
     var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     user: StrictStr = Field(...)
-    __properties = ["open_AI", "schema", "user"]
+    open_ai: Optional[Auth0OpenAIUserMetadata] = Field(default=None, alias="open_AI")
+    __properties = ["schema", "user", "open_AI"]
 
     class Config:
         """Pydantic configuration"""
@@ -57,12 +57,12 @@ class PreupdatedExternalProviderApiKey(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of open_ai
-        if self.open_ai:
-            _dict['open_AI'] = self.open_ai.to_dict()
         # override the default output from pydantic by calling `to_dict()` of var_schema
         if self.var_schema:
             _dict['schema'] = self.var_schema.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of open_ai
+        if self.open_ai:
+            _dict['open_AI'] = self.open_ai.to_dict()
         return _dict
 
     @classmethod
@@ -75,9 +75,9 @@ class PreupdatedExternalProviderApiKey(BaseModel):
             return PreupdatedExternalProviderApiKey.parse_obj(obj)
 
         _obj = PreupdatedExternalProviderApiKey.parse_obj({
-            "open_ai": Auth0OpenAIUserMetadata.from_dict(obj.get("open_AI")) if obj.get("open_AI") is not None else None,
             "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
-            "user": obj.get("user")
+            "user": obj.get("user"),
+            "open_ai": Auth0OpenAIUserMetadata.from_dict(obj.get("open_AI")) if obj.get("open_AI") is not None else None
         })
         return _obj
 

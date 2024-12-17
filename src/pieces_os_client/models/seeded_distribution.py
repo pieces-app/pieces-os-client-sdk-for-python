@@ -29,10 +29,10 @@ class SeededDistribution(BaseModel):
     """
     TODO if we add another distribution add to this, Distribution, and flattenedDistribution.  can only use this Model with our Linkify Model.  # noqa: E501
     """
-    github: Optional[SeededGitHubDistribution] = None
-    mailgun: Optional[MailgunDistribution] = None
     var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
-    __properties = ["github", "mailgun", "schema"]
+    mailgun: Optional[MailgunDistribution] = None
+    github: Optional[SeededGitHubDistribution] = None
+    __properties = ["schema", "mailgun", "github"]
 
     class Config:
         """Pydantic configuration"""
@@ -58,15 +58,15 @@ class SeededDistribution(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of github
-        if self.github:
-            _dict['github'] = self.github.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of mailgun
-        if self.mailgun:
-            _dict['mailgun'] = self.mailgun.to_dict()
         # override the default output from pydantic by calling `to_dict()` of var_schema
         if self.var_schema:
             _dict['schema'] = self.var_schema.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of mailgun
+        if self.mailgun:
+            _dict['mailgun'] = self.mailgun.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of github
+        if self.github:
+            _dict['github'] = self.github.to_dict()
         return _dict
 
     @classmethod
@@ -79,9 +79,9 @@ class SeededDistribution(BaseModel):
             return SeededDistribution.parse_obj(obj)
 
         _obj = SeededDistribution.parse_obj({
-            "github": SeededGitHubDistribution.from_dict(obj.get("github")) if obj.get("github") is not None else None,
+            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
             "mailgun": MailgunDistribution.from_dict(obj.get("mailgun")) if obj.get("mailgun") is not None else None,
-            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None
+            "github": SeededGitHubDistribution.from_dict(obj.get("github")) if obj.get("github") is not None else None
         })
         return _obj
 

@@ -5,13 +5,13 @@ This is a modle that will represent a searched asset!
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 **asset** | [**Asset**](Asset.md) |  | [optional] 
 **exact** | **bool** |  | 
-**identifier** | **str** | This is the uuid of the asset. | 
-**match** | [**SearchedMatchEnum**](SearchedMatchEnum.md) |  | 
-**pseudo** | **bool** | If this is a pseudo asset that was also returned. | [optional] 
-**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 **score** | **float** |  | 
+**match** | [**SearchedMatchEnum**](SearchedMatchEnum.md) |  | 
+**identifier** | **str** | This is the uuid of the asset. | 
+**pseudo** | **bool** | If this is a pseudo asset that was also returned. | [optional] 
 
 ## Example
 

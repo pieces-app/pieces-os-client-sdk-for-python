@@ -27,9 +27,9 @@ class SeededUser(BaseModel):
     """
       # noqa: E501
     """
-    emails: conlist(StrictStr) = Field(...)
     var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
-    __properties = ["emails", "schema"]
+    emails: conlist(StrictStr) = Field(...)
+    __properties = ["schema", "emails"]
 
     class Config:
         """Pydantic configuration"""
@@ -70,8 +70,8 @@ class SeededUser(BaseModel):
             return SeededUser.parse_obj(obj)
 
         _obj = SeededUser.parse_obj({
-            "emails": obj.get("emails"),
-            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None
+            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
+            "emails": obj.get("emails")
         })
         return _obj
 

@@ -28,9 +28,9 @@ class ConversationsCreateFromAssetOutput(BaseModel):
     """
     This is the model for the output for the \"/conversations/create/from_asset/{asset}\" endpoints.  # noqa: E501
     """
-    conversation: ReferencedConversation = Field(...)
     var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
-    __properties = ["conversation", "schema"]
+    conversation: ReferencedConversation = Field(...)
+    __properties = ["schema", "conversation"]
 
     class Config:
         """Pydantic configuration"""
@@ -56,12 +56,12 @@ class ConversationsCreateFromAssetOutput(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of conversation
-        if self.conversation:
-            _dict['conversation'] = self.conversation.to_dict()
         # override the default output from pydantic by calling `to_dict()` of var_schema
         if self.var_schema:
             _dict['schema'] = self.var_schema.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of conversation
+        if self.conversation:
+            _dict['conversation'] = self.conversation.to_dict()
         return _dict
 
     @classmethod
@@ -74,8 +74,8 @@ class ConversationsCreateFromAssetOutput(BaseModel):
             return ConversationsCreateFromAssetOutput.parse_obj(obj)
 
         _obj = ConversationsCreateFromAssetOutput.parse_obj({
-            "conversation": ReferencedConversation.from_dict(obj.get("conversation")) if obj.get("conversation") is not None else None,
-            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None
+            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
+            "conversation": ReferencedConversation.from_dict(obj.get("conversation")) if obj.get("conversation") is not None else None
         })
         return _obj
 

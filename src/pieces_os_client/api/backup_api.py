@@ -174,7 +174,7 @@ class BackupApi:
                 _header_params['Content-Type'] = _content_types_list
 
         # authentication setting
-        _auth_settings = []  # noqa: E501
+        _auth_settings = ['application']  # noqa: E501
 
         _response_types_map = {}
 
@@ -317,7 +317,7 @@ class BackupApi:
                 _header_params['Content-Type'] = _content_types_list
 
         # authentication setting
-        _auth_settings = []  # noqa: E501
+        _auth_settings = ['application']  # noqa: E501
 
         _response_types_map = {}
 
@@ -470,13 +470,13 @@ class BackupApi:
                 _header_params['Content-Type'] = _content_types_list
 
         # authentication setting
-        _auth_settings = []  # noqa: E501
+        _auth_settings = ['application']  # noqa: E501
 
         _response_types_map = {
             '200': "Backup",
             '500': "str",
-            '505': "str",
             '511': "str",
+            '505': "str",
         }
 
         return self.api_client.call_api(
@@ -628,13 +628,13 @@ class BackupApi:
                 _header_params['Content-Type'] = _content_types_list
 
         # authentication setting
-        _auth_settings = []  # noqa: E501
+        _auth_settings = ['application']  # noqa: E501
 
         _response_types_map = {
             '200': "BackupStreamedProgress",
             '500': "str",
-            '505': "str",
             '511': "str",
+            '505': "str",
         }
 
         return self.api_client.call_api(
@@ -786,13 +786,13 @@ class BackupApi:
                 _header_params['Content-Type'] = _content_types_list
 
         # authentication setting
-        _auth_settings = []  # noqa: E501
+        _auth_settings = ['application']  # noqa: E501
 
         _response_types_map = {
             '200': "BackupStreamedProgress",
             '500': "str",
-            '505': "str",
             '511': "str",
+            '505': "str",
         }
 
         return self.api_client.call_api(
@@ -929,13 +929,13 @@ class BackupApi:
             ['application/json', 'text/plain'])  # noqa: E501
 
         # authentication setting
-        _auth_settings = []  # noqa: E501
+        _auth_settings = ['application']  # noqa: E501
 
         _response_types_map = {
             '200': "Backup",
             '500': "str",
-            '505': "str",
             '511': "str",
+            '505': "str",
         }
 
         return self.api_client.call_api(
@@ -1072,7 +1072,7 @@ class BackupApi:
             ['text/plain'])  # noqa: E501
 
         # authentication setting
-        _auth_settings = []  # noqa: E501
+        _auth_settings = ['application']  # noqa: E501
 
         _response_types_map = {}
 
@@ -1210,7 +1210,7 @@ class BackupApi:
             ['application/json', 'text/plain'])  # noqa: E501
 
         # authentication setting
-        _auth_settings = []  # noqa: E501
+        _auth_settings = ['application']  # noqa: E501
 
         _response_types_map = {
             '200': "BackupStatus",
@@ -1367,7 +1367,7 @@ class BackupApi:
                 _header_params['Content-Type'] = _content_types_list
 
         # authentication setting
-        _auth_settings = []  # noqa: E501
+        _auth_settings = ['application']  # noqa: E501
 
         _response_types_map = {}
 
@@ -1505,7 +1505,7 @@ class BackupApi:
             ['application/json', 'text/plain'])  # noqa: E501
 
         # authentication setting
-        _auth_settings = []  # noqa: E501
+        _auth_settings = ['application']  # noqa: E501
 
         _response_types_map = {
             '200': "BackupStatus",

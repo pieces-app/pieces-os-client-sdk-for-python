@@ -5,8 +5,8 @@ This will return a list of the returned events.
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**iterable** | [**List[SearchedWorkstreamPatternEngineVisionEvent]**](SearchedWorkstreamPatternEngineVisionEvent.md) |  | 
 **var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
+**iterable** | [**List[SearchedWorkstreamPatternEngineVisionEvent]**](SearchedWorkstreamPatternEngineVisionEvent.md) |  | 
 
 ## Example
 

@@ -30,16 +30,16 @@ class AssetFilter(BaseModel):
     """
     ** in the future, consider adding an optional bool's called nextAnd, nextOr which will say that the next filter will be  AND behavor or OR behavior.  \"operations\": here is is an optional property to allow or behavior,(we will only allow 1 level deep of or's), if or is not passed in then it is just simply ignored. If or is passed in then we will be or'd together with the top level filter and considered extras. default behavior for operations is and, however yoour can specifiy OR operations as well.  # noqa: E501
     """
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     classification: Optional[ClassificationSpecificEnum] = None
-    created: Optional[AssetFilterTimestamp] = None
-    operations: Optional[AssetFilters] = None
+    tags: Optional[conlist(StrictStr)] = None
+    websites: Optional[conlist(StrictStr)] = None
     persons: Optional[conlist(StrictStr)] = None
     phrase: Optional[AssetFilterPhrase] = None
-    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
-    tags: Optional[conlist(StrictStr)] = None
+    created: Optional[AssetFilterTimestamp] = None
     updated: Optional[AssetFilterTimestamp] = None
-    websites: Optional[conlist(StrictStr)] = None
-    __properties = ["classification", "created", "operations", "persons", "phrase", "schema", "tags", "updated", "websites"]
+    operations: Optional[AssetFilters] = None
+    __properties = ["schema", "classification", "tags", "websites", "persons", "phrase", "created", "updated", "operations"]
 
     class Config:
         """Pydantic configuration"""
@@ -65,21 +65,21 @@ class AssetFilter(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of created
-        if self.created:
-            _dict['created'] = self.created.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of operations
-        if self.operations:
-            _dict['operations'] = self.operations.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of phrase
-        if self.phrase:
-            _dict['phrase'] = self.phrase.to_dict()
         # override the default output from pydantic by calling `to_dict()` of var_schema
         if self.var_schema:
             _dict['schema'] = self.var_schema.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of phrase
+        if self.phrase:
+            _dict['phrase'] = self.phrase.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of created
+        if self.created:
+            _dict['created'] = self.created.to_dict()
         # override the default output from pydantic by calling `to_dict()` of updated
         if self.updated:
             _dict['updated'] = self.updated.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of operations
+        if self.operations:
+            _dict['operations'] = self.operations.to_dict()
         return _dict
 
     @classmethod
@@ -92,15 +92,15 @@ class AssetFilter(BaseModel):
             return AssetFilter.parse_obj(obj)
 
         _obj = AssetFilter.parse_obj({
+            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
             "classification": obj.get("classification"),
-            "created": AssetFilterTimestamp.from_dict(obj.get("created")) if obj.get("created") is not None else None,
-            "operations": AssetFilters.from_dict(obj.get("operations")) if obj.get("operations") is not None else None,
+            "tags": obj.get("tags"),
+            "websites": obj.get("websites"),
             "persons": obj.get("persons"),
             "phrase": AssetFilterPhrase.from_dict(obj.get("phrase")) if obj.get("phrase") is not None else None,
-            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
-            "tags": obj.get("tags"),
+            "created": AssetFilterTimestamp.from_dict(obj.get("created")) if obj.get("created") is not None else None,
             "updated": AssetFilterTimestamp.from_dict(obj.get("updated")) if obj.get("updated") is not None else None,
-            "websites": obj.get("websites")
+            "operations": AssetFilters.from_dict(obj.get("operations")) if obj.get("operations") is not None else None
         })
         return _obj
 

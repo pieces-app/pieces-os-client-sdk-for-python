@@ -28,10 +28,10 @@ class ReuseSuggestion(BaseModel):
     """
     This is the ReuseSuggestion. Mainly creating an additional model here because I imagine that we will want to add some additional data to this in the future (potentially with more numerical data that is emitted from the ML Models)  **Note: suggested is required here because we will want to say if we suggested to take this action of reuse or not.  ** Thoughts here. We could potentially return Assets: which would be an iterable of assets in most relavent order for the user to reuse if they want.  # noqa: E501
     """
-    assets: Assets = Field(...)
     var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     suggested: StrictBool = Field(default=..., description="This is a boolean, that will say if you should or should not take action.")
-    __properties = ["assets", "schema", "suggested"]
+    assets: Assets = Field(...)
+    __properties = ["schema", "suggested", "assets"]
 
     class Config:
         """Pydantic configuration"""
@@ -57,12 +57,12 @@ class ReuseSuggestion(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of assets
-        if self.assets:
-            _dict['assets'] = self.assets.to_dict()
         # override the default output from pydantic by calling `to_dict()` of var_schema
         if self.var_schema:
             _dict['schema'] = self.var_schema.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of assets
+        if self.assets:
+            _dict['assets'] = self.assets.to_dict()
         return _dict
 
     @classmethod
@@ -75,9 +75,9 @@ class ReuseSuggestion(BaseModel):
             return ReuseSuggestion.parse_obj(obj)
 
         _obj = ReuseSuggestion.parse_obj({
-            "assets": Assets.from_dict(obj.get("assets")) if obj.get("assets") is not None else None,
             "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
-            "suggested": obj.get("suggested")
+            "suggested": obj.get("suggested"),
+            "assets": Assets.from_dict(obj.get("assets")) if obj.get("assets") is not None else None
         })
         return _obj
 

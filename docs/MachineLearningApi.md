@@ -17,6 +17,7 @@ This is going to take in some personification details ie languages & personas.  
 
 ### Example
 
+* Api Key Authentication (application):
 ```python
 import time
 import os
@@ -32,6 +33,16 @@ configuration = pieces_os_client.Configuration(
     host = "http://localhost:1000"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: application
+configuration.api_key['application'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['application'] = 'Bearer'
 
 # Enter a context with an instance of the API client
 with pieces_os_client.ApiClient(configuration) as api_client:
@@ -62,7 +73,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[application](../README.md#application)
 
 ### HTTP request headers
 
@@ -78,7 +89,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **segment_technical_language**
-> segment_technical_language(classify=classify, unsegmented_technical_language=unsegmented_technical_language)
+> SegmentedTechnicalLanguage segment_technical_language(classify=classify, unsegmented_technical_language=unsegmented_technical_language)
 
 /machine_learning/text/technical_language/parsers/segmentation [POST]
 
@@ -86,10 +97,12 @@ This is a functional endpoint that will parse a message or text in to text or co
 
 ### Example
 
+* Api Key Authentication (application):
 ```python
 import time
 import os
 import pieces_os_client
+from pieces_os_client.models.segmented_technical_language import SegmentedTechnicalLanguage
 from pieces_os_client.models.unsegmented_technical_language import UnsegmentedTechnicalLanguage
 from pieces_os_client.rest import ApiException
 from pprint import pprint
@@ -100,6 +113,16 @@ configuration = pieces_os_client.Configuration(
     host = "http://localhost:1000"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: application
+configuration.api_key['application'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['application'] = 'Bearer'
 
 # Enter a context with an instance of the API client
 with pieces_os_client.ApiClient(configuration) as api_client:
@@ -110,7 +133,9 @@ with pieces_os_client.ApiClient(configuration) as api_client:
 
     try:
         # /machine_learning/text/technical_language/parsers/segmentation [POST]
-        api_instance.segment_technical_language(classify=classify, unsegmented_technical_language=unsegmented_technical_language)
+        api_response = api_instance.segment_technical_language(classify=classify, unsegmented_technical_language=unsegmented_technical_language)
+        print("The response of MachineLearningApi->segment_technical_language:\n")
+        pprint(api_response)
     except Exception as e:
         print("Exception when calling MachineLearningApi->segment_technical_language: %s\n" % e)
 ```
@@ -126,16 +151,16 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-void (empty response body)
+[**SegmentedTechnicalLanguage**](SegmentedTechnicalLanguage.md)
 
 ### Authorization
 
-No authorization required
+[application](../README.md#application)
 
 ### HTTP request headers
 
  - **Content-Type**: application/json
- - **Accept**: text/plain
+ - **Accept**: application/json, text/plain
 
 ### HTTP response details
 | Status code | Description | Response headers |

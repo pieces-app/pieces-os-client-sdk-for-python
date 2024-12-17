@@ -5,10 +5,10 @@ This is seeded data that will be come a format.  We will throw an Error if, 1) f
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**classification** | [**SeededClassification**](SeededClassification.md) |  | [optional] 
+**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 **file** | [**SeededFile**](SeededFile.md) |  | [optional] 
 **fragment** | [**SeededFragment**](SeededFragment.md) |  | [optional] 
-**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
+**classification** | [**SeededClassification**](SeededClassification.md) |  | [optional] 
 
 ## Example
 

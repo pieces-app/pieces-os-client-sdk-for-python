@@ -31,16 +31,16 @@ class QGPTStreamOutput(BaseModel):
     """
     This is the out for the /qgpt/stream endpoint.  200: success 401: invalid authentication/api key 429: Rate limit/Quota exceeded 500: server had an error 503: the engine is currently overloaded  # noqa: E501
     """
-    agent_routes: Optional[QGPTAgentRoutes] = Field(default=None, alias="agentRoutes")
-    conversation: StrictStr = Field(default=..., description="This is the ID of a predefined persisted conversation, if this is not present we will create a new conversation for the input/output.(in the case of a question)")
-    error_message: Optional[StrictStr] = Field(default=None, alias="errorMessage", description="optional error message is the status code is NOT 200")
-    extracted: Optional[QGPTStreamedOutputExtractedMaterials] = None
-    question: Optional[QGPTQuestionOutput] = None
-    relevance: Optional[QGPTRelevanceOutput] = None
     request: Optional[StrictStr] = Field(default=None, description="This is the id used to represent the stream of response. this will always be present. We will use the value passed inby the client, or we will generate one.")
+    relevance: Optional[QGPTRelevanceOutput] = None
+    question: Optional[QGPTQuestionOutput] = None
     status: Optional[QGPTStreamEnum] = None
+    conversation: StrictStr = Field(default=..., description="This is the ID of a predefined persisted conversation, if this is not present we will create a new conversation for the input/output.(in the case of a question)")
     status_code: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, alias="statusCode", description="This will be provided")
-    __properties = ["agentRoutes", "conversation", "errorMessage", "extracted", "question", "relevance", "request", "status", "statusCode"]
+    error_message: Optional[StrictStr] = Field(default=None, alias="errorMessage", description="optional error message is the status code is NOT 200")
+    agent_routes: Optional[QGPTAgentRoutes] = Field(default=None, alias="agentRoutes")
+    extracted: Optional[QGPTStreamedOutputExtractedMaterials] = None
+    __properties = ["request", "relevance", "question", "status", "conversation", "statusCode", "errorMessage", "agentRoutes", "extracted"]
 
     class Config:
         """Pydantic configuration"""
@@ -66,18 +66,18 @@ class QGPTStreamOutput(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
+        # override the default output from pydantic by calling `to_dict()` of relevance
+        if self.relevance:
+            _dict['relevance'] = self.relevance.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of question
+        if self.question:
+            _dict['question'] = self.question.to_dict()
         # override the default output from pydantic by calling `to_dict()` of agent_routes
         if self.agent_routes:
             _dict['agentRoutes'] = self.agent_routes.to_dict()
         # override the default output from pydantic by calling `to_dict()` of extracted
         if self.extracted:
             _dict['extracted'] = self.extracted.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of question
-        if self.question:
-            _dict['question'] = self.question.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of relevance
-        if self.relevance:
-            _dict['relevance'] = self.relevance.to_dict()
         # set to None if status_code (nullable) is None
         # and __fields_set__ contains the field
         if self.status_code is None and "status_code" in self.__fields_set__:
@@ -95,15 +95,15 @@ class QGPTStreamOutput(BaseModel):
             return QGPTStreamOutput.parse_obj(obj)
 
         _obj = QGPTStreamOutput.parse_obj({
-            "agent_routes": QGPTAgentRoutes.from_dict(obj.get("agentRoutes")) if obj.get("agentRoutes") is not None else None,
-            "conversation": obj.get("conversation"),
-            "error_message": obj.get("errorMessage"),
-            "extracted": QGPTStreamedOutputExtractedMaterials.from_dict(obj.get("extracted")) if obj.get("extracted") is not None else None,
-            "question": QGPTQuestionOutput.from_dict(obj.get("question")) if obj.get("question") is not None else None,
-            "relevance": QGPTRelevanceOutput.from_dict(obj.get("relevance")) if obj.get("relevance") is not None else None,
             "request": obj.get("request"),
+            "relevance": QGPTRelevanceOutput.from_dict(obj.get("relevance")) if obj.get("relevance") is not None else None,
+            "question": QGPTQuestionOutput.from_dict(obj.get("question")) if obj.get("question") is not None else None,
             "status": obj.get("status"),
-            "status_code": obj.get("statusCode")
+            "conversation": obj.get("conversation"),
+            "status_code": obj.get("statusCode"),
+            "error_message": obj.get("errorMessage"),
+            "agent_routes": QGPTAgentRoutes.from_dict(obj.get("agentRoutes")) if obj.get("agentRoutes") is not None else None,
+            "extracted": QGPTStreamedOutputExtractedMaterials.from_dict(obj.get("extracted")) if obj.get("extracted") is not None else None
         })
         return _obj
 

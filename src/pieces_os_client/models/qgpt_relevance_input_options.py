@@ -28,11 +28,11 @@ class QGPTRelevanceInputOptions(BaseModel):
     """
     QGPTRelevanceInputOptions
     """
-    database: Optional[StrictBool] = Field(default=None, description="This is an optional boolen that will tell us to use our entire snippet database as the sample.")
-    pipeline: Optional[QGPTPromptPipeline] = None
-    question: Optional[StrictBool] = Field(default=None, description="This is an optional boolean, that will let the serve know if you want to combine the 2 endpointsboth relevance && the Question endpoint to return the final results.")
     var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
-    __properties = ["database", "pipeline", "question", "schema"]
+    database: Optional[StrictBool] = Field(default=None, description="This is an optional boolen that will tell us to use our entire snippet database as the sample.")
+    question: Optional[StrictBool] = Field(default=None, description="This is an optional boolean, that will let the serve know if you want to combine the 2 endpointsboth relevance && the Question endpoint to return the final results.")
+    pipeline: Optional[QGPTPromptPipeline] = None
+    __properties = ["schema", "database", "question", "pipeline"]
 
     class Config:
         """Pydantic configuration"""
@@ -58,12 +58,12 @@ class QGPTRelevanceInputOptions(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of pipeline
-        if self.pipeline:
-            _dict['pipeline'] = self.pipeline.to_dict()
         # override the default output from pydantic by calling `to_dict()` of var_schema
         if self.var_schema:
             _dict['schema'] = self.var_schema.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of pipeline
+        if self.pipeline:
+            _dict['pipeline'] = self.pipeline.to_dict()
         return _dict
 
     @classmethod
@@ -76,10 +76,10 @@ class QGPTRelevanceInputOptions(BaseModel):
             return QGPTRelevanceInputOptions.parse_obj(obj)
 
         _obj = QGPTRelevanceInputOptions.parse_obj({
+            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
             "database": obj.get("database"),
-            "pipeline": QGPTPromptPipeline.from_dict(obj.get("pipeline")) if obj.get("pipeline") is not None else None,
             "question": obj.get("question"),
-            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None
+            "pipeline": QGPTPromptPipeline.from_dict(obj.get("pipeline")) if obj.get("pipeline") is not None else None
         })
         return _obj
 

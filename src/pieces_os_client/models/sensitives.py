@@ -29,10 +29,10 @@ class Sensitives(BaseModel):
     """
     This is a model that represents many individual sensitive pieces of data.  # noqa: E501
     """
-    iterable: conlist(Sensitive) = Field(...)
     var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
+    iterable: conlist(Sensitive) = Field(...)
     score: Optional[Score] = None
-    __properties = ["iterable", "schema", "score"]
+    __properties = ["schema", "iterable", "score"]
 
     class Config:
         """Pydantic configuration"""
@@ -58,6 +58,9 @@ class Sensitives(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
+        # override the default output from pydantic by calling `to_dict()` of var_schema
+        if self.var_schema:
+            _dict['schema'] = self.var_schema.to_dict()
         # override the default output from pydantic by calling `to_dict()` of each item in iterable (list)
         _items = []
         if self.iterable:
@@ -65,9 +68,6 @@ class Sensitives(BaseModel):
                 if _item:
                     _items.append(_item.to_dict())
             _dict['iterable'] = _items
-        # override the default output from pydantic by calling `to_dict()` of var_schema
-        if self.var_schema:
-            _dict['schema'] = self.var_schema.to_dict()
         # override the default output from pydantic by calling `to_dict()` of score
         if self.score:
             _dict['score'] = self.score.to_dict()
@@ -83,8 +83,8 @@ class Sensitives(BaseModel):
             return Sensitives.parse_obj(obj)
 
         _obj = Sensitives.parse_obj({
-            "iterable": [Sensitive.from_dict(_item) for _item in obj.get("iterable")] if obj.get("iterable") is not None else None,
             "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
+            "iterable": [Sensitive.from_dict(_item) for _item in obj.get("iterable")] if obj.get("iterable") is not None else None,
             "score": Score.from_dict(obj.get("score")) if obj.get("score") is not None else None
         })
         return _obj

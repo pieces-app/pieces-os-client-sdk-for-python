@@ -5,11 +5,11 @@ Bytes is a Model for A FileFormat. Raw and file are the only 2 that are currentl
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
+**raw** | **List[int]** | IMPLEMENTED | [optional] 
 **var_base64** | **List[int]** | NOT IMPLEMENTED | [optional] 
 **base64_url** | **List[int]** | NOT IMPLEMENTED | [optional] 
 **data_url** | **List[int]** | NOT IMPLEMENTED | [optional] 
-**raw** | **List[int]** | IMPLEMENTED | [optional] 
-**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 
 ## Example
 

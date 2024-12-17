@@ -28,9 +28,9 @@ class WorkstreamPatternEngineDataCleanupRequest(BaseModel):
     """
     NOTE: if we want to remove all the data the from would be unset, the to will be right now.  from: is always in the past to: is always at least before from in our time.  # noqa: E501
     """
-    ranges: Optional[conlist(AnonymousTemporalRange)] = None
     var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
-    __properties = ["ranges", "schema"]
+    ranges: Optional[conlist(AnonymousTemporalRange)] = None
+    __properties = ["schema", "ranges"]
 
     class Config:
         """Pydantic configuration"""
@@ -56,6 +56,9 @@ class WorkstreamPatternEngineDataCleanupRequest(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
+        # override the default output from pydantic by calling `to_dict()` of var_schema
+        if self.var_schema:
+            _dict['schema'] = self.var_schema.to_dict()
         # override the default output from pydantic by calling `to_dict()` of each item in ranges (list)
         _items = []
         if self.ranges:
@@ -63,9 +66,6 @@ class WorkstreamPatternEngineDataCleanupRequest(BaseModel):
                 if _item:
                     _items.append(_item.to_dict())
             _dict['ranges'] = _items
-        # override the default output from pydantic by calling `to_dict()` of var_schema
-        if self.var_schema:
-            _dict['schema'] = self.var_schema.to_dict()
         return _dict
 
     @classmethod
@@ -78,8 +78,8 @@ class WorkstreamPatternEngineDataCleanupRequest(BaseModel):
             return WorkstreamPatternEngineDataCleanupRequest.parse_obj(obj)
 
         _obj = WorkstreamPatternEngineDataCleanupRequest.parse_obj({
-            "ranges": [AnonymousTemporalRange.from_dict(_item) for _item in obj.get("ranges")] if obj.get("ranges") is not None else None,
-            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None
+            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
+            "ranges": [AnonymousTemporalRange.from_dict(_item) for _item in obj.get("ranges")] if obj.get("ranges") is not None else None
         })
         return _obj
 

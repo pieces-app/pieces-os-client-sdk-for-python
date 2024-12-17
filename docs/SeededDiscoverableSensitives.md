@@ -4,9 +4,9 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**application** | **str** |  | 
-**iterable** | [**List[SeededDiscoverableSensitive]**](SeededDiscoverableSensitive.md) |  | 
 **var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
+**iterable** | [**List[SeededDiscoverableSensitive]**](SeededDiscoverableSensitive.md) |  | 
+**application** | **str** |  | 
 
 ## Example
 

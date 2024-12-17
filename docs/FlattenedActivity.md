@@ -5,18 +5,18 @@ Note: - if mechanism == internal we will not display to the user.
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**application** | [**Application**](Application.md) |  | 
-**asset** | [**ReferencedAsset**](ReferencedAsset.md) |  | [optional] 
-**created** | [**GroupedTimestamp**](GroupedTimestamp.md) |  | 
-**deleted** | [**GroupedTimestamp**](GroupedTimestamp.md) |  | [optional] 
-**event** | [**SeededConnectorTracking**](SeededConnectorTracking.md) |  | 
-**format** | [**ReferencedFormat**](ReferencedFormat.md) |  | [optional] 
+**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 **id** | **str** |  | 
+**created** | [**GroupedTimestamp**](GroupedTimestamp.md) |  | 
+**updated** | [**GroupedTimestamp**](GroupedTimestamp.md) |  | 
+**event** | [**SeededConnectorTracking**](SeededConnectorTracking.md) |  | 
+**application** | [**Application**](Application.md) |  | 
+**deleted** | [**GroupedTimestamp**](GroupedTimestamp.md) |  | [optional] 
+**asset** | [**ReferencedAsset**](ReferencedAsset.md) |  | [optional] 
+**format** | [**ReferencedFormat**](ReferencedFormat.md) |  | [optional] 
+**user** | [**FlattenedUserProfile**](FlattenedUserProfile.md) |  | [optional] 
 **mechanism** | [**MechanismEnum**](MechanismEnum.md) |  | 
 **rank** | **int** |  | [optional] 
-**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
-**updated** | [**GroupedTimestamp**](GroupedTimestamp.md) |  | 
-**user** | [**FlattenedUserProfile**](FlattenedUserProfile.md) |  | [optional] 
 
 ## Example
 

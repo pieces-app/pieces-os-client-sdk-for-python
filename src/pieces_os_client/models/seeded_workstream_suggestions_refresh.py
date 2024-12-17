@@ -29,10 +29,10 @@ class SeededWorkstreamSuggestionsRefresh(BaseModel):
     """
     This is used in the input of the /workstream/feed/refresh  The application here will let us know if what scope you would like to refresh the stream for. IE an Application will  provide bias in the items that are displayed.  note: context can be used here to provide further bias to the suggestions.  # noqa: E501
     """
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     application: Application = Field(...)
     context: Optional[WorkstreamEventContext] = None
-    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
-    __properties = ["application", "context", "schema"]
+    __properties = ["schema", "application", "context"]
 
     class Config:
         """Pydantic configuration"""
@@ -58,15 +58,15 @@ class SeededWorkstreamSuggestionsRefresh(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
+        # override the default output from pydantic by calling `to_dict()` of var_schema
+        if self.var_schema:
+            _dict['schema'] = self.var_schema.to_dict()
         # override the default output from pydantic by calling `to_dict()` of application
         if self.application:
             _dict['application'] = self.application.to_dict()
         # override the default output from pydantic by calling `to_dict()` of context
         if self.context:
             _dict['context'] = self.context.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of var_schema
-        if self.var_schema:
-            _dict['schema'] = self.var_schema.to_dict()
         return _dict
 
     @classmethod
@@ -79,9 +79,9 @@ class SeededWorkstreamSuggestionsRefresh(BaseModel):
             return SeededWorkstreamSuggestionsRefresh.parse_obj(obj)
 
         _obj = SeededWorkstreamSuggestionsRefresh.parse_obj({
+            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
             "application": Application.from_dict(obj.get("application")) if obj.get("application") is not None else None,
-            "context": WorkstreamEventContext.from_dict(obj.get("context")) if obj.get("context") is not None else None,
-            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None
+            "context": WorkstreamEventContext.from_dict(obj.get("context")) if obj.get("context") is not None else None
         })
         return _obj
 

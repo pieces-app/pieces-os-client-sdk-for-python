@@ -5,36 +5,36 @@ An Asset Model representing data extracted from an Application connecting a grou
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**activities** | [**Activities**](Activities.md) |  | [optional] 
-**anchors** | [**Anchors**](Anchors.md) |  | [optional] 
-**annotations** | [**Annotations**](Annotations.md) |  | [optional] 
-**conversations** | [**Conversations**](Conversations.md) |  | [optional] 
-**created** | [**GroupedTimestamp**](GroupedTimestamp.md) |  | 
-**creator** | **str** |  | 
-**curated** | **bool** | This is an optional boolean that will flag that this asset came from a currated collection. | [optional] 
-**deleted** | [**GroupedTimestamp**](GroupedTimestamp.md) |  | [optional] 
-**demo** | **bool** | This will let us know if this asset was generated as a &#39;demo&#39; snippet | [optional] 
-**discovered** | **bool** |  | [optional] 
-**favorited** | **bool** |  | [optional] 
-**formats** | [**Formats**](Formats.md) |  | 
-**hints** | [**Hints**](Hints.md) |  | [optional] 
-**id** | **str** | The globally available UID representing the asset in the Database, both locally and in the cloud. | 
-**interacted** | [**GroupedTimestamp**](GroupedTimestamp.md) |  | [optional] 
-**mechanism** | [**MechanismEnum**](MechanismEnum.md) |  | 
-**name** | **str** |  | [optional] 
-**original** | [**ReferencedFormat**](ReferencedFormat.md) |  | 
-**persons** | [**Persons**](Persons.md) |  | [optional] 
-**preview** | [**Preview**](Preview.md) |  | 
-**pseudo** | **bool** | This will determine if this is a asset that the user did not explicitly save. | [optional] 
 **var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
-**score** | [**Score**](Score.md) |  | [optional] 
-**sensitives** | [**Sensitives**](Sensitives.md) |  | [optional] 
-**shares** | [**Shares**](Shares.md) |  | [optional] 
-**summaries** | [**WorkstreamSummaries**](WorkstreamSummaries.md) |  | [optional] 
-**synced** | [**GroupedTimestamp**](GroupedTimestamp.md) |  | [optional] 
-**tags** | [**Tags**](Tags.md) |  | [optional] 
+**id** | **str** | The globally available UID representing the asset in the Database, both locally and in the cloud. | 
+**name** | **str** |  | [optional] 
+**creator** | **str** |  | 
+**created** | [**GroupedTimestamp**](GroupedTimestamp.md) |  | 
 **updated** | [**GroupedTimestamp**](GroupedTimestamp.md) |  | 
+**synced** | [**GroupedTimestamp**](GroupedTimestamp.md) |  | [optional] 
+**deleted** | [**GroupedTimestamp**](GroupedTimestamp.md) |  | [optional] 
+**formats** | [**Formats**](Formats.md) |  | 
+**preview** | [**Preview**](Preview.md) |  | 
+**original** | [**ReferencedFormat**](ReferencedFormat.md) |  | 
+**shares** | [**Shares**](Shares.md) |  | [optional] 
+**mechanism** | [**MechanismEnum**](MechanismEnum.md) |  | 
 **websites** | [**Websites**](Websites.md) |  | [optional] 
+**interacted** | [**GroupedTimestamp**](GroupedTimestamp.md) |  | [optional] 
+**tags** | [**Tags**](Tags.md) |  | [optional] 
+**sensitives** | [**Sensitives**](Sensitives.md) |  | [optional] 
+**persons** | [**Persons**](Persons.md) |  | [optional] 
+**curated** | **bool** | This is an optional boolean that will flag that this asset came from a currated collection. | [optional] 
+**discovered** | **bool** |  | [optional] 
+**activities** | [**Activities**](Activities.md) |  | [optional] 
+**score** | [**Score**](Score.md) |  | [optional] 
+**favorited** | **bool** |  | [optional] 
+**pseudo** | **bool** | This will determine if this is a asset that the user did not explicitly save. | [optional] 
+**annotations** | [**Annotations**](Annotations.md) |  | [optional] 
+**hints** | [**Hints**](Hints.md) |  | [optional] 
+**anchors** | [**Anchors**](Anchors.md) |  | [optional] 
+**conversations** | [**Conversations**](Conversations.md) |  | [optional] 
+**summaries** | [**WorkstreamSummaries**](WorkstreamSummaries.md) |  | [optional] 
+**demo** | **bool** | This will let us know if this asset was generated as a &#39;demo&#39; snippet | [optional] 
 
 ## Example
 

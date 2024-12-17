@@ -27,10 +27,10 @@ class FullTextSearchOptions(BaseModel):
     """
     similarity: you will want to pass in a value from 0-1. (where 1 is exact and 0 is everything)  exact: (optional) this will default to false, which will run a fuzzy search, unless set to true.  # noqa: E501
     """
-    exact: Optional[StrictBool] = None
     var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     similarity: Optional[Union[StrictFloat, StrictInt]] = None
-    __properties = ["exact", "schema", "similarity"]
+    exact: Optional[StrictBool] = None
+    __properties = ["schema", "similarity", "exact"]
 
     class Config:
         """Pydantic configuration"""
@@ -76,9 +76,9 @@ class FullTextSearchOptions(BaseModel):
             return FullTextSearchOptions.parse_obj(obj)
 
         _obj = FullTextSearchOptions.parse_obj({
-            "exact": obj.get("exact"),
             "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
-            "similarity": obj.get("similarity")
+            "similarity": obj.get("similarity"),
+            "exact": obj.get("exact")
         })
         return _obj
 
