@@ -98,7 +98,7 @@ class PiecesClient:
 
     @property
     def port(self) -> Union[str,None]:
-        if not self._port or not self.is_pos_stream_running: # check also if the HealthStream is running
+        if not self._port: # check also if the HealthStream is running
             self.port = self._port_scanning()
         return self._port
 
