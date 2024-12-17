@@ -116,7 +116,6 @@ class PiecesClient:
 
     @staticmethod
     def _port_scanning() -> Union[str,None]:
-        print("PORT SCANNING")
         for port in range(39300, 39334):
             try:
                 with urllib.request.urlopen(f"http://127.0.0.1:{port}/.well-known/health", timeout=1):
