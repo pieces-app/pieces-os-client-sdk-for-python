@@ -1,4 +1,4 @@
-from typing import TYPE_CHECKING, Optional,Dict
+from typing import TYPE_CHECKING, Optional,Dict, Union
 import platform
 import atexit
 import subprocess
@@ -97,23 +97,25 @@ class PiecesClient:
         return True
 
     @property
-    def port(self) -> str | None:
+    def port(self) -> Union[str,None]:
         if not self._port or not self.is_pos_stream_running: # check also if the HealthStream is running
             self.port = self._port_scanning()
         return self._port
 
     @port.setter
-    def port(self, p: str | None) -> str:
+    def port(self, p: Union[str,None]):
         if p != self._port and p is not None:
             self.connect_apis("http://127.0.0.1:" + p)
         self._port = p
 
     @property
     def host(self) -> str:
+        if not self.port:
+            return "http://127.0.0.1:39300"
         return "http://127.0.0.1:" + self.port
 
     @staticmethod
-    def _port_scanning() -> str | None:
+    def _port_scanning() -> Union[str,None]:
         print("PORT SCANNING")
         for port in range(39300, 39334):
             try:
