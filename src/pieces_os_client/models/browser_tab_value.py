@@ -29,13 +29,13 @@ class BrowserTabValue(BaseModel):
     """
     snippet: these are extracted code blocks selection: here is a copy/paste/selection  note: recommended that you pass in the md version of the webpage  note: please dont pass in all three html,md,text, just pass in 1.  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     html: Optional[TransferableString] = None
     md: Optional[TransferableString] = None
-    text: Optional[TransferableString] = None
-    snippet: Optional[BrowserSelection] = None
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     selection: Optional[BrowserSelection] = None
-    __properties = ["schema", "html", "md", "text", "snippet", "selection"]
+    snippet: Optional[BrowserSelection] = None
+    text: Optional[TransferableString] = None
+    __properties = ["html", "md", "schema", "selection", "snippet", "text"]
 
     class Config:
         """Pydantic configuration"""
@@ -61,24 +61,24 @@ class BrowserTabValue(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of var_schema
-        if self.var_schema:
-            _dict['schema'] = self.var_schema.to_dict()
         # override the default output from pydantic by calling `to_dict()` of html
         if self.html:
             _dict['html'] = self.html.to_dict()
         # override the default output from pydantic by calling `to_dict()` of md
         if self.md:
             _dict['md'] = self.md.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of text
-        if self.text:
-            _dict['text'] = self.text.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of snippet
-        if self.snippet:
-            _dict['snippet'] = self.snippet.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of var_schema
+        if self.var_schema:
+            _dict['schema'] = self.var_schema.to_dict()
         # override the default output from pydantic by calling `to_dict()` of selection
         if self.selection:
             _dict['selection'] = self.selection.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of snippet
+        if self.snippet:
+            _dict['snippet'] = self.snippet.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of text
+        if self.text:
+            _dict['text'] = self.text.to_dict()
         return _dict
 
     @classmethod
@@ -91,12 +91,12 @@ class BrowserTabValue(BaseModel):
             return BrowserTabValue.parse_obj(obj)
 
         _obj = BrowserTabValue.parse_obj({
-            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
             "html": TransferableString.from_dict(obj.get("html")) if obj.get("html") is not None else None,
             "md": TransferableString.from_dict(obj.get("md")) if obj.get("md") is not None else None,
-            "text": TransferableString.from_dict(obj.get("text")) if obj.get("text") is not None else None,
+            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
+            "selection": BrowserSelection.from_dict(obj.get("selection")) if obj.get("selection") is not None else None,
             "snippet": BrowserSelection.from_dict(obj.get("snippet")) if obj.get("snippet") is not None else None,
-            "selection": BrowserSelection.from_dict(obj.get("selection")) if obj.get("selection") is not None else None
+            "text": TransferableString.from_dict(obj.get("text")) if obj.get("text") is not None else None
         })
         return _obj
 

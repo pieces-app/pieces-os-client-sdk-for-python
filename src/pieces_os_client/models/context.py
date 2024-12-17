@@ -30,12 +30,12 @@ class Context(BaseModel):
     """
     A Context that is returned from almost all calls to the ContextAPI  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
-    os: StrictStr = Field(default=..., description="This is th UUID of the OS that this context is currently connected to. This attempts to be the same as Segment's anonmyousId feild. It is attempted to be set at initial installation at Pieces/.identity/.os")
     application: Application = Field(...)
     health: Health = Field(...)
+    os: StrictStr = Field(default=..., description="This is th UUID of the OS that this context is currently connected to. This attempts to be the same as Segment's anonmyousId feild. It is attempted to be set at initial installation at Pieces/.identity/.os")
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     user: Optional[UserProfile] = None
-    __properties = ["schema", "os", "application", "health", "user"]
+    __properties = ["application", "health", "os", "schema", "user"]
 
     class Config:
         """Pydantic configuration"""
@@ -61,15 +61,15 @@ class Context(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of var_schema
-        if self.var_schema:
-            _dict['schema'] = self.var_schema.to_dict()
         # override the default output from pydantic by calling `to_dict()` of application
         if self.application:
             _dict['application'] = self.application.to_dict()
         # override the default output from pydantic by calling `to_dict()` of health
         if self.health:
             _dict['health'] = self.health.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of var_schema
+        if self.var_schema:
+            _dict['schema'] = self.var_schema.to_dict()
         # override the default output from pydantic by calling `to_dict()` of user
         if self.user:
             _dict['user'] = self.user.to_dict()
@@ -85,10 +85,10 @@ class Context(BaseModel):
             return Context.parse_obj(obj)
 
         _obj = Context.parse_obj({
-            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
-            "os": obj.get("os"),
             "application": Application.from_dict(obj.get("application")) if obj.get("application") is not None else None,
             "health": Health.from_dict(obj.get("health")) if obj.get("health") is not None else None,
+            "os": obj.get("os"),
+            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
             "user": UserProfile.from_dict(obj.get("user")) if obj.get("user") is not None else None
         })
         return _obj

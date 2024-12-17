@@ -28,9 +28,9 @@ class PseudoAssets(BaseModel):
     """
     This is a model of all optional properties, that will get returned from /assets/pseudo.  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     identifiers: Optional[FlattenedAssets] = None
-    __properties = ["schema", "identifiers"]
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
+    __properties = ["identifiers", "schema"]
 
     class Config:
         """Pydantic configuration"""
@@ -56,12 +56,12 @@ class PseudoAssets(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of var_schema
-        if self.var_schema:
-            _dict['schema'] = self.var_schema.to_dict()
         # override the default output from pydantic by calling `to_dict()` of identifiers
         if self.identifiers:
             _dict['identifiers'] = self.identifiers.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of var_schema
+        if self.var_schema:
+            _dict['schema'] = self.var_schema.to_dict()
         return _dict
 
     @classmethod
@@ -74,8 +74,8 @@ class PseudoAssets(BaseModel):
             return PseudoAssets.parse_obj(obj)
 
         _obj = PseudoAssets.parse_obj({
-            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
-            "identifiers": FlattenedAssets.from_dict(obj.get("identifiers")) if obj.get("identifiers") is not None else None
+            "identifiers": FlattenedAssets.from_dict(obj.get("identifiers")) if obj.get("identifiers") is not None else None,
+            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None
         })
         return _obj
 

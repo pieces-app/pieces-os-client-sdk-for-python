@@ -5,9 +5,9 @@ note: recomended to use the search option here(where you can pass in workstream.
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**identifiers** | [**FlattenedWorkstreamPatternEngineVisionEvents**](FlattenedWorkstreamPatternEngineVisionEvents.md) |  | [optional] 
 **var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 **search_scope** | [**SearchInput**](SearchInput.md) |  | [optional] 
-**identifiers** | [**FlattenedWorkstreamPatternEngineVisionEvents**](FlattenedWorkstreamPatternEngineVisionEvents.md) |  | [optional] 
 
 ## Example
 

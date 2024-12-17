@@ -5,13 +5,13 @@ This is a model to return stream progress for a file read.
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**bytes** | [**TransferableBytes**](TransferableBytes.md) |  | [optional] 
+**id** | **str** | This is a generated UUID that represents this current stream in progress(can be used to cancel this in the future) | 
+**path** | **str** |  | 
+**percentage** | **float** | Optionally if the download is in progress you will receive a download percent(from 0-100). | [optional] 
+**progress** | [**OSFileStreamingReadProgress**](OSFileStreamingReadProgress.md) |  | [optional] 
 **var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 **status** | [**ModelDownloadProgressStatusEnum**](ModelDownloadProgressStatusEnum.md) |  | 
-**percentage** | **float** | Optionally if the download is in progress you will receive a download percent(from 0-100). | [optional] 
-**path** | **str** |  | 
-**id** | **str** | This is a generated UUID that represents this current stream in progress(can be used to cancel this in the future) | 
-**bytes** | [**TransferableBytes**](TransferableBytes.md) |  | [optional] 
-**progress** | [**OSFileStreamingReadProgress**](OSFileStreamingReadProgress.md) |  | [optional] 
 
 ## Example
 

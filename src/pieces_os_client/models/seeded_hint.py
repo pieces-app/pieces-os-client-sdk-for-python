@@ -29,13 +29,13 @@ class SeededHint(BaseModel):
     """
     SeededHint
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
-    mechanism: Optional[MechanismEnum] = None
     asset: Optional[StrictStr] = Field(default=None, description="This is an asset id that we are using to link this to an asset.")
-    type: HintTypeEnum = Field(...)
-    text: StrictStr = Field(default=..., description="This is the text of the hint.")
+    mechanism: Optional[MechanismEnum] = None
     model: Optional[StrictStr] = Field(default=None, description="this is a model id. that we are using to link this to a model.")
-    __properties = ["schema", "mechanism", "asset", "type", "text", "model"]
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
+    text: StrictStr = Field(default=..., description="This is the text of the hint.")
+    type: HintTypeEnum = Field(...)
+    __properties = ["asset", "mechanism", "model", "schema", "text", "type"]
 
     class Config:
         """Pydantic configuration"""
@@ -76,12 +76,12 @@ class SeededHint(BaseModel):
             return SeededHint.parse_obj(obj)
 
         _obj = SeededHint.parse_obj({
-            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
-            "mechanism": obj.get("mechanism"),
             "asset": obj.get("asset"),
-            "type": obj.get("type"),
+            "mechanism": obj.get("mechanism"),
+            "model": obj.get("model"),
+            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
             "text": obj.get("text"),
-            "model": obj.get("model")
+            "type": obj.get("type")
         })
         return _obj
 

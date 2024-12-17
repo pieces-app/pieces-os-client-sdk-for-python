@@ -30,11 +30,11 @@ class SeededFormat(BaseModel):
     """
     This is seeded data that will be come a format.  We will throw an Error if, 1) file and fragment are both defined, 2) file and fragment are both null.  if this is being used within the /assets/create endpoint or the /{application}/create endpoint, we will not take the classificaiton into account, as it is only used in the syntax highlighting related endpoints.That being said if you do want to override your classification, please look at the metadata within the file or the fragment.  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
+    classification: Optional[SeededClassification] = None
     file: Optional[SeededFile] = None
     fragment: Optional[SeededFragment] = None
-    classification: Optional[SeededClassification] = None
-    __properties = ["schema", "file", "fragment", "classification"]
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
+    __properties = ["classification", "file", "fragment", "schema"]
 
     class Config:
         """Pydantic configuration"""
@@ -60,18 +60,18 @@ class SeededFormat(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of var_schema
-        if self.var_schema:
-            _dict['schema'] = self.var_schema.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of classification
+        if self.classification:
+            _dict['classification'] = self.classification.to_dict()
         # override the default output from pydantic by calling `to_dict()` of file
         if self.file:
             _dict['file'] = self.file.to_dict()
         # override the default output from pydantic by calling `to_dict()` of fragment
         if self.fragment:
             _dict['fragment'] = self.fragment.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of classification
-        if self.classification:
-            _dict['classification'] = self.classification.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of var_schema
+        if self.var_schema:
+            _dict['schema'] = self.var_schema.to_dict()
         return _dict
 
     @classmethod
@@ -84,10 +84,10 @@ class SeededFormat(BaseModel):
             return SeededFormat.parse_obj(obj)
 
         _obj = SeededFormat.parse_obj({
-            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
+            "classification": SeededClassification.from_dict(obj.get("classification")) if obj.get("classification") is not None else None,
             "file": SeededFile.from_dict(obj.get("file")) if obj.get("file") is not None else None,
             "fragment": SeededFragment.from_dict(obj.get("fragment")) if obj.get("fragment") is not None else None,
-            "classification": SeededClassification.from_dict(obj.get("classification")) if obj.get("classification") is not None else None
+            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None
         })
         return _obj
 

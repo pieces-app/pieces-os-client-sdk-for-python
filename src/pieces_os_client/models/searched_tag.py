@@ -28,13 +28,13 @@ class SearchedTag(BaseModel):
     """
     This is used for the Tags searching endpoint.  tag here is only provided if transferables are set to true.  temporal: if this is provided this means that their material matched the input via a timestamp.  TODO will want to consider returning related materials to this material potentially both associated/ and not associated materials ie suggestion: WorkstreamSuggestions  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
-    tag: Optional[Tag] = None
     exact: StrictBool = Field(...)
-    similarity: Union[StrictFloat, StrictInt] = Field(...)
-    temporal: Optional[StrictBool] = None
     identifier: StrictStr = Field(default=..., description="This is the uuid of the tag.")
-    __properties = ["schema", "tag", "exact", "similarity", "temporal", "identifier"]
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
+    similarity: Union[StrictFloat, StrictInt] = Field(...)
+    tag: Optional[Tag] = None
+    temporal: Optional[StrictBool] = None
+    __properties = ["exact", "identifier", "schema", "similarity", "tag", "temporal"]
 
     class Config:
         """Pydantic configuration"""
@@ -78,12 +78,12 @@ class SearchedTag(BaseModel):
             return SearchedTag.parse_obj(obj)
 
         _obj = SearchedTag.parse_obj({
-            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
-            "tag": Tag.from_dict(obj.get("tag")) if obj.get("tag") is not None else None,
             "exact": obj.get("exact"),
+            "identifier": obj.get("identifier"),
+            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
             "similarity": obj.get("similarity"),
-            "temporal": obj.get("temporal"),
-            "identifier": obj.get("identifier")
+            "tag": Tag.from_dict(obj.get("tag")) if obj.get("tag") is not None else None,
+            "temporal": obj.get("temporal")
         })
         return _obj
 

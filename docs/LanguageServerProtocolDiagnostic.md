@@ -5,13 +5,13 @@ TODO
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
-**range** | [**LanguageServerProtocolLocationRange**](LanguageServerProtocolLocationRange.md) |  | 
-**severity** | [**LanguageServerProtocolSeverityEnum**](LanguageServerProtocolSeverityEnum.md) |  | [optional] 
 **code** | [**LanguageServerProtocolCode**](LanguageServerProtocolCode.md) |  | [optional] 
 **code_description** | [**LanguageServerProtocolCodeDescription**](LanguageServerProtocolCodeDescription.md) |  | [optional] 
-**source** | **str** |  | [optional] 
 **message** | **str** |  | 
+**range** | [**LanguageServerProtocolLocationRange**](LanguageServerProtocolLocationRange.md) |  | 
+**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
+**severity** | [**LanguageServerProtocolSeverityEnum**](LanguageServerProtocolSeverityEnum.md) |  | [optional] 
+**source** | **str** |  | [optional] 
 
 ## Example
 

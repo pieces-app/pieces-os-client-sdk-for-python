@@ -5,8 +5,8 @@ This is a specific model for a given WPE qdrant source.  note: application is op
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 **name** | **str** | This is the name of the window(foreground window)/application.(this will always be present) | 
+**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 
 ## Example
 

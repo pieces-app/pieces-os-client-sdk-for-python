@@ -27,10 +27,10 @@ class OSDeviceCPUHardwareInformation(BaseModel):
     """
     This will let us know specific hardware information related to the CPU.  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
-    name: Optional[StrictStr] = None
     memory: Optional[Union[StrictFloat, StrictInt]] = None
-    __properties = ["schema", "name", "memory"]
+    name: Optional[StrictStr] = None
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
+    __properties = ["memory", "name", "schema"]
 
     class Config:
         """Pydantic configuration"""
@@ -71,9 +71,9 @@ class OSDeviceCPUHardwareInformation(BaseModel):
             return OSDeviceCPUHardwareInformation.parse_obj(obj)
 
         _obj = OSDeviceCPUHardwareInformation.parse_obj({
-            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
+            "memory": obj.get("memory"),
             "name": obj.get("name"),
-            "memory": obj.get("memory")
+            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None
         })
         return _obj
 

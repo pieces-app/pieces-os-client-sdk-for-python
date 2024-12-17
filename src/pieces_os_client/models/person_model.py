@@ -29,10 +29,10 @@ class PersonModel(BaseModel):
     This is a PersonSpecific Model. and will let us know for all the assets that get attached to the person if, this person was attached via a model or just attached automatically.  explanation here are the reason why a Person was attached to an asset.  # noqa: E501
     """
     asset: Optional[ReferencedAsset] = None
-    model: Optional[ReferencedModel] = None
     deleted: Optional[GroupedTimestamp] = None
     explanation: Optional[ReferencedAnnotation] = None
-    __properties = ["asset", "model", "deleted", "explanation"]
+    model: Optional[ReferencedModel] = None
+    __properties = ["asset", "deleted", "explanation", "model"]
 
     class Config:
         """Pydantic configuration"""
@@ -61,15 +61,15 @@ class PersonModel(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of asset
         if self.asset:
             _dict['asset'] = self.asset.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of model
-        if self.model:
-            _dict['model'] = self.model.to_dict()
         # override the default output from pydantic by calling `to_dict()` of deleted
         if self.deleted:
             _dict['deleted'] = self.deleted.to_dict()
         # override the default output from pydantic by calling `to_dict()` of explanation
         if self.explanation:
             _dict['explanation'] = self.explanation.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of model
+        if self.model:
+            _dict['model'] = self.model.to_dict()
         return _dict
 
     @classmethod
@@ -83,9 +83,9 @@ class PersonModel(BaseModel):
 
         _obj = PersonModel.parse_obj({
             "asset": ReferencedAsset.from_dict(obj.get("asset")) if obj.get("asset") is not None else None,
-            "model": ReferencedModel.from_dict(obj.get("model")) if obj.get("model") is not None else None,
             "deleted": GroupedTimestamp.from_dict(obj.get("deleted")) if obj.get("deleted") is not None else None,
-            "explanation": ReferencedAnnotation.from_dict(obj.get("explanation")) if obj.get("explanation") is not None else None
+            "explanation": ReferencedAnnotation.from_dict(obj.get("explanation")) if obj.get("explanation") is not None else None,
+            "model": ReferencedModel.from_dict(obj.get("model")) if obj.get("model") is not None else None
         })
         return _obj
 

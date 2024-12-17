@@ -29,9 +29,9 @@ class EmbeddingsSearchOptions(BaseModel):
     similarity: this is optional from 0 - 1, (where 1 is exact and 0 is everything)  TODO consider a plural of types for running many embedding search scopes  # noqa: E501
     """
     var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
-    type: EmbeddingsSearchOptionsEmbeddingTypeEnum = Field(...)
     similarity: Optional[Union[StrictFloat, StrictInt]] = None
-    __properties = ["schema", "type", "similarity"]
+    type: EmbeddingsSearchOptionsEmbeddingTypeEnum = Field(...)
+    __properties = ["schema", "similarity", "type"]
 
     class Config:
         """Pydantic configuration"""
@@ -73,8 +73,8 @@ class EmbeddingsSearchOptions(BaseModel):
 
         _obj = EmbeddingsSearchOptions.parse_obj({
             "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
-            "type": obj.get("type"),
-            "similarity": obj.get("similarity")
+            "similarity": obj.get("similarity"),
+            "type": obj.get("type")
         })
         return _obj
 

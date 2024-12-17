@@ -5,12 +5,12 @@ A seed Model used to wrap a format or asset  Note: we will expand this now to su
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
+**anchor** | [**SeededAnchor**](SeededAnchor.md) |  | [optional] 
 **asset** | [**SeededAsset**](SeededAsset.md) |  | [optional] 
 **person** | [**SeededPerson**](SeededPerson.md) |  | [optional] 
-**anchor** | [**SeededAnchor**](SeededAnchor.md) |  | [optional] 
-**website** | [**SeededWebsite**](SeededWebsite.md) |  | [optional] 
+**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 **type** | **str** |  | [optional] 
+**website** | [**SeededWebsite**](SeededWebsite.md) |  | [optional] 
 
 ## Example
 

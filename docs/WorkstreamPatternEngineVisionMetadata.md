@@ -5,8 +5,8 @@ This will return all the WPE vision specific metadata
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 **events** | [**WorkstreamPatternEngineVisionEventsMetadata**](WorkstreamPatternEngineVisionEventsMetadata.md) |  | [optional] 
+**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 
 ## Example
 

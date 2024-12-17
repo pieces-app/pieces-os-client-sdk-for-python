@@ -38,25 +38,25 @@ class Annotation(BaseModel):
     """
     An Annotation is the replacement for descriptions, this will enable comments, description, summaries and many more.  person on here is a reference to the description/comment/annotation about a person  NOTE: person here is NOT the creator of the annotaion. but rather the descriptions of the person. NOTE****: if we want to add \"who\" wrote the annotation, we will want to add a new field on here called author && will need to also layer in behavior the enable an author(person) and an asset both being referenced(ensure you check the side effect in the AssetsFacade.delete)  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
-    id: StrictStr = Field(...)
-    created: GroupedTimestamp = Field(...)
-    updated: GroupedTimestamp = Field(...)
-    deleted: Optional[GroupedTimestamp] = None
-    mechanism: Optional[MechanismEnum] = None
-    asset: Optional[ReferencedAsset] = None
-    person: Optional[ReferencedPerson] = None
-    type: AnnotationTypeEnum = Field(...)
-    text: StrictStr = Field(default=..., description="This is the text of the annotation.")
-    model: Optional[ReferencedModel] = None
-    pseudo: Optional[StrictBool] = None
-    favorited: Optional[StrictBool] = None
     anchor: Optional[ReferencedAnchor] = None
+    asset: Optional[ReferencedAsset] = None
     conversation: Optional[ReferencedConversation] = None
-    score: Optional[Score] = None
+    created: GroupedTimestamp = Field(...)
+    deleted: Optional[GroupedTimestamp] = None
+    favorited: Optional[StrictBool] = None
+    id: StrictStr = Field(...)
+    mechanism: Optional[MechanismEnum] = None
     messages: Optional[FlattenedConversationMessages] = None
+    model: Optional[ReferencedModel] = None
+    person: Optional[ReferencedPerson] = None
+    pseudo: Optional[StrictBool] = None
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
+    score: Optional[Score] = None
     summary: Optional[ReferencedWorkstreamSummary] = None
-    __properties = ["schema", "id", "created", "updated", "deleted", "mechanism", "asset", "person", "type", "text", "model", "pseudo", "favorited", "anchor", "conversation", "score", "messages", "summary"]
+    text: StrictStr = Field(default=..., description="This is the text of the annotation.")
+    type: AnnotationTypeEnum = Field(...)
+    updated: GroupedTimestamp = Field(...)
+    __properties = ["anchor", "asset", "conversation", "created", "deleted", "favorited", "id", "mechanism", "messages", "model", "person", "pseudo", "schema", "score", "summary", "text", "type", "updated"]
 
     class Config:
         """Pydantic configuration"""
@@ -82,42 +82,42 @@ class Annotation(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of var_schema
-        if self.var_schema:
-            _dict['schema'] = self.var_schema.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of created
-        if self.created:
-            _dict['created'] = self.created.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of updated
-        if self.updated:
-            _dict['updated'] = self.updated.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of deleted
-        if self.deleted:
-            _dict['deleted'] = self.deleted.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of asset
-        if self.asset:
-            _dict['asset'] = self.asset.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of person
-        if self.person:
-            _dict['person'] = self.person.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of model
-        if self.model:
-            _dict['model'] = self.model.to_dict()
         # override the default output from pydantic by calling `to_dict()` of anchor
         if self.anchor:
             _dict['anchor'] = self.anchor.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of asset
+        if self.asset:
+            _dict['asset'] = self.asset.to_dict()
         # override the default output from pydantic by calling `to_dict()` of conversation
         if self.conversation:
             _dict['conversation'] = self.conversation.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of score
-        if self.score:
-            _dict['score'] = self.score.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of created
+        if self.created:
+            _dict['created'] = self.created.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of deleted
+        if self.deleted:
+            _dict['deleted'] = self.deleted.to_dict()
         # override the default output from pydantic by calling `to_dict()` of messages
         if self.messages:
             _dict['messages'] = self.messages.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of model
+        if self.model:
+            _dict['model'] = self.model.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of person
+        if self.person:
+            _dict['person'] = self.person.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of var_schema
+        if self.var_schema:
+            _dict['schema'] = self.var_schema.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of score
+        if self.score:
+            _dict['score'] = self.score.to_dict()
         # override the default output from pydantic by calling `to_dict()` of summary
         if self.summary:
             _dict['summary'] = self.summary.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of updated
+        if self.updated:
+            _dict['updated'] = self.updated.to_dict()
         return _dict
 
     @classmethod
@@ -130,24 +130,24 @@ class Annotation(BaseModel):
             return Annotation.parse_obj(obj)
 
         _obj = Annotation.parse_obj({
-            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
-            "id": obj.get("id"),
-            "created": GroupedTimestamp.from_dict(obj.get("created")) if obj.get("created") is not None else None,
-            "updated": GroupedTimestamp.from_dict(obj.get("updated")) if obj.get("updated") is not None else None,
-            "deleted": GroupedTimestamp.from_dict(obj.get("deleted")) if obj.get("deleted") is not None else None,
-            "mechanism": obj.get("mechanism"),
-            "asset": ReferencedAsset.from_dict(obj.get("asset")) if obj.get("asset") is not None else None,
-            "person": ReferencedPerson.from_dict(obj.get("person")) if obj.get("person") is not None else None,
-            "type": obj.get("type"),
-            "text": obj.get("text"),
-            "model": ReferencedModel.from_dict(obj.get("model")) if obj.get("model") is not None else None,
-            "pseudo": obj.get("pseudo"),
-            "favorited": obj.get("favorited"),
             "anchor": ReferencedAnchor.from_dict(obj.get("anchor")) if obj.get("anchor") is not None else None,
+            "asset": ReferencedAsset.from_dict(obj.get("asset")) if obj.get("asset") is not None else None,
             "conversation": ReferencedConversation.from_dict(obj.get("conversation")) if obj.get("conversation") is not None else None,
-            "score": Score.from_dict(obj.get("score")) if obj.get("score") is not None else None,
+            "created": GroupedTimestamp.from_dict(obj.get("created")) if obj.get("created") is not None else None,
+            "deleted": GroupedTimestamp.from_dict(obj.get("deleted")) if obj.get("deleted") is not None else None,
+            "favorited": obj.get("favorited"),
+            "id": obj.get("id"),
+            "mechanism": obj.get("mechanism"),
             "messages": FlattenedConversationMessages.from_dict(obj.get("messages")) if obj.get("messages") is not None else None,
-            "summary": ReferencedWorkstreamSummary.from_dict(obj.get("summary")) if obj.get("summary") is not None else None
+            "model": ReferencedModel.from_dict(obj.get("model")) if obj.get("model") is not None else None,
+            "person": ReferencedPerson.from_dict(obj.get("person")) if obj.get("person") is not None else None,
+            "pseudo": obj.get("pseudo"),
+            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
+            "score": Score.from_dict(obj.get("score")) if obj.get("score") is not None else None,
+            "summary": ReferencedWorkstreamSummary.from_dict(obj.get("summary")) if obj.get("summary") is not None else None,
+            "text": obj.get("text"),
+            "type": obj.get("type"),
+            "updated": GroupedTimestamp.from_dict(obj.get("updated")) if obj.get("updated") is not None else None
         })
         return _obj
 

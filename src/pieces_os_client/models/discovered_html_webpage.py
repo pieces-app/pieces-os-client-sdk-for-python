@@ -28,10 +28,10 @@ class DiscoveredHtmlWebpage(BaseModel):
     """
     This will return assets that were extracted from the html webpage. This will contain the original url so you can double check the results wtih the results you passed in, but it will remain in the same order that it was passed in if used within the /discover/discover/html/webpage endpoint.  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     assets: DiscoveredAssets = Field(...)
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     url: StrictStr = Field(...)
-    __properties = ["schema", "assets", "url"]
+    __properties = ["assets", "schema", "url"]
 
     class Config:
         """Pydantic configuration"""
@@ -57,12 +57,12 @@ class DiscoveredHtmlWebpage(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of var_schema
-        if self.var_schema:
-            _dict['schema'] = self.var_schema.to_dict()
         # override the default output from pydantic by calling `to_dict()` of assets
         if self.assets:
             _dict['assets'] = self.assets.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of var_schema
+        if self.var_schema:
+            _dict['schema'] = self.var_schema.to_dict()
         return _dict
 
     @classmethod
@@ -75,8 +75,8 @@ class DiscoveredHtmlWebpage(BaseModel):
             return DiscoveredHtmlWebpage.parse_obj(obj)
 
         _obj = DiscoveredHtmlWebpage.parse_obj({
-            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
             "assets": DiscoveredAssets.from_dict(obj.get("assets")) if obj.get("assets") is not None else None,
+            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
             "url": obj.get("url")
         })
         return _obj

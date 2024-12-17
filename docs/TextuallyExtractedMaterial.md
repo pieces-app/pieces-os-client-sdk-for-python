@@ -5,12 +5,12 @@ This is an extraction, this was a person/website/anchor that was extracted  this
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
-**match** | [**TextLocation**](TextLocation.md) |  | 
-**websites** | [**FlattenedWebsites**](FlattenedWebsites.md) |  | [optional] 
 **anchors** | [**FlattenedAnchors**](FlattenedAnchors.md) |  | [optional] 
+**match** | [**TextLocation**](TextLocation.md) |  | 
 **persons** | [**FlattenedPersons**](FlattenedPersons.md) |  | [optional] 
+**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 **seeds** | [**Seeds**](Seeds.md) |  | [optional] 
+**websites** | [**FlattenedWebsites**](FlattenedWebsites.md) |  | [optional] 
 
 ## Example
 

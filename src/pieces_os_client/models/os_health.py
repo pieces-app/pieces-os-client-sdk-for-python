@@ -27,10 +27,10 @@ class OSHealth(BaseModel):
     """
     This is a specific model for the health of our OS Server.  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     id: StrictStr = Field(default=..., description="id of your OS")
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     version: StrictStr = Field(default=..., description="this is the current OS version")
-    __properties = ["schema", "id", "version"]
+    __properties = ["id", "schema", "version"]
 
     class Config:
         """Pydantic configuration"""
@@ -71,8 +71,8 @@ class OSHealth(BaseModel):
             return OSHealth.parse_obj(obj)
 
         _obj = OSHealth.parse_obj({
-            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
             "id": obj.get("id"),
+            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
             "version": obj.get("version")
         })
         return _obj

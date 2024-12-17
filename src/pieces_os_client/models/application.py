@@ -32,17 +32,17 @@ class Application(BaseModel):
     """
     A Model to describe what application a format/analytics event originated.  mechanism: This will let us know where this came from. ie.only 2 enums are used here or else throw and error. default mechanism here is MANUAL- meaning that this came from our user Connecting an application. INTERNAL - means that this came from a shareable link  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
-    id: StrictStr = Field(default=..., description="The ID of the application at the device level")
-    name: ApplicationNameEnum = Field(...)
-    version: StrictStr = Field(default=..., description="This is the specific version number 0.0.0")
-    platform: PlatformEnum = Field(...)
-    onboarded: StrictBool = Field(...)
-    privacy: PrivacyEnum = Field(...)
-    capabilities: Optional[CapabilitiesEnum] = None
-    mechanism: Optional[MechanismEnum] = None
     automatic_unload: Optional[StrictBool] = Field(default=None, alias="automaticUnload", description="This is a proper that will let us know if we will proactivity unload all of your machine learning models.by default this is false.")
-    __properties = ["schema", "id", "name", "version", "platform", "onboarded", "privacy", "capabilities", "mechanism", "automaticUnload"]
+    capabilities: Optional[CapabilitiesEnum] = None
+    id: StrictStr = Field(default=..., description="The ID of the application at the device level")
+    mechanism: Optional[MechanismEnum] = None
+    name: ApplicationNameEnum = Field(...)
+    onboarded: StrictBool = Field(...)
+    platform: PlatformEnum = Field(...)
+    privacy: PrivacyEnum = Field(...)
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
+    version: StrictStr = Field(default=..., description="This is the specific version number 0.0.0")
+    __properties = ["automaticUnload", "capabilities", "id", "mechanism", "name", "onboarded", "platform", "privacy", "schema", "version"]
 
     class Config:
         """Pydantic configuration"""
@@ -83,16 +83,16 @@ class Application(BaseModel):
             return Application.parse_obj(obj)
 
         _obj = Application.parse_obj({
-            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
-            "id": obj.get("id"),
-            "name": obj.get("name"),
-            "version": obj.get("version"),
-            "platform": obj.get("platform"),
-            "onboarded": obj.get("onboarded"),
-            "privacy": obj.get("privacy"),
+            "automatic_unload": obj.get("automaticUnload"),
             "capabilities": obj.get("capabilities"),
+            "id": obj.get("id"),
             "mechanism": obj.get("mechanism"),
-            "automatic_unload": obj.get("automaticUnload")
+            "name": obj.get("name"),
+            "onboarded": obj.get("onboarded"),
+            "platform": obj.get("platform"),
+            "privacy": obj.get("privacy"),
+            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
+            "version": obj.get("version")
         })
         return _obj
 

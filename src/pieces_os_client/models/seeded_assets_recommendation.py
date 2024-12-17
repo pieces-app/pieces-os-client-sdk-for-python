@@ -29,10 +29,10 @@ class SeededAssetsRecommendation(BaseModel):
     """
     This is the input data model for the /assets/recommend [GET] endpoint. It includes both a list of assets but also   # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     assets: Assets = Field(...)
     interactions: InteractedAssets = Field(...)
-    __properties = ["schema", "assets", "interactions"]
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
+    __properties = ["assets", "interactions", "schema"]
 
     class Config:
         """Pydantic configuration"""
@@ -58,15 +58,15 @@ class SeededAssetsRecommendation(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of var_schema
-        if self.var_schema:
-            _dict['schema'] = self.var_schema.to_dict()
         # override the default output from pydantic by calling `to_dict()` of assets
         if self.assets:
             _dict['assets'] = self.assets.to_dict()
         # override the default output from pydantic by calling `to_dict()` of interactions
         if self.interactions:
             _dict['interactions'] = self.interactions.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of var_schema
+        if self.var_schema:
+            _dict['schema'] = self.var_schema.to_dict()
         return _dict
 
     @classmethod
@@ -79,9 +79,9 @@ class SeededAssetsRecommendation(BaseModel):
             return SeededAssetsRecommendation.parse_obj(obj)
 
         _obj = SeededAssetsRecommendation.parse_obj({
-            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
             "assets": Assets.from_dict(obj.get("assets")) if obj.get("assets") is not None else None,
-            "interactions": InteractedAssets.from_dict(obj.get("interactions")) if obj.get("interactions") is not None else None
+            "interactions": InteractedAssets.from_dict(obj.get("interactions")) if obj.get("interactions") is not None else None,
+            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None
         })
         return _obj
 

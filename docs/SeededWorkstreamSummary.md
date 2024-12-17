@@ -5,18 +5,18 @@ This is a seeded version of a WorkstreamSummary
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
-**events** | [**FlattenedWorkstreamEvents**](FlattenedWorkstreamEvents.md) |  | [optional] 
-**name** | **str** |  | 
-**annotations** | [**List[SeededAnnotation]**](SeededAnnotation.md) |  | [optional] 
-**ranges** | [**FlattenedRanges**](FlattenedRanges.md) |  | [optional] 
-**model** | [**Model**](Model.md) |  | 
-**websites** | [**FlattenedWebsites**](FlattenedWebsites.md) |  | [optional] 
 **anchors** | [**FlattenedAnchors**](FlattenedAnchors.md) |  | [optional] 
+**annotations** | [**List[SeededAnnotation]**](SeededAnnotation.md) |  | [optional] 
+**applications** | [**Applications**](Applications.md) |  | [optional] 
 **assets** | [**FlattenedAssets**](FlattenedAssets.md) |  | [optional] 
 **conversations** | [**FlattenedConversations**](FlattenedConversations.md) |  | [optional] 
+**events** | [**FlattenedWorkstreamEvents**](FlattenedWorkstreamEvents.md) |  | [optional] 
+**model** | [**Model**](Model.md) |  | 
+**name** | **str** |  | 
 **persons** | [**FlattenedPersons**](FlattenedPersons.md) |  | [optional] 
-**applications** | [**Applications**](Applications.md) |  | [optional] 
+**ranges** | [**FlattenedRanges**](FlattenedRanges.md) |  | [optional] 
+**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
+**websites** | [**FlattenedWebsites**](FlattenedWebsites.md) |  | [optional] 
 
 ## Example
 

@@ -29,12 +29,12 @@ class AssetsSearchWithFiltersInput(BaseModel):
     """
     AssetsSearchWithFiltersInput
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
-    query: Optional[StrictStr] = None
-    space: Optional[AssetSearchSpace] = None
-    filters: Optional[AssetFilters] = None
     casing: Optional[StrictBool] = Field(default=None, description="This is an optional bool that will let us know, if we want to ignore case or not.(default is to allow casing)ie casing:true.")
-    __properties = ["schema", "query", "space", "filters", "casing"]
+    filters: Optional[AssetFilters] = None
+    query: Optional[StrictStr] = None
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
+    space: Optional[AssetSearchSpace] = None
+    __properties = ["casing", "filters", "query", "schema", "space"]
 
     class Config:
         """Pydantic configuration"""
@@ -60,15 +60,15 @@ class AssetsSearchWithFiltersInput(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
+        # override the default output from pydantic by calling `to_dict()` of filters
+        if self.filters:
+            _dict['filters'] = self.filters.to_dict()
         # override the default output from pydantic by calling `to_dict()` of var_schema
         if self.var_schema:
             _dict['schema'] = self.var_schema.to_dict()
         # override the default output from pydantic by calling `to_dict()` of space
         if self.space:
             _dict['space'] = self.space.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of filters
-        if self.filters:
-            _dict['filters'] = self.filters.to_dict()
         return _dict
 
     @classmethod
@@ -81,11 +81,11 @@ class AssetsSearchWithFiltersInput(BaseModel):
             return AssetsSearchWithFiltersInput.parse_obj(obj)
 
         _obj = AssetsSearchWithFiltersInput.parse_obj({
-            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
-            "query": obj.get("query"),
-            "space": AssetSearchSpace.from_dict(obj.get("space")) if obj.get("space") is not None else None,
+            "casing": obj.get("casing"),
             "filters": AssetFilters.from_dict(obj.get("filters")) if obj.get("filters") is not None else None,
-            "casing": obj.get("casing")
+            "query": obj.get("query"),
+            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
+            "space": AssetSearchSpace.from_dict(obj.get("space")) if obj.get("space") is not None else None
         })
         return _obj
 

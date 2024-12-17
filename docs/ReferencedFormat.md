@@ -5,9 +5,9 @@ A reference to a format which at minimum must have the format's id. But in the c
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 **id** | **str** | The id of the Format | 
 **reference** | [**FlattenedFormat**](FlattenedFormat.md) |  | [optional] 
+**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 
 ## Example
 

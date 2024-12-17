@@ -28,10 +28,10 @@ class UserBetaStatus(BaseModel):
     """
     This is used to either grant or remove a specific provider betastatus  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     auth0: Optional[Auth0UserBetaStatus] = None
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     user: StrictStr = Field(...)
-    __properties = ["schema", "auth0", "user"]
+    __properties = ["auth0", "schema", "user"]
 
     class Config:
         """Pydantic configuration"""
@@ -57,12 +57,12 @@ class UserBetaStatus(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of var_schema
-        if self.var_schema:
-            _dict['schema'] = self.var_schema.to_dict()
         # override the default output from pydantic by calling `to_dict()` of auth0
         if self.auth0:
             _dict['auth0'] = self.auth0.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of var_schema
+        if self.var_schema:
+            _dict['schema'] = self.var_schema.to_dict()
         return _dict
 
     @classmethod
@@ -75,8 +75,8 @@ class UserBetaStatus(BaseModel):
             return UserBetaStatus.parse_obj(obj)
 
         _obj = UserBetaStatus.parse_obj({
-            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
             "auth0": Auth0UserBetaStatus.from_dict(obj.get("auth0")) if obj.get("auth0") is not None else None,
+            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
             "user": obj.get("user")
         })
         return _obj

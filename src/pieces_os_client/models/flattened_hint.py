@@ -32,18 +32,18 @@ class FlattenedHint(BaseModel):
     """
     This is the flattened version of a hint. Ensure that you DO NOT reference the Asset here as you can create an infinite loop within the packaging.  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
-    id: StrictStr = Field(...)
-    created: GroupedTimestamp = Field(...)
-    updated: GroupedTimestamp = Field(...)
-    deleted: Optional[GroupedTimestamp] = None
-    mechanisms: Optional[Dict[str, MechanismEnum]] = Field(default=None, description="This is a Map<String, MechanismEnum> where the the key is an asset id.")
     assets: Optional[FlattenedAssets] = None
-    type: HintTypeEnum = Field(...)
-    text: StrictStr = Field(default=..., description="This is the text of the hint.")
+    created: GroupedTimestamp = Field(...)
+    deleted: Optional[GroupedTimestamp] = None
+    id: StrictStr = Field(...)
+    mechanisms: Optional[Dict[str, MechanismEnum]] = Field(default=None, description="This is a Map<String, MechanismEnum> where the the key is an asset id.")
     model: Optional[ReferencedModel] = None
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     score: Optional[Score] = None
-    __properties = ["schema", "id", "created", "updated", "deleted", "mechanisms", "assets", "type", "text", "model", "score"]
+    text: StrictStr = Field(default=..., description="This is the text of the hint.")
+    type: HintTypeEnum = Field(...)
+    updated: GroupedTimestamp = Field(...)
+    __properties = ["assets", "created", "deleted", "id", "mechanisms", "model", "schema", "score", "text", "type", "updated"]
 
     class Config:
         """Pydantic configuration"""
@@ -69,27 +69,27 @@ class FlattenedHint(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of var_schema
-        if self.var_schema:
-            _dict['schema'] = self.var_schema.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of created
-        if self.created:
-            _dict['created'] = self.created.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of updated
-        if self.updated:
-            _dict['updated'] = self.updated.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of deleted
-        if self.deleted:
-            _dict['deleted'] = self.deleted.to_dict()
         # override the default output from pydantic by calling `to_dict()` of assets
         if self.assets:
             _dict['assets'] = self.assets.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of created
+        if self.created:
+            _dict['created'] = self.created.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of deleted
+        if self.deleted:
+            _dict['deleted'] = self.deleted.to_dict()
         # override the default output from pydantic by calling `to_dict()` of model
         if self.model:
             _dict['model'] = self.model.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of var_schema
+        if self.var_schema:
+            _dict['schema'] = self.var_schema.to_dict()
         # override the default output from pydantic by calling `to_dict()` of score
         if self.score:
             _dict['score'] = self.score.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of updated
+        if self.updated:
+            _dict['updated'] = self.updated.to_dict()
         return _dict
 
     @classmethod
@@ -102,17 +102,17 @@ class FlattenedHint(BaseModel):
             return FlattenedHint.parse_obj(obj)
 
         _obj = FlattenedHint.parse_obj({
-            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
-            "id": obj.get("id"),
-            "created": GroupedTimestamp.from_dict(obj.get("created")) if obj.get("created") is not None else None,
-            "updated": GroupedTimestamp.from_dict(obj.get("updated")) if obj.get("updated") is not None else None,
-            "deleted": GroupedTimestamp.from_dict(obj.get("deleted")) if obj.get("deleted") is not None else None,
-            "mechanisms": dict((_k, _v) for _k, _v in obj.get("mechanisms").items()),
             "assets": FlattenedAssets.from_dict(obj.get("assets")) if obj.get("assets") is not None else None,
-            "type": obj.get("type"),
-            "text": obj.get("text"),
+            "created": GroupedTimestamp.from_dict(obj.get("created")) if obj.get("created") is not None else None,
+            "deleted": GroupedTimestamp.from_dict(obj.get("deleted")) if obj.get("deleted") is not None else None,
+            "id": obj.get("id"),
+            "mechanisms": dict((_k, _v) for _k, _v in obj.get("mechanisms").items()),
             "model": ReferencedModel.from_dict(obj.get("model")) if obj.get("model") is not None else None,
-            "score": Score.from_dict(obj.get("score")) if obj.get("score") is not None else None
+            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
+            "score": Score.from_dict(obj.get("score")) if obj.get("score") is not None else None,
+            "text": obj.get("text"),
+            "type": obj.get("type"),
+            "updated": GroupedTimestamp.from_dict(obj.get("updated")) if obj.get("updated") is not None else None
         })
         return _obj
 

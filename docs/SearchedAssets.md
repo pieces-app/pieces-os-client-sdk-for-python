@@ -5,10 +5,10 @@ This is a modle that will return fro mthe search endpoint that will just contain
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
-**iterable** | [**List[SearchedAsset]**](SearchedAsset.md) |  | 
-**suggested** | **float** | the number of fuzzy/suggested search results. | 
 **exact** | **float** | the number of exact results | 
+**iterable** | [**List[SearchedAsset]**](SearchedAsset.md) |  | 
+**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
+**suggested** | **float** | the number of fuzzy/suggested search results. | 
 
 ## Example
 

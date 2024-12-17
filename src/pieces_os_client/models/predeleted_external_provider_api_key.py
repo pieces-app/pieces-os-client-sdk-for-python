@@ -27,10 +27,10 @@ class PredeletedExternalProviderApiKey(BaseModel):
     """
     This is a predeleted version relating to the /external_provider/api_key/delete endpoint.  This will ensure we remove this specific provider.(anything that is set to true we will reset to null within the database.)  # noqa: E501
     """
+    open_ai: Optional[StrictBool] = Field(default=None, alias="open_AI")
     var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     user: StrictStr = Field(...)
-    open_ai: Optional[StrictBool] = Field(default=None, alias="open_AI")
-    __properties = ["schema", "user", "open_AI"]
+    __properties = ["open_AI", "schema", "user"]
 
     class Config:
         """Pydantic configuration"""
@@ -71,9 +71,9 @@ class PredeletedExternalProviderApiKey(BaseModel):
             return PredeletedExternalProviderApiKey.parse_obj(obj)
 
         _obj = PredeletedExternalProviderApiKey.parse_obj({
+            "open_ai": obj.get("open_AI"),
             "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
-            "user": obj.get("user"),
-            "open_ai": obj.get("open_AI")
+            "user": obj.get("user")
         })
         return _obj
 

@@ -5,9 +5,9 @@ This is a specific model that will let us know at what time this user was using 
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**closed** | [**GroupedTimestamp**](GroupedTimestamp.md) |  | [optional] 
 **id** | **str** | The UUID of the current Session | 
 **opened** | [**GroupedTimestamp**](GroupedTimestamp.md) |  | 
-**closed** | [**GroupedTimestamp**](GroupedTimestamp.md) |  | [optional] 
 
 ## Example
 

@@ -5,25 +5,25 @@ This is an individual material that is apart of the workstream feed. might want 
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
-**summary** | [**ReferencedWorkstreamSummary**](ReferencedWorkstreamSummary.md) |  | [optional] 
-**asset** | [**ReferencedAsset**](ReferencedAsset.md) |  | [optional] 
-**tag** | [**ReferencedTag**](ReferencedTag.md) |  | [optional] 
-**website** | [**ReferencedWebsite**](ReferencedWebsite.md) |  | [optional] 
 **anchor** | [**ReferencedAnchor**](ReferencedAnchor.md) |  | [optional] 
+**anchors** | [**FlattenedAnchors**](FlattenedAnchors.md) |  | [optional] 
+**asset** | [**ReferencedAsset**](ReferencedAsset.md) |  | [optional] 
+**assets** | [**FlattenedAssets**](FlattenedAssets.md) |  | [optional] 
 **conversation** | [**ReferencedConversation**](ReferencedConversation.md) |  | [optional] 
+**conversations** | [**FlattenedConversations**](FlattenedConversations.md) |  | [optional] 
+**current** | [**WorkstreamSuggestion**](WorkstreamSuggestion.md) |  | [optional] 
 **person** | [**ReferencedPerson**](ReferencedPerson.md) |  | [optional] 
+**persons** | [**FlattenedPersons**](FlattenedPersons.md) |  | [optional] 
+**related** | [**WorkstreamSuggestions**](WorkstreamSuggestions.md) |  | [optional] 
+**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 **seed** | [**Seed**](Seed.md) |  | [optional] 
 **seeds** | [**Seeds**](Seeds.md) |  | [optional] 
 **summaries** | [**FlattenedWorkstreamSummaries**](FlattenedWorkstreamSummaries.md) |  | [optional] 
-**assets** | [**FlattenedAssets**](FlattenedAssets.md) |  | [optional] 
+**summary** | [**ReferencedWorkstreamSummary**](ReferencedWorkstreamSummary.md) |  | [optional] 
+**tag** | [**ReferencedTag**](ReferencedTag.md) |  | [optional] 
 **tags** | [**FlattenedTags**](FlattenedTags.md) |  | [optional] 
+**website** | [**ReferencedWebsite**](ReferencedWebsite.md) |  | [optional] 
 **websites** | [**FlattenedWebsites**](FlattenedWebsites.md) |  | [optional] 
-**anchors** | [**FlattenedAnchors**](FlattenedAnchors.md) |  | [optional] 
-**conversations** | [**FlattenedConversations**](FlattenedConversations.md) |  | [optional] 
-**persons** | [**FlattenedPersons**](FlattenedPersons.md) |  | [optional] 
-**related** | [**WorkstreamSuggestions**](WorkstreamSuggestions.md) |  | [optional] 
-**current** | [**WorkstreamSuggestion**](WorkstreamSuggestion.md) |  | [optional] 
 
 ## Example
 

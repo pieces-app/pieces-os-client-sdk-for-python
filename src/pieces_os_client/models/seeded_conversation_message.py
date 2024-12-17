@@ -33,14 +33,14 @@ class SeededConversationMessage(BaseModel):
     """
     This is a seeded version of a ConversationMessage.  conversation is optional, this is because it can be used within the SeededConversation, however if this is passed into the /messages/create w/o a conversation uuid then we will throw an error.  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
-    created: Optional[GroupedTimestamp] = None
-    model: Optional[Model] = None
-    fragment: FragmentFormat = Field(...)
     conversation: Optional[ReferencedConversation] = None
-    sentiment: Optional[ConversationMessageSentimentEnum] = None
+    created: Optional[GroupedTimestamp] = None
+    fragment: FragmentFormat = Field(...)
+    model: Optional[Model] = None
     role: QGPTConversationMessageRoleEnum = Field(...)
-    __properties = ["schema", "created", "model", "fragment", "conversation", "sentiment", "role"]
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
+    sentiment: Optional[ConversationMessageSentimentEnum] = None
+    __properties = ["conversation", "created", "fragment", "model", "role", "schema", "sentiment"]
 
     class Config:
         """Pydantic configuration"""
@@ -66,21 +66,21 @@ class SeededConversationMessage(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of var_schema
-        if self.var_schema:
-            _dict['schema'] = self.var_schema.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of created
-        if self.created:
-            _dict['created'] = self.created.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of model
-        if self.model:
-            _dict['model'] = self.model.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of fragment
-        if self.fragment:
-            _dict['fragment'] = self.fragment.to_dict()
         # override the default output from pydantic by calling `to_dict()` of conversation
         if self.conversation:
             _dict['conversation'] = self.conversation.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of created
+        if self.created:
+            _dict['created'] = self.created.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of fragment
+        if self.fragment:
+            _dict['fragment'] = self.fragment.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of model
+        if self.model:
+            _dict['model'] = self.model.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of var_schema
+        if self.var_schema:
+            _dict['schema'] = self.var_schema.to_dict()
         return _dict
 
     @classmethod
@@ -93,13 +93,13 @@ class SeededConversationMessage(BaseModel):
             return SeededConversationMessage.parse_obj(obj)
 
         _obj = SeededConversationMessage.parse_obj({
-            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
-            "created": GroupedTimestamp.from_dict(obj.get("created")) if obj.get("created") is not None else None,
-            "model": Model.from_dict(obj.get("model")) if obj.get("model") is not None else None,
-            "fragment": FragmentFormat.from_dict(obj.get("fragment")) if obj.get("fragment") is not None else None,
             "conversation": ReferencedConversation.from_dict(obj.get("conversation")) if obj.get("conversation") is not None else None,
-            "sentiment": obj.get("sentiment"),
-            "role": obj.get("role")
+            "created": GroupedTimestamp.from_dict(obj.get("created")) if obj.get("created") is not None else None,
+            "fragment": FragmentFormat.from_dict(obj.get("fragment")) if obj.get("fragment") is not None else None,
+            "model": Model.from_dict(obj.get("model")) if obj.get("model") is not None else None,
+            "role": obj.get("role"),
+            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
+            "sentiment": obj.get("sentiment")
         })
         return _obj
 

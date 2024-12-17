@@ -5,24 +5,24 @@ This is the flattened Version of the annotation, IMPORTANT: when referencing the
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
-**id** | **str** |  | 
-**created** | [**GroupedTimestamp**](GroupedTimestamp.md) |  | 
-**updated** | [**GroupedTimestamp**](GroupedTimestamp.md) |  | 
-**deleted** | [**GroupedTimestamp**](GroupedTimestamp.md) |  | [optional] 
-**mechanism** | [**MechanismEnum**](MechanismEnum.md) |  | [optional] 
-**asset** | [**ReferencedAsset**](ReferencedAsset.md) |  | [optional] 
-**person** | [**ReferencedPerson**](ReferencedPerson.md) |  | [optional] 
-**type** | [**AnnotationTypeEnum**](AnnotationTypeEnum.md) |  | 
-**text** | **str** | This is the text of the annotation. | 
-**model** | [**ReferencedModel**](ReferencedModel.md) |  | [optional] 
-**pseudo** | **bool** |  | [optional] 
-**favorited** | **bool** |  | [optional] 
 **anchor** | [**ReferencedAnchor**](ReferencedAnchor.md) |  | [optional] 
+**asset** | [**ReferencedAsset**](ReferencedAsset.md) |  | [optional] 
 **conversation** | [**ReferencedConversation**](ReferencedConversation.md) |  | [optional] 
-**score** | [**Score**](Score.md) |  | [optional] 
+**created** | [**GroupedTimestamp**](GroupedTimestamp.md) |  | 
+**deleted** | [**GroupedTimestamp**](GroupedTimestamp.md) |  | [optional] 
+**favorited** | **bool** |  | [optional] 
+**id** | **str** |  | 
+**mechanism** | [**MechanismEnum**](MechanismEnum.md) |  | [optional] 
 **messages** | [**FlattenedConversationMessages**](FlattenedConversationMessages.md) |  | [optional] 
+**model** | [**ReferencedModel**](ReferencedModel.md) |  | [optional] 
+**person** | [**ReferencedPerson**](ReferencedPerson.md) |  | [optional] 
+**pseudo** | **bool** |  | [optional] 
+**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
+**score** | [**Score**](Score.md) |  | [optional] 
 **summary** | [**ReferencedWorkstreamSummary**](ReferencedWorkstreamSummary.md) |  | [optional] 
+**text** | **str** | This is the text of the annotation. | 
+**type** | [**AnnotationTypeEnum**](AnnotationTypeEnum.md) |  | 
+**updated** | [**GroupedTimestamp**](GroupedTimestamp.md) |  | 
 
 ## Example
 

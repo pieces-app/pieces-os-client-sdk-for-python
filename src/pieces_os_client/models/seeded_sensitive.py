@@ -31,16 +31,16 @@ class SeededSensitive(BaseModel):
     """
     This is the seededSensitive, this does not have an id yet as we will add it on the server side.  can optionally pass in our mechanism here, as the default will be manual unless specified.  TODO consider updating these asset,format to referenced Models  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     asset: StrictStr = Field(...)
-    text: StrictStr = Field(default=..., description="this is the string representative of the sensative piece of data.")
-    mechanism: Optional[MechanismEnum] = None
     category: SensitiveCategoryEnum = Field(...)
-    severity: SensitiveSeverityEnum = Field(...)
-    name: StrictStr = Field(...)
     description: StrictStr = Field(...)
+    mechanism: Optional[MechanismEnum] = None
     metadata: Optional[SensitiveMetadata] = None
-    __properties = ["schema", "asset", "text", "mechanism", "category", "severity", "name", "description", "metadata"]
+    name: StrictStr = Field(...)
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
+    severity: SensitiveSeverityEnum = Field(...)
+    text: StrictStr = Field(default=..., description="this is the string representative of the sensative piece of data.")
+    __properties = ["asset", "category", "description", "mechanism", "metadata", "name", "schema", "severity", "text"]
 
     class Config:
         """Pydantic configuration"""
@@ -66,12 +66,12 @@ class SeededSensitive(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of var_schema
-        if self.var_schema:
-            _dict['schema'] = self.var_schema.to_dict()
         # override the default output from pydantic by calling `to_dict()` of metadata
         if self.metadata:
             _dict['metadata'] = self.metadata.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of var_schema
+        if self.var_schema:
+            _dict['schema'] = self.var_schema.to_dict()
         return _dict
 
     @classmethod
@@ -84,15 +84,15 @@ class SeededSensitive(BaseModel):
             return SeededSensitive.parse_obj(obj)
 
         _obj = SeededSensitive.parse_obj({
-            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
             "asset": obj.get("asset"),
-            "text": obj.get("text"),
-            "mechanism": obj.get("mechanism"),
             "category": obj.get("category"),
-            "severity": obj.get("severity"),
-            "name": obj.get("name"),
             "description": obj.get("description"),
-            "metadata": SensitiveMetadata.from_dict(obj.get("metadata")) if obj.get("metadata") is not None else None
+            "mechanism": obj.get("mechanism"),
+            "metadata": SensitiveMetadata.from_dict(obj.get("metadata")) if obj.get("metadata") is not None else None,
+            "name": obj.get("name"),
+            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
+            "severity": obj.get("severity"),
+            "text": obj.get("text")
         })
         return _obj
 

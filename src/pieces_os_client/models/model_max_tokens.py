@@ -27,11 +27,11 @@ class ModelMaxTokens(BaseModel):
     """
     This will describe the MaxTokens for an MLModel  total is required.  iff there is a differentiator with inputs/outputs, then we can also provide those as well.  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
-    total: Optional[Union[StrictFloat, StrictInt]] = Field(...)
     input: Optional[Union[StrictFloat, StrictInt]] = None
     output: Optional[Union[StrictFloat, StrictInt]] = None
-    __properties = ["schema", "total", "input", "output"]
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
+    total: Optional[Union[StrictFloat, StrictInt]] = Field(...)
+    __properties = ["input", "output", "schema", "total"]
 
     class Config:
         """Pydantic configuration"""
@@ -60,11 +60,6 @@ class ModelMaxTokens(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of var_schema
         if self.var_schema:
             _dict['schema'] = self.var_schema.to_dict()
-        # set to None if total (nullable) is None
-        # and __fields_set__ contains the field
-        if self.total is None and "total" in self.__fields_set__:
-            _dict['total'] = None
-
         # set to None if input (nullable) is None
         # and __fields_set__ contains the field
         if self.input is None and "input" in self.__fields_set__:
@@ -74,6 +69,11 @@ class ModelMaxTokens(BaseModel):
         # and __fields_set__ contains the field
         if self.output is None and "output" in self.__fields_set__:
             _dict['output'] = None
+
+        # set to None if total (nullable) is None
+        # and __fields_set__ contains the field
+        if self.total is None and "total" in self.__fields_set__:
+            _dict['total'] = None
 
         return _dict
 
@@ -87,10 +87,10 @@ class ModelMaxTokens(BaseModel):
             return ModelMaxTokens.parse_obj(obj)
 
         _obj = ModelMaxTokens.parse_obj({
-            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
-            "total": obj.get("total"),
             "input": obj.get("input"),
-            "output": obj.get("output")
+            "output": obj.get("output"),
+            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
+            "total": obj.get("total")
         })
         return _obj
 

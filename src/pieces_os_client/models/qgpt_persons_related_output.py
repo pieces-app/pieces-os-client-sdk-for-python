@@ -28,10 +28,10 @@ class QGPTPersonsRelatedOutput(BaseModel):
     """
     This model is used for the output of the /qgpt/related/persons endpoint.  Explanations here is a custom object with key value pairs, when the key is the personUUId and the value is an explanation as to why this person was reccommended.  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
-    persons: Persons = Field(...)
     explanations: Optional[Dict[str, StrictStr]] = Field(default=None, description="This is a Map<String, String> where the the key is a person id. and the value is the explanation.")
-    __properties = ["schema", "persons", "explanations"]
+    persons: Persons = Field(...)
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
+    __properties = ["explanations", "persons", "schema"]
 
     class Config:
         """Pydantic configuration"""
@@ -57,12 +57,12 @@ class QGPTPersonsRelatedOutput(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of var_schema
-        if self.var_schema:
-            _dict['schema'] = self.var_schema.to_dict()
         # override the default output from pydantic by calling `to_dict()` of persons
         if self.persons:
             _dict['persons'] = self.persons.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of var_schema
+        if self.var_schema:
+            _dict['schema'] = self.var_schema.to_dict()
         return _dict
 
     @classmethod
@@ -75,9 +75,9 @@ class QGPTPersonsRelatedOutput(BaseModel):
             return QGPTPersonsRelatedOutput.parse_obj(obj)
 
         _obj = QGPTPersonsRelatedOutput.parse_obj({
-            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
+            "explanations": obj.get("explanations"),
             "persons": Persons.from_dict(obj.get("persons")) if obj.get("persons") is not None else None,
-            "explanations": obj.get("explanations")
+            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None
         })
         return _obj
 

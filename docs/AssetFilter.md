@@ -5,15 +5,15 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 **classification** | [**ClassificationSpecificEnum**](ClassificationSpecificEnum.md) |  | [optional] 
-**tags** | **List[str]** |  | [optional] 
-**websites** | **List[str]** |  | [optional] 
+**created** | [**AssetFilterTimestamp**](AssetFilterTimestamp.md) |  | [optional] 
+**operations** | [**AssetFilters**](AssetFilters.md) |  | [optional] 
 **persons** | **List[str]** |  | [optional] 
 **phrase** | [**AssetFilterPhrase**](AssetFilterPhrase.md) |  | [optional] 
-**created** | [**AssetFilterTimestamp**](AssetFilterTimestamp.md) |  | [optional] 
+**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
+**tags** | **List[str]** |  | [optional] 
 **updated** | [**AssetFilterTimestamp**](AssetFilterTimestamp.md) |  | [optional] 
-**operations** | [**AssetFilters**](AssetFilters.md) |  | [optional] 
+**websites** | **List[str]** |  | [optional] 
 
 ## Example
 

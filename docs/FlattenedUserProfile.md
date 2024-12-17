@@ -5,12 +5,12 @@ This is a FlattenedUserProfile that includes information that is not sensative i
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
-**id** | **str** | this is the uuid that identifies a user. | 
 **email** | **str** |  | [optional] 
+**id** | **str** | this is the uuid that identifies a user. | 
 **name** | **str** |  | [optional] 
-**username** | **str** |  | [optional] 
 **picture** | **str** |  | [optional] 
+**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
+**username** | **str** |  | [optional] 
 **vanityname** | **str** |  | [optional] 
 
 ## Example

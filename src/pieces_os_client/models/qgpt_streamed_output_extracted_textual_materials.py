@@ -28,10 +28,10 @@ class QGPTStreamedOutputExtractedTextualMaterials(BaseModel):
     """
     This is all the textually extracted materials from the QGPT stream  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     message: Optional[TextuallyExtractedMaterials] = None
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     workstream: Optional[TextuallyExtractedMaterials] = None
-    __properties = ["schema", "message", "workstream"]
+    __properties = ["message", "schema", "workstream"]
 
     class Config:
         """Pydantic configuration"""
@@ -57,12 +57,12 @@ class QGPTStreamedOutputExtractedTextualMaterials(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of var_schema
-        if self.var_schema:
-            _dict['schema'] = self.var_schema.to_dict()
         # override the default output from pydantic by calling `to_dict()` of message
         if self.message:
             _dict['message'] = self.message.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of var_schema
+        if self.var_schema:
+            _dict['schema'] = self.var_schema.to_dict()
         # override the default output from pydantic by calling `to_dict()` of workstream
         if self.workstream:
             _dict['workstream'] = self.workstream.to_dict()
@@ -78,8 +78,8 @@ class QGPTStreamedOutputExtractedTextualMaterials(BaseModel):
             return QGPTStreamedOutputExtractedTextualMaterials.parse_obj(obj)
 
         _obj = QGPTStreamedOutputExtractedTextualMaterials.parse_obj({
-            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
             "message": TextuallyExtractedMaterials.from_dict(obj.get("message")) if obj.get("message") is not None else None,
+            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
             "workstream": TextuallyExtractedMaterials.from_dict(obj.get("workstream")) if obj.get("workstream") is not None else None
         })
         return _obj

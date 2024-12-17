@@ -28,10 +28,10 @@ class Preview(BaseModel):
     """
     This is a preview Model that will hold references to at minimum the base preview. which can be potentiall a base image, or also base text/code and then the oveylay is another format(image/text/code) that is 'overlayed' ontop of the base format.  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     base: ReferencedFormat = Field(...)
     overlay: Optional[ReferencedFormat] = None
-    __properties = ["schema", "base", "overlay"]
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
+    __properties = ["base", "overlay", "schema"]
 
     class Config:
         """Pydantic configuration"""
@@ -57,15 +57,15 @@ class Preview(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of var_schema
-        if self.var_schema:
-            _dict['schema'] = self.var_schema.to_dict()
         # override the default output from pydantic by calling `to_dict()` of base
         if self.base:
             _dict['base'] = self.base.to_dict()
         # override the default output from pydantic by calling `to_dict()` of overlay
         if self.overlay:
             _dict['overlay'] = self.overlay.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of var_schema
+        if self.var_schema:
+            _dict['schema'] = self.var_schema.to_dict()
         return _dict
 
     @classmethod
@@ -78,9 +78,9 @@ class Preview(BaseModel):
             return Preview.parse_obj(obj)
 
         _obj = Preview.parse_obj({
-            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
             "base": ReferencedFormat.from_dict(obj.get("base")) if obj.get("base") is not None else None,
-            "overlay": ReferencedFormat.from_dict(obj.get("overlay")) if obj.get("overlay") is not None else None
+            "overlay": ReferencedFormat.from_dict(obj.get("overlay")) if obj.get("overlay") is not None else None,
+            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None
         })
         return _obj
 

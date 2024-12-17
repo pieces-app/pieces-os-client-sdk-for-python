@@ -5,12 +5,12 @@ This is the minimum information needed when creating a Tag.  Default we will att
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**asset** | **str** | this is a uuid that references an asset. | [optional] 
+**category** | [**TagCategoryEnum**](TagCategoryEnum.md) |  | [optional] 
+**mechanism** | [**MechanismEnum**](MechanismEnum.md) |  | [optional] 
+**person** | **str** | uuid of the person, you want to add this tag too | [optional] 
 **var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 **text** | **str** | This is the description of the tag. | 
-**asset** | **str** | this is a uuid that references an asset. | [optional] 
-**mechanism** | [**MechanismEnum**](MechanismEnum.md) |  | [optional] 
-**category** | [**TagCategoryEnum**](TagCategoryEnum.md) |  | [optional] 
-**person** | **str** | uuid of the person, you want to add this tag too | [optional] 
 
 ## Example
 

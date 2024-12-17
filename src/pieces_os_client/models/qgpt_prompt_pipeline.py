@@ -29,10 +29,10 @@ class QGPTPromptPipeline(BaseModel):
     """
     This is a model related to switching between different prompts based on if we are dealing with  various tasks or if we are attempting to converse with LLMs via conversation.  You will have 2 options-  1) task- This is specifically for 1 off task operations for instance explaning a bit of code 2) conversation- This is specifically for conversing with our LLMs, will provide better results && high fedility                responses for instance contextualize code conversations.  # noqa: E501
     """
+    conversation: Optional[QGPTConversationPipeline] = None
     var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     task: Optional[QGPTTaskPipeline] = None
-    conversation: Optional[QGPTConversationPipeline] = None
-    __properties = ["schema", "task", "conversation"]
+    __properties = ["conversation", "schema", "task"]
 
     class Config:
         """Pydantic configuration"""
@@ -58,15 +58,15 @@ class QGPTPromptPipeline(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
+        # override the default output from pydantic by calling `to_dict()` of conversation
+        if self.conversation:
+            _dict['conversation'] = self.conversation.to_dict()
         # override the default output from pydantic by calling `to_dict()` of var_schema
         if self.var_schema:
             _dict['schema'] = self.var_schema.to_dict()
         # override the default output from pydantic by calling `to_dict()` of task
         if self.task:
             _dict['task'] = self.task.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of conversation
-        if self.conversation:
-            _dict['conversation'] = self.conversation.to_dict()
         return _dict
 
     @classmethod
@@ -79,9 +79,9 @@ class QGPTPromptPipeline(BaseModel):
             return QGPTPromptPipeline.parse_obj(obj)
 
         _obj = QGPTPromptPipeline.parse_obj({
+            "conversation": QGPTConversationPipeline.from_dict(obj.get("conversation")) if obj.get("conversation") is not None else None,
             "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
-            "task": QGPTTaskPipeline.from_dict(obj.get("task")) if obj.get("task") is not None else None,
-            "conversation": QGPTConversationPipeline.from_dict(obj.get("conversation")) if obj.get("conversation") is not None else None
+            "task": QGPTTaskPipeline.from_dict(obj.get("task")) if obj.get("task") is not None else None
         })
         return _obj
 

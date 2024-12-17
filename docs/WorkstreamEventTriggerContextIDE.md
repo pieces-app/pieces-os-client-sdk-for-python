@@ -5,10 +5,10 @@ This is the given context for an IDE.  tabs: this here refers to the tabs w/in t
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
-**tabs** | [**IDETabs**](IDETabs.md) |  | [optional] 
 **modules** | [**ProjectModules**](ProjectModules.md) |  | [optional] 
 **name** | **str** |  | [optional] 
+**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
+**tabs** | [**IDETabs**](IDETabs.md) |  | [optional] 
 
 ## Example
 

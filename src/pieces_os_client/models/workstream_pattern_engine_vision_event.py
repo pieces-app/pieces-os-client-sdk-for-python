@@ -30,12 +30,12 @@ class WorkstreamPatternEngineVisionEvent(BaseModel):
     """
     This will return a specific event for the WPE.  note: value is nullable here because we may want to pass in transferables:true/false  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
-    id: StrictStr = Field(...)
     created: GroupedTimestamp = Field(...)
+    id: StrictStr = Field(...)
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     source: Optional[WorkstreamPatternEngineSource] = None
     textual: Optional[WorkstreamPatternEngineVisionEventTextualValue] = None
-    __properties = ["schema", "id", "created", "source", "textual"]
+    __properties = ["created", "id", "schema", "source", "textual"]
 
     class Config:
         """Pydantic configuration"""
@@ -61,12 +61,12 @@ class WorkstreamPatternEngineVisionEvent(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of var_schema
-        if self.var_schema:
-            _dict['schema'] = self.var_schema.to_dict()
         # override the default output from pydantic by calling `to_dict()` of created
         if self.created:
             _dict['created'] = self.created.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of var_schema
+        if self.var_schema:
+            _dict['schema'] = self.var_schema.to_dict()
         # override the default output from pydantic by calling `to_dict()` of source
         if self.source:
             _dict['source'] = self.source.to_dict()
@@ -85,9 +85,9 @@ class WorkstreamPatternEngineVisionEvent(BaseModel):
             return WorkstreamPatternEngineVisionEvent.parse_obj(obj)
 
         _obj = WorkstreamPatternEngineVisionEvent.parse_obj({
-            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
-            "id": obj.get("id"),
             "created": GroupedTimestamp.from_dict(obj.get("created")) if obj.get("created") is not None else None,
+            "id": obj.get("id"),
+            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
             "source": WorkstreamPatternEngineSource.from_dict(obj.get("source")) if obj.get("source") is not None else None,
             "textual": WorkstreamPatternEngineVisionEventTextualValue.from_dict(obj.get("textual")) if obj.get("textual") is not None else None
         })

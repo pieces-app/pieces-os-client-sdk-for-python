@@ -5,10 +5,10 @@ This is the model for the progress of the current update of Pieces os.  /os/upda
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**percentage** | **float** | Optionally if the update is in progress you will recieve a download percent(from 0-100). | [optional] 
 **var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 **status** | [**UpdatingStatusEnum**](UpdatingStatusEnum.md) |  | 
 **updated** | [**GroupedTimestamp**](GroupedTimestamp.md) |  | [optional] 
-**percentage** | **float** | Optionally if the update is in progress you will recieve a download percent(from 0-100). | [optional] 
 
 ## Example
 

@@ -28,13 +28,13 @@ class FlattenedOCRAnalysis(BaseModel):
     """
     [DAG Safe] Ocr Analysis that will reference FlattenedFormats.  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
-    id: StrictStr = Field(...)
-    raw: ReferencedFormat = Field(...)
     hocr: ReferencedFormat = Field(...)
-    model: Model = Field(...)
+    id: StrictStr = Field(...)
     image: StrictStr = Field(default=..., description="this is a refernece to the image analysis.")
-    __properties = ["schema", "id", "raw", "hocr", "model", "image"]
+    model: Model = Field(...)
+    raw: ReferencedFormat = Field(...)
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
+    __properties = ["hocr", "id", "image", "model", "raw", "schema"]
 
     class Config:
         """Pydantic configuration"""
@@ -60,18 +60,18 @@ class FlattenedOCRAnalysis(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of var_schema
-        if self.var_schema:
-            _dict['schema'] = self.var_schema.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of raw
-        if self.raw:
-            _dict['raw'] = self.raw.to_dict()
         # override the default output from pydantic by calling `to_dict()` of hocr
         if self.hocr:
             _dict['hocr'] = self.hocr.to_dict()
         # override the default output from pydantic by calling `to_dict()` of model
         if self.model:
             _dict['model'] = self.model.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of raw
+        if self.raw:
+            _dict['raw'] = self.raw.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of var_schema
+        if self.var_schema:
+            _dict['schema'] = self.var_schema.to_dict()
         return _dict
 
     @classmethod
@@ -84,12 +84,12 @@ class FlattenedOCRAnalysis(BaseModel):
             return FlattenedOCRAnalysis.parse_obj(obj)
 
         _obj = FlattenedOCRAnalysis.parse_obj({
-            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
-            "id": obj.get("id"),
-            "raw": ReferencedFormat.from_dict(obj.get("raw")) if obj.get("raw") is not None else None,
             "hocr": ReferencedFormat.from_dict(obj.get("hocr")) if obj.get("hocr") is not None else None,
+            "id": obj.get("id"),
+            "image": obj.get("image"),
             "model": Model.from_dict(obj.get("model")) if obj.get("model") is not None else None,
-            "image": obj.get("image")
+            "raw": ReferencedFormat.from_dict(obj.get("raw")) if obj.get("raw") is not None else None,
+            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None
         })
         return _obj
 

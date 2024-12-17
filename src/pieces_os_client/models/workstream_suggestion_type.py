@@ -26,24 +26,24 @@ class WorkstreamSuggestionType(BaseModel):
     """
     This is used to map the types of the iterable to given booleans of their respective material types  # noqa: E501
     """
-    var_schema: Optional[StrictBool] = Field(default=None, alias="schema")
-    summary: Optional[StrictBool] = None
-    asset: Optional[StrictBool] = None
-    tag: Optional[StrictBool] = None
-    website: Optional[StrictBool] = None
     anchor: Optional[StrictBool] = None
+    anchors: Optional[StrictBool] = None
+    asset: Optional[StrictBool] = None
+    assets: Optional[StrictBool] = None
     conversation: Optional[StrictBool] = None
+    conversations: Optional[StrictBool] = None
     person: Optional[StrictBool] = None
+    persons: Optional[StrictBool] = None
+    var_schema: Optional[StrictBool] = Field(default=None, alias="schema")
     seed: Optional[StrictBool] = None
     seeds: Optional[StrictBool] = None
     summaries: Optional[StrictBool] = None
-    assets: Optional[StrictBool] = None
+    summary: Optional[StrictBool] = None
+    tag: Optional[StrictBool] = None
     tags: Optional[StrictBool] = None
+    website: Optional[StrictBool] = None
     websites: Optional[StrictBool] = None
-    anchors: Optional[StrictBool] = None
-    conversations: Optional[StrictBool] = None
-    persons: Optional[StrictBool] = None
-    __properties = ["schema", "summary", "asset", "tag", "website", "anchor", "conversation", "person", "seed", "seeds", "summaries", "assets", "tags", "websites", "anchors", "conversations", "persons"]
+    __properties = ["anchor", "anchors", "asset", "assets", "conversation", "conversations", "person", "persons", "schema", "seed", "seeds", "summaries", "summary", "tag", "tags", "website", "websites"]
 
     class Config:
         """Pydantic configuration"""
@@ -81,23 +81,23 @@ class WorkstreamSuggestionType(BaseModel):
             return WorkstreamSuggestionType.parse_obj(obj)
 
         _obj = WorkstreamSuggestionType.parse_obj({
-            "var_schema": obj.get("schema"),
-            "summary": obj.get("summary"),
-            "asset": obj.get("asset"),
-            "tag": obj.get("tag"),
-            "website": obj.get("website"),
             "anchor": obj.get("anchor"),
+            "anchors": obj.get("anchors"),
+            "asset": obj.get("asset"),
+            "assets": obj.get("assets"),
             "conversation": obj.get("conversation"),
+            "conversations": obj.get("conversations"),
             "person": obj.get("person"),
+            "persons": obj.get("persons"),
+            "var_schema": obj.get("schema"),
             "seed": obj.get("seed"),
             "seeds": obj.get("seeds"),
             "summaries": obj.get("summaries"),
-            "assets": obj.get("assets"),
+            "summary": obj.get("summary"),
+            "tag": obj.get("tag"),
             "tags": obj.get("tags"),
-            "websites": obj.get("websites"),
-            "anchors": obj.get("anchors"),
-            "conversations": obj.get("conversations"),
-            "persons": obj.get("persons")
+            "website": obj.get("website"),
+            "websites": obj.get("websites")
         })
         return _obj
 

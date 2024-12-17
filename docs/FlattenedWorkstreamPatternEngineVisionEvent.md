@@ -5,9 +5,9 @@ This is a flattened version of the WorkstreamPatternEngineVisionEvent, where the
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
-**id** | **str** |  | 
 **created** | [**GroupedTimestamp**](GroupedTimestamp.md) |  | 
+**id** | **str** |  | 
+**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 
 ## Example
 

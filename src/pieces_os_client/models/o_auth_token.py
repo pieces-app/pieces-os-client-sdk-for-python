@@ -27,19 +27,19 @@ class OAuthToken(BaseModel):
     """
     A model representing a returnable response for a OAuthGroup Token  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     access_token: StrictStr = Field(default=..., description="The Access Token")
-    token_type: StrictStr = Field(...)
     expires_in: StrictInt = Field(...)
-    scope: StrictStr = Field(...)
-    refresh_token: Optional[StrictStr] = None
     id_token: Optional[StrictStr] = None
-    __properties = ["schema", "access_token", "token_type", "expires_in", "scope", "refresh_token", "id_token"]
+    refresh_token: Optional[StrictStr] = None
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
+    scope: StrictStr = Field(...)
+    token_type: StrictStr = Field(...)
+    __properties = ["access_token", "expires_in", "id_token", "refresh_token", "schema", "scope", "token_type"]
 
     @validator('token_type')
     def token_type_validate_enum(cls, value):
         """Validates the enum"""
-        if value not in ('Bearer'):
+        if value not in ('Bearer',):
             raise ValueError("must be one of enum values ('Bearer')")
         return value
 
@@ -82,13 +82,13 @@ class OAuthToken(BaseModel):
             return OAuthToken.parse_obj(obj)
 
         _obj = OAuthToken.parse_obj({
-            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
             "access_token": obj.get("access_token"),
-            "token_type": obj.get("token_type"),
             "expires_in": obj.get("expires_in"),
-            "scope": obj.get("scope"),
+            "id_token": obj.get("id_token"),
             "refresh_token": obj.get("refresh_token"),
-            "id_token": obj.get("id_token")
+            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
+            "scope": obj.get("scope"),
+            "token_type": obj.get("token_type")
         })
         return _obj
 

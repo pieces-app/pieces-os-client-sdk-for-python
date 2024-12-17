@@ -36,20 +36,20 @@ class SeededConversation(BaseModel):
     """
     This is a pre-Conversation object.  This will hold together a conversation. Ie allthe message within a conversation.  All the additional properties on here used on here like(anchors/assets) are used for context that will seed the conversation.  model is a calculated property, and will be the model of the last message sent if applicable.  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
-    name: Optional[StrictStr] = Field(default=None, description="This is a name that is customized.")
-    favorited: Optional[StrictBool] = None
-    application: Optional[Application] = None
+    anchors: Optional[conlist(SeededAnchor)] = None
     annotations: Optional[conlist(SeededAnnotation)] = None
+    application: Optional[Application] = None
+    assets: Optional[FlattenedAssets] = None
+    demo: Optional[StrictBool] = Field(default=None, description="This will let us know if this conversation was generated as a 'demo' conversation")
+    favorited: Optional[StrictBool] = None
     messages: Optional[conlist(SeededConversationMessage)] = None
     model: Optional[ReferencedModel] = None
-    assets: Optional[FlattenedAssets] = None
-    websites: Optional[FlattenedWebsites] = None
-    anchors: Optional[conlist(SeededAnchor)] = None
-    type: ConversationTypeEnum = Field(...)
+    name: Optional[StrictStr] = Field(default=None, description="This is a name that is customized.")
     pipeline: Optional[QGPTPromptPipeline] = None
-    demo: Optional[StrictBool] = Field(default=None, description="This will let us know if this conversation was generated as a 'demo' conversation")
-    __properties = ["schema", "name", "favorited", "application", "annotations", "messages", "model", "assets", "websites", "anchors", "type", "pipeline", "demo"]
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
+    type: ConversationTypeEnum = Field(...)
+    websites: Optional[FlattenedWebsites] = None
+    __properties = ["anchors", "annotations", "application", "assets", "demo", "favorited", "messages", "model", "name", "pipeline", "schema", "type", "websites"]
 
     class Config:
         """Pydantic configuration"""
@@ -75,12 +75,13 @@ class SeededConversation(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of var_schema
-        if self.var_schema:
-            _dict['schema'] = self.var_schema.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of application
-        if self.application:
-            _dict['application'] = self.application.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of each item in anchors (list)
+        _items = []
+        if self.anchors:
+            for _item in self.anchors:
+                if _item:
+                    _items.append(_item.to_dict())
+            _dict['anchors'] = _items
         # override the default output from pydantic by calling `to_dict()` of each item in annotations (list)
         _items = []
         if self.annotations:
@@ -88,6 +89,12 @@ class SeededConversation(BaseModel):
                 if _item:
                     _items.append(_item.to_dict())
             _dict['annotations'] = _items
+        # override the default output from pydantic by calling `to_dict()` of application
+        if self.application:
+            _dict['application'] = self.application.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of assets
+        if self.assets:
+            _dict['assets'] = self.assets.to_dict()
         # override the default output from pydantic by calling `to_dict()` of each item in messages (list)
         _items = []
         if self.messages:
@@ -98,22 +105,15 @@ class SeededConversation(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of model
         if self.model:
             _dict['model'] = self.model.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of assets
-        if self.assets:
-            _dict['assets'] = self.assets.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of websites
-        if self.websites:
-            _dict['websites'] = self.websites.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of each item in anchors (list)
-        _items = []
-        if self.anchors:
-            for _item in self.anchors:
-                if _item:
-                    _items.append(_item.to_dict())
-            _dict['anchors'] = _items
         # override the default output from pydantic by calling `to_dict()` of pipeline
         if self.pipeline:
             _dict['pipeline'] = self.pipeline.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of var_schema
+        if self.var_schema:
+            _dict['schema'] = self.var_schema.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of websites
+        if self.websites:
+            _dict['websites'] = self.websites.to_dict()
         return _dict
 
     @classmethod
@@ -126,19 +126,19 @@ class SeededConversation(BaseModel):
             return SeededConversation.parse_obj(obj)
 
         _obj = SeededConversation.parse_obj({
-            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
-            "name": obj.get("name"),
-            "favorited": obj.get("favorited"),
-            "application": Application.from_dict(obj.get("application")) if obj.get("application") is not None else None,
+            "anchors": [SeededAnchor.from_dict(_item) for _item in obj.get("anchors")] if obj.get("anchors") is not None else None,
             "annotations": [SeededAnnotation.from_dict(_item) for _item in obj.get("annotations")] if obj.get("annotations") is not None else None,
+            "application": Application.from_dict(obj.get("application")) if obj.get("application") is not None else None,
+            "assets": FlattenedAssets.from_dict(obj.get("assets")) if obj.get("assets") is not None else None,
+            "demo": obj.get("demo"),
+            "favorited": obj.get("favorited"),
             "messages": [SeededConversationMessage.from_dict(_item) for _item in obj.get("messages")] if obj.get("messages") is not None else None,
             "model": ReferencedModel.from_dict(obj.get("model")) if obj.get("model") is not None else None,
-            "assets": FlattenedAssets.from_dict(obj.get("assets")) if obj.get("assets") is not None else None,
-            "websites": FlattenedWebsites.from_dict(obj.get("websites")) if obj.get("websites") is not None else None,
-            "anchors": [SeededAnchor.from_dict(_item) for _item in obj.get("anchors")] if obj.get("anchors") is not None else None,
-            "type": obj.get("type"),
+            "name": obj.get("name"),
             "pipeline": QGPTPromptPipeline.from_dict(obj.get("pipeline")) if obj.get("pipeline") is not None else None,
-            "demo": obj.get("demo")
+            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
+            "type": obj.get("type"),
+            "websites": FlattenedWebsites.from_dict(obj.get("websites")) if obj.get("websites") is not None else None
         })
         return _obj
 

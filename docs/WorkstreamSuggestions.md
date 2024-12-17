@@ -5,8 +5,8 @@ This is a list of the materials used in the workstream suggestions.  The feed wi
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 **iterable** | [**List[WorkstreamSuggestion]**](WorkstreamSuggestion.md) |  | 
+**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 **types** | [**List[WorkstreamSuggestionType]**](WorkstreamSuggestionType.md) | This is iterable &lt;WorkstreamSuggestionType&gt;[] that gives the type of each of the items in the iterable. I.E. types[0] is the suggestion type of the item at iterable[0]. | [optional] 
 
 ## Example

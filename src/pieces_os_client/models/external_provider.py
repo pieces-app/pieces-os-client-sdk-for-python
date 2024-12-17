@@ -30,17 +30,17 @@ class ExternalProvider(BaseModel):
     """
     I know that profileData and user_id have differeing casing but they are done because they map to Auth0's projeecties.  # noqa: E501
     """
+    access_token: Optional[StrictStr] = Field(default=None, description="This is optional here, but will be present for BB, Github, and google.")
+    connection: Optional[StrictStr] = Field(default=None, description="This is an optional field that will be provided onentreprise connections. ie is type == waad then connection might be PiecesApp. However is other cases,you my find your provider and connection is the exact same string. To decifer between the two, you can use the isSocial bool.")
+    created: GroupedTimestamp = Field(...)
+    expires_in: Optional[StrictInt] = Field(default=None, description="Some providers have an expiration on their access token. IE BB, Google, NOT Github.")
+    is_social: Optional[StrictBool] = Field(default=None, alias="isSocial")
+    profile_data: Optional[ExternalProviderProfileData] = Field(default=None, alias="profileData")
     var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     type: ExternalProviderTypeEnum = Field(...)
-    user_id: StrictStr = Field(default=..., description="This is the user_id within the provider.")
-    access_token: Optional[StrictStr] = Field(default=None, description="This is optional here, but will be present for BB, Github, and google.")
-    expires_in: Optional[StrictInt] = Field(default=None, description="Some providers have an expiration on their access token. IE BB, Google, NOT Github.")
-    created: GroupedTimestamp = Field(...)
     updated: GroupedTimestamp = Field(...)
-    profile_data: Optional[ExternalProviderProfileData] = Field(default=None, alias="profileData")
-    connection: Optional[StrictStr] = Field(default=None, description="This is an optional field that will be provided onentreprise connections. ie is type == waad then connection might be PiecesApp. However is other cases,you my find your provider and connection is the exact same string. To decifer between the two, you can use the isSocial bool.")
-    is_social: Optional[StrictBool] = Field(default=None, alias="isSocial")
-    __properties = ["schema", "type", "user_id", "access_token", "expires_in", "created", "updated", "profileData", "connection", "isSocial"]
+    user_id: StrictStr = Field(default=..., description="This is the user_id within the provider.")
+    __properties = ["access_token", "connection", "created", "expires_in", "isSocial", "profileData", "schema", "type", "updated", "user_id"]
 
     class Config:
         """Pydantic configuration"""
@@ -66,18 +66,18 @@ class ExternalProvider(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of var_schema
-        if self.var_schema:
-            _dict['schema'] = self.var_schema.to_dict()
         # override the default output from pydantic by calling `to_dict()` of created
         if self.created:
             _dict['created'] = self.created.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of updated
-        if self.updated:
-            _dict['updated'] = self.updated.to_dict()
         # override the default output from pydantic by calling `to_dict()` of profile_data
         if self.profile_data:
             _dict['profileData'] = self.profile_data.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of var_schema
+        if self.var_schema:
+            _dict['schema'] = self.var_schema.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of updated
+        if self.updated:
+            _dict['updated'] = self.updated.to_dict()
         return _dict
 
     @classmethod
@@ -90,16 +90,16 @@ class ExternalProvider(BaseModel):
             return ExternalProvider.parse_obj(obj)
 
         _obj = ExternalProvider.parse_obj({
+            "access_token": obj.get("access_token"),
+            "connection": obj.get("connection"),
+            "created": GroupedTimestamp.from_dict(obj.get("created")) if obj.get("created") is not None else None,
+            "expires_in": obj.get("expires_in"),
+            "is_social": obj.get("isSocial"),
+            "profile_data": ExternalProviderProfileData.from_dict(obj.get("profileData")) if obj.get("profileData") is not None else None,
             "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
             "type": obj.get("type"),
-            "user_id": obj.get("user_id"),
-            "access_token": obj.get("access_token"),
-            "expires_in": obj.get("expires_in"),
-            "created": GroupedTimestamp.from_dict(obj.get("created")) if obj.get("created") is not None else None,
             "updated": GroupedTimestamp.from_dict(obj.get("updated")) if obj.get("updated") is not None else None,
-            "profile_data": ExternalProviderProfileData.from_dict(obj.get("profileData")) if obj.get("profileData") is not None else None,
-            "connection": obj.get("connection"),
-            "is_social": obj.get("isSocial")
+            "user_id": obj.get("user_id")
         })
         return _obj
 

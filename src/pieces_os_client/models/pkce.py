@@ -33,14 +33,14 @@ class PKCE(BaseModel):
     """
     An object representing all of the properties involved in a PKCE Authentication Flow  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
-    result: Optional[ResultedPKCE] = None
+    auth0: Optional[Auth0] = None
     challenge: Optional[ChallengedPKCE] = None
+    result: Optional[ResultedPKCE] = None
     revocation: Optional[RevokedPKCE] = None
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     seed: Optional[SeededPKCE] = None
     token: Optional[TokenizedPKCE] = None
-    auth0: Optional[Auth0] = None
-    __properties = ["schema", "result", "challenge", "revocation", "seed", "token", "auth0"]
+    __properties = ["auth0", "challenge", "result", "revocation", "schema", "seed", "token"]
 
     class Config:
         """Pydantic configuration"""
@@ -66,27 +66,27 @@ class PKCE(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of var_schema
-        if self.var_schema:
-            _dict['schema'] = self.var_schema.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of result
-        if self.result:
-            _dict['result'] = self.result.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of auth0
+        if self.auth0:
+            _dict['auth0'] = self.auth0.to_dict()
         # override the default output from pydantic by calling `to_dict()` of challenge
         if self.challenge:
             _dict['challenge'] = self.challenge.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of result
+        if self.result:
+            _dict['result'] = self.result.to_dict()
         # override the default output from pydantic by calling `to_dict()` of revocation
         if self.revocation:
             _dict['revocation'] = self.revocation.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of var_schema
+        if self.var_schema:
+            _dict['schema'] = self.var_schema.to_dict()
         # override the default output from pydantic by calling `to_dict()` of seed
         if self.seed:
             _dict['seed'] = self.seed.to_dict()
         # override the default output from pydantic by calling `to_dict()` of token
         if self.token:
             _dict['token'] = self.token.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of auth0
-        if self.auth0:
-            _dict['auth0'] = self.auth0.to_dict()
         return _dict
 
     @classmethod
@@ -99,13 +99,13 @@ class PKCE(BaseModel):
             return PKCE.parse_obj(obj)
 
         _obj = PKCE.parse_obj({
-            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
-            "result": ResultedPKCE.from_dict(obj.get("result")) if obj.get("result") is not None else None,
+            "auth0": Auth0.from_dict(obj.get("auth0")) if obj.get("auth0") is not None else None,
             "challenge": ChallengedPKCE.from_dict(obj.get("challenge")) if obj.get("challenge") is not None else None,
+            "result": ResultedPKCE.from_dict(obj.get("result")) if obj.get("result") is not None else None,
             "revocation": RevokedPKCE.from_dict(obj.get("revocation")) if obj.get("revocation") is not None else None,
+            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
             "seed": SeededPKCE.from_dict(obj.get("seed")) if obj.get("seed") is not None else None,
-            "token": TokenizedPKCE.from_dict(obj.get("token")) if obj.get("token") is not None else None,
-            "auth0": Auth0.from_dict(obj.get("auth0")) if obj.get("auth0") is not None else None
+            "token": TokenizedPKCE.from_dict(obj.get("token")) if obj.get("token") is not None else None
         })
         return _obj
 

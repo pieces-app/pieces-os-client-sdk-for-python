@@ -4,12 +4,12 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**anchor** | **str** | Cannot create an AnchorPoint w/o a Anchor. | 
+**fullpath** | **str** |  | 
+**platform** | [**PlatformEnum**](PlatformEnum.md) |  | [optional] 
 **var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 **type** | [**AnchorTypeEnum**](AnchorTypeEnum.md) |  | 
 **watch** | **bool** |  | [optional] 
-**fullpath** | **str** |  | 
-**anchor** | **str** | Cannot create an AnchorPoint w/o a Anchor. | 
-**platform** | [**PlatformEnum**](PlatformEnum.md) |  | [optional] 
 
 ## Example
 

@@ -5,20 +5,21 @@ This is a specific model for related websites to an asset.
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
-**id** | **str** |  | 
 **assets** | [**FlattenedAssets**](FlattenedAssets.md) |  | [optional] 
-**url** | **str** | this is the actual website url. | 
-**name** | **str** | This is a name that is customized. | 
-**created** | [**GroupedTimestamp**](GroupedTimestamp.md) |  | 
-**updated** | [**GroupedTimestamp**](GroupedTimestamp.md) |  | 
-**deleted** | [**GroupedTimestamp**](GroupedTimestamp.md) |  | [optional] 
-**mechanisms** | [**Dict[str, MechanismEnum]**](MechanismEnum.md) | This is a Map&lt;String, MechanismEnum&gt; where the the key is an asset id. | [optional] 
-**interactions** | **int** | This is an optional value that will keep track of the number of times this has been interacted with. | [optional] 
-**persons** | [**FlattenedPersons**](FlattenedPersons.md) |  | [optional] 
 **conversations** | [**FlattenedConversations**](FlattenedConversations.md) |  | [optional] 
+**created** | [**GroupedTimestamp**](GroupedTimestamp.md) |  | 
+**deleted** | [**GroupedTimestamp**](GroupedTimestamp.md) |  | [optional] 
+**id** | **str** |  | 
+**interactions** | **int** | This is an optional value that will keep track of the number of times this has been interacted with. | [optional] 
+**mechanisms** | [**Dict[str, MechanismEnum]**](MechanismEnum.md) | This is a Map&lt;String, MechanismEnum&gt; where the the key is an asset id. | [optional] 
+**messages** | [**FlattenedConversationMessages**](FlattenedConversationMessages.md) |  | [optional] 
+**name** | **str** | This is a name that is customized. | 
+**persons** | [**FlattenedPersons**](FlattenedPersons.md) |  | [optional] 
+**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 **score** | [**Score**](Score.md) |  | [optional] 
 **summaries** | [**FlattenedWorkstreamSummaries**](FlattenedWorkstreamSummaries.md) |  | [optional] 
+**updated** | [**GroupedTimestamp**](GroupedTimestamp.md) |  | 
+**url** | **str** | this is the actual website url. | 
 
 ## Example
 

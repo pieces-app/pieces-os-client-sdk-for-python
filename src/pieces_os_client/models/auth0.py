@@ -31,16 +31,16 @@ class Auth0(BaseModel):
     """
     An object representing all of the properties that are available within a Auth0 PKCE Flow  # noqa: E501
     """
-    identity: Optional[Auth0Identity] = None
-    user: Optional[Auth0User] = None
-    metadata: Optional[Auth0UserMetadata] = None
-    domain: StrictStr = Field(default=..., description="The domain of your Auth 0 Service")
-    client: StrictStr = Field(default=..., description="The Client ID for your Auth0 Service")
     audience: StrictStr = Field(default=..., description="The Server Audience of your Auth0 Service")
-    redirects: Auth0Redirects = Field(...)
-    o_auth: OAuthGroup = Field(default=..., alias="oAuth")
+    client: StrictStr = Field(default=..., description="The Client ID for your Auth0 Service")
+    domain: StrictStr = Field(default=..., description="The domain of your Auth 0 Service")
+    identity: Optional[Auth0Identity] = None
+    metadata: Optional[Auth0UserMetadata] = None
     namespace: Optional[StrictStr] = Field(default=None, description="An optional namespace parameter to add an additional namespace")
-    __properties = ["identity", "user", "metadata", "domain", "client", "audience", "redirects", "oAuth", "namespace"]
+    o_auth: OAuthGroup = Field(default=..., alias="oAuth")
+    redirects: Auth0Redirects = Field(...)
+    user: Optional[Auth0User] = None
+    __properties = ["audience", "client", "domain", "identity", "metadata", "namespace", "oAuth", "redirects", "user"]
 
     class Config:
         """Pydantic configuration"""
@@ -69,18 +69,18 @@ class Auth0(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of identity
         if self.identity:
             _dict['identity'] = self.identity.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of user
-        if self.user:
-            _dict['user'] = self.user.to_dict()
         # override the default output from pydantic by calling `to_dict()` of metadata
         if self.metadata:
             _dict['metadata'] = self.metadata.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of redirects
-        if self.redirects:
-            _dict['redirects'] = self.redirects.to_dict()
         # override the default output from pydantic by calling `to_dict()` of o_auth
         if self.o_auth:
             _dict['oAuth'] = self.o_auth.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of redirects
+        if self.redirects:
+            _dict['redirects'] = self.redirects.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of user
+        if self.user:
+            _dict['user'] = self.user.to_dict()
         return _dict
 
     @classmethod
@@ -93,15 +93,15 @@ class Auth0(BaseModel):
             return Auth0.parse_obj(obj)
 
         _obj = Auth0.parse_obj({
-            "identity": Auth0Identity.from_dict(obj.get("identity")) if obj.get("identity") is not None else None,
-            "user": Auth0User.from_dict(obj.get("user")) if obj.get("user") is not None else None,
-            "metadata": Auth0UserMetadata.from_dict(obj.get("metadata")) if obj.get("metadata") is not None else None,
-            "domain": obj.get("domain"),
-            "client": obj.get("client"),
             "audience": obj.get("audience"),
-            "redirects": Auth0Redirects.from_dict(obj.get("redirects")) if obj.get("redirects") is not None else None,
+            "client": obj.get("client"),
+            "domain": obj.get("domain"),
+            "identity": Auth0Identity.from_dict(obj.get("identity")) if obj.get("identity") is not None else None,
+            "metadata": Auth0UserMetadata.from_dict(obj.get("metadata")) if obj.get("metadata") is not None else None,
+            "namespace": obj.get("namespace"),
             "o_auth": OAuthGroup.from_dict(obj.get("oAuth")) if obj.get("oAuth") is not None else None,
-            "namespace": obj.get("namespace")
+            "redirects": Auth0Redirects.from_dict(obj.get("redirects")) if obj.get("redirects") is not None else None,
+            "user": Auth0User.from_dict(obj.get("user")) if obj.get("user") is not None else None
         })
         return _obj
 

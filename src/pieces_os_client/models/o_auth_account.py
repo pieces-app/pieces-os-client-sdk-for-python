@@ -27,15 +27,15 @@ class OAuthAccount(BaseModel):
     A Model to support account creation to Auth0's Database.  # noqa: E501
     """
     client_id: constr(strict=True, min_length=1) = Field(default=..., description="The client_id of your client.")
-    email: constr(strict=True, min_length=1) = Field(default=..., description="The user's email address.")
     connection: constr(strict=True, min_length=1) = Field(default=..., description="The name of the database configured to your client.")
-    username: constr(strict=True, min_length=1) = Field(default=..., description="The user's username. Only valid if the connection requires a username.")
-    given_name: constr(strict=True, min_length=1) = Field(default=..., description="The user's given name(s).")
+    email: constr(strict=True, min_length=1) = Field(default=..., description="The user's email address.")
     family_name: constr(strict=True, min_length=1) = Field(default=..., description="The user's family name(s).")
+    given_name: constr(strict=True, min_length=1) = Field(default=..., description="The user's given name(s).")
     name: constr(strict=True, min_length=1) = Field(default=..., description="The user's full name.")
-    picture: constr(strict=True, min_length=1) = Field(default=..., description="A URI pointing to the user's picture.")
     nickname: constr(strict=True, min_length=1) = Field(default=..., description="The user's nickname.")
-    __properties = ["client_id", "email", "connection", "username", "given_name", "family_name", "name", "picture", "nickname"]
+    picture: constr(strict=True, min_length=1) = Field(default=..., description="A URI pointing to the user's picture.")
+    username: constr(strict=True, min_length=1) = Field(default=..., description="The user's username. Only valid if the connection requires a username.")
+    __properties = ["client_id", "connection", "email", "family_name", "given_name", "name", "nickname", "picture", "username"]
 
     class Config:
         """Pydantic configuration"""
@@ -74,14 +74,14 @@ class OAuthAccount(BaseModel):
 
         _obj = OAuthAccount.parse_obj({
             "client_id": obj.get("client_id"),
-            "email": obj.get("email"),
             "connection": obj.get("connection"),
-            "username": obj.get("username"),
-            "given_name": obj.get("given_name"),
+            "email": obj.get("email"),
             "family_name": obj.get("family_name"),
+            "given_name": obj.get("given_name"),
             "name": obj.get("name"),
+            "nickname": obj.get("nickname"),
             "picture": obj.get("picture"),
-            "nickname": obj.get("nickname")
+            "username": obj.get("username")
         })
         return _obj
 

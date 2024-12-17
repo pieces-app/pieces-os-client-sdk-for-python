@@ -27,11 +27,11 @@ class LanguageServerProtocolCode(BaseModel):
     """
     NOTE: this can me a union type here.. (integer | string;) so we need to get a bit creative  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     code_integer: Optional[StrictInt] = None
     code_string: Optional[StrictStr] = None
     raw_json: Optional[Dict[str, StrictStr]] = Field(default=None, description="This is a Map<String, String>, basically just a json object for additional data if int/string will not work")
-    __properties = ["schema", "code_integer", "code_string", "raw_json"]
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
+    __properties = ["code_integer", "code_string", "raw_json", "schema"]
 
     class Config:
         """Pydantic configuration"""
@@ -72,10 +72,10 @@ class LanguageServerProtocolCode(BaseModel):
             return LanguageServerProtocolCode.parse_obj(obj)
 
         _obj = LanguageServerProtocolCode.parse_obj({
-            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
             "code_integer": obj.get("code_integer"),
             "code_string": obj.get("code_string"),
-            "raw_json": obj.get("raw_json")
+            "raw_json": obj.get("raw_json"),
+            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None
         })
         return _obj
 

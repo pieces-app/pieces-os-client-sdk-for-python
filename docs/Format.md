@@ -5,25 +5,25 @@ A representation of Data for a particular Form Factor of an Asset.  Below asset 
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
-**id** | **str** |  | 
-**creator** | **str** |  | 
-**classification** | [**Classification**](Classification.md) |  | 
-**icon** | **str** |  | [optional] 
-**role** | [**Role**](Role.md) |  | 
+**activities** | [**Activities**](Activities.md) |  | [optional] 
+**analysis** | [**Analysis**](Analysis.md) |  | [optional] 
 **application** | [**Application**](Application.md) |  | 
 **asset** | [**FlattenedAsset**](FlattenedAsset.md) |  | 
 **bytes** | [**ByteDescriptor**](ByteDescriptor.md) |  | 
-**created** | [**GroupedTimestamp**](GroupedTimestamp.md) |  | 
-**updated** | [**GroupedTimestamp**](GroupedTimestamp.md) |  | 
-**deleted** | [**GroupedTimestamp**](GroupedTimestamp.md) |  | [optional] 
-**synced** | [**GroupedTimestamp**](GroupedTimestamp.md) |  | [optional] 
+**classification** | [**Classification**](Classification.md) |  | 
 **cloud** | **str** | This is a path used to determine what path this format lives at within the cloud. | [optional] 
-**fragment** | [**FragmentFormat**](FragmentFormat.md) |  | [optional] 
+**created** | [**GroupedTimestamp**](GroupedTimestamp.md) |  | 
+**creator** | **str** |  | 
+**deleted** | [**GroupedTimestamp**](GroupedTimestamp.md) |  | [optional] 
 **file** | [**FileFormat**](FileFormat.md) |  | [optional] 
-**analysis** | [**Analysis**](Analysis.md) |  | [optional] 
+**fragment** | [**FragmentFormat**](FragmentFormat.md) |  | [optional] 
+**icon** | **str** |  | [optional] 
+**id** | **str** |  | 
 **relationship** | [**Relationship**](Relationship.md) |  | [optional] 
-**activities** | [**Activities**](Activities.md) |  | [optional] 
+**role** | [**Role**](Role.md) |  | 
+**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
+**synced** | [**GroupedTimestamp**](GroupedTimestamp.md) |  | [optional] 
+**updated** | [**GroupedTimestamp**](GroupedTimestamp.md) |  | 
 
 ## Example
 

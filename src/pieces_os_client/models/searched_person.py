@@ -28,13 +28,13 @@ class SearchedPerson(BaseModel):
     """
     This is used for the Persons searching endpoint.  person here is only provided if transferables are set to true.  temporal: if this is provided this means that their material matched the input via a timestamp.  TODO will want to consider returning related materials to this material potentially both associated/ and not associated materials ie suggestion: WorkstreamSuggestions  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
-    person: Optional[Person] = None
     exact: StrictBool = Field(...)
+    identifier: StrictStr = Field(default=..., description="This is the uuid of the person.")
+    person: Optional[Person] = None
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     similarity: Union[StrictFloat, StrictInt] = Field(...)
     temporal: Optional[StrictBool] = None
-    identifier: StrictStr = Field(default=..., description="This is the uuid of the person.")
-    __properties = ["schema", "person", "exact", "similarity", "temporal", "identifier"]
+    __properties = ["exact", "identifier", "person", "schema", "similarity", "temporal"]
 
     class Config:
         """Pydantic configuration"""
@@ -60,12 +60,12 @@ class SearchedPerson(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of var_schema
-        if self.var_schema:
-            _dict['schema'] = self.var_schema.to_dict()
         # override the default output from pydantic by calling `to_dict()` of person
         if self.person:
             _dict['person'] = self.person.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of var_schema
+        if self.var_schema:
+            _dict['schema'] = self.var_schema.to_dict()
         return _dict
 
     @classmethod
@@ -78,12 +78,12 @@ class SearchedPerson(BaseModel):
             return SearchedPerson.parse_obj(obj)
 
         _obj = SearchedPerson.parse_obj({
-            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
-            "person": Person.from_dict(obj.get("person")) if obj.get("person") is not None else None,
             "exact": obj.get("exact"),
+            "identifier": obj.get("identifier"),
+            "person": Person.from_dict(obj.get("person")) if obj.get("person") is not None else None,
+            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
             "similarity": obj.get("similarity"),
-            "temporal": obj.get("temporal"),
-            "identifier": obj.get("identifier")
+            "temporal": obj.get("temporal")
         })
         return _obj
 

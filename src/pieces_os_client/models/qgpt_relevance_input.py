@@ -22,7 +22,6 @@ import json
 from typing import List, Optional
 from pydantic import BaseModel, Field, StrictStr, conlist
 from pieces_os_client.models.embedded_model_schema import EmbeddedModelSchema
-from pieces_os_client.models.flattened_anchors import FlattenedAnchors
 from pieces_os_client.models.flattened_assets import FlattenedAssets
 from pieces_os_client.models.flattened_conversation_messages import FlattenedConversationMessages
 from pieces_os_client.models.qgpt_relevance_input_options import QGPTRelevanceInputOptions
@@ -33,18 +32,17 @@ class QGPTRelevanceInput(BaseModel):
     """
     This is the input body for the /code_gpt/relevance endpoint.  There are a couple different options that you may take with this Model.  First we will talk about the space in which you will compare your query too. These are the following cases for the space. 1. provide an absolute path on the users machine that we can use locally. 2. provide Seeds that you want to compare to, which will be ONLY fragment/string values(all other values will be ignored) 3. provide assets, here you can provide an iterable of the asset id, and we will do the rest 4. you can set your database boolean to true which will tell us to use your entire DB as the query space.  Note: - for ease of use, we have an additional boolean called 'question', which will also ask your question to gpt3.5, and compare to the relevant snippets that we found. That way you dont need to call /code_gpt/question. Otherwise the next step would be is to take the results and feed them into /code_gpt/question. to get your question answered.  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
-    query: StrictStr = Field(default=..., description="This is the question that the user is asking.")
-    paths: Optional[conlist(StrictStr)] = Field(default=None, description="This is an optional list of file || folder paths.")
-    seeds: Optional[Seeds] = None
+    application: Optional[StrictStr] = Field(default=None, description="optional application id")
     assets: Optional[FlattenedAssets] = None
     messages: Optional[FlattenedConversationMessages] = None
-    options: Optional[QGPTRelevanceInputOptions] = None
-    application: Optional[StrictStr] = Field(default=None, description="optional application id")
     model: Optional[StrictStr] = Field(default=None, description="optional model id")
+    options: Optional[QGPTRelevanceInputOptions] = None
+    paths: Optional[conlist(StrictStr)] = Field(default=None, description="This is an optional list of file || folder paths.")
+    query: StrictStr = Field(default=..., description="This is the question that the user is asking.")
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
+    seeds: Optional[Seeds] = None
     temporal: Optional[TemporalRangeGrounding] = None
-    anchors: Optional[FlattenedAnchors] = None
-    __properties = ["schema", "query", "paths", "seeds", "assets", "messages", "options", "application", "model", "temporal", "anchors"]
+    __properties = ["application", "assets", "messages", "model", "options", "paths", "query", "schema", "seeds", "temporal"]
 
     class Config:
         """Pydantic configuration"""
@@ -70,12 +68,6 @@ class QGPTRelevanceInput(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of var_schema
-        if self.var_schema:
-            _dict['schema'] = self.var_schema.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of seeds
-        if self.seeds:
-            _dict['seeds'] = self.seeds.to_dict()
         # override the default output from pydantic by calling `to_dict()` of assets
         if self.assets:
             _dict['assets'] = self.assets.to_dict()
@@ -85,12 +77,15 @@ class QGPTRelevanceInput(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of options
         if self.options:
             _dict['options'] = self.options.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of var_schema
+        if self.var_schema:
+            _dict['schema'] = self.var_schema.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of seeds
+        if self.seeds:
+            _dict['seeds'] = self.seeds.to_dict()
         # override the default output from pydantic by calling `to_dict()` of temporal
         if self.temporal:
             _dict['temporal'] = self.temporal.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of anchors
-        if self.anchors:
-            _dict['anchors'] = self.anchors.to_dict()
         return _dict
 
     @classmethod
@@ -103,17 +98,16 @@ class QGPTRelevanceInput(BaseModel):
             return QGPTRelevanceInput.parse_obj(obj)
 
         _obj = QGPTRelevanceInput.parse_obj({
-            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
-            "query": obj.get("query"),
-            "paths": obj.get("paths"),
-            "seeds": Seeds.from_dict(obj.get("seeds")) if obj.get("seeds") is not None else None,
+            "application": obj.get("application"),
             "assets": FlattenedAssets.from_dict(obj.get("assets")) if obj.get("assets") is not None else None,
             "messages": FlattenedConversationMessages.from_dict(obj.get("messages")) if obj.get("messages") is not None else None,
-            "options": QGPTRelevanceInputOptions.from_dict(obj.get("options")) if obj.get("options") is not None else None,
-            "application": obj.get("application"),
             "model": obj.get("model"),
-            "temporal": TemporalRangeGrounding.from_dict(obj.get("temporal")) if obj.get("temporal") is not None else None,
-            "anchors": FlattenedAnchors.from_dict(obj.get("anchors")) if obj.get("anchors") is not None else None
+            "options": QGPTRelevanceInputOptions.from_dict(obj.get("options")) if obj.get("options") is not None else None,
+            "paths": obj.get("paths"),
+            "query": obj.get("query"),
+            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
+            "seeds": Seeds.from_dict(obj.get("seeds")) if obj.get("seeds") is not None else None,
+            "temporal": TemporalRangeGrounding.from_dict(obj.get("temporal")) if obj.get("temporal") is not None else None
         })
         return _obj
 

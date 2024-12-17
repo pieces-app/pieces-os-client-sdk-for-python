@@ -5,13 +5,13 @@ This will return is the given path was verified/ or it was invalid.  and if it i
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
-**path** | **str** |  | 
-**file** | **bool** |  | [optional] 
-**directory** | **bool** |  | [optional] 
-**verified** | **bool** | This means if the path(file/folder) exists on the machine. | 
-**denied** | **bool** | This means that attempting to access the file was not aloud(ie no permission) | [optional] 
 **bytes** | [**ByteDescriptor**](ByteDescriptor.md) |  | [optional] 
+**denied** | **bool** | This means that attempting to access the file was not aloud(ie no permission) | [optional] 
+**directory** | **bool** |  | [optional] 
+**file** | **bool** |  | [optional] 
+**path** | **str** |  | 
+**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
+**verified** | **bool** | This means if the path(file/folder) exists on the machine. | 
 
 ## Example
 

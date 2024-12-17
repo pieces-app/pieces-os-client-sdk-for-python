@@ -29,11 +29,11 @@ class QGPTConversationMessage(BaseModel):
     """
     This will take a single message, and a role.  # noqa: E501
     """
+    role: QGPTConversationMessageRoleEnum = Field(...)
     var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     text: StrictStr = Field(...)
-    role: QGPTConversationMessageRoleEnum = Field(...)
     timestamp: GroupedTimestamp = Field(...)
-    __properties = ["schema", "text", "role", "timestamp"]
+    __properties = ["role", "schema", "text", "timestamp"]
 
     class Config:
         """Pydantic configuration"""
@@ -77,9 +77,9 @@ class QGPTConversationMessage(BaseModel):
             return QGPTConversationMessage.parse_obj(obj)
 
         _obj = QGPTConversationMessage.parse_obj({
+            "role": obj.get("role"),
             "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
             "text": obj.get("text"),
-            "role": obj.get("role"),
             "timestamp": GroupedTimestamp.from_dict(obj.get("timestamp")) if obj.get("timestamp") is not None else None
         })
         return _obj

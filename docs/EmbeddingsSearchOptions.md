@@ -6,8 +6,8 @@ similarity: this is optional from 0 - 1, (where 1 is exact and 0 is everything) 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
-**type** | [**EmbeddingsSearchOptionsEmbeddingTypeEnum**](EmbeddingsSearchOptionsEmbeddingTypeEnum.md) |  | 
 **similarity** | **float** |  | [optional] 
+**type** | [**EmbeddingsSearchOptionsEmbeddingTypeEnum**](EmbeddingsSearchOptionsEmbeddingTypeEnum.md) |  | 
 
 ## Example
 

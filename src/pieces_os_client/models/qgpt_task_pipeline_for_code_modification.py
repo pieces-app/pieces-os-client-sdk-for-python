@@ -27,9 +27,9 @@ class QGPTTaskPipelineForCodeModification(BaseModel):
     """
     This task is for modifying a bit of code, IE modify this code to do xyz.  This is a class so that we can add optional properties in the future.  Note: the snippet && language that needs to be modified should be within the QGPTQuestionInput.relevant  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     instruction: Optional[StrictStr] = Field(default=None, description="This is the instruction that we will use to modify this snippet.")
-    __properties = ["schema", "instruction"]
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
+    __properties = ["instruction", "schema"]
 
     class Config:
         """Pydantic configuration"""
@@ -70,8 +70,8 @@ class QGPTTaskPipelineForCodeModification(BaseModel):
             return QGPTTaskPipelineForCodeModification.parse_obj(obj)
 
         _obj = QGPTTaskPipelineForCodeModification.parse_obj({
-            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
-            "instruction": obj.get("instruction")
+            "instruction": obj.get("instruction"),
+            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None
         })
         return _obj
 

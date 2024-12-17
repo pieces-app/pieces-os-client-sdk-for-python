@@ -29,11 +29,11 @@ class FormatMetric(BaseModel):
     """
     FormatMetric  This is a model that will represent the about of specific formats. ie Generic: 'CODE' specific: 'DART' identifiers: ['FormatUID1, 'FormatUID2']  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     generic: ClassificationGenericEnum = Field(...)
-    specific: ClassificationSpecificEnum = Field(...)
     identifiers: conlist(StrictStr) = Field(default=..., description="this is a list of format ids")
-    __properties = ["schema", "generic", "specific", "identifiers"]
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
+    specific: ClassificationSpecificEnum = Field(...)
+    __properties = ["generic", "identifiers", "schema", "specific"]
 
     class Config:
         """Pydantic configuration"""
@@ -74,10 +74,10 @@ class FormatMetric(BaseModel):
             return FormatMetric.parse_obj(obj)
 
         _obj = FormatMetric.parse_obj({
-            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
             "generic": obj.get("generic"),
-            "specific": obj.get("specific"),
-            "identifiers": obj.get("identifiers")
+            "identifiers": obj.get("identifiers"),
+            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
+            "specific": obj.get("specific")
         })
         return _obj
 

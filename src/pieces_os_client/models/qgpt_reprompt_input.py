@@ -29,13 +29,13 @@ class QGPTRepromptInput(BaseModel):
     """
     Query is your followup question.  Conversation is a list of the back and fourth with the qgpt bot. where the first entry in the array was the last message sent.  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
-    query: StrictStr = Field(...)
-    conversation: QGPTConversation = Field(...)
     application: Optional[StrictStr] = Field(default=None, description="optional application id")
+    conversation: QGPTConversation = Field(...)
     model: Optional[StrictStr] = Field(default=None, description="optional model id")
     pipeline: Optional[QGPTPromptPipeline] = None
-    __properties = ["schema", "query", "conversation", "application", "model", "pipeline"]
+    query: StrictStr = Field(...)
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
+    __properties = ["application", "conversation", "model", "pipeline", "query", "schema"]
 
     class Config:
         """Pydantic configuration"""
@@ -61,15 +61,15 @@ class QGPTRepromptInput(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of var_schema
-        if self.var_schema:
-            _dict['schema'] = self.var_schema.to_dict()
         # override the default output from pydantic by calling `to_dict()` of conversation
         if self.conversation:
             _dict['conversation'] = self.conversation.to_dict()
         # override the default output from pydantic by calling `to_dict()` of pipeline
         if self.pipeline:
             _dict['pipeline'] = self.pipeline.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of var_schema
+        if self.var_schema:
+            _dict['schema'] = self.var_schema.to_dict()
         return _dict
 
     @classmethod
@@ -82,12 +82,12 @@ class QGPTRepromptInput(BaseModel):
             return QGPTRepromptInput.parse_obj(obj)
 
         _obj = QGPTRepromptInput.parse_obj({
-            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
-            "query": obj.get("query"),
-            "conversation": QGPTConversation.from_dict(obj.get("conversation")) if obj.get("conversation") is not None else None,
             "application": obj.get("application"),
+            "conversation": QGPTConversation.from_dict(obj.get("conversation")) if obj.get("conversation") is not None else None,
             "model": obj.get("model"),
-            "pipeline": QGPTPromptPipeline.from_dict(obj.get("pipeline")) if obj.get("pipeline") is not None else None
+            "pipeline": QGPTPromptPipeline.from_dict(obj.get("pipeline")) if obj.get("pipeline") is not None else None,
+            "query": obj.get("query"),
+            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None
         })
         return _obj
 

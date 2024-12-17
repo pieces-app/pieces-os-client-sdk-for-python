@@ -30,14 +30,14 @@ class OSFileStreamingRead(BaseModel):
     """
     This is a model to return stream progress for a file read.  # noqa: E501
     """
+    bytes: Optional[TransferableBytes] = None
+    id: StrictStr = Field(default=..., description="This is a generated UUID that represents this current stream in progress(can be used to cancel this in the future)")
+    path: StrictStr = Field(...)
+    percentage: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="Optionally if the download is in progress you will receive a download percent(from 0-100).")
+    progress: Optional[OSFileStreamingReadProgress] = None
     var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     status: ModelDownloadProgressStatusEnum = Field(...)
-    percentage: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="Optionally if the download is in progress you will receive a download percent(from 0-100).")
-    path: StrictStr = Field(...)
-    id: StrictStr = Field(default=..., description="This is a generated UUID that represents this current stream in progress(can be used to cancel this in the future)")
-    bytes: Optional[TransferableBytes] = None
-    progress: Optional[OSFileStreamingReadProgress] = None
-    __properties = ["schema", "status", "percentage", "path", "id", "bytes", "progress"]
+    __properties = ["bytes", "id", "path", "percentage", "progress", "schema", "status"]
 
     class Config:
         """Pydantic configuration"""
@@ -63,15 +63,15 @@ class OSFileStreamingRead(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of var_schema
-        if self.var_schema:
-            _dict['schema'] = self.var_schema.to_dict()
         # override the default output from pydantic by calling `to_dict()` of bytes
         if self.bytes:
             _dict['bytes'] = self.bytes.to_dict()
         # override the default output from pydantic by calling `to_dict()` of progress
         if self.progress:
             _dict['progress'] = self.progress.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of var_schema
+        if self.var_schema:
+            _dict['schema'] = self.var_schema.to_dict()
         # set to None if percentage (nullable) is None
         # and __fields_set__ contains the field
         if self.percentage is None and "percentage" in self.__fields_set__:
@@ -89,13 +89,13 @@ class OSFileStreamingRead(BaseModel):
             return OSFileStreamingRead.parse_obj(obj)
 
         _obj = OSFileStreamingRead.parse_obj({
-            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
-            "status": obj.get("status"),
-            "percentage": obj.get("percentage"),
-            "path": obj.get("path"),
-            "id": obj.get("id"),
             "bytes": TransferableBytes.from_dict(obj.get("bytes")) if obj.get("bytes") is not None else None,
-            "progress": OSFileStreamingReadProgress.from_dict(obj.get("progress")) if obj.get("progress") is not None else None
+            "id": obj.get("id"),
+            "path": obj.get("path"),
+            "percentage": obj.get("percentage"),
+            "progress": OSFileStreamingReadProgress.from_dict(obj.get("progress")) if obj.get("progress") is not None else None,
+            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
+            "status": obj.get("status")
         })
         return _obj
 

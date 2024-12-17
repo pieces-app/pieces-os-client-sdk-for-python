@@ -419,30 +419,30 @@ class Auth0Api:
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def exchange_for_auth0_token(self, grant_type : Annotated[StrictStr, Field(..., description="Denotes the flow you are using. For Authorization Code, use authorization_code or refresh_token.")], client_id : Annotated[StrictStr, Field(..., description="Your application's Client ID.")], code : Annotated[StrictStr, Field(..., description="The Authorization Code received from the initial /authorize call.")], redirect_uri : Annotated[StrictStr, Field(..., description="This is required only if it was set at the GET /authorize endpoint. The values must match.")], code_verifier : Annotated[StrictStr, Field(..., description="Cryptographically random key that was used to generate the code_challenge passed to /authorize.")], var_schema : Optional[EmbeddedModelSchema] = None, audience : Annotated[Optional[StrictStr], Field(description="The audience domain: i.e. https://pieces.us.auth0.com")] = None, **kwargs) -> OAuthToken:  # noqa: E501
+    def exchange_for_auth0_token(self, client_id : Annotated[StrictStr, Field(..., description="Your application's Client ID.")], code : Annotated[StrictStr, Field(..., description="The Authorization Code received from the initial /authorize call.")], code_verifier : Annotated[StrictStr, Field(..., description="Cryptographically random key that was used to generate the code_challenge passed to /authorize.")], grant_type : Annotated[StrictStr, Field(..., description="Denotes the flow you are using. For Authorization Code, use authorization_code or refresh_token.")], redirect_uri : Annotated[StrictStr, Field(..., description="This is required only if it was set at the GET /authorize endpoint. The values must match.")], audience : Annotated[Optional[StrictStr], Field(description="The audience domain: i.e. https://pieces.us.auth0.com")] = None, var_schema : Optional[EmbeddedModelSchema] = None, **kwargs) -> OAuthToken:  # noqa: E501
         """https://auth.pieces.services/oauth/token [POST]  # noqa: E501
 
         An endpoint to generate a OAuth Token for an authentication flow.   # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.exchange_for_auth0_token(grant_type, client_id, code, redirect_uri, code_verifier, var_schema, audience, async_req=True)
+        >>> thread = api.exchange_for_auth0_token(client_id, code, code_verifier, grant_type, redirect_uri, audience, var_schema, async_req=True)
         >>> result = thread.get()
 
-        :param grant_type: Denotes the flow you are using. For Authorization Code, use authorization_code or refresh_token. (required)
-        :type grant_type: str
         :param client_id: Your application's Client ID. (required)
         :type client_id: str
         :param code: The Authorization Code received from the initial /authorize call. (required)
         :type code: str
-        :param redirect_uri: This is required only if it was set at the GET /authorize endpoint. The values must match. (required)
-        :type redirect_uri: str
         :param code_verifier: Cryptographically random key that was used to generate the code_challenge passed to /authorize. (required)
         :type code_verifier: str
-        :param var_schema:
-        :type var_schema: EmbeddedModelSchema
+        :param grant_type: Denotes the flow you are using. For Authorization Code, use authorization_code or refresh_token. (required)
+        :type grant_type: str
+        :param redirect_uri: This is required only if it was set at the GET /authorize endpoint. The values must match. (required)
+        :type redirect_uri: str
         :param audience: The audience domain: i.e. https://pieces.us.auth0.com
         :type audience: str
+        :param var_schema:
+        :type var_schema: EmbeddedModelSchema
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
         :param _request_timeout: timeout setting for this request.
@@ -458,33 +458,33 @@ class Auth0Api:
         if '_preload_content' in kwargs:
             message = "Error! Please call the exchange_for_auth0_token_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
-        return self.exchange_for_auth0_token_with_http_info(grant_type, client_id, code, redirect_uri, code_verifier, var_schema, audience, **kwargs)  # noqa: E501
+        return self.exchange_for_auth0_token_with_http_info(client_id, code, code_verifier, grant_type, redirect_uri, audience, var_schema, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def exchange_for_auth0_token_with_http_info(self, grant_type : Annotated[StrictStr, Field(..., description="Denotes the flow you are using. For Authorization Code, use authorization_code or refresh_token.")], client_id : Annotated[StrictStr, Field(..., description="Your application's Client ID.")], code : Annotated[StrictStr, Field(..., description="The Authorization Code received from the initial /authorize call.")], redirect_uri : Annotated[StrictStr, Field(..., description="This is required only if it was set at the GET /authorize endpoint. The values must match.")], code_verifier : Annotated[StrictStr, Field(..., description="Cryptographically random key that was used to generate the code_challenge passed to /authorize.")], var_schema : Optional[EmbeddedModelSchema] = None, audience : Annotated[Optional[StrictStr], Field(description="The audience domain: i.e. https://pieces.us.auth0.com")] = None, **kwargs) -> ApiResponse:  # noqa: E501
+    def exchange_for_auth0_token_with_http_info(self, client_id : Annotated[StrictStr, Field(..., description="Your application's Client ID.")], code : Annotated[StrictStr, Field(..., description="The Authorization Code received from the initial /authorize call.")], code_verifier : Annotated[StrictStr, Field(..., description="Cryptographically random key that was used to generate the code_challenge passed to /authorize.")], grant_type : Annotated[StrictStr, Field(..., description="Denotes the flow you are using. For Authorization Code, use authorization_code or refresh_token.")], redirect_uri : Annotated[StrictStr, Field(..., description="This is required only if it was set at the GET /authorize endpoint. The values must match.")], audience : Annotated[Optional[StrictStr], Field(description="The audience domain: i.e. https://pieces.us.auth0.com")] = None, var_schema : Optional[EmbeddedModelSchema] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """https://auth.pieces.services/oauth/token [POST]  # noqa: E501
 
         An endpoint to generate a OAuth Token for an authentication flow.   # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.exchange_for_auth0_token_with_http_info(grant_type, client_id, code, redirect_uri, code_verifier, var_schema, audience, async_req=True)
+        >>> thread = api.exchange_for_auth0_token_with_http_info(client_id, code, code_verifier, grant_type, redirect_uri, audience, var_schema, async_req=True)
         >>> result = thread.get()
 
-        :param grant_type: Denotes the flow you are using. For Authorization Code, use authorization_code or refresh_token. (required)
-        :type grant_type: str
         :param client_id: Your application's Client ID. (required)
         :type client_id: str
         :param code: The Authorization Code received from the initial /authorize call. (required)
         :type code: str
-        :param redirect_uri: This is required only if it was set at the GET /authorize endpoint. The values must match. (required)
-        :type redirect_uri: str
         :param code_verifier: Cryptographically random key that was used to generate the code_challenge passed to /authorize. (required)
         :type code_verifier: str
-        :param var_schema:
-        :type var_schema: EmbeddedModelSchema
+        :param grant_type: Denotes the flow you are using. For Authorization Code, use authorization_code or refresh_token. (required)
+        :type grant_type: str
+        :param redirect_uri: This is required only if it was set at the GET /authorize endpoint. The values must match. (required)
+        :type redirect_uri: str
         :param audience: The audience domain: i.e. https://pieces.us.auth0.com
         :type audience: str
+        :param var_schema:
+        :type var_schema: EmbeddedModelSchema
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
         :param _preload_content: if False, the ApiResponse.data will
@@ -513,13 +513,13 @@ class Auth0Api:
         _params = locals()
 
         _all_params = [
-            'grant_type',
             'client_id',
             'code',
-            'redirect_uri',
             'code_verifier',
-            'var_schema',
-            'audience'
+            'grant_type',
+            'redirect_uri',
+            'audience',
+            'var_schema'
         ]
         _all_params.extend(
             [
@@ -555,11 +555,8 @@ class Auth0Api:
         # process the form parameters
         _form_params = []
         _files = {}
-        if _params['var_schema'] is not None:
-            _form_params.append(('schema', _params['var_schema']))
-
-        if _params['grant_type'] is not None:
-            _form_params.append(('grant_type', _params['grant_type']))
+        if _params['audience'] is not None:
+            _form_params.append(('audience', _params['audience']))
 
         if _params['client_id'] is not None:
             _form_params.append(('client_id', _params['client_id']))
@@ -567,14 +564,17 @@ class Auth0Api:
         if _params['code'] is not None:
             _form_params.append(('code', _params['code']))
 
-        if _params['redirect_uri'] is not None:
-            _form_params.append(('redirect_uri', _params['redirect_uri']))
-
         if _params['code_verifier'] is not None:
             _form_params.append(('code_verifier', _params['code_verifier']))
 
-        if _params['audience'] is not None:
-            _form_params.append(('audience', _params['audience']))
+        if _params['grant_type'] is not None:
+            _form_params.append(('grant_type', _params['grant_type']))
+
+        if _params['redirect_uri'] is not None:
+            _form_params.append(('redirect_uri', _params['redirect_uri']))
+
+        if _params['var_schema'] is not None:
+            _form_params.append(('schema', _params['var_schema']))
 
         # process the body parameter
         _body_params = None

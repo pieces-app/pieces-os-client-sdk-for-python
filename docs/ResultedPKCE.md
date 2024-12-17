@@ -5,8 +5,8 @@ A Model To Represent the Code Returned from a PKCE Response
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 **code** | **str** | The PKCE Code to be used to access a Token. | 
+**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 **state** | **str** | Likely the state that will be returned which should match the requested state as well as the nonce | 
 
 ## Example

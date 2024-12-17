@@ -28,11 +28,11 @@ class OSDeviceGPUHardwareInformation(BaseModel):
     """
     This will let us know specific hardware information related to the GPU.  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
-    name: Optional[StrictStr] = None
-    memory: Optional[Union[StrictFloat, StrictInt]] = None
     capabilities: Optional[OSDeviceGPUHardwareCapabilitiesInformation] = None
-    __properties = ["schema", "name", "memory", "capabilities"]
+    memory: Optional[Union[StrictFloat, StrictInt]] = None
+    name: Optional[StrictStr] = None
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
+    __properties = ["capabilities", "memory", "name", "schema"]
 
     class Config:
         """Pydantic configuration"""
@@ -58,12 +58,12 @@ class OSDeviceGPUHardwareInformation(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of var_schema
-        if self.var_schema:
-            _dict['schema'] = self.var_schema.to_dict()
         # override the default output from pydantic by calling `to_dict()` of capabilities
         if self.capabilities:
             _dict['capabilities'] = self.capabilities.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of var_schema
+        if self.var_schema:
+            _dict['schema'] = self.var_schema.to_dict()
         return _dict
 
     @classmethod
@@ -76,10 +76,10 @@ class OSDeviceGPUHardwareInformation(BaseModel):
             return OSDeviceGPUHardwareInformation.parse_obj(obj)
 
         _obj = OSDeviceGPUHardwareInformation.parse_obj({
-            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
-            "name": obj.get("name"),
+            "capabilities": OSDeviceGPUHardwareCapabilitiesInformation.from_dict(obj.get("capabilities")) if obj.get("capabilities") is not None else None,
             "memory": obj.get("memory"),
-            "capabilities": OSDeviceGPUHardwareCapabilitiesInformation.from_dict(obj.get("capabilities")) if obj.get("capabilities") is not None else None
+            "name": obj.get("name"),
+            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None
         })
         return _obj
 

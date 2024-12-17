@@ -29,10 +29,10 @@ class FileFormat(BaseModel):
     """
     This describes a FileFormat. If you need meta data you can get all of that from your format wrapper.  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     bytes: Optional[TransferableBytes] = None
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     string: Optional[TransferableString] = None
-    __properties = ["schema", "bytes", "string"]
+    __properties = ["bytes", "schema", "string"]
 
     class Config:
         """Pydantic configuration"""
@@ -58,12 +58,12 @@ class FileFormat(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of var_schema
-        if self.var_schema:
-            _dict['schema'] = self.var_schema.to_dict()
         # override the default output from pydantic by calling `to_dict()` of bytes
         if self.bytes:
             _dict['bytes'] = self.bytes.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of var_schema
+        if self.var_schema:
+            _dict['schema'] = self.var_schema.to_dict()
         # override the default output from pydantic by calling `to_dict()` of string
         if self.string:
             _dict['string'] = self.string.to_dict()
@@ -79,8 +79,8 @@ class FileFormat(BaseModel):
             return FileFormat.parse_obj(obj)
 
         _obj = FileFormat.parse_obj({
-            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
             "bytes": TransferableBytes.from_dict(obj.get("bytes")) if obj.get("bytes") is not None else None,
+            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
             "string": TransferableString.from_dict(obj.get("string")) if obj.get("string") is not None else None
         })
         return _obj

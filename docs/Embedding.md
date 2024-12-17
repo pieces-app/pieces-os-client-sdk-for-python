@@ -5,11 +5,11 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**raw** | **List[float]** | this is the raw value of the embedding | 
-**model** | [**Model**](Model.md) |  | 
 **created** | [**GroupedTimestamp**](GroupedTimestamp.md) |  | 
-**updated** | [**GroupedTimestamp**](GroupedTimestamp.md) |  | 
 **deleted** | [**GroupedTimestamp**](GroupedTimestamp.md) |  | [optional] 
+**model** | [**Model**](Model.md) |  | 
+**raw** | **List[float]** | this is the raw value of the embedding | 
+**updated** | [**GroupedTimestamp**](GroupedTimestamp.md) |  | 
 
 ## Example
 

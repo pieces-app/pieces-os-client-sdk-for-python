@@ -28,10 +28,10 @@ class FlattenedWorkstreamPatternEngineVisionEvent(BaseModel):
     """
     This is a flattened version of the WorkstreamPatternEngineVisionEvent, where the referenced to other materials are also flattened(DAG Safe)  Note: TODO later add textual and need to correspond w/ both transferables as well as the FlattenedMaterial  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
-    id: StrictStr = Field(...)
     created: GroupedTimestamp = Field(...)
-    __properties = ["schema", "id", "created"]
+    id: StrictStr = Field(...)
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
+    __properties = ["created", "id", "schema"]
 
     class Config:
         """Pydantic configuration"""
@@ -57,12 +57,12 @@ class FlattenedWorkstreamPatternEngineVisionEvent(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of var_schema
-        if self.var_schema:
-            _dict['schema'] = self.var_schema.to_dict()
         # override the default output from pydantic by calling `to_dict()` of created
         if self.created:
             _dict['created'] = self.created.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of var_schema
+        if self.var_schema:
+            _dict['schema'] = self.var_schema.to_dict()
         return _dict
 
     @classmethod
@@ -75,9 +75,9 @@ class FlattenedWorkstreamPatternEngineVisionEvent(BaseModel):
             return FlattenedWorkstreamPatternEngineVisionEvent.parse_obj(obj)
 
         _obj = FlattenedWorkstreamPatternEngineVisionEvent.parse_obj({
-            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
+            "created": GroupedTimestamp.from_dict(obj.get("created")) if obj.get("created") is not None else None,
             "id": obj.get("id"),
-            "created": GroupedTimestamp.from_dict(obj.get("created")) if obj.get("created") is not None else None
+            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None
         })
         return _obj
 

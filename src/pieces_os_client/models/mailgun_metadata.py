@@ -27,9 +27,9 @@ class MailgunMetadata(BaseModel):
     """
     TODO add additional properties. TODO eventually modify this model to look like the response from Mailgun.  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     message_id: StrictStr = Field(default=..., alias="messageId", description="This is the id given to us from mailgun when the email was sent successfully.")
-    __properties = ["schema", "messageId"]
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
+    __properties = ["messageId", "schema"]
 
     class Config:
         """Pydantic configuration"""
@@ -70,8 +70,8 @@ class MailgunMetadata(BaseModel):
             return MailgunMetadata.parse_obj(obj)
 
         _obj = MailgunMetadata.parse_obj({
-            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
-            "message_id": obj.get("messageId")
+            "message_id": obj.get("messageId"),
+            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None
         })
         return _obj
 

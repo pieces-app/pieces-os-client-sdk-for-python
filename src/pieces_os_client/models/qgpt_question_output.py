@@ -28,9 +28,9 @@ class QGPTQuestionOutput(BaseModel):
     """
     This is the output/returned value from the /qgpt/question endpoint. && /qgpt/followup  This will just have a single required property. the possible answers to the question, with a score.  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     answers: QGPTQuestionAnswers = Field(...)
-    __properties = ["schema", "answers"]
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
+    __properties = ["answers", "schema"]
 
     class Config:
         """Pydantic configuration"""
@@ -56,12 +56,12 @@ class QGPTQuestionOutput(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of var_schema
-        if self.var_schema:
-            _dict['schema'] = self.var_schema.to_dict()
         # override the default output from pydantic by calling `to_dict()` of answers
         if self.answers:
             _dict['answers'] = self.answers.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of var_schema
+        if self.var_schema:
+            _dict['schema'] = self.var_schema.to_dict()
         return _dict
 
     @classmethod
@@ -74,8 +74,8 @@ class QGPTQuestionOutput(BaseModel):
             return QGPTQuestionOutput.parse_obj(obj)
 
         _obj = QGPTQuestionOutput.parse_obj({
-            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
-            "answers": QGPTQuestionAnswers.from_dict(obj.get("answers")) if obj.get("answers") is not None else None
+            "answers": QGPTQuestionAnswers.from_dict(obj.get("answers")) if obj.get("answers") is not None else None,
+            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None
         })
         return _obj
 

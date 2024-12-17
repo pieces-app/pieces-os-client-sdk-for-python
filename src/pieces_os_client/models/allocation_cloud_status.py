@@ -28,9 +28,9 @@ class AllocationCloudStatus(BaseModel):
     """
     AllocationCloudStatus
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     cloud: AllocationStatusEnum = Field(...)
-    __properties = ["schema", "cloud"]
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
+    __properties = ["cloud", "schema"]
 
     class Config:
         """Pydantic configuration"""
@@ -71,8 +71,8 @@ class AllocationCloudStatus(BaseModel):
             return AllocationCloudStatus.parse_obj(obj)
 
         _obj = AllocationCloudStatus.parse_obj({
-            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
-            "cloud": obj.get("cloud")
+            "cloud": obj.get("cloud"),
+            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None
         })
         return _obj
 

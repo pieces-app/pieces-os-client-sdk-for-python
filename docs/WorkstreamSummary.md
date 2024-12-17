@@ -5,22 +5,22 @@ This is representation or a summarized version of the highly relevant Workstream
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
-**id** | **str** |  | 
-**score** | [**Score**](Score.md) |  | [optional] 
-**created** | [**GroupedTimestamp**](GroupedTimestamp.md) |  | 
-**updated** | [**GroupedTimestamp**](GroupedTimestamp.md) |  | 
-**events** | [**FlattenedWorkstreamEvents**](FlattenedWorkstreamEvents.md) |  | [optional] 
-**name** | **str** |  | 
-**annotations** | [**FlattenedAnnotations**](FlattenedAnnotations.md) |  | [optional] 
-**ranges** | [**FlattenedRanges**](FlattenedRanges.md) |  | [optional] 
-**model** | [**Model**](Model.md) |  | 
-**websites** | [**FlattenedWebsites**](FlattenedWebsites.md) |  | [optional] 
 **anchors** | [**FlattenedAnchors**](FlattenedAnchors.md) |  | [optional] 
+**annotations** | [**FlattenedAnnotations**](FlattenedAnnotations.md) |  | [optional] 
+**applications** | [**Applications**](Applications.md) |  | [optional] 
 **assets** | [**FlattenedAssets**](FlattenedAssets.md) |  | [optional] 
 **conversations** | [**FlattenedConversations**](FlattenedConversations.md) |  | [optional] 
+**created** | [**GroupedTimestamp**](GroupedTimestamp.md) |  | 
+**events** | [**FlattenedWorkstreamEvents**](FlattenedWorkstreamEvents.md) |  | [optional] 
+**id** | **str** |  | 
+**model** | [**Model**](Model.md) |  | 
+**name** | **str** |  | 
 **persons** | [**FlattenedPersons**](FlattenedPersons.md) |  | [optional] 
-**applications** | [**Applications**](Applications.md) |  | [optional] 
+**ranges** | [**FlattenedRanges**](FlattenedRanges.md) |  | [optional] 
+**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
+**score** | [**Score**](Score.md) |  | [optional] 
+**updated** | [**GroupedTimestamp**](GroupedTimestamp.md) |  | 
+**websites** | [**FlattenedWebsites**](FlattenedWebsites.md) |  | [optional] 
 
 ## Example
 

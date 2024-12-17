@@ -28,9 +28,9 @@ class FragmentMetadata(BaseModel):
     """
     This is a model for metadata of a file!  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     ext: Optional[ClassificationSpecificEnum] = None
-    __properties = ["schema", "ext"]
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
+    __properties = ["ext", "schema"]
 
     class Config:
         """Pydantic configuration"""
@@ -71,8 +71,8 @@ class FragmentMetadata(BaseModel):
             return FragmentMetadata.parse_obj(obj)
 
         _obj = FragmentMetadata.parse_obj({
-            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
-            "ext": obj.get("ext")
+            "ext": obj.get("ext"),
+            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None
         })
         return _obj
 

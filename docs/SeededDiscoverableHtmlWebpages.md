@@ -4,9 +4,9 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
-**iterable** | [**List[SeededDiscoverableHtmlWebpage]**](SeededDiscoverableHtmlWebpage.md) |  | 
 **application** | **str** | This is the applicaiton Id used to connect to Pieces OS. | 
+**iterable** | [**List[SeededDiscoverableHtmlWebpage]**](SeededDiscoverableHtmlWebpage.md) |  | 
+**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 
 ## Example
 

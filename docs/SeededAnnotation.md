@@ -5,18 +5,18 @@ This is the percursor to a fully referenced Annotation.
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
-**mechanism** | [**MechanismEnum**](MechanismEnum.md) |  | [optional] 
-**asset** | **str** |  | [optional] 
-**person** | **str** |  | [optional] 
-**type** | [**AnnotationTypeEnum**](AnnotationTypeEnum.md) |  | 
-**text** | **str** | This is the text of the annotation. | 
-**model** | **str** |  | [optional] 
-**pseudo** | **bool** |  | [optional] 
-**favorited** | **bool** |  | [optional] 
 **anchor** | **str** |  | [optional] 
+**asset** | **str** |  | [optional] 
 **conversation** | **str** |  | [optional] 
+**favorited** | **bool** |  | [optional] 
+**mechanism** | [**MechanismEnum**](MechanismEnum.md) |  | [optional] 
 **messages** | [**FlattenedConversationMessages**](FlattenedConversationMessages.md) |  | [optional] 
+**model** | **str** |  | [optional] 
+**person** | **str** |  | [optional] 
+**pseudo** | **bool** |  | [optional] 
+**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
+**text** | **str** | This is the text of the annotation. | 
+**type** | [**AnnotationTypeEnum**](AnnotationTypeEnum.md) |  | 
 
 ## Example
 

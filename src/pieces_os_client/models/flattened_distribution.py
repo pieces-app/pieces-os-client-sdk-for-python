@@ -30,15 +30,15 @@ class FlattenedDistribution(BaseModel):
     """
     FlattenedDistribution
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
-    id: StrictStr = Field(...)
-    share: StrictStr = Field(default=..., description="This is the UUId of the share.")
     created: GroupedTimestamp = Field(...)
-    updated: GroupedTimestamp = Field(...)
     deleted: Optional[GroupedTimestamp] = None
-    mailgun: Optional[MailgunDistribution] = None
     github: Optional[GitHubDistribution] = None
-    __properties = ["schema", "id", "share", "created", "updated", "deleted", "mailgun", "github"]
+    id: StrictStr = Field(...)
+    mailgun: Optional[MailgunDistribution] = None
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
+    share: StrictStr = Field(default=..., description="This is the UUId of the share.")
+    updated: GroupedTimestamp = Field(...)
+    __properties = ["created", "deleted", "github", "id", "mailgun", "schema", "share", "updated"]
 
     class Config:
         """Pydantic configuration"""
@@ -64,24 +64,24 @@ class FlattenedDistribution(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of var_schema
-        if self.var_schema:
-            _dict['schema'] = self.var_schema.to_dict()
         # override the default output from pydantic by calling `to_dict()` of created
         if self.created:
             _dict['created'] = self.created.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of updated
-        if self.updated:
-            _dict['updated'] = self.updated.to_dict()
         # override the default output from pydantic by calling `to_dict()` of deleted
         if self.deleted:
             _dict['deleted'] = self.deleted.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of mailgun
-        if self.mailgun:
-            _dict['mailgun'] = self.mailgun.to_dict()
         # override the default output from pydantic by calling `to_dict()` of github
         if self.github:
             _dict['github'] = self.github.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of mailgun
+        if self.mailgun:
+            _dict['mailgun'] = self.mailgun.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of var_schema
+        if self.var_schema:
+            _dict['schema'] = self.var_schema.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of updated
+        if self.updated:
+            _dict['updated'] = self.updated.to_dict()
         return _dict
 
     @classmethod
@@ -94,14 +94,14 @@ class FlattenedDistribution(BaseModel):
             return FlattenedDistribution.parse_obj(obj)
 
         _obj = FlattenedDistribution.parse_obj({
-            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
-            "id": obj.get("id"),
-            "share": obj.get("share"),
             "created": GroupedTimestamp.from_dict(obj.get("created")) if obj.get("created") is not None else None,
-            "updated": GroupedTimestamp.from_dict(obj.get("updated")) if obj.get("updated") is not None else None,
             "deleted": GroupedTimestamp.from_dict(obj.get("deleted")) if obj.get("deleted") is not None else None,
+            "github": GitHubDistribution.from_dict(obj.get("github")) if obj.get("github") is not None else None,
+            "id": obj.get("id"),
             "mailgun": MailgunDistribution.from_dict(obj.get("mailgun")) if obj.get("mailgun") is not None else None,
-            "github": GitHubDistribution.from_dict(obj.get("github")) if obj.get("github") is not None else None
+            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
+            "share": obj.get("share"),
+            "updated": GroupedTimestamp.from_dict(obj.get("updated")) if obj.get("updated") is not None else None
         })
         return _obj
 

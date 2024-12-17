@@ -412,7 +412,7 @@ class Configuration:
                "OS: {env}\n"\
                "Python Version: {pyversion}\n"\
                "Version of the API: 1.0\n"\
-               "SDK Package Version: 4.0.0".\
+               "SDK Package Version: 4.1.0".\
                format(env=sys.platform, pyversion=sys.version)
 
     def get_host_settings(self):
@@ -423,23 +423,11 @@ class Configuration:
         return [
             {
                 'url': "http://localhost:1000",
-                'description': "Local Generated Mock Data",
+                'description': "Local Pieces OS Server for macOS & Windows",
             },
             {
-                'url': "https://stoplight.io/mocks/pieces/platform-openapi:main/13067253",
-                'description': "Stoplight Static Mock Data",
-            },
-            {
-                'url': "https://auth.pieces.services",
-                'description': "Authentication Domain",
-            },
-            {
-                'url': "https://api.pieces.services",
-                'description': "API Domain",
-            },
-            {
-                'url': "https://pieces.us.auth0.com",
-                'description': "Auth0",
+                'url': "http://localhost:5323",
+                'description': "Local Pieces OS Server for Linux",
             }
         ]
 

@@ -31,14 +31,14 @@ class SeededTrackedApplication(BaseModel):
     """
       # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
-    name: ApplicationNameEnum = Field(...)
-    version: StrictStr = Field(default=..., description="This is the specific version number 0.0.0")
-    platform: PlatformEnum = Field(...)
-    capabilities: Optional[CapabilitiesEnum] = None
-    privacy: Optional[PrivacyEnum] = None
     automatic_unload: Optional[StrictBool] = Field(default=None, alias="automaticUnload", description="This is a proper that will let us know if we will proactivity unload all of your machine learning models.by default this is false.")
-    __properties = ["schema", "name", "version", "platform", "capabilities", "privacy", "automaticUnload"]
+    capabilities: Optional[CapabilitiesEnum] = None
+    name: ApplicationNameEnum = Field(...)
+    platform: PlatformEnum = Field(...)
+    privacy: Optional[PrivacyEnum] = None
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
+    version: StrictStr = Field(default=..., description="This is the specific version number 0.0.0")
+    __properties = ["automaticUnload", "capabilities", "name", "platform", "privacy", "schema", "version"]
 
     class Config:
         """Pydantic configuration"""
@@ -79,13 +79,13 @@ class SeededTrackedApplication(BaseModel):
             return SeededTrackedApplication.parse_obj(obj)
 
         _obj = SeededTrackedApplication.parse_obj({
-            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
-            "name": obj.get("name"),
-            "version": obj.get("version"),
-            "platform": obj.get("platform"),
+            "automatic_unload": obj.get("automaticUnload"),
             "capabilities": obj.get("capabilities"),
+            "name": obj.get("name"),
+            "platform": obj.get("platform"),
             "privacy": obj.get("privacy"),
-            "automatic_unload": obj.get("automaticUnload")
+            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
+            "version": obj.get("version")
         })
         return _obj
 

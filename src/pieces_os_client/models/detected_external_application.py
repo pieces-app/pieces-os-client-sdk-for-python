@@ -27,10 +27,10 @@ class DetectedExternalApplication(BaseModel):
     """
     This is a detected External Application that comes from our endpoint that will get a snapshot of the installed applications on your machine.  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     name: StrictStr = Field(default=..., description="this is the name of the application")
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     version: Optional[StrictStr] = None
-    __properties = ["schema", "name", "version"]
+    __properties = ["name", "schema", "version"]
 
     class Config:
         """Pydantic configuration"""
@@ -71,8 +71,8 @@ class DetectedExternalApplication(BaseModel):
             return DetectedExternalApplication.parse_obj(obj)
 
         _obj = DetectedExternalApplication.parse_obj({
-            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
             "name": obj.get("name"),
+            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
             "version": obj.get("version")
         })
         return _obj

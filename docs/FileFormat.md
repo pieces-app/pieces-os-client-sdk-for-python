@@ -5,8 +5,8 @@ This describes a FileFormat. If you need meta data you can get all of that from 
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 **bytes** | [**TransferableBytes**](TransferableBytes.md) |  | [optional] 
+**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 **string** | [**TransferableString**](TransferableString.md) |  | [optional] 
 
 ## Example

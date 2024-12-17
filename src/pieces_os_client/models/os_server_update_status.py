@@ -29,11 +29,11 @@ class OSServerUpdateStatus(BaseModel):
     """
     This is the model for the progress of the current update of Pieces os.  /os/update/check/stream && /os/update/check/  we will emit on a progress update  updated: is an optional property that will let us know when the update was checked last.  NOTE: it is reccommended to use the stream instead of pulling. NOTE: lets think about if we want to have a closing(as well as how we want to handle restarts)  # noqa: E501
     """
+    percentage: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="Optionally if the update is in progress you will recieve a download percent(from 0-100).")
     var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     status: UpdatingStatusEnum = Field(...)
     updated: Optional[GroupedTimestamp] = None
-    percentage: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="Optionally if the update is in progress you will recieve a download percent(from 0-100).")
-    __properties = ["schema", "status", "updated", "percentage"]
+    __properties = ["percentage", "schema", "status", "updated"]
 
     class Config:
         """Pydantic configuration"""
@@ -82,10 +82,10 @@ class OSServerUpdateStatus(BaseModel):
             return OSServerUpdateStatus.parse_obj(obj)
 
         _obj = OSServerUpdateStatus.parse_obj({
+            "percentage": obj.get("percentage"),
             "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
             "status": obj.get("status"),
-            "updated": GroupedTimestamp.from_dict(obj.get("updated")) if obj.get("updated") is not None else None,
-            "percentage": obj.get("percentage")
+            "updated": GroupedTimestamp.from_dict(obj.get("updated")) if obj.get("updated") is not None else None
         })
         return _obj
 

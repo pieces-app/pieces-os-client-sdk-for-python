@@ -29,11 +29,11 @@ class BackupStreamedProgress(BaseModel):
     """
     This is a specific model to the /backups/create/streamed.  # noqa: E501
     """
+    backup: Optional[Backup] = None
+    percentage: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="Optionally if the download is in progress you will recieve a download percent(from 0-100).")
     var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     status: Optional[ModelDownloadProgressStatusEnum] = None
-    percentage: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="Optionally if the download is in progress you will recieve a download percent(from 0-100).")
-    backup: Optional[Backup] = None
-    __properties = ["schema", "status", "percentage", "backup"]
+    __properties = ["backup", "percentage", "schema", "status"]
 
     class Config:
         """Pydantic configuration"""
@@ -59,12 +59,12 @@ class BackupStreamedProgress(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of var_schema
-        if self.var_schema:
-            _dict['schema'] = self.var_schema.to_dict()
         # override the default output from pydantic by calling `to_dict()` of backup
         if self.backup:
             _dict['backup'] = self.backup.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of var_schema
+        if self.var_schema:
+            _dict['schema'] = self.var_schema.to_dict()
         # set to None if percentage (nullable) is None
         # and __fields_set__ contains the field
         if self.percentage is None and "percentage" in self.__fields_set__:
@@ -82,10 +82,10 @@ class BackupStreamedProgress(BaseModel):
             return BackupStreamedProgress.parse_obj(obj)
 
         _obj = BackupStreamedProgress.parse_obj({
-            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
-            "status": obj.get("status"),
+            "backup": Backup.from_dict(obj.get("backup")) if obj.get("backup") is not None else None,
             "percentage": obj.get("percentage"),
-            "backup": Backup.from_dict(obj.get("backup")) if obj.get("backup") is not None else None
+            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
+            "status": obj.get("status")
         })
         return _obj
 

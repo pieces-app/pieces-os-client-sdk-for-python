@@ -5,19 +5,19 @@ This represents what information that is relavent to anything and every sharing 
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
-**id** | **str** | This is the uuid that represents this share model. | 
-**user** | **str** | this is the uuid of the user that the share is created for. | [optional] 
-**asset** | [**FlattenedAsset**](FlattenedAsset.md) |  | [optional] 
-**assets** | [**FlattenedAssets**](FlattenedAssets.md) |  | [optional] 
-**link** | **str** | This is the prebuilt link. | 
 **access** | [**AccessEnum**](AccessEnum.md) |  | 
 **accessors** | [**Accessors**](Accessors.md) |  | 
+**asset** | [**FlattenedAsset**](FlattenedAsset.md) |  | [optional] 
+**assets** | [**FlattenedAssets**](FlattenedAssets.md) |  | [optional] 
 **created** | [**GroupedTimestamp**](GroupedTimestamp.md) |  | 
-**short** | **str** | This is a shortened version of our uuid. | 
-**name** | **str** | this is an optional name we can give to the link, ie ?p&#x3D;JAVASCRIPT or what ever the user wants as long as it is available. | [optional] 
 **distributions** | [**Distributions**](Distributions.md) |  | [optional] 
+**id** | **str** | This is the uuid that represents this share model. | 
+**link** | **str** | This is the prebuilt link. | 
+**name** | **str** | this is an optional name we can give to the link, ie ?p&#x3D;JAVASCRIPT or what ever the user wants as long as it is available. | [optional] 
+**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 **score** | [**Score**](Score.md) |  | [optional] 
+**short** | **str** | This is a shortened version of our uuid. | 
+**user** | **str** | this is the uuid of the user that the share is created for. | [optional] 
 
 ## Example
 

@@ -5,9 +5,9 @@ This will take a single message, and a role.
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**role** | [**QGPTConversationMessageRoleEnum**](QGPTConversationMessageRoleEnum.md) |  | 
 **var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 **text** | **str** |  | 
-**role** | [**QGPTConversationMessageRoleEnum**](QGPTConversationMessageRoleEnum.md) |  | 
 **timestamp** | [**GroupedTimestamp**](GroupedTimestamp.md) |  | 
 
 ## Example

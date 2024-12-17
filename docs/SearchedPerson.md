@@ -5,12 +5,12 @@ This is used for the Persons searching endpoint.  person here is only provided i
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
-**person** | [**Person**](Person.md) |  | [optional] 
 **exact** | **bool** |  | 
+**identifier** | **str** | This is the uuid of the person. | 
+**person** | [**Person**](Person.md) |  | [optional] 
+**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 **similarity** | **float** |  | 
 **temporal** | **bool** |  | [optional] 
-**identifier** | **str** | This is the uuid of the person. | 
 
 ## Example
 

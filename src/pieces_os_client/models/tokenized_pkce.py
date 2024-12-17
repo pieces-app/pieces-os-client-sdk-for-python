@@ -27,19 +27,19 @@ class TokenizedPKCE(BaseModel):
     """
     This is the flow that mobile apps use to access an API. Use this endpoint to exchange an Authorization Code for a Token.  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
-    grant_type: StrictStr = Field(default=..., description="Denotes the flow you are using. For Authorization Code, use authorization_code or refresh_token.")
+    audience: Optional[StrictStr] = Field(default=None, description="The audience domain: i.e. https://pieces.us.auth0.com")
     client_id: StrictStr = Field(default=..., description="Your application's Client ID.")
     code: StrictStr = Field(default=..., description="The Authorization Code received from the initial /authorize call.")
-    redirect_uri: StrictStr = Field(default=..., description="This is required only if it was set at the GET /authorize endpoint. The values must match.")
     code_verifier: StrictStr = Field(default=..., description="Cryptographically random key that was used to generate the code_challenge passed to /authorize.")
-    audience: Optional[StrictStr] = Field(default=None, description="The audience domain: i.e. https://pieces.us.auth0.com")
-    __properties = ["schema", "grant_type", "client_id", "code", "redirect_uri", "code_verifier", "audience"]
+    grant_type: StrictStr = Field(default=..., description="Denotes the flow you are using. For Authorization Code, use authorization_code or refresh_token.")
+    redirect_uri: StrictStr = Field(default=..., description="This is required only if it was set at the GET /authorize endpoint. The values must match.")
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
+    __properties = ["audience", "client_id", "code", "code_verifier", "grant_type", "redirect_uri", "schema"]
 
     @validator('grant_type')
     def grant_type_validate_enum(cls, value):
         """Validates the enum"""
-        if value not in ('refresh_token', 'authorization_code'):
+        if value not in ('refresh_token', 'authorization_code',):
             raise ValueError("must be one of enum values ('refresh_token', 'authorization_code')")
         return value
 
@@ -82,13 +82,13 @@ class TokenizedPKCE(BaseModel):
             return TokenizedPKCE.parse_obj(obj)
 
         _obj = TokenizedPKCE.parse_obj({
-            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
-            "grant_type": obj.get("grant_type"),
+            "audience": obj.get("audience"),
             "client_id": obj.get("client_id"),
             "code": obj.get("code"),
-            "redirect_uri": obj.get("redirect_uri"),
             "code_verifier": obj.get("code_verifier"),
-            "audience": obj.get("audience")
+            "grant_type": obj.get("grant_type"),
+            "redirect_uri": obj.get("redirect_uri"),
+            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None
         })
         return _obj
 

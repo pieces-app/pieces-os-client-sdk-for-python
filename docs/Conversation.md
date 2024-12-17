@@ -5,26 +5,26 @@ This is a fully referenced Conversation.  This will hold together a conversation
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
-**id** | **str** |  | 
-**name** | **str** | This is a name that is customized. | [optional] 
-**created** | [**GroupedTimestamp**](GroupedTimestamp.md) |  | 
-**updated** | [**GroupedTimestamp**](GroupedTimestamp.md) |  | 
-**deleted** | [**GroupedTimestamp**](GroupedTimestamp.md) |  | [optional] 
-**favorited** | **bool** |  | [optional] 
-**application** | [**Application**](Application.md) |  | [optional] 
+**anchors** | [**FlattenedAnchors**](FlattenedAnchors.md) |  | [optional] 
 **annotations** | [**FlattenedAnnotations**](FlattenedAnnotations.md) |  | [optional] 
+**application** | [**Application**](Application.md) |  | [optional] 
+**assets** | [**FlattenedAssets**](FlattenedAssets.md) |  | [optional] 
+**created** | [**GroupedTimestamp**](GroupedTimestamp.md) |  | 
+**deleted** | [**GroupedTimestamp**](GroupedTimestamp.md) |  | [optional] 
+**demo** | **bool** | This will let us know if this conversation was generated as a &#39;demo&#39; conversation | [optional] 
+**favorited** | **bool** |  | [optional] 
+**grounding** | [**ConversationGrounding**](ConversationGrounding.md) |  | [optional] 
+**id** | **str** |  | 
 **messages** | [**FlattenedConversationMessages**](FlattenedConversationMessages.md) |  | 
 **model** | [**ReferencedModel**](ReferencedModel.md) |  | [optional] 
-**assets** | [**FlattenedAssets**](FlattenedAssets.md) |  | [optional] 
-**websites** | [**FlattenedWebsites**](FlattenedWebsites.md) |  | [optional] 
-**anchors** | [**FlattenedAnchors**](FlattenedAnchors.md) |  | [optional] 
-**type** | [**ConversationTypeEnum**](ConversationTypeEnum.md) |  | 
-**grounding** | [**ConversationGrounding**](ConversationGrounding.md) |  | [optional] 
-**score** | [**Score**](Score.md) |  | [optional] 
+**name** | **str** | This is a name that is customized. | [optional] 
 **pipeline** | [**QGPTPromptPipeline**](QGPTPromptPipeline.md) |  | [optional] 
-**demo** | **bool** | This will let us know if this conversation was generated as a &#39;demo&#39; conversation | [optional] 
+**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
+**score** | [**Score**](Score.md) |  | [optional] 
 **summaries** | [**FlattenedWorkstreamSummaries**](FlattenedWorkstreamSummaries.md) |  | [optional] 
+**type** | [**ConversationTypeEnum**](ConversationTypeEnum.md) |  | 
+**updated** | [**GroupedTimestamp**](GroupedTimestamp.md) |  | 
+**websites** | [**FlattenedWebsites**](FlattenedWebsites.md) |  | [optional] 
 
 ## Example
 

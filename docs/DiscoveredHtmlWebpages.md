@@ -5,9 +5,9 @@ Assumption: The iterable will be in the exact same order as it was passed in wit
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
-**iterable** | [**List[DiscoveredHtmlWebpage]**](DiscoveredHtmlWebpage.md) |  | 
 **application** | **str** |  | 
+**iterable** | [**List[DiscoveredHtmlWebpage]**](DiscoveredHtmlWebpage.md) |  | 
+**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 
 ## Example
 

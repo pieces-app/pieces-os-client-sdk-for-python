@@ -27,10 +27,10 @@ class WorkstreamEventContext(BaseModel):
     """
     This is a free form data object that will enable additional data to be passed into SeededWorkstreamEvent, that corresponds to the event on the WorkstreamEvent.  This is a WIP object.  Need to think if we want to do something like raw:string (that is just a jsonObject) that is stringified, or if we add specific bits of data that we want. and specific fields for each event.  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
-    ide: Optional[WorkstreamEventTriggerContextIDE] = None
     browser: Optional[WorkstreamEventTriggerContextBrowser] = None
-    __properties = ["schema", "ide", "browser"]
+    ide: Optional[WorkstreamEventTriggerContextIDE] = None
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
+    __properties = ["browser", "ide", "schema"]
 
     class Config:
         """Pydantic configuration"""
@@ -56,15 +56,15 @@ class WorkstreamEventContext(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of var_schema
-        if self.var_schema:
-            _dict['schema'] = self.var_schema.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of ide
-        if self.ide:
-            _dict['ide'] = self.ide.to_dict()
         # override the default output from pydantic by calling `to_dict()` of browser
         if self.browser:
             _dict['browser'] = self.browser.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of ide
+        if self.ide:
+            _dict['ide'] = self.ide.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of var_schema
+        if self.var_schema:
+            _dict['schema'] = self.var_schema.to_dict()
         return _dict
 
     @classmethod
@@ -77,9 +77,9 @@ class WorkstreamEventContext(BaseModel):
             return WorkstreamEventContext.parse_obj(obj)
 
         _obj = WorkstreamEventContext.parse_obj({
-            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
+            "browser": WorkstreamEventTriggerContextBrowser.from_dict(obj.get("browser")) if obj.get("browser") is not None else None,
             "ide": WorkstreamEventTriggerContextIDE.from_dict(obj.get("ide")) if obj.get("ide") is not None else None,
-            "browser": WorkstreamEventTriggerContextBrowser.from_dict(obj.get("browser")) if obj.get("browser") is not None else None
+            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None
         })
         return _obj
 

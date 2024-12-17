@@ -5,23 +5,23 @@ This is used to map the types of the iterable to given booleans of their respect
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**var_schema** | **bool** |  | [optional] 
-**summary** | **bool** |  | [optional] 
-**asset** | **bool** |  | [optional] 
-**tag** | **bool** |  | [optional] 
-**website** | **bool** |  | [optional] 
 **anchor** | **bool** |  | [optional] 
+**anchors** | **bool** |  | [optional] 
+**asset** | **bool** |  | [optional] 
+**assets** | **bool** |  | [optional] 
 **conversation** | **bool** |  | [optional] 
+**conversations** | **bool** |  | [optional] 
 **person** | **bool** |  | [optional] 
+**persons** | **bool** |  | [optional] 
+**var_schema** | **bool** |  | [optional] 
 **seed** | **bool** |  | [optional] 
 **seeds** | **bool** |  | [optional] 
 **summaries** | **bool** |  | [optional] 
-**assets** | **bool** |  | [optional] 
+**summary** | **bool** |  | [optional] 
+**tag** | **bool** |  | [optional] 
 **tags** | **bool** |  | [optional] 
+**website** | **bool** |  | [optional] 
 **websites** | **bool** |  | [optional] 
-**anchors** | **bool** |  | [optional] 
-**conversations** | **bool** |  | [optional] 
-**persons** | **bool** |  | [optional] 
 
 ## Example
 

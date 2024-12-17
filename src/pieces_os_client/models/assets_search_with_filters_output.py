@@ -28,9 +28,9 @@ class AssetsSearchWithFiltersOutput(BaseModel):
     """
     output for the /assets/search [POST]   # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     results: SearchedAssets = Field(...)
-    __properties = ["schema", "results"]
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
+    __properties = ["results", "schema"]
 
     class Config:
         """Pydantic configuration"""
@@ -56,12 +56,12 @@ class AssetsSearchWithFiltersOutput(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of var_schema
-        if self.var_schema:
-            _dict['schema'] = self.var_schema.to_dict()
         # override the default output from pydantic by calling `to_dict()` of results
         if self.results:
             _dict['results'] = self.results.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of var_schema
+        if self.var_schema:
+            _dict['schema'] = self.var_schema.to_dict()
         return _dict
 
     @classmethod
@@ -74,8 +74,8 @@ class AssetsSearchWithFiltersOutput(BaseModel):
             return AssetsSearchWithFiltersOutput.parse_obj(obj)
 
         _obj = AssetsSearchWithFiltersOutput.parse_obj({
-            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
-            "results": SearchedAssets.from_dict(obj.get("results")) if obj.get("results") is not None else None
+            "results": SearchedAssets.from_dict(obj.get("results")) if obj.get("results") is not None else None,
+            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None
         })
         return _obj
 

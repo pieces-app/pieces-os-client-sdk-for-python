@@ -28,10 +28,10 @@ class AssetFilters(BaseModel):
     """
     AssetFilters
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     iterable: conlist(AssetFilter) = Field(...)
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     type: Optional[FilterOperationTypeEnum] = None
-    __properties = ["schema", "iterable", "type"]
+    __properties = ["iterable", "schema", "type"]
 
     class Config:
         """Pydantic configuration"""
@@ -57,9 +57,6 @@ class AssetFilters(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of var_schema
-        if self.var_schema:
-            _dict['schema'] = self.var_schema.to_dict()
         # override the default output from pydantic by calling `to_dict()` of each item in iterable (list)
         _items = []
         if self.iterable:
@@ -67,6 +64,9 @@ class AssetFilters(BaseModel):
                 if _item:
                     _items.append(_item.to_dict())
             _dict['iterable'] = _items
+        # override the default output from pydantic by calling `to_dict()` of var_schema
+        if self.var_schema:
+            _dict['schema'] = self.var_schema.to_dict()
         return _dict
 
     @classmethod
@@ -79,8 +79,8 @@ class AssetFilters(BaseModel):
             return AssetFilters.parse_obj(obj)
 
         _obj = AssetFilters.parse_obj({
-            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
             "iterable": [AssetFilter.from_dict(_item) for _item in obj.get("iterable")] if obj.get("iterable") is not None else None,
+            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
             "type": obj.get("type")
         })
         return _obj

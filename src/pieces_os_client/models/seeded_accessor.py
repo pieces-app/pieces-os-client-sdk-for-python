@@ -28,11 +28,11 @@ class SeededAccessor(BaseModel):
     """
     This is a pre-created accessor that simply takes an os id and an optional user(flattened)  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     os: StrictStr = Field(default=..., description="this is an os id.")
-    user: Optional[FlattenedUserProfile] = None
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     share: StrictStr = Field(default=..., description="this is the share that the asset is apart of.")
-    __properties = ["schema", "os", "user", "share"]
+    user: Optional[FlattenedUserProfile] = None
+    __properties = ["os", "schema", "share", "user"]
 
     class Config:
         """Pydantic configuration"""
@@ -76,10 +76,10 @@ class SeededAccessor(BaseModel):
             return SeededAccessor.parse_obj(obj)
 
         _obj = SeededAccessor.parse_obj({
-            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
             "os": obj.get("os"),
-            "user": FlattenedUserProfile.from_dict(obj.get("user")) if obj.get("user") is not None else None,
-            "share": obj.get("share")
+            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
+            "share": obj.get("share"),
+            "user": FlattenedUserProfile.from_dict(obj.get("user")) if obj.get("user") is not None else None
         })
         return _obj
 

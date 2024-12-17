@@ -27,9 +27,9 @@ class Theme(BaseModel):
     """
     This will describe the theme that belongs to a user.  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     dark: StrictBool = Field(...)
-    __properties = ["schema", "dark"]
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
+    __properties = ["dark", "schema"]
 
     class Config:
         """Pydantic configuration"""
@@ -70,8 +70,8 @@ class Theme(BaseModel):
             return Theme.parse_obj(obj)
 
         _obj = Theme.parse_obj({
-            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
-            "dark": obj.get("dark")
+            "dark": obj.get("dark"),
+            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None
         })
         return _obj
 

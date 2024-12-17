@@ -5,9 +5,9 @@ you will have at minimum 2 urls,  base: is the default url of your cloud.  id: i
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 **base** | [**AllocationCloudUrl**](AllocationCloudUrl.md) |  | 
 **id** | [**AllocationCloudUrl**](AllocationCloudUrl.md) |  | 
+**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 **vanity** | [**AllocationCloudUrl**](AllocationCloudUrl.md) |  | [optional] 
 
 ## Example

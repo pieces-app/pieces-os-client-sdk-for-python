@@ -35,17 +35,17 @@ class SeededAssetMetadata(BaseModel):
     """
     This is optional metadata sent with the SeededAsset and other SeededAssets ie (UE, Jetbrains...)  Note: if a user/develop didnt explicitly state a mechanism we will default to manual(user Driven only)  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
-    name: Optional[StrictStr] = Field(default=None, description="This is the name of the asset.")
-    mechanism: Optional[MechanismEnum] = None
-    tags: Optional[conlist(SeededAssetTag)] = Field(default=None, description="(optional) can add some tags to associate to this asset.")
-    websites: Optional[conlist(SeededAssetWebsite)] = None
-    sensitives: Optional[conlist(SeededAssetSensitive)] = None
-    persons: Optional[conlist(SeededPerson)] = None
+    anchors: Optional[conlist(SeededAnchor)] = None
     annotations: Optional[conlist(SeededAnnotation)] = None
     hints: Optional[conlist(SeededHint)] = None
-    anchors: Optional[conlist(SeededAnchor)] = None
-    __properties = ["schema", "name", "mechanism", "tags", "websites", "sensitives", "persons", "annotations", "hints", "anchors"]
+    mechanism: Optional[MechanismEnum] = None
+    name: Optional[StrictStr] = Field(default=None, description="This is the name of the asset.")
+    persons: Optional[conlist(SeededPerson)] = None
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
+    sensitives: Optional[conlist(SeededAssetSensitive)] = None
+    tags: Optional[conlist(SeededAssetTag)] = Field(default=None, description="(optional) can add some tags to associate to this asset.")
+    websites: Optional[conlist(SeededAssetWebsite)] = None
+    __properties = ["anchors", "annotations", "hints", "mechanism", "name", "persons", "schema", "sensitives", "tags", "websites"]
 
     class Config:
         """Pydantic configuration"""
@@ -71,37 +71,13 @@ class SeededAssetMetadata(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of var_schema
-        if self.var_schema:
-            _dict['schema'] = self.var_schema.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of each item in tags (list)
+        # override the default output from pydantic by calling `to_dict()` of each item in anchors (list)
         _items = []
-        if self.tags:
-            for _item in self.tags:
+        if self.anchors:
+            for _item in self.anchors:
                 if _item:
                     _items.append(_item.to_dict())
-            _dict['tags'] = _items
-        # override the default output from pydantic by calling `to_dict()` of each item in websites (list)
-        _items = []
-        if self.websites:
-            for _item in self.websites:
-                if _item:
-                    _items.append(_item.to_dict())
-            _dict['websites'] = _items
-        # override the default output from pydantic by calling `to_dict()` of each item in sensitives (list)
-        _items = []
-        if self.sensitives:
-            for _item in self.sensitives:
-                if _item:
-                    _items.append(_item.to_dict())
-            _dict['sensitives'] = _items
-        # override the default output from pydantic by calling `to_dict()` of each item in persons (list)
-        _items = []
-        if self.persons:
-            for _item in self.persons:
-                if _item:
-                    _items.append(_item.to_dict())
-            _dict['persons'] = _items
+            _dict['anchors'] = _items
         # override the default output from pydantic by calling `to_dict()` of each item in annotations (list)
         _items = []
         if self.annotations:
@@ -116,13 +92,37 @@ class SeededAssetMetadata(BaseModel):
                 if _item:
                     _items.append(_item.to_dict())
             _dict['hints'] = _items
-        # override the default output from pydantic by calling `to_dict()` of each item in anchors (list)
+        # override the default output from pydantic by calling `to_dict()` of each item in persons (list)
         _items = []
-        if self.anchors:
-            for _item in self.anchors:
+        if self.persons:
+            for _item in self.persons:
                 if _item:
                     _items.append(_item.to_dict())
-            _dict['anchors'] = _items
+            _dict['persons'] = _items
+        # override the default output from pydantic by calling `to_dict()` of var_schema
+        if self.var_schema:
+            _dict['schema'] = self.var_schema.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of each item in sensitives (list)
+        _items = []
+        if self.sensitives:
+            for _item in self.sensitives:
+                if _item:
+                    _items.append(_item.to_dict())
+            _dict['sensitives'] = _items
+        # override the default output from pydantic by calling `to_dict()` of each item in tags (list)
+        _items = []
+        if self.tags:
+            for _item in self.tags:
+                if _item:
+                    _items.append(_item.to_dict())
+            _dict['tags'] = _items
+        # override the default output from pydantic by calling `to_dict()` of each item in websites (list)
+        _items = []
+        if self.websites:
+            for _item in self.websites:
+                if _item:
+                    _items.append(_item.to_dict())
+            _dict['websites'] = _items
         return _dict
 
     @classmethod
@@ -135,16 +135,16 @@ class SeededAssetMetadata(BaseModel):
             return SeededAssetMetadata.parse_obj(obj)
 
         _obj = SeededAssetMetadata.parse_obj({
-            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
-            "name": obj.get("name"),
-            "mechanism": obj.get("mechanism"),
-            "tags": [SeededAssetTag.from_dict(_item) for _item in obj.get("tags")] if obj.get("tags") is not None else None,
-            "websites": [SeededAssetWebsite.from_dict(_item) for _item in obj.get("websites")] if obj.get("websites") is not None else None,
-            "sensitives": [SeededAssetSensitive.from_dict(_item) for _item in obj.get("sensitives")] if obj.get("sensitives") is not None else None,
-            "persons": [SeededPerson.from_dict(_item) for _item in obj.get("persons")] if obj.get("persons") is not None else None,
+            "anchors": [SeededAnchor.from_dict(_item) for _item in obj.get("anchors")] if obj.get("anchors") is not None else None,
             "annotations": [SeededAnnotation.from_dict(_item) for _item in obj.get("annotations")] if obj.get("annotations") is not None else None,
             "hints": [SeededHint.from_dict(_item) for _item in obj.get("hints")] if obj.get("hints") is not None else None,
-            "anchors": [SeededAnchor.from_dict(_item) for _item in obj.get("anchors")] if obj.get("anchors") is not None else None
+            "mechanism": obj.get("mechanism"),
+            "name": obj.get("name"),
+            "persons": [SeededPerson.from_dict(_item) for _item in obj.get("persons")] if obj.get("persons") is not None else None,
+            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
+            "sensitives": [SeededAssetSensitive.from_dict(_item) for _item in obj.get("sensitives")] if obj.get("sensitives") is not None else None,
+            "tags": [SeededAssetTag.from_dict(_item) for _item in obj.get("tags")] if obj.get("tags") is not None else None,
+            "websites": [SeededAssetWebsite.from_dict(_item) for _item in obj.get("websites")] if obj.get("websites") is not None else None
         })
         return _obj
 

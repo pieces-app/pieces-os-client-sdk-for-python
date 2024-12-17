@@ -5,9 +5,9 @@ This is the output model for \"/conversation/{conversation}/summarize
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
-**conversation** | [**ReferencedConversation**](ReferencedConversation.md) |  | 
 **annotation** | [**ReferencedAnnotation**](ReferencedAnnotation.md) |  | 
+**conversation** | [**ReferencedConversation**](ReferencedConversation.md) |  | 
+**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 
 ## Example
 

@@ -27,10 +27,10 @@ class PreonboardedPersonaDetails(BaseModel):
     """
     This is an input body for the /machine_learning/text/technical_processing/generators/personification endpoint.  This will accept some of the personal details ie languages/personas && will transform this in to onbaording snippets  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     languages: Optional[conlist(StrictStr)] = None
     personas: Optional[conlist(StrictStr)] = None
-    __properties = ["schema", "languages", "personas"]
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
+    __properties = ["languages", "personas", "schema"]
 
     class Config:
         """Pydantic configuration"""
@@ -71,9 +71,9 @@ class PreonboardedPersonaDetails(BaseModel):
             return PreonboardedPersonaDetails.parse_obj(obj)
 
         _obj = PreonboardedPersonaDetails.parse_obj({
-            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
             "languages": obj.get("languages"),
-            "personas": obj.get("personas")
+            "personas": obj.get("personas"),
+            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None
         })
         return _obj
 

@@ -5,12 +5,12 @@ This is the data collected during the ocr analysis of an image.
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
-**id** | **str** |  | 
-**raw** | [**Format**](Format.md) |  | 
 **hocr** | [**Format**](Format.md) |  | 
+**id** | **str** |  | 
 **image** | **str** | this is a reference the the imageAnalysis. | 
 **model** | [**Model**](Model.md) |  | 
+**raw** | [**Format**](Format.md) |  | 
+**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 
 ## Example
 

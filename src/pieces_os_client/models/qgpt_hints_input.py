@@ -28,12 +28,12 @@ class QGPTHintsInput(BaseModel):
     """
     Query is your hints question. Relevant is the relevant snippets. Answer is the previous answer.(that we are asking a hint up for.)  Query and Answer are both optional here because, you may pass over relevant snippets over ahead of hand if you already have them to answer your questions.  # noqa: E501
     """
-    query: Optional[StrictStr] = None
     answer: Optional[QGPTQuestionAnswer] = None
-    relevant: RelevantQGPTSeeds = Field(...)
     application: Optional[StrictStr] = Field(default=None, description="optional application id")
     model: Optional[StrictStr] = Field(default=None, description="optional model id")
-    __properties = ["query", "answer", "relevant", "application", "model"]
+    query: Optional[StrictStr] = None
+    relevant: RelevantQGPTSeeds = Field(...)
+    __properties = ["answer", "application", "model", "query", "relevant"]
 
     class Config:
         """Pydantic configuration"""
@@ -77,11 +77,11 @@ class QGPTHintsInput(BaseModel):
             return QGPTHintsInput.parse_obj(obj)
 
         _obj = QGPTHintsInput.parse_obj({
-            "query": obj.get("query"),
             "answer": QGPTQuestionAnswer.from_dict(obj.get("answer")) if obj.get("answer") is not None else None,
-            "relevant": RelevantQGPTSeeds.from_dict(obj.get("relevant")) if obj.get("relevant") is not None else None,
             "application": obj.get("application"),
-            "model": obj.get("model")
+            "model": obj.get("model"),
+            "query": obj.get("query"),
+            "relevant": RelevantQGPTSeeds.from_dict(obj.get("relevant")) if obj.get("relevant") is not None else None
         })
         return _obj
 

@@ -27,10 +27,10 @@ class FilePickerInput(BaseModel):
     """
     This is the input model for the FilePicker  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
-    allowed_extensions: Optional[conlist(StrictStr)] = Field(default=None, alias="allowedExtensions")
     allow_multiple: Optional[StrictBool] = Field(default=None, alias="allowMultiple", description="default behavior is set to true")
-    __properties = ["schema", "allowedExtensions", "allowMultiple"]
+    allowed_extensions: Optional[conlist(StrictStr)] = Field(default=None, alias="allowedExtensions")
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
+    __properties = ["allowMultiple", "allowedExtensions", "schema"]
 
     class Config:
         """Pydantic configuration"""
@@ -71,9 +71,9 @@ class FilePickerInput(BaseModel):
             return FilePickerInput.parse_obj(obj)
 
         _obj = FilePickerInput.parse_obj({
-            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
+            "allow_multiple": obj.get("allowMultiple"),
             "allowed_extensions": obj.get("allowedExtensions"),
-            "allow_multiple": obj.get("allowMultiple")
+            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None
         })
         return _obj
 

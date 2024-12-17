@@ -27,9 +27,9 @@ class QGPTTaskPipelineForCodeFix(BaseModel):
     """
     This task is for fixing a bit of code.  This is a class so that we can add optional properties in the future.  Note: the snippet && language that needs to be fixed should be within the QGPTQuestionInput.relevant.  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     error: Optional[StrictStr] = Field(default=None, description="This is the error message provided from the IDE, that we can use to provide the solution.")
-    __properties = ["schema", "error"]
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
+    __properties = ["error", "schema"]
 
     class Config:
         """Pydantic configuration"""
@@ -70,8 +70,8 @@ class QGPTTaskPipelineForCodeFix(BaseModel):
             return QGPTTaskPipelineForCodeFix.parse_obj(obj)
 
         _obj = QGPTTaskPipelineForCodeFix.parse_obj({
-            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
-            "error": obj.get("error")
+            "error": obj.get("error"),
+            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None
         })
         return _obj
 

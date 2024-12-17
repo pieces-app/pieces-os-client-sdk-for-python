@@ -5,13 +5,13 @@ This is used for the WorkstreamSummaries searching endpoint  WorkstreamSummary h
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
-**summary** | [**WorkstreamSummary**](WorkstreamSummary.md) |  | [optional] 
 **annotations** | [**SearchedAnnotations**](SearchedAnnotations.md) |  | [optional] 
 **exact** | **bool** |  | 
-**similarity** | **float** |  | 
-**temporal** | **bool** |  | [optional] 
 **identifier** | **str** | This is the uuid of the WorkstreamSummary. | 
+**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
+**similarity** | **float** |  | 
+**summary** | [**WorkstreamSummary**](WorkstreamSummary.md) |  | [optional] 
+**temporal** | **bool** |  | [optional] 
 
 ## Example
 

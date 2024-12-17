@@ -27,10 +27,10 @@ class GroupedTimestamp(BaseModel):
     """
     A helper classs to wrap Date-Time Values with Useful Helper Properties  # noqa: E501
     """
+    readable: Optional[StrictStr] = None
     var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     value: datetime = Field(...)
-    readable: Optional[StrictStr] = None
-    __properties = ["schema", "value", "readable"]
+    __properties = ["readable", "schema", "value"]
 
     class Config:
         """Pydantic configuration"""
@@ -71,9 +71,9 @@ class GroupedTimestamp(BaseModel):
             return GroupedTimestamp.parse_obj(obj)
 
         _obj = GroupedTimestamp.parse_obj({
+            "readable": obj.get("readable"),
             "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
-            "value": obj.get("value"),
-            "readable": obj.get("readable")
+            "value": obj.get("value")
         })
         return _obj
 

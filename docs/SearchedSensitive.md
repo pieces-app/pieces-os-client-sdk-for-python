@@ -5,12 +5,12 @@ This is used for the Sensitives searching endpoint.  sensitive here is only prov
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**exact** | **bool** |  | 
+**identifier** | **str** | This is the uuid of the sensitive. | 
 **var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 **sensitive** | [**Sensitive**](Sensitive.md) |  | [optional] 
-**exact** | **bool** |  | 
 **similarity** | **float** |  | 
 **temporal** | **bool** |  | [optional] 
-**identifier** | **str** | This is the uuid of the sensitive. | 
 
 ## Example
 

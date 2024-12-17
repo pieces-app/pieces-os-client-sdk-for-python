@@ -27,9 +27,9 @@ class QGPTAgentRelatedRoutes(BaseModel):
     """
     This is specific for all the related materials, like people, tags, websites... xyz  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     people: Optional[StrictBool] = Field(default=None, description="optional bool, that will say if we reccomend to run related.people on this conversation, IFF set to TRUE.")
-    __properties = ["schema", "people"]
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
+    __properties = ["people", "schema"]
 
     class Config:
         """Pydantic configuration"""
@@ -70,8 +70,8 @@ class QGPTAgentRelatedRoutes(BaseModel):
             return QGPTAgentRelatedRoutes.parse_obj(obj)
 
         _obj = QGPTAgentRelatedRoutes.parse_obj({
-            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
-            "people": obj.get("people")
+            "people": obj.get("people"),
+            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None
         })
         return _obj
 

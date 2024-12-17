@@ -5,13 +5,13 @@ A relationship expresses a graph of like types, to build a relationship graph.  
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**created** | [**GroupedTimestamp**](GroupedTimestamp.md) |  | 
+**deleted** | [**GroupedTimestamp**](GroupedTimestamp.md) |  | [optional] 
+**edges** | [**Edges**](Edges.md) |  | 
+**embeddings** | [**Embeddings**](Embeddings.md) |  | 
 **id** | **str** |  | 
 **var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
-**embeddings** | [**Embeddings**](Embeddings.md) |  | 
-**edges** | [**Edges**](Edges.md) |  | 
-**created** | [**GroupedTimestamp**](GroupedTimestamp.md) |  | 
 **updated** | [**GroupedTimestamp**](GroupedTimestamp.md) |  | 
-**deleted** | [**GroupedTimestamp**](GroupedTimestamp.md) |  | [optional] 
 
 ## Example
 

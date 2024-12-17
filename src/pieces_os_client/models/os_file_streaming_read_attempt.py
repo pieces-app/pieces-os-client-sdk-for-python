@@ -27,9 +27,9 @@ class OSFileStreamingReadAttempt(BaseModel):
     """
     OSFileStreamingReadAttempt
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     path: StrictStr = Field(...)
-    __properties = ["schema", "path"]
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
+    __properties = ["path", "schema"]
 
     class Config:
         """Pydantic configuration"""
@@ -70,8 +70,8 @@ class OSFileStreamingReadAttempt(BaseModel):
             return OSFileStreamingReadAttempt.parse_obj(obj)
 
         _obj = OSFileStreamingReadAttempt.parse_obj({
-            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
-            "path": obj.get("path")
+            "path": obj.get("path"),
+            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None
         })
         return _obj
 

@@ -5,11 +5,11 @@ Assumption: filters applied in this model will overwrite filters passed in Seede
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
-**file** | [**SeededFile**](SeededFile.md) |  | [optional] 
-**fragment** | [**SeededFragment**](SeededFragment.md) |  | [optional] 
 **directory** | **str** |  | [optional] 
+**file** | [**SeededFile**](SeededFile.md) |  | [optional] 
 **filters** | [**TLPDirectedDiscoveryFilters**](TLPDirectedDiscoveryFilters.md) |  | [optional] 
+**fragment** | [**SeededFragment**](SeededFragment.md) |  | [optional] 
+**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 
 ## Example
 

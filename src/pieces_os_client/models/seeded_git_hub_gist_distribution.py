@@ -28,12 +28,12 @@ class SeededGitHubGistDistribution(BaseModel):
     """
     This is the minimum information needed to distribute a Piece to a Gist.  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
-    recipients: Optional[Recipients] = None
-    public: Optional[StrictBool] = Field(default=None, description="we will default to true")
     description: Optional[StrictStr] = Field(default=None, description="This is the description of the Gist Distribution")
     name: StrictStr = Field(default=..., description="This is the name of the gist you will add.")
-    __properties = ["schema", "recipients", "public", "description", "name"]
+    public: Optional[StrictBool] = Field(default=None, description="we will default to true")
+    recipients: Optional[Recipients] = None
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
+    __properties = ["description", "name", "public", "recipients", "schema"]
 
     class Config:
         """Pydantic configuration"""
@@ -59,12 +59,12 @@ class SeededGitHubGistDistribution(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of var_schema
-        if self.var_schema:
-            _dict['schema'] = self.var_schema.to_dict()
         # override the default output from pydantic by calling `to_dict()` of recipients
         if self.recipients:
             _dict['recipients'] = self.recipients.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of var_schema
+        if self.var_schema:
+            _dict['schema'] = self.var_schema.to_dict()
         return _dict
 
     @classmethod
@@ -77,11 +77,11 @@ class SeededGitHubGistDistribution(BaseModel):
             return SeededGitHubGistDistribution.parse_obj(obj)
 
         _obj = SeededGitHubGistDistribution.parse_obj({
-            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
-            "recipients": Recipients.from_dict(obj.get("recipients")) if obj.get("recipients") is not None else None,
-            "public": obj.get("public"),
             "description": obj.get("description"),
-            "name": obj.get("name")
+            "name": obj.get("name"),
+            "public": obj.get("public"),
+            "recipients": Recipients.from_dict(obj.get("recipients")) if obj.get("recipients") is not None else None,
+            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None
         })
         return _obj
 

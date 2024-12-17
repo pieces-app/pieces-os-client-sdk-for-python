@@ -27,10 +27,10 @@ class ByteDescriptor(BaseModel):
     """
     This is a nice microclass to help with managing the size of a File or Fragment in a readable way for UI's  # noqa: E501
     """
+    readable: StrictStr = Field(...)
     var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     value: StrictInt = Field(...)
-    readable: StrictStr = Field(...)
-    __properties = ["schema", "value", "readable"]
+    __properties = ["readable", "schema", "value"]
 
     class Config:
         """Pydantic configuration"""
@@ -71,9 +71,9 @@ class ByteDescriptor(BaseModel):
             return ByteDescriptor.parse_obj(obj)
 
         _obj = ByteDescriptor.parse_obj({
+            "readable": obj.get("readable"),
             "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
-            "value": obj.get("value"),
-            "readable": obj.get("readable")
+            "value": obj.get("value")
         })
         return _obj
 

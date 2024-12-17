@@ -5,10 +5,10 @@ Assumption: filters imposed in this model can be overwritten by passing them in 
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 **application** | **str** | application id. | 
-**iterable** | [**List[SeededDiscoverableAsset]**](SeededDiscoverableAsset.md) | This is an iterable of already snippitized snippets that we will compare &amp;&amp; cluster. | 
 **filters** | [**TLPDirectedDiscoveryFilters**](TLPDirectedDiscoveryFilters.md) |  | [optional] 
+**iterable** | [**List[SeededDiscoverableAsset]**](SeededDiscoverableAsset.md) | This is an iterable of already snippitized snippets that we will compare &amp;&amp; cluster. | 
+**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 
 ## Example
 

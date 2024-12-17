@@ -30,11 +30,11 @@ class Classification(BaseModel):
     """
     This is the specific classification of an Asset's Format.(This is on a per format basis b/c an asset could have different formats that are different format representations of the Asset.)  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     generic: ClassificationGenericEnum = Field(...)
-    specific: ClassificationSpecificEnum = Field(...)
     rendering: Optional[ClassificationRenderingEnum] = None
-    __properties = ["schema", "generic", "specific", "rendering"]
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
+    specific: ClassificationSpecificEnum = Field(...)
+    __properties = ["generic", "rendering", "schema", "specific"]
 
     class Config:
         """Pydantic configuration"""
@@ -75,10 +75,10 @@ class Classification(BaseModel):
             return Classification.parse_obj(obj)
 
         _obj = Classification.parse_obj({
-            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
             "generic": obj.get("generic"),
-            "specific": obj.get("specific"),
-            "rendering": obj.get("rendering")
+            "rendering": obj.get("rendering"),
+            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
+            "specific": obj.get("specific")
         })
         return _obj
 

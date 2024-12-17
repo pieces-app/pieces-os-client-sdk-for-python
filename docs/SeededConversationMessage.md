@@ -5,13 +5,13 @@ This is a seeded version of a ConversationMessage.  conversation is optional, th
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
-**created** | [**GroupedTimestamp**](GroupedTimestamp.md) |  | [optional] 
-**model** | [**Model**](Model.md) |  | [optional] 
-**fragment** | [**FragmentFormat**](FragmentFormat.md) |  | 
 **conversation** | [**ReferencedConversation**](ReferencedConversation.md) |  | [optional] 
-**sentiment** | [**ConversationMessageSentimentEnum**](ConversationMessageSentimentEnum.md) |  | [optional] 
+**created** | [**GroupedTimestamp**](GroupedTimestamp.md) |  | [optional] 
+**fragment** | [**FragmentFormat**](FragmentFormat.md) |  | 
+**model** | [**Model**](Model.md) |  | [optional] 
 **role** | [**QGPTConversationMessageRoleEnum**](QGPTConversationMessageRoleEnum.md) |  | 
+**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
+**sentiment** | [**ConversationMessageSentimentEnum**](ConversationMessageSentimentEnum.md) |  | [optional] 
 
 ## Example
 

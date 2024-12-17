@@ -27,11 +27,11 @@ class FlattenedImageAnalysis(BaseModel):
     """
     FlattenedImageAnalysis
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
+    analysis: StrictStr = Field(default=..., description="this is a reference to our (parent)analysis")
     id: StrictStr = Field(...)
     ocr: Optional[FlattenedOCRAnalysis] = None
-    analysis: StrictStr = Field(default=..., description="this is a reference to our (parent)analysis")
-    __properties = ["schema", "id", "ocr", "analysis"]
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
+    __properties = ["analysis", "id", "ocr", "schema"]
 
     class Config:
         """Pydantic configuration"""
@@ -57,12 +57,12 @@ class FlattenedImageAnalysis(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of var_schema
-        if self.var_schema:
-            _dict['schema'] = self.var_schema.to_dict()
         # override the default output from pydantic by calling `to_dict()` of ocr
         if self.ocr:
             _dict['ocr'] = self.ocr.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of var_schema
+        if self.var_schema:
+            _dict['schema'] = self.var_schema.to_dict()
         return _dict
 
     @classmethod
@@ -75,10 +75,10 @@ class FlattenedImageAnalysis(BaseModel):
             return FlattenedImageAnalysis.parse_obj(obj)
 
         _obj = FlattenedImageAnalysis.parse_obj({
-            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
+            "analysis": obj.get("analysis"),
             "id": obj.get("id"),
             "ocr": FlattenedOCRAnalysis.from_dict(obj.get("ocr")) if obj.get("ocr") is not None else None,
-            "analysis": obj.get("analysis")
+            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None
         })
         return _obj
 

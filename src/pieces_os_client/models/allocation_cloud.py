@@ -30,16 +30,16 @@ class AllocationCloud(BaseModel):
     """
     update && version: will be present only if your cloud was successfully spun up && running.  updated: is the last time this was updated.  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     id: StrictStr = Field(default=..., description="This is a uuid that represents this cloud.(this is the same as the userid)")
-    user: StrictStr = Field(default=..., description="this is your useruuid.")
-    urls: AllocationCloudUrls = Field(...)
-    status: AllocationCloudStatus = Field(...)
     project: StrictStr = Field(default=..., description="This is the project that this is attached to.")
-    updated: Optional[GroupedTimestamp] = None
-    version: Optional[StrictStr] = Field(default=None, description="this is the current version of the server.")
     region: Optional[StrictStr] = Field(default=None, description="this is the region where the project is defined.")
-    __properties = ["schema", "id", "user", "urls", "status", "project", "updated", "version", "region"]
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
+    status: AllocationCloudStatus = Field(...)
+    updated: Optional[GroupedTimestamp] = None
+    urls: AllocationCloudUrls = Field(...)
+    user: StrictStr = Field(default=..., description="this is your useruuid.")
+    version: Optional[StrictStr] = Field(default=None, description="this is the current version of the server.")
+    __properties = ["id", "project", "region", "schema", "status", "updated", "urls", "user", "version"]
 
     class Config:
         """Pydantic configuration"""
@@ -68,15 +68,15 @@ class AllocationCloud(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of var_schema
         if self.var_schema:
             _dict['schema'] = self.var_schema.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of urls
-        if self.urls:
-            _dict['urls'] = self.urls.to_dict()
         # override the default output from pydantic by calling `to_dict()` of status
         if self.status:
             _dict['status'] = self.status.to_dict()
         # override the default output from pydantic by calling `to_dict()` of updated
         if self.updated:
             _dict['updated'] = self.updated.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of urls
+        if self.urls:
+            _dict['urls'] = self.urls.to_dict()
         return _dict
 
     @classmethod
@@ -89,15 +89,15 @@ class AllocationCloud(BaseModel):
             return AllocationCloud.parse_obj(obj)
 
         _obj = AllocationCloud.parse_obj({
-            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
             "id": obj.get("id"),
-            "user": obj.get("user"),
-            "urls": AllocationCloudUrls.from_dict(obj.get("urls")) if obj.get("urls") is not None else None,
-            "status": AllocationCloudStatus.from_dict(obj.get("status")) if obj.get("status") is not None else None,
             "project": obj.get("project"),
+            "region": obj.get("region"),
+            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
+            "status": AllocationCloudStatus.from_dict(obj.get("status")) if obj.get("status") is not None else None,
             "updated": GroupedTimestamp.from_dict(obj.get("updated")) if obj.get("updated") is not None else None,
-            "version": obj.get("version"),
-            "region": obj.get("region")
+            "urls": AllocationCloudUrls.from_dict(obj.get("urls")) if obj.get("urls") is not None else None,
+            "user": obj.get("user"),
+            "version": obj.get("version")
         })
         return _obj
 

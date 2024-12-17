@@ -5,9 +5,9 @@ This model is used for the output of the /qgpt/related/persons endpoint.  Explan
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
-**persons** | [**Persons**](Persons.md) |  | 
 **explanations** | **Dict[str, str]** | This is a Map&lt;String, String&gt; where the the key is a person id. and the value is the explanation. | [optional] 
+**persons** | [**Persons**](Persons.md) |  | 
+**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 
 ## Example
 

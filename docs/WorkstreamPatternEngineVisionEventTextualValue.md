@@ -5,9 +5,9 @@ note: we could add a summarize property. TODO: might need an extracted bool to s
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
-**ocr** | [**TransferableString**](TransferableString.md) |  | [optional] 
 **extracted** | [**TextuallyExtractedMaterial**](TextuallyExtractedMaterial.md) |  | [optional] 
+**ocr** | [**TransferableString**](TransferableString.md) |  | [optional] 
+**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 
 ## Example
 

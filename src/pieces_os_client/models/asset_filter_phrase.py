@@ -28,13 +28,13 @@ class AssetFilterPhrase(BaseModel):
     """
     AssetFilterPhrase
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
-    value: Optional[StrictStr] = None
     annotation: Optional[StrictBool] = None
-    title: Optional[StrictBool] = None
     content: Optional[StrictBool] = None
     options: Optional[AssetFilterPhraseOptions] = None
-    __properties = ["schema", "value", "annotation", "title", "content", "options"]
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
+    title: Optional[StrictBool] = None
+    value: Optional[StrictStr] = None
+    __properties = ["annotation", "content", "options", "schema", "title", "value"]
 
     class Config:
         """Pydantic configuration"""
@@ -60,12 +60,12 @@ class AssetFilterPhrase(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of var_schema
-        if self.var_schema:
-            _dict['schema'] = self.var_schema.to_dict()
         # override the default output from pydantic by calling `to_dict()` of options
         if self.options:
             _dict['options'] = self.options.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of var_schema
+        if self.var_schema:
+            _dict['schema'] = self.var_schema.to_dict()
         return _dict
 
     @classmethod
@@ -78,12 +78,12 @@ class AssetFilterPhrase(BaseModel):
             return AssetFilterPhrase.parse_obj(obj)
 
         _obj = AssetFilterPhrase.parse_obj({
-            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
-            "value": obj.get("value"),
             "annotation": obj.get("annotation"),
-            "title": obj.get("title"),
             "content": obj.get("content"),
-            "options": AssetFilterPhraseOptions.from_dict(obj.get("options")) if obj.get("options") is not None else None
+            "options": AssetFilterPhraseOptions.from_dict(obj.get("options")) if obj.get("options") is not None else None,
+            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
+            "title": obj.get("title"),
+            "value": obj.get("value")
         })
         return _obj
 

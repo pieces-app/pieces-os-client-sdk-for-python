@@ -28,26 +28,26 @@ class Auth0User(BaseModel):
     """
       # noqa: E501
     """
-    name: Optional[StrictStr] = Field(default=None, description=" User's full name.")
-    picture: Optional[StrictStr] = Field(default=None, description="mapped from picture.URL pointing to the user's profile picture. ")
-    email: Optional[StrictStr] = None
+    blocked_for: Optional[conlist(StrictStr)] = None
     created_at: Optional[datetime] = None
+    email: Optional[StrictStr] = None
     email_verified: Optional[StrictBool] = Field(default=None, description="Indicates whether the user has verified their email address. Mapped from email_verified -> emailVerified.")
     family_name: Optional[StrictStr] = Field(default=None, description="User's family name.")
     given_name: Optional[StrictStr] = Field(default=None, description="User's given name. ")
+    guardian_authenticators: Optional[conlist(StrictStr)] = None
     identities: Optional[conlist(Auth0Identity)] = Field(default=None, description="Contains info retrieved from the identity provider with which the user originally authenticates.")
-    nickname: Optional[StrictStr] = Field(default=None, description="User's nickname. ")
-    updated_at: Optional[datetime] = None
-    username: Optional[StrictStr] = Field(default=None, description=" (unique) User's username.  ")
-    user_metadata: Optional[Auth0UserMetadata] = None
-    locale: Optional[StrictStr] = None
-    user_id: Optional[StrictStr] = None
     last_ip: Optional[StrictStr] = None
     last_login: Optional[datetime] = None
+    locale: Optional[StrictStr] = None
     logins_count: Optional[StrictInt] = None
-    blocked_for: Optional[conlist(StrictStr)] = None
-    guardian_authenticators: Optional[conlist(StrictStr)] = None
-    __properties = ["name", "picture", "email", "created_at", "email_verified", "family_name", "given_name", "identities", "nickname", "updated_at", "username", "user_metadata", "locale", "user_id", "last_ip", "last_login", "logins_count", "blocked_for", "guardian_authenticators"]
+    name: Optional[StrictStr] = Field(default=None, description=" User's full name.")
+    nickname: Optional[StrictStr] = Field(default=None, description="User's nickname. ")
+    picture: Optional[StrictStr] = Field(default=None, description="mapped from picture.URL pointing to the user's profile picture. ")
+    updated_at: Optional[datetime] = None
+    user_id: Optional[StrictStr] = None
+    user_metadata: Optional[Auth0UserMetadata] = None
+    username: Optional[StrictStr] = Field(default=None, description=" (unique) User's username.  ")
+    __properties = ["blocked_for", "created_at", "email", "email_verified", "family_name", "given_name", "guardian_authenticators", "identities", "last_ip", "last_login", "locale", "logins_count", "name", "nickname", "picture", "updated_at", "user_id", "user_metadata", "username"]
 
     class Config:
         """Pydantic configuration"""
@@ -95,25 +95,25 @@ class Auth0User(BaseModel):
             return Auth0User.parse_obj(obj)
 
         _obj = Auth0User.parse_obj({
-            "name": obj.get("name"),
-            "picture": obj.get("picture"),
-            "email": obj.get("email"),
+            "blocked_for": obj.get("blocked_for"),
             "created_at": obj.get("created_at"),
+            "email": obj.get("email"),
             "email_verified": obj.get("email_verified"),
             "family_name": obj.get("family_name"),
             "given_name": obj.get("given_name"),
+            "guardian_authenticators": obj.get("guardian_authenticators"),
             "identities": [Auth0Identity.from_dict(_item) for _item in obj.get("identities")] if obj.get("identities") is not None else None,
-            "nickname": obj.get("nickname"),
-            "updated_at": obj.get("updated_at"),
-            "username": obj.get("username"),
-            "user_metadata": Auth0UserMetadata.from_dict(obj.get("user_metadata")) if obj.get("user_metadata") is not None else None,
-            "locale": obj.get("locale"),
-            "user_id": obj.get("user_id"),
             "last_ip": obj.get("last_ip"),
             "last_login": obj.get("last_login"),
+            "locale": obj.get("locale"),
             "logins_count": obj.get("logins_count"),
-            "blocked_for": obj.get("blocked_for"),
-            "guardian_authenticators": obj.get("guardian_authenticators")
+            "name": obj.get("name"),
+            "nickname": obj.get("nickname"),
+            "picture": obj.get("picture"),
+            "updated_at": obj.get("updated_at"),
+            "user_id": obj.get("user_id"),
+            "user_metadata": Auth0UserMetadata.from_dict(obj.get("user_metadata")) if obj.get("user_metadata") is not None else None,
+            "username": obj.get("username")
         })
         return _obj
 

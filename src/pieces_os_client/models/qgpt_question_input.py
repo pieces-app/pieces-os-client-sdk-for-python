@@ -31,15 +31,15 @@ class QGPTQuestionInput(BaseModel):
     """
     This is the body input for the /code_gpt/question.  Note: - each relevant seed, must require at minimum a Seed or an id used from the /code_gpt/relevance endpoint or we will throw an error.  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
-    relevant: RelevantQGPTSeeds = Field(...)
-    query: StrictStr = Field(default=..., description="This is the user asked question.")
     application: Optional[StrictStr] = Field(default=None, description="optional application id")
-    model: Optional[StrictStr] = Field(default=None, description="optional model id")
     messages: Optional[FlattenedConversationMessages] = None
+    model: Optional[StrictStr] = Field(default=None, description="optional model id")
     pipeline: Optional[QGPTPromptPipeline] = None
+    query: StrictStr = Field(default=..., description="This is the user asked question.")
+    relevant: RelevantQGPTSeeds = Field(...)
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     temporal: Optional[TemporalRangeGrounding] = None
-    __properties = ["schema", "relevant", "query", "application", "model", "messages", "pipeline", "temporal"]
+    __properties = ["application", "messages", "model", "pipeline", "query", "relevant", "schema", "temporal"]
 
     class Config:
         """Pydantic configuration"""
@@ -65,18 +65,18 @@ class QGPTQuestionInput(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of var_schema
-        if self.var_schema:
-            _dict['schema'] = self.var_schema.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of relevant
-        if self.relevant:
-            _dict['relevant'] = self.relevant.to_dict()
         # override the default output from pydantic by calling `to_dict()` of messages
         if self.messages:
             _dict['messages'] = self.messages.to_dict()
         # override the default output from pydantic by calling `to_dict()` of pipeline
         if self.pipeline:
             _dict['pipeline'] = self.pipeline.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of relevant
+        if self.relevant:
+            _dict['relevant'] = self.relevant.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of var_schema
+        if self.var_schema:
+            _dict['schema'] = self.var_schema.to_dict()
         # override the default output from pydantic by calling `to_dict()` of temporal
         if self.temporal:
             _dict['temporal'] = self.temporal.to_dict()
@@ -92,13 +92,13 @@ class QGPTQuestionInput(BaseModel):
             return QGPTQuestionInput.parse_obj(obj)
 
         _obj = QGPTQuestionInput.parse_obj({
-            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
-            "relevant": RelevantQGPTSeeds.from_dict(obj.get("relevant")) if obj.get("relevant") is not None else None,
-            "query": obj.get("query"),
             "application": obj.get("application"),
-            "model": obj.get("model"),
             "messages": FlattenedConversationMessages.from_dict(obj.get("messages")) if obj.get("messages") is not None else None,
+            "model": obj.get("model"),
             "pipeline": QGPTPromptPipeline.from_dict(obj.get("pipeline")) if obj.get("pipeline") is not None else None,
+            "query": obj.get("query"),
+            "relevant": RelevantQGPTSeeds.from_dict(obj.get("relevant")) if obj.get("relevant") is not None else None,
+            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
             "temporal": TemporalRangeGrounding.from_dict(obj.get("temporal")) if obj.get("temporal") is not None else None
         })
         return _obj

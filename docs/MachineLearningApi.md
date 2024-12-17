@@ -78,7 +78,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **segment_technical_language**
-> SegmentedTechnicalLanguage segment_technical_language(classify=classify, unsegmented_technical_language=unsegmented_technical_language)
+> segment_technical_language(classify=classify, unsegmented_technical_language=unsegmented_technical_language)
 
 /machine_learning/text/technical_language/parsers/segmentation [POST]
 
@@ -90,7 +90,6 @@ This is a functional endpoint that will parse a message or text in to text or co
 import time
 import os
 import pieces_os_client
-from pieces_os_client.models.segmented_technical_language import SegmentedTechnicalLanguage
 from pieces_os_client.models.unsegmented_technical_language import UnsegmentedTechnicalLanguage
 from pieces_os_client.rest import ApiException
 from pprint import pprint
@@ -111,9 +110,7 @@ with pieces_os_client.ApiClient(configuration) as api_client:
 
     try:
         # /machine_learning/text/technical_language/parsers/segmentation [POST]
-        api_response = api_instance.segment_technical_language(classify=classify, unsegmented_technical_language=unsegmented_technical_language)
-        print("The response of MachineLearningApi->segment_technical_language:\n")
-        pprint(api_response)
+        api_instance.segment_technical_language(classify=classify, unsegmented_technical_language=unsegmented_technical_language)
     except Exception as e:
         print("Exception when calling MachineLearningApi->segment_technical_language: %s\n" % e)
 ```
@@ -129,7 +126,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**SegmentedTechnicalLanguage**](SegmentedTechnicalLanguage.md)
+void (empty response body)
 
 ### Authorization
 
@@ -138,7 +135,7 @@ No authorization required
 ### HTTP request headers
 
  - **Content-Type**: application/json
- - **Accept**: application/json, text/plain
+ - **Accept**: text/plain
 
 ### HTTP response details
 | Status code | Description | Response headers |

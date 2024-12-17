@@ -5,10 +5,10 @@ This is the specific classification of an Asset's Format.(This is on a per forma
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 **generic** | [**ClassificationGenericEnum**](ClassificationGenericEnum.md) |  | 
-**specific** | [**ClassificationSpecificEnum**](ClassificationSpecificEnum.md) |  | 
 **rendering** | [**ClassificationRenderingEnum**](ClassificationRenderingEnum.md) |  | [optional] 
+**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
+**specific** | [**ClassificationSpecificEnum**](ClassificationSpecificEnum.md) |  | 
 
 ## Example
 

@@ -5,14 +5,14 @@ This is used for the Conversations searching endpoint.  conversation here is onl
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
-**conversation** | [**Conversation**](Conversation.md) |  | [optional] 
-**messages** | [**SearchedConversationMessages**](SearchedConversationMessages.md) |  | [optional] 
 **annotations** | [**SearchedAnnotations**](SearchedAnnotations.md) |  | [optional] 
+**conversation** | [**Conversation**](Conversation.md) |  | [optional] 
 **exact** | **bool** |  | 
+**identifier** | **str** | This is the uuid of the conversation. | 
+**messages** | [**SearchedConversationMessages**](SearchedConversationMessages.md) |  | [optional] 
+**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 **similarity** | **float** |  | 
 **temporal** | **bool** |  | [optional] 
-**identifier** | **str** | This is the uuid of the conversation. | 
 
 ## Example
 

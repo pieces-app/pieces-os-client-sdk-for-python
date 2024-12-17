@@ -27,13 +27,13 @@ class SeededScore(BaseModel):
     """
     This is the low level seeded score and will let us know what exactly we want to increment on our material.  Note: ONLY include one of these, as we will only increment one of the following.  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
-    reuse: Optional[StrictBool] = None
-    update: Optional[StrictBool] = None
-    reference: Optional[StrictBool] = None
     priority: Optional[StrictBool] = None
+    reference: Optional[StrictBool] = None
+    reuse: Optional[StrictBool] = None
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     searched: Optional[StrictBool] = None
-    __properties = ["schema", "reuse", "update", "reference", "priority", "searched"]
+    update: Optional[StrictBool] = None
+    __properties = ["priority", "reference", "reuse", "schema", "searched", "update"]
 
     class Config:
         """Pydantic configuration"""
@@ -74,12 +74,12 @@ class SeededScore(BaseModel):
             return SeededScore.parse_obj(obj)
 
         _obj = SeededScore.parse_obj({
-            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
-            "reuse": obj.get("reuse"),
-            "update": obj.get("update"),
-            "reference": obj.get("reference"),
             "priority": obj.get("priority"),
-            "searched": obj.get("searched")
+            "reference": obj.get("reference"),
+            "reuse": obj.get("reuse"),
+            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
+            "searched": obj.get("searched"),
+            "update": obj.get("update")
         })
         return _obj
 

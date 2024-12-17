@@ -32,20 +32,20 @@ class FlattenedShare(BaseModel):
     """
     This is a dag safe version of the Share.  if user is undefined && access is public then we have an asset that is publicly available.  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
-    id: StrictStr = Field(default=..., description="This references the share it self.")
-    asset: Optional[StrictStr] = Field(default=None, description="this is the asset id on the flattened share.")
-    user: Optional[StrictStr] = Field(default=None, description="this is the uuid of the user that the share is created for.")
-    link: StrictStr = Field(default=..., description="this is the prebuilt link.")
     access: AccessEnum = Field(...)
     accessors: Accessors = Field(...)
-    created: GroupedTimestamp = Field(...)
-    short: StrictStr = Field(default=..., description="This is a shortened version of our uuid.")
-    name: Optional[StrictStr] = None
+    asset: Optional[StrictStr] = Field(default=None, description="this is the asset id on the flattened share.")
     assets: Optional[FlattenedAssets] = None
+    created: GroupedTimestamp = Field(...)
     distributions: Optional[FlattenedDistributions] = None
+    id: StrictStr = Field(default=..., description="This references the share it self.")
+    link: StrictStr = Field(default=..., description="this is the prebuilt link.")
+    name: Optional[StrictStr] = None
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     score: Optional[Score] = None
-    __properties = ["schema", "id", "asset", "user", "link", "access", "accessors", "created", "short", "name", "assets", "distributions", "score"]
+    short: StrictStr = Field(default=..., description="This is a shortened version of our uuid.")
+    user: Optional[StrictStr] = Field(default=None, description="this is the uuid of the user that the share is created for.")
+    __properties = ["access", "accessors", "asset", "assets", "created", "distributions", "id", "link", "name", "schema", "score", "short", "user"]
 
     class Config:
         """Pydantic configuration"""
@@ -71,21 +71,21 @@ class FlattenedShare(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of var_schema
-        if self.var_schema:
-            _dict['schema'] = self.var_schema.to_dict()
         # override the default output from pydantic by calling `to_dict()` of accessors
         if self.accessors:
             _dict['accessors'] = self.accessors.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of created
-        if self.created:
-            _dict['created'] = self.created.to_dict()
         # override the default output from pydantic by calling `to_dict()` of assets
         if self.assets:
             _dict['assets'] = self.assets.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of created
+        if self.created:
+            _dict['created'] = self.created.to_dict()
         # override the default output from pydantic by calling `to_dict()` of distributions
         if self.distributions:
             _dict['distributions'] = self.distributions.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of var_schema
+        if self.var_schema:
+            _dict['schema'] = self.var_schema.to_dict()
         # override the default output from pydantic by calling `to_dict()` of score
         if self.score:
             _dict['score'] = self.score.to_dict()
@@ -101,19 +101,19 @@ class FlattenedShare(BaseModel):
             return FlattenedShare.parse_obj(obj)
 
         _obj = FlattenedShare.parse_obj({
-            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
-            "id": obj.get("id"),
-            "asset": obj.get("asset"),
-            "user": obj.get("user"),
-            "link": obj.get("link"),
             "access": obj.get("access"),
             "accessors": Accessors.from_dict(obj.get("accessors")) if obj.get("accessors") is not None else None,
-            "created": GroupedTimestamp.from_dict(obj.get("created")) if obj.get("created") is not None else None,
-            "short": obj.get("short"),
-            "name": obj.get("name"),
+            "asset": obj.get("asset"),
             "assets": FlattenedAssets.from_dict(obj.get("assets")) if obj.get("assets") is not None else None,
+            "created": GroupedTimestamp.from_dict(obj.get("created")) if obj.get("created") is not None else None,
             "distributions": FlattenedDistributions.from_dict(obj.get("distributions")) if obj.get("distributions") is not None else None,
-            "score": Score.from_dict(obj.get("score")) if obj.get("score") is not None else None
+            "id": obj.get("id"),
+            "link": obj.get("link"),
+            "name": obj.get("name"),
+            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
+            "score": Score.from_dict(obj.get("score")) if obj.get("score") is not None else None,
+            "short": obj.get("short"),
+            "user": obj.get("user")
         })
         return _obj
 

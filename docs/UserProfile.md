@@ -5,19 +5,19 @@ This is the model for a user logged into Pieces.
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
-**picture** | **str** | mapped from picture.URL pointing to the user&#39;s profile picture.  | [optional] [default to 'https://picsum.photos/200']
-**email** | **str** |  | [optional] [default to 'user@pieces.app']
+**aesthetics** | [**Aesthetics**](Aesthetics.md) |  | 
+**allocation** | [**AllocationCloud**](AllocationCloud.md) |  | [optional] 
+**auth0** | [**Auth0UserMetadata**](Auth0UserMetadata.md) |  | [optional] 
 **created** | [**GroupedTimestamp**](GroupedTimestamp.md) |  | [optional] 
-**updated** | [**GroupedTimestamp**](GroupedTimestamp.md) |  | [optional] 
-**username** | **str** |  (unique) User&#39;s username.   | [optional] 
+**email** | **str** |  | [optional] [default to 'user@pieces.app']
 **id** | **str** |  | 
 **name** | **str** | This is the name of the User. | [optional] 
-**aesthetics** | [**Aesthetics**](Aesthetics.md) |  | 
-**vanityname** | **str** |  | [optional] 
-**allocation** | [**AllocationCloud**](AllocationCloud.md) |  | [optional] 
+**picture** | **str** | mapped from picture.URL pointing to the user&#39;s profile picture.  | [optional] [default to 'https://picsum.photos/200']
 **providers** | [**ExternalProviders**](ExternalProviders.md) |  | [optional] 
-**auth0** | [**Auth0UserMetadata**](Auth0UserMetadata.md) |  | [optional] 
+**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
+**updated** | [**GroupedTimestamp**](GroupedTimestamp.md) |  | [optional] 
+**username** | **str** |  (unique) User&#39;s username.   | [optional] 
+**vanityname** | **str** |  | [optional] 
 
 ## Example
 

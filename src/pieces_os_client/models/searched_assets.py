@@ -28,11 +28,11 @@ class SearchedAssets(BaseModel):
     """
     This is a modle that will return fro mthe search endpoint that will just contain an array of assets!  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
-    iterable: conlist(SearchedAsset) = Field(...)
-    suggested: Union[StrictFloat, StrictInt] = Field(default=..., description="the number of fuzzy/suggested search results.")
     exact: Union[StrictFloat, StrictInt] = Field(default=..., description="the number of exact results")
-    __properties = ["schema", "iterable", "suggested", "exact"]
+    iterable: conlist(SearchedAsset) = Field(...)
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
+    suggested: Union[StrictFloat, StrictInt] = Field(default=..., description="the number of fuzzy/suggested search results.")
+    __properties = ["exact", "iterable", "schema", "suggested"]
 
     class Config:
         """Pydantic configuration"""
@@ -58,9 +58,6 @@ class SearchedAssets(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of var_schema
-        if self.var_schema:
-            _dict['schema'] = self.var_schema.to_dict()
         # override the default output from pydantic by calling `to_dict()` of each item in iterable (list)
         _items = []
         if self.iterable:
@@ -68,6 +65,9 @@ class SearchedAssets(BaseModel):
                 if _item:
                     _items.append(_item.to_dict())
             _dict['iterable'] = _items
+        # override the default output from pydantic by calling `to_dict()` of var_schema
+        if self.var_schema:
+            _dict['schema'] = self.var_schema.to_dict()
         return _dict
 
     @classmethod
@@ -80,10 +80,10 @@ class SearchedAssets(BaseModel):
             return SearchedAssets.parse_obj(obj)
 
         _obj = SearchedAssets.parse_obj({
-            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
+            "exact": obj.get("exact"),
             "iterable": [SearchedAsset.from_dict(_item) for _item in obj.get("iterable")] if obj.get("iterable") is not None else None,
-            "suggested": obj.get("suggested"),
-            "exact": obj.get("exact")
+            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
+            "suggested": obj.get("suggested")
         })
         return _obj
 

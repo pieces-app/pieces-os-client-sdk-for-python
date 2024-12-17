@@ -28,10 +28,10 @@ class TemporalSearchOptions(BaseModel):
     """
     created: will return the materials based on if the range is satisfied w/ this created timestamp ** same goes for updated  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     created: Optional[AnonymousTemporalRange] = None
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     updated: Optional[AnonymousTemporalRange] = None
-    __properties = ["schema", "created", "updated"]
+    __properties = ["created", "schema", "updated"]
 
     class Config:
         """Pydantic configuration"""
@@ -57,12 +57,12 @@ class TemporalSearchOptions(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of var_schema
-        if self.var_schema:
-            _dict['schema'] = self.var_schema.to_dict()
         # override the default output from pydantic by calling `to_dict()` of created
         if self.created:
             _dict['created'] = self.created.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of var_schema
+        if self.var_schema:
+            _dict['schema'] = self.var_schema.to_dict()
         # override the default output from pydantic by calling `to_dict()` of updated
         if self.updated:
             _dict['updated'] = self.updated.to_dict()
@@ -78,8 +78,8 @@ class TemporalSearchOptions(BaseModel):
             return TemporalSearchOptions.parse_obj(obj)
 
         _obj = TemporalSearchOptions.parse_obj({
-            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
             "created": AnonymousTemporalRange.from_dict(obj.get("created")) if obj.get("created") is not None else None,
+            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
             "updated": AnonymousTemporalRange.from_dict(obj.get("updated")) if obj.get("updated") is not None else None
         })
         return _obj

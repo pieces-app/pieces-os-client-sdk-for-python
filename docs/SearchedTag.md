@@ -5,12 +5,12 @@ This is used for the Tags searching endpoint.  tag here is only provided if tran
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
-**tag** | [**Tag**](Tag.md) |  | [optional] 
 **exact** | **bool** |  | 
-**similarity** | **float** |  | 
-**temporal** | **bool** |  | [optional] 
 **identifier** | **str** | This is the uuid of the tag. | 
+**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
+**similarity** | **float** |  | 
+**tag** | [**Tag**](Tag.md) |  | [optional] 
+**temporal** | **bool** |  | [optional] 
 
 ## Example
 

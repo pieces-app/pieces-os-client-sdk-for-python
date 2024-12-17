@@ -8,6 +8,7 @@ Method | HTTP request | Description
 [**backup_asset**](BackupApi.md#backup_asset) | **POST** /backup/asset | /backup/asset [POST]
 [**backup_restore_specific_backup**](BackupApi.md#backup_restore_specific_backup) | **POST** /backup/{backup}/restore | /backup/{backup}/restore [POST]
 [**backup_restore_specific_backup_streamed**](BackupApi.md#backup_restore_specific_backup_streamed) | **POST** /backup/{backup}/restore/streamed | /backup/{backup}/restore/streamed [POST]
+[**backup_restore_specific_backup_streamed_websocket**](BackupApi.md#backup_restore_specific_backup_streamed_websocket) | **GET** /backup/{backup}/restore/streamed/websocket | /backup/{backup}/restore/streamed/websocket [WS]
 [**backup_specific_backup_snapshot**](BackupApi.md#backup_specific_backup_snapshot) | **GET** /backup/{backup} | /backup/{backup} [GET]
 [**backup_specific_creation_cancel**](BackupApi.md#backup_specific_creation_cancel) | **POST** /backup/{backup}/creation/cancel | /backup/{backup}/creation/cancel [POST]
 [**backup_specific_creation_status**](BackupApi.md#backup_specific_creation_status) | **GET** /backup/{backup}/creation/status | /backup/{backup}/creation/status [GET]
@@ -214,8 +215,8 @@ No authorization required
 |-------------|-------------|------------------|
 **200** | OK |  -  |
 **500** | Internal Server Error |  -  |
-**511** | Authentication Required, This means that you user needs to be authenticated with OS in order to perform this action |  -  |
 **505** | HTTP Version Not Supported, This means that your user needs to update their local os, or they cannot perform backup operations with the cloud |  -  |
+**511** | Authentication Required, This means that you user needs to be authenticated with OS in order to perform this action |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -224,7 +225,7 @@ No authorization required
 
 /backup/{backup}/restore/streamed [POST]
 
-This take a local database and ensure that it is backed up to the cloud.  NOTE: This is a streamed version of the /backups/create. and Since the Generator is unable to generate a streamed endpoint. this is a place holder, and will need to be implemented isolated from the code generator.
+This take a local database and ensure that it is backed up to the cloud.  NOTE: This is a streamed version of the /backups/<backup>/restore. and Since the Generator is unable to generate a streamed endpoint. this is a place holder, and will need to be implemented isolated from the code generator.
 
 ### Example
 
@@ -287,8 +288,81 @@ No authorization required
 |-------------|-------------|------------------|
 **200** | OK |  -  |
 **500** | Internal Server Error |  -  |
-**511** | Authentication Required, This means that you user needs to be authenticated with OS in order to change the beta status |  -  |
 **505** | HTTP Version Not Supported, This means that your user needs to update their local os, or they cannot perform backup operation with the cloud |  -  |
+**511** | Authentication Required, This means that you user needs to be authenticated with OS in order to change the beta status |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **backup_restore_specific_backup_streamed_websocket**
+> BackupStreamedProgress backup_restore_specific_backup_streamed_websocket(backup, backup2=backup2)
+
+/backup/{backup}/restore/streamed/websocket [WS]
+
+WEBOCKET IMPLEMENTATION: This take a local database and ensure that it is backed up to the cloud.  NOTE: This is a streamed version of the /backups/<backup>/restore. and Since the Generator is unable to generate a streamed endpoint. this is a place holder, and will need to be implemented isolated from the code generator.
+
+### Example
+
+```python
+import time
+import os
+import pieces_os_client
+from pieces_os_client.models.backup import Backup
+from pieces_os_client.models.backup_streamed_progress import BackupStreamedProgress
+from pieces_os_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to http://localhost:1000
+# See configuration.py for a list of all supported configuration parameters.
+configuration = pieces_os_client.Configuration(
+    host = "http://localhost:1000"
+)
+
+
+# Enter a context with an instance of the API client
+with pieces_os_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = pieces_os_client.BackupApi(api_client)
+    backup = 'backup_example' # str | This is a identifier that is used to identify a specific backup.(version_timestamp)
+    backup2 = pieces_os_client.Backup() # Backup |  (optional)
+
+    try:
+        # /backup/{backup}/restore/streamed/websocket [WS]
+        api_response = api_instance.backup_restore_specific_backup_streamed_websocket(backup, backup2=backup2)
+        print("The response of BackupApi->backup_restore_specific_backup_streamed_websocket:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling BackupApi->backup_restore_specific_backup_streamed_websocket: %s\n" % e)
+```
+
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **backup** | **str**| This is a identifier that is used to identify a specific backup.(version_timestamp) | 
+ **backup2** | [**Backup**](Backup.md)|  | [optional] 
+
+### Return type
+
+[**BackupStreamedProgress**](BackupStreamedProgress.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json, text/plain
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**500** | Internal Server Error |  -  |
+**505** | HTTP Version Not Supported, This means that your user needs to update their local os, or they cannot perform backup operation with the cloud |  -  |
+**511** | Authentication Required, This means that you user needs to be authenticated with OS in order to change the beta status |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -357,8 +431,8 @@ No authorization required
 |-------------|-------------|------------------|
 **200** | OK |  -  |
 **500** | Internal Server Error |  -  |
-**511** | Authentication Required, This means that you user needs to be authenticated with OS in order to change the beta status |  -  |
 **505** | HTTP Version Not Supported, This means that your user needs to update their local os, or they cannot perform backup operation with the cloud |  -  |
+**511** | Authentication Required, This means that you user needs to be authenticated with OS in order to change the beta status |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

@@ -5,8 +5,8 @@ An Seeded Asset specific to MacOS which takes in a Value, and Application
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 **application** | [**Application**](Application.md) |  | [optional] 
+**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 **value** | **str** | The value of the text that you want to save as an asset. | 
 
 ## Example

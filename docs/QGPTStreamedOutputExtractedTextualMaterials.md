@@ -5,8 +5,8 @@ This is all the textually extracted materials from the QGPT stream
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 **message** | [**TextuallyExtractedMaterials**](TextuallyExtractedMaterials.md) |  | [optional] 
+**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 **workstream** | [**TextuallyExtractedMaterials**](TextuallyExtractedMaterials.md) |  | [optional] 
 
 ## Example

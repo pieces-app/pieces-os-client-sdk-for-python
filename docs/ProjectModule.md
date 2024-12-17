@@ -5,11 +5,11 @@ This is a representation of a Module or a Project  anchor: is the folder path of
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 **anchor** | [**SeededAnchor**](SeededAnchor.md) |  | 
-**range** | [**AnonymousTemporalRange**](AnonymousTemporalRange.md) |  | [optional] 
-**contributors** | [**DocumentContributors**](DocumentContributors.md) |  | [optional] 
 **classifications** | [**Classifications**](Classifications.md) |  | [optional] 
+**contributors** | [**DocumentContributors**](DocumentContributors.md) |  | [optional] 
+**range** | [**AnonymousTemporalRange**](AnonymousTemporalRange.md) |  | [optional] 
+**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 
 ## Example
 

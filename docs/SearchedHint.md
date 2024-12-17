@@ -5,12 +5,12 @@ This is used for the Hint searching endpoint  hint here is only provided if tran
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
-**hint** | [**Hint**](Hint.md) |  | [optional] 
 **exact** | **bool** |  | 
+**hint** | [**Hint**](Hint.md) |  | [optional] 
+**identifier** | **str** | This is the uuid of the hint. | 
+**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 **similarity** | **float** |  | 
 **temporal** | **bool** |  | [optional] 
-**identifier** | **str** | This is the uuid of the hint. | 
 
 ## Example
 

@@ -31,13 +31,13 @@ class Seed(BaseModel):
     """
     A seed Model used to wrap a format or asset  Note: we will expand this now to support additional paramerters.  Note: however if create an asset, only pass in the asset, not passing in an asset in this case will cause the endpoint to fail.  TODO: for a breaking change update the type enum here to add support for the additional materials or remove it entirely.  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
+    anchor: Optional[SeededAnchor] = None
     asset: Optional[SeededAsset] = None
     person: Optional[SeededPerson] = None
-    anchor: Optional[SeededAnchor] = None
-    website: Optional[SeededWebsite] = None
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     type: Optional[StrictStr] = None
-    __properties = ["schema", "asset", "person", "anchor", "website", "type"]
+    website: Optional[SeededWebsite] = None
+    __properties = ["anchor", "asset", "person", "schema", "type", "website"]
 
     @validator('type')
     def type_validate_enum(cls, value):
@@ -45,7 +45,7 @@ class Seed(BaseModel):
         if value is None:
             return value
 
-        if value not in ('SEEDED_FORMAT', 'SEEDED_ASSET'):
+        if value not in ('SEEDED_FORMAT', 'SEEDED_ASSET',):
             raise ValueError("must be one of enum values ('SEEDED_FORMAT', 'SEEDED_ASSET')")
         return value
 
@@ -73,18 +73,18 @@ class Seed(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of var_schema
-        if self.var_schema:
-            _dict['schema'] = self.var_schema.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of anchor
+        if self.anchor:
+            _dict['anchor'] = self.anchor.to_dict()
         # override the default output from pydantic by calling `to_dict()` of asset
         if self.asset:
             _dict['asset'] = self.asset.to_dict()
         # override the default output from pydantic by calling `to_dict()` of person
         if self.person:
             _dict['person'] = self.person.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of anchor
-        if self.anchor:
-            _dict['anchor'] = self.anchor.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of var_schema
+        if self.var_schema:
+            _dict['schema'] = self.var_schema.to_dict()
         # override the default output from pydantic by calling `to_dict()` of website
         if self.website:
             _dict['website'] = self.website.to_dict()
@@ -100,12 +100,12 @@ class Seed(BaseModel):
             return Seed.parse_obj(obj)
 
         _obj = Seed.parse_obj({
-            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
+            "anchor": SeededAnchor.from_dict(obj.get("anchor")) if obj.get("anchor") is not None else None,
             "asset": SeededAsset.from_dict(obj.get("asset")) if obj.get("asset") is not None else None,
             "person": SeededPerson.from_dict(obj.get("person")) if obj.get("person") is not None else None,
-            "anchor": SeededAnchor.from_dict(obj.get("anchor")) if obj.get("anchor") is not None else None,
-            "website": SeededWebsite.from_dict(obj.get("website")) if obj.get("website") is not None else None,
-            "type": obj.get("type")
+            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
+            "type": obj.get("type"),
+            "website": SeededWebsite.from_dict(obj.get("website")) if obj.get("website") is not None else None
         })
         return _obj
 

@@ -32,25 +32,25 @@ class FlattenedPerson(BaseModel):
     """
     if expiration is add then, after the alloted expiration date the user will only have view && comment only permissions. Only present in the case there is a scope such as a defined collection/asset...  if asset is passed then that means this person belongs to a scoped asset.  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
-    id: StrictStr = Field(...)
-    created: GroupedTimestamp = Field(...)
-    updated: GroupedTimestamp = Field(...)
-    deleted: Optional[GroupedTimestamp] = None
-    type: PersonType = Field(...)
-    assets: Optional[FlattenedAssets] = None
-    mechanisms: Optional[Dict[str, MechanismEnum]] = Field(default=None, description="This is a Map<String, MechanismEnum> where the the key is an asset id.")
-    interactions: Optional[StrictInt] = Field(default=None, description="This is an optional value that will keep track of the number of times this has been interacted with.")
     access: Optional[Dict[str, PersonAccess]] = Field(default=None, description="This is a Map<String, PersonAccess> where the the key is an asset id.")
-    tags: Optional[FlattenedTags] = None
-    websites: Optional[FlattenedWebsites] = None
-    models: Optional[Dict[str, PersonModel]] = Field(default=None, description="This is a Map<String, PersonModel>, where the the key is an asset id.")
+    anchors: Optional[FlattenedAnchors] = None
     annotations: Optional[FlattenedAnnotations] = None
+    assets: Optional[FlattenedAssets] = None
+    created: GroupedTimestamp = Field(...)
+    deleted: Optional[GroupedTimestamp] = None
+    id: StrictStr = Field(...)
+    interactions: Optional[StrictInt] = Field(default=None, description="This is an optional value that will keep track of the number of times this has been interacted with.")
+    mechanisms: Optional[Dict[str, MechanismEnum]] = Field(default=None, description="This is a Map<String, MechanismEnum> where the the key is an asset id.")
+    messages: Optional[FlattenedConversationMessages] = None
+    models: Optional[Dict[str, PersonModel]] = Field(default=None, description="This is a Map<String, PersonModel>, where the the key is an asset id.")
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     score: Optional[Score] = None
     summaries: Optional[FlattenedWorkstreamSummaries] = None
-    anchors: Optional[FlattenedAnchors] = None
-    messages: Optional[FlattenedConversationMessages] = None
-    __properties = ["schema", "id", "created", "updated", "deleted", "type", "assets", "mechanisms", "interactions", "access", "tags", "websites", "models", "annotations", "score", "summaries", "anchors", "messages"]
+    tags: Optional[FlattenedTags] = None
+    type: PersonType = Field(...)
+    updated: GroupedTimestamp = Field(...)
+    websites: Optional[FlattenedWebsites] = None
+    __properties = ["access", "anchors", "annotations", "assets", "created", "deleted", "id", "interactions", "mechanisms", "messages", "models", "schema", "score", "summaries", "tags", "type", "updated", "websites"]
 
     class Config:
         """Pydantic configuration"""
@@ -76,24 +76,6 @@ class FlattenedPerson(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of var_schema
-        if self.var_schema:
-            _dict['schema'] = self.var_schema.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of created
-        if self.created:
-            _dict['created'] = self.created.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of updated
-        if self.updated:
-            _dict['updated'] = self.updated.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of deleted
-        if self.deleted:
-            _dict['deleted'] = self.deleted.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of type
-        if self.type:
-            _dict['type'] = self.type.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of assets
-        if self.assets:
-            _dict['assets'] = self.assets.to_dict()
         # override the default output from pydantic by calling `to_dict()` of each value in access (dict)
         _field_dict = {}
         if self.access:
@@ -101,12 +83,24 @@ class FlattenedPerson(BaseModel):
                 if self.access[_key]:
                     _field_dict[_key] = self.access[_key].to_dict()
             _dict['access'] = _field_dict
-        # override the default output from pydantic by calling `to_dict()` of tags
-        if self.tags:
-            _dict['tags'] = self.tags.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of websites
-        if self.websites:
-            _dict['websites'] = self.websites.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of anchors
+        if self.anchors:
+            _dict['anchors'] = self.anchors.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of annotations
+        if self.annotations:
+            _dict['annotations'] = self.annotations.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of assets
+        if self.assets:
+            _dict['assets'] = self.assets.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of created
+        if self.created:
+            _dict['created'] = self.created.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of deleted
+        if self.deleted:
+            _dict['deleted'] = self.deleted.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of messages
+        if self.messages:
+            _dict['messages'] = self.messages.to_dict()
         # override the default output from pydantic by calling `to_dict()` of each value in models (dict)
         _field_dict = {}
         if self.models:
@@ -114,21 +108,27 @@ class FlattenedPerson(BaseModel):
                 if self.models[_key]:
                     _field_dict[_key] = self.models[_key].to_dict()
             _dict['models'] = _field_dict
-        # override the default output from pydantic by calling `to_dict()` of annotations
-        if self.annotations:
-            _dict['annotations'] = self.annotations.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of var_schema
+        if self.var_schema:
+            _dict['schema'] = self.var_schema.to_dict()
         # override the default output from pydantic by calling `to_dict()` of score
         if self.score:
             _dict['score'] = self.score.to_dict()
         # override the default output from pydantic by calling `to_dict()` of summaries
         if self.summaries:
             _dict['summaries'] = self.summaries.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of anchors
-        if self.anchors:
-            _dict['anchors'] = self.anchors.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of messages
-        if self.messages:
-            _dict['messages'] = self.messages.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of tags
+        if self.tags:
+            _dict['tags'] = self.tags.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of type
+        if self.type:
+            _dict['type'] = self.type.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of updated
+        if self.updated:
+            _dict['updated'] = self.updated.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of websites
+        if self.websites:
+            _dict['websites'] = self.websites.to_dict()
         return _dict
 
     @classmethod
@@ -141,34 +141,34 @@ class FlattenedPerson(BaseModel):
             return FlattenedPerson.parse_obj(obj)
 
         _obj = FlattenedPerson.parse_obj({
-            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
-            "id": obj.get("id"),
-            "created": GroupedTimestamp.from_dict(obj.get("created")) if obj.get("created") is not None else None,
-            "updated": GroupedTimestamp.from_dict(obj.get("updated")) if obj.get("updated") is not None else None,
-            "deleted": GroupedTimestamp.from_dict(obj.get("deleted")) if obj.get("deleted") is not None else None,
-            "type": PersonType.from_dict(obj.get("type")) if obj.get("type") is not None else None,
-            "assets": FlattenedAssets.from_dict(obj.get("assets")) if obj.get("assets") is not None else None,
-            "mechanisms": dict((_k, _v) for _k, _v in obj.get("mechanisms").items()),
-            "interactions": obj.get("interactions"),
             "access": dict(
                 (_k, PersonAccess.from_dict(_v))
                 for _k, _v in obj.get("access").items()
             )
             if obj.get("access") is not None
             else None,
-            "tags": FlattenedTags.from_dict(obj.get("tags")) if obj.get("tags") is not None else None,
-            "websites": FlattenedWebsites.from_dict(obj.get("websites")) if obj.get("websites") is not None else None,
+            "anchors": FlattenedAnchors.from_dict(obj.get("anchors")) if obj.get("anchors") is not None else None,
+            "annotations": FlattenedAnnotations.from_dict(obj.get("annotations")) if obj.get("annotations") is not None else None,
+            "assets": FlattenedAssets.from_dict(obj.get("assets")) if obj.get("assets") is not None else None,
+            "created": GroupedTimestamp.from_dict(obj.get("created")) if obj.get("created") is not None else None,
+            "deleted": GroupedTimestamp.from_dict(obj.get("deleted")) if obj.get("deleted") is not None else None,
+            "id": obj.get("id"),
+            "interactions": obj.get("interactions"),
+            "mechanisms": dict((_k, _v) for _k, _v in obj.get("mechanisms").items()),
+            "messages": FlattenedConversationMessages.from_dict(obj.get("messages")) if obj.get("messages") is not None else None,
             "models": dict(
                 (_k, PersonModel.from_dict(_v))
                 for _k, _v in obj.get("models").items()
             )
             if obj.get("models") is not None
             else None,
-            "annotations": FlattenedAnnotations.from_dict(obj.get("annotations")) if obj.get("annotations") is not None else None,
+            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
             "score": Score.from_dict(obj.get("score")) if obj.get("score") is not None else None,
             "summaries": FlattenedWorkstreamSummaries.from_dict(obj.get("summaries")) if obj.get("summaries") is not None else None,
-            "anchors": FlattenedAnchors.from_dict(obj.get("anchors")) if obj.get("anchors") is not None else None,
-            "messages": FlattenedConversationMessages.from_dict(obj.get("messages")) if obj.get("messages") is not None else None
+            "tags": FlattenedTags.from_dict(obj.get("tags")) if obj.get("tags") is not None else None,
+            "type": PersonType.from_dict(obj.get("type")) if obj.get("type") is not None else None,
+            "updated": GroupedTimestamp.from_dict(obj.get("updated")) if obj.get("updated") is not None else None,
+            "websites": FlattenedWebsites.from_dict(obj.get("websites")) if obj.get("websites") is not None else None
         })
         return _obj
 

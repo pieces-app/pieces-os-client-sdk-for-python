@@ -5,15 +5,15 @@ This is the input body for the /code_gpt/relevance endpoint.  There are a couple
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
-**query** | **str** | This is the question that the user is asking. | 
-**paths** | **List[str]** | This is an optional list of file || folder paths. | [optional] 
-**seeds** | [**Seeds**](Seeds.md) |  | [optional] 
+**application** | **str** | optional application id | [optional] 
 **assets** | [**FlattenedAssets**](FlattenedAssets.md) |  | [optional] 
 **messages** | [**FlattenedConversationMessages**](FlattenedConversationMessages.md) |  | [optional] 
-**options** | [**QGPTRelevanceInputOptions**](QGPTRelevanceInputOptions.md) |  | [optional] 
-**application** | **str** | optional application id | [optional] 
 **model** | **str** | optional model id | [optional] 
+**options** | [**QGPTRelevanceInputOptions**](QGPTRelevanceInputOptions.md) |  | [optional] 
+**paths** | **List[str]** | This is an optional list of file || folder paths. | [optional] 
+**query** | **str** | This is the question that the user is asking. | 
+**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
+**seeds** | [**Seeds**](Seeds.md) |  | [optional] 
 **temporal** | [**TemporalRangeGrounding**](TemporalRangeGrounding.md) |  | [optional] 
 
 ## Example

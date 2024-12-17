@@ -5,9 +5,9 @@ This is the input data model for the /assets/recommend [GET] endpoint. It includ
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 **assets** | [**Assets**](Assets.md) |  | 
 **interactions** | [**InteractedAssets**](InteractedAssets.md) |  | 
+**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 
 ## Example
 

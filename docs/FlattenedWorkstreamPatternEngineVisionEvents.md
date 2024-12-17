@@ -5,8 +5,8 @@ This is a plural snapshot of all of the events within WPE qdrant(Referenced)
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 **iterable** | [**List[ReferencedWorkstreamPatternEngineVisionEvent]**](ReferencedWorkstreamPatternEngineVisionEvent.md) |  | 
+**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 
 ## Example
 

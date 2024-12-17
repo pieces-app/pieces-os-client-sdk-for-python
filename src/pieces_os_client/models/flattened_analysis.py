@@ -28,12 +28,12 @@ class FlattenedAnalysis(BaseModel):
     """
     FlattenedAnalysis
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     code: Optional[CodeAnalysis] = None
-    id: StrictStr = Field(...)
     format: StrictStr = Field(default=..., description="this is a reference to the format that it belongs too.")
+    id: StrictStr = Field(...)
     image: Optional[FlattenedImageAnalysis] = None
-    __properties = ["schema", "code", "id", "format", "image"]
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
+    __properties = ["code", "format", "id", "image", "schema"]
 
     class Config:
         """Pydantic configuration"""
@@ -59,15 +59,15 @@ class FlattenedAnalysis(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of var_schema
-        if self.var_schema:
-            _dict['schema'] = self.var_schema.to_dict()
         # override the default output from pydantic by calling `to_dict()` of code
         if self.code:
             _dict['code'] = self.code.to_dict()
         # override the default output from pydantic by calling `to_dict()` of image
         if self.image:
             _dict['image'] = self.image.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of var_schema
+        if self.var_schema:
+            _dict['schema'] = self.var_schema.to_dict()
         return _dict
 
     @classmethod
@@ -80,11 +80,11 @@ class FlattenedAnalysis(BaseModel):
             return FlattenedAnalysis.parse_obj(obj)
 
         _obj = FlattenedAnalysis.parse_obj({
-            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
             "code": CodeAnalysis.from_dict(obj.get("code")) if obj.get("code") is not None else None,
-            "id": obj.get("id"),
             "format": obj.get("format"),
-            "image": FlattenedImageAnalysis.from_dict(obj.get("image")) if obj.get("image") is not None else None
+            "id": obj.get("id"),
+            "image": FlattenedImageAnalysis.from_dict(obj.get("image")) if obj.get("image") is not None else None,
+            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None
         })
         return _obj
 

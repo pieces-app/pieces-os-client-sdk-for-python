@@ -37,19 +37,19 @@ class SeededWorkstreamSummary(BaseModel):
     """
     This is a seeded version of a WorkstreamSummary  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
-    events: Optional[FlattenedWorkstreamEvents] = None
-    name: StrictStr = Field(...)
-    annotations: Optional[conlist(SeededAnnotation)] = None
-    ranges: Optional[FlattenedRanges] = None
-    model: Model = Field(...)
-    websites: Optional[FlattenedWebsites] = None
     anchors: Optional[FlattenedAnchors] = None
+    annotations: Optional[conlist(SeededAnnotation)] = None
+    applications: Optional[Applications] = None
     assets: Optional[FlattenedAssets] = None
     conversations: Optional[FlattenedConversations] = None
+    events: Optional[FlattenedWorkstreamEvents] = None
+    model: Model = Field(...)
+    name: StrictStr = Field(...)
     persons: Optional[FlattenedPersons] = None
-    applications: Optional[Applications] = None
-    __properties = ["schema", "events", "name", "annotations", "ranges", "model", "websites", "anchors", "assets", "conversations", "persons", "applications"]
+    ranges: Optional[FlattenedRanges] = None
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
+    websites: Optional[FlattenedWebsites] = None
+    __properties = ["anchors", "annotations", "applications", "assets", "conversations", "events", "model", "name", "persons", "ranges", "schema", "websites"]
 
     class Config:
         """Pydantic configuration"""
@@ -75,12 +75,9 @@ class SeededWorkstreamSummary(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of var_schema
-        if self.var_schema:
-            _dict['schema'] = self.var_schema.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of events
-        if self.events:
-            _dict['events'] = self.events.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of anchors
+        if self.anchors:
+            _dict['anchors'] = self.anchors.to_dict()
         # override the default output from pydantic by calling `to_dict()` of each item in annotations (list)
         _items = []
         if self.annotations:
@@ -88,30 +85,33 @@ class SeededWorkstreamSummary(BaseModel):
                 if _item:
                     _items.append(_item.to_dict())
             _dict['annotations'] = _items
-        # override the default output from pydantic by calling `to_dict()` of ranges
-        if self.ranges:
-            _dict['ranges'] = self.ranges.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of model
-        if self.model:
-            _dict['model'] = self.model.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of websites
-        if self.websites:
-            _dict['websites'] = self.websites.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of anchors
-        if self.anchors:
-            _dict['anchors'] = self.anchors.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of applications
+        if self.applications:
+            _dict['applications'] = self.applications.to_dict()
         # override the default output from pydantic by calling `to_dict()` of assets
         if self.assets:
             _dict['assets'] = self.assets.to_dict()
         # override the default output from pydantic by calling `to_dict()` of conversations
         if self.conversations:
             _dict['conversations'] = self.conversations.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of events
+        if self.events:
+            _dict['events'] = self.events.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of model
+        if self.model:
+            _dict['model'] = self.model.to_dict()
         # override the default output from pydantic by calling `to_dict()` of persons
         if self.persons:
             _dict['persons'] = self.persons.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of applications
-        if self.applications:
-            _dict['applications'] = self.applications.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of ranges
+        if self.ranges:
+            _dict['ranges'] = self.ranges.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of var_schema
+        if self.var_schema:
+            _dict['schema'] = self.var_schema.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of websites
+        if self.websites:
+            _dict['websites'] = self.websites.to_dict()
         return _dict
 
     @classmethod
@@ -124,18 +124,18 @@ class SeededWorkstreamSummary(BaseModel):
             return SeededWorkstreamSummary.parse_obj(obj)
 
         _obj = SeededWorkstreamSummary.parse_obj({
-            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
-            "events": FlattenedWorkstreamEvents.from_dict(obj.get("events")) if obj.get("events") is not None else None,
-            "name": obj.get("name"),
-            "annotations": [SeededAnnotation.from_dict(_item) for _item in obj.get("annotations")] if obj.get("annotations") is not None else None,
-            "ranges": FlattenedRanges.from_dict(obj.get("ranges")) if obj.get("ranges") is not None else None,
-            "model": Model.from_dict(obj.get("model")) if obj.get("model") is not None else None,
-            "websites": FlattenedWebsites.from_dict(obj.get("websites")) if obj.get("websites") is not None else None,
             "anchors": FlattenedAnchors.from_dict(obj.get("anchors")) if obj.get("anchors") is not None else None,
+            "annotations": [SeededAnnotation.from_dict(_item) for _item in obj.get("annotations")] if obj.get("annotations") is not None else None,
+            "applications": Applications.from_dict(obj.get("applications")) if obj.get("applications") is not None else None,
             "assets": FlattenedAssets.from_dict(obj.get("assets")) if obj.get("assets") is not None else None,
             "conversations": FlattenedConversations.from_dict(obj.get("conversations")) if obj.get("conversations") is not None else None,
+            "events": FlattenedWorkstreamEvents.from_dict(obj.get("events")) if obj.get("events") is not None else None,
+            "model": Model.from_dict(obj.get("model")) if obj.get("model") is not None else None,
+            "name": obj.get("name"),
             "persons": FlattenedPersons.from_dict(obj.get("persons")) if obj.get("persons") is not None else None,
-            "applications": Applications.from_dict(obj.get("applications")) if obj.get("applications") is not None else None
+            "ranges": FlattenedRanges.from_dict(obj.get("ranges")) if obj.get("ranges") is not None else None,
+            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
+            "websites": FlattenedWebsites.from_dict(obj.get("websites")) if obj.get("websites") is not None else None
         })
         return _obj
 

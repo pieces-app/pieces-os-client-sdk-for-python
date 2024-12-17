@@ -32,20 +32,20 @@ class UserProfile(BaseModel):
     """
     This is the model for a user logged into Pieces.  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
-    picture: Optional[StrictStr] = Field(default='https://picsum.photos/200', description="mapped from picture.URL pointing to the user's profile picture. ")
-    email: Optional[StrictStr] = 'user@pieces.app'
+    aesthetics: Aesthetics = Field(...)
+    allocation: Optional[AllocationCloud] = None
+    auth0: Optional[Auth0UserMetadata] = None
     created: Optional[GroupedTimestamp] = None
-    updated: Optional[GroupedTimestamp] = None
-    username: Optional[StrictStr] = Field(default=None, description=" (unique) User's username.  ")
+    email: Optional[StrictStr] = 'user@pieces.app'
     id: StrictStr = Field(...)
     name: Optional[StrictStr] = Field(default=None, description="This is the name of the User.")
-    aesthetics: Aesthetics = Field(...)
-    vanityname: Optional[StrictStr] = None
-    allocation: Optional[AllocationCloud] = None
+    picture: Optional[StrictStr] = Field(default='https://picsum.photos/200', description="mapped from picture.URL pointing to the user's profile picture. ")
     providers: Optional[ExternalProviders] = None
-    auth0: Optional[Auth0UserMetadata] = None
-    __properties = ["schema", "picture", "email", "created", "updated", "username", "id", "name", "aesthetics", "vanityname", "allocation", "providers", "auth0"]
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
+    updated: Optional[GroupedTimestamp] = None
+    username: Optional[StrictStr] = Field(default=None, description=" (unique) User's username.  ")
+    vanityname: Optional[StrictStr] = None
+    __properties = ["aesthetics", "allocation", "auth0", "created", "email", "id", "name", "picture", "providers", "schema", "updated", "username", "vanityname"]
 
     class Config:
         """Pydantic configuration"""
@@ -71,27 +71,27 @@ class UserProfile(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of var_schema
-        if self.var_schema:
-            _dict['schema'] = self.var_schema.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of created
-        if self.created:
-            _dict['created'] = self.created.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of updated
-        if self.updated:
-            _dict['updated'] = self.updated.to_dict()
         # override the default output from pydantic by calling `to_dict()` of aesthetics
         if self.aesthetics:
             _dict['aesthetics'] = self.aesthetics.to_dict()
         # override the default output from pydantic by calling `to_dict()` of allocation
         if self.allocation:
             _dict['allocation'] = self.allocation.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of providers
-        if self.providers:
-            _dict['providers'] = self.providers.to_dict()
         # override the default output from pydantic by calling `to_dict()` of auth0
         if self.auth0:
             _dict['auth0'] = self.auth0.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of created
+        if self.created:
+            _dict['created'] = self.created.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of providers
+        if self.providers:
+            _dict['providers'] = self.providers.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of var_schema
+        if self.var_schema:
+            _dict['schema'] = self.var_schema.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of updated
+        if self.updated:
+            _dict['updated'] = self.updated.to_dict()
         return _dict
 
     @classmethod
@@ -104,19 +104,19 @@ class UserProfile(BaseModel):
             return UserProfile.parse_obj(obj)
 
         _obj = UserProfile.parse_obj({
-            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
-            "picture": obj.get("picture") if obj.get("picture") is not None else 'https://picsum.photos/200',
-            "email": obj.get("email") if obj.get("email") is not None else 'user@pieces.app',
+            "aesthetics": Aesthetics.from_dict(obj.get("aesthetics")) if obj.get("aesthetics") is not None else None,
+            "allocation": AllocationCloud.from_dict(obj.get("allocation")) if obj.get("allocation") is not None else None,
+            "auth0": Auth0UserMetadata.from_dict(obj.get("auth0")) if obj.get("auth0") is not None else None,
             "created": GroupedTimestamp.from_dict(obj.get("created")) if obj.get("created") is not None else None,
-            "updated": GroupedTimestamp.from_dict(obj.get("updated")) if obj.get("updated") is not None else None,
-            "username": obj.get("username"),
+            "email": obj.get("email") if obj.get("email") is not None else 'user@pieces.app',
             "id": obj.get("id"),
             "name": obj.get("name"),
-            "aesthetics": Aesthetics.from_dict(obj.get("aesthetics")) if obj.get("aesthetics") is not None else None,
-            "vanityname": obj.get("vanityname"),
-            "allocation": AllocationCloud.from_dict(obj.get("allocation")) if obj.get("allocation") is not None else None,
+            "picture": obj.get("picture") if obj.get("picture") is not None else 'https://picsum.photos/200',
             "providers": ExternalProviders.from_dict(obj.get("providers")) if obj.get("providers") is not None else None,
-            "auth0": Auth0UserMetadata.from_dict(obj.get("auth0")) if obj.get("auth0") is not None else None
+            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
+            "updated": GroupedTimestamp.from_dict(obj.get("updated")) if obj.get("updated") is not None else None,
+            "username": obj.get("username"),
+            "vanityname": obj.get("vanityname")
         })
         return _obj
 

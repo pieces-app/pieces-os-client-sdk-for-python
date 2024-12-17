@@ -30,9 +30,9 @@ class ExistingMetadata(BaseModel):
     This is a shared input model for all the exists endpoints: /tags/exists : if the tag exists you will have a defined tag:ReferencedTag, if not then it doesnt exist. /websites/exists: if the url exists you will have a defined website:ReferencedWebsite, if not then it doesnt exist.  # noqa: E501
     """
     var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
-    website: Optional[ReferencedWebsite] = None
     tag: Optional[ReferencedTag] = None
-    __properties = ["schema", "website", "tag"]
+    website: Optional[ReferencedWebsite] = None
+    __properties = ["schema", "tag", "website"]
 
     class Config:
         """Pydantic configuration"""
@@ -61,12 +61,12 @@ class ExistingMetadata(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of var_schema
         if self.var_schema:
             _dict['schema'] = self.var_schema.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of website
-        if self.website:
-            _dict['website'] = self.website.to_dict()
         # override the default output from pydantic by calling `to_dict()` of tag
         if self.tag:
             _dict['tag'] = self.tag.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of website
+        if self.website:
+            _dict['website'] = self.website.to_dict()
         return _dict
 
     @classmethod
@@ -80,8 +80,8 @@ class ExistingMetadata(BaseModel):
 
         _obj = ExistingMetadata.parse_obj({
             "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
-            "website": ReferencedWebsite.from_dict(obj.get("website")) if obj.get("website") is not None else None,
-            "tag": ReferencedTag.from_dict(obj.get("tag")) if obj.get("tag") is not None else None
+            "tag": ReferencedTag.from_dict(obj.get("tag")) if obj.get("tag") is not None else None,
+            "website": ReferencedWebsite.from_dict(obj.get("website")) if obj.get("website") is not None else None
         })
         return _obj
 

@@ -29,10 +29,10 @@ class AssetReclassification(BaseModel):
     """
     This is a model that will represent the miminum properties required to update the classification of this asset.  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
-    ext: ClassificationSpecificEnum = Field(...)
     asset: Asset = Field(...)
-    __properties = ["schema", "ext", "asset"]
+    ext: ClassificationSpecificEnum = Field(...)
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
+    __properties = ["asset", "ext", "schema"]
 
     class Config:
         """Pydantic configuration"""
@@ -58,12 +58,12 @@ class AssetReclassification(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of var_schema
-        if self.var_schema:
-            _dict['schema'] = self.var_schema.to_dict()
         # override the default output from pydantic by calling `to_dict()` of asset
         if self.asset:
             _dict['asset'] = self.asset.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of var_schema
+        if self.var_schema:
+            _dict['schema'] = self.var_schema.to_dict()
         return _dict
 
     @classmethod
@@ -76,9 +76,9 @@ class AssetReclassification(BaseModel):
             return AssetReclassification.parse_obj(obj)
 
         _obj = AssetReclassification.parse_obj({
-            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
+            "asset": Asset.from_dict(obj.get("asset")) if obj.get("asset") is not None else None,
             "ext": obj.get("ext"),
-            "asset": Asset.from_dict(obj.get("asset")) if obj.get("asset") is not None else None
+            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None
         })
         return _obj
 

@@ -5,13 +5,13 @@ This is the body input for the /code_gpt/question.  Note: - each relevant seed, 
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
-**relevant** | [**RelevantQGPTSeeds**](RelevantQGPTSeeds.md) |  | 
-**query** | **str** | This is the user asked question. | 
 **application** | **str** | optional application id | [optional] 
-**model** | **str** | optional model id | [optional] 
 **messages** | [**FlattenedConversationMessages**](FlattenedConversationMessages.md) |  | [optional] 
+**model** | **str** | optional model id | [optional] 
 **pipeline** | [**QGPTPromptPipeline**](QGPTPromptPipeline.md) |  | [optional] 
+**query** | **str** | This is the user asked question. | 
+**relevant** | [**RelevantQGPTSeeds**](RelevantQGPTSeeds.md) |  | 
+**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 **temporal** | [**TemporalRangeGrounding**](TemporalRangeGrounding.md) |  | [optional] 
 
 ## Example

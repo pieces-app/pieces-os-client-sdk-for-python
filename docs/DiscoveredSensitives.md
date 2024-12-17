@@ -5,9 +5,9 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
-**iterable** | [**List[DiscoveredSensitive]**](DiscoveredSensitive.md) |  | 
 **application** | **str** |  | 
+**iterable** | [**List[DiscoveredSensitive]**](DiscoveredSensitive.md) |  | 
+**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 
 ## Example
 

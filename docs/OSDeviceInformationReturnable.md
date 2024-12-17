@@ -5,11 +5,11 @@ This is the returnable model for the /os/device/information.
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 **dependencies** | [**OSDeviceDependenciesInformation**](OSDeviceDependenciesInformation.md) |  | [optional] 
-**name** | **str** | this is the name of the device | [optional] 
-**version** | **str** | this is the version of the device | [optional] 
 **hardware** | [**OSDeviceHardwareInformation**](OSDeviceHardwareInformation.md) |  | [optional] 
+**name** | **str** | this is the name of the device | [optional] 
+**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
+**version** | **str** | this is the version of the device | [optional] 
 
 ## Example
 

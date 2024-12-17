@@ -28,9 +28,9 @@ class AssetFilterPhraseOptions(BaseModel):
     """
     AssetFilterPhraseOptions
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     annotation: Optional[AnnotationTypeEnum] = None
-    __properties = ["schema", "annotation"]
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
+    __properties = ["annotation", "schema"]
 
     class Config:
         """Pydantic configuration"""
@@ -71,8 +71,8 @@ class AssetFilterPhraseOptions(BaseModel):
             return AssetFilterPhraseOptions.parse_obj(obj)
 
         _obj = AssetFilterPhraseOptions.parse_obj({
-            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
-            "annotation": obj.get("annotation")
+            "annotation": obj.get("annotation"),
+            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None
         })
         return _obj
 

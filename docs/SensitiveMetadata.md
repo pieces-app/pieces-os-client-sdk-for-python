@@ -5,9 +5,9 @@ This is optional metatdata attached to a sensitive piece of data.
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
-**match** | [**TextMatch**](TextMatch.md) |  | [optional] 
 **entropy** | **float** | entropy of the sensitive | [optional] 
+**match** | [**TextMatch**](TextMatch.md) |  | [optional] 
+**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 
 ## Example
 

@@ -5,11 +5,11 @@ Query is your hints question. Relevant is the relevant snippets. Answer is the p
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**query** | **str** |  | [optional] 
 **answer** | [**QGPTQuestionAnswer**](QGPTQuestionAnswer.md) |  | [optional] 
-**relevant** | [**RelevantQGPTSeeds**](RelevantQGPTSeeds.md) |  | 
 **application** | **str** | optional application id | [optional] 
 **model** | **str** | optional model id | [optional] 
+**query** | **str** |  | [optional] 
+**relevant** | [**RelevantQGPTSeeds**](RelevantQGPTSeeds.md) |  | 
 
 ## Example
 

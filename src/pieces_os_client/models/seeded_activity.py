@@ -33,14 +33,14 @@ class SeededActivity(BaseModel):
     """
     This is the preseed to a full blown Activity.  This is the minimum information needed to create an Activity, used within our [POST] /activities/create  if mechenism is not passed in we will default to AUTOMATIC  NOT required to pass in an asset/user/format.  # noqa: E501
     """
-    event: SeededConnectorTracking = Field(...)
     application: Application = Field(...)
     asset: Optional[ReferencedAsset] = None
-    user: Optional[ReferencedUser] = None
+    conversation: Optional[ReferencedConversation] = None
+    event: SeededConnectorTracking = Field(...)
     format: Optional[ReferencedFormat] = None
     mechanism: Optional[MechanismEnum] = None
-    conversation: Optional[ReferencedConversation] = None
-    __properties = ["event", "application", "asset", "user", "format", "mechanism", "conversation"]
+    user: Optional[ReferencedUser] = None
+    __properties = ["application", "asset", "conversation", "event", "format", "mechanism", "user"]
 
     class Config:
         """Pydantic configuration"""
@@ -66,24 +66,24 @@ class SeededActivity(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of event
-        if self.event:
-            _dict['event'] = self.event.to_dict()
         # override the default output from pydantic by calling `to_dict()` of application
         if self.application:
             _dict['application'] = self.application.to_dict()
         # override the default output from pydantic by calling `to_dict()` of asset
         if self.asset:
             _dict['asset'] = self.asset.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of user
-        if self.user:
-            _dict['user'] = self.user.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of format
-        if self.format:
-            _dict['format'] = self.format.to_dict()
         # override the default output from pydantic by calling `to_dict()` of conversation
         if self.conversation:
             _dict['conversation'] = self.conversation.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of event
+        if self.event:
+            _dict['event'] = self.event.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of format
+        if self.format:
+            _dict['format'] = self.format.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of user
+        if self.user:
+            _dict['user'] = self.user.to_dict()
         return _dict
 
     @classmethod
@@ -96,13 +96,13 @@ class SeededActivity(BaseModel):
             return SeededActivity.parse_obj(obj)
 
         _obj = SeededActivity.parse_obj({
-            "event": SeededConnectorTracking.from_dict(obj.get("event")) if obj.get("event") is not None else None,
             "application": Application.from_dict(obj.get("application")) if obj.get("application") is not None else None,
             "asset": ReferencedAsset.from_dict(obj.get("asset")) if obj.get("asset") is not None else None,
-            "user": ReferencedUser.from_dict(obj.get("user")) if obj.get("user") is not None else None,
+            "conversation": ReferencedConversation.from_dict(obj.get("conversation")) if obj.get("conversation") is not None else None,
+            "event": SeededConnectorTracking.from_dict(obj.get("event")) if obj.get("event") is not None else None,
             "format": ReferencedFormat.from_dict(obj.get("format")) if obj.get("format") is not None else None,
             "mechanism": obj.get("mechanism"),
-            "conversation": ReferencedConversation.from_dict(obj.get("conversation")) if obj.get("conversation") is not None else None
+            "user": ReferencedUser.from_dict(obj.get("user")) if obj.get("user") is not None else None
         })
         return _obj
 

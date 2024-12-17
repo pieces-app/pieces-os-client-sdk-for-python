@@ -6,8 +6,8 @@ This is a shared input model for all the exists endpoints: /tags/exists : if the
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
-**website** | [**ReferencedWebsite**](ReferencedWebsite.md) |  | [optional] 
 **tag** | [**ReferencedTag**](ReferencedTag.md) |  | [optional] 
+**website** | [**ReferencedWebsite**](ReferencedWebsite.md) |  | [optional] 
 
 ## Example
 

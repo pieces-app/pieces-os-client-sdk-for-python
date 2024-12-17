@@ -33,22 +33,22 @@ class FlattenedConversationMessage(BaseModel):
     """
     This is a flattened DAG safe version of a ConversationMessage.  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
-    id: StrictStr = Field(...)
-    created: GroupedTimestamp = Field(...)
-    updated: GroupedTimestamp = Field(...)
-    deleted: Optional[GroupedTimestamp] = None
-    model: Optional[Model] = None
-    fragment: Optional[FragmentFormat] = None
-    conversation: ReferencedConversation = Field(...)
-    sentiment: Optional[ConversationMessageSentimentEnum] = None
-    role: QGPTConversationMessageRoleEnum = Field(...)
-    score: Optional[Score] = None
-    annotations: Optional[FlattenedAnnotations] = None
     anchors: Optional[FlattenedAnchors] = None
+    annotations: Optional[FlattenedAnnotations] = None
+    conversation: ReferencedConversation = Field(...)
+    created: GroupedTimestamp = Field(...)
+    deleted: Optional[GroupedTimestamp] = None
+    fragment: Optional[FragmentFormat] = None
+    id: StrictStr = Field(...)
+    model: Optional[Model] = None
     persons: Optional[FlattenedPersons] = None
+    role: QGPTConversationMessageRoleEnum = Field(...)
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
+    score: Optional[Score] = None
+    sentiment: Optional[ConversationMessageSentimentEnum] = None
+    updated: GroupedTimestamp = Field(...)
     websites: Optional[FlattenedWebsites] = None
-    __properties = ["schema", "id", "created", "updated", "deleted", "model", "fragment", "conversation", "sentiment", "role", "score", "annotations", "anchors", "persons", "websites"]
+    __properties = ["anchors", "annotations", "conversation", "created", "deleted", "fragment", "id", "model", "persons", "role", "schema", "score", "sentiment", "updated", "websites"]
 
     class Config:
         """Pydantic configuration"""
@@ -74,39 +74,39 @@ class FlattenedConversationMessage(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of var_schema
-        if self.var_schema:
-            _dict['schema'] = self.var_schema.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of created
-        if self.created:
-            _dict['created'] = self.created.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of updated
-        if self.updated:
-            _dict['updated'] = self.updated.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of deleted
-        if self.deleted:
-            _dict['deleted'] = self.deleted.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of model
-        if self.model:
-            _dict['model'] = self.model.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of fragment
-        if self.fragment:
-            _dict['fragment'] = self.fragment.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of conversation
-        if self.conversation:
-            _dict['conversation'] = self.conversation.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of score
-        if self.score:
-            _dict['score'] = self.score.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of annotations
-        if self.annotations:
-            _dict['annotations'] = self.annotations.to_dict()
         # override the default output from pydantic by calling `to_dict()` of anchors
         if self.anchors:
             _dict['anchors'] = self.anchors.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of annotations
+        if self.annotations:
+            _dict['annotations'] = self.annotations.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of conversation
+        if self.conversation:
+            _dict['conversation'] = self.conversation.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of created
+        if self.created:
+            _dict['created'] = self.created.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of deleted
+        if self.deleted:
+            _dict['deleted'] = self.deleted.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of fragment
+        if self.fragment:
+            _dict['fragment'] = self.fragment.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of model
+        if self.model:
+            _dict['model'] = self.model.to_dict()
         # override the default output from pydantic by calling `to_dict()` of persons
         if self.persons:
             _dict['persons'] = self.persons.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of var_schema
+        if self.var_schema:
+            _dict['schema'] = self.var_schema.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of score
+        if self.score:
+            _dict['score'] = self.score.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of updated
+        if self.updated:
+            _dict['updated'] = self.updated.to_dict()
         # override the default output from pydantic by calling `to_dict()` of websites
         if self.websites:
             _dict['websites'] = self.websites.to_dict()
@@ -122,20 +122,20 @@ class FlattenedConversationMessage(BaseModel):
             return FlattenedConversationMessage.parse_obj(obj)
 
         _obj = FlattenedConversationMessage.parse_obj({
-            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
-            "id": obj.get("id"),
-            "created": GroupedTimestamp.from_dict(obj.get("created")) if obj.get("created") is not None else None,
-            "updated": GroupedTimestamp.from_dict(obj.get("updated")) if obj.get("updated") is not None else None,
-            "deleted": GroupedTimestamp.from_dict(obj.get("deleted")) if obj.get("deleted") is not None else None,
-            "model": Model.from_dict(obj.get("model")) if obj.get("model") is not None else None,
-            "fragment": FragmentFormat.from_dict(obj.get("fragment")) if obj.get("fragment") is not None else None,
-            "conversation": ReferencedConversation.from_dict(obj.get("conversation")) if obj.get("conversation") is not None else None,
-            "sentiment": obj.get("sentiment"),
-            "role": obj.get("role"),
-            "score": Score.from_dict(obj.get("score")) if obj.get("score") is not None else None,
-            "annotations": FlattenedAnnotations.from_dict(obj.get("annotations")) if obj.get("annotations") is not None else None,
             "anchors": FlattenedAnchors.from_dict(obj.get("anchors")) if obj.get("anchors") is not None else None,
+            "annotations": FlattenedAnnotations.from_dict(obj.get("annotations")) if obj.get("annotations") is not None else None,
+            "conversation": ReferencedConversation.from_dict(obj.get("conversation")) if obj.get("conversation") is not None else None,
+            "created": GroupedTimestamp.from_dict(obj.get("created")) if obj.get("created") is not None else None,
+            "deleted": GroupedTimestamp.from_dict(obj.get("deleted")) if obj.get("deleted") is not None else None,
+            "fragment": FragmentFormat.from_dict(obj.get("fragment")) if obj.get("fragment") is not None else None,
+            "id": obj.get("id"),
+            "model": Model.from_dict(obj.get("model")) if obj.get("model") is not None else None,
             "persons": FlattenedPersons.from_dict(obj.get("persons")) if obj.get("persons") is not None else None,
+            "role": obj.get("role"),
+            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
+            "score": Score.from_dict(obj.get("score")) if obj.get("score") is not None else None,
+            "sentiment": obj.get("sentiment"),
+            "updated": GroupedTimestamp.from_dict(obj.get("updated")) if obj.get("updated") is not None else None,
             "websites": FlattenedWebsites.from_dict(obj.get("websites")) if obj.get("websites") is not None else None
         })
         return _obj

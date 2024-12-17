@@ -5,11 +5,11 @@ This the the MlAnalysis Object, that will go on a format.  this will hold all th
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 **code** | [**CodeAnalysis**](CodeAnalysis.md) |  | [optional] 
-**id** | **str** |  | 
 **format** | **str** | this is a reference to the format that it belongs too. | 
+**id** | **str** |  | 
 **image** | [**ImageAnalysis**](ImageAnalysis.md) |  | [optional] 
+**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 
 ## Example
 

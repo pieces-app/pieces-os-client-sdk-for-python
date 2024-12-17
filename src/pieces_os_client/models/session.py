@@ -27,10 +27,10 @@ class Session(BaseModel):
     """
     This is a specific model that will let us know at what time this user was using the application.  # noqa: E501
     """
+    closed: Optional[GroupedTimestamp] = None
     id: StrictStr = Field(default=..., description="The UUID of the current Session")
     opened: GroupedTimestamp = Field(...)
-    closed: Optional[GroupedTimestamp] = None
-    __properties = ["id", "opened", "closed"]
+    __properties = ["closed", "id", "opened"]
 
     class Config:
         """Pydantic configuration"""
@@ -56,12 +56,12 @@ class Session(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of opened
-        if self.opened:
-            _dict['opened'] = self.opened.to_dict()
         # override the default output from pydantic by calling `to_dict()` of closed
         if self.closed:
             _dict['closed'] = self.closed.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of opened
+        if self.opened:
+            _dict['opened'] = self.opened.to_dict()
         return _dict
 
     @classmethod
@@ -74,9 +74,9 @@ class Session(BaseModel):
             return Session.parse_obj(obj)
 
         _obj = Session.parse_obj({
+            "closed": GroupedTimestamp.from_dict(obj.get("closed")) if obj.get("closed") is not None else None,
             "id": obj.get("id"),
-            "opened": GroupedTimestamp.from_dict(obj.get("opened")) if obj.get("opened") is not None else None,
-            "closed": GroupedTimestamp.from_dict(obj.get("closed")) if obj.get("closed") is not None else None
+            "opened": GroupedTimestamp.from_dict(obj.get("opened")) if obj.get("opened") is not None else None
         })
         return _obj
 

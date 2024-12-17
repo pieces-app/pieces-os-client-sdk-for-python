@@ -28,9 +28,9 @@ class OSPermissions(BaseModel):
     """
     This will return the permission of this specific operating system w/ relation to given features.  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     processing: Optional[OSProcessingPermissions] = None
-    __properties = ["schema", "processing"]
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
+    __properties = ["processing", "schema"]
 
     class Config:
         """Pydantic configuration"""
@@ -56,12 +56,12 @@ class OSPermissions(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of var_schema
-        if self.var_schema:
-            _dict['schema'] = self.var_schema.to_dict()
         # override the default output from pydantic by calling `to_dict()` of processing
         if self.processing:
             _dict['processing'] = self.processing.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of var_schema
+        if self.var_schema:
+            _dict['schema'] = self.var_schema.to_dict()
         return _dict
 
     @classmethod
@@ -74,8 +74,8 @@ class OSPermissions(BaseModel):
             return OSPermissions.parse_obj(obj)
 
         _obj = OSPermissions.parse_obj({
-            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
-            "processing": OSProcessingPermissions.from_dict(obj.get("processing")) if obj.get("processing") is not None else None
+            "processing": OSProcessingPermissions.from_dict(obj.get("processing")) if obj.get("processing") is not None else None,
+            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None
         })
         return _obj
 

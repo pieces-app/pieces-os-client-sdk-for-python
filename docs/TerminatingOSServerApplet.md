@@ -5,9 +5,9 @@ TODO
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 **parent** | [**Application**](Application.md) |  | [optional] 
 **port** | **int** | Validation check if the port is passed in. | [optional] 
+**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 **type** | [**OSAppletEnum**](OSAppletEnum.md) |  | 
 
 ## Example

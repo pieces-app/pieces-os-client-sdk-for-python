@@ -5,12 +5,12 @@ This is the low level seeded score and will let us know what exactly we want to 
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
-**reuse** | **bool** |  | [optional] 
-**update** | **bool** |  | [optional] 
-**reference** | **bool** |  | [optional] 
 **priority** | **bool** |  | [optional] 
+**reference** | **bool** |  | [optional] 
+**reuse** | **bool** |  | [optional] 
+**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 **searched** | **bool** |  | [optional] 
+**update** | **bool** |  | [optional] 
 
 ## Example
 

@@ -28,13 +28,13 @@ class OCRAnalysis(BaseModel):
     """
     This is the data collected during the ocr analysis of an image.  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
-    id: StrictStr = Field(...)
-    raw: Format = Field(...)
     hocr: Format = Field(...)
+    id: StrictStr = Field(...)
     image: StrictStr = Field(default=..., description="this is a reference the the imageAnalysis.")
     model: Model = Field(...)
-    __properties = ["schema", "id", "raw", "hocr", "image", "model"]
+    raw: Format = Field(...)
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
+    __properties = ["hocr", "id", "image", "model", "raw", "schema"]
 
     class Config:
         """Pydantic configuration"""
@@ -60,18 +60,18 @@ class OCRAnalysis(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of var_schema
-        if self.var_schema:
-            _dict['schema'] = self.var_schema.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of raw
-        if self.raw:
-            _dict['raw'] = self.raw.to_dict()
         # override the default output from pydantic by calling `to_dict()` of hocr
         if self.hocr:
             _dict['hocr'] = self.hocr.to_dict()
         # override the default output from pydantic by calling `to_dict()` of model
         if self.model:
             _dict['model'] = self.model.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of raw
+        if self.raw:
+            _dict['raw'] = self.raw.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of var_schema
+        if self.var_schema:
+            _dict['schema'] = self.var_schema.to_dict()
         return _dict
 
     @classmethod
@@ -84,12 +84,12 @@ class OCRAnalysis(BaseModel):
             return OCRAnalysis.parse_obj(obj)
 
         _obj = OCRAnalysis.parse_obj({
-            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
-            "id": obj.get("id"),
-            "raw": Format.from_dict(obj.get("raw")) if obj.get("raw") is not None else None,
             "hocr": Format.from_dict(obj.get("hocr")) if obj.get("hocr") is not None else None,
+            "id": obj.get("id"),
             "image": obj.get("image"),
-            "model": Model.from_dict(obj.get("model")) if obj.get("model") is not None else None
+            "model": Model.from_dict(obj.get("model")) if obj.get("model") is not None else None,
+            "raw": Format.from_dict(obj.get("raw")) if obj.get("raw") is not None else None,
+            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None
         })
         return _obj
 

@@ -27,10 +27,10 @@ class ConversationGrounding(BaseModel):
     """
     This is the context used for grounding the ml models with reguard to a conversation.  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     messages: Optional[FlattenedConversationMessages] = None
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     temporal: Optional[TemporalRangeGrounding] = None
-    __properties = ["schema", "messages", "temporal"]
+    __properties = ["messages", "schema", "temporal"]
 
     class Config:
         """Pydantic configuration"""
@@ -56,12 +56,12 @@ class ConversationGrounding(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of var_schema
-        if self.var_schema:
-            _dict['schema'] = self.var_schema.to_dict()
         # override the default output from pydantic by calling `to_dict()` of messages
         if self.messages:
             _dict['messages'] = self.messages.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of var_schema
+        if self.var_schema:
+            _dict['schema'] = self.var_schema.to_dict()
         # override the default output from pydantic by calling `to_dict()` of temporal
         if self.temporal:
             _dict['temporal'] = self.temporal.to_dict()
@@ -77,8 +77,8 @@ class ConversationGrounding(BaseModel):
             return ConversationGrounding.parse_obj(obj)
 
         _obj = ConversationGrounding.parse_obj({
-            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
             "messages": FlattenedConversationMessages.from_dict(obj.get("messages")) if obj.get("messages") is not None else None,
+            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
             "temporal": TemporalRangeGrounding.from_dict(obj.get("temporal")) if obj.get("temporal") is not None else None
         })
         return _obj

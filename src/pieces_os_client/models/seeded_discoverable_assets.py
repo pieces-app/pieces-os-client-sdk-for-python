@@ -29,11 +29,11 @@ class SeededDiscoverableAssets(BaseModel):
     """
     Assumption: filters imposed in this model can be overwritten by passing them in SeededDiscoverableAsset  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     application: StrictStr = Field(default=..., description="application id.")
-    iterable: conlist(SeededDiscoverableAsset) = Field(default=..., description="This is an iterable of already snippitized snippets that we will compare && cluster.")
     filters: Optional[TLPDirectedDiscoveryFilters] = None
-    __properties = ["schema", "application", "iterable", "filters"]
+    iterable: conlist(SeededDiscoverableAsset) = Field(default=..., description="This is an iterable of already snippitized snippets that we will compare && cluster.")
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
+    __properties = ["application", "filters", "iterable", "schema"]
 
     class Config:
         """Pydantic configuration"""
@@ -59,9 +59,9 @@ class SeededDiscoverableAssets(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of var_schema
-        if self.var_schema:
-            _dict['schema'] = self.var_schema.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of filters
+        if self.filters:
+            _dict['filters'] = self.filters.to_dict()
         # override the default output from pydantic by calling `to_dict()` of each item in iterable (list)
         _items = []
         if self.iterable:
@@ -69,9 +69,9 @@ class SeededDiscoverableAssets(BaseModel):
                 if _item:
                     _items.append(_item.to_dict())
             _dict['iterable'] = _items
-        # override the default output from pydantic by calling `to_dict()` of filters
-        if self.filters:
-            _dict['filters'] = self.filters.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of var_schema
+        if self.var_schema:
+            _dict['schema'] = self.var_schema.to_dict()
         return _dict
 
     @classmethod
@@ -84,10 +84,10 @@ class SeededDiscoverableAssets(BaseModel):
             return SeededDiscoverableAssets.parse_obj(obj)
 
         _obj = SeededDiscoverableAssets.parse_obj({
-            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
             "application": obj.get("application"),
+            "filters": TLPDirectedDiscoveryFilters.from_dict(obj.get("filters")) if obj.get("filters") is not None else None,
             "iterable": [SeededDiscoverableAsset.from_dict(_item) for _item in obj.get("iterable")] if obj.get("iterable") is not None else None,
-            "filters": TLPDirectedDiscoveryFilters.from_dict(obj.get("filters")) if obj.get("filters") is not None else None
+            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None
         })
         return _obj
 

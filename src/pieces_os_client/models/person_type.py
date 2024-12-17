@@ -29,10 +29,10 @@ class PersonType(BaseModel):
     """
     basic or platform is absolutely required here. basic: if provided is just information that has been either extracted from the piece or other wise added here. platform: is a real Pieces User.(this user will also exist within the user's users collection. && if not then we will just use the data we have.)  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     basic: Optional[PersonBasicType] = None
     platform: Optional[UserProfile] = None
-    __properties = ["schema", "basic", "platform"]
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
+    __properties = ["basic", "platform", "schema"]
 
     class Config:
         """Pydantic configuration"""
@@ -58,15 +58,15 @@ class PersonType(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of var_schema
-        if self.var_schema:
-            _dict['schema'] = self.var_schema.to_dict()
         # override the default output from pydantic by calling `to_dict()` of basic
         if self.basic:
             _dict['basic'] = self.basic.to_dict()
         # override the default output from pydantic by calling `to_dict()` of platform
         if self.platform:
             _dict['platform'] = self.platform.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of var_schema
+        if self.var_schema:
+            _dict['schema'] = self.var_schema.to_dict()
         return _dict
 
     @classmethod
@@ -79,9 +79,9 @@ class PersonType(BaseModel):
             return PersonType.parse_obj(obj)
 
         _obj = PersonType.parse_obj({
-            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
             "basic": PersonBasicType.from_dict(obj.get("basic")) if obj.get("basic") is not None else None,
-            "platform": UserProfile.from_dict(obj.get("platform")) if obj.get("platform") is not None else None
+            "platform": UserProfile.from_dict(obj.get("platform")) if obj.get("platform") is not None else None,
+            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None
         })
         return _obj
 

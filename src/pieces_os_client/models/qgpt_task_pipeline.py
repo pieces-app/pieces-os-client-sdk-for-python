@@ -32,13 +32,13 @@ class QGPTTaskPipeline(BaseModel):
     """
     This model is specifically for QGPT Task pipelines, the model is used to group one off tasks for instance fix/explaining/commenting that dont necessarily require a conversation form factor.  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
-    code_explanation: Optional[QGPTTaskPipelineForCodeExplanation] = None
     code_commentation: Optional[QGPTTaskPipelineForCodeCommentation] = None
+    code_completion: Optional[QGPTTaskPipelineForCodeCompletion] = None
+    code_explanation: Optional[QGPTTaskPipelineForCodeExplanation] = None
     code_fix: Optional[QGPTTaskPipelineForCodeFix] = None
     code_modification: Optional[QGPTTaskPipelineForCodeModification] = None
-    code_completion: Optional[QGPTTaskPipelineForCodeCompletion] = None
-    __properties = ["schema", "code_explanation", "code_commentation", "code_fix", "code_modification", "code_completion"]
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
+    __properties = ["code_commentation", "code_completion", "code_explanation", "code_fix", "code_modification", "schema"]
 
     class Config:
         """Pydantic configuration"""
@@ -64,24 +64,24 @@ class QGPTTaskPipeline(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of var_schema
-        if self.var_schema:
-            _dict['schema'] = self.var_schema.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of code_explanation
-        if self.code_explanation:
-            _dict['code_explanation'] = self.code_explanation.to_dict()
         # override the default output from pydantic by calling `to_dict()` of code_commentation
         if self.code_commentation:
             _dict['code_commentation'] = self.code_commentation.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of code_completion
+        if self.code_completion:
+            _dict['code_completion'] = self.code_completion.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of code_explanation
+        if self.code_explanation:
+            _dict['code_explanation'] = self.code_explanation.to_dict()
         # override the default output from pydantic by calling `to_dict()` of code_fix
         if self.code_fix:
             _dict['code_fix'] = self.code_fix.to_dict()
         # override the default output from pydantic by calling `to_dict()` of code_modification
         if self.code_modification:
             _dict['code_modification'] = self.code_modification.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of code_completion
-        if self.code_completion:
-            _dict['code_completion'] = self.code_completion.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of var_schema
+        if self.var_schema:
+            _dict['schema'] = self.var_schema.to_dict()
         return _dict
 
     @classmethod
@@ -94,12 +94,12 @@ class QGPTTaskPipeline(BaseModel):
             return QGPTTaskPipeline.parse_obj(obj)
 
         _obj = QGPTTaskPipeline.parse_obj({
-            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
-            "code_explanation": QGPTTaskPipelineForCodeExplanation.from_dict(obj.get("code_explanation")) if obj.get("code_explanation") is not None else None,
             "code_commentation": QGPTTaskPipelineForCodeCommentation.from_dict(obj.get("code_commentation")) if obj.get("code_commentation") is not None else None,
+            "code_completion": QGPTTaskPipelineForCodeCompletion.from_dict(obj.get("code_completion")) if obj.get("code_completion") is not None else None,
+            "code_explanation": QGPTTaskPipelineForCodeExplanation.from_dict(obj.get("code_explanation")) if obj.get("code_explanation") is not None else None,
             "code_fix": QGPTTaskPipelineForCodeFix.from_dict(obj.get("code_fix")) if obj.get("code_fix") is not None else None,
             "code_modification": QGPTTaskPipelineForCodeModification.from_dict(obj.get("code_modification")) if obj.get("code_modification") is not None else None,
-            "code_completion": QGPTTaskPipelineForCodeCompletion.from_dict(obj.get("code_completion")) if obj.get("code_completion") is not None else None
+            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None
         })
         return _obj
 

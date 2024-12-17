@@ -5,8 +5,8 @@ This is a given bit of text/code that is selected in the browser, this can be a 
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 **classification** | [**Classification**](Classification.md) |  | 
+**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 **value** | [**TransferableString**](TransferableString.md) |  | 
 
 ## Example

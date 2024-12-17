@@ -27,11 +27,11 @@ class TextLocation(BaseModel):
     """
     This is a generic model that is used for text location.  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
-    text: StrictStr = Field(default=..., description="this is the value that was found.")
-    start: StrictInt = Field(default=..., description="this is the start index within the original string.")
     end: StrictInt = Field(default=..., description="this is the end index within the original string.")
-    __properties = ["schema", "text", "start", "end"]
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
+    start: StrictInt = Field(default=..., description="this is the start index within the original string.")
+    text: StrictStr = Field(default=..., description="this is the value that was found.")
+    __properties = ["end", "schema", "start", "text"]
 
     class Config:
         """Pydantic configuration"""
@@ -72,10 +72,10 @@ class TextLocation(BaseModel):
             return TextLocation.parse_obj(obj)
 
         _obj = TextLocation.parse_obj({
+            "end": obj.get("end"),
             "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
-            "text": obj.get("text"),
             "start": obj.get("start"),
-            "end": obj.get("end")
+            "text": obj.get("text")
         })
         return _obj
 

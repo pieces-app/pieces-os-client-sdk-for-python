@@ -28,11 +28,11 @@ class FileMetadata(BaseModel):
     """
     This is a model for metadata of a file!  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
-    name: Optional[StrictStr] = Field(default=None, description="This is the name of your file.")
     ext: Optional[ClassificationSpecificEnum] = None
+    name: Optional[StrictStr] = Field(default=None, description="This is the name of your file.")
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     size: Optional[StrictInt] = Field(default=None, description="This is the size(in bytes)")
-    __properties = ["schema", "name", "ext", "size"]
+    __properties = ["ext", "name", "schema", "size"]
 
     class Config:
         """Pydantic configuration"""
@@ -73,9 +73,9 @@ class FileMetadata(BaseModel):
             return FileMetadata.parse_obj(obj)
 
         _obj = FileMetadata.parse_obj({
-            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
-            "name": obj.get("name"),
             "ext": obj.get("ext"),
+            "name": obj.get("name"),
+            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
             "size": obj.get("size")
         })
         return _obj

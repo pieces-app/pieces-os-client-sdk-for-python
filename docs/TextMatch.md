@@ -5,8 +5,8 @@ Thext Match currently used for sensitive for scales for people, and anything rel
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 **group** | [**TextLocation**](TextLocation.md) |  | 
+**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 **subgroup** | [**TextLocation**](TextLocation.md) |  | [optional] 
 
 ## Example

@@ -27,15 +27,15 @@ class Score(BaseModel):
     """
     This is use as the score for an asset.  Manual: will be the raw sum of the asset activity events ranks with mechanismEnum == manual Automatic: will be the raw sum of the asset activity events ranks with mechanismEnum == automatic  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
-    manual: StrictInt = Field(default=..., description="These are points assigned via manual user driven events.")
     automatic: StrictInt = Field(default=..., description="These are point assigned via automatic activity events.")
+    manual: StrictInt = Field(default=..., description="These are points assigned via manual user driven events.")
     priority: Optional[StrictInt] = None
-    reuse: Optional[StrictInt] = None
-    update: Optional[StrictInt] = None
     reference: Optional[StrictInt] = None
+    reuse: Optional[StrictInt] = None
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     searched: Optional[StrictInt] = None
-    __properties = ["schema", "manual", "automatic", "priority", "reuse", "update", "reference", "searched"]
+    update: Optional[StrictInt] = None
+    __properties = ["automatic", "manual", "priority", "reference", "reuse", "schema", "searched", "update"]
 
     class Config:
         """Pydantic configuration"""
@@ -76,14 +76,14 @@ class Score(BaseModel):
             return Score.parse_obj(obj)
 
         _obj = Score.parse_obj({
-            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
-            "manual": obj.get("manual"),
             "automatic": obj.get("automatic"),
+            "manual": obj.get("manual"),
             "priority": obj.get("priority"),
-            "reuse": obj.get("reuse"),
-            "update": obj.get("update"),
             "reference": obj.get("reference"),
-            "searched": obj.get("searched")
+            "reuse": obj.get("reuse"),
+            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
+            "searched": obj.get("searched"),
+            "update": obj.get("update")
         })
         return _obj
 

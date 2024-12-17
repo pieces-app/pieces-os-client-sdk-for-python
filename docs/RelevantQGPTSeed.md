@@ -5,11 +5,11 @@ This is a generic model used, to wrap a seed, as well as give an identifier used
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
-**id** | **str** |  | [optional] 
-**seed** | [**Seed**](Seed.md) |  | [optional] 
-**path** | **str** | This is an optional file path | [optional] 
 **asset** | [**ReferencedAsset**](ReferencedAsset.md) |  | [optional] 
+**id** | **str** |  | [optional] 
+**path** | **str** | This is an optional file path | [optional] 
+**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
+**seed** | [**Seed**](Seed.md) |  | [optional] 
 
 ## Example
 

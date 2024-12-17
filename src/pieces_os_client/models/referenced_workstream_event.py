@@ -27,10 +27,10 @@ class ReferencedWorkstreamEvent(BaseModel):
     """
     This is a minimal representation of a WorkstreamEvent event.  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     id: StrictStr = Field(...)
     reference: Optional[FlattenedWorkstreamEvent] = None
-    __properties = ["schema", "id", "reference"]
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
+    __properties = ["id", "reference", "schema"]
 
     class Config:
         """Pydantic configuration"""
@@ -56,12 +56,12 @@ class ReferencedWorkstreamEvent(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of var_schema
-        if self.var_schema:
-            _dict['schema'] = self.var_schema.to_dict()
         # override the default output from pydantic by calling `to_dict()` of reference
         if self.reference:
             _dict['reference'] = self.reference.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of var_schema
+        if self.var_schema:
+            _dict['schema'] = self.var_schema.to_dict()
         return _dict
 
     @classmethod
@@ -74,9 +74,9 @@ class ReferencedWorkstreamEvent(BaseModel):
             return ReferencedWorkstreamEvent.parse_obj(obj)
 
         _obj = ReferencedWorkstreamEvent.parse_obj({
-            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
             "id": obj.get("id"),
-            "reference": FlattenedWorkstreamEvent.from_dict(obj.get("reference")) if obj.get("reference") is not None else None
+            "reference": FlattenedWorkstreamEvent.from_dict(obj.get("reference")) if obj.get("reference") is not None else None,
+            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None
         })
         return _obj
 

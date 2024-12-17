@@ -166,7 +166,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **exchange_for_auth0_token**
-> OAuthToken exchange_for_auth0_token(grant_type, client_id, code, redirect_uri, code_verifier, var_schema=var_schema, audience=audience)
+> OAuthToken exchange_for_auth0_token(client_id, code, code_verifier, grant_type, redirect_uri, audience=audience, var_schema=var_schema)
 
 https://auth.pieces.services/oauth/token [POST]
 
@@ -194,17 +194,17 @@ configuration = pieces_os_client.Configuration(
 with pieces_os_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pieces_os_client.Auth0Api(api_client)
-    grant_type = 'grant_type_example' # str | Denotes the flow you are using. For Authorization Code, use authorization_code or refresh_token.
     client_id = 'client_id_example' # str | Your application's Client ID.
     code = 'code_example' # str | The Authorization Code received from the initial /authorize call.
-    redirect_uri = 'redirect_uri_example' # str | This is required only if it was set at the GET /authorize endpoint. The values must match.
     code_verifier = 'code_verifier_example' # str | Cryptographically random key that was used to generate the code_challenge passed to /authorize.
-    var_schema = pieces_os_client.EmbeddedModelSchema() # EmbeddedModelSchema |  (optional)
+    grant_type = 'grant_type_example' # str | Denotes the flow you are using. For Authorization Code, use authorization_code or refresh_token.
+    redirect_uri = 'redirect_uri_example' # str | This is required only if it was set at the GET /authorize endpoint. The values must match.
     audience = 'audience_example' # str | The audience domain: i.e. https://pieces.us.auth0.com (optional)
+    var_schema = pieces_os_client.EmbeddedModelSchema() # EmbeddedModelSchema |  (optional)
 
     try:
         # https://auth.pieces.services/oauth/token [POST]
-        api_response = api_instance.exchange_for_auth0_token(grant_type, client_id, code, redirect_uri, code_verifier, var_schema=var_schema, audience=audience)
+        api_response = api_instance.exchange_for_auth0_token(client_id, code, code_verifier, grant_type, redirect_uri, audience=audience, var_schema=var_schema)
         print("The response of Auth0Api->exchange_for_auth0_token:\n")
         pprint(api_response)
     except Exception as e:
@@ -217,13 +217,13 @@ with pieces_os_client.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **grant_type** | **str**| Denotes the flow you are using. For Authorization Code, use authorization_code or refresh_token. | 
  **client_id** | **str**| Your application&#39;s Client ID. | 
  **code** | **str**| The Authorization Code received from the initial /authorize call. | 
- **redirect_uri** | **str**| This is required only if it was set at the GET /authorize endpoint. The values must match. | 
  **code_verifier** | **str**| Cryptographically random key that was used to generate the code_challenge passed to /authorize. | 
- **var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md)|  | [optional] 
+ **grant_type** | **str**| Denotes the flow you are using. For Authorization Code, use authorization_code or refresh_token. | 
+ **redirect_uri** | **str**| This is required only if it was set at the GET /authorize endpoint. The values must match. | 
  **audience** | **str**| The audience domain: i.e. https://pieces.us.auth0.com | [optional] 
+ **var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md)|  | [optional] 
 
 ### Return type
 

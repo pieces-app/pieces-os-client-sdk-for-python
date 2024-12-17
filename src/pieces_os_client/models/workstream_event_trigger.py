@@ -27,22 +27,22 @@ class WorkstreamEventTrigger(BaseModel):
     """
     This is the specific event that represent the Shadow Activity ie the copy/paste ...xyz  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
-    check_in: Optional[StrictBool] = Field(default=None, description="this is a sort of check-in event(ie when ever your application is in the forground on there is an interaction)")
-    copy_field: Optional[StrictBool] = Field(default=None, alias="copy")
-    paste: Optional[StrictBool] = None
-    file_open: Optional[StrictBool] = None
-    file_close: Optional[StrictBool] = None
-    tab_switch: Optional[StrictBool] = None
-    tab_close: Optional[StrictBool] = None
-    tab_open: Optional[StrictBool] = None
-    tab_enter: Optional[StrictBool] = None
-    tab_leave: Optional[StrictBool] = None
-    url_changed: Optional[StrictBool] = None
     application_enter: Optional[StrictBool] = None
     application_leave: Optional[StrictBool] = None
     application_switch: Optional[StrictBool] = None
-    __properties = ["schema", "check_in", "copy", "paste", "file_open", "file_close", "tab_switch", "tab_close", "tab_open", "tab_enter", "tab_leave", "url_changed", "application_enter", "application_leave", "application_switch"]
+    check_in: Optional[StrictBool] = Field(default=None, description="this is a sort of check-in event(ie when ever your application is in the forground on there is an interaction)")
+    copy_field: Optional[StrictBool] = Field(default=None, alias="copy")
+    file_close: Optional[StrictBool] = None
+    file_open: Optional[StrictBool] = None
+    paste: Optional[StrictBool] = None
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
+    tab_close: Optional[StrictBool] = None
+    tab_enter: Optional[StrictBool] = None
+    tab_leave: Optional[StrictBool] = None
+    tab_open: Optional[StrictBool] = None
+    tab_switch: Optional[StrictBool] = None
+    url_changed: Optional[StrictBool] = None
+    __properties = ["application_enter", "application_leave", "application_switch", "check_in", "copy", "file_close", "file_open", "paste", "schema", "tab_close", "tab_enter", "tab_leave", "tab_open", "tab_switch", "url_changed"]
 
     class Config:
         """Pydantic configuration"""
@@ -83,21 +83,21 @@ class WorkstreamEventTrigger(BaseModel):
             return WorkstreamEventTrigger.parse_obj(obj)
 
         _obj = WorkstreamEventTrigger.parse_obj({
-            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
-            "check_in": obj.get("check_in"),
-            "copy": obj.get("copy"),
-            "paste": obj.get("paste"),
-            "file_open": obj.get("file_open"),
-            "file_close": obj.get("file_close"),
-            "tab_switch": obj.get("tab_switch"),
-            "tab_close": obj.get("tab_close"),
-            "tab_open": obj.get("tab_open"),
-            "tab_enter": obj.get("tab_enter"),
-            "tab_leave": obj.get("tab_leave"),
-            "url_changed": obj.get("url_changed"),
             "application_enter": obj.get("application_enter"),
             "application_leave": obj.get("application_leave"),
-            "application_switch": obj.get("application_switch")
+            "application_switch": obj.get("application_switch"),
+            "check_in": obj.get("check_in"),
+            "copy": obj.get("copy"),
+            "file_close": obj.get("file_close"),
+            "file_open": obj.get("file_open"),
+            "paste": obj.get("paste"),
+            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
+            "tab_close": obj.get("tab_close"),
+            "tab_enter": obj.get("tab_enter"),
+            "tab_leave": obj.get("tab_leave"),
+            "tab_open": obj.get("tab_open"),
+            "tab_switch": obj.get("tab_switch"),
+            "url_changed": obj.get("url_changed")
         })
         return _obj
 

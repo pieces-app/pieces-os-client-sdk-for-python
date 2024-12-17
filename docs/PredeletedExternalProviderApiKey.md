@@ -5,9 +5,9 @@ This is a predeleted version relating to the /external_provider/api_key/delete e
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**open_ai** | **bool** |  | [optional] 
 **var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 **user** | **str** |  | 
-**open_ai** | **bool** |  | [optional] 
 
 ## Example
 

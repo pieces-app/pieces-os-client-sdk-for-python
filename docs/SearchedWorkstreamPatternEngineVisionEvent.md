@@ -5,13 +5,13 @@ This will return a list of the returned events.
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
+**application** | **str** |  | [optional] 
 **event** | [**WorkstreamPatternEngineVisionEvent**](WorkstreamPatternEngineVisionEvent.md) |  | [optional] 
 **exact** | **bool** |  | [optional] 
+**identifier** | **str** | This is the uuid of the event. | 
+**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 **similarity** | **float** |  | [optional] 
 **temporal** | **bool** |  | [optional] 
-**application** | **str** |  | [optional] 
-**identifier** | **str** | This is the uuid of the event. | 
 
 ## Example
 

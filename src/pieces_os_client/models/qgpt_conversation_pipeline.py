@@ -31,12 +31,12 @@ class QGPTConversationPipeline(BaseModel):
     """
     This model is specifically for QGPT Conversation pipelines, the model is used to group conversational prompts for instance a conversation around generating code.  here are some use cases- 1. contextualized_code_generation- This is for users that want to have conversations around generating code, when there is provided context. 2. generalized_code- This is for users that want to have conversations without context around code. 3. contextualized_code- This is for users that want to have conversation around code with Context. 4. contextualized_code_workstream: this is for the users that want to use context as well as WPE information in their chat (we wiil prioritize WPE infomration, but also support other info as well)  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
-    contextualized_code_generation: Optional[QGPTConversationPipelineForContextualizedCodeGeneration] = None
-    generalized_code_dialog: Optional[QGPTConversationPipelineForGeneralizedCodeDialog] = None
     contextualized_code_dialog: Optional[QGPTConversationPipelineForContextualizedCodeDialog] = None
+    contextualized_code_generation: Optional[QGPTConversationPipelineForContextualizedCodeGeneration] = None
     contextualized_code_workstream_dialog: Optional[QGPTConversationPipelineForContextualizedCodeWorkstreamDialog] = None
-    __properties = ["schema", "contextualized_code_generation", "generalized_code_dialog", "contextualized_code_dialog", "contextualized_code_workstream_dialog"]
+    generalized_code_dialog: Optional[QGPTConversationPipelineForGeneralizedCodeDialog] = None
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
+    __properties = ["contextualized_code_dialog", "contextualized_code_generation", "contextualized_code_workstream_dialog", "generalized_code_dialog", "schema"]
 
     class Config:
         """Pydantic configuration"""
@@ -62,21 +62,21 @@ class QGPTConversationPipeline(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of var_schema
-        if self.var_schema:
-            _dict['schema'] = self.var_schema.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of contextualized_code_generation
-        if self.contextualized_code_generation:
-            _dict['contextualized_code_generation'] = self.contextualized_code_generation.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of generalized_code_dialog
-        if self.generalized_code_dialog:
-            _dict['generalized_code_dialog'] = self.generalized_code_dialog.to_dict()
         # override the default output from pydantic by calling `to_dict()` of contextualized_code_dialog
         if self.contextualized_code_dialog:
             _dict['contextualized_code_dialog'] = self.contextualized_code_dialog.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of contextualized_code_generation
+        if self.contextualized_code_generation:
+            _dict['contextualized_code_generation'] = self.contextualized_code_generation.to_dict()
         # override the default output from pydantic by calling `to_dict()` of contextualized_code_workstream_dialog
         if self.contextualized_code_workstream_dialog:
             _dict['contextualized_code_workstream_dialog'] = self.contextualized_code_workstream_dialog.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of generalized_code_dialog
+        if self.generalized_code_dialog:
+            _dict['generalized_code_dialog'] = self.generalized_code_dialog.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of var_schema
+        if self.var_schema:
+            _dict['schema'] = self.var_schema.to_dict()
         return _dict
 
     @classmethod
@@ -89,11 +89,11 @@ class QGPTConversationPipeline(BaseModel):
             return QGPTConversationPipeline.parse_obj(obj)
 
         _obj = QGPTConversationPipeline.parse_obj({
-            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
-            "contextualized_code_generation": QGPTConversationPipelineForContextualizedCodeGeneration.from_dict(obj.get("contextualized_code_generation")) if obj.get("contextualized_code_generation") is not None else None,
-            "generalized_code_dialog": QGPTConversationPipelineForGeneralizedCodeDialog.from_dict(obj.get("generalized_code_dialog")) if obj.get("generalized_code_dialog") is not None else None,
             "contextualized_code_dialog": QGPTConversationPipelineForContextualizedCodeDialog.from_dict(obj.get("contextualized_code_dialog")) if obj.get("contextualized_code_dialog") is not None else None,
-            "contextualized_code_workstream_dialog": QGPTConversationPipelineForContextualizedCodeWorkstreamDialog.from_dict(obj.get("contextualized_code_workstream_dialog")) if obj.get("contextualized_code_workstream_dialog") is not None else None
+            "contextualized_code_generation": QGPTConversationPipelineForContextualizedCodeGeneration.from_dict(obj.get("contextualized_code_generation")) if obj.get("contextualized_code_generation") is not None else None,
+            "contextualized_code_workstream_dialog": QGPTConversationPipelineForContextualizedCodeWorkstreamDialog.from_dict(obj.get("contextualized_code_workstream_dialog")) if obj.get("contextualized_code_workstream_dialog") is not None else None,
+            "generalized_code_dialog": QGPTConversationPipelineForGeneralizedCodeDialog.from_dict(obj.get("generalized_code_dialog")) if obj.get("generalized_code_dialog") is not None else None,
+            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None
         })
         return _obj
 

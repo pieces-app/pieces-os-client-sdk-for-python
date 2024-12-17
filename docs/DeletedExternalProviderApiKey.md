@@ -5,8 +5,8 @@ This is the returnable for the \"\"/external_provider/api_key/delete\" endpoint
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 **metadata** | [**Auth0UserMetadata**](Auth0UserMetadata.md) |  | 
+**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 
 ## Example
 

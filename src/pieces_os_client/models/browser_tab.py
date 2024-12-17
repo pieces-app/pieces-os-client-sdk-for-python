@@ -31,14 +31,14 @@ class BrowserTab(BaseModel):
     """
     a tab can have many values because you might want to pass in a value that represents the code_blocks(snippets) or a md represenet note: please only pass 1 representation, I will clean on POS side tho (txt || md || html)  anchor: can be defined in the browser if view a local file  website: this is the given url of the tab  range: this is the amount of time this user is current on this given tab  current: means that this is the current tab that is open  contributors: these are all the extracted people from this given tab  # noqa: E501
     """
+    anchor: Optional[SeededAnchor] = None
+    contributors: Optional[DocumentContributors] = None
+    current: Optional[StrictBool] = None
+    range: Optional[AnonymousTemporalRange] = None
     var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     values: Optional[BrowserTabValues] = None
-    anchor: Optional[SeededAnchor] = None
     website: Optional[SeededWebsite] = None
-    range: Optional[AnonymousTemporalRange] = None
-    current: Optional[StrictBool] = None
-    contributors: Optional[DocumentContributors] = None
-    __properties = ["schema", "values", "anchor", "website", "range", "current", "contributors"]
+    __properties = ["anchor", "contributors", "current", "range", "schema", "values", "website"]
 
     class Config:
         """Pydantic configuration"""
@@ -64,24 +64,24 @@ class BrowserTab(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
+        # override the default output from pydantic by calling `to_dict()` of anchor
+        if self.anchor:
+            _dict['anchor'] = self.anchor.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of contributors
+        if self.contributors:
+            _dict['contributors'] = self.contributors.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of range
+        if self.range:
+            _dict['range'] = self.range.to_dict()
         # override the default output from pydantic by calling `to_dict()` of var_schema
         if self.var_schema:
             _dict['schema'] = self.var_schema.to_dict()
         # override the default output from pydantic by calling `to_dict()` of values
         if self.values:
             _dict['values'] = self.values.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of anchor
-        if self.anchor:
-            _dict['anchor'] = self.anchor.to_dict()
         # override the default output from pydantic by calling `to_dict()` of website
         if self.website:
             _dict['website'] = self.website.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of range
-        if self.range:
-            _dict['range'] = self.range.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of contributors
-        if self.contributors:
-            _dict['contributors'] = self.contributors.to_dict()
         return _dict
 
     @classmethod
@@ -94,13 +94,13 @@ class BrowserTab(BaseModel):
             return BrowserTab.parse_obj(obj)
 
         _obj = BrowserTab.parse_obj({
+            "anchor": SeededAnchor.from_dict(obj.get("anchor")) if obj.get("anchor") is not None else None,
+            "contributors": DocumentContributors.from_dict(obj.get("contributors")) if obj.get("contributors") is not None else None,
+            "current": obj.get("current"),
+            "range": AnonymousTemporalRange.from_dict(obj.get("range")) if obj.get("range") is not None else None,
             "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
             "values": BrowserTabValues.from_dict(obj.get("values")) if obj.get("values") is not None else None,
-            "anchor": SeededAnchor.from_dict(obj.get("anchor")) if obj.get("anchor") is not None else None,
-            "website": SeededWebsite.from_dict(obj.get("website")) if obj.get("website") is not None else None,
-            "range": AnonymousTemporalRange.from_dict(obj.get("range")) if obj.get("range") is not None else None,
-            "current": obj.get("current"),
-            "contributors": DocumentContributors.from_dict(obj.get("contributors")) if obj.get("contributors") is not None else None
+            "website": SeededWebsite.from_dict(obj.get("website")) if obj.get("website") is not None else None
         })
         return _obj
 

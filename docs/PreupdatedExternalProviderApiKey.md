@@ -5,9 +5,9 @@ This is the endput model for \"/external_provider/api_key/update\". everything b
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**open_ai** | [**Auth0OpenAIUserMetadata**](Auth0OpenAIUserMetadata.md) |  | [optional] 
 **var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 **user** | **str** |  | 
-**open_ai** | [**Auth0OpenAIUserMetadata**](Auth0OpenAIUserMetadata.md) |  | [optional] 
 
 ## Example
 

@@ -27,10 +27,10 @@ class FlattenedPreview(BaseModel):
     """
     These are the references of the formats **Only UUIDS**  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     base: StrictStr = Field(default=..., description="this is a reference(uuid) to the base format")
     overlay: Optional[StrictStr] = Field(default=None, description="this is a reference(uuid) to the overlay format")
-    __properties = ["schema", "base", "overlay"]
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
+    __properties = ["base", "overlay", "schema"]
 
     class Config:
         """Pydantic configuration"""
@@ -71,9 +71,9 @@ class FlattenedPreview(BaseModel):
             return FlattenedPreview.parse_obj(obj)
 
         _obj = FlattenedPreview.parse_obj({
-            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
             "base": obj.get("base"),
-            "overlay": obj.get("overlay")
+            "overlay": obj.get("overlay"),
+            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None
         })
         return _obj
 

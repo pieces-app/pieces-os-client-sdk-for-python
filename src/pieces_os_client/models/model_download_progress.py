@@ -28,10 +28,10 @@ class ModelDownloadProgress(BaseModel):
     """
     This is the model that is sent over our ws for streaming the progress of a model that is being downloaded.  can eventually add a number that display the percent downloaded an so on.(this is called percent 0-100)  # noqa: E501
     """
+    percentage: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="Optionally if the download is in progress you will recieve a download percent(from 0-100).")
     var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     status: Optional[ModelDownloadProgressStatusEnum] = None
-    percentage: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="Optionally if the download is in progress you will recieve a download percent(from 0-100).")
-    __properties = ["schema", "status", "percentage"]
+    __properties = ["percentage", "schema", "status"]
 
     class Config:
         """Pydantic configuration"""
@@ -77,9 +77,9 @@ class ModelDownloadProgress(BaseModel):
             return ModelDownloadProgress.parse_obj(obj)
 
         _obj = ModelDownloadProgress.parse_obj({
+            "percentage": obj.get("percentage"),
             "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
-            "status": obj.get("status"),
-            "percentage": obj.get("percentage")
+            "status": obj.get("status")
         })
         return _obj
 

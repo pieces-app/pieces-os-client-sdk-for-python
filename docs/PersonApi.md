@@ -6,11 +6,13 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**person_associate_anchor**](PersonApi.md#person_associate_anchor) | **POST** /person/{person}/anchors/associate/{anchor} | /person/{person}/anchors/associate/{anchor} [POST]
 [**person_associate_asset**](PersonApi.md#person_associate_asset) | **POST** /person/{person}/assets/associate/{asset} | /person/{person}/assets/associate/{asset} [POST]
+[**person_associate_message**](PersonApi.md#person_associate_message) | **POST** /person/{person}/messages/associate/{message} | /person/{person}/messages/associate/{message} [POST]
 [**person_associate_tag**](PersonApi.md#person_associate_tag) | **POST** /person/{person}/tags/associate/{tag} | /person/{person}/tags/associate/{tag} [POST]
 [**person_associate_website**](PersonApi.md#person_associate_website) | **POST** /person/{person}/websites/associate/{website} | /person/{person}/websites/associate/{website} [POST]
 [**person_associate_workstream_summary**](PersonApi.md#person_associate_workstream_summary) | **POST** /person/{person}/workstream_summaries/associate/{workstream_summary} | /person/{person}/workstream_summaries/associate/{workstream_summary} [POST]
 [**person_disassociate_anchor**](PersonApi.md#person_disassociate_anchor) | **POST** /person/{person}/anchors/disassociate/{anchor} | /person/{person}/anchors/disassociate/{anchor} [POST]
 [**person_disassociate_asset**](PersonApi.md#person_disassociate_asset) | **POST** /person/{person}/assets/disassociate/{asset} | /person/{person}/assets/disassociate/{asset} [POST]
+[**person_disassociate_message**](PersonApi.md#person_disassociate_message) | **POST** /person/{person}/messages/disassociate/{message} | /person/{person}/messages/disassociate/{message} [POST]
 [**person_disassociate_tag**](PersonApi.md#person_disassociate_tag) | **POST** /person/{person}/tags/disassociate/{tag} | /person/{person}/tags/disassociate/{tag} [POST]
 [**person_disassociate_website**](PersonApi.md#person_disassociate_website) | **POST** /person/{person}/websites/disassociate/{website} | /person/{person}/websites/disassociate/{website} [POST]
 [**person_disassociate_workstream_summary**](PersonApi.md#person_disassociate_workstream_summary) | **POST** /person/{person}/workstream_summaries/disassociate/{workstream_summary} | /person/{person}/workstream_summaries/disassociate/{workstream_summary} [POST]
@@ -131,6 +133,73 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **person** | **str**| This is a uuid that represents a person. | 
  **asset** | **str**| The id (uuid) of the asset that you are trying to access. | 
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: text/plain
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**204** | No Content |  -  |
+**500** | Internal Server Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **person_associate_message**
+> person_associate_message(person, message)
+
+/person/{person}/messages/associate/{message} [POST]
+
+This will associate a person with a message.
+
+### Example
+
+```python
+import time
+import os
+import pieces_os_client
+from pieces_os_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to http://localhost:1000
+# See configuration.py for a list of all supported configuration parameters.
+configuration = pieces_os_client.Configuration(
+    host = "http://localhost:1000"
+)
+
+
+# Enter a context with an instance of the API client
+with pieces_os_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = pieces_os_client.PersonApi(api_client)
+    person = 'person_example' # str | This is a uuid that represents a person.
+    message = 'message_example' # str | This is the uuid of a message.
+
+    try:
+        # /person/{person}/messages/associate/{message} [POST]
+        api_instance.person_associate_message(person, message)
+    except Exception as e:
+        print("Exception when calling PersonApi->person_associate_message: %s\n" % e)
+```
+
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **person** | **str**| This is a uuid that represents a person. | 
+ **message** | **str**| This is the uuid of a message. | 
 
 ### Return type
 
@@ -466,6 +535,73 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **person** | **str**| This is a uuid that represents a person. | 
  **asset** | **str**| The id (uuid) of the asset that you are trying to access. | 
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: text/plain
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**204** | No Content |  -  |
+**500** | Internal Server Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **person_disassociate_message**
+> person_disassociate_message(person, message)
+
+/person/{person}/messages/disassociate/{message} [POST]
+
+This will enable us to disassociate a person from a message.
+
+### Example
+
+```python
+import time
+import os
+import pieces_os_client
+from pieces_os_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to http://localhost:1000
+# See configuration.py for a list of all supported configuration parameters.
+configuration = pieces_os_client.Configuration(
+    host = "http://localhost:1000"
+)
+
+
+# Enter a context with an instance of the API client
+with pieces_os_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = pieces_os_client.PersonApi(api_client)
+    person = 'person_example' # str | This is a uuid that represents a person.
+    message = 'message_example' # str | This is the uuid of a message.
+
+    try:
+        # /person/{person}/messages/disassociate/{message} [POST]
+        api_instance.person_disassociate_message(person, message)
+    except Exception as e:
+        print("Exception when calling PersonApi->person_disassociate_message: %s\n" % e)
+```
+
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **person** | **str**| This is a uuid that represents a person. | 
+ **message** | **str**| This is the uuid of a message. | 
 
 ### Return type
 

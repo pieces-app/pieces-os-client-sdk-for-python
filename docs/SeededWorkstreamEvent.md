@@ -5,13 +5,13 @@ This is a precreated version of a WorkstreamEvent event, this will be used inges
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**application** | [**Application**](Application.md) |  | 
+**context** | [**WorkstreamEventContext**](WorkstreamEventContext.md) |  | [optional] 
+**internal_identifier** | **str** | This is used to override the event identifier, if this was an event that was originally in the internal events collection. | [optional] 
 **var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 **score** | [**Score**](Score.md) |  | [optional] 
-**application** | [**Application**](Application.md) |  | 
-**trigger** | [**WorkstreamEventTrigger**](WorkstreamEventTrigger.md) |  | 
-**context** | [**WorkstreamEventContext**](WorkstreamEventContext.md) |  | [optional] 
 **summary** | [**ReferencedWorkstreamSummary**](ReferencedWorkstreamSummary.md) |  | [optional] 
-**internal_identifier** | **str** | This is used to override the event identifier, if this was an event that was originally in the internal events collection. | [optional] 
+**trigger** | [**WorkstreamEventTrigger**](WorkstreamEventTrigger.md) |  | 
 
 ## Example
 

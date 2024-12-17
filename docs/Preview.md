@@ -5,9 +5,9 @@ This is a preview Model that will hold references to at minimum the base preview
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 **base** | [**ReferencedFormat**](ReferencedFormat.md) |  | 
 **overlay** | [**ReferencedFormat**](ReferencedFormat.md) |  | [optional] 
+**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 
 ## Example
 

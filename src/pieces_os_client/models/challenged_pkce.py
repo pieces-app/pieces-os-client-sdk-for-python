@@ -27,18 +27,18 @@ class ChallengedPKCE(BaseModel):
     """
     A model that Generates A PKCE Challenge Object with the needed requirements.  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
-    state: StrictStr = Field(default=..., description="An opaque value the clients adds to the initial request that Auth0 includes when redirecting the back to the client. This value must be used by the client to prevent CSRF attacks.")
-    nonce: StrictStr = Field(default=..., description="A local key that is held as the comparator to state, thus they should be the same.")
     challenge: StrictStr = Field(default=..., description="Generated challenge from the code_verifier.")
     method: StrictStr = Field(default=..., description="Method used to generate the challenge. The PKCE spec defines two methods, S256 and plain, however, Auth0 supports only S256 since the latter is discouraged.")
+    nonce: StrictStr = Field(default=..., description="A local key that is held as the comparator to state, thus they should be the same.")
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
+    state: StrictStr = Field(default=..., description="An opaque value the clients adds to the initial request that Auth0 includes when redirecting the back to the client. This value must be used by the client to prevent CSRF attacks.")
     verifier: StrictStr = Field(default=..., description="Cryptographically random key that was used to generate the code_challenge passed to /authorize.")
-    __properties = ["schema", "state", "nonce", "challenge", "method", "verifier"]
+    __properties = ["challenge", "method", "nonce", "schema", "state", "verifier"]
 
     @validator('method')
     def method_validate_enum(cls, value):
         """Validates the enum"""
-        if value not in ('S256'):
+        if value not in ('S256',):
             raise ValueError("must be one of enum values ('S256')")
         return value
 
@@ -81,11 +81,11 @@ class ChallengedPKCE(BaseModel):
             return ChallengedPKCE.parse_obj(obj)
 
         _obj = ChallengedPKCE.parse_obj({
-            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
-            "state": obj.get("state"),
-            "nonce": obj.get("nonce"),
             "challenge": obj.get("challenge"),
             "method": obj.get("method"),
+            "nonce": obj.get("nonce"),
+            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
+            "state": obj.get("state"),
             "verifier": obj.get("verifier")
         })
         return _obj

@@ -5,14 +5,14 @@ This is all optional properties around the most basic information around a non-p
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
-**username** | **str** | username or twitter handle...etc | [optional] 
+**email** | **str** | an email that was extracted. | [optional] 
+**mailgun** | [**MailgunMetadata**](MailgunMetadata.md) |  | [optional] 
 **name** | **str** | This is the name of the basic user. | [optional] 
 **picture** | **str** | this is a url picture representation of a user. | [optional] 
-**email** | **str** | an email that was extracted. | [optional] 
+**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 **sourced** | [**ExternallySourcedEnum**](ExternallySourcedEnum.md) |  | [optional] 
 **url** | **str** | This is a specific url that this basic user came from. | [optional] 
-**mailgun** | [**MailgunMetadata**](MailgunMetadata.md) |  | [optional] 
+**username** | **str** | username or twitter handle...etc | [optional] 
 
 ## Example
 

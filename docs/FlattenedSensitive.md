@@ -5,21 +5,21 @@ This is a dereferenced representation of a sensitive pieces of data.
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
-**id** | **str** |  | 
-**created** | [**GroupedTimestamp**](GroupedTimestamp.md) |  | 
-**updated** | [**GroupedTimestamp**](GroupedTimestamp.md) |  | 
-**deleted** | [**GroupedTimestamp**](GroupedTimestamp.md) |  | [optional] 
 **asset** | [**ReferencedAsset**](ReferencedAsset.md) |  | 
-**text** | **str** |  | 
-**mechanism** | [**MechanismEnum**](MechanismEnum.md) |  | 
 **category** | [**SensitiveCategoryEnum**](SensitiveCategoryEnum.md) |  | 
-**severity** | [**SensitiveSeverityEnum**](SensitiveSeverityEnum.md) |  | 
-**name** | **str** |  | 
+**created** | [**GroupedTimestamp**](GroupedTimestamp.md) |  | 
+**deleted** | [**GroupedTimestamp**](GroupedTimestamp.md) |  | [optional] 
 **description** | **str** |  | 
-**metadata** | [**SensitiveMetadata**](SensitiveMetadata.md) |  | [optional] 
+**id** | **str** |  | 
 **interactions** | **int** | This is an optional value that will keep track of the number of times this has been interacted with. | [optional] 
+**mechanism** | [**MechanismEnum**](MechanismEnum.md) |  | 
+**metadata** | [**SensitiveMetadata**](SensitiveMetadata.md) |  | [optional] 
+**name** | **str** |  | 
+**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 **score** | [**Score**](Score.md) |  | [optional] 
+**severity** | [**SensitiveSeverityEnum**](SensitiveSeverityEnum.md) |  | 
+**text** | **str** |  | 
+**updated** | [**GroupedTimestamp**](GroupedTimestamp.md) |  | 
 
 ## Example
 

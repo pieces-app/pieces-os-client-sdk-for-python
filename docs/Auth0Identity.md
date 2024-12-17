@@ -5,12 +5,12 @@ Contains info retrieved from the identity provider with which the user originall
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**access_token** | **str** |  | [optional] 
 **connection** | **str** | Name of the Auth0 connection used to authenticate the user.  | [optional] 
+**expires_in** | **int** |  | [optional] 
 **is_social** | **bool** | Indicates whether the connection is a social one.  | [optional] 
 **provider** | **str** | mapped from user_id  -&gt; id | [optional] 
 **user_id** | **str** | User&#39;s unique identifier for this connection/provider. | [optional] 
-**access_token** | **str** |  | [optional] 
-**expires_in** | **int** |  | [optional] 
 
 ## Example
 

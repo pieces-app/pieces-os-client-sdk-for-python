@@ -5,11 +5,11 @@ This is a String representaion of any of these changes.  [NOT IMPLEMENTED] base6
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
-**raw** | **str** | IMPLEMENTED | [optional] 
 **var_base64** | **str** | NOT IMPLEMENTED | [optional] 
 **base64_url** | **str** | NOT IMPLEMENTED | [optional] 
 **data_url** | **str** | NOT IMPLEMENTED | [optional] 
+**raw** | **str** | IMPLEMENTED | [optional] 
+**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 
 ## Example
 

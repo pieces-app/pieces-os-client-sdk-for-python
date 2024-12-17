@@ -5,12 +5,12 @@ This is used for the ConversationMessages searching endpoint && the specific Con
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
-**message** | [**ConversationMessage**](ConversationMessage.md) |  | [optional] 
 **exact** | **bool** |  | 
+**identifier** | **str** | This is the uuid of the ConversationMessage. | 
+**message** | [**ConversationMessage**](ConversationMessage.md) |  | [optional] 
+**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 **similarity** | **float** |  | 
 **temporal** | **bool** |  | [optional] 
-**identifier** | **str** | This is the uuid of the ConversationMessage. | 
 
 ## Example
 

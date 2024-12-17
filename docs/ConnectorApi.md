@@ -9,7 +9,6 @@ Method | HTTP request | Description
 [**onboarded**](ConnectorApi.md#onboarded) | **POST** /{application}/onboarded | /onboarded [POST]
 [**react**](ConnectorApi.md#react) | **POST** /{application}/reaction | /{application}/reaction [POST]
 [**suggest**](ConnectorApi.md#suggest) | **POST** /{application}/suggestion | /{application}/suggestion [POST]
-[**track**](ConnectorApi.md#track) | **POST** /{application}/track | /{application}/track [POST]
 
 
 # **connect**
@@ -361,77 +360,6 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
-**400** | Bad Request, Application Failed to connect, Please ensure this is a valid integration. This happens in the case a developer provides and incorrect {application} (applicationId) within the route that doest match a preregisterd integration. |  -  |
-**401** | Unauthorized, you will get this in the case that you are trying to ping Pieces_OS but havnt connected yet.\&quot;/connect was not called for your application.\&quot; |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **track**
-> str track(application, seeded_connector_tracking=seeded_connector_tracking)
-
-/{application}/track [POST]
-
-Abstracts the process of packaging segments on a per-context basis.
-
-### Example
-
-```python
-import time
-import os
-import pieces_os_client
-from pieces_os_client.models.seeded_connector_tracking import SeededConnectorTracking
-from pieces_os_client.rest import ApiException
-from pprint import pprint
-
-# Defining the host is optional and defaults to http://localhost:1000
-# See configuration.py for a list of all supported configuration parameters.
-configuration = pieces_os_client.Configuration(
-    host = "http://localhost:1000"
-)
-
-
-# Enter a context with an instance of the API client
-with pieces_os_client.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = pieces_os_client.ConnectorApi(api_client)
-    application = 'application_example' # str | This is a uuid that represents an application
-    seeded_connector_tracking = pieces_os_client.SeededConnectorTracking() # SeededConnectorTracking | The body is able to take in several properties  (optional)
-
-    try:
-        # /{application}/track [POST]
-        api_response = api_instance.track(application, seeded_connector_tracking=seeded_connector_tracking)
-        print("The response of ConnectorApi->track:\n")
-        pprint(api_response)
-    except Exception as e:
-        print("Exception when calling ConnectorApi->track: %s\n" % e)
-```
-
-
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **application** | **str**| This is a uuid that represents an application | 
- **seeded_connector_tracking** | [**SeededConnectorTracking**](SeededConnectorTracking.md)| The body is able to take in several properties  | [optional] 
-
-### Return type
-
-**str**
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
- - **Content-Type**: application/json
- - **Accept**: text/plain
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | OK, This will jsut return a string of \&quot;OK\&quot;. |  -  |
 **400** | Bad Request, Application Failed to connect, Please ensure this is a valid integration. This happens in the case a developer provides and incorrect {application} (applicationId) within the route that doest match a preregisterd integration. |  -  |
 **401** | Unauthorized, you will get this in the case that you are trying to ping Pieces_OS but havnt connected yet.\&quot;/connect was not called for your application.\&quot; |  -  |
 

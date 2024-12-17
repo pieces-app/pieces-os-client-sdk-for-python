@@ -5,9 +5,9 @@ if scoped is provided will let us know what level of permission(access) this spe
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**deleted** | [**GroupedTimestamp**](GroupedTimestamp.md) |  | [optional] 
 **var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 **scoped** | [**PersonAccessScopedEnum**](PersonAccessScopedEnum.md) |  | [optional] 
-**deleted** | [**GroupedTimestamp**](GroupedTimestamp.md) |  | [optional] 
 
 ## Example
 

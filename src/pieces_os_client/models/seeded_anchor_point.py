@@ -29,13 +29,13 @@ class SeededAnchorPoint(BaseModel):
     """
     SeededAnchorPoint
     """
+    anchor: StrictStr = Field(default=..., description="Cannot create an AnchorPoint w/o a Anchor.")
+    fullpath: StrictStr = Field(...)
+    platform: Optional[PlatformEnum] = None
     var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     type: AnchorTypeEnum = Field(...)
     watch: Optional[StrictBool] = None
-    fullpath: StrictStr = Field(...)
-    anchor: StrictStr = Field(default=..., description="Cannot create an AnchorPoint w/o a Anchor.")
-    platform: Optional[PlatformEnum] = None
-    __properties = ["schema", "type", "watch", "fullpath", "anchor", "platform"]
+    __properties = ["anchor", "fullpath", "platform", "schema", "type", "watch"]
 
     class Config:
         """Pydantic configuration"""
@@ -76,12 +76,12 @@ class SeededAnchorPoint(BaseModel):
             return SeededAnchorPoint.parse_obj(obj)
 
         _obj = SeededAnchorPoint.parse_obj({
+            "anchor": obj.get("anchor"),
+            "fullpath": obj.get("fullpath"),
+            "platform": obj.get("platform"),
             "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
             "type": obj.get("type"),
-            "watch": obj.get("watch"),
-            "fullpath": obj.get("fullpath"),
-            "anchor": obj.get("anchor"),
-            "platform": obj.get("platform")
+            "watch": obj.get("watch")
         })
         return _obj
 

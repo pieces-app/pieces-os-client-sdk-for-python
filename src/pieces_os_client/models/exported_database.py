@@ -28,38 +28,38 @@ class ExportedDatabase(BaseModel):
     """
     ExportedDatabase
     """
+    activities: Optional[conlist(StrictInt)] = None
     analyses: conlist(StrictInt) = Field(...)
+    anchor_points: Optional[conlist(StrictInt)] = Field(default=None, alias="anchorPoints")
+    anchors: Optional[conlist(StrictInt)] = None
+    annotations: Optional[conlist(StrictInt)] = None
     applications: conlist(StrictInt) = Field(...)
     assets: conlist(StrictInt) = Field(...)
     code_analyses: conlist(StrictInt) = Field(default=..., alias="codeAnalyses")
+    conversation_messages: Optional[conlist(StrictInt)] = Field(default=None, alias="conversationMessages")
+    conversations: Optional[conlist(StrictInt)] = None
     files: conlist(StrictInt) = Field(...)
     format_metrics: conlist(StrictInt) = Field(default=..., alias="formatMetrics")
     formats: conlist(StrictInt) = Field(...)
     fragments: conlist(StrictInt) = Field(...)
+    hints: Optional[conlist(StrictInt)] = None
     image_analyses: conlist(StrictInt) = Field(default=..., alias="imageAnalyses")
+    message_values: Optional[ExportedDatabaseFormats] = Field(default=None, alias="messageValues")
     models: conlist(StrictInt) = Field(...)
     ocr_analyses: conlist(StrictInt) = Field(default=..., alias="ocrAnalyses")
     persons: conlist(StrictInt) = Field(...)
+    ranges: Optional[conlist(StrictInt)] = None
+    relationships: Optional[conlist(StrictInt)] = None
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     sensitives: conlist(StrictInt) = Field(...)
     tags: conlist(StrictInt) = Field(...)
-    websites: conlist(StrictInt) = Field(...)
     values: ExportedDatabaseFormats = Field(...)
     version: StrictStr = Field(default=..., description="This is the version of your os_server or cloud_server that we we exporting from.")
-    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
-    relationships: Optional[conlist(StrictInt)] = None
-    activities: Optional[conlist(StrictInt)] = None
-    annotations: Optional[conlist(StrictInt)] = None
-    hints: Optional[conlist(StrictInt)] = None
-    anchors: Optional[conlist(StrictInt)] = None
-    anchor_points: Optional[conlist(StrictInt)] = Field(default=None, alias="anchorPoints")
-    conversations: Optional[conlist(StrictInt)] = None
-    conversation_messages: Optional[conlist(StrictInt)] = Field(default=None, alias="conversationMessages")
-    workstream_events: Optional[conlist(StrictInt)] = Field(default=None, alias="workstreamEvents")
-    ranges: Optional[conlist(StrictInt)] = None
-    workstream_summaries: Optional[conlist(StrictInt)] = Field(default=None, alias="workstreamSummaries")
-    message_values: Optional[ExportedDatabaseFormats] = Field(default=None, alias="messageValues")
+    websites: conlist(StrictInt) = Field(...)
     workstream_event_values: Optional[ExportedDatabaseFormats] = Field(default=None, alias="workstreamEventValues")
-    __properties = ["analyses", "applications", "assets", "codeAnalyses", "files", "formatMetrics", "formats", "fragments", "imageAnalyses", "models", "ocrAnalyses", "persons", "sensitives", "tags", "websites", "values", "version", "schema", "relationships", "activities", "annotations", "hints", "anchors", "anchorPoints", "conversations", "conversationMessages", "workstreamEvents", "ranges", "workstreamSummaries", "messageValues", "workstreamEventValues"]
+    workstream_events: Optional[conlist(StrictInt)] = Field(default=None, alias="workstreamEvents")
+    workstream_summaries: Optional[conlist(StrictInt)] = Field(default=None, alias="workstreamSummaries")
+    __properties = ["activities", "analyses", "anchorPoints", "anchors", "annotations", "applications", "assets", "codeAnalyses", "conversationMessages", "conversations", "files", "formatMetrics", "formats", "fragments", "hints", "imageAnalyses", "messageValues", "models", "ocrAnalyses", "persons", "ranges", "relationships", "schema", "sensitives", "tags", "values", "version", "websites", "workstreamEventValues", "workstreamEvents", "workstreamSummaries"]
 
     class Config:
         """Pydantic configuration"""
@@ -85,15 +85,15 @@ class ExportedDatabase(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of values
-        if self.values:
-            _dict['values'] = self.values.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of var_schema
-        if self.var_schema:
-            _dict['schema'] = self.var_schema.to_dict()
         # override the default output from pydantic by calling `to_dict()` of message_values
         if self.message_values:
             _dict['messageValues'] = self.message_values.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of var_schema
+        if self.var_schema:
+            _dict['schema'] = self.var_schema.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of values
+        if self.values:
+            _dict['values'] = self.values.to_dict()
         # override the default output from pydantic by calling `to_dict()` of workstream_event_values
         if self.workstream_event_values:
             _dict['workstreamEventValues'] = self.workstream_event_values.to_dict()
@@ -109,37 +109,37 @@ class ExportedDatabase(BaseModel):
             return ExportedDatabase.parse_obj(obj)
 
         _obj = ExportedDatabase.parse_obj({
+            "activities": obj.get("activities"),
             "analyses": obj.get("analyses"),
+            "anchor_points": obj.get("anchorPoints"),
+            "anchors": obj.get("anchors"),
+            "annotations": obj.get("annotations"),
             "applications": obj.get("applications"),
             "assets": obj.get("assets"),
             "code_analyses": obj.get("codeAnalyses"),
+            "conversation_messages": obj.get("conversationMessages"),
+            "conversations": obj.get("conversations"),
             "files": obj.get("files"),
             "format_metrics": obj.get("formatMetrics"),
             "formats": obj.get("formats"),
             "fragments": obj.get("fragments"),
+            "hints": obj.get("hints"),
             "image_analyses": obj.get("imageAnalyses"),
+            "message_values": ExportedDatabaseFormats.from_dict(obj.get("messageValues")) if obj.get("messageValues") is not None else None,
             "models": obj.get("models"),
             "ocr_analyses": obj.get("ocrAnalyses"),
             "persons": obj.get("persons"),
+            "ranges": obj.get("ranges"),
+            "relationships": obj.get("relationships"),
+            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
             "sensitives": obj.get("sensitives"),
             "tags": obj.get("tags"),
-            "websites": obj.get("websites"),
             "values": ExportedDatabaseFormats.from_dict(obj.get("values")) if obj.get("values") is not None else None,
             "version": obj.get("version"),
-            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
-            "relationships": obj.get("relationships"),
-            "activities": obj.get("activities"),
-            "annotations": obj.get("annotations"),
-            "hints": obj.get("hints"),
-            "anchors": obj.get("anchors"),
-            "anchor_points": obj.get("anchorPoints"),
-            "conversations": obj.get("conversations"),
-            "conversation_messages": obj.get("conversationMessages"),
+            "websites": obj.get("websites"),
+            "workstream_event_values": ExportedDatabaseFormats.from_dict(obj.get("workstreamEventValues")) if obj.get("workstreamEventValues") is not None else None,
             "workstream_events": obj.get("workstreamEvents"),
-            "ranges": obj.get("ranges"),
-            "workstream_summaries": obj.get("workstreamSummaries"),
-            "message_values": ExportedDatabaseFormats.from_dict(obj.get("messageValues")) if obj.get("messageValues") is not None else None,
-            "workstream_event_values": ExportedDatabaseFormats.from_dict(obj.get("workstreamEventValues")) if obj.get("workstreamEventValues") is not None else None
+            "workstream_summaries": obj.get("workstreamSummaries")
         })
         return _obj
 

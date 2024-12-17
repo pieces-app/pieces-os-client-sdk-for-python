@@ -29,10 +29,10 @@ class SeededRangeConversationAssociation(BaseModel):
     """
     SeededRangeConversationAssociation
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
-    reference: ReferencedConversation = Field(...)
     grounding: Optional[SeededRangeConversationGroundingAssociation] = None
-    __properties = ["schema", "reference", "grounding"]
+    reference: ReferencedConversation = Field(...)
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
+    __properties = ["grounding", "reference", "schema"]
 
     class Config:
         """Pydantic configuration"""
@@ -58,15 +58,15 @@ class SeededRangeConversationAssociation(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of var_schema
-        if self.var_schema:
-            _dict['schema'] = self.var_schema.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of reference
-        if self.reference:
-            _dict['reference'] = self.reference.to_dict()
         # override the default output from pydantic by calling `to_dict()` of grounding
         if self.grounding:
             _dict['grounding'] = self.grounding.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of reference
+        if self.reference:
+            _dict['reference'] = self.reference.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of var_schema
+        if self.var_schema:
+            _dict['schema'] = self.var_schema.to_dict()
         return _dict
 
     @classmethod
@@ -79,9 +79,9 @@ class SeededRangeConversationAssociation(BaseModel):
             return SeededRangeConversationAssociation.parse_obj(obj)
 
         _obj = SeededRangeConversationAssociation.parse_obj({
-            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
+            "grounding": SeededRangeConversationGroundingAssociation.from_dict(obj.get("grounding")) if obj.get("grounding") is not None else None,
             "reference": ReferencedConversation.from_dict(obj.get("reference")) if obj.get("reference") is not None else None,
-            "grounding": SeededRangeConversationGroundingAssociation.from_dict(obj.get("grounding")) if obj.get("grounding") is not None else None
+            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None
         })
         return _obj
 

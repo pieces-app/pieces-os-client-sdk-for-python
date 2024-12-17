@@ -5,15 +5,15 @@ An object representing all of the properties that are available within a Auth0 P
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**identity** | [**Auth0Identity**](Auth0Identity.md) |  | [optional] 
-**user** | [**Auth0User**](Auth0User.md) |  | [optional] 
-**metadata** | [**Auth0UserMetadata**](Auth0UserMetadata.md) |  | [optional] 
-**domain** | **str** | The domain of your Auth 0 Service | 
-**client** | **str** | The Client ID for your Auth0 Service | 
 **audience** | **str** | The Server Audience of your Auth0 Service | 
-**redirects** | [**Auth0Redirects**](Auth0Redirects.md) |  | 
-**o_auth** | [**OAuthGroup**](OAuthGroup.md) |  | 
+**client** | **str** | The Client ID for your Auth0 Service | 
+**domain** | **str** | The domain of your Auth 0 Service | 
+**identity** | [**Auth0Identity**](Auth0Identity.md) |  | [optional] 
+**metadata** | [**Auth0UserMetadata**](Auth0UserMetadata.md) |  | [optional] 
 **namespace** | **str** | An optional namespace parameter to add an additional namespace | [optional] 
+**o_auth** | [**OAuthGroup**](OAuthGroup.md) |  | 
+**redirects** | [**Auth0Redirects**](Auth0Redirects.md) |  | 
+**user** | [**Auth0User**](Auth0User.md) |  | [optional] 
 
 ## Example
 

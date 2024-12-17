@@ -5,10 +5,10 @@ TODO add more description to this.  can eventually add a number that display the
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**backup** | [**Backup**](Backup.md) |  | 
+**percentage** | **float** | Optionally if the download is in progress you will receive a download percent(from 0-100). | [optional] 
 **var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 **value** | [**BackupStatusEnum**](BackupStatusEnum.md) |  | [optional] 
-**percentage** | **float** | Optionally if the download is in progress you will receive a download percent(from 0-100). | [optional] 
-**backup** | [**Backup**](Backup.md) |  | 
 
 ## Example
 

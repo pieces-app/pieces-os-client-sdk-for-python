@@ -27,10 +27,10 @@ class LanguageServerProtocolLocationRangePosition(BaseModel):
     """
     modeled after this (https://microsoft.github.io/language-server-protocol/specifications/lsp/3.17/specification/#position)  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
-    line: StrictInt = Field(...)
     character: StrictInt = Field(...)
-    __properties = ["schema", "line", "character"]
+    line: StrictInt = Field(...)
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
+    __properties = ["character", "line", "schema"]
 
     class Config:
         """Pydantic configuration"""
@@ -71,9 +71,9 @@ class LanguageServerProtocolLocationRangePosition(BaseModel):
             return LanguageServerProtocolLocationRangePosition.parse_obj(obj)
 
         _obj = LanguageServerProtocolLocationRangePosition.parse_obj({
-            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
+            "character": obj.get("character"),
             "line": obj.get("line"),
-            "character": obj.get("character")
+            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None
         })
         return _obj
 

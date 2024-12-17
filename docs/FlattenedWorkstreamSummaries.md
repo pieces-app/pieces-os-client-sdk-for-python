@@ -5,9 +5,9 @@ This is a DAG-Safe plural model of workstreamsummaries
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
-**iterable** | [**List[ReferencedWorkstreamSummary]**](ReferencedWorkstreamSummary.md) |  | 
 **indices** | **Dict[str, int]** | This is a Map&lt;String, int&gt; where the the key is an summary id. | [optional] 
+**iterable** | [**List[ReferencedWorkstreamSummary]**](ReferencedWorkstreamSummary.md) |  | 
+**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 **score** | [**Score**](Score.md) |  | [optional] 
 
 ## Example

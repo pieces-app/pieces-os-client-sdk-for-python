@@ -29,11 +29,11 @@ class Reaction(BaseModel):
     """
     This will the the Request body of the Request Endpoint.  Reuse will not be required here because we do NOT know if the user will choose to reuse what we have suggested.  save will however be required because this will let us know if we should save the coppied asset that was first sent over or not.  seed is required, because we will want to know 100% sure what the original suggestion was made against.  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
-    save: StrictBool = Field(default=..., description="This will just be a simple boolean here that will say if the use should save the asset or not.")
     reuse: Optional[ReuseReaction] = None
+    save: StrictBool = Field(default=..., description="This will just be a simple boolean here that will say if the use should save the asset or not.")
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     seed: SeededConnectorCreation = Field(...)
-    __properties = ["schema", "save", "reuse", "seed"]
+    __properties = ["reuse", "save", "schema", "seed"]
 
     class Config:
         """Pydantic configuration"""
@@ -59,12 +59,12 @@ class Reaction(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of var_schema
-        if self.var_schema:
-            _dict['schema'] = self.var_schema.to_dict()
         # override the default output from pydantic by calling `to_dict()` of reuse
         if self.reuse:
             _dict['reuse'] = self.reuse.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of var_schema
+        if self.var_schema:
+            _dict['schema'] = self.var_schema.to_dict()
         # override the default output from pydantic by calling `to_dict()` of seed
         if self.seed:
             _dict['seed'] = self.seed.to_dict()
@@ -80,9 +80,9 @@ class Reaction(BaseModel):
             return Reaction.parse_obj(obj)
 
         _obj = Reaction.parse_obj({
-            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
-            "save": obj.get("save"),
             "reuse": ReuseReaction.from_dict(obj.get("reuse")) if obj.get("reuse") is not None else None,
+            "save": obj.get("save"),
+            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
             "seed": SeededConnectorCreation.from_dict(obj.get("seed")) if obj.get("seed") is not None else None
         })
         return _obj

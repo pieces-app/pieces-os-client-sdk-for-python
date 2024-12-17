@@ -28,9 +28,9 @@ class Classifications(BaseModel):
     """
     This is a plural representation of a Classification  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     iterable: conlist(Classification) = Field(...)
-    __properties = ["schema", "iterable"]
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
+    __properties = ["iterable", "schema"]
 
     class Config:
         """Pydantic configuration"""
@@ -56,9 +56,6 @@ class Classifications(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of var_schema
-        if self.var_schema:
-            _dict['schema'] = self.var_schema.to_dict()
         # override the default output from pydantic by calling `to_dict()` of each item in iterable (list)
         _items = []
         if self.iterable:
@@ -66,6 +63,9 @@ class Classifications(BaseModel):
                 if _item:
                     _items.append(_item.to_dict())
             _dict['iterable'] = _items
+        # override the default output from pydantic by calling `to_dict()` of var_schema
+        if self.var_schema:
+            _dict['schema'] = self.var_schema.to_dict()
         return _dict
 
     @classmethod
@@ -78,8 +78,8 @@ class Classifications(BaseModel):
             return Classifications.parse_obj(obj)
 
         _obj = Classifications.parse_obj({
-            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
-            "iterable": [Classification.from_dict(_item) for _item in obj.get("iterable")] if obj.get("iterable") is not None else None
+            "iterable": [Classification.from_dict(_item) for _item in obj.get("iterable")] if obj.get("iterable") is not None else None,
+            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None
         })
         return _obj
 

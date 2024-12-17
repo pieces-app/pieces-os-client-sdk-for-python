@@ -29,12 +29,12 @@ class LinkifyMultiple(BaseModel):
     """
     This is the incoming linkify model.  if access is PRIVATE then please provide and array of users to enable the link for.  Assumption, all assets are already backed up to the cloud.   # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
-    assets: conlist(StrictStr) = Field(default=..., description="This is an array or string that represents an already backed up asset. That will be added to a collection.")
-    users: Optional[conlist(SeededUser)] = Field(default=None, description="this is an array of users.")
     access: AccessEnum = Field(...)
+    assets: conlist(StrictStr) = Field(default=..., description="This is an array or string that represents an already backed up asset. That will be added to a collection.")
     name: Optional[StrictStr] = Field(default=None, description="optionally can give the collection a name if you want.")
-    __properties = ["schema", "assets", "users", "access", "name"]
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
+    users: Optional[conlist(SeededUser)] = Field(default=None, description="this is an array of users.")
+    __properties = ["access", "assets", "name", "schema", "users"]
 
     class Config:
         """Pydantic configuration"""
@@ -82,11 +82,11 @@ class LinkifyMultiple(BaseModel):
             return LinkifyMultiple.parse_obj(obj)
 
         _obj = LinkifyMultiple.parse_obj({
-            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
-            "assets": obj.get("assets"),
-            "users": [SeededUser.from_dict(_item) for _item in obj.get("users")] if obj.get("users") is not None else None,
             "access": obj.get("access"),
-            "name": obj.get("name")
+            "assets": obj.get("assets"),
+            "name": obj.get("name"),
+            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
+            "users": [SeededUser.from_dict(_item) for _item in obj.get("users")] if obj.get("users") is not None else None
         })
         return _obj
 

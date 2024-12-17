@@ -27,10 +27,10 @@ class OSProcessingPermissions(BaseModel):
     """
     These are the permissions relating to the vision models.  # noqa: E501
     """
+    accessibility: Optional[StrictBool] = Field(default=None, description="if true it is granted, if not then it is not granted.")
     var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     vision: Optional[StrictBool] = Field(default=None, description="if true it is granted, if not then it is not granted.")
-    accessibility: Optional[StrictBool] = Field(default=None, description="if true it is granted, if not then it is not granted.")
-    __properties = ["schema", "vision", "accessibility"]
+    __properties = ["accessibility", "schema", "vision"]
 
     class Config:
         """Pydantic configuration"""
@@ -71,9 +71,9 @@ class OSProcessingPermissions(BaseModel):
             return OSProcessingPermissions.parse_obj(obj)
 
         _obj = OSProcessingPermissions.parse_obj({
+            "accessibility": obj.get("accessibility"),
             "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
-            "vision": obj.get("vision"),
-            "accessibility": obj.get("accessibility")
+            "vision": obj.get("vision")
         })
         return _obj
 

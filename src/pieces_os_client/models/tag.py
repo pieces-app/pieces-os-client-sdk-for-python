@@ -34,20 +34,20 @@ class Tag(BaseModel):
     """
     This represents a fully polinated Tag, that is either attached to an asset or a format that adds additional information \"tags\" to describe itself.Helps improve Search and other contextual information that is useful for the user.  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
-    id: StrictStr = Field(default=..., description="UUID that represents the tag.")
-    text: StrictStr = Field(default=..., description="represnts the value of a tag.")
-    mechanisms: Optional[Dict[str, MechanismEnum]] = Field(default=None, description="This is a Map<String, MechanismEnum> where the the key is an asset id.")
     assets: Optional[FlattenedAssets] = None
-    created: GroupedTimestamp = Field(...)
-    updated: GroupedTimestamp = Field(...)
-    deleted: Optional[GroupedTimestamp] = None
     category: TagCategoryEnum = Field(...)
-    relationship: Optional[Relationship] = None
+    created: GroupedTimestamp = Field(...)
+    deleted: Optional[GroupedTimestamp] = None
+    id: StrictStr = Field(default=..., description="UUID that represents the tag.")
     interactions: Optional[StrictInt] = Field(default=None, description="This is an optional value that will keep track of the number of times this has been interacted with.")
+    mechanisms: Optional[Dict[str, MechanismEnum]] = Field(default=None, description="This is a Map<String, MechanismEnum> where the the key is an asset id.")
     persons: Optional[FlattenedPersons] = None
+    relationship: Optional[Relationship] = None
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     score: Optional[Score] = None
-    __properties = ["schema", "id", "text", "mechanisms", "assets", "created", "updated", "deleted", "category", "relationship", "interactions", "persons", "score"]
+    text: StrictStr = Field(default=..., description="represnts the value of a tag.")
+    updated: GroupedTimestamp = Field(...)
+    __properties = ["assets", "category", "created", "deleted", "id", "interactions", "mechanisms", "persons", "relationship", "schema", "score", "text", "updated"]
 
     class Config:
         """Pydantic configuration"""
@@ -73,30 +73,30 @@ class Tag(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of var_schema
-        if self.var_schema:
-            _dict['schema'] = self.var_schema.to_dict()
         # override the default output from pydantic by calling `to_dict()` of assets
         if self.assets:
             _dict['assets'] = self.assets.to_dict()
         # override the default output from pydantic by calling `to_dict()` of created
         if self.created:
             _dict['created'] = self.created.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of updated
-        if self.updated:
-            _dict['updated'] = self.updated.to_dict()
         # override the default output from pydantic by calling `to_dict()` of deleted
         if self.deleted:
             _dict['deleted'] = self.deleted.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of relationship
-        if self.relationship:
-            _dict['relationship'] = self.relationship.to_dict()
         # override the default output from pydantic by calling `to_dict()` of persons
         if self.persons:
             _dict['persons'] = self.persons.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of relationship
+        if self.relationship:
+            _dict['relationship'] = self.relationship.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of var_schema
+        if self.var_schema:
+            _dict['schema'] = self.var_schema.to_dict()
         # override the default output from pydantic by calling `to_dict()` of score
         if self.score:
             _dict['score'] = self.score.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of updated
+        if self.updated:
+            _dict['updated'] = self.updated.to_dict()
         return _dict
 
     @classmethod
@@ -109,19 +109,19 @@ class Tag(BaseModel):
             return Tag.parse_obj(obj)
 
         _obj = Tag.parse_obj({
-            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
-            "id": obj.get("id"),
-            "text": obj.get("text"),
-            "mechanisms": dict((_k, _v) for _k, _v in obj.get("mechanisms").items()),
             "assets": FlattenedAssets.from_dict(obj.get("assets")) if obj.get("assets") is not None else None,
-            "created": GroupedTimestamp.from_dict(obj.get("created")) if obj.get("created") is not None else None,
-            "updated": GroupedTimestamp.from_dict(obj.get("updated")) if obj.get("updated") is not None else None,
-            "deleted": GroupedTimestamp.from_dict(obj.get("deleted")) if obj.get("deleted") is not None else None,
             "category": obj.get("category"),
-            "relationship": Relationship.from_dict(obj.get("relationship")) if obj.get("relationship") is not None else None,
+            "created": GroupedTimestamp.from_dict(obj.get("created")) if obj.get("created") is not None else None,
+            "deleted": GroupedTimestamp.from_dict(obj.get("deleted")) if obj.get("deleted") is not None else None,
+            "id": obj.get("id"),
             "interactions": obj.get("interactions"),
+            "mechanisms": dict((_k, _v) for _k, _v in obj.get("mechanisms").items()),
             "persons": FlattenedPersons.from_dict(obj.get("persons")) if obj.get("persons") is not None else None,
-            "score": Score.from_dict(obj.get("score")) if obj.get("score") is not None else None
+            "relationship": Relationship.from_dict(obj.get("relationship")) if obj.get("relationship") is not None else None,
+            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
+            "score": Score.from_dict(obj.get("score")) if obj.get("score") is not None else None,
+            "text": obj.get("text"),
+            "updated": GroupedTimestamp.from_dict(obj.get("updated")) if obj.get("updated") is not None else None
         })
         return _obj
 

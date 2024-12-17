@@ -16,7 +16,6 @@ Method | HTTP request | Description
 [**os_filesystem_pick_files**](OSApi.md#os_filesystem_pick_files) | **POST** /os/filesystem/files/pick | /os/filesystem/files/pick [POST]
 [**os_filesystem_pick_folders**](OSApi.md#os_filesystem_pick_folders) | **POST** /os/filesystem/folders/pick | /os/filesystem/folders/pick [POST]
 [**os_memory_optimize**](OSApi.md#os_memory_optimize) | **POST** /os/memory/optimize | /os/memory/optimize [POST]
-[**os_metadata**](OSApi.md#os_metadata) | **GET** /os/metadata | /os/metadata [GET]
 [**os_permissions**](OSApi.md#os_permissions) | **GET** /os/permissions | /os/permissions [GET]
 [**os_permissions_request**](OSApi.md#os_permissions_request) | **POST** /os/permissions/request | /os/permissions/request [POST]
 [**os_restart**](OSApi.md#os_restart) | **GET** /os/restart | Your GET endpoint
@@ -823,70 +822,6 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **204** | No Content |  -  |
-**500** | Internal Server Error |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **os_metadata**
-> OSServerMetadata os_metadata()
-
-/os/metadata [GET]
-
-This will return metadata (total materials) in your pieces drive.
-
-### Example
-
-```python
-import time
-import os
-import pieces_os_client
-from pieces_os_client.models.os_server_metadata import OSServerMetadata
-from pieces_os_client.rest import ApiException
-from pprint import pprint
-
-# Defining the host is optional and defaults to http://localhost:1000
-# See configuration.py for a list of all supported configuration parameters.
-configuration = pieces_os_client.Configuration(
-    host = "http://localhost:1000"
-)
-
-
-# Enter a context with an instance of the API client
-with pieces_os_client.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = pieces_os_client.OSApi(api_client)
-
-    try:
-        # /os/metadata [GET]
-        api_response = api_instance.os_metadata()
-        print("The response of OSApi->os_metadata:\n")
-        pprint(api_response)
-    except Exception as e:
-        print("Exception when calling OSApi->os_metadata: %s\n" % e)
-```
-
-
-
-### Parameters
-This endpoint does not need any parameter.
-
-### Return type
-
-[**OSServerMetadata**](OSServerMetadata.md)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json, text/plain
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | OK |  -  |
 **500** | Internal Server Error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

@@ -5,11 +5,11 @@ A DocumentContributor is a preseeded representation of a Person  This can be use
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 **classification** | [**Classification**](Classification.md) |  | [optional] 
-**value** | [**TransferableString**](TransferableString.md) |  | [optional] 
 **person** | [**PersonBasicType**](PersonBasicType.md) |  | 
+**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 **updated** | [**GroupedTimestamp**](GroupedTimestamp.md) |  | [optional] 
+**value** | [**TransferableString**](TransferableString.md) |  | [optional] 
 
 ## Example
 

@@ -30,15 +30,15 @@ class Auth0UserMetadata(BaseModel):
     """
     User Metadata from Auth0  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
-    global_id: StrictStr = Field(...)
+    allocation: Optional[Auth0UserAllocationMetadata] = None
+    beta: Optional[AnonymousTemporalRange] = None
     cloud_key: Optional[StrictStr] = None
+    global_id: StrictStr = Field(...)
+    open_ai: Optional[Auth0OpenAIUserMetadata] = Field(default=None, alias="open_AI")
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     stripe_customer_id: Optional[StrictStr] = Field(default=None, description="A customer ID that is added to the user in the case of payments")
     vanityname: Optional[StrictStr] = Field(default=None, description="this is the vanityname of the user.(set from their custom CNAME dns record.) ie mark.pieces.cloud where \"mark\" is the vanityname.")
-    allocation: Optional[Auth0UserAllocationMetadata] = None
-    open_ai: Optional[Auth0OpenAIUserMetadata] = Field(default=None, alias="open_AI")
-    beta: Optional[AnonymousTemporalRange] = None
-    __properties = ["schema", "global_id", "cloud_key", "stripe_customer_id", "vanityname", "allocation", "open_AI", "beta"]
+    __properties = ["allocation", "beta", "cloud_key", "global_id", "open_AI", "schema", "stripe_customer_id", "vanityname"]
 
     class Config:
         """Pydantic configuration"""
@@ -64,18 +64,18 @@ class Auth0UserMetadata(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of var_schema
-        if self.var_schema:
-            _dict['schema'] = self.var_schema.to_dict()
         # override the default output from pydantic by calling `to_dict()` of allocation
         if self.allocation:
             _dict['allocation'] = self.allocation.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of open_ai
-        if self.open_ai:
-            _dict['open_AI'] = self.open_ai.to_dict()
         # override the default output from pydantic by calling `to_dict()` of beta
         if self.beta:
             _dict['beta'] = self.beta.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of open_ai
+        if self.open_ai:
+            _dict['open_AI'] = self.open_ai.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of var_schema
+        if self.var_schema:
+            _dict['schema'] = self.var_schema.to_dict()
         return _dict
 
     @classmethod
@@ -88,14 +88,14 @@ class Auth0UserMetadata(BaseModel):
             return Auth0UserMetadata.parse_obj(obj)
 
         _obj = Auth0UserMetadata.parse_obj({
-            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
-            "global_id": obj.get("global_id"),
-            "cloud_key": obj.get("cloud_key"),
-            "stripe_customer_id": obj.get("stripe_customer_id"),
-            "vanityname": obj.get("vanityname"),
             "allocation": Auth0UserAllocationMetadata.from_dict(obj.get("allocation")) if obj.get("allocation") is not None else None,
+            "beta": AnonymousTemporalRange.from_dict(obj.get("beta")) if obj.get("beta") is not None else None,
+            "cloud_key": obj.get("cloud_key"),
+            "global_id": obj.get("global_id"),
             "open_ai": Auth0OpenAIUserMetadata.from_dict(obj.get("open_AI")) if obj.get("open_AI") is not None else None,
-            "beta": AnonymousTemporalRange.from_dict(obj.get("beta")) if obj.get("beta") is not None else None
+            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
+            "stripe_customer_id": obj.get("stripe_customer_id"),
+            "vanityname": obj.get("vanityname")
         })
         return _obj
 

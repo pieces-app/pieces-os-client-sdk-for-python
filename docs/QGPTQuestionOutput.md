@@ -5,8 +5,8 @@ This is the output/returned value from the /qgpt/question endpoint. && /qgpt/fol
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 **answers** | [**QGPTQuestionAnswers**](QGPTQuestionAnswers.md) |  | 
+**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 
 ## Example
 

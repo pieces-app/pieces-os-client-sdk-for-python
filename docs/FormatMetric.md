@@ -5,10 +5,10 @@ FormatMetric  This is a model that will represent the about of specific formats.
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 **generic** | [**ClassificationGenericEnum**](ClassificationGenericEnum.md) |  | 
-**specific** | [**ClassificationSpecificEnum**](ClassificationSpecificEnum.md) |  | 
 **identifiers** | **List[str]** | this is a list of format ids | 
+**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
+**specific** | [**ClassificationSpecificEnum**](ClassificationSpecificEnum.md) |  | 
 
 ## Example
 

@@ -27,9 +27,9 @@ class QGPTTaskPipelineForCodeCompletion(BaseModel):
     """
     This task is for code_completion ie auto-complete.  This is a class so that we can add optional properties in the future.  context: This is additional snippet context within the file that will be useful for the autocompletion.(PLEASE ONLY pass in Seed.asset.format.fragment.string.raw for the context snippet values, and for the classificaiton pass in Seed.asset.format.classification)  Note: the snippet && language that needs to be Actually AutoCompleted should be within the QGPTQuestionInput.relevant.  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     context: Optional[conlist(StrictStr)] = None
-    __properties = ["schema", "context"]
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
+    __properties = ["context", "schema"]
 
     class Config:
         """Pydantic configuration"""
@@ -70,8 +70,8 @@ class QGPTTaskPipelineForCodeCompletion(BaseModel):
             return QGPTTaskPipelineForCodeCompletion.parse_obj(obj)
 
         _obj = QGPTTaskPipelineForCodeCompletion.parse_obj({
-            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
-            "context": obj.get("context")
+            "context": obj.get("context"),
+            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None
         })
         return _obj
 

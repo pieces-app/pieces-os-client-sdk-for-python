@@ -5,9 +5,9 @@ This is the ReuseSuggestion. Mainly creating an additional model here because I 
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**assets** | [**Assets**](Assets.md) |  | 
 **var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 **suggested** | **bool** | This is a boolean, that will say if you should or should not take action. | 
-**assets** | [**Assets**](Assets.md) |  | 
 
 ## Example
 

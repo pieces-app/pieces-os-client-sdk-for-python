@@ -5,12 +5,12 @@ This is used for the AnchorPoints searching endpoint.  point here is only provid
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
-**point** | [**AnchorPoint**](AnchorPoint.md) |  | [optional] 
 **exact** | **bool** |  | 
+**identifier** | **str** | This is the uuid of the anchorPoint. | 
+**point** | [**AnchorPoint**](AnchorPoint.md) |  | [optional] 
+**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 **similarity** | **float** |  | 
 **temporal** | **bool** |  | [optional] 
-**identifier** | **str** | This is the uuid of the anchorPoint. | 
 
 ## Example
 

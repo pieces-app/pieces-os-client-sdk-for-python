@@ -35,30 +35,30 @@ class Model(BaseModel):
     """
     This is a Machine Learning Model, that will give readable information about the Machine Learning Model Used.  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
-    id: StrictStr = Field(default=..., description="uuid ")
-    version: StrictStr = Field(default=..., description="this is a version of the model.")
-    created: GroupedTimestamp = Field(...)
-    name: StrictStr = Field(default=..., description="This is an Optional Name of the Model.")
-    description: Optional[StrictStr] = Field(default=None, description="An Optional Description of the model itself.")
-    cloud: StrictBool = Field(default=..., description="This will inform the user if this was a model that is hosted in the cloud")
-    type: ModelTypeEnum = Field(...)
-    usage: ModelUsageEnum = Field(...)
     bytes: Optional[ByteDescriptor] = None
-    ram: Optional[ByteDescriptor] = None
-    quantization: Optional[StrictStr] = Field(default=None, description="quantization is a string like: q8f16_0,  q4f16_1, etc...")
-    foundation: Optional[ModelFoundationEnum] = None
+    capabilities: Optional[ModelCapabilities] = None
+    cloud: StrictBool = Field(default=..., description="This will inform the user if this was a model that is hosted in the cloud")
+    cpu: Optional[StrictBool] = Field(default=None, description="This is an optional bool that is optimized for CPU usage.")
+    created: GroupedTimestamp = Field(...)
+    custom: Optional[StrictBool] = Field(default=None, description="This will let us know if this is a custom, or fine tuned model imported by the user.")
+    description: Optional[StrictStr] = Field(default=None, description="An Optional Description of the model itself.")
     downloaded: Optional[StrictBool] = Field(default=None, description="This is an optional bool to let us know if this model has been downloaded locally.")
+    downloading: Optional[StrictBool] = Field(default=None, description="This is a calculated property, that will say if this is currently downloading.")
+    foundation: Optional[ModelFoundationEnum] = None
+    id: StrictStr = Field(default=..., description="uuid ")
     loaded: Optional[StrictBool] = Field(default=None, description="This is a boolean that represents if the model is loaded into memory.(this is not persisted, and is calculated on the fly.)")
-    unique: Optional[StrictStr] = Field(default=None, description="This is the unique model name used to load the model.")
+    max_tokens: Optional[ModelMaxTokens] = Field(default=None, alias="maxTokens")
+    name: StrictStr = Field(default=..., description="This is an Optional Name of the Model.")
     parameters: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="This is the number of parameters in terms of billions.")
     provider: Optional[ExternalMLProviderEnum] = None
-    cpu: Optional[StrictBool] = Field(default=None, description="This is an optional bool that is optimized for CPU usage.")
-    downloading: Optional[StrictBool] = Field(default=None, description="This is a calculated property, that will say if this is currently downloading.")
-    max_tokens: Optional[ModelMaxTokens] = Field(default=None, alias="maxTokens")
-    custom: Optional[StrictBool] = Field(default=None, description="This will let us know if this is a custom, or fine tuned model imported by the user.")
-    capabilities: Optional[ModelCapabilities] = None
-    __properties = ["schema", "id", "version", "created", "name", "description", "cloud", "type", "usage", "bytes", "ram", "quantization", "foundation", "downloaded", "loaded", "unique", "parameters", "provider", "cpu", "downloading", "maxTokens", "custom", "capabilities"]
+    quantization: Optional[StrictStr] = Field(default=None, description="quantization is a string like: q8f16_0,  q4f16_1, etc...")
+    ram: Optional[ByteDescriptor] = None
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
+    type: ModelTypeEnum = Field(...)
+    unique: Optional[StrictStr] = Field(default=None, description="This is the unique model name used to load the model.")
+    usage: ModelUsageEnum = Field(...)
+    version: StrictStr = Field(default=..., description="this is a version of the model.")
+    __properties = ["bytes", "capabilities", "cloud", "cpu", "created", "custom", "description", "downloaded", "downloading", "foundation", "id", "loaded", "maxTokens", "name", "parameters", "provider", "quantization", "ram", "schema", "type", "unique", "usage", "version"]
 
     class Config:
         """Pydantic configuration"""
@@ -84,24 +84,24 @@ class Model(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of var_schema
-        if self.var_schema:
-            _dict['schema'] = self.var_schema.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of created
-        if self.created:
-            _dict['created'] = self.created.to_dict()
         # override the default output from pydantic by calling `to_dict()` of bytes
         if self.bytes:
             _dict['bytes'] = self.bytes.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of ram
-        if self.ram:
-            _dict['ram'] = self.ram.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of max_tokens
-        if self.max_tokens:
-            _dict['maxTokens'] = self.max_tokens.to_dict()
         # override the default output from pydantic by calling `to_dict()` of capabilities
         if self.capabilities:
             _dict['capabilities'] = self.capabilities.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of created
+        if self.created:
+            _dict['created'] = self.created.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of max_tokens
+        if self.max_tokens:
+            _dict['maxTokens'] = self.max_tokens.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of ram
+        if self.ram:
+            _dict['ram'] = self.ram.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of var_schema
+        if self.var_schema:
+            _dict['schema'] = self.var_schema.to_dict()
         # set to None if parameters (nullable) is None
         # and __fields_set__ contains the field
         if self.parameters is None and "parameters" in self.__fields_set__:
@@ -119,29 +119,29 @@ class Model(BaseModel):
             return Model.parse_obj(obj)
 
         _obj = Model.parse_obj({
-            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
-            "id": obj.get("id"),
-            "version": obj.get("version"),
-            "created": GroupedTimestamp.from_dict(obj.get("created")) if obj.get("created") is not None else None,
-            "name": obj.get("name"),
-            "description": obj.get("description"),
-            "cloud": obj.get("cloud"),
-            "type": obj.get("type"),
-            "usage": obj.get("usage"),
             "bytes": ByteDescriptor.from_dict(obj.get("bytes")) if obj.get("bytes") is not None else None,
-            "ram": ByteDescriptor.from_dict(obj.get("ram")) if obj.get("ram") is not None else None,
-            "quantization": obj.get("quantization"),
-            "foundation": obj.get("foundation"),
+            "capabilities": ModelCapabilities.from_dict(obj.get("capabilities")) if obj.get("capabilities") is not None else None,
+            "cloud": obj.get("cloud"),
+            "cpu": obj.get("cpu"),
+            "created": GroupedTimestamp.from_dict(obj.get("created")) if obj.get("created") is not None else None,
+            "custom": obj.get("custom"),
+            "description": obj.get("description"),
             "downloaded": obj.get("downloaded"),
+            "downloading": obj.get("downloading"),
+            "foundation": obj.get("foundation"),
+            "id": obj.get("id"),
             "loaded": obj.get("loaded"),
-            "unique": obj.get("unique"),
+            "max_tokens": ModelMaxTokens.from_dict(obj.get("maxTokens")) if obj.get("maxTokens") is not None else None,
+            "name": obj.get("name"),
             "parameters": obj.get("parameters"),
             "provider": obj.get("provider"),
-            "cpu": obj.get("cpu"),
-            "downloading": obj.get("downloading"),
-            "max_tokens": ModelMaxTokens.from_dict(obj.get("maxTokens")) if obj.get("maxTokens") is not None else None,
-            "custom": obj.get("custom"),
-            "capabilities": ModelCapabilities.from_dict(obj.get("capabilities")) if obj.get("capabilities") is not None else None
+            "quantization": obj.get("quantization"),
+            "ram": ByteDescriptor.from_dict(obj.get("ram")) if obj.get("ram") is not None else None,
+            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
+            "type": obj.get("type"),
+            "unique": obj.get("unique"),
+            "usage": obj.get("usage"),
+            "version": obj.get("version")
         })
         return _obj
 

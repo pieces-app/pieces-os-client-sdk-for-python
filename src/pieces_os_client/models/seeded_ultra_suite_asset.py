@@ -29,12 +29,12 @@ class SeededUltraSuiteAsset(BaseModel):
     """
     A SeededUEAsset is the minimum data sent from UE required to create an asset within Pieces.  Fragment & file are both optional properties however we will throw an internal error if both fragment and file are passed through or if both are undefined.  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
-    name: Optional[StrictStr] = Field(default=None, description="(optional) name is the name of the file")
+    description: Optional[StrictStr] = None
     ext: Optional[ClassificationSpecificEnum] = None
     format: SeededFormat = Field(...)
-    description: Optional[StrictStr] = None
-    __properties = ["schema", "name", "ext", "format", "description"]
+    name: Optional[StrictStr] = Field(default=None, description="(optional) name is the name of the file")
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
+    __properties = ["description", "ext", "format", "name", "schema"]
 
     class Config:
         """Pydantic configuration"""
@@ -60,12 +60,12 @@ class SeededUltraSuiteAsset(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of var_schema
-        if self.var_schema:
-            _dict['schema'] = self.var_schema.to_dict()
         # override the default output from pydantic by calling `to_dict()` of format
         if self.format:
             _dict['format'] = self.format.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of var_schema
+        if self.var_schema:
+            _dict['schema'] = self.var_schema.to_dict()
         return _dict
 
     @classmethod
@@ -78,11 +78,11 @@ class SeededUltraSuiteAsset(BaseModel):
             return SeededUltraSuiteAsset.parse_obj(obj)
 
         _obj = SeededUltraSuiteAsset.parse_obj({
-            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
-            "name": obj.get("name"),
+            "description": obj.get("description"),
             "ext": obj.get("ext"),
             "format": SeededFormat.from_dict(obj.get("format")) if obj.get("format") is not None else None,
-            "description": obj.get("description")
+            "name": obj.get("name"),
+            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None
         })
         return _obj
 

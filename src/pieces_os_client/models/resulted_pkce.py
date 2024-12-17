@@ -27,10 +27,10 @@ class ResultedPKCE(BaseModel):
     """
     A Model To Represent the Code Returned from a PKCE Response  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     code: StrictStr = Field(default=..., description="The PKCE Code to be used to access a Token.")
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     state: StrictStr = Field(default=..., description="Likely the state that will be returned which should match the requested state as well as the nonce")
-    __properties = ["schema", "code", "state"]
+    __properties = ["code", "schema", "state"]
 
     class Config:
         """Pydantic configuration"""
@@ -71,8 +71,8 @@ class ResultedPKCE(BaseModel):
             return ResultedPKCE.parse_obj(obj)
 
         _obj = ResultedPKCE.parse_obj({
-            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
             "code": obj.get("code"),
+            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
             "state": obj.get("state")
         })
         return _obj

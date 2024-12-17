@@ -29,11 +29,11 @@ class SeededAssetTag(BaseModel):
     """
     This is similar to an SeededTag, where this is the minimum information of a tag, but this can get added to a seededAsset,  where you may not yet have an asset id.  # noqa: E501
     """
+    category: Optional[TagCategoryEnum] = None
+    mechanism: Optional[MechanismEnum] = None
     var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     text: StrictStr = Field(default=..., description="this is the text that represents the tag.")
-    mechanism: Optional[MechanismEnum] = None
-    category: Optional[TagCategoryEnum] = None
-    __properties = ["schema", "text", "mechanism", "category"]
+    __properties = ["category", "mechanism", "schema", "text"]
 
     class Config:
         """Pydantic configuration"""
@@ -74,10 +74,10 @@ class SeededAssetTag(BaseModel):
             return SeededAssetTag.parse_obj(obj)
 
         _obj = SeededAssetTag.parse_obj({
-            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
-            "text": obj.get("text"),
+            "category": obj.get("category"),
             "mechanism": obj.get("mechanism"),
-            "category": obj.get("category")
+            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
+            "text": obj.get("text")
         })
         return _obj
 

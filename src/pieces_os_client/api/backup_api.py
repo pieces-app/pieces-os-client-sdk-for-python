@@ -475,8 +475,8 @@ class BackupApi:
         _response_types_map = {
             '200': "Backup",
             '500': "str",
-            '511': "str",
             '505': "str",
+            '511': "str",
         }
 
         return self.api_client.call_api(
@@ -633,8 +633,8 @@ class BackupApi:
         _response_types_map = {
             '200': "BackupStreamedProgress",
             '500': "str",
-            '511': "str",
             '505': "str",
+            '511': "str",
         }
 
         return self.api_client.call_api(
@@ -791,8 +791,8 @@ class BackupApi:
         _response_types_map = {
             '200': "BackupStreamedProgress",
             '500': "str",
-            '511': "str",
             '505': "str",
+            '511': "str",
         }
 
         return self.api_client.call_api(
@@ -934,8 +934,8 @@ class BackupApi:
         _response_types_map = {
             '200': "Backup",
             '500': "str",
-            '511': "str",
             '505': "str",
+            '511': "str",
         }
 
         return self.api_client.call_api(

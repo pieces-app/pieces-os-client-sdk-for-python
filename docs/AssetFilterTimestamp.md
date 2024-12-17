@@ -5,10 +5,10 @@ if you want a range between you can use from && to.  if you want anything before
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
-**var_from** | [**GroupedTimestamp**](GroupedTimestamp.md) |  | [optional] 
-**to** | [**GroupedTimestamp**](GroupedTimestamp.md) |  | [optional] 
 **between** | **bool** |  | [optional] 
+**var_from** | [**GroupedTimestamp**](GroupedTimestamp.md) |  | [optional] 
+**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
+**to** | [**GroupedTimestamp**](GroupedTimestamp.md) |  | [optional] 
 
 ## Example
 

@@ -5,8 +5,8 @@ This task is for modifying a bit of code, IE modify this code to do xyz.  This i
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 **instruction** | **str** | This is the instruction that we will use to modify this snippet. | [optional] 
+**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 
 ## Example
 

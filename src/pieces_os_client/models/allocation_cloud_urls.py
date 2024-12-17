@@ -28,11 +28,11 @@ class AllocationCloudUrls(BaseModel):
     """
     you will have at minimum 2 urls,  base: is the default url of your cloud.  id: is the branded url, uuid.pieces.cloud.  (optional) vanity: is the custom branded url, mark.pieces.cloud  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     base: AllocationCloudUrl = Field(...)
     id: AllocationCloudUrl = Field(...)
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     vanity: Optional[AllocationCloudUrl] = None
-    __properties = ["schema", "base", "id", "vanity"]
+    __properties = ["base", "id", "schema", "vanity"]
 
     class Config:
         """Pydantic configuration"""
@@ -58,15 +58,15 @@ class AllocationCloudUrls(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of var_schema
-        if self.var_schema:
-            _dict['schema'] = self.var_schema.to_dict()
         # override the default output from pydantic by calling `to_dict()` of base
         if self.base:
             _dict['base'] = self.base.to_dict()
         # override the default output from pydantic by calling `to_dict()` of id
         if self.id:
             _dict['id'] = self.id.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of var_schema
+        if self.var_schema:
+            _dict['schema'] = self.var_schema.to_dict()
         # override the default output from pydantic by calling `to_dict()` of vanity
         if self.vanity:
             _dict['vanity'] = self.vanity.to_dict()
@@ -82,9 +82,9 @@ class AllocationCloudUrls(BaseModel):
             return AllocationCloudUrls.parse_obj(obj)
 
         _obj = AllocationCloudUrls.parse_obj({
-            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
             "base": AllocationCloudUrl.from_dict(obj.get("base")) if obj.get("base") is not None else None,
             "id": AllocationCloudUrl.from_dict(obj.get("id")) if obj.get("id") is not None else None,
+            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
             "vanity": AllocationCloudUrl.from_dict(obj.get("vanity")) if obj.get("vanity") is not None else None
         })
         return _obj

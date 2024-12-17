@@ -33,16 +33,16 @@ class IDETab(BaseModel):
     """
     This is a representation of an IDE Tab  value: is the value of the entire file(that being said we do not recomment passing this over as we can read this file on PieceOS side of things) classification: this is the classifcation of this file  selection: this is a represention of a copy/paste/selection of a bit of code  anchor: this is the file path  range: this is the duration that this user has been on this Tab  current: is a boolean that will let us know if this is the current active tab  contributors: is the people that are extracted via git  lsp: this is the languageserverprotocol this is used for may things such as error,stackstrces, mainly information extracted from the lang server  # noqa: E501
     """
-    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
-    value: Optional[TransferableString] = None
-    classification: Optional[Classification] = None
-    selections: Optional[IDESelections] = None
     anchor: SeededAnchor = Field(...)
-    range: Optional[AnonymousTemporalRange] = None
-    current: Optional[StrictBool] = None
+    classification: Optional[Classification] = None
     contributors: Optional[DocumentContributors] = None
+    current: Optional[StrictBool] = None
     lsp: Optional[LanguageServerProtocol] = None
-    __properties = ["schema", "value", "classification", "selections", "anchor", "range", "current", "contributors", "lsp"]
+    range: Optional[AnonymousTemporalRange] = None
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
+    selections: Optional[IDESelections] = None
+    value: Optional[TransferableString] = None
+    __properties = ["anchor", "classification", "contributors", "current", "lsp", "range", "schema", "selections", "value"]
 
     class Config:
         """Pydantic configuration"""
@@ -68,30 +68,30 @@ class IDETab(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of var_schema
-        if self.var_schema:
-            _dict['schema'] = self.var_schema.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of value
-        if self.value:
-            _dict['value'] = self.value.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of classification
-        if self.classification:
-            _dict['classification'] = self.classification.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of selections
-        if self.selections:
-            _dict['selections'] = self.selections.to_dict()
         # override the default output from pydantic by calling `to_dict()` of anchor
         if self.anchor:
             _dict['anchor'] = self.anchor.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of range
-        if self.range:
-            _dict['range'] = self.range.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of classification
+        if self.classification:
+            _dict['classification'] = self.classification.to_dict()
         # override the default output from pydantic by calling `to_dict()` of contributors
         if self.contributors:
             _dict['contributors'] = self.contributors.to_dict()
         # override the default output from pydantic by calling `to_dict()` of lsp
         if self.lsp:
             _dict['lsp'] = self.lsp.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of range
+        if self.range:
+            _dict['range'] = self.range.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of var_schema
+        if self.var_schema:
+            _dict['schema'] = self.var_schema.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of selections
+        if self.selections:
+            _dict['selections'] = self.selections.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of value
+        if self.value:
+            _dict['value'] = self.value.to_dict()
         return _dict
 
     @classmethod
@@ -104,15 +104,15 @@ class IDETab(BaseModel):
             return IDETab.parse_obj(obj)
 
         _obj = IDETab.parse_obj({
-            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
-            "value": TransferableString.from_dict(obj.get("value")) if obj.get("value") is not None else None,
-            "classification": Classification.from_dict(obj.get("classification")) if obj.get("classification") is not None else None,
-            "selections": IDESelections.from_dict(obj.get("selections")) if obj.get("selections") is not None else None,
             "anchor": SeededAnchor.from_dict(obj.get("anchor")) if obj.get("anchor") is not None else None,
-            "range": AnonymousTemporalRange.from_dict(obj.get("range")) if obj.get("range") is not None else None,
-            "current": obj.get("current"),
+            "classification": Classification.from_dict(obj.get("classification")) if obj.get("classification") is not None else None,
             "contributors": DocumentContributors.from_dict(obj.get("contributors")) if obj.get("contributors") is not None else None,
-            "lsp": LanguageServerProtocol.from_dict(obj.get("lsp")) if obj.get("lsp") is not None else None
+            "current": obj.get("current"),
+            "lsp": LanguageServerProtocol.from_dict(obj.get("lsp")) if obj.get("lsp") is not None else None,
+            "range": AnonymousTemporalRange.from_dict(obj.get("range")) if obj.get("range") is not None else None,
+            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
+            "selections": IDESelections.from_dict(obj.get("selections")) if obj.get("selections") is not None else None,
+            "value": TransferableString.from_dict(obj.get("value")) if obj.get("value") is not None else None
         })
         return _obj
 
