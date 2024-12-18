@@ -1,4 +1,4 @@
-from typing import TYPE_CHECKING, Optional,Dict
+from typing import TYPE_CHECKING, Optional,Dict, Union
 import platform
 import atexit
 import subprocess
@@ -41,20 +41,25 @@ from pieces_os_client.models.seeded_tracked_application import SeededTrackedAppl
 from .copilot import Copilot
 from .basic_identifier import BasicAsset,BasicUser
 from .streamed_identifiers import AssetSnapshot
-from .websockets import *
+from .websockets import (
+    ConversationWS,
+    HealthWS,
+    AssetsIdentifiersWS,
+    AuthWS,
+    BaseWebsocket
+)
 
 if TYPE_CHECKING:
     from pieces_os_client.models.fragment_metadata import FragmentMetadata
     from pieces_os_client.models.model import Model
 
 class PiecesClient:
-    def __init__(self, host:str="", seeded_connector: Optional[SeededConnectorConnection] = None,**kwargs):
+    def __init__(self, seeded_connector: Optional[SeededConnectorConnection] = None,**kwargs):
+        self._port = ""
+        self.is_pos_stream_running = False
+        self._reconnect_on_host_change = kwargs.get("reconnect_on_host_change", True)
         self.models:Dict[str, str] = {} # Maps model_name to the model_id
         self.models_object: list[Model] = []
-
-        if not host:
-            host = "http://127.0.0.1:5323" if 'Linux' in platform.platform() else "http://127.0.0.1:1000"
-        self.host = host
         self._is_started_runned = False
         self.local_os = platform.system().upper() if platform.system().upper() in ["WINDOWS","LINUX","DARWIN"] else "WEB"
         self.local_os = "MACOS" if self.local_os == "DARWIN" else self.local_os
@@ -63,15 +68,18 @@ class PiecesClient:
                 name = "OPEN_SOURCE",
                 platform = self.local_os,
                 version = __version__)) 
-        self._connect_websockets = kwargs.get("connect_wesockets",True)
+        self._connect_websockets = kwargs.get("connect_websockets",True)
         self.user = BasicUser(self)   
         self.copilot = Copilot(self)
         self._startup()
 
 
     def _startup(self) -> bool:
-        if self._is_started_runned: return True
-        if not self.is_pieces_running(): return False
+        if self._is_started_runned:
+            return True
+
+        if not self.is_pieces_running(): # Check if PiecesOS is running or not
+            return False
 
         self._is_started_runned = True
         self._tracked_application = self.connector_api.connect(seeded_connector_connection=self._seeded_connector).application
@@ -81,6 +89,7 @@ class PiecesClient:
             self.conversation_ws = ConversationWS(self)
             self.assets_ws = AssetsIdentifiersWS(self)
             self.user_websocket = AuthWS(self,self.user.on_user_callback)
+            self.health_ws = HealthWS(self,lambda x : None)
             # Start all initilized websockets
             BaseWebsocket.start_all()
         
@@ -88,21 +97,45 @@ class PiecesClient:
         return True
 
     @property
+    def port(self) -> Union[str,None]:
+        if not self._port: # check also if the HealthStream is running
+            self.port = self._port_scanning()
+        return self._port
+
+    @port.setter
+    def port(self, p: Union[str,None]):
+        if p != self._port and p is not None:
+            self.connect_apis("http://127.0.0.1:" + p)
+        self._port = p
+
+    @property
+    def host(self) -> str:
+        if not self.port:
+            return "http://127.0.0.1:39300"
+        return "http://127.0.0.1:" + self.port
+
+    @staticmethod
+    def _port_scanning() -> Union[str,None]:
+        for port in range(39300, 39334):
+            try:
+                with urllib.request.urlopen(f"http://127.0.0.1:{port}/.well-known/health", timeout=1):
+                    return str(port)
+            except urllib.error.URLError:
+                pass
+        
+        raise ValueError("PiecesOS is not running")
+        
+
+    @property
     def tracked_application(self):
         self._check_startup()
         return self._tracked_application
 
 
-    @property
-    def host(self) -> str:
-        return self._host
-
-    @host.setter
-    def host(self,host:str):
+    def connect_apis(self,host:str):
         if not host.startswith("http"):
             raise TypeError("Invalid host url\n Host should start with http or https")
-
-        self._host = host
+        
         self.api_client = ApiClient(Configuration(host))
         self.conversation_message_api = ConversationMessageApi(self.api_client)
         self.conversation_messages_api = ConversationMessagesApi(self.api_client)
@@ -134,6 +167,9 @@ class PiecesClient:
         self.ASK_STREAM_WS_URL = ws_base_url + "/qgpt/stream"
         self.CONVERSATION_WS_URL = ws_base_url + "/conversations/stream/identifiers"
         self.HEALTH_WS_URL = ws_base_url + "/.well-known/stream/health"
+
+        if self._reconnect_on_host_change:
+            BaseWebsocket.reconnect_all()
 
     def assets(self):
         """
@@ -251,7 +287,7 @@ class PiecesClient:
 
 
     def __str__(self) -> str:
-        return f"<PiecesClient host={self.host}, pieces_os_status={'Running' if self.is_pieces_running else 'Not running'}>"
+        return f"<PiecesClient host={self.host}, pieces_os_status={'Running' if self.is_pieces_running() else 'Not running'}>"
 
 
     def __repr__(self) -> str:
