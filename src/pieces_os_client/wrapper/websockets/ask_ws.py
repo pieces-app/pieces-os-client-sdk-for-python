@@ -73,5 +73,5 @@ class AskStreamWS(BaseWebsocket):
 				raise WebSocketConnectionClosedException()
 			self.ws.send(message.to_json())
 		except WebSocketConnectionClosedException:
-			self.on_open = lambda ws: ws.send(message.to_json())  # Send the message on opening
+			self.on_open_callback = lambda ws: ws.send(message.to_json())  # Send the message on opening
 			self.start()  # Start a new WebSocket since we are not connected to any
