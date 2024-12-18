@@ -25,11 +25,15 @@ from pieces_os_client.models.embedded_model_schema import EmbeddedModelSchema
 
 class WorkstreamPatternEngineSource(BaseModel):
     """
-    This is a specific model for a given WPE qdrant source.  note: application is optional b/c we may want a network sorce in the future TODO: think about adding an enum or something that will delimit the type of processor(vision/filewatcher/network/audio)  TODO: in the future we can add tabs/filepaths to this model here. TODO: Enum for source/processor ? i.e. WorkstreamPatternEngineProcessorEnum.VISION, WorkstreamPatternEngineProcessorEnum.NETWORK, WorkstreamPatternEngineProcessorEnum.FILE_IO, WorkstreamPatternEngineProcessorEnum.AUDIO, etc.  # noqa: E501
+    This is a specific model for a given WPE qdrant source.  note: application is optional b/c we may want a network sorce in the future TODO: think about adding an enum or something that will delimit the type of processor(vision/filewatcher/network/audio)  TODO: in the future we can add tabs/filepaths to this model here. TODO: Enum for source/processor ? i.e. WorkstreamPatternEngineProcessorEnum.VISION, WorkstreamPatternEngineProcessorEnum.NETWORK, WorkstreamPatternEngineProcessorEnum.FILE_IO, WorkstreamPatternEngineProcessorEnum.AUDIO, etc.  NOTE: if all three are null we will thro an error.  # noqa: E501
     """
     var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
-    name: StrictStr = Field(default=..., description="This is the name of the window(foreground window)/application.(this will always be present)")
-    __properties = ["schema", "name"]
+    name: Optional[StrictStr] = Field(default=None, description="THIS IS DEPRECATED WILL NOT BE USED")
+    window: Optional[StrictStr] = Field(default=None, description="This is the name of the tab or open file")
+    url: Optional[StrictStr] = Field(default=None, description="This is a url that was extracted from the WPE data.")
+    application: Optional[StrictStr] = Field(default=None, description="This is the name of the window(foreground window)/application.(this will always be present)")
+    installation: Optional[StrictStr] = Field(default=None, description="This is the path is which this application download location is (NOTE, not being used quite yet)")
+    __properties = ["schema", "name", "window", "url", "application", "installation"]
 
     class Config:
         """Pydantic configuration"""
@@ -71,7 +75,11 @@ class WorkstreamPatternEngineSource(BaseModel):
 
         _obj = WorkstreamPatternEngineSource.parse_obj({
             "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
-            "name": obj.get("name")
+            "name": obj.get("name"),
+            "window": obj.get("window"),
+            "url": obj.get("url"),
+            "application": obj.get("application"),
+            "installation": obj.get("installation")
         })
         return _obj
 

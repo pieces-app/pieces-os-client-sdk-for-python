@@ -17,6 +17,9 @@ Name | Type | Description | Notes
 **role** | [**QGPTConversationMessageRoleEnum**](QGPTConversationMessageRoleEnum.md) |  | 
 **score** | [**Score**](Score.md) |  | [optional] 
 **annotations** | [**FlattenedAnnotations**](FlattenedAnnotations.md) |  | [optional] 
+**anchors** | [**FlattenedAnchors**](FlattenedAnchors.md) |  | [optional] 
+**persons** | [**FlattenedPersons**](FlattenedPersons.md) |  | [optional] 
+**websites** | [**FlattenedWebsites**](FlattenedWebsites.md) |  | [optional] 
 
 ## Example
 

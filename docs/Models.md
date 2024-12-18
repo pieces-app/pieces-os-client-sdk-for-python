@@ -7,6 +7,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 **iterable** | [**List[Model]**](Model.md) |  | 
+**score** | [**Score**](Score.md) |  | [optional] 
 
 ## Example
 

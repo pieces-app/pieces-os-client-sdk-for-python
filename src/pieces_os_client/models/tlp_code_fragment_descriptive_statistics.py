@@ -37,7 +37,8 @@ class TLPCodeFragmentDescriptiveStatistics(BaseModel):
     asset: StrictStr = Field(...)
     context: StrictStr = Field(default=..., description="this is the application in which this was created from.")
     snippet: StrictStr = Field(default=..., description="this is the value of the snippet")
-    __properties = ["schema", "user", "os", "language", "length", "ast", "timestamp", "asset", "context", "snippet"]
+    probability: StrictStr = Field(...)
+    __properties = ["schema", "user", "os", "language", "length", "ast", "timestamp", "asset", "context", "snippet", "probability"]
 
     class Config:
         """Pydantic configuration"""
@@ -87,7 +88,8 @@ class TLPCodeFragmentDescriptiveStatistics(BaseModel):
             "timestamp": obj.get("timestamp"),
             "asset": obj.get("asset"),
             "context": obj.get("context"),
-            "snippet": obj.get("snippet")
+            "snippet": obj.get("snippet"),
+            "probability": obj.get("probability")
         })
         return _obj
 

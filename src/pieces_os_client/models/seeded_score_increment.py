@@ -59,7 +59,11 @@ class SeededScoreIncrement(BaseModel):
     workstream_event: Optional[SeededScore] = None
     ranges: Optional[SeededScore] = None
     range: Optional[SeededScore] = None
-    __properties = ["schema", "asset", "assets", "website", "websites", "anchor", "anchors", "anchorPoint", "anchorPoints", "annotation", "annotations", "conversation", "conversations", "conversationMessage", "conversationMessages", "share", "shares", "sensitive", "sensitives", "hint", "hints", "person", "persons", "tag", "tags", "workstream_summary", "workstream_summaries", "workstream_events", "workstream_event", "ranges", "range"]
+    workstream_pattern_engine_sources: Optional[SeededScore] = None
+    workstream_pattern_engine_source: Optional[SeededScore] = None
+    models: Optional[SeededScore] = None
+    model: Optional[SeededScore] = None
+    __properties = ["schema", "asset", "assets", "website", "websites", "anchor", "anchors", "anchorPoint", "anchorPoints", "annotation", "annotations", "conversation", "conversations", "conversationMessage", "conversationMessages", "share", "shares", "sensitive", "sensitives", "hint", "hints", "person", "persons", "tag", "tags", "workstream_summary", "workstream_summaries", "workstream_events", "workstream_event", "ranges", "range", "workstream_pattern_engine_sources", "workstream_pattern_engine_source", "models", "model"]
 
     class Config:
         """Pydantic configuration"""
@@ -178,6 +182,18 @@ class SeededScoreIncrement(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of range
         if self.range:
             _dict['range'] = self.range.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of workstream_pattern_engine_sources
+        if self.workstream_pattern_engine_sources:
+            _dict['workstream_pattern_engine_sources'] = self.workstream_pattern_engine_sources.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of workstream_pattern_engine_source
+        if self.workstream_pattern_engine_source:
+            _dict['workstream_pattern_engine_source'] = self.workstream_pattern_engine_source.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of models
+        if self.models:
+            _dict['models'] = self.models.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of model
+        if self.model:
+            _dict['model'] = self.model.to_dict()
         return _dict
 
     @classmethod
@@ -220,7 +236,11 @@ class SeededScoreIncrement(BaseModel):
             "workstream_events": SeededScore.from_dict(obj.get("workstream_events")) if obj.get("workstream_events") is not None else None,
             "workstream_event": SeededScore.from_dict(obj.get("workstream_event")) if obj.get("workstream_event") is not None else None,
             "ranges": SeededScore.from_dict(obj.get("ranges")) if obj.get("ranges") is not None else None,
-            "range": SeededScore.from_dict(obj.get("range")) if obj.get("range") is not None else None
+            "range": SeededScore.from_dict(obj.get("range")) if obj.get("range") is not None else None,
+            "workstream_pattern_engine_sources": SeededScore.from_dict(obj.get("workstream_pattern_engine_sources")) if obj.get("workstream_pattern_engine_sources") is not None else None,
+            "workstream_pattern_engine_source": SeededScore.from_dict(obj.get("workstream_pattern_engine_source")) if obj.get("workstream_pattern_engine_source") is not None else None,
+            "models": SeededScore.from_dict(obj.get("models")) if obj.get("models") is not None else None,
+            "model": SeededScore.from_dict(obj.get("model")) if obj.get("model") is not None else None
         })
         return _obj
 

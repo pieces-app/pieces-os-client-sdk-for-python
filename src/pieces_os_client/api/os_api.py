@@ -185,7 +185,7 @@ class OSApi:
                 _header_params['Content-Type'] = _content_types_list
 
         # authentication setting
-        _auth_settings = []  # noqa: E501
+        _auth_settings = ['application']  # noqa: E501
 
         _response_types_map = {
             '200': "ReturnedUserProfile",
@@ -334,7 +334,7 @@ class OSApi:
                 _header_params['Content-Type'] = _content_types_list
 
         # authentication setting
-        _auth_settings = []  # noqa: E501
+        _auth_settings = ['application']  # noqa: E501
 
         _response_types_map = {
             '200': "ActiveOSServerApplet",
@@ -482,7 +482,7 @@ class OSApi:
                 _header_params['Content-Type'] = _content_types_list
 
         # authentication setting
-        _auth_settings = []  # noqa: E501
+        _auth_settings = ['application']  # noqa: E501
 
         _response_types_map = {
             '200': "ActiveOSServerApplet",
@@ -630,7 +630,7 @@ class OSApi:
                 _header_params['Content-Type'] = _content_types_list
 
         # authentication setting
-        _auth_settings = []  # noqa: E501
+        _auth_settings = ['application']  # noqa: E501
 
         _response_types_map = {}
 
@@ -775,7 +775,7 @@ class OSApi:
                 _header_params['Content-Type'] = _content_types_list
 
         # authentication setting
-        _auth_settings = []  # noqa: E501
+        _auth_settings = ['application']  # noqa: E501
 
         _response_types_map = {}
 
@@ -905,7 +905,7 @@ class OSApi:
             ['application/json', 'text/plain'])  # noqa: E501
 
         # authentication setting
-        _auth_settings = []  # noqa: E501
+        _auth_settings = ['application']  # noqa: E501
 
         _response_types_map = {
             '200': "OSDeviceInformationReturnable",
@@ -1053,7 +1053,7 @@ class OSApi:
                 _header_params['Content-Type'] = _content_types_list
 
         # authentication setting
-        _auth_settings = []  # noqa: E501
+        _auth_settings = ['application']  # noqa: E501
 
         _response_types_map = {}
 
@@ -1198,7 +1198,7 @@ class OSApi:
                 _header_params['Content-Type'] = _content_types_list
 
         # authentication setting
-        _auth_settings = []  # noqa: E501
+        _auth_settings = ['application']  # noqa: E501
 
         _response_types_map = {
             '200': "OSFileStreamingRead",
@@ -1346,7 +1346,7 @@ class OSApi:
                 _header_params['Content-Type'] = _content_types_list
 
         # authentication setting
-        _auth_settings = []  # noqa: E501
+        _auth_settings = ['application']  # noqa: E501
 
         _response_types_map = {
             '200': "VerifiedOSFilesystemPath",
@@ -1494,7 +1494,7 @@ class OSApi:
                 _header_params['Content-Type'] = _content_types_list
 
         # authentication setting
-        _auth_settings = []  # noqa: E501
+        _auth_settings = ['application']  # noqa: E501
 
         _response_types_map = {
             '200': "List[str]",
@@ -1627,7 +1627,7 @@ class OSApi:
             ['application/json', 'text/plain'])  # noqa: E501
 
         # authentication setting
-        _auth_settings = []  # noqa: E501
+        _auth_settings = ['application']  # noqa: E501
 
         _response_types_map = {
             '200': "List[str]",
@@ -1760,7 +1760,7 @@ class OSApi:
             ['application/json'])  # noqa: E501
 
         # authentication setting
-        _auth_settings = []  # noqa: E501
+        _auth_settings = ['application']  # noqa: E501
 
         _response_types_map = {}
 
@@ -1890,7 +1890,7 @@ class OSApi:
             ['application/json', 'text/plain'])  # noqa: E501
 
         # authentication setting
-        _auth_settings = []  # noqa: E501
+        _auth_settings = ['application']  # noqa: E501
 
         _response_types_map = {
             '200': "OSServerMetadata",
@@ -2023,7 +2023,7 @@ class OSApi:
             ['application/json', 'text/plain'])  # noqa: E501
 
         # authentication setting
-        _auth_settings = []  # noqa: E501
+        _auth_settings = ['application']  # noqa: E501
 
         _response_types_map = {
             '200': "OSPermissions",
@@ -2171,7 +2171,7 @@ class OSApi:
                 _header_params['Content-Type'] = _content_types_list
 
         # authentication setting
-        _auth_settings = []  # noqa: E501
+        _auth_settings = ['application']  # noqa: E501
 
         _response_types_map = {
             '200': "OSPermissions",
@@ -2304,7 +2304,7 @@ class OSApi:
             ['text/plain'])  # noqa: E501
 
         # authentication setting
-        _auth_settings = []  # noqa: E501
+        _auth_settings = ['application']  # noqa: E501
 
         _response_types_map = {}
 
@@ -2434,7 +2434,7 @@ class OSApi:
             ['application/json', 'text/plain'])  # noqa: E501
 
         # authentication setting
-        _auth_settings = []  # noqa: E501
+        _auth_settings = ['application']  # noqa: E501
 
         _response_types_map = {
             '200': "OSServerSettings",
@@ -2567,7 +2567,7 @@ class OSApi:
             ['application/json', 'text/plain'])  # noqa: E501
 
         # authentication setting
-        _auth_settings = []  # noqa: E501
+        _auth_settings = ['application']  # noqa: E501
 
         _response_types_map = {
             '200': "OSServerSettings",
@@ -2715,7 +2715,7 @@ class OSApi:
                 _header_params['Content-Type'] = _content_types_list
 
         # authentication setting
-        _auth_settings = []  # noqa: E501
+        _auth_settings = ['application']  # noqa: E501
 
         _response_types_map = {
             '200': "OSServerSettings",
@@ -2848,7 +2848,7 @@ class OSApi:
             ['text/plain'])  # noqa: E501
 
         # authentication setting
-        _auth_settings = []  # noqa: E501
+        _auth_settings = ['application']  # noqa: E501
 
         _response_types_map = {}
 
@@ -2993,7 +2993,7 @@ class OSApi:
                 _header_params['Content-Type'] = _content_types_list
 
         # authentication setting
-        _auth_settings = []  # noqa: E501
+        _auth_settings = ['application']  # noqa: E501
 
         _response_types_map = {
             '200': "OSServerUpdateStatus",
@@ -3126,7 +3126,7 @@ class OSApi:
             ['application/json', 'text/plain'])  # noqa: E501
 
         # authentication setting
-        _auth_settings = []  # noqa: E501
+        _auth_settings = ['application']  # noqa: E501
 
         _response_types_map = {
             '200': "OSServerUpdateStatus",
@@ -3259,7 +3259,7 @@ class OSApi:
             ['application/json'])  # noqa: E501
 
         # authentication setting
-        _auth_settings = []  # noqa: E501
+        _auth_settings = ['application']  # noqa: E501
 
         _response_types_map = {
             '200': "UserProfile",
@@ -3391,7 +3391,7 @@ class OSApi:
             ['application/json'])  # noqa: E501
 
         # authentication setting
-        _auth_settings = []  # noqa: E501
+        _auth_settings = ['application']  # noqa: E501
 
         _response_types_map = {
             '200': "Users",

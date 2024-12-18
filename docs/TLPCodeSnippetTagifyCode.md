@@ -16,6 +16,7 @@ Name | Type | Description | Notes
 **inferred_threshold** | **float** | this is the minimum score from the postprocessing that a tag needs to have to be included in the inferred_tags array. | 
 **context** | **str** | this is the origin in which this asset was created, application(string representation) | 
 **asset** | **str** | This is the asset id. | 
+**os** | **str** |  | 
 
 ## Example
 

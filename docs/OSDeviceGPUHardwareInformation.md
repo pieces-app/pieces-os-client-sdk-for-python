@@ -8,6 +8,7 @@ Name | Type | Description | Notes
 **var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 **name** | **str** |  | [optional] 
 **memory** | **float** |  | [optional] 
+**shared_memory** | **bool** |  | [optional] 
 **capabilities** | [**OSDeviceGPUHardwareCapabilitiesInformation**](OSDeviceGPUHardwareCapabilitiesInformation.md) |  | [optional] 
 
 ## Example

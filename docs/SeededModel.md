@@ -23,7 +23,8 @@ Name | Type | Description | Notes
 **provider** | [**ExternalMLProviderEnum**](ExternalMLProviderEnum.md) |  | [optional] 
 **cpu** | **bool** | This is an optional bool that is optimized for CPU usage. | [optional] 
 **max_tokens** | [**ModelMaxTokens**](ModelMaxTokens.md) |  | [optional] 
-**custom** | **bool** | This is reserved to custommly registed models. | [optional] 
+**custom** | **bool** | This is reserved to customly register models. | [optional] 
+**capabilities** | [**ModelCapabilities**](ModelCapabilities.md) |  | [optional] 
 
 ## Example
 

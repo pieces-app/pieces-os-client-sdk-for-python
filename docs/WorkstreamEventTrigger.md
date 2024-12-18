@@ -6,7 +6,7 @@ This is the specific event that represent the Shadow Activity ie the copy/paste 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
-**check_in** | **bool** | this is a sort of check-in event(ie when ever your application is in the foreground on there is an interaction) | [optional] 
+**check_in** | **bool** | this is a sort of check-in event(ie when ever your application is in the forground on there is an interaction) | [optional] 
 **copy** | **bool** |  | [optional] 
 **paste** | **bool** |  | [optional] 
 **file_open** | **bool** |  | [optional] 

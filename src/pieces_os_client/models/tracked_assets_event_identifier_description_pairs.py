@@ -37,7 +37,7 @@ class TrackedAssetsEventIdentifierDescriptionPairs(BaseModel):
         if value is None:
             return value
 
-        if value not in ('assets_were_searched'):
+        if value not in ('assets_were_searched',):
             raise ValueError("must be one of enum values ('assets_were_searched')")
         return value
 

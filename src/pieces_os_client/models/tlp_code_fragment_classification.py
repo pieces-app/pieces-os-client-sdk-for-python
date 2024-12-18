@@ -41,7 +41,8 @@ class TLPCodeFragmentClassification(BaseModel):
     user: StrictStr = Field(default=..., description="identifier for the user")
     latency: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="this is the time it takes to run this model.")
     system: Optional[SystemExecutionInformation] = None
-    __properties = ["schema", "asset", "model", "created", "classification", "probability", "context", "distribution", "metadata", "user", "latency", "system"]
+    os: StrictStr = Field(...)
+    __properties = ["schema", "asset", "model", "created", "classification", "probability", "context", "distribution", "metadata", "user", "latency", "system", "os"]
 
     class Config:
         """Pydantic configuration"""
@@ -99,7 +100,8 @@ class TLPCodeFragmentClassification(BaseModel):
             "metadata": TLPCodeFragmentClassificationMetadata.from_dict(obj.get("metadata")) if obj.get("metadata") is not None else None,
             "user": obj.get("user"),
             "latency": obj.get("latency"),
-            "system": SystemExecutionInformation.from_dict(obj.get("system")) if obj.get("system") is not None else None
+            "system": SystemExecutionInformation.from_dict(obj.get("system")) if obj.get("system") is not None else None,
+            "os": obj.get("os")
         })
         return _obj
 

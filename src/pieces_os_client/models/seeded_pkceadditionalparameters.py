@@ -36,7 +36,7 @@ class SeededPKCEADDITIONALPARAMETERS(BaseModel):
         if value is None:
             return value
 
-        if value not in ('offline'):
+        if value not in ('offline',):
             raise ValueError("must be one of enum values ('offline')")
         return value
 
@@ -46,7 +46,7 @@ class SeededPKCEADDITIONALPARAMETERS(BaseModel):
         if value is None:
             return value
 
-        if value not in ('popup'):
+        if value not in ('popup',):
             raise ValueError("must be one of enum values ('popup')")
         return value
 

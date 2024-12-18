@@ -27,6 +27,7 @@ from pieces_os_client.models.embedded_model_schema import EmbeddedModelSchema
 from pieces_os_client.models.mechanism_enum import MechanismEnum
 from pieces_os_client.models.platform_enum import PlatformEnum
 from pieces_os_client.models.privacy_enum import PrivacyEnum
+from pieces_os_client.models.seeded_asset_enrichment import SeededAssetEnrichment
 
 class Application(BaseModel):
     """
@@ -42,7 +43,8 @@ class Application(BaseModel):
     capabilities: Optional[CapabilitiesEnum] = None
     mechanism: Optional[MechanismEnum] = None
     automatic_unload: Optional[StrictBool] = Field(default=None, alias="automaticUnload", description="This is a proper that will let us know if we will proactivity unload all of your machine learning models.by default this is false.")
-    __properties = ["schema", "id", "name", "version", "platform", "onboarded", "privacy", "capabilities", "mechanism", "automaticUnload"]
+    enrichment: Optional[SeededAssetEnrichment] = None
+    __properties = ["schema", "id", "name", "version", "platform", "onboarded", "privacy", "capabilities", "mechanism", "automaticUnload", "enrichment"]
 
     class Config:
         """Pydantic configuration"""
@@ -71,6 +73,9 @@ class Application(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of var_schema
         if self.var_schema:
             _dict['schema'] = self.var_schema.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of enrichment
+        if self.enrichment:
+            _dict['enrichment'] = self.enrichment.to_dict()
         return _dict
 
     @classmethod
@@ -92,7 +97,8 @@ class Application(BaseModel):
             "privacy": obj.get("privacy"),
             "capabilities": obj.get("capabilities"),
             "mechanism": obj.get("mechanism"),
-            "automatic_unload": obj.get("automaticUnload")
+            "automatic_unload": obj.get("automaticUnload"),
+            "enrichment": SeededAssetEnrichment.from_dict(obj.get("enrichment")) if obj.get("enrichment") is not None else None
         })
         return _obj
 

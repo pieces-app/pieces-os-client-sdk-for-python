@@ -26,7 +26,9 @@ Name | Type | Description | Notes
 **cpu** | **bool** | This is an optional bool that is optimized for CPU usage. | [optional] 
 **downloading** | **bool** | This is a calculated property, that will say if this is currently downloading. | [optional] 
 **max_tokens** | [**ModelMaxTokens**](ModelMaxTokens.md) |  | [optional] 
-**custom** | **bool** |  | [optional] 
+**custom** | **bool** | This will let us know if this is a custom, or fine tuned model imported by the user. | [optional] 
+**capabilities** | [**ModelCapabilities**](ModelCapabilities.md) |  | [optional] 
+**score** | [**Score**](Score.md) |  | [optional] 
 
 ## Example
 

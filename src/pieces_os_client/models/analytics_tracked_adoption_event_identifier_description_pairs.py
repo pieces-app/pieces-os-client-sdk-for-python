@@ -38,7 +38,7 @@ class AnalyticsTrackedAdoptionEventIdentifierDescriptionPairs(BaseModel):
         if value is None:
             return value
 
-        if value not in ('the_user_has_installed_a_pieces_application'):
+        if value not in ('the_user_has_installed_a_pieces_application',):
             raise ValueError("must be one of enum values ('the_user_has_installed_a_pieces_application')")
         return value
 
@@ -48,7 +48,7 @@ class AnalyticsTrackedAdoptionEventIdentifierDescriptionPairs(BaseModel):
         if value is None:
             return value
 
-        if value not in ('the_user_has_uninstalled_a_pieces_application'):
+        if value not in ('the_user_has_uninstalled_a_pieces_application',):
             raise ValueError("must be one of enum values ('the_user_has_uninstalled_a_pieces_application')")
         return value
 

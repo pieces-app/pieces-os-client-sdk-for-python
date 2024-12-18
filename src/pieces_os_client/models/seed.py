@@ -45,7 +45,7 @@ class Seed(BaseModel):
         if value is None:
             return value
 
-        if value not in ('SEEDED_FORMAT', 'SEEDED_ASSET'):
+        if value not in ('SEEDED_FORMAT', 'SEEDED_ASSET',):
             raise ValueError("must be one of enum values ('SEEDED_FORMAT', 'SEEDED_ASSET')")
         return value
 

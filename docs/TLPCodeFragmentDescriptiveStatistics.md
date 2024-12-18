@@ -15,6 +15,7 @@ Name | Type | Description | Notes
 **asset** | **str** |  | 
 **context** | **str** | this is the application in which this was created from. | 
 **snippet** | **str** | this is the value of the snippet | 
+**probability** | **str** |  | 
 
 ## Example
 

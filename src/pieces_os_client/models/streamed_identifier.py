@@ -31,6 +31,7 @@ from pieces_os_client.models.referenced_conversation import ReferencedConversati
 from pieces_os_client.models.referenced_conversation_message import ReferencedConversationMessage
 from pieces_os_client.models.referenced_format import ReferencedFormat
 from pieces_os_client.models.referenced_hint import ReferencedHint
+from pieces_os_client.models.referenced_identified_workstream_pattern_engine_source import ReferencedIdentifiedWorkstreamPatternEngineSource
 from pieces_os_client.models.referenced_model import ReferencedModel
 from pieces_os_client.models.referenced_person import ReferencedPerson
 from pieces_os_client.models.referenced_range import ReferencedRange
@@ -58,8 +59,9 @@ class StreamedIdentifier(BaseModel):
     website: Optional[ReferencedWebsite] = None
     application: Optional[ReferencedApplication] = None
     model: Optional[ReferencedModel] = None
+    workstream_pattern_engine_source: Optional[ReferencedIdentifiedWorkstreamPatternEngineSource] = Field(default=None, alias="workstreamPatternEngineSource")
     deleted: Optional[StrictBool] = Field(default=None, description="This is a specific bool that will let us know if we deleted an Identifierfrom the db.")
-    __properties = ["asset", "conversation", "annotation", "activity", "anchor", "anchorPoint", "hint", "conversationMessage", "format", "person", "range", "sensitive", "tag", "website", "application", "model", "deleted"]
+    __properties = ["asset", "conversation", "annotation", "activity", "anchor", "anchorPoint", "hint", "conversationMessage", "format", "person", "range", "sensitive", "tag", "website", "application", "model", "workstreamPatternEngineSource", "deleted"]
 
     class Config:
         """Pydantic configuration"""
@@ -133,6 +135,9 @@ class StreamedIdentifier(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of model
         if self.model:
             _dict['model'] = self.model.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of workstream_pattern_engine_source
+        if self.workstream_pattern_engine_source:
+            _dict['workstreamPatternEngineSource'] = self.workstream_pattern_engine_source.to_dict()
         return _dict
 
     @classmethod
@@ -161,6 +166,7 @@ class StreamedIdentifier(BaseModel):
             "website": ReferencedWebsite.from_dict(obj.get("website")) if obj.get("website") is not None else None,
             "application": ReferencedApplication.from_dict(obj.get("application")) if obj.get("application") is not None else None,
             "model": ReferencedModel.from_dict(obj.get("model")) if obj.get("model") is not None else None,
+            "workstream_pattern_engine_source": ReferencedIdentifiedWorkstreamPatternEngineSource.from_dict(obj.get("workstreamPatternEngineSource")) if obj.get("workstreamPatternEngineSource") is not None else None,
             "deleted": obj.get("deleted")
         })
         return _obj

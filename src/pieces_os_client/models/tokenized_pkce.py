@@ -39,7 +39,7 @@ class TokenizedPKCE(BaseModel):
     @validator('grant_type')
     def grant_type_validate_enum(cls, value):
         """Validates the enum"""
-        if value not in ('refresh_token', 'authorization_code'):
+        if value not in ('refresh_token', 'authorization_code',):
             raise ValueError("must be one of enum values ('refresh_token', 'authorization_code')")
         return value
 

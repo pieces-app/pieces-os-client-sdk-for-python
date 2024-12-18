@@ -7,7 +7,12 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 **name** | **str** |  | [optional] 
-**memory** | **float** |  | [optional] 
+**l1_cache** | **float** |  | [optional] 
+**l2_cache** | **float** |  | [optional] 
+**l3_cache** | **float** |  | [optional] 
+**shared_memory** | **bool** |  | [optional] 
+**cores** | **float** |  | [optional] 
+**clock_cycle_speed** | **float** |  | [optional] 
 
 ## Example
 

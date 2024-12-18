@@ -30,6 +30,7 @@ from pieces_os_client.models.model_foundation_enum import ModelFoundationEnum
 from pieces_os_client.models.model_max_tokens import ModelMaxTokens
 from pieces_os_client.models.model_type_enum import ModelTypeEnum
 from pieces_os_client.models.model_usage_enum import ModelUsageEnum
+from pieces_os_client.models.score import Score
 
 class Model(BaseModel):
     """
@@ -58,7 +59,8 @@ class Model(BaseModel):
     max_tokens: Optional[ModelMaxTokens] = Field(default=None, alias="maxTokens")
     custom: Optional[StrictBool] = Field(default=None, description="This will let us know if this is a custom, or fine tuned model imported by the user.")
     capabilities: Optional[ModelCapabilities] = None
-    __properties = ["schema", "id", "version", "created", "name", "description", "cloud", "type", "usage", "bytes", "ram", "quantization", "foundation", "downloaded", "loaded", "unique", "parameters", "provider", "cpu", "downloading", "maxTokens", "custom", "capabilities"]
+    score: Optional[Score] = None
+    __properties = ["schema", "id", "version", "created", "name", "description", "cloud", "type", "usage", "bytes", "ram", "quantization", "foundation", "downloaded", "loaded", "unique", "parameters", "provider", "cpu", "downloading", "maxTokens", "custom", "capabilities", "score"]
 
     class Config:
         """Pydantic configuration"""
@@ -102,6 +104,9 @@ class Model(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of capabilities
         if self.capabilities:
             _dict['capabilities'] = self.capabilities.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of score
+        if self.score:
+            _dict['score'] = self.score.to_dict()
         # set to None if parameters (nullable) is None
         # and __fields_set__ contains the field
         if self.parameters is None and "parameters" in self.__fields_set__:
@@ -141,7 +146,8 @@ class Model(BaseModel):
             "downloading": obj.get("downloading"),
             "max_tokens": ModelMaxTokens.from_dict(obj.get("maxTokens")) if obj.get("maxTokens") is not None else None,
             "custom": obj.get("custom"),
-            "capabilities": ModelCapabilities.from_dict(obj.get("capabilities")) if obj.get("capabilities") is not None else None
+            "capabilities": ModelCapabilities.from_dict(obj.get("capabilities")) if obj.get("capabilities") is not None else None,
+            "score": Score.from_dict(obj.get("score")) if obj.get("score") is not None else None
         })
         return _obj
 

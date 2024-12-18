@@ -46,7 +46,7 @@ class TrackedFormatEventIdentifierDescriptionPairs(BaseModel):
         if value is None:
             return value
 
-        if value not in ('a_format_was_created'):
+        if value not in ('a_format_was_created',):
             raise ValueError("must be one of enum values ('a_format_was_created')")
         return value
 
@@ -56,7 +56,7 @@ class TrackedFormatEventIdentifierDescriptionPairs(BaseModel):
         if value is None:
             return value
 
-        if value not in ('if_a_format_was_entirely_copied'):
+        if value not in ('if_a_format_was_entirely_copied',):
             raise ValueError("must be one of enum values ('if_a_format_was_entirely_copied')")
         return value
 
@@ -66,7 +66,7 @@ class TrackedFormatEventIdentifierDescriptionPairs(BaseModel):
         if value is None:
             return value
 
-        if value not in ('if_a_format_was_partially_copied'):
+        if value not in ('if_a_format_was_partially_copied',):
             raise ValueError("must be one of enum values ('if_a_format_was_partially_copied')")
         return value
 
@@ -76,7 +76,7 @@ class TrackedFormatEventIdentifierDescriptionPairs(BaseModel):
         if value is None:
             return value
 
-        if value not in ('if_a_format_was_downloaded'):
+        if value not in ('if_a_format_was_downloaded',):
             raise ValueError("must be one of enum values ('if_a_format_was_downloaded')")
         return value
 
@@ -86,7 +86,7 @@ class TrackedFormatEventIdentifierDescriptionPairs(BaseModel):
         if value is None:
             return value
 
-        if value not in ('if_a_format_was_deleted'):
+        if value not in ('if_a_format_was_deleted',):
             raise ValueError("must be one of enum values ('if_a_format_was_deleted')")
         return value
 
@@ -96,7 +96,7 @@ class TrackedFormatEventIdentifierDescriptionPairs(BaseModel):
         if value is None:
             return value
 
-        if value not in ('if_a_generic_classification_was_changed_on_a_format'):
+        if value not in ('if_a_generic_classification_was_changed_on_a_format',):
             raise ValueError("must be one of enum values ('if_a_generic_classification_was_changed_on_a_format')")
         return value
 
@@ -106,7 +106,7 @@ class TrackedFormatEventIdentifierDescriptionPairs(BaseModel):
         if value is None:
             return value
 
-        if value not in ('if_a_specific_classification_was_changed_on_a_format'):
+        if value not in ('if_a_specific_classification_was_changed_on_a_format',):
             raise ValueError("must be one of enum values ('if_a_specific_classification_was_changed_on_a_format')")
         return value
 
@@ -116,7 +116,7 @@ class TrackedFormatEventIdentifierDescriptionPairs(BaseModel):
         if value is None:
             return value
 
-        if value not in ('a_format_was_updated'):
+        if value not in ('a_format_was_updated',):
             raise ValueError("must be one of enum values ('a_format_was_updated')")
         return value
 
@@ -126,7 +126,7 @@ class TrackedFormatEventIdentifierDescriptionPairs(BaseModel):
         if value is None:
             return value
 
-        if value not in ('a_format_was_inserted'):
+        if value not in ('a_format_was_inserted',):
             raise ValueError("must be one of enum values ('a_format_was_inserted')")
         return value
 
@@ -136,7 +136,7 @@ class TrackedFormatEventIdentifierDescriptionPairs(BaseModel):
         if value is None:
             return value
 
-        if value not in ('a_format_value_was_edited'):
+        if value not in ('a_format_value_was_edited',):
             raise ValueError("must be one of enum values ('a_format_value_was_edited')")
         return value
 

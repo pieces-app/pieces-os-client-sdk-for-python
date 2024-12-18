@@ -12,6 +12,7 @@ Name | Type | Description | Notes
 **updates** | [**TLPCodeFragmentReclassificationUpdates**](TLPCodeFragmentReclassificationUpdates.md) |  | 
 **user** | **str** | this is the user that is reclassifying | 
 **context** | **str** | this is the application is which this is from. | 
+**os** | **str** |  | 
 
 ## Example
 

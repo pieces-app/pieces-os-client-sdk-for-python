@@ -37,7 +37,7 @@ class SeededTrackedInteractionEventIdentifierDescriptionPairs(BaseModel):
         if value is None:
             return value
 
-        if value not in ('the_assets_list_was_refreshed_through_ui_element'):
+        if value not in ('the_assets_list_was_refreshed_through_ui_element',):
             raise ValueError("must be one of enum values ('the_assets_list_was_refreshed_through_ui_element')")
         return value
 

@@ -38,7 +38,8 @@ class TLPCodeSnippetTagifyCode(BaseModel):
     inferred_threshold: Union[StrictFloat, StrictInt] = Field(default=..., description="this is the minimum score from the postprocessing that a tag needs to have to be included in the inferred_tags array.")
     context: StrictStr = Field(default=..., description="this is the origin in which this asset was created, application(string representation)")
     asset: StrictStr = Field(default=..., description="This is the asset id.")
-    __properties = ["schema", "distribution", "inferred_distribution", "tags", "inferred_tags", "model", "label_version", "threshold", "inferred_threshold", "context", "asset"]
+    os: StrictStr = Field(...)
+    __properties = ["schema", "distribution", "inferred_distribution", "tags", "inferred_tags", "model", "label_version", "threshold", "inferred_threshold", "context", "asset", "os"]
 
     class Config:
         """Pydantic configuration"""
@@ -89,7 +90,8 @@ class TLPCodeSnippetTagifyCode(BaseModel):
             "threshold": obj.get("threshold"),
             "inferred_threshold": obj.get("inferred_threshold"),
             "context": obj.get("context"),
-            "asset": obj.get("asset")
+            "asset": obj.get("asset"),
+            "os": obj.get("os")
         })
         return _obj
 

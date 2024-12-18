@@ -72,7 +72,7 @@ class TrackedAssetEventIdentifierDescriptionPairs(BaseModel):
         if value is None:
             return value
 
-        if value not in ('an_asset_was_created'):
+        if value not in ('an_asset_was_created',):
             raise ValueError("must be one of enum values ('an_asset_was_created')")
         return value
 
@@ -82,7 +82,7 @@ class TrackedAssetEventIdentifierDescriptionPairs(BaseModel):
         if value is None:
             return value
 
-        if value not in ('an_asset_was_viewed'):
+        if value not in ('an_asset_was_viewed',):
             raise ValueError("must be one of enum values ('an_asset_was_viewed')")
         return value
 
@@ -92,7 +92,7 @@ class TrackedAssetEventIdentifierDescriptionPairs(BaseModel):
         if value is None:
             return value
 
-        if value not in ('an_asset_preview_format_was_copied'):
+        if value not in ('an_asset_preview_format_was_copied',):
             raise ValueError("must be one of enum values ('an_asset_preview_format_was_copied')")
         return value
 
@@ -102,7 +102,7 @@ class TrackedAssetEventIdentifierDescriptionPairs(BaseModel):
         if value is None:
             return value
 
-        if value not in ('an_asset_format_was_downloaded'):
+        if value not in ('an_asset_format_was_downloaded',):
             raise ValueError("must be one of enum values ('an_asset_format_was_downloaded')")
         return value
 
@@ -112,7 +112,7 @@ class TrackedAssetEventIdentifierDescriptionPairs(BaseModel):
         if value is None:
             return value
 
-        if value not in ('an_asset_was_deleted'):
+        if value not in ('an_asset_was_deleted',):
             raise ValueError("must be one of enum values ('an_asset_was_deleted')")
         return value
 
@@ -122,7 +122,7 @@ class TrackedAssetEventIdentifierDescriptionPairs(BaseModel):
         if value is None:
             return value
 
-        if value not in ('an_asset_was_redescribed_by_the_user'):
+        if value not in ('an_asset_was_redescribed_by_the_user',):
             raise ValueError("must be one of enum values ('an_asset_was_redescribed_by_the_user')")
         return value
 
@@ -132,7 +132,7 @@ class TrackedAssetEventIdentifierDescriptionPairs(BaseModel):
         if value is None:
             return value
 
-        if value not in ('an_asset_was_renamed_by_the_user'):
+        if value not in ('an_asset_was_renamed_by_the_user',):
             raise ValueError("must be one of enum values ('an_asset_was_renamed_by_the_user')")
         return value
 
@@ -142,7 +142,7 @@ class TrackedAssetEventIdentifierDescriptionPairs(BaseModel):
         if value is None:
             return value
 
-        if value not in ('a_generic_classification_was_changed_on_a_format_within_an_asset'):
+        if value not in ('a_generic_classification_was_changed_on_a_format_within_an_asset',):
             raise ValueError("must be one of enum values ('a_generic_classification_was_changed_on_a_format_within_an_asset')")
         return value
 
@@ -152,7 +152,7 @@ class TrackedAssetEventIdentifierDescriptionPairs(BaseModel):
         if value is None:
             return value
 
-        if value not in ('a_specific_classification_was_changed_on_a_format_within_an_asset'):
+        if value not in ('a_specific_classification_was_changed_on_a_format_within_an_asset',):
             raise ValueError("must be one of enum values ('a_specific_classification_was_changed_on_a_format_within_an_asset')")
         return value
 
@@ -162,7 +162,7 @@ class TrackedAssetEventIdentifierDescriptionPairs(BaseModel):
         if value is None:
             return value
 
-        if value not in ('an_asset_failed_to_be_created'):
+        if value not in ('an_asset_failed_to_be_created',):
             raise ValueError("must be one of enum values ('an_asset_failed_to_be_created')")
         return value
 
@@ -172,7 +172,7 @@ class TrackedAssetEventIdentifierDescriptionPairs(BaseModel):
         if value is None:
             return value
 
-        if value not in ('a_tag_was_added_by_the_user'):
+        if value not in ('a_tag_was_added_by_the_user',):
             raise ValueError("must be one of enum values ('a_tag_was_added_by_the_user')")
         return value
 
@@ -182,7 +182,7 @@ class TrackedAssetEventIdentifierDescriptionPairs(BaseModel):
         if value is None:
             return value
 
-        if value not in ('a_link_was_added_by_the_user'):
+        if value not in ('a_link_was_added_by_the_user',):
             raise ValueError("must be one of enum values ('a_link_was_added_by_the_user')")
         return value
 
@@ -192,7 +192,7 @@ class TrackedAssetEventIdentifierDescriptionPairs(BaseModel):
         if value is None:
             return value
 
-        if value not in ('an_asset_link_was_generated'):
+        if value not in ('an_asset_link_was_generated',):
             raise ValueError("must be one of enum values ('an_asset_link_was_generated')")
         return value
 
@@ -202,7 +202,7 @@ class TrackedAssetEventIdentifierDescriptionPairs(BaseModel):
         if value is None:
             return value
 
-        if value not in ('a_link_was_deleted_by_the_user'):
+        if value not in ('a_link_was_deleted_by_the_user',):
             raise ValueError("must be one of enum values ('a_link_was_deleted_by_the_user')")
         return value
 
@@ -212,7 +212,7 @@ class TrackedAssetEventIdentifierDescriptionPairs(BaseModel):
         if value is None:
             return value
 
-        if value not in ('a_tag_was_deleted_by_the_user'):
+        if value not in ('a_tag_was_deleted_by_the_user',):
             raise ValueError("must be one of enum values ('a_tag_was_deleted_by_the_user')")
         return value
 
@@ -222,7 +222,7 @@ class TrackedAssetEventIdentifierDescriptionPairs(BaseModel):
         if value is None:
             return value
 
-        if value not in ('an_asset_was_updated'):
+        if value not in ('an_asset_was_updated',):
             raise ValueError("must be one of enum values ('an_asset_was_updated')")
         return value
 
@@ -232,7 +232,7 @@ class TrackedAssetEventIdentifierDescriptionPairs(BaseModel):
         if value is None:
             return value
 
-        if value not in ('a_specific_format_value_was_edited_on_an_asset'):
+        if value not in ('a_specific_format_value_was_edited_on_an_asset',):
             raise ValueError("must be one of enum values ('a_specific_format_value_was_edited_on_an_asset')")
         return value
 
@@ -242,7 +242,7 @@ class TrackedAssetEventIdentifierDescriptionPairs(BaseModel):
         if value is None:
             return value
 
-        if value not in ('a_specific_format_was_updated_on_an_asset'):
+        if value not in ('a_specific_format_was_updated_on_an_asset',):
             raise ValueError("must be one of enum values ('a_specific_format_was_updated_on_an_asset')")
         return value
 
@@ -252,7 +252,7 @@ class TrackedAssetEventIdentifierDescriptionPairs(BaseModel):
         if value is None:
             return value
 
-        if value not in ('an_asset_link_was_revoked'):
+        if value not in ('an_asset_link_was_revoked',):
             raise ValueError("must be one of enum values ('an_asset_link_was_revoked')")
         return value
 
@@ -262,7 +262,7 @@ class TrackedAssetEventIdentifierDescriptionPairs(BaseModel):
         if value is None:
             return value
 
-        if value not in ('a_person_was_added_by_the_user'):
+        if value not in ('a_person_was_added_by_the_user',):
             raise ValueError("must be one of enum values ('a_person_was_added_by_the_user')")
         return value
 
@@ -272,7 +272,7 @@ class TrackedAssetEventIdentifierDescriptionPairs(BaseModel):
         if value is None:
             return value
 
-        if value not in ('a_person_was_deleted_by_the_user'):
+        if value not in ('a_person_was_deleted_by_the_user',):
             raise ValueError("must be one of enum values ('a_person_was_deleted_by_the_user')")
         return value
 
@@ -282,7 +282,7 @@ class TrackedAssetEventIdentifierDescriptionPairs(BaseModel):
         if value is None:
             return value
 
-        if value not in ('a_sensitive_was_added_by_the_user'):
+        if value not in ('a_sensitive_was_added_by_the_user',):
             raise ValueError("must be one of enum values ('a_sensitive_was_added_by_the_user')")
         return value
 
@@ -292,7 +292,7 @@ class TrackedAssetEventIdentifierDescriptionPairs(BaseModel):
         if value is None:
             return value
 
-        if value not in ('a_sensitive_was_deleted_by_the_user'):
+        if value not in ('a_sensitive_was_deleted_by_the_user',):
             raise ValueError("must be one of enum values ('a_sensitive_was_deleted_by_the_user')")
         return value
 
@@ -302,7 +302,7 @@ class TrackedAssetEventIdentifierDescriptionPairs(BaseModel):
         if value is None:
             return value
 
-        if value not in ('a_suggested_asset_was_referenced_by_the_user'):
+        if value not in ('a_suggested_asset_was_referenced_by_the_user',):
             raise ValueError("must be one of enum values ('a_suggested_asset_was_referenced_by_the_user')")
         return value
 
@@ -312,7 +312,7 @@ class TrackedAssetEventIdentifierDescriptionPairs(BaseModel):
         if value is None:
             return value
 
-        if value not in ('a_searched_asset_was_referenced_by_the_user'):
+        if value not in ('a_searched_asset_was_referenced_by_the_user',):
             raise ValueError("must be one of enum values ('a_searched_asset_was_referenced_by_the_user')")
         return value
 
@@ -322,7 +322,7 @@ class TrackedAssetEventIdentifierDescriptionPairs(BaseModel):
         if value is None:
             return value
 
-        if value not in ('an_asset_was_referenced_by_the_user'):
+        if value not in ('an_asset_was_referenced_by_the_user',):
             raise ValueError("must be one of enum values ('an_asset_was_referenced_by_the_user')")
         return value
 
@@ -332,7 +332,7 @@ class TrackedAssetEventIdentifierDescriptionPairs(BaseModel):
         if value is None:
             return value
 
-        if value not in ('an_activity_asset_was_referenced_by_the_user'):
+        if value not in ('an_activity_asset_was_referenced_by_the_user',):
             raise ValueError("must be one of enum values ('an_activity_asset_was_referenced_by_the_user')")
         return value
 
@@ -342,7 +342,7 @@ class TrackedAssetEventIdentifierDescriptionPairs(BaseModel):
         if value is None:
             return value
 
-        if value not in ('an_annotation_was_added_by_the_user'):
+        if value not in ('an_annotation_was_added_by_the_user',):
             raise ValueError("must be one of enum values ('an_annotation_was_added_by_the_user')")
         return value
 
@@ -352,7 +352,7 @@ class TrackedAssetEventIdentifierDescriptionPairs(BaseModel):
         if value is None:
             return value
 
-        if value not in ('an_annotation_was_deleted_by_the_user'):
+        if value not in ('an_annotation_was_deleted_by_the_user',):
             raise ValueError("must be one of enum values ('an_annotation_was_deleted_by_the_user')")
         return value
 
@@ -362,7 +362,7 @@ class TrackedAssetEventIdentifierDescriptionPairs(BaseModel):
         if value is None:
             return value
 
-        if value not in ('an_annotation_was_updated_by_the_user'):
+        if value not in ('an_annotation_was_updated_by_the_user',):
             raise ValueError("must be one of enum values ('an_annotation_was_updated_by_the_user')")
         return value
 
@@ -372,7 +372,7 @@ class TrackedAssetEventIdentifierDescriptionPairs(BaseModel):
         if value is None:
             return value
 
-        if value not in ('a_hint_was_added_by_the_user'):
+        if value not in ('a_hint_was_added_by_the_user',):
             raise ValueError("must be one of enum values ('a_hint_was_added_by_the_user')")
         return value
 
@@ -382,7 +382,7 @@ class TrackedAssetEventIdentifierDescriptionPairs(BaseModel):
         if value is None:
             return value
 
-        if value not in ('a_hint_was_deleted_by_the_user'):
+        if value not in ('a_hint_was_deleted_by_the_user',):
             raise ValueError("must be one of enum values ('a_hint_was_deleted_by_the_user')")
         return value
 
@@ -392,7 +392,7 @@ class TrackedAssetEventIdentifierDescriptionPairs(BaseModel):
         if value is None:
             return value
 
-        if value not in ('a_hint_was_updated_by_the_user'):
+        if value not in ('a_hint_was_updated_by_the_user',):
             raise ValueError("must be one of enum values ('a_hint_was_updated_by_the_user')")
         return value
 
@@ -402,7 +402,7 @@ class TrackedAssetEventIdentifierDescriptionPairs(BaseModel):
         if value is None:
             return value
 
-        if value not in ('a_anchor_was_added_by_the_user'):
+        if value not in ('a_anchor_was_added_by_the_user',):
             raise ValueError("must be one of enum values ('a_anchor_was_added_by_the_user')")
         return value
 
@@ -412,7 +412,7 @@ class TrackedAssetEventIdentifierDescriptionPairs(BaseModel):
         if value is None:
             return value
 
-        if value not in ('a_anchor_was_deleted_by_the_user'):
+        if value not in ('a_anchor_was_deleted_by_the_user',):
             raise ValueError("must be one of enum values ('a_anchor_was_deleted_by_the_user')")
         return value
 
@@ -422,7 +422,7 @@ class TrackedAssetEventIdentifierDescriptionPairs(BaseModel):
         if value is None:
             return value
 
-        if value not in ('a_anchor_was_updated_by_the_user'):
+        if value not in ('a_anchor_was_updated_by_the_user',):
             raise ValueError("must be one of enum values ('a_anchor_was_updated_by_the_user')")
         return value
 

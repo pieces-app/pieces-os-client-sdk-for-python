@@ -6,8 +6,9 @@ this will let us know specific hardware information
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
-**cpu** | [**OSDeviceCPUHardwareInformation**](OSDeviceCPUHardwareInformation.md) |  | [optional] 
-**gpu** | [**OSDeviceGPUHardwareInformation**](OSDeviceGPUHardwareInformation.md) |  | [optional] 
+**cpus** | [**List[OSDeviceCPUHardwareInformation]**](OSDeviceCPUHardwareInformation.md) |  | [optional] 
+**gpus** | [**List[OSDeviceGPUHardwareInformation]**](OSDeviceGPUHardwareInformation.md) |  | [optional] 
+**ram** | [**OSDeviceRAMHardwareInformation**](OSDeviceRAMHardwareInformation.md) |  | [optional] 
 
 ## Example
 

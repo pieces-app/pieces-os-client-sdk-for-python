@@ -37,7 +37,7 @@ class SeededTrackedKeyboardEventIdentifierDescriptionPairs(BaseModel):
         if value is None:
             return value
 
-        if value not in ('the_assets_list_was_refreshed_through_a_keyboard_shortcut'):
+        if value not in ('the_assets_list_was_refreshed_through_a_keyboard_shortcut',):
             raise ValueError("must be one of enum values ('the_assets_list_was_refreshed_through_a_keyboard_shortcut')")
         return value
 

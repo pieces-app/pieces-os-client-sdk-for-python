@@ -19,20 +19,22 @@ import re  # noqa: F401
 import json
 
 
-from typing import Optional
-from pydantic import BaseModel, Field
+from typing import List, Optional
+from pydantic import BaseModel, Field, conlist
 from pieces_os_client.models.embedded_model_schema import EmbeddedModelSchema
 from pieces_os_client.models.os_device_cpu_hardware_information import OSDeviceCPUHardwareInformation
 from pieces_os_client.models.os_device_gpu_hardware_information import OSDeviceGPUHardwareInformation
+from pieces_os_client.models.os_device_ram_hardware_information import OSDeviceRAMHardwareInformation
 
 class OSDeviceHardwareInformation(BaseModel):
     """
     this will let us know specific hardware information  # noqa: E501
     """
     var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
-    cpu: Optional[OSDeviceCPUHardwareInformation] = None
-    gpu: Optional[OSDeviceGPUHardwareInformation] = None
-    __properties = ["schema", "cpu", "gpu"]
+    cpus: Optional[conlist(OSDeviceCPUHardwareInformation)] = None
+    gpus: Optional[conlist(OSDeviceGPUHardwareInformation)] = None
+    ram: Optional[OSDeviceRAMHardwareInformation] = None
+    __properties = ["schema", "cpus", "gpus", "ram"]
 
     class Config:
         """Pydantic configuration"""
@@ -61,12 +63,23 @@ class OSDeviceHardwareInformation(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of var_schema
         if self.var_schema:
             _dict['schema'] = self.var_schema.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of cpu
-        if self.cpu:
-            _dict['cpu'] = self.cpu.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of gpu
-        if self.gpu:
-            _dict['gpu'] = self.gpu.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of each item in cpus (list)
+        _items = []
+        if self.cpus:
+            for _item in self.cpus:
+                if _item:
+                    _items.append(_item.to_dict())
+            _dict['cpus'] = _items
+        # override the default output from pydantic by calling `to_dict()` of each item in gpus (list)
+        _items = []
+        if self.gpus:
+            for _item in self.gpus:
+                if _item:
+                    _items.append(_item.to_dict())
+            _dict['gpus'] = _items
+        # override the default output from pydantic by calling `to_dict()` of ram
+        if self.ram:
+            _dict['ram'] = self.ram.to_dict()
         return _dict
 
     @classmethod
@@ -80,8 +93,9 @@ class OSDeviceHardwareInformation(BaseModel):
 
         _obj = OSDeviceHardwareInformation.parse_obj({
             "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
-            "cpu": OSDeviceCPUHardwareInformation.from_dict(obj.get("cpu")) if obj.get("cpu") is not None else None,
-            "gpu": OSDeviceGPUHardwareInformation.from_dict(obj.get("gpu")) if obj.get("gpu") is not None else None
+            "cpus": [OSDeviceCPUHardwareInformation.from_dict(_item) for _item in obj.get("cpus")] if obj.get("cpus") is not None else None,
+            "gpus": [OSDeviceGPUHardwareInformation.from_dict(_item) for _item in obj.get("gpus")] if obj.get("gpus") is not None else None,
+            "ram": OSDeviceRAMHardwareInformation.from_dict(obj.get("ram")) if obj.get("ram") is not None else None
         })
         return _obj
 

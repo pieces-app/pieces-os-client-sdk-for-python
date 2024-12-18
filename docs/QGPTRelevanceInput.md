@@ -15,6 +15,7 @@ Name | Type | Description | Notes
 **application** | **str** | optional application id | [optional] 
 **model** | **str** | optional model id | [optional] 
 **temporal** | [**TemporalRangeGrounding**](TemporalRangeGrounding.md) |  | [optional] 
+**anchors** | [**FlattenedAnchors**](FlattenedAnchors.md) |  | [optional] 
 
 ## Example
 

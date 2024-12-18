@@ -43,7 +43,7 @@ class TrackedConversationEventIdentifierDescriptionPairs(BaseModel):
         if value is None:
             return value
 
-        if value not in ('a_conversation_was_created'):
+        if value not in ('a_conversation_was_created',):
             raise ValueError("must be one of enum values ('a_conversation_was_created')")
         return value
 
@@ -53,7 +53,7 @@ class TrackedConversationEventIdentifierDescriptionPairs(BaseModel):
         if value is None:
             return value
 
-        if value not in ('a_conversation_was_referenced_by_the_user'):
+        if value not in ('a_conversation_was_referenced_by_the_user',):
             raise ValueError("must be one of enum values ('a_conversation_was_referenced_by_the_user')")
         return value
 
@@ -63,7 +63,7 @@ class TrackedConversationEventIdentifierDescriptionPairs(BaseModel):
         if value is None:
             return value
 
-        if value not in ('a_conversation_was_deleted'):
+        if value not in ('a_conversation_was_deleted',):
             raise ValueError("must be one of enum values ('a_conversation_was_deleted')")
         return value
 
@@ -73,7 +73,7 @@ class TrackedConversationEventIdentifierDescriptionPairs(BaseModel):
         if value is None:
             return value
 
-        if value not in ('a_conversation_summary_annotation_was_generated_by_the_user'):
+        if value not in ('a_conversation_summary_annotation_was_generated_by_the_user',):
             raise ValueError("must be one of enum values ('a_conversation_summary_annotation_was_generated_by_the_user')")
         return value
 
@@ -83,7 +83,7 @@ class TrackedConversationEventIdentifierDescriptionPairs(BaseModel):
         if value is None:
             return value
 
-        if value not in ('a_conversation_was_renamed_by_the_system'):
+        if value not in ('a_conversation_was_renamed_by_the_system',):
             raise ValueError("must be one of enum values ('a_conversation_was_renamed_by_the_system')")
         return value
 
@@ -93,7 +93,7 @@ class TrackedConversationEventIdentifierDescriptionPairs(BaseModel):
         if value is None:
             return value
 
-        if value not in ('a_conversation_was_renamed_by_the_user'):
+        if value not in ('a_conversation_was_renamed_by_the_user',):
             raise ValueError("must be one of enum values ('a_conversation_was_renamed_by_the_user')")
         return value
 
@@ -103,7 +103,7 @@ class TrackedConversationEventIdentifierDescriptionPairs(BaseModel):
         if value is None:
             return value
 
-        if value not in ('a_conversation_summary_annotation_was_generated_by_the_system'):
+        if value not in ('a_conversation_summary_annotation_was_generated_by_the_system',):
             raise ValueError("must be one of enum values ('a_conversation_summary_annotation_was_generated_by_the_system')")
         return value
 

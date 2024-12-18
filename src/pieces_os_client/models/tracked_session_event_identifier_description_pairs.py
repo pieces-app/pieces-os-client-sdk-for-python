@@ -48,7 +48,7 @@ class TrackedSessionEventIdentifierDescriptionPairs(BaseModel):
         if value is None:
             return value
 
-        if value not in ('a_session_has_been_initialized_and_the_application_has_been_opened'):
+        if value not in ('a_session_has_been_initialized_and_the_application_has_been_opened',):
             raise ValueError("must be one of enum values ('a_session_has_been_initialized_and_the_application_has_been_opened')")
         return value
 
@@ -58,7 +58,7 @@ class TrackedSessionEventIdentifierDescriptionPairs(BaseModel):
         if value is None:
             return value
 
-        if value not in ('one_or_more_applications_has_successfully_connected'):
+        if value not in ('one_or_more_applications_has_successfully_connected',):
             raise ValueError("must be one of enum values ('one_or_more_applications_has_successfully_connected')")
         return value
 
@@ -68,7 +68,7 @@ class TrackedSessionEventIdentifierDescriptionPairs(BaseModel):
         if value is None:
             return value
 
-        if value not in ('one_or_more_applications_has_failed_to_connect_locally'):
+        if value not in ('one_or_more_applications_has_failed_to_connect_locally',):
             raise ValueError("must be one of enum values ('one_or_more_applications_has_failed_to_connect_locally')")
         return value
 
@@ -78,7 +78,7 @@ class TrackedSessionEventIdentifierDescriptionPairs(BaseModel):
         if value is None:
             return value
 
-        if value not in ('a_session_is_inactive_because_the_application_is_not_in_the_foreground'):
+        if value not in ('a_session_is_inactive_because_the_application_is_not_in_the_foreground',):
             raise ValueError("must be one of enum values ('a_session_is_inactive_because_the_application_is_not_in_the_foreground')")
         return value
 
@@ -88,7 +88,7 @@ class TrackedSessionEventIdentifierDescriptionPairs(BaseModel):
         if value is None:
             return value
 
-        if value not in ('a_session_is_active_because_the_application_is_in_the_foreground'):
+        if value not in ('a_session_is_active_because_the_application_is_in_the_foreground',):
             raise ValueError("must be one of enum values ('a_session_is_active_because_the_application_is_in_the_foreground')")
         return value
 
@@ -98,7 +98,7 @@ class TrackedSessionEventIdentifierDescriptionPairs(BaseModel):
         if value is None:
             return value
 
-        if value not in ('a_session_has_been_ended_and_the_application_has_been_closed'):
+        if value not in ('a_session_has_been_ended_and_the_application_has_been_closed',):
             raise ValueError("must be one of enum values ('a_session_has_been_ended_and_the_application_has_been_closed')")
         return value
 
@@ -108,7 +108,7 @@ class TrackedSessionEventIdentifierDescriptionPairs(BaseModel):
         if value is None:
             return value
 
-        if value not in ('a_user_has_signed_into_this_session_with_a_an_external_account'):
+        if value not in ('a_user_has_signed_into_this_session_with_a_an_external_account',):
             raise ValueError("must be one of enum values ('a_user_has_signed_into_this_session_with_a_an_external_account')")
         return value
 
@@ -118,7 +118,7 @@ class TrackedSessionEventIdentifierDescriptionPairs(BaseModel):
         if value is None:
             return value
 
-        if value not in ('a_user_has_signed_out_of_this_session'):
+        if value not in ('a_user_has_signed_out_of_this_session',):
             raise ValueError("must be one of enum values ('a_user_has_signed_out_of_this_session')")
         return value
 
@@ -128,7 +128,7 @@ class TrackedSessionEventIdentifierDescriptionPairs(BaseModel):
         if value is None:
             return value
 
-        if value not in ('a_user_did_not_sign_into_the_session_with_a_dismissal'):
+        if value not in ('a_user_did_not_sign_into_the_session_with_a_dismissal',):
             raise ValueError("must be one of enum values ('a_user_did_not_sign_into_the_session_with_a_dismissal')")
         return value
 
@@ -138,7 +138,7 @@ class TrackedSessionEventIdentifierDescriptionPairs(BaseModel):
         if value is None:
             return value
 
-        if value not in ('a_user_did_not_sign_into_the_session_with_a_reminder'):
+        if value not in ('a_user_did_not_sign_into_the_session_with_a_reminder',):
             raise ValueError("must be one of enum values ('a_user_did_not_sign_into_the_session_with_a_reminder')")
         return value
 
@@ -148,7 +148,7 @@ class TrackedSessionEventIdentifierDescriptionPairs(BaseModel):
         if value is None:
             return value
 
-        if value not in ('onboarding_has_been_initialized_for_this_session'):
+        if value not in ('onboarding_has_been_initialized_for_this_session',):
             raise ValueError("must be one of enum values ('onboarding_has_been_initialized_for_this_session')")
         return value
 
@@ -158,7 +158,7 @@ class TrackedSessionEventIdentifierDescriptionPairs(BaseModel):
         if value is None:
             return value
 
-        if value not in ('onboarding_has_been_completed_for_this_session'):
+        if value not in ('onboarding_has_been_completed_for_this_session',):
             raise ValueError("must be one of enum values ('onboarding_has_been_completed_for_this_session')")
         return value
 

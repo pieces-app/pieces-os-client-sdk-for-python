@@ -9,13 +9,9 @@ Method | HTTP request | Description
 [**applications_register**](ApplicationsApi.md#applications_register) | **POST** /applications/register | /applications/register [POST]
 [**applications_session_close**](ApplicationsApi.md#applications_session_close) | **POST** /applications/session/close | /applications/session/close [POST]
 [**applications_session_open**](ApplicationsApi.md#applications_session_open) | **POST** /applications/session/open | /applications/session/open [POST]
-[**applications_session_snapshot**](ApplicationsApi.md#applications_session_snapshot) | **GET** /applications/sessions/{session} | /applications/sessions/{session} [GET]
 [**applications_snapshot**](ApplicationsApi.md#applications_snapshot) | **GET** /applications | /applications [GET]
 [**applications_specific_application_snapshot**](ApplicationsApi.md#applications_specific_application_snapshot) | **GET** /applications/{application} | /applications/{application} [GET]
-[**applications_usage_engagement_interaction**](ApplicationsApi.md#applications_usage_engagement_interaction) | **POST** /applications/usage/engagement/interaction | /applications/usage/engagement/interaction [POST] Scoped to Apps
-[**applications_usage_engagement_keyboard**](ApplicationsApi.md#applications_usage_engagement_keyboard) | **POST** /applications/usage/engagement/keyboard | /applications/usage/engagement/keyboard [POST] Scoped to Apps
-[**applications_usage_installation**](ApplicationsApi.md#applications_usage_installation) | **POST** /applications/usage/installation | /applications/usage/installation [POST]
-[**post_applications_usage_updated**](ApplicationsApi.md#post_applications_usage_updated) | **POST** /applications/usage/updated | /applications/usage/updated [POST]
+[**applications_stream_identifiers**](ApplicationsApi.md#applications_stream_identifiers) | **GET** /applications/stream/identifiers | /applications/stream/identifiers [WS]
 
 
 # **applications_external_related**
@@ -27,6 +23,7 @@ Retrieves a list of external applications installed on the user's machine that h
 
 ### Example
 
+* Api Key Authentication (application):
 ```python
 import time
 import os
@@ -41,6 +38,16 @@ configuration = pieces_os_client.Configuration(
     host = "http://localhost:1000"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: application
+configuration.api_key['application'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['application'] = 'Bearer'
 
 # Enter a context with an instance of the API client
 with pieces_os_client.ApiClient(configuration) as api_client:
@@ -67,7 +74,7 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-No authorization required
+[application](../README.md#application)
 
 ### HTTP request headers
 
@@ -91,6 +98,7 @@ Provides a snapshot of all external applications detected on the user's machine,
 
 ### Example
 
+* Api Key Authentication (application):
 ```python
 import time
 import os
@@ -105,6 +113,16 @@ configuration = pieces_os_client.Configuration(
     host = "http://localhost:1000"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: application
+configuration.api_key['application'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['application'] = 'Bearer'
 
 # Enter a context with an instance of the API client
 with pieces_os_client.ApiClient(configuration) as api_client:
@@ -131,7 +149,7 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-No authorization required
+[application](../README.md#application)
 
 ### HTTP request headers
 
@@ -155,6 +173,7 @@ Registers a new application within the Pieces ecosystem.
 
 ### Example
 
+* Api Key Authentication (application):
 ```python
 import time
 import os
@@ -169,6 +188,16 @@ configuration = pieces_os_client.Configuration(
     host = "http://localhost:1000"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: application
+configuration.api_key['application'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['application'] = 'Bearer'
 
 # Enter a context with an instance of the API client
 with pieces_os_client.ApiClient(configuration) as api_client:
@@ -199,7 +228,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[application](../README.md#application)
 
 ### HTTP request headers
 
@@ -222,6 +251,7 @@ Closes an active session, identified by a session UUID, marking the end of the u
 
 ### Example
 
+* Api Key Authentication (application):
 ```python
 import time
 import os
@@ -236,6 +266,16 @@ configuration = pieces_os_client.Configuration(
     host = "http://localhost:1000"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: application
+configuration.api_key['application'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['application'] = 'Bearer'
 
 # Enter a context with an instance of the API client
 with pieces_os_client.ApiClient(configuration) as api_client:
@@ -266,7 +306,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[application](../README.md#application)
 
 ### HTTP request headers
 
@@ -289,6 +329,7 @@ Initiates a new session, marking the start of a user's interaction with the Piec
 
 ### Example
 
+* Api Key Authentication (application):
 ```python
 import time
 import os
@@ -303,6 +344,16 @@ configuration = pieces_os_client.Configuration(
     host = "http://localhost:1000"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: application
+configuration.api_key['application'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['application'] = 'Bearer'
 
 # Enter a context with an instance of the API client
 with pieces_os_client.ApiClient(configuration) as api_client:
@@ -329,74 +380,7 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-No authorization required
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | OK |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **applications_session_snapshot**
-> Session applications_session_snapshot(session)
-
-/applications/sessions/{session} [GET]
-
-Fetches detailed information about a specific session, identified by a session UUID, including application usage and engagement data.
-
-### Example
-
-```python
-import time
-import os
-import pieces_os_client
-from pieces_os_client.models.session import Session
-from pieces_os_client.rest import ApiException
-from pprint import pprint
-
-# Defining the host is optional and defaults to http://localhost:1000
-# See configuration.py for a list of all supported configuration parameters.
-configuration = pieces_os_client.Configuration(
-    host = "http://localhost:1000"
-)
-
-
-# Enter a context with an instance of the API client
-with pieces_os_client.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = pieces_os_client.ApplicationsApi(api_client)
-    session = 'session_example' # str | This is a uuid that points to a session.
-
-    try:
-        # /applications/sessions/{session} [GET]
-        api_response = api_instance.applications_session_snapshot(session)
-        print("The response of ApplicationsApi->applications_session_snapshot:\n")
-        pprint(api_response)
-    except Exception as e:
-        print("Exception when calling ApplicationsApi->applications_session_snapshot: %s\n" % e)
-```
-
-
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **session** | **str**| This is a uuid that points to a session. | 
-
-### Return type
-
-[**Session**](Session.md)
-
-### Authorization
-
-No authorization required
+[application](../README.md#application)
 
 ### HTTP request headers
 
@@ -419,6 +403,7 @@ Retrieves a comprehensive overview of all applications tracked by the Pieces sys
 
 ### Example
 
+* Api Key Authentication (application):
 ```python
 import time
 import os
@@ -433,6 +418,16 @@ configuration = pieces_os_client.Configuration(
     host = "http://localhost:1000"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: application
+configuration.api_key['application'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['application'] = 'Bearer'
 
 # Enter a context with an instance of the API client
 with pieces_os_client.ApiClient(configuration) as api_client:
@@ -459,7 +454,7 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-No authorization required
+[application](../README.md#application)
 
 ### HTTP request headers
 
@@ -482,6 +477,7 @@ Obtains a snapshot with information about a specific application, identified by 
 
 ### Example
 
+* Api Key Authentication (application):
 ```python
 import time
 import os
@@ -496,6 +492,16 @@ configuration = pieces_os_client.Configuration(
     host = "http://localhost:1000"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: application
+configuration.api_key['application'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['application'] = 'Bearer'
 
 # Enter a context with an instance of the API client
 with pieces_os_client.ApiClient(configuration) as api_client:
@@ -526,7 +532,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[application](../README.md#application)
 
 ### HTTP request headers
 
@@ -540,21 +546,21 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **applications_usage_engagement_interaction**
-> TrackedInteractionEvent applications_usage_engagement_interaction(seeded_tracked_interaction_event=seeded_tracked_interaction_event)
+# **applications_stream_identifiers**
+> StreamedIdentifiers applications_stream_identifiers()
 
-/applications/usage/engagement/interaction [POST] Scoped to Apps
+/applications/stream/identifiers [WS]
 
-Records user interaction events within applications, such as clicks or taps, to analyze engagement patterns and user behavior.
+Provides a WebSocket connection that emits changes to your application identifiers (UUIDs).
 
 ### Example
 
+* Api Key Authentication (application):
 ```python
 import time
 import os
 import pieces_os_client
-from pieces_os_client.models.seeded_tracked_interaction_event import SeededTrackedInteractionEvent
-from pieces_os_client.models.tracked_interaction_event import TrackedInteractionEvent
+from pieces_os_client.models.streamed_identifiers import StreamedIdentifiers
 from pieces_os_client.rest import ApiException
 from pprint import pprint
 
@@ -564,245 +570,54 @@ configuration = pieces_os_client.Configuration(
     host = "http://localhost:1000"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: application
+configuration.api_key['application'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['application'] = 'Bearer'
 
 # Enter a context with an instance of the API client
 with pieces_os_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pieces_os_client.ApplicationsApi(api_client)
-    seeded_tracked_interaction_event = pieces_os_client.SeededTrackedInteractionEvent() # SeededTrackedInteractionEvent |  (optional)
 
     try:
-        # /applications/usage/engagement/interaction [POST] Scoped to Apps
-        api_response = api_instance.applications_usage_engagement_interaction(seeded_tracked_interaction_event=seeded_tracked_interaction_event)
-        print("The response of ApplicationsApi->applications_usage_engagement_interaction:\n")
+        # /applications/stream/identifiers [WS]
+        api_response = api_instance.applications_stream_identifiers()
+        print("The response of ApplicationsApi->applications_stream_identifiers:\n")
         pprint(api_response)
     except Exception as e:
-        print("Exception when calling ApplicationsApi->applications_usage_engagement_interaction: %s\n" % e)
+        print("Exception when calling ApplicationsApi->applications_stream_identifiers: %s\n" % e)
 ```
 
 
 
 ### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **seeded_tracked_interaction_event** | [**SeededTrackedInteractionEvent**](SeededTrackedInteractionEvent.md)|  | [optional] 
+This endpoint does not need any parameter.
 
 ### Return type
 
-[**TrackedInteractionEvent**](TrackedInteractionEvent.md)
+[**StreamedIdentifiers**](StreamedIdentifiers.md)
 
 ### Authorization
 
-No authorization required
+[application](../README.md#application)
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
- - **Accept**: application/json
+ - **Content-Type**: Not defined
+ - **Accept**: application/json, text/plain
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **applications_usage_engagement_keyboard**
-> TrackedKeyboardEvent applications_usage_engagement_keyboard(seeded_tracked_keyboard_event=seeded_tracked_keyboard_event)
-
-/applications/usage/engagement/keyboard [POST] Scoped to Apps
-
-Captures keyboard interaction events, including shortcuts, within applications to monitor user engagement and productivity enhancements.
-
-### Example
-
-```python
-import time
-import os
-import pieces_os_client
-from pieces_os_client.models.seeded_tracked_keyboard_event import SeededTrackedKeyboardEvent
-from pieces_os_client.models.tracked_keyboard_event import TrackedKeyboardEvent
-from pieces_os_client.rest import ApiException
-from pprint import pprint
-
-# Defining the host is optional and defaults to http://localhost:1000
-# See configuration.py for a list of all supported configuration parameters.
-configuration = pieces_os_client.Configuration(
-    host = "http://localhost:1000"
-)
-
-
-# Enter a context with an instance of the API client
-with pieces_os_client.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = pieces_os_client.ApplicationsApi(api_client)
-    seeded_tracked_keyboard_event = pieces_os_client.SeededTrackedKeyboardEvent() # SeededTrackedKeyboardEvent |  (optional)
-
-    try:
-        # /applications/usage/engagement/keyboard [POST] Scoped to Apps
-        api_response = api_instance.applications_usage_engagement_keyboard(seeded_tracked_keyboard_event=seeded_tracked_keyboard_event)
-        print("The response of ApplicationsApi->applications_usage_engagement_keyboard:\n")
-        pprint(api_response)
-    except Exception as e:
-        print("Exception when calling ApplicationsApi->applications_usage_engagement_keyboard: %s\n" % e)
-```
-
-
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **seeded_tracked_keyboard_event** | [**SeededTrackedKeyboardEvent**](SeededTrackedKeyboardEvent.md)|  | [optional] 
-
-### Return type
-
-[**TrackedKeyboardEvent**](TrackedKeyboardEvent.md)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
- - **Content-Type**: application/json
- - **Accept**: application/json
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | OK |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **applications_usage_installation**
-> applications_usage_installation(tracked_application_install=tracked_application_install)
-
-/applications/usage/installation [POST]
-
-Logs the installation events of the Pieces application.
-
-### Example
-
-```python
-import time
-import os
-import pieces_os_client
-from pieces_os_client.models.tracked_application_install import TrackedApplicationInstall
-from pieces_os_client.rest import ApiException
-from pprint import pprint
-
-# Defining the host is optional and defaults to http://localhost:1000
-# See configuration.py for a list of all supported configuration parameters.
-configuration = pieces_os_client.Configuration(
-    host = "http://localhost:1000"
-)
-
-
-# Enter a context with an instance of the API client
-with pieces_os_client.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = pieces_os_client.ApplicationsApi(api_client)
-    tracked_application_install = pieces_os_client.TrackedApplicationInstall() # TrackedApplicationInstall |  (optional)
-
-    try:
-        # /applications/usage/installation [POST]
-        api_instance.applications_usage_installation(tracked_application_install=tracked_application_install)
-    except Exception as e:
-        print("Exception when calling ApplicationsApi->applications_usage_installation: %s\n" % e)
-```
-
-
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **tracked_application_install** | [**TrackedApplicationInstall**](TrackedApplicationInstall.md)|  | [optional] 
-
-### Return type
-
-void (empty response body)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
- - **Content-Type**: application/json
- - **Accept**: Not defined
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | OK |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **post_applications_usage_updated**
-> post_applications_usage_updated(tracked_application_update=tracked_application_update)
-
-/applications/usage/updated [POST]
-
-Tracks updates to the Pieces application, including version changes.
-
-### Example
-
-```python
-import time
-import os
-import pieces_os_client
-from pieces_os_client.models.tracked_application_update import TrackedApplicationUpdate
-from pieces_os_client.rest import ApiException
-from pprint import pprint
-
-# Defining the host is optional and defaults to http://localhost:1000
-# See configuration.py for a list of all supported configuration parameters.
-configuration = pieces_os_client.Configuration(
-    host = "http://localhost:1000"
-)
-
-
-# Enter a context with an instance of the API client
-with pieces_os_client.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = pieces_os_client.ApplicationsApi(api_client)
-    tracked_application_update = pieces_os_client.TrackedApplicationUpdate() # TrackedApplicationUpdate | Sending over the previous application version, the current version, and the user. (optional)
-
-    try:
-        # /applications/usage/updated [POST]
-        api_instance.post_applications_usage_updated(tracked_application_update=tracked_application_update)
-    except Exception as e:
-        print("Exception when calling ApplicationsApi->post_applications_usage_updated: %s\n" % e)
-```
-
-
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **tracked_application_update** | [**TrackedApplicationUpdate**](TrackedApplicationUpdate.md)| Sending over the previous application version, the current version, and the user. | [optional] 
-
-### Return type
-
-void (empty response body)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
- - **Content-Type**: application/json
- - **Accept**: Not defined
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | OK |  -  |
+**500** | Internal Server Error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

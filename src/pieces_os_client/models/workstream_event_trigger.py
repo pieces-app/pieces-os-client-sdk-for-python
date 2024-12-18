@@ -29,7 +29,7 @@ class WorkstreamEventTrigger(BaseModel):
     """
     var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     check_in: Optional[StrictBool] = Field(default=None, description="this is a sort of check-in event(ie when ever your application is in the forground on there is an interaction)")
-    copy_field: Optional[StrictBool] = Field(default=None, alias="copy")
+    copy: Optional[StrictBool] = None
     paste: Optional[StrictBool] = None
     file_open: Optional[StrictBool] = None
     file_close: Optional[StrictBool] = None

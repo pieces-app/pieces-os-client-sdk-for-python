@@ -57,9 +57,10 @@ class ExportedDatabase(BaseModel):
     workstream_events: Optional[conlist(StrictInt)] = Field(default=None, alias="workstreamEvents")
     ranges: Optional[conlist(StrictInt)] = None
     workstream_summaries: Optional[conlist(StrictInt)] = Field(default=None, alias="workstreamSummaries")
+    workstream_pattern_engine_sources: Optional[conlist(StrictInt)] = Field(default=None, alias="workstreamPatternEngineSources")
     message_values: Optional[ExportedDatabaseFormats] = Field(default=None, alias="messageValues")
     workstream_event_values: Optional[ExportedDatabaseFormats] = Field(default=None, alias="workstreamEventValues")
-    __properties = ["analyses", "applications", "assets", "codeAnalyses", "files", "formatMetrics", "formats", "fragments", "imageAnalyses", "models", "ocrAnalyses", "persons", "sensitives", "tags", "websites", "values", "version", "schema", "relationships", "activities", "annotations", "hints", "anchors", "anchorPoints", "conversations", "conversationMessages", "workstreamEvents", "ranges", "workstreamSummaries", "messageValues", "workstreamEventValues"]
+    __properties = ["analyses", "applications", "assets", "codeAnalyses", "files", "formatMetrics", "formats", "fragments", "imageAnalyses", "models", "ocrAnalyses", "persons", "sensitives", "tags", "websites", "values", "version", "schema", "relationships", "activities", "annotations", "hints", "anchors", "anchorPoints", "conversations", "conversationMessages", "workstreamEvents", "ranges", "workstreamSummaries", "workstreamPatternEngineSources", "messageValues", "workstreamEventValues"]
 
     class Config:
         """Pydantic configuration"""
@@ -138,6 +139,7 @@ class ExportedDatabase(BaseModel):
             "workstream_events": obj.get("workstreamEvents"),
             "ranges": obj.get("ranges"),
             "workstream_summaries": obj.get("workstreamSummaries"),
+            "workstream_pattern_engine_sources": obj.get("workstreamPatternEngineSources"),
             "message_values": ExportedDatabaseFormats.from_dict(obj.get("messageValues")) if obj.get("messageValues") is not None else None,
             "workstream_event_values": ExportedDatabaseFormats.from_dict(obj.get("workstreamEventValues")) if obj.get("workstreamEventValues") is not None else None
         })

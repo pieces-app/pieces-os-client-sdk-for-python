@@ -1,6 +1,6 @@
 # SeededTrackedApplication
 
-A Model to describe what application a format/analytics event originated - Specifically NOT requiring an ID
+
 
 ## Properties
 Name | Type | Description | Notes
@@ -12,6 +12,7 @@ Name | Type | Description | Notes
 **capabilities** | [**CapabilitiesEnum**](CapabilitiesEnum.md) |  | [optional] 
 **privacy** | [**PrivacyEnum**](PrivacyEnum.md) |  | [optional] 
 **automatic_unload** | **bool** | This is a proper that will let us know if we will proactivity unload all of your machine learning models.by default this is false. | [optional] 
+**enrichment** | [**SeededAssetEnrichment**](SeededAssetEnrichment.md) |  | [optional] 
 
 ## Example
 

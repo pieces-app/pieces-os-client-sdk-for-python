@@ -6,10 +6,12 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**anchor_associate_asset**](AnchorApi.md#anchor_associate_asset) | **POST** /anchor/{anchor}/assets/associate/{asset} | /anchor/{anchor}/assets/associate/{asset} [POST]
 [**anchor_associate_conversation**](AnchorApi.md#anchor_associate_conversation) | **POST** /anchor/{anchor}/conversations/associate/{conversation} | /anchor/{anchor}/conversations/associate/{conversation} [POST]
+[**anchor_associate_message**](AnchorApi.md#anchor_associate_message) | **POST** /anchor/{anchor}/messages/associate/{message} | /anchor/{anchor}/messages/associate/{message} [POST]
 [**anchor_associate_person**](AnchorApi.md#anchor_associate_person) | **POST** /anchor/{anchor}/persons/associate/{person} | /anchor/{anchor}/persons/associate/{person} [POST]
 [**anchor_associate_workstream_summary**](AnchorApi.md#anchor_associate_workstream_summary) | **POST** /anchor/{anchor}/workstream_summaries/associate/{workstream_summary} | /anchor/{anchor}/workstream_summaries/associate/{workstream_summary} [POST]
 [**anchor_disassociate_asset**](AnchorApi.md#anchor_disassociate_asset) | **POST** /anchor/{anchor}/assets/disassociate/{asset} | /anchor/{anchor}/assets/disassociate/{asset} [POST]
 [**anchor_disassociate_conversation**](AnchorApi.md#anchor_disassociate_conversation) | **POST** /anchor/{anchor}/conversations/disassociate/{conversation} | /anchor/{anchor}/conversations/disassociate/{conversation} [POST]
+[**anchor_disassociate_message**](AnchorApi.md#anchor_disassociate_message) | **POST** /anchor/{anchor}/messages/disassociate/{message} | /anchor/{anchor}/messages/disassociate/{message} [POST]
 [**anchor_disassociate_person**](AnchorApi.md#anchor_disassociate_person) | **POST** /anchor/{anchor}/persons/disassociate/{person} | /anchor/{anchor}/persons/disassociate/{person} [POST]
 [**anchor_disassociate_workstream_summary**](AnchorApi.md#anchor_disassociate_workstream_summary) | **POST** /anchor/{anchor}/workstream_summaries/disassociate/{workstream_summary} | /anchor/{anchor}/workstream_summaries/disassociate/{workstream_summary} [POST]
 [**anchor_rename**](AnchorApi.md#anchor_rename) | **POST** /anchor/{anchor}/rename | /anchor/{anchor}/rename [POST]
@@ -27,6 +29,7 @@ associates an anchor and an asset. It performs the same action as the asset equi
 
 ### Example
 
+* Api Key Authentication (application):
 ```python
 import time
 import os
@@ -40,6 +43,16 @@ configuration = pieces_os_client.Configuration(
     host = "http://localhost:1000"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: application
+configuration.api_key['application'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['application'] = 'Bearer'
 
 # Enter a context with an instance of the API client
 with pieces_os_client.ApiClient(configuration) as api_client:
@@ -70,7 +83,7 @@ void (empty response body)
 
 ### Authorization
 
-No authorization required
+[application](../README.md#application)
 
 ### HTTP request headers
 
@@ -94,6 +107,7 @@ associates an anchor and a conversation. It performs the same action as the conv
 
 ### Example
 
+* Api Key Authentication (application):
 ```python
 import time
 import os
@@ -107,6 +121,16 @@ configuration = pieces_os_client.Configuration(
     host = "http://localhost:1000"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: application
+configuration.api_key['application'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['application'] = 'Bearer'
 
 # Enter a context with an instance of the API client
 with pieces_os_client.ApiClient(configuration) as api_client:
@@ -137,7 +161,85 @@ void (empty response body)
 
 ### Authorization
 
-No authorization required
+[application](../README.md#application)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: text/plain
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**204** | No Content |  -  |
+**500** | Internal Server Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **anchor_associate_message**
+> anchor_associate_message(anchor, message)
+
+/anchor/{anchor}/messages/associate/{message} [POST]
+
+This will associate a anchor with a message.
+
+### Example
+
+* Api Key Authentication (application):
+```python
+import time
+import os
+import pieces_os_client
+from pieces_os_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to http://localhost:1000
+# See configuration.py for a list of all supported configuration parameters.
+configuration = pieces_os_client.Configuration(
+    host = "http://localhost:1000"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: application
+configuration.api_key['application'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['application'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with pieces_os_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = pieces_os_client.AnchorApi(api_client)
+    anchor = 'anchor_example' # str | This is the specific uuid of an anchor.
+    message = 'message_example' # str | This is the uuid of a message.
+
+    try:
+        # /anchor/{anchor}/messages/associate/{message} [POST]
+        api_instance.anchor_associate_message(anchor, message)
+    except Exception as e:
+        print("Exception when calling AnchorApi->anchor_associate_message: %s\n" % e)
+```
+
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **anchor** | **str**| This is the specific uuid of an anchor. | 
+ **message** | **str**| This is the uuid of a message. | 
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[application](../README.md#application)
 
 ### HTTP request headers
 
@@ -161,6 +263,7 @@ associates an anchor and a person. It performs the same action as the person equ
 
 ### Example
 
+* Api Key Authentication (application):
 ```python
 import time
 import os
@@ -174,6 +277,16 @@ configuration = pieces_os_client.Configuration(
     host = "http://localhost:1000"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: application
+configuration.api_key['application'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['application'] = 'Bearer'
 
 # Enter a context with an instance of the API client
 with pieces_os_client.ApiClient(configuration) as api_client:
@@ -204,7 +317,7 @@ void (empty response body)
 
 ### Authorization
 
-No authorization required
+[application](../README.md#application)
 
 ### HTTP request headers
 
@@ -228,6 +341,7 @@ This will associate a anchor with a workstream summary. This will do the same th
 
 ### Example
 
+* Api Key Authentication (application):
 ```python
 import time
 import os
@@ -241,6 +355,16 @@ configuration = pieces_os_client.Configuration(
     host = "http://localhost:1000"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: application
+configuration.api_key['application'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['application'] = 'Bearer'
 
 # Enter a context with an instance of the API client
 with pieces_os_client.ApiClient(configuration) as api_client:
@@ -271,7 +395,7 @@ void (empty response body)
 
 ### Authorization
 
-No authorization required
+[application](../README.md#application)
 
 ### HTTP request headers
 
@@ -295,6 +419,7 @@ Disassociates an anchor from an asset. It performs the same action as the asset 
 
 ### Example
 
+* Api Key Authentication (application):
 ```python
 import time
 import os
@@ -308,6 +433,16 @@ configuration = pieces_os_client.Configuration(
     host = "http://localhost:1000"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: application
+configuration.api_key['application'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['application'] = 'Bearer'
 
 # Enter a context with an instance of the API client
 with pieces_os_client.ApiClient(configuration) as api_client:
@@ -338,7 +473,7 @@ void (empty response body)
 
 ### Authorization
 
-No authorization required
+[application](../README.md#application)
 
 ### HTTP request headers
 
@@ -362,6 +497,7 @@ Disassociates an anchor from a conversation. It performs the same action as the 
 
 ### Example
 
+* Api Key Authentication (application):
 ```python
 import time
 import os
@@ -375,6 +511,16 @@ configuration = pieces_os_client.Configuration(
     host = "http://localhost:1000"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: application
+configuration.api_key['application'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['application'] = 'Bearer'
 
 # Enter a context with an instance of the API client
 with pieces_os_client.ApiClient(configuration) as api_client:
@@ -405,7 +551,85 @@ void (empty response body)
 
 ### Authorization
 
-No authorization required
+[application](../README.md#application)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: text/plain
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**204** | No Content |  -  |
+**500** | Internal Server Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **anchor_disassociate_message**
+> anchor_disassociate_message(anchor, message)
+
+/anchor/{anchor}/messages/disassociate/{message} [POST]
+
+This will enable us to disassociate a anchor from a message.
+
+### Example
+
+* Api Key Authentication (application):
+```python
+import time
+import os
+import pieces_os_client
+from pieces_os_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to http://localhost:1000
+# See configuration.py for a list of all supported configuration parameters.
+configuration = pieces_os_client.Configuration(
+    host = "http://localhost:1000"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: application
+configuration.api_key['application'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['application'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with pieces_os_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = pieces_os_client.AnchorApi(api_client)
+    anchor = 'anchor_example' # str | This is the specific uuid of an anchor.
+    message = 'message_example' # str | This is the uuid of a message.
+
+    try:
+        # /anchor/{anchor}/messages/disassociate/{message} [POST]
+        api_instance.anchor_disassociate_message(anchor, message)
+    except Exception as e:
+        print("Exception when calling AnchorApi->anchor_disassociate_message: %s\n" % e)
+```
+
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **anchor** | **str**| This is the specific uuid of an anchor. | 
+ **message** | **str**| This is the uuid of a message. | 
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[application](../README.md#application)
 
 ### HTTP request headers
 
@@ -429,6 +653,7 @@ Disassociates an anchor from a person. It performs the same action as the person
 
 ### Example
 
+* Api Key Authentication (application):
 ```python
 import time
 import os
@@ -442,6 +667,16 @@ configuration = pieces_os_client.Configuration(
     host = "http://localhost:1000"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: application
+configuration.api_key['application'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['application'] = 'Bearer'
 
 # Enter a context with an instance of the API client
 with pieces_os_client.ApiClient(configuration) as api_client:
@@ -472,7 +707,7 @@ void (empty response body)
 
 ### Authorization
 
-No authorization required
+[application](../README.md#application)
 
 ### HTTP request headers
 
@@ -496,6 +731,7 @@ This will enable us to disassociate a anchor from a workstream summary. This wil
 
 ### Example
 
+* Api Key Authentication (application):
 ```python
 import time
 import os
@@ -509,6 +745,16 @@ configuration = pieces_os_client.Configuration(
     host = "http://localhost:1000"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: application
+configuration.api_key['application'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['application'] = 'Bearer'
 
 # Enter a context with an instance of the API client
 with pieces_os_client.ApiClient(configuration) as api_client:
@@ -539,7 +785,7 @@ void (empty response body)
 
 ### Authorization
 
-No authorization required
+[application](../README.md#application)
 
 ### HTTP request headers
 
@@ -563,6 +809,7 @@ This will rename a specific anchor.
 
 ### Example
 
+* Api Key Authentication (application):
 ```python
 import time
 import os
@@ -577,6 +824,16 @@ configuration = pieces_os_client.Configuration(
     host = "http://localhost:1000"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: application
+configuration.api_key['application'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['application'] = 'Bearer'
 
 # Enter a context with an instance of the API client
 with pieces_os_client.ApiClient(configuration) as api_client:
@@ -609,7 +866,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[application](../README.md#application)
 
 ### HTTP request headers
 
@@ -633,6 +890,7 @@ This will take in a SeededScoreIncrement and will increment the material relativ
 
 ### Example
 
+* Api Key Authentication (application):
 ```python
 import time
 import os
@@ -647,6 +905,16 @@ configuration = pieces_os_client.Configuration(
     host = "http://localhost:1000"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: application
+configuration.api_key['application'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['application'] = 'Bearer'
 
 # Enter a context with an instance of the API client
 with pieces_os_client.ApiClient(configuration) as api_client:
@@ -677,7 +945,7 @@ void (empty response body)
 
 ### Authorization
 
-No authorization required
+[application](../README.md#application)
 
 ### HTTP request headers
 
@@ -701,6 +969,7 @@ This will get a snapshot of a single anchor.
 
 ### Example
 
+* Api Key Authentication (application):
 ```python
 import time
 import os
@@ -715,6 +984,16 @@ configuration = pieces_os_client.Configuration(
     host = "http://localhost:1000"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: application
+configuration.api_key['application'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['application'] = 'Bearer'
 
 # Enter a context with an instance of the API client
 with pieces_os_client.ApiClient(configuration) as api_client:
@@ -747,7 +1026,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[application](../README.md#application)
 
 ### HTTP request headers
 
@@ -771,6 +1050,7 @@ This will update a specific anchor.
 
 ### Example
 
+* Api Key Authentication (application):
 ```python
 import time
 import os
@@ -785,6 +1065,16 @@ configuration = pieces_os_client.Configuration(
     host = "http://localhost:1000"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: application
+configuration.api_key['application'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['application'] = 'Bearer'
 
 # Enter a context with an instance of the API client
 with pieces_os_client.ApiClient(configuration) as api_client:
@@ -817,7 +1107,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[application](../README.md#application)
 
 ### HTTP request headers
 

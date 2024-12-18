@@ -23,6 +23,7 @@ from typing import List, Optional
 from pydantic import BaseModel, Field, conlist
 from pieces_os_client.models.embedded_model_schema import EmbeddedModelSchema
 from pieces_os_client.models.model import Model
+from pieces_os_client.models.score import Score
 
 class Models(BaseModel):
     """
@@ -30,7 +31,8 @@ class Models(BaseModel):
     """
     var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     iterable: conlist(Model) = Field(...)
-    __properties = ["schema", "iterable"]
+    score: Optional[Score] = None
+    __properties = ["schema", "iterable", "score"]
 
     class Config:
         """Pydantic configuration"""
@@ -66,6 +68,9 @@ class Models(BaseModel):
                 if _item:
                     _items.append(_item.to_dict())
             _dict['iterable'] = _items
+        # override the default output from pydantic by calling `to_dict()` of score
+        if self.score:
+            _dict['score'] = self.score.to_dict()
         return _dict
 
     @classmethod
@@ -79,7 +84,8 @@ class Models(BaseModel):
 
         _obj = Models.parse_obj({
             "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
-            "iterable": [Model.from_dict(_item) for _item in obj.get("iterable")] if obj.get("iterable") is not None else None
+            "iterable": [Model.from_dict(_item) for _item in obj.get("iterable")] if obj.get("iterable") is not None else None,
+            "score": Score.from_dict(obj.get("score")) if obj.get("score") is not None else None
         })
         return _obj
 

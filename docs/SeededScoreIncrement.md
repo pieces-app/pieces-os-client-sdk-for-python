@@ -36,6 +36,10 @@ Name | Type | Description | Notes
 **workstream_event** | [**SeededScore**](SeededScore.md) |  | [optional] 
 **ranges** | [**SeededScore**](SeededScore.md) |  | [optional] 
 **range** | [**SeededScore**](SeededScore.md) |  | [optional] 
+**workstream_pattern_engine_sources** | [**SeededScore**](SeededScore.md) |  | [optional] 
+**workstream_pattern_engine_source** | [**SeededScore**](SeededScore.md) |  | [optional] 
+**models** | [**SeededScore**](SeededScore.md) |  | [optional] 
+**model** | [**SeededScore**](SeededScore.md) |  | [optional] 
 
 ## Example
 

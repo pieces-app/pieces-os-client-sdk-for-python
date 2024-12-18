@@ -8,6 +8,7 @@ Method | HTTP request | Description
 [**models_delete_specific_model**](ModelsApi.md#models_delete_specific_model) | **POST** /models/{model}/delete | /models/{model}/delete [POST]
 [**models_delete_specific_model_cache**](ModelsApi.md#models_delete_specific_model_cache) | **POST** /models/{model}/delete/cache | /models/{model}/delete/cache [POST]
 [**models_snapshot**](ModelsApi.md#models_snapshot) | **GET** /models | /models [GET]
+[**models_stream_identifiers**](ModelsApi.md#models_stream_identifiers) | **GET** /models/stream/identifiers | /models/stream/identifiers [WS]
 [**unload_models**](ModelsApi.md#unload_models) | **POST** /models/unload | /models/unload [POST]
 
 
@@ -20,6 +21,7 @@ Creates a machine learning model. By default, all models created through this en
 
 ### Example
 
+* Api Key Authentication (application):
 ```python
 import time
 import os
@@ -35,6 +37,16 @@ configuration = pieces_os_client.Configuration(
     host = "http://localhost:1000"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: application
+configuration.api_key['application'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['application'] = 'Bearer'
 
 # Enter a context with an instance of the API client
 with pieces_os_client.ApiClient(configuration) as api_client:
@@ -65,7 +77,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[application](../README.md#application)
 
 ### HTTP request headers
 
@@ -89,6 +101,7 @@ Deletes a specific model. It is exclusively available for custom models with the
 
 ### Example
 
+* Api Key Authentication (application):
 ```python
 import time
 import os
@@ -102,6 +115,16 @@ configuration = pieces_os_client.Configuration(
     host = "http://localhost:1000"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: application
+configuration.api_key['application'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['application'] = 'Bearer'
 
 # Enter a context with an instance of the API client
 with pieces_os_client.ApiClient(configuration) as api_client:
@@ -130,7 +153,7 @@ void (empty response body)
 
 ### Authorization
 
-No authorization required
+[application](../README.md#application)
 
 ### HTTP request headers
 
@@ -154,6 +177,7 @@ Deletes the data associated with a specific model, such as assets or libraries d
 
 ### Example
 
+* Api Key Authentication (application):
 ```python
 import time
 import os
@@ -169,6 +193,16 @@ configuration = pieces_os_client.Configuration(
     host = "http://localhost:1000"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: application
+configuration.api_key['application'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['application'] = 'Bearer'
 
 # Enter a context with an instance of the API client
 with pieces_os_client.ApiClient(configuration) as api_client:
@@ -201,7 +235,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[application](../README.md#application)
 
 ### HTTP request headers
 
@@ -225,6 +259,7 @@ This will get a snapshot of all of your models.
 
 ### Example
 
+* Api Key Authentication (application):
 ```python
 import time
 import os
@@ -239,6 +274,16 @@ configuration = pieces_os_client.Configuration(
     host = "http://localhost:1000"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: application
+configuration.api_key['application'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['application'] = 'Bearer'
 
 # Enter a context with an instance of the API client
 with pieces_os_client.ApiClient(configuration) as api_client:
@@ -265,7 +310,82 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-No authorization required
+[application](../README.md#application)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json, text/plain
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**500** | Internal Server Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **models_stream_identifiers**
+> StreamedIdentifiers models_stream_identifiers()
+
+/models/stream/identifiers [WS]
+
+Provides a WebSocket connection that emits changes to your model identifiers (UUIDs).
+
+### Example
+
+* Api Key Authentication (application):
+```python
+import time
+import os
+import pieces_os_client
+from pieces_os_client.models.streamed_identifiers import StreamedIdentifiers
+from pieces_os_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to http://localhost:1000
+# See configuration.py for a list of all supported configuration parameters.
+configuration = pieces_os_client.Configuration(
+    host = "http://localhost:1000"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: application
+configuration.api_key['application'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['application'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with pieces_os_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = pieces_os_client.ModelsApi(api_client)
+
+    try:
+        # /models/stream/identifiers [WS]
+        api_response = api_instance.models_stream_identifiers()
+        print("The response of ModelsApi->models_stream_identifiers:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling ModelsApi->models_stream_identifiers: %s\n" % e)
+```
+
+
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+[**StreamedIdentifiers**](StreamedIdentifiers.md)
+
+### Authorization
+
+[application](../README.md#application)
 
 ### HTTP request headers
 
@@ -289,6 +409,7 @@ Unloads all available machine learning models that are unloadable.
 
 ### Example
 
+* Api Key Authentication (application):
 ```python
 import time
 import os
@@ -302,6 +423,16 @@ configuration = pieces_os_client.Configuration(
     host = "http://localhost:1000"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: application
+configuration.api_key['application'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['application'] = 'Bearer'
 
 # Enter a context with an instance of the API client
 with pieces_os_client.ApiClient(configuration) as api_client:
@@ -326,7 +457,7 @@ void (empty response body)
 
 ### Authorization
 
-No authorization required
+[application](../README.md#application)
 
 ### HTTP request headers
 

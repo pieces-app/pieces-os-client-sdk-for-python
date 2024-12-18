@@ -17,6 +17,7 @@ Name | Type | Description | Notes
 **user** | **str** | identifier for the user | 
 **latency** | **float** | this is the time it takes to run this model. | [optional] 
 **system** | [**SystemExecutionInformation**](SystemExecutionInformation.md) |  | [optional] 
+**os** | **str** |  | 
 
 ## Example
 

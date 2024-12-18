@@ -50,14 +50,14 @@ class SeededPKCE(BaseModel):
     @validator('response_type')
     def response_type_validate_enum(cls, value):
         """Validates the enum"""
-        if value not in ('code', 'token', 'id_token'):
+        if value not in ('code', 'token', 'id_token',):
             raise ValueError("must be one of enum values ('code', 'token', 'id_token')")
         return value
 
     @validator('code_challenge_method')
     def code_challenge_method_validate_enum(cls, value):
         """Validates the enum"""
-        if value not in ('S256'):
+        if value not in ('S256',):
             raise ValueError("must be one of enum values ('S256')")
         return value
 
@@ -67,7 +67,7 @@ class SeededPKCE(BaseModel):
         if value is None:
             return value
 
-        if value not in ('signup'):
+        if value not in ('signup',):
             raise ValueError("must be one of enum values ('signup')")
         return value
 
@@ -77,7 +77,7 @@ class SeededPKCE(BaseModel):
         if value is None:
             return value
 
-        if value not in ('login', 'none'):
+        if value not in ('login', 'none',):
             raise ValueError("must be one of enum values ('login', 'none')")
         return value
 
@@ -85,7 +85,7 @@ class SeededPKCE(BaseModel):
     def scope_validate_enum(cls, value):
         """Validates the enum"""
         for i in value:
-            if i not in ('offline_access', 'email', 'profile', 'openid'):
+            if i not in ('offline_access', 'email', 'profile', 'openid',):
                 raise ValueError("each list item must be one of ('offline_access', 'email', 'profile', 'openid')")
         return value
 
@@ -95,7 +95,7 @@ class SeededPKCE(BaseModel):
         if value is None:
             return value
 
-        if value not in ('form_post', 'web_message', 'fragment', 'query'):
+        if value not in ('form_post', 'web_message', 'fragment', 'query',):
             raise ValueError("must be one of enum values ('form_post', 'web_message', 'fragment', 'query')")
         return value
 

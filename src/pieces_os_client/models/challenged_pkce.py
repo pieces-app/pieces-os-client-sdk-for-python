@@ -38,7 +38,7 @@ class ChallengedPKCE(BaseModel):
     @validator('method')
     def method_validate_enum(cls, value):
         """Validates the enum"""
-        if value not in ('S256'):
+        if value not in ('S256',):
             raise ValueError("must be one of enum values ('S256')")
         return value
 

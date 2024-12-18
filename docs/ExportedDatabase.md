@@ -33,6 +33,7 @@ Name | Type | Description | Notes
 **workstream_events** | **List[int]** |  | [optional] 
 **ranges** | **List[int]** |  | [optional] 
 **workstream_summaries** | **List[int]** |  | [optional] 
+**workstream_pattern_engine_sources** | **List[int]** |  | [optional] 
 **message_values** | [**ExportedDatabaseFormats**](ExportedDatabaseFormats.md) |  | [optional] 
 **workstream_event_values** | [**ExportedDatabaseFormats**](ExportedDatabaseFormats.md) |  | [optional] 
 

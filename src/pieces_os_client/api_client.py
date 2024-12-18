@@ -24,6 +24,7 @@ import re
 import tempfile
 
 from urllib.parse import quote
+from pydantic import SecretStr
 
 from pieces_os_client.configuration import Configuration
 from pieces_os_client.api_response import ApiResponse
@@ -77,7 +78,7 @@ class ApiClient:
             self.default_headers[header_name] = header_value
         self.cookie = cookie
         # Set default User-Agent.
-        self.user_agent = 'OpenAPI-Generator/4.0.0/python'
+        self.user_agent = 'OpenAPI-Generator/4.1.0/python'
         self.client_side_validation = configuration.client_side_validation
 
     def __enter__(self):
@@ -261,6 +262,7 @@ class ApiClient:
         """Builds a JSON POST object.
 
         If obj is None, return None.
+        If obj is SecretStr, return obj.get_secret_value()
         If obj is str, int, long, float, bool, return directly.
         If obj is datetime.datetime, datetime.date
             convert to string in iso8601 format.
@@ -273,6 +275,8 @@ class ApiClient:
         """
         if obj is None:
             return None
+        elif isinstance(obj, SecretStr):
+            return obj.get_secret_value()
         elif isinstance(obj, self.PRIMITIVE_TYPES):
             return obj
         elif isinstance(obj, list):
@@ -292,7 +296,10 @@ class ApiClient:
             # and attributes which value is not None.
             # Convert attribute name to json key in
             # model definition for request.
-            obj_dict = obj.to_dict()
+            if hasattr(obj, 'to_dict') and callable(getattr(obj, 'to_dict')):
+                obj_dict = obj.to_dict()
+            else:
+                obj_dict = obj.__dict__
 
         return {key: self.sanitize_for_serialization(val)
                 for key, val in obj_dict.items()}
@@ -382,7 +389,7 @@ class ApiClient:
 
         if klass in self.PRIMITIVE_TYPES:
             return self.__deserialize_primitive(data, klass)
-        elif klass == object:
+        elif klass == object:  # noqa: E721
             return self.__deserialize_object(data)
         elif klass == datetime.date:
             return self.__deserialize_date(data)
