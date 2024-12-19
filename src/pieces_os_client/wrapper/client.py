@@ -123,7 +123,10 @@ class PiecesClient:
                     sock.settimeout(0.1)
                     result = sock.connect_ex(('127.0.0.1', port))
                     if result == 0:
-                        return str(port)
+                        health_url = f'http://127.0.0.1:{port}/.well-known/health'
+                        with urllib.request.urlopen(health_url, timeout=0.1) as response:
+                            if response.status == 200:
+                                return str(port)
             except:
                 pass
         
