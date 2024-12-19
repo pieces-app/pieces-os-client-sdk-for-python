@@ -5,6 +5,7 @@ import subprocess
 import urllib.request
 import urllib.error
 import time
+import socket
 
 from pieces_os_client import __version__
 
@@ -115,15 +116,19 @@ class PiecesClient:
         return "http://127.0.0.1:" + self.port
 
     @staticmethod
-    def _port_scanning() -> Union[str,None]:
+    def _port_scanning() -> str:
         for port in range(39300, 39334):
             try:
-                with urllib.request.urlopen(f"http://127.0.0.1:{port}/.well-known/health", timeout=1):
-                    return str(port)
-            except urllib.error.URLError:
+                with socket.socket(socket.AF_INET,socket.SOCK_STREAM) as sock: # Use low level socket api for faster scanning
+                    sock.settimeout(0.1)
+                    result = sock.connect_ex(('127.0.0.1', port))
+                    if result == 0:
+                        return str(port)
+            except:
                 pass
         
         raise ValueError("PiecesOS is not running")
+        
         
 
     @property
