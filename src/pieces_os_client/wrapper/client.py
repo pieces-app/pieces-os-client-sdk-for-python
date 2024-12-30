@@ -296,7 +296,8 @@ class PiecesClient:
         """
         for _ in range(maxium_retries):
             try:
-                with urllib.request.urlopen(f"{self.host}/.well-known/health", timeout=1) as response:
+                request = urllib.request.Request(self.host, method='HEAD')
+                with urllib.request.urlopen(request, timeout=0.1) as response:
                     return response.status == 200
             except:
                 if maxium_retries != 1:
