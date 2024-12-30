@@ -1,3 +1,4 @@
+from concurrent.futures import ThreadPoolExecutor, as_completed
 from typing import TYPE_CHECKING, Optional,Dict, Union
 import platform
 import atexit
@@ -117,7 +118,7 @@ class PiecesClient:
 
     @staticmethod
     def _port_scanning() -> str:
-        for port in range(39300, 39334):
+        def check_port(port):
             try:
                 with socket.socket(socket.AF_INET,socket.SOCK_STREAM) as sock: # Use low level socket api for faster scanning
                     sock.settimeout(0.1)
@@ -126,13 +127,20 @@ class PiecesClient:
                         health_url = f'http://127.0.0.1:{port}/.well-known/health'
                         with urllib.request.urlopen(health_url, timeout=0.1) as response:
                             if response.status == 200:
-                                return str(port)
+                                return port
             except:
                 pass
+            return None
+
+        with ThreadPoolExecutor(max_workers=100) as executor:
+            futures = [executor.submit(check_port, port) for port in range(39300, 39334)]
+            for future in as_completed(futures):
+                port = future.result()
+                if port is not None:
+                    return str(port)
         
         raise ValueError("PiecesOS is not running")
-        
-        
+
 
     @property
     def tracked_application(self):
