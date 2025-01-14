@@ -39,12 +39,13 @@ class StreamedIdentifiersCache(ABC):
     Please use this class only as a parent class.
     """
     pieces_client: "PiecesClient"
+    _initialized: threading.Event
 
     def __init_subclass__(cls, **kwargs):
         super().__init_subclass__(**kwargs)
         cls.on_update_list: List[Callable] = []
         cls.on_remove_list: List[Callable] = []
-        cls.identifiers_snapshot: Dict[str, Union[Asset, Conversation, None]] = {}  # Map id:return from the _api_call
+        cls.identifiers_snapshot = {}  # Map id:return from the _api_call
         cls.identifiers_queue = queue.Queue()  # Queue for ids to be processed
         cls.identifiers_set = set()  # Set for ids in the queue
         cls.block = True  # to wait for the queue to receive the first id
@@ -72,6 +73,10 @@ class StreamedIdentifiersCache(ABC):
         """
         Sorting algorithm in the first shot
         """
+        pass
+    
+    @abstractmethod
+    def _name() -> str:
         pass
 
     @classmethod
@@ -118,7 +123,7 @@ class StreamedIdentifiersCache(ABC):
             cls._worker_thread.start()
         
         for item in ids.iterable:
-            reference_id = item.asset.id if item.asset else item.conversation.id  # Get either the conversation or the asset
+            reference_id = getattr(item, cls._name()).id
 
             with cls._lock:
                 if reference_id not in cls.identifiers_set:
