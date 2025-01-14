@@ -8,7 +8,7 @@ from pieces_os_client.models.annotation_type_enum import AnnotationTypeEnum
 
 
 if TYPE_CHECKING:
-    from . import BasicMessage,BasicAnnotation,BasicWebsite
+    from . import BasicMessage,BasicAnnotation,BasicWebsite, BasicAnchor, BasicAsset
 
 class BasicChat(Basic):
     """
@@ -108,6 +108,60 @@ class BasicChat(Basic):
             getattr(self.conversation.websites,"indices",{}),
             lambda id:BasicWebsite.from_id(ConversationsSnapshot.pieces_client,id)
         )
+    
+    def associate_asset(self, asset: "BasicAsset"):
+        """
+        Associates an asset with the conversation.
+
+        Args:
+            asset: The asset to associate.
+        """
+        ConversationsSnapshot.pieces_client.conversation_api.conversation_associate_asset(self.id, asset.id)
+
+    def disassociate_asset(self, asset: "BasicAsset"):
+        """
+        Disassociates an asset from the conversation.
+
+        Args:
+            asset: The asset to disassociate.
+        """
+        ConversationsSnapshot.pieces_client.conversation_api.conversation_disassociate_asset(self.id, asset.id)
+
+    def associate_message(self, message: "BasicMessage"):
+        """
+        Associates a message with the conversation.
+
+        Args:
+            message: The message to associate.
+        """
+        ConversationsSnapshot.pieces_client.conversation_api.conversation_grounding_messages_associate_message(self.id, message.id)
+
+    def disassociate_message(self, message: "BasicMessage"):
+        """
+        Disassociates a message from the conversation.
+
+        Args:
+            message: The message to disassociate.
+        """
+        ConversationsSnapshot.pieces_client.conversation_api.conversation_grounding_messages_disassociate_message(self.id, message.id)
+
+    def associate_anchor(self, anchor: "BasicAnchor"):
+        """
+        Associates an anchor with the conversation.
+
+        Args:
+            anchor: The anchor to associate.
+        """
+        ConversationsSnapshot.pieces_client.conversation_api.conversation_associate_anchor(self.id, anchor.id)
+
+    def disassociate_anchor(self, anchor: "BasicAnchor"):
+        """
+        Disassociates an anchor from the conversation.
+
+        Args:
+            anchor: The anchor to disassociate.
+        """
+        ConversationsSnapshot.pieces_client.conversation_api.conversation_disassociate_anchor(self.id, anchor.id)
 
     @staticmethod
     def _edit_conversation(conversation):
