@@ -23,11 +23,11 @@ class RangeSnapshot(StreamedIdentifiersCache):
 
 	@classmethod
 	def _sort_first_shot(cls):
-		# Sort the dictionary by the "updated" timestamp
+		# Sort the dictionary by the "created" timestamp
 		sorted_ranges = sorted(cls.identifiers_snapshot.values(), key=lambda x: x.created.value, reverse=True)
 		cls.identifiers_snapshot = {range.id:range for range in sorted_ranges}
 
 	@classmethod
 	def _api_call(cls,id):
-		con = cls.pieces_client.range_api.ranges_specific_range_snapshot(id)
-		return con
+		range = cls.pieces_client.range_api.ranges_specific_range_snapshot(id)
+		return range

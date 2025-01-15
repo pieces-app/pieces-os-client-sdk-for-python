@@ -41,11 +41,8 @@ from pieces_os_client.api.range_api import RangeApi
 from pieces_os_client.api.ranges_api import RangesApi
 from pieces_os_client.api.workstream_pattern_engine_api import WorkstreamPatternEngineApi
 
-from pieces_os_client.models.range import Range
 from pieces_os_client.models.seeded_connector_connection import SeededConnectorConnection
 from pieces_os_client.models.seeded_tracked_application import SeededTrackedApplication
-from pieces_os_client.wrapper.websockets.anchor_identifiers_ws import AnchorsIdentifiersWS
-from pieces_os_client.wrapper.websockets.range_identifiers_ws import RangesIdentifiersWS
 
 
 from .copilot import Copilot
@@ -57,7 +54,9 @@ from .websockets import (
     AssetsIdentifiersWS,
     AuthWS,
     BaseWebsocket,
-    LTMVisionWS
+    LTMVisionWS,
+    RangesIdentifiersWS,
+    AnchorsIdentifiersWS
 )
 
 if TYPE_CHECKING:
