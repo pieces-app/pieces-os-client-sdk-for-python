@@ -8,7 +8,7 @@ from pieces_os_client.models.annotation_type_enum import AnnotationTypeEnum
 
 
 if TYPE_CHECKING:
-    from . import BasicMessage,BasicAnnotation,BasicWebsite, BasicAnchor, BasicAsset
+    from . import BasicMessage,BasicAnnotation,BasicWebsite, BasicAnchor, BasicAsset, BasicRange
 
 class BasicChat(Basic):
     """
@@ -172,7 +172,29 @@ class BasicChat(Basic):
             True if LTM is enabled, False otherwise.
         """
         temporal = self.conversation.grounding.temporal
-        return temporal and temporal.workstreams and temporal.workstreams.iterable
+        if temporal and temporal.workstreams and temporal.workstreams.indices:
+            for idx in temporal.workstreams.indices:
+                k,v = idx.items()
+                if v == 1:
+                    return True
+        return False
+
+    def disassociate_range(self, range_id):
+        ConversationsSnapshot.pieces_client.conversation_api.conversation_associate_grounding_temporal_range_workstream(self.id,range_id)    
+
+    def associate_range(self, range_id):
+        ConversationsSnapshot.pieces_client.conversation_api.conversation_disassociate_grounding_temporal_range_workstream(self.id,range_id)    
+
+    @property
+    def ranges(self) -> List["BasicRange"]:
+        from . import BasicRange
+        temporal = self.conversation.grounding.temporal if self.conversation.grounding else None
+        if not temporal or not temporal.workstreams or not temporal.workstreams.indices:
+            return []
+        return self._from_indices(
+            temporal.workstreams.indices,
+            lambda id:BasicRange(id)
+        )
 
     @staticmethod
     def _edit_conversation(conversation):
