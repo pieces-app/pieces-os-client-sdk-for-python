@@ -163,6 +163,7 @@ class BasicChat(Basic):
         """
         ConversationsSnapshot.pieces_client.conversation_api.conversation_disassociate_anchor(self.id, anchor.id)
     
+    @property
     def is_ltm_enabled(self) -> bool:
         """
         Checks if LTM is enabled for this conversation.
