@@ -1,10 +1,13 @@
-from typing import TYPE_CHECKING, List, Callable
+from typing import TYPE_CHECKING, List, Callable, Optional
 import os
 
 from pieces_os_client.models.anchors import Anchors
 from pieces_os_client.models.assets import Assets
+from pieces_os_client.models.flattened_ranges import FlattenedRanges
+from pieces_os_client.models.referenced_range import ReferencedRange
 from pieces_os_client.models.seeds import Seeds
 from pieces_os_client.models.flattened_conversation_messages import FlattenedConversationMessages
+from pieces_os_client.models.temporal_range_grounding import TemporalRangeGrounding
 from pieces_os_client.wrapper.basic_identifier.anchor import BasicAnchor
 
 from .long_term_memory import LongTermMemory
@@ -98,11 +101,25 @@ class Context:
 
 	def _get_relevant_dict(self):
 		return {
-			"anchors": self._paths,
-			"seed": self._raw_assets,
-			"assets": self._assets,
-			"messages": self._messages
+			"anchors": self._paths if self.paths else None,
+			"seed": self._raw_assets if self.raw_assets else None,
+			"assets": self._assets if self.assets else None,
+			"messages": self._messages if self.messages else None,
+			"temporal": self._temporal() if self.ltm.is_chat_ltm_enabled else None
 		}
+
+	def _temporal(self) -> Optional["TemporalRangeGrounding"]:
+		try:
+			idx = self.copilot.chat.conversation.grounding.temporal.workstreams.indices
+		except AttributeError:
+			return
+		return TemporalRangeGrounding(
+			workstreams = FlattenedRanges(
+				iterable=[
+					ReferencedRange(id = k) for k in idx if k
+				]
+			)
+		)
 
 	def _check_relevant_existence(self) -> bool:
 		return bool(self.paths or self.assets or self.raw_assets)
