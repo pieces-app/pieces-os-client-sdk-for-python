@@ -162,6 +162,16 @@ class BasicChat(Basic):
             anchor: The anchor to disassociate.
         """
         ConversationsSnapshot.pieces_client.conversation_api.conversation_disassociate_anchor(self.id, anchor.id)
+    
+    def is_ltm_enabled(self) -> bool:
+        """
+        Checks if LTM is enabled for this conversation.
+
+        Returns:
+            True if LTM is enabled, False otherwise.
+        """
+        temporal = self.conversation.grounding.temporal
+        return temporal and temporal.workstreams and temporal.workstreams.iterable
 
     @staticmethod
     def _edit_conversation(conversation):
