@@ -7,6 +7,8 @@ from pieces_os_client.models.os_permissions import OSPermissions
 from pieces_os_client.models.os_processing_permissions import OSProcessingPermissions
 from pieces_os_client.models.workstream_pattern_engine_status import WorkstreamPatternEngineStatus
 from pieces_os_client.models.workstream_pattern_engine_vision_status import WorkstreamPatternEngineVisionStatus
+from pieces_os_client.wrapper.basic_identifier.range import BasicRange
+from .streamed_identifiers.conversations_snapshot import ConversationsSnapshot
 
 
 if TYPE_CHECKING:
@@ -131,3 +133,36 @@ class LongTermMemory:
             WorkstreamPatternEngineVisionCalibration: The Captured window details
         """
         return self.pieces_client.work_stream_pattern_engine_api.workstream_pattern_engine_processors_vision_calibration_capture()
+
+
+    def chat_enable_ltm(self):
+        """
+        This will enable the chat LTM
+        """
+        chat = self.context.copilot.chat
+        if not chat:
+            chat = self.context.copilot.create_chat("New Conversation")
+        if self.is_enabled and self.ltm_status.vision.activation.var_from.value.timestamp() < BasicRange.get_leatest().range.var_from.value.timestamp():
+            BasicRange.create().associate_chat(chat)
+        else:
+            BasicRange.get_leatest().associate_chat(chat)
+        conv = self.pieces_client.conversation_api.conversation_get_specific_conversation(chat.id) # Update the local cache
+        ConversationsSnapshot.identifiers_snapshot[conv.id] = conv
+
+    def chat_disable_ltm(self):
+        """
+        This will disable the chat LTM
+        """
+        chat = self.context.copilot.chat
+        for range in chat.ranges:
+            range.disassociate_chat(chat)
+
+    @property
+    def is_chat_ltm_enabled(self) -> bool:
+        """
+        This will check if the chat LTM is enabled
+
+        Returns:
+            bool: True if the chat LTM is enabled
+        """
+        return len(self.context.copilot.chat.ranges) > 0
