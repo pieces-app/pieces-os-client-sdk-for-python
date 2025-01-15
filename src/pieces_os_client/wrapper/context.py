@@ -7,10 +7,13 @@ from pieces_os_client.models.seeds import Seeds
 from pieces_os_client.models.flattened_conversation_messages import FlattenedConversationMessages
 from pieces_os_client.wrapper.basic_identifier.anchor import BasicAnchor
 
+from .long_term_memory import LongTermMemory
+
 if TYPE_CHECKING:
 	from .basic_identifier import BasicAsset,BasicMessage
 	from . import PiecesClient
 	from .copilot import Copilot
+
 class ValidatedContextList(List):
 	"""
 	This is a list that notifies the callables if any item is added or removed from it.
@@ -74,6 +77,7 @@ class Context:
 		self.assets: List["BasicAsset"] = ValidatedContextList(assets, on_add=self._add_asset, on_remove=self._remove_asset) if assets is not None else ValidatedContextList(on_add=self._add_asset, on_remove=self._remove_asset)
 		self.messages: List["BasicMessage"] = ValidatedContextList(messages, on_add=self._add_message, on_remove=self._remove_message) if messages is not None else ValidatedContextList(on_add=self._add_message, on_remove=self._remove_message)
 		self.copilot = copilot
+		self.ltm = LongTermMemory(self)
 
 		## Internal stuff
 		self._assets: Assets = Assets(iterable=[])

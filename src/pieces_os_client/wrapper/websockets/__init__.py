@@ -4,6 +4,7 @@ from .auth_ws import AuthWS
 from .health_ws import HealthWS
 from .conversations_ws import ConversationWS
 from .base_websocket import BaseWebsocket
+from .ltm_vision_ws import LTMVisionWS
 
 __all__ = [
 	"AskStreamWS",
@@ -11,5 +12,6 @@ __all__ = [
 	"AuthWS",
 	"HealthWS",
 	"ConversationWS",
+    "LTMVisionWS",
 	"BaseWebsocket"
 ]
