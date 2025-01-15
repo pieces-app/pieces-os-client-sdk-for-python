@@ -10,7 +10,6 @@ import socket
 
 from pieces_os_client import __version__
 
-from pieces_os_client.api.workstream_pattern_engine_api import WorkstreamPatternEngineApi
 from pieces_os_client.api_client import ApiClient
 from pieces_os_client.configuration import Configuration
 
@@ -38,10 +37,15 @@ from pieces_os_client.api.website_api import WebsiteApi
 from pieces_os_client.api.websites_api import WebsitesApi
 from pieces_os_client.api.anchors_api import AnchorsApi
 from pieces_os_client.api.anchor_api import AnchorApi
+from pieces_os_client.api.range_api import RangeApi
+from pieces_os_client.api.ranges_api import RangesApi
+from pieces_os_client.api.workstream_pattern_engine_api import WorkstreamPatternEngineApi
 
+from pieces_os_client.models.range import Range
 from pieces_os_client.models.seeded_connector_connection import SeededConnectorConnection
 from pieces_os_client.models.seeded_tracked_application import SeededTrackedApplication
 from pieces_os_client.wrapper.websockets.anchor_identifiers_ws import AnchorsIdentifiersWS
+from pieces_os_client.wrapper.websockets.range_identifiers_ws import RangesIdentifiersWS
 
 
 from .copilot import Copilot
@@ -99,6 +103,7 @@ class PiecesClient:
             self.health_ws = HealthWS(self,lambda x : None)
             self.anchor_ws = AnchorsIdentifiersWS(self)
             self.ltm_vision_ws = LTMVisionWS(self,lambda x : None)
+            self.range_ws = RangesIdentifiersWS(self)
             # Start all initilized websockets
             BaseWebsocket.start_all()
         
@@ -185,6 +190,8 @@ class PiecesClient:
         self.anchors_api = AnchorsApi(self.api_client)
         self.anchor_api = AnchorApi(self.api_client)
         self.work_stream_pattern_engine_api = WorkstreamPatternEngineApi(self.api_client)
+        self.range_api = RangeApi(self.api_client)
+        self.ranges_api = RangesApi(self.api_client)
 
         # Websocket urls
         ws_base_url:str = host.replace('http','ws')
@@ -195,7 +202,7 @@ class PiecesClient:
         self.HEALTH_WS_URL = ws_base_url + "/.well-known/stream/health"
         self.ANCHORS_IDENTIFIERS_WS_URL = ws_base_url + "/anchors/stream/identifiers"
         self.LTM_VISION_WS_URL = ws_base_url + "/workstream_pattern_engine/processors/vision/status/stream"
-
+        self.RANGES_IDENTIFIERS_WS_URL = ws_base_url + "/ranges/stream/identifiers"
         if self._reconnect_on_host_change:
             BaseWebsocket.reconnect_all()
 
