@@ -5,6 +5,8 @@ from .user import BasicUser
 from .tag import BasicTag
 from .annotation import BasicAnnotation
 from .website import BasicWebsite
+from .anchor import BasicAnchor
+from .range import BasicRange
 
 __all__ = [
 	"BasicAsset",
@@ -13,5 +15,7 @@ __all__ = [
 	"BasicUser",
 	"BasicTag",
 	"BasicAnnotation",
-	"BasicWebsite"
+	"BasicWebsite",
+    "BasicAnchor",
+    "BasicRange",
 ]

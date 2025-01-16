@@ -1,5 +1,10 @@
+from operator import is_
 from typing import TYPE_CHECKING, List, Optional, Generator
 import queue
+
+from pieces_os_client.models.qgpt_conversation_pipeline import QGPTConversationPipeline
+from pieces_os_client.models.qgpt_conversation_pipeline_for_contextualized_code_dialog import QGPTConversationPipelineForContextualizedCodeDialog
+from pieces_os_client.models.temporal_range_grounding import TemporalRangeGrounding
 
 from .context import Context
 from .basic_identifier.chat import BasicChat
@@ -35,7 +40,7 @@ class Copilot:
         self.pieces_client = pieces_client
         self._on_message_queue = queue.Queue()
         self.ask_stream_ws = AskStreamWS(self.pieces_client, self._on_message_queue.put)
-        self.context = Context(pieces_client)
+        self.context = Context(pieces_client, self)
         self._chat = None
         self._chat_id = None
         self.relevant_context:Optional[RelevantQGPTSeeds] = None
@@ -57,6 +62,14 @@ class Copilot:
             QGPTStreamOutput: The streamed output from the QGPT model.
         """
         self.pieces_client._check_startup()
+
+        if self.context.ltm.is_chat_ltm_enabled:
+            pipeline = pipeline or QGPTPromptPipeline(
+                conversation=QGPTConversationPipeline(
+                    contextualized_code_workstream_dialog=QGPTConversationPipelineForContextualizedCodeDialog()
+                )
+            )
+
         self.ask_stream_ws.send_message(
             QGPTStreamInput(
                 conversation=self._chat_id,

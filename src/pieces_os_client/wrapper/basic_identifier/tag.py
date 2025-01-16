@@ -53,7 +53,7 @@ class BasicTag(Basic):
 
 		Args:
 		- pieces_client: The PiecesClient object.
-		- url: The URL of the website.
+		- raw_content: The content of the tag
 
 		Returns:
 		- BasicWebsite: The existing BasicWebsite object if found, None otherwise.

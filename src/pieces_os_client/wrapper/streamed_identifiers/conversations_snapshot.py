@@ -1,5 +1,11 @@
 import threading
+from typing import TYPE_CHECKING, Dict
+
 from ._streamed_identifiers import StreamedIdentifiersCache
+
+
+if TYPE_CHECKING:
+	from pieces_os_client.models.conversation import Conversation
 
 class ConversationsSnapshot(StreamedIdentifiersCache):
 	"""
@@ -9,6 +15,11 @@ class ConversationsSnapshot(StreamedIdentifiersCache):
 	identifiers_snapshot (dict): A dictionary where the keys are UUIDs (unique identifiers) and the values are Conversation objects.
 	"""
 	_initialized:threading.Event
+	identifiers_snapshot: Dict[str, "Conversation"] = {}  # Map id:return from the _api_call
+
+	@staticmethod
+	def _name() -> str:
+		return "conversation"
 
 	@classmethod
 	def _sort_first_shot(cls):
