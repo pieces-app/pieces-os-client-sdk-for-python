@@ -21,7 +21,7 @@ class ValidatedContextList(List):
 	"""
 	This is a list that notifies the callables if any item is added or removed from it.
 	"""
-	def __init__(self, *args, on_add: Callable = None, on_remove: Callable = None):
+	def __init__(self, *args, on_add: Callable, on_remove: Callable):
 		self.on_add = on_add
 		self.on_remove = on_remove
 		super().__init__()

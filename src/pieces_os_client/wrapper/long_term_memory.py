@@ -151,10 +151,7 @@ class LongTermMemory:
         chat = self.context.copilot.chat
         if not chat:
             chat = self.context.copilot.create_chat("New Conversation")
-        if self.is_enabled and self.ltm_status.vision.activation.var_from.value.timestamp() < BasicRange.get_leatest().range.var_from.value.timestamp():
-            BasicRange.create().associate_chat(chat)
-        else:
-            BasicRange.get_leatest().associate_chat(chat)
+        chat.associate_range(BasicRange.create())
         conv = self.pieces_client.conversation_api.conversation_get_specific_conversation(chat.id) # Update the local cache
         ConversationsSnapshot.identifiers_snapshot[conv.id] = conv
 
@@ -163,6 +160,8 @@ class LongTermMemory:
         This will disable the chat LTM
         """
         chat = self.context.copilot.chat
+        if not chat:
+            return
         for range in chat.ranges:
             range.disassociate_chat(chat)
 
@@ -174,4 +173,6 @@ class LongTermMemory:
         Returns:
             bool: True if the chat LTM is enabled
         """
+        if not self.context.copilot.chat:
+            return False
         return len(self.context.copilot.chat.ranges) > 0

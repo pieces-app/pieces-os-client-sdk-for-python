@@ -179,11 +179,23 @@ class BasicChat(Basic):
                     return True
         return False
 
-    def disassociate_range(self, range_id):
-        ConversationsSnapshot.pieces_client.conversation_api.conversation_associate_grounding_temporal_range_workstream(self.id,range_id)    
+    def disassociate_range(self, range: "BasicRange"):
+        """
+        Disassociates a range from the conversation.
 
-    def associate_range(self, range_id):
-        ConversationsSnapshot.pieces_client.conversation_api.conversation_disassociate_grounding_temporal_range_workstream(self.id,range_id)    
+        Args:
+            range: The range to disassociate.
+        """
+        ConversationsSnapshot.pieces_client.conversation_api.conversation_disassociate_grounding_temporal_range_workstream(self.id, range.id)
+
+    def associate_range(self, range: "BasicRange"):
+        """
+        Associates a range with the conversation.
+
+        Args:
+            range: The range to associate.
+        """
+        ConversationsSnapshot.pieces_client.conversation_api.conversation_associate_grounding_temporal_range_workstream(self.id, range.id)
 
     @property
     def ranges(self) -> List["BasicRange"]:
