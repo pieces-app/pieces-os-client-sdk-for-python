@@ -122,7 +122,7 @@ class Context:
 		)
 
 	def _check_relevant_existence(self) -> bool:
-		return bool(self.paths or self.assets or self.raw_assets)
+		return bool(self.paths or self.assets or self.raw_assets or self.ltm.is_chat_ltm_enabled)
 
 	def _add_message(self, message):
 		if not isinstance(message, BasicMessage):
