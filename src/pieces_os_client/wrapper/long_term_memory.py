@@ -163,6 +163,8 @@ class LongTermMemory:
         This will disable the chat LTM
         """
         chat = self.context.copilot.chat
+        if not chat:
+            return
         for range in chat.ranges:
             range.disassociate_chat(chat)
 
@@ -174,4 +176,6 @@ class LongTermMemory:
         Returns:
             bool: True if the chat LTM is enabled
         """
+        if not self.context.copilot.chat:
+            return False
         return len(self.context.copilot.chat.ranges) > 0
