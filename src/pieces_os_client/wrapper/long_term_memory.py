@@ -157,8 +157,7 @@ class LongTermMemory:
             time_stamp_ltm_status = self.ltm_status.vision.activation.var_from.value.timestamp()
             range_time_stamp_ltm =  BasicRange.get_leatest().range.var_from.value.timestamp()
         except AttributeError:
-            if self.is_enabled:
-                return BasicRange.create().associate_chat(chat)
+            return BasicRange.create().associate_chat(chat)
 
         if self.is_enabled and time_stamp_ltm_status < range_time_stamp_ltm:
             BasicRange.create().associate_chat(chat)
