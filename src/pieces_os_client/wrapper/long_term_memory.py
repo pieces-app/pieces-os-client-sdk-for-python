@@ -1,5 +1,4 @@
 import datetime
-from faulthandler import is_enabled
 from typing import TYPE_CHECKING, Optional
 
 from pieces_os_client.models.anonymous_temporal_range import AnonymousTemporalRange
@@ -8,7 +7,6 @@ from pieces_os_client.models.os_permissions import OSPermissions
 from pieces_os_client.models.os_processing_permissions import OSProcessingPermissions
 from pieces_os_client.models.workstream_pattern_engine_status import WorkstreamPatternEngineStatus
 from pieces_os_client.models.workstream_pattern_engine_vision_status import WorkstreamPatternEngineVisionStatus
-from pieces_os_client.wrapper.basic_identifier.chat import BasicChat
 from pieces_os_client.wrapper.basic_identifier.range import BasicRange
 from .streamed_identifiers.conversations_snapshot import ConversationsSnapshot
 
@@ -153,16 +151,7 @@ class LongTermMemory:
         chat = self.context.copilot.chat
         if not chat:
             chat = self.context.copilot.create_chat("New Conversation")
-        try:
-            time_stamp_ltm_status = self.ltm_status.vision.activation.var_from.value.timestamp()
-            range_time_stamp_ltm =  BasicRange.get_leatest().range.var_from.value.timestamp()
-        except AttributeError:
-            return BasicRange.create().associate_chat(chat)
-
-        if self.is_enabled and time_stamp_ltm_status < range_time_stamp_ltm:
-            BasicRange.create().associate_chat(chat)
-        else:
-            BasicRange.get_leatest().associate_chat(chat)
+        chat.associate_range(BasicRange.create())
         conv = self.pieces_client.conversation_api.conversation_get_specific_conversation(chat.id) # Update the local cache
         ConversationsSnapshot.identifiers_snapshot[conv.id] = conv
 
