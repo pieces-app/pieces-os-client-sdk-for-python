@@ -95,7 +95,6 @@ class LongTermMemory:
         Args:
             until (Optional[datetime.datetime], optional): Until when the LTM will be paused. Defaults to None (Until tunned back on).
         """
-        workstream_pattern_engine_status = None
         if until:
             workstream_pattern_engine_status=WorkstreamPatternEngineStatus(
                 vision=WorkstreamPatternEngineVisionStatus(
@@ -103,6 +102,14 @@ class LongTermMemory:
                         to = GroupedTimestamp(
                             value = until,
                         )
+                    ),
+                )
+            )
+        else:
+            workstream_pattern_engine_status=WorkstreamPatternEngineStatus(
+                vision=WorkstreamPatternEngineVisionStatus(
+                    deactivation = AnonymousTemporalRange(
+                        continuous=True
                     ),
                 )
             )
