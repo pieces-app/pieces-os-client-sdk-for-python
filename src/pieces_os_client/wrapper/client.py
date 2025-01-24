@@ -39,6 +39,7 @@ from pieces_os_client.api.anchors_api import AnchorsApi
 from pieces_os_client.api.anchor_api import AnchorApi
 from pieces_os_client.api.range_api import RangeApi
 from pieces_os_client.api.ranges_api import RangesApi
+from pieces_os_client.api.model_api import ModelApi
 from pieces_os_client.api.workstream_pattern_engine_api import WorkstreamPatternEngineApi
 
 from pieces_os_client.models.seeded_connector_connection import SeededConnectorConnection
@@ -180,6 +181,7 @@ class PiecesClient:
         self.asset_api = AssetApi(self.api_client)
         self.format_api = FormatApi(self.api_client)
         self.connector_api = ConnectorApi(self.api_client)
+        self.model_api = ModelApi(self.api_client)
         self.models_api = ModelsApi(self.api_client)
         self.annotation_api = AnnotationApi(self.api_client)
         self.annotations_api = AnnotationsApi(self.api_client)
