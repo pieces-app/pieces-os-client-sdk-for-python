@@ -39,6 +39,7 @@ from pieces_os_client.api.anchors_api import AnchorsApi
 from pieces_os_client.api.anchor_api import AnchorApi
 from pieces_os_client.api.range_api import RangeApi
 from pieces_os_client.api.ranges_api import RangesApi
+from pieces_os_client.api.model_api import ModelApi
 from pieces_os_client.api.workstream_pattern_engine_api import WorkstreamPatternEngineApi
 
 from pieces_os_client.models.seeded_connector_connection import SeededConnectorConnection
@@ -129,27 +130,33 @@ class PiecesClient:
 
     @staticmethod
     def _port_scanning() -> str:
-        def check_port(port):
+        def check_port(port: int) -> Optional[str]:
             try:
-                with socket.socket(socket.AF_INET,socket.SOCK_STREAM) as sock: # Use low level socket api for faster scanning
-                    sock.settimeout(0.1)
-                    result = sock.connect_ex(('127.0.0.1', port))
-                    if result == 0:
-                        health_url = f'http://127.0.0.1:{port}/.well-known/health'
-                        with urllib.request.urlopen(health_url, timeout=0.1) as response:
-                            if response.status == 200:
-                                return port
-            except:
+                # 1) Quick socket check
+                with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as sock:
+                    sock.settimeout(0.05)  # Short timeout for local checks
+                    if sock.connect_ex(('127.0.0.1', port)) != 0:
+                        return None  # If non-zero, the socket isn't open
+
+                # 2) If socket is open, send a single HEAD request
+                url = f"http://127.0.0.1:{port}/.well-known/health"
+                request = urllib.request.Request(url, method='HEAD')
+                with urllib.request.urlopen(request, timeout=0.1) as response:
+                    if response.status == 200:
+                        return str(port)
+            except Exception:
                 pass
             return None
 
-        with ThreadPoolExecutor(max_workers=100) as executor:
-            futures = [executor.submit(check_port, port) for port in range(39300, 39334)]
+        # Scan ports 39300 to 39334 in parallel
+        with ThreadPoolExecutor(max_workers=20) as executor:
+            futures = [executor.submit(check_port, p) for p in range(39300, 39334)]
             for future in as_completed(futures):
-                port = future.result()
-                if port is not None:
-                    return str(port)
-        
+                result = future.result()
+                if result is not None:
+                    return result
+
+        # If no port was found, raise an error
         raise ValueError("PiecesOS is not running")
 
 
@@ -174,6 +181,7 @@ class PiecesClient:
         self.asset_api = AssetApi(self.api_client)
         self.format_api = FormatApi(self.api_client)
         self.connector_api = ConnectorApi(self.api_client)
+        self.model_api = ModelApi(self.api_client)
         self.models_api = ModelsApi(self.api_client)
         self.annotation_api = AnnotationApi(self.api_client)
         self.annotations_api = AnnotationsApi(self.api_client)
@@ -308,7 +316,8 @@ class PiecesClient:
         """
         for _ in range(maxium_retries):
             try:
-                with urllib.request.urlopen(f"{self.host}/.well-known/health", timeout=1) as response:
+                request = urllib.request.Request(self.host + "/.well-known/health")
+                with urllib.request.urlopen(request, timeout=0.1) as response:
                     return response.status == 200
             except:
                 if maxium_retries != 1:
