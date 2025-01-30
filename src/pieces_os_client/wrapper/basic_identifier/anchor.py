@@ -82,6 +82,7 @@ class BasicAnchor(Basic):
 			type = type,
 			fullpath = path
 		))
+		AnchorSnapshot.identifiers_snapshot[anchor.id] = anchor # Update the local cache
 		return BasicAnchor(anchor.id)
 
 	@staticmethod
@@ -125,10 +126,10 @@ class BasicAnchor(Basic):
 		Returns:
 			The existing anchor if found, otherwise None.
 		"""
-		for anchor in AnchorSnapshot.identifiers_snapshot.values():
+		for anchor in AnchorSnapshot.identifiers_snapshot.keys():
 			a = BasicAnchor(anchor)
 			if a.fullpath == paths:
-				return BasicAsset(a.id)
+				return BasicAnchor(a.id)
 		
 	@property
 	def assets(self) -> Optional[List["BasicAsset"]]:
@@ -138,7 +139,7 @@ class BasicAnchor(Basic):
 		Returns:
 			The assets of the anchor.
 		"""
-		return [BasicAsset(asset.id) for asset in self.anchor.assets.iterable] if self.anchor.assets else None
+		return [(asset.id) for asset in self.anchor.assets.iterable] if self.anchor.assets else None
 
 	@property
 	def chats(self) -> Optional[List["BasicChat"]]:
@@ -172,7 +173,7 @@ class BasicAnchor(Basic):
 		Returns:
 			The created BasicAnchor instance.
 		"""
-		anchor = cls.exists(path)
+		anchor = cls.exists([path])
 		if anchor:
 			return anchor
 		else:
