@@ -94,7 +94,8 @@ To create a new asset, you can use the `create_asset` method of the Pieces Clien
 
 ```python
 from pieces_os_client.wrapper import PiecesClient
-from pieces_os_client import ClassificationSpecificEnum, FragmentMetadata
+from pieces_os_client.models.classification_specific_enum import ClassificationSpecificEnum
+from pieces_os_client.models.fragment_metadata import FragmentMetadata
 
 pieces_client = PiecesClient()
 
@@ -167,6 +168,7 @@ First, we will create a Python script to test the connection to the Pieces OS se
 Create a python file and add the following code to confirm you can connect to your Pieces OS server:
 
 ```python
+from pieces_os_client.api.well_known_api import WellKnownApi
 import pieces_os_client
 import platform
 
@@ -187,7 +189,7 @@ api_client = pieces_os_client.ApiClient(configuration)
 # Enter a context with an instance of the ApiClient
 with pieces_os_client.ApiClient(configuration) as api_client:
     # Create an instance of the WellKnown API
-    api_instance = pieces_os_client.WellKnownApi(api_client)
+    api_instance = WellKnownApi(api_client)
 
     try:
         # Retrieve the (wellknown) health of your Pieces OS server

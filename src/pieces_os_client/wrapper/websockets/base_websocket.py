@@ -94,6 +94,8 @@ class BaseWebsocket(ABC):
 		Start the websocket connection in a new thread.
 		"""
 		if not self.running:
+			if(not getattr(self.pieces_client,"ASK_STREAM_WS_URL",False)) and (not self.pieces_client.port):
+				return
 			self._initialized.clear()
 			self.thread = threading.Thread(target=self.run)
 			self.thread.start()

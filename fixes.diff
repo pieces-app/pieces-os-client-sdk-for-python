@@ -17,7 +17,36 @@ index c03f2e5..7d084ea 100644
              else:
 -                klass = getattr(pieces_os_client.models, klass)
 +                # Convert the class to snake case
-+                snake_case = re.sub(r'(?<!^)(?=[A-Z])', '_', klass).lower()
++                # NOTE:
++                # The following regex substitution doesn't work properly:
++                #
++                #     snake_case = re.sub(r'(?<!^)(?=[A-Z])', '_', klass).lower()
++                #
++                # An issue arises because this regex inserts underscores between all adjacent
++                # uppercase letters (except at the start), which is not desirable for sequences like
++                # 'QGPT'. It turns 'QGPT' into 'q_g_p_t'.
++                # The following regex substitution should fix that:
++                snake_case = re.sub(
++                    r'(?<=[a-z0-9])(?=[A-Z])'      # Between lowercase/digit and uppercase
++                    r'|(?<=[A-Z])(?=[A-Z][a-z])',  # Between uppercase and uppercase-lowercase sequence
++                    '_',
++                    klass
++                ).lower()
++                # EXPLANATION:
++                # (?<=[a-z0-9])(?=[A-Z]): Inserts an underscore between a lowercase letter or digit
++                #                         and an uppercase letter. This handles transitions like
++                #                         'myClass' to 'my_Class'.
++                # (?<=[A-Z])(?=[A-Z][a-z]): Inserts an underscore in cases where a sequence of
++                #                           uppercase letters is followed by an uppercase letter and
++                #                           then a lowercase letter. This handles cases like
++                #                           'XMLHttpRequest' to 'XML_Http_Request'.
++                #
++                # EXAMPLE OUTPUTS:
++                #     'QGPT'           -> 'qgpt'
++                #     'MyClassName'    -> 'my_class_name'
++                #     'HTTPRequest'    -> 'http_request'
++                #     'XMLHttpRequest' -> 'xml_http_request'
++
 +                # Import the class
 +                module = importlib.import_module(f"pieces_os_client.models.{snake_case}")
 +                klass = getattr(module, klass)
