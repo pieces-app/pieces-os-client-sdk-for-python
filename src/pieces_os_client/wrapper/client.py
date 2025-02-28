@@ -1,5 +1,5 @@
 from concurrent.futures import ThreadPoolExecutor, as_completed
-from typing import TYPE_CHECKING, Optional,Dict, Union
+from typing import TYPE_CHECKING, Callable, Optional,Dict, Union
 import platform
 import atexit
 import subprocess
@@ -44,6 +44,7 @@ from pieces_os_client.api.workstream_pattern_engine_api import WorkstreamPattern
 
 from pieces_os_client.models.seeded_connector_connection import SeededConnectorConnection
 from pieces_os_client.models.seeded_tracked_application import SeededTrackedApplication
+from pieces_os_client.wrapper.installation import DownloadModel, PosInstaller
 
 
 from .copilot import Copilot
@@ -351,6 +352,18 @@ class PiecesClient:
             return the ThreadPool created
         """
         return self.api_client.pool.apply_async(api_call, args)
+
+    def install_pieces_os(self, callback: Callable[[DownloadModel], None]) -> PosInstaller:
+        """
+        Installs Pieces OS using the provided callback for download progress updates.
+
+        Args:
+            callback (Callable[[DownloadModel], None]): A callback function to receive download progress updates.
+
+        Returns:
+            PosInstaller: An instance of PosInstaller handling the installation process.
+        """
+        return PosInstaller(callback)
 
 # Register the function to be called on exit
 atexit.register(PiecesClient.close)
