@@ -178,14 +178,15 @@ class PosInstaller:
             )
 
             while True:
-                out = self.download_process.stdout.readline()
-                err = self.download_process.stderr.readline()
+                out = self.download_process.stdout
+                err = self.download_process.stderr
 
                 if out:
                     self.state = DownloadState.DOWNLOADING
                     self.terminal_event = TerminalEventType.OUTPUT
                     try:
-                        bytes_received, total_bytes = callback(out.decode('utf-8'))
+                        bytes_received, total_bytes = callback(out.readline().decode('utf-8'))
+                        self.print(f'Downloaded {bytes_received} of {total_bytes}')
                         self.update_progress(bytes_received, total_bytes)
                     except Exception as e:
                         self.print(f"Could not match pattern: {e}", file=sys.stderr)
@@ -193,7 +194,7 @@ class PosInstaller:
                 if err:
                     self.terminal_event = TerminalEventType.ERROR
                     self.update_progress(bytes_received=0, total_bytes=0)
-                    self.print(err.decode('utf-8'), file=sys.stderr)
+                    self.print(err.readline().decode('utf-8'), file=sys.stderr)
 
                 if self.download_process.poll() is not None:
                     break
