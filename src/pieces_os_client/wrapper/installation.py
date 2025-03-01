@@ -1,4 +1,3 @@
-from collections.abc import Callable
 import sys
 import subprocess
 from enum import Enum
@@ -7,7 +6,7 @@ import asyncio
 import re
 import threading
 import time
-from typing import List, Optional, Tuple
+from typing import List, Optional, Tuple, Callable
 
 import urllib.request
 
