@@ -115,6 +115,9 @@ class PosInstaller:
         self.install_using_web(pkg_url, tmp_pkg_path)
 
     def install_using_web(self, pkg_url: str, tmp_pkg_path: str) -> bool:
+        BUFFER_SIZE = 65536
+        STALL_TIMEOUT = 5
+
         try:
             self.state = DownloadState.DOWNLOADING
             request = urllib.request.Request(pkg_url, headers={'Accept': '*/*'})
@@ -123,8 +126,9 @@ class PosInstaller:
             downloaded_size = 0
 
             with open(tmp_pkg_path, 'wb') as out_file:
+                last_data_time = time.time()
                 while True:
-                    data = response.read(1024)
+                    data = response.read(BUFFER_SIZE)
                     if not data:
                         break
                     if self.stop:
@@ -134,7 +138,14 @@ class PosInstaller:
 
                     out_file.write(data)
                     downloaded_size += len(data)
-                    time.sleep(0.2)
+                    last_data_time = time.time()
+
+                    if downloaded_size % (512 * 1024) == 0 or downloaded_size == file_size:
+                        self.update_progress(downloaded_size, file_size)
+                        self.print(f'Downloaded {downloaded_size} of {file_size}')
+                    if time.time() - last_data_time > STALL_TIMEOUT:
+                        raise TimeoutError("Download stalled (no data received).")
+
                     self.update_progress(downloaded_size, file_size)
                     self.print(f'Downloaded {downloaded_size} of {file_size}')
 
