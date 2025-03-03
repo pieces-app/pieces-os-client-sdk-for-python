@@ -2,7 +2,6 @@ import sys
 import subprocess
 from enum import Enum
 from tempfile import gettempdir
-import asyncio
 import re
 import threading
 import time
@@ -35,7 +34,7 @@ class DownloadModel:
         self.terminal_event = terminal_event
 
 class PosInstaller:
-    def __init__(self, callback: Optional[Callable[[DownloadModel], None]]):
+    def __init__(self, callback: Optional[Callable[[DownloadModel], None]], product: str):
         self.platform = self.detect_platform()
         self.download_process = None
         self.progress_update_callback = callback
@@ -43,7 +42,7 @@ class PosInstaller:
         self.terminal_event = TerminalEventType.PROMPT
         self.stop = False
         self.thread = None
-        self.loop = asyncio.get_event_loop()
+        self.product = product
 
 
     def update_progress(self, bytes_received: int = 0, total_bytes: int = 0):
@@ -105,13 +104,13 @@ class PosInstaller:
         self.print('Starting POS download for Macos.')
 
         arch = 'arm64' if sys.maxsize > 2**32 else 'x86_64'
-        pkg_url = f'https://builds.pieces.app/stages/production/macos_packaging/pkg-pos-launch-only-{arch}/download?product=JUPYTER_LAB&download=true'
+        pkg_url = f'https://builds.pieces.app/stages/production/macos_packaging/pkg-pos-launch-only-{arch}/download?product={self.product}&download=true'
         tmp_pkg_path = "/tmp/Pieces-OS-Launch.pkg"
         self.install_using_web(pkg_url, tmp_pkg_path)
 
     def download_windows(self):
         self.print('Starting POS download for Windows.')
-        pkg_url = 'https://builds.pieces.app/stages/production/os_server/windows-exe/download?download=true&product=JUPYTER_LAB'
+        pkg_url = f'https://builds.pieces.app/stages/production/os_server/windows-exe/download?download=true&product={self.product}'
         tmp_pkg_path = f"{gettempdir()}\\Pieces-OS.exe"
         self.install_using_web(pkg_url, tmp_pkg_path)
 

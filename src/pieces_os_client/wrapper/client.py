@@ -363,7 +363,7 @@ class PiecesClient:
         Returns:
             PosInstaller: An instance of PosInstaller handling the installation process.
         """
-        return PosInstaller(callback)
+        return PosInstaller(callback, self._seeded_connector.application.name)
 
 # Register the function to be called on exit
 atexit.register(PiecesClient.close)
