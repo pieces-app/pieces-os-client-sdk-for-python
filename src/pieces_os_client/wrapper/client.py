@@ -353,7 +353,7 @@ class PiecesClient:
         """
         return self.api_client.pool.apply_async(api_call, args)
 
-    def install_pieces_os(self, callback: Callable[[DownloadModel], None]) -> PosInstaller:
+    def pieces_os_installer(self, callback: Callable[[DownloadModel], None]) -> PosInstaller:
         """
         Installs Pieces OS using the provided callback for download progress updates.
 
