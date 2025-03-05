@@ -1,4 +1,4 @@
-from typing import TYPE_CHECKING, List, Callable, Optional
+from typing import TYPE_CHECKING, List, Callable, Optional, SupportsIndex
 import os
 
 from pieces_os_client.models.anchors import Anchors
@@ -8,14 +8,14 @@ from pieces_os_client.models.referenced_range import ReferencedRange
 from pieces_os_client.models.seeds import Seeds
 from pieces_os_client.models.flattened_conversation_messages import FlattenedConversationMessages
 from pieces_os_client.models.temporal_range_grounding import TemporalRangeGrounding
-from pieces_os_client.wrapper.basic_identifier.anchor import BasicAnchor
 
+from .basic_identifier import BasicAsset, BasicMessage, BasicAnchor
 from .long_term_memory import LongTermMemory
 
 if TYPE_CHECKING:
-	from .basic_identifier import BasicAsset,BasicMessage
 	from . import PiecesClient
 	from .copilot import Copilot
+	from .basic_identifier import BasicChat
 
 class ValidatedContextList(List):
 	"""
@@ -61,15 +61,23 @@ class ValidatedContextList(List):
 			new_list.append(value)
 		return new_list
 
-	def pop(self, index: int = -1):
+	def pop(self, index: SupportsIndex = -1):
 		value = super().pop(index)
 		self.on_remove(index)
 		return value
 
+	def clear(self, **kwargs):
+		if kwargs.get("_notifiy", True):
+			for item in range(len(self)):
+				self.on_remove(item)
+
+		super().clear()
+
+
 class Context:
 	def __init__(self,
 				 pieces_client: "PiecesClient",
-				 copilot: "Copilot" = None,
+				 copilot: "Copilot",
 				 paths: List[str] = None,
 				 raw_assets: List[str] = None,
 				 assets: List["BasicAsset"] = None,
@@ -88,12 +96,12 @@ class Context:
 		self._messages: FlattenedConversationMessages = FlattenedConversationMessages(iterable=[])
 		self._paths: Anchors = Anchors(iterable=[])
 
-	def clear(self):
+	def clear(self, **kwargs):
 		"""Clears the Copilot context"""
-		self.raw_assets = []
-		self.paths = []
-		self.assets = []
-		self.messages = []
+		self.raw_assets.clear(_notifiy = kwargs.get("_notifiy", True))
+		self.paths.clear(_notifiy = kwargs.get("_notifiy", True))
+		self.assets.clear(_notifiy = kwargs.get("_notifiy", True))
+		self.messages.clear(_notifiy = kwargs.get("_notifiy", True))
 		self._paths = Anchors(iterable=[])
 		self._assets = Assets(iterable=[])
 		self._raw_assets = Seeds(iterable=[])
@@ -128,6 +136,8 @@ class Context:
 		if not isinstance(message, BasicMessage):
 			raise ValueError("Message should be BasicMessage type")
 		self._messages.iterable.append(message.message)
+		if not self.copilot.chat:
+			self.copilot.create_chat()
 		self.copilot.chat.associate_message(message)
 
 	def _remove_message(self, index: int):
@@ -138,6 +148,8 @@ class Context:
 		if not isinstance(asset, BasicAsset):
 			raise ValueError("Snippet content should be BasicAsset type")
 		self._assets.iterable.append(asset.asset)
+		if not self.copilot.chat:
+			self.copilot.create_chat()
 		self.copilot.chat.associate_asset(asset)
 
 	def _remove_asset(self, index: int):
@@ -148,7 +160,9 @@ class Context:
 		if not os.path.exists(path):
 			raise ValueError("Invalid path in the context")
 		anchor = BasicAnchor.from_raw_content(path)
-		self._paths.iterable.append(anchor)
+		self._paths.iterable.append(anchor.anchor)
+		if not self.copilot.chat:
+			self.copilot.create_chat()
 		self.copilot.chat.associate_anchor(anchor)
 
 	def _remove_path(self, index: int):
@@ -162,4 +176,20 @@ class Context:
 
 	def _remove_raw_asset(self, index: int):
 		self._raw_assets.iterable.pop(index)
+
+	def _init(self, chat: "BasicChat"):
+		self.clear(_notifiy = False)
+		self.assets.extend(
+			chat._from_indices(
+				getattr(chat.conversation.assets,"indices",{}),
+				lambda id: BasicAsset(id)
+			)
+		)
+		ls = chat._from_indices(
+				getattr(chat.conversation.anchors,"indices",{}),
+				lambda id: BasicAnchor(id).fullpath
+			)
+		ls = [item for sublist in ls for item in sublist]
+
+		self.paths.extend(ls)
 
