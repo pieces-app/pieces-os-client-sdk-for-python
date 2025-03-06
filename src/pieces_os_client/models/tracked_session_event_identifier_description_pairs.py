@@ -18,15 +18,16 @@ import pprint
 import re  # noqa: F401
 import json
 
-
-from typing import Optional
-from pydantic import BaseModel, Field, StrictStr, validator
+from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
+from typing import Any, ClassVar, Dict, List, Optional
 from pieces_os_client.models.embedded_model_schema import EmbeddedModelSchema
+from typing import Optional, Set
+from typing_extensions import Self
 
 class TrackedSessionEventIdentifierDescriptionPairs(BaseModel):
     """
-    These are all of the available event types that are permitted in an object pair notation.  # noqa: E501
-    """
+    These are all of the available event types that are permitted in an object pair notation.
+    """ # noqa: E501
     var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     session_initialized: Optional[StrictStr] = Field(default=None, description="The key value pair for an application being opened.")
     session_local_connection_succeeded: Optional[StrictStr] = Field(default=None, description="There was a successful connection locally")
@@ -40,168 +41,183 @@ class TrackedSessionEventIdentifierDescriptionPairs(BaseModel):
     session_unauthenticated_with_remind: Optional[StrictStr] = Field(default=None, description="A user did not sign into the session with a reminder")
     session_onboarding_initialized: Optional[StrictStr] = Field(default=None, description="Onboarding has been initialized for this session")
     session_onboarding_completed: Optional[StrictStr] = Field(default=None, description="Onboarding has been completed for this session")
-    __properties = ["schema", "session_initialized", "session_local_connection_succeeded", "session_local_connection_failed", "session_inactive", "session_active", "session_terminated", "session_authenticated_with_sign_in", "session_unauthenticated_with_sign_out", "session_unauthenticated_with_dismiss", "session_unauthenticated_with_remind", "session_onboarding_initialized", "session_onboarding_completed"]
+    __properties: ClassVar[List[str]] = ["schema", "session_initialized", "session_local_connection_succeeded", "session_local_connection_failed", "session_inactive", "session_active", "session_terminated", "session_authenticated_with_sign_in", "session_unauthenticated_with_sign_out", "session_unauthenticated_with_dismiss", "session_unauthenticated_with_remind", "session_onboarding_initialized", "session_onboarding_completed"]
 
-    @validator('session_initialized')
+    @field_validator('session_initialized')
     def session_initialized_validate_enum(cls, value):
         """Validates the enum"""
         if value is None:
             return value
 
-        if value not in ('a_session_has_been_initialized_and_the_application_has_been_opened',):
+        if value not in set(['a_session_has_been_initialized_and_the_application_has_been_opened']):
             raise ValueError("must be one of enum values ('a_session_has_been_initialized_and_the_application_has_been_opened')")
         return value
 
-    @validator('session_local_connection_succeeded')
+    @field_validator('session_local_connection_succeeded')
     def session_local_connection_succeeded_validate_enum(cls, value):
         """Validates the enum"""
         if value is None:
             return value
 
-        if value not in ('one_or_more_applications_has_successfully_connected',):
+        if value not in set(['one_or_more_applications_has_successfully_connected']):
             raise ValueError("must be one of enum values ('one_or_more_applications_has_successfully_connected')")
         return value
 
-    @validator('session_local_connection_failed')
+    @field_validator('session_local_connection_failed')
     def session_local_connection_failed_validate_enum(cls, value):
         """Validates the enum"""
         if value is None:
             return value
 
-        if value not in ('one_or_more_applications_has_failed_to_connect_locally',):
+        if value not in set(['one_or_more_applications_has_failed_to_connect_locally']):
             raise ValueError("must be one of enum values ('one_or_more_applications_has_failed_to_connect_locally')")
         return value
 
-    @validator('session_inactive')
+    @field_validator('session_inactive')
     def session_inactive_validate_enum(cls, value):
         """Validates the enum"""
         if value is None:
             return value
 
-        if value not in ('a_session_is_inactive_because_the_application_is_not_in_the_foreground',):
+        if value not in set(['a_session_is_inactive_because_the_application_is_not_in_the_foreground']):
             raise ValueError("must be one of enum values ('a_session_is_inactive_because_the_application_is_not_in_the_foreground')")
         return value
 
-    @validator('session_active')
+    @field_validator('session_active')
     def session_active_validate_enum(cls, value):
         """Validates the enum"""
         if value is None:
             return value
 
-        if value not in ('a_session_is_active_because_the_application_is_in_the_foreground',):
+        if value not in set(['a_session_is_active_because_the_application_is_in_the_foreground']):
             raise ValueError("must be one of enum values ('a_session_is_active_because_the_application_is_in_the_foreground')")
         return value
 
-    @validator('session_terminated')
+    @field_validator('session_terminated')
     def session_terminated_validate_enum(cls, value):
         """Validates the enum"""
         if value is None:
             return value
 
-        if value not in ('a_session_has_been_ended_and_the_application_has_been_closed',):
+        if value not in set(['a_session_has_been_ended_and_the_application_has_been_closed']):
             raise ValueError("must be one of enum values ('a_session_has_been_ended_and_the_application_has_been_closed')")
         return value
 
-    @validator('session_authenticated_with_sign_in')
+    @field_validator('session_authenticated_with_sign_in')
     def session_authenticated_with_sign_in_validate_enum(cls, value):
         """Validates the enum"""
         if value is None:
             return value
 
-        if value not in ('a_user_has_signed_into_this_session_with_a_an_external_account',):
+        if value not in set(['a_user_has_signed_into_this_session_with_a_an_external_account']):
             raise ValueError("must be one of enum values ('a_user_has_signed_into_this_session_with_a_an_external_account')")
         return value
 
-    @validator('session_unauthenticated_with_sign_out')
+    @field_validator('session_unauthenticated_with_sign_out')
     def session_unauthenticated_with_sign_out_validate_enum(cls, value):
         """Validates the enum"""
         if value is None:
             return value
 
-        if value not in ('a_user_has_signed_out_of_this_session',):
+        if value not in set(['a_user_has_signed_out_of_this_session']):
             raise ValueError("must be one of enum values ('a_user_has_signed_out_of_this_session')")
         return value
 
-    @validator('session_unauthenticated_with_dismiss')
+    @field_validator('session_unauthenticated_with_dismiss')
     def session_unauthenticated_with_dismiss_validate_enum(cls, value):
         """Validates the enum"""
         if value is None:
             return value
 
-        if value not in ('a_user_did_not_sign_into_the_session_with_a_dismissal',):
+        if value not in set(['a_user_did_not_sign_into_the_session_with_a_dismissal']):
             raise ValueError("must be one of enum values ('a_user_did_not_sign_into_the_session_with_a_dismissal')")
         return value
 
-    @validator('session_unauthenticated_with_remind')
+    @field_validator('session_unauthenticated_with_remind')
     def session_unauthenticated_with_remind_validate_enum(cls, value):
         """Validates the enum"""
         if value is None:
             return value
 
-        if value not in ('a_user_did_not_sign_into_the_session_with_a_reminder',):
+        if value not in set(['a_user_did_not_sign_into_the_session_with_a_reminder']):
             raise ValueError("must be one of enum values ('a_user_did_not_sign_into_the_session_with_a_reminder')")
         return value
 
-    @validator('session_onboarding_initialized')
+    @field_validator('session_onboarding_initialized')
     def session_onboarding_initialized_validate_enum(cls, value):
         """Validates the enum"""
         if value is None:
             return value
 
-        if value not in ('onboarding_has_been_initialized_for_this_session',):
+        if value not in set(['onboarding_has_been_initialized_for_this_session']):
             raise ValueError("must be one of enum values ('onboarding_has_been_initialized_for_this_session')")
         return value
 
-    @validator('session_onboarding_completed')
+    @field_validator('session_onboarding_completed')
     def session_onboarding_completed_validate_enum(cls, value):
         """Validates the enum"""
         if value is None:
             return value
 
-        if value not in ('onboarding_has_been_completed_for_this_session',):
+        if value not in set(['onboarding_has_been_completed_for_this_session']):
             raise ValueError("must be one of enum values ('onboarding_has_been_completed_for_this_session')")
         return value
 
-    class Config:
-        """Pydantic configuration"""
-        allow_population_by_field_name = True
-        validate_assignment = True
+    model_config = ConfigDict(
+        populate_by_name=True,
+        validate_assignment=True,
+        protected_namespaces=(),
+    )
+
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
+        # TODO: pydantic v2: use .model_dump_json(by_alias=True, exclude_unset=True) instead
         return json.dumps(self.to_dict())
 
     @classmethod
-    def from_json(cls, json_str: str) -> TrackedSessionEventIdentifierDescriptionPairs:
+    def from_json(cls, json_str: str) -> Optional[Self]:
         """Create an instance of TrackedSessionEventIdentifierDescriptionPairs from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
-    def to_dict(self):
-        """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
-                          exclude={
-                          },
-                          exclude_none=True)
+    def to_dict(self) -> Dict[str, Any]:
+        """Return the dictionary representation of the model using alias.
+
+        This has the following differences from calling pydantic's
+        `self.model_dump(by_alias=True)`:
+
+        * `None` is only added to the output dict for nullable fields that
+          were set at model initialization. Other fields with value `None`
+          are ignored.
+        """
+        excluded_fields: Set[str] = set([
+        ])
+
+        _dict = self.model_dump(
+            by_alias=True,
+            exclude=excluded_fields,
+            exclude_none=True,
+        )
         # override the default output from pydantic by calling `to_dict()` of var_schema
         if self.var_schema:
             _dict['schema'] = self.var_schema.to_dict()
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> TrackedSessionEventIdentifierDescriptionPairs:
+    def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
         """Create an instance of TrackedSessionEventIdentifierDescriptionPairs from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
-            return TrackedSessionEventIdentifierDescriptionPairs.parse_obj(obj)
+            return cls.model_validate(obj)
 
-        _obj = TrackedSessionEventIdentifierDescriptionPairs.parse_obj({
-            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
+        _obj = cls.model_validate({
+            "schema": EmbeddedModelSchema.from_dict(obj["schema"]) if obj.get("schema") is not None else None,
             "session_initialized": obj.get("session_initialized"),
             "session_local_connection_succeeded": obj.get("session_local_connection_succeeded"),
             "session_local_connection_failed": obj.get("session_local_connection_failed"),

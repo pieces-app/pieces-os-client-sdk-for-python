@@ -11,16 +11,20 @@ documentation = "https://docs.pieces.app/build/reference/python/"
 
 [tool.poetry.dependencies]
 python = "^3.8"
-urllib3 = ">= 1.25.3"
+urllib3 = ">= 1.25.3, < 3.0.0"
 python-dateutil = ">=2.8.2"
-pydantic = "^1.10.5, <2"
+pydantic = "^2.7.2, <3"
 aenum = ">=3.1.11"
 websocket-client = "^1.8.0"
+typing-extensions = ">= 4.7.1"
 
 [tool.poetry.dev-dependencies]
 pytest = ">=7.2.1"
+pytest-cov = ">= 2.8.1"
 tox = ">=3.9.0"
 flake8 = ">=4.0.0"
+types-python-dateutil = ">= 2.8.19.14"
+mypy = ">= 1.5"
 
 [tool.poetry.urls]
 issues = "https://github.com/pieces-app/pieces-os-client-sdk-for-python/issues"

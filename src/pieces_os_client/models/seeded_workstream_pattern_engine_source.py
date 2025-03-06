@@ -18,46 +18,62 @@ import pprint
 import re  # noqa: F401
 import json
 
-
-from typing import Optional
-from pydantic import BaseModel, Field, StrictBool, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr
+from typing import Any, ClassVar, Dict, List, Optional
 from pieces_os_client.models.embedded_model_schema import EmbeddedModelSchema
 from pieces_os_client.models.workstream_pattern_engine_source import WorkstreamPatternEngineSource
+from typing import Optional, Set
+from typing_extensions import Self
 
 class SeededWorkstreamPatternEngineSource(BaseModel):
     """
-    TODO  # noqa: E501
-    """
+    TODO
+    """ # noqa: E501
     var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
-    raw: WorkstreamPatternEngineSource = Field(...)
+    raw: WorkstreamPatternEngineSource
     filter: Optional[StrictBool] = Field(default=None, description="This will determine if we want to filter this specific source")
-    readable: StrictStr = Field(default=..., description="This is the name of the source(defualt original data) this is NOT used for matching just for readability")
-    __properties = ["schema", "raw", "filter", "readable"]
+    readable: StrictStr = Field(description="This is the name of the source(defualt original data) this is NOT used for matching just for readability")
+    __properties: ClassVar[List[str]] = ["schema", "raw", "filter", "readable"]
 
-    class Config:
-        """Pydantic configuration"""
-        allow_population_by_field_name = True
-        validate_assignment = True
+    model_config = ConfigDict(
+        populate_by_name=True,
+        validate_assignment=True,
+        protected_namespaces=(),
+    )
+
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
+        # TODO: pydantic v2: use .model_dump_json(by_alias=True, exclude_unset=True) instead
         return json.dumps(self.to_dict())
 
     @classmethod
-    def from_json(cls, json_str: str) -> SeededWorkstreamPatternEngineSource:
+    def from_json(cls, json_str: str) -> Optional[Self]:
         """Create an instance of SeededWorkstreamPatternEngineSource from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
-    def to_dict(self):
-        """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
-                          exclude={
-                          },
-                          exclude_none=True)
+    def to_dict(self) -> Dict[str, Any]:
+        """Return the dictionary representation of the model using alias.
+
+        This has the following differences from calling pydantic's
+        `self.model_dump(by_alias=True)`:
+
+        * `None` is only added to the output dict for nullable fields that
+          were set at model initialization. Other fields with value `None`
+          are ignored.
+        """
+        excluded_fields: Set[str] = set([
+        ])
+
+        _dict = self.model_dump(
+            by_alias=True,
+            exclude=excluded_fields,
+            exclude_none=True,
+        )
         # override the default output from pydantic by calling `to_dict()` of var_schema
         if self.var_schema:
             _dict['schema'] = self.var_schema.to_dict()
@@ -67,17 +83,17 @@ class SeededWorkstreamPatternEngineSource(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> SeededWorkstreamPatternEngineSource:
+    def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
         """Create an instance of SeededWorkstreamPatternEngineSource from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
-            return SeededWorkstreamPatternEngineSource.parse_obj(obj)
+            return cls.model_validate(obj)
 
-        _obj = SeededWorkstreamPatternEngineSource.parse_obj({
-            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
-            "raw": WorkstreamPatternEngineSource.from_dict(obj.get("raw")) if obj.get("raw") is not None else None,
+        _obj = cls.model_validate({
+            "schema": EmbeddedModelSchema.from_dict(obj["schema"]) if obj.get("schema") is not None else None,
+            "raw": WorkstreamPatternEngineSource.from_dict(obj["raw"]) if obj.get("raw") is not None else None,
             "filter": obj.get("filter"),
             "readable": obj.get("readable")
         })

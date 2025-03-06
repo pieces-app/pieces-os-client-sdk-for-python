@@ -18,16 +18,17 @@ import pprint
 import re  # noqa: F401
 import json
 
-
-from typing import Optional
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, ConfigDict, Field
+from typing import Any, ClassVar, Dict, List, Optional
 from pieces_os_client.models.embedded_model_schema import EmbeddedModelSchema
 from pieces_os_client.models.seeded_score import SeededScore
+from typing import Optional, Set
+from typing_extensions import Self
 
 class SeededScoreIncrement(BaseModel):
     """
-    This is the body for a respective scores increment,  This will enable us to know what material we want to increment, all of which are optional, if it is defined we will attempt to increment the material.  # noqa: E501
-    """
+    This is the body for a respective scores increment,  This will enable us to know what material we want to increment, all of which are optional, if it is defined we will attempt to increment the material.
+    """ # noqa: E501
     var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     asset: Optional[SeededScore] = None
     assets: Optional[SeededScore] = None
@@ -63,32 +64,47 @@ class SeededScoreIncrement(BaseModel):
     workstream_pattern_engine_source: Optional[SeededScore] = None
     models: Optional[SeededScore] = None
     model: Optional[SeededScore] = None
-    __properties = ["schema", "asset", "assets", "website", "websites", "anchor", "anchors", "anchorPoint", "anchorPoints", "annotation", "annotations", "conversation", "conversations", "conversationMessage", "conversationMessages", "share", "shares", "sensitive", "sensitives", "hint", "hints", "person", "persons", "tag", "tags", "workstream_summary", "workstream_summaries", "workstream_events", "workstream_event", "ranges", "range", "workstream_pattern_engine_sources", "workstream_pattern_engine_source", "models", "model"]
+    __properties: ClassVar[List[str]] = ["schema", "asset", "assets", "website", "websites", "anchor", "anchors", "anchorPoint", "anchorPoints", "annotation", "annotations", "conversation", "conversations", "conversationMessage", "conversationMessages", "share", "shares", "sensitive", "sensitives", "hint", "hints", "person", "persons", "tag", "tags", "workstream_summary", "workstream_summaries", "workstream_events", "workstream_event", "ranges", "range", "workstream_pattern_engine_sources", "workstream_pattern_engine_source", "models", "model"]
 
-    class Config:
-        """Pydantic configuration"""
-        allow_population_by_field_name = True
-        validate_assignment = True
+    model_config = ConfigDict(
+        populate_by_name=True,
+        validate_assignment=True,
+        protected_namespaces=(),
+    )
+
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
+        # TODO: pydantic v2: use .model_dump_json(by_alias=True, exclude_unset=True) instead
         return json.dumps(self.to_dict())
 
     @classmethod
-    def from_json(cls, json_str: str) -> SeededScoreIncrement:
+    def from_json(cls, json_str: str) -> Optional[Self]:
         """Create an instance of SeededScoreIncrement from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
-    def to_dict(self):
-        """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
-                          exclude={
-                          },
-                          exclude_none=True)
+    def to_dict(self) -> Dict[str, Any]:
+        """Return the dictionary representation of the model using alias.
+
+        This has the following differences from calling pydantic's
+        `self.model_dump(by_alias=True)`:
+
+        * `None` is only added to the output dict for nullable fields that
+          were set at model initialization. Other fields with value `None`
+          are ignored.
+        """
+        excluded_fields: Set[str] = set([
+        ])
+
+        _dict = self.model_dump(
+            by_alias=True,
+            exclude=excluded_fields,
+            exclude_none=True,
+        )
         # override the default output from pydantic by calling `to_dict()` of var_schema
         if self.var_schema:
             _dict['schema'] = self.var_schema.to_dict()
@@ -197,50 +213,50 @@ class SeededScoreIncrement(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> SeededScoreIncrement:
+    def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
         """Create an instance of SeededScoreIncrement from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
-            return SeededScoreIncrement.parse_obj(obj)
+            return cls.model_validate(obj)
 
-        _obj = SeededScoreIncrement.parse_obj({
-            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
-            "asset": SeededScore.from_dict(obj.get("asset")) if obj.get("asset") is not None else None,
-            "assets": SeededScore.from_dict(obj.get("assets")) if obj.get("assets") is not None else None,
-            "website": SeededScore.from_dict(obj.get("website")) if obj.get("website") is not None else None,
-            "websites": SeededScore.from_dict(obj.get("websites")) if obj.get("websites") is not None else None,
-            "anchor": SeededScore.from_dict(obj.get("anchor")) if obj.get("anchor") is not None else None,
-            "anchors": SeededScore.from_dict(obj.get("anchors")) if obj.get("anchors") is not None else None,
-            "anchor_point": SeededScore.from_dict(obj.get("anchorPoint")) if obj.get("anchorPoint") is not None else None,
-            "anchor_points": SeededScore.from_dict(obj.get("anchorPoints")) if obj.get("anchorPoints") is not None else None,
-            "annotation": SeededScore.from_dict(obj.get("annotation")) if obj.get("annotation") is not None else None,
-            "annotations": SeededScore.from_dict(obj.get("annotations")) if obj.get("annotations") is not None else None,
-            "conversation": SeededScore.from_dict(obj.get("conversation")) if obj.get("conversation") is not None else None,
-            "conversations": SeededScore.from_dict(obj.get("conversations")) if obj.get("conversations") is not None else None,
-            "conversation_message": SeededScore.from_dict(obj.get("conversationMessage")) if obj.get("conversationMessage") is not None else None,
-            "conversation_messages": SeededScore.from_dict(obj.get("conversationMessages")) if obj.get("conversationMessages") is not None else None,
-            "share": SeededScore.from_dict(obj.get("share")) if obj.get("share") is not None else None,
-            "shares": SeededScore.from_dict(obj.get("shares")) if obj.get("shares") is not None else None,
-            "sensitive": SeededScore.from_dict(obj.get("sensitive")) if obj.get("sensitive") is not None else None,
-            "sensitives": SeededScore.from_dict(obj.get("sensitives")) if obj.get("sensitives") is not None else None,
-            "hint": SeededScore.from_dict(obj.get("hint")) if obj.get("hint") is not None else None,
-            "hints": SeededScore.from_dict(obj.get("hints")) if obj.get("hints") is not None else None,
-            "person": SeededScore.from_dict(obj.get("person")) if obj.get("person") is not None else None,
-            "persons": SeededScore.from_dict(obj.get("persons")) if obj.get("persons") is not None else None,
-            "tag": SeededScore.from_dict(obj.get("tag")) if obj.get("tag") is not None else None,
-            "tags": SeededScore.from_dict(obj.get("tags")) if obj.get("tags") is not None else None,
-            "workstream_summary": SeededScore.from_dict(obj.get("workstream_summary")) if obj.get("workstream_summary") is not None else None,
-            "workstream_summaries": SeededScore.from_dict(obj.get("workstream_summaries")) if obj.get("workstream_summaries") is not None else None,
-            "workstream_events": SeededScore.from_dict(obj.get("workstream_events")) if obj.get("workstream_events") is not None else None,
-            "workstream_event": SeededScore.from_dict(obj.get("workstream_event")) if obj.get("workstream_event") is not None else None,
-            "ranges": SeededScore.from_dict(obj.get("ranges")) if obj.get("ranges") is not None else None,
-            "range": SeededScore.from_dict(obj.get("range")) if obj.get("range") is not None else None,
-            "workstream_pattern_engine_sources": SeededScore.from_dict(obj.get("workstream_pattern_engine_sources")) if obj.get("workstream_pattern_engine_sources") is not None else None,
-            "workstream_pattern_engine_source": SeededScore.from_dict(obj.get("workstream_pattern_engine_source")) if obj.get("workstream_pattern_engine_source") is not None else None,
-            "models": SeededScore.from_dict(obj.get("models")) if obj.get("models") is not None else None,
-            "model": SeededScore.from_dict(obj.get("model")) if obj.get("model") is not None else None
+        _obj = cls.model_validate({
+            "schema": EmbeddedModelSchema.from_dict(obj["schema"]) if obj.get("schema") is not None else None,
+            "asset": SeededScore.from_dict(obj["asset"]) if obj.get("asset") is not None else None,
+            "assets": SeededScore.from_dict(obj["assets"]) if obj.get("assets") is not None else None,
+            "website": SeededScore.from_dict(obj["website"]) if obj.get("website") is not None else None,
+            "websites": SeededScore.from_dict(obj["websites"]) if obj.get("websites") is not None else None,
+            "anchor": SeededScore.from_dict(obj["anchor"]) if obj.get("anchor") is not None else None,
+            "anchors": SeededScore.from_dict(obj["anchors"]) if obj.get("anchors") is not None else None,
+            "anchorPoint": SeededScore.from_dict(obj["anchorPoint"]) if obj.get("anchorPoint") is not None else None,
+            "anchorPoints": SeededScore.from_dict(obj["anchorPoints"]) if obj.get("anchorPoints") is not None else None,
+            "annotation": SeededScore.from_dict(obj["annotation"]) if obj.get("annotation") is not None else None,
+            "annotations": SeededScore.from_dict(obj["annotations"]) if obj.get("annotations") is not None else None,
+            "conversation": SeededScore.from_dict(obj["conversation"]) if obj.get("conversation") is not None else None,
+            "conversations": SeededScore.from_dict(obj["conversations"]) if obj.get("conversations") is not None else None,
+            "conversationMessage": SeededScore.from_dict(obj["conversationMessage"]) if obj.get("conversationMessage") is not None else None,
+            "conversationMessages": SeededScore.from_dict(obj["conversationMessages"]) if obj.get("conversationMessages") is not None else None,
+            "share": SeededScore.from_dict(obj["share"]) if obj.get("share") is not None else None,
+            "shares": SeededScore.from_dict(obj["shares"]) if obj.get("shares") is not None else None,
+            "sensitive": SeededScore.from_dict(obj["sensitive"]) if obj.get("sensitive") is not None else None,
+            "sensitives": SeededScore.from_dict(obj["sensitives"]) if obj.get("sensitives") is not None else None,
+            "hint": SeededScore.from_dict(obj["hint"]) if obj.get("hint") is not None else None,
+            "hints": SeededScore.from_dict(obj["hints"]) if obj.get("hints") is not None else None,
+            "person": SeededScore.from_dict(obj["person"]) if obj.get("person") is not None else None,
+            "persons": SeededScore.from_dict(obj["persons"]) if obj.get("persons") is not None else None,
+            "tag": SeededScore.from_dict(obj["tag"]) if obj.get("tag") is not None else None,
+            "tags": SeededScore.from_dict(obj["tags"]) if obj.get("tags") is not None else None,
+            "workstream_summary": SeededScore.from_dict(obj["workstream_summary"]) if obj.get("workstream_summary") is not None else None,
+            "workstream_summaries": SeededScore.from_dict(obj["workstream_summaries"]) if obj.get("workstream_summaries") is not None else None,
+            "workstream_events": SeededScore.from_dict(obj["workstream_events"]) if obj.get("workstream_events") is not None else None,
+            "workstream_event": SeededScore.from_dict(obj["workstream_event"]) if obj.get("workstream_event") is not None else None,
+            "ranges": SeededScore.from_dict(obj["ranges"]) if obj.get("ranges") is not None else None,
+            "range": SeededScore.from_dict(obj["range"]) if obj.get("range") is not None else None,
+            "workstream_pattern_engine_sources": SeededScore.from_dict(obj["workstream_pattern_engine_sources"]) if obj.get("workstream_pattern_engine_sources") is not None else None,
+            "workstream_pattern_engine_source": SeededScore.from_dict(obj["workstream_pattern_engine_source"]) if obj.get("workstream_pattern_engine_source") is not None else None,
+            "models": SeededScore.from_dict(obj["models"]) if obj.get("models") is not None else None,
+            "model": SeededScore.from_dict(obj["model"]) if obj.get("model") is not None else None
         })
         return _obj
 

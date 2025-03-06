@@ -18,75 +18,91 @@ import pprint
 import re  # noqa: F401
 import json
 
-
-from typing import Optional
-from pydantic import BaseModel, Field, StrictInt
+from pydantic import BaseModel, ConfigDict, StrictInt
+from typing import Any, ClassVar, Dict, List, Optional
+from typing import Optional, Set
+from typing_extensions import Self
 
 class TrackedSummaryTotals(BaseModel):
     """
-    This is the counts of things that users can add.  # noqa: E501
-    """
-    assets: StrictInt = Field(...)
-    tags: StrictInt = Field(...)
-    websites: StrictInt = Field(...)
-    persons: StrictInt = Field(...)
-    sensitives: StrictInt = Field(...)
-    shares: StrictInt = Field(...)
-    copilot_sends: StrictInt = Field(...)
-    copilot_receives: StrictInt = Field(...)
-    copilot_sessions: StrictInt = Field(...)
-    copilot_conversations: StrictInt = Field(...)
-    productivity_score: StrictInt = Field(...)
-    searches: StrictInt = Field(...)
-    references: StrictInt = Field(...)
-    reuses: StrictInt = Field(...)
-    anchor_files: StrictInt = Field(...)
-    anchor_folders: StrictInt = Field(...)
-    isr_reports: StrictInt = Field(...)
+    This is the counts of things that users can add.
+    """ # noqa: E501
+    assets: StrictInt
+    tags: StrictInt
+    websites: StrictInt
+    persons: StrictInt
+    sensitives: StrictInt
+    shares: StrictInt
+    copilot_sends: StrictInt
+    copilot_receives: StrictInt
+    copilot_sessions: StrictInt
+    copilot_conversations: StrictInt
+    productivity_score: StrictInt
+    searches: StrictInt
+    references: StrictInt
+    reuses: StrictInt
+    anchor_files: StrictInt
+    anchor_folders: StrictInt
+    isr_reports: StrictInt
     requests: Optional[StrictInt] = None
-    __properties = ["assets", "tags", "websites", "persons", "sensitives", "shares", "copilot_sends", "copilot_receives", "copilot_sessions", "copilot_conversations", "productivity_score", "searches", "references", "reuses", "anchor_files", "anchor_folders", "isr_reports", "requests"]
+    __properties: ClassVar[List[str]] = ["assets", "tags", "websites", "persons", "sensitives", "shares", "copilot_sends", "copilot_receives", "copilot_sessions", "copilot_conversations", "productivity_score", "searches", "references", "reuses", "anchor_files", "anchor_folders", "isr_reports", "requests"]
 
-    class Config:
-        """Pydantic configuration"""
-        allow_population_by_field_name = True
-        validate_assignment = True
+    model_config = ConfigDict(
+        populate_by_name=True,
+        validate_assignment=True,
+        protected_namespaces=(),
+    )
+
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
+        # TODO: pydantic v2: use .model_dump_json(by_alias=True, exclude_unset=True) instead
         return json.dumps(self.to_dict())
 
     @classmethod
-    def from_json(cls, json_str: str) -> TrackedSummaryTotals:
+    def from_json(cls, json_str: str) -> Optional[Self]:
         """Create an instance of TrackedSummaryTotals from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
-    def to_dict(self):
-        """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
-                          exclude={
-                          },
-                          exclude_none=True)
+    def to_dict(self) -> Dict[str, Any]:
+        """Return the dictionary representation of the model using alias.
+
+        This has the following differences from calling pydantic's
+        `self.model_dump(by_alias=True)`:
+
+        * `None` is only added to the output dict for nullable fields that
+          were set at model initialization. Other fields with value `None`
+          are ignored.
+        """
+        excluded_fields: Set[str] = set([
+        ])
+
+        _dict = self.model_dump(
+            by_alias=True,
+            exclude=excluded_fields,
+            exclude_none=True,
+        )
         # set to None if requests (nullable) is None
-        # and __fields_set__ contains the field
-        if self.requests is None and "requests" in self.__fields_set__:
+        # and model_fields_set contains the field
+        if self.requests is None and "requests" in self.model_fields_set:
             _dict['requests'] = None
 
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> TrackedSummaryTotals:
+    def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
         """Create an instance of TrackedSummaryTotals from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
-            return TrackedSummaryTotals.parse_obj(obj)
+            return cls.model_validate(obj)
 
-        _obj = TrackedSummaryTotals.parse_obj({
+        _obj = cls.model_validate({
             "assets": obj.get("assets"),
             "tags": obj.get("tags"),
             "websites": obj.get("websites"),
