@@ -18,9 +18,8 @@ import pprint
 import re  # noqa: F401
 import json
 
-
-from typing import Optional
-from pydantic import BaseModel, Field, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictStr
+from typing import Any, ClassVar, Dict, List, Optional
 from pieces_os_client.models.activities import Activities
 from pieces_os_client.models.application import Application
 from pieces_os_client.models.byte_descriptor import ByteDescriptor
@@ -32,22 +31,24 @@ from pieces_os_client.models.fragment_format import FragmentFormat
 from pieces_os_client.models.grouped_timestamp import GroupedTimestamp
 from pieces_os_client.models.relationship import Relationship
 from pieces_os_client.models.role import Role
+from typing import Optional, Set
+from typing_extensions import Self
 
 class Format(BaseModel):
     """
-    A representation of Data for a particular Form Factor of an Asset.  Below asset HAS to be Flattened because it is a leaf node and must prevent cycles agressively.  # noqa: E501
-    """
+    A representation of Data for a particular Form Factor of an Asset.  Below asset HAS to be Flattened because it is a leaf node and must prevent cycles agressively.
+    """ # noqa: E501
     var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
-    id: StrictStr = Field(...)
-    creator: StrictStr = Field(...)
-    classification: Classification = Field(...)
+    id: StrictStr
+    creator: StrictStr
+    classification: Classification
     icon: Optional[StrictStr] = None
-    role: Role = Field(...)
-    application: Application = Field(...)
-    asset: FlattenedAsset = Field(...)
-    bytes: ByteDescriptor = Field(...)
-    created: GroupedTimestamp = Field(...)
-    updated: GroupedTimestamp = Field(...)
+    role: Role
+    application: Application
+    asset: FlattenedAsset
+    bytes: ByteDescriptor
+    created: GroupedTimestamp
+    updated: GroupedTimestamp
     deleted: Optional[GroupedTimestamp] = None
     synced: Optional[GroupedTimestamp] = None
     cloud: Optional[StrictStr] = Field(default=None, description="This is a path used to determine what path this format lives at within the cloud.")
@@ -56,32 +57,47 @@ class Format(BaseModel):
     analysis: Optional[Analysis] = None
     relationship: Optional[Relationship] = None
     activities: Optional[Activities] = None
-    __properties = ["schema", "id", "creator", "classification", "icon", "role", "application", "asset", "bytes", "created", "updated", "deleted", "synced", "cloud", "fragment", "file", "analysis", "relationship", "activities"]
+    __properties: ClassVar[List[str]] = ["schema", "id", "creator", "classification", "icon", "role", "application", "asset", "bytes", "created", "updated", "deleted", "synced", "cloud", "fragment", "file", "analysis", "relationship", "activities"]
 
-    class Config:
-        """Pydantic configuration"""
-        allow_population_by_field_name = True
-        validate_assignment = True
+    model_config = ConfigDict(
+        populate_by_name=True,
+        validate_assignment=True,
+        protected_namespaces=(),
+    )
+
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
+        # TODO: pydantic v2: use .model_dump_json(by_alias=True, exclude_unset=True) instead
         return json.dumps(self.to_dict())
 
     @classmethod
-    def from_json(cls, json_str: str) -> Format:
+    def from_json(cls, json_str: str) -> Optional[Self]:
         """Create an instance of Format from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
-    def to_dict(self):
-        """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
-                          exclude={
-                          },
-                          exclude_none=True)
+    def to_dict(self) -> Dict[str, Any]:
+        """Return the dictionary representation of the model using alias.
+
+        This has the following differences from calling pydantic's
+        `self.model_dump(by_alias=True)`:
+
+        * `None` is only added to the output dict for nullable fields that
+          were set at model initialization. Other fields with value `None`
+          are ignored.
+        """
+        excluded_fields: Set[str] = set([
+        ])
+
+        _dict = self.model_dump(
+            by_alias=True,
+            exclude=excluded_fields,
+            exclude_none=True,
+        )
         # override the default output from pydantic by calling `to_dict()` of var_schema
         if self.var_schema:
             _dict['schema'] = self.var_schema.to_dict()
@@ -127,37 +143,38 @@ class Format(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> Format:
+    def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
         """Create an instance of Format from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
-            return Format.parse_obj(obj)
+            return cls.model_validate(obj)
 
-        _obj = Format.parse_obj({
-            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
+        _obj = cls.model_validate({
+            "schema": EmbeddedModelSchema.from_dict(obj["schema"]) if obj.get("schema") is not None else None,
             "id": obj.get("id"),
             "creator": obj.get("creator"),
-            "classification": Classification.from_dict(obj.get("classification")) if obj.get("classification") is not None else None,
+            "classification": Classification.from_dict(obj["classification"]) if obj.get("classification") is not None else None,
             "icon": obj.get("icon"),
             "role": obj.get("role"),
-            "application": Application.from_dict(obj.get("application")) if obj.get("application") is not None else None,
-            "asset": FlattenedAsset.from_dict(obj.get("asset")) if obj.get("asset") is not None else None,
-            "bytes": ByteDescriptor.from_dict(obj.get("bytes")) if obj.get("bytes") is not None else None,
-            "created": GroupedTimestamp.from_dict(obj.get("created")) if obj.get("created") is not None else None,
-            "updated": GroupedTimestamp.from_dict(obj.get("updated")) if obj.get("updated") is not None else None,
-            "deleted": GroupedTimestamp.from_dict(obj.get("deleted")) if obj.get("deleted") is not None else None,
-            "synced": GroupedTimestamp.from_dict(obj.get("synced")) if obj.get("synced") is not None else None,
+            "application": Application.from_dict(obj["application"]) if obj.get("application") is not None else None,
+            "asset": FlattenedAsset.from_dict(obj["asset"]) if obj.get("asset") is not None else None,
+            "bytes": ByteDescriptor.from_dict(obj["bytes"]) if obj.get("bytes") is not None else None,
+            "created": GroupedTimestamp.from_dict(obj["created"]) if obj.get("created") is not None else None,
+            "updated": GroupedTimestamp.from_dict(obj["updated"]) if obj.get("updated") is not None else None,
+            "deleted": GroupedTimestamp.from_dict(obj["deleted"]) if obj.get("deleted") is not None else None,
+            "synced": GroupedTimestamp.from_dict(obj["synced"]) if obj.get("synced") is not None else None,
             "cloud": obj.get("cloud"),
-            "fragment": FragmentFormat.from_dict(obj.get("fragment")) if obj.get("fragment") is not None else None,
-            "file": FileFormat.from_dict(obj.get("file")) if obj.get("file") is not None else None,
-            "analysis": Analysis.from_dict(obj.get("analysis")) if obj.get("analysis") is not None else None,
-            "relationship": Relationship.from_dict(obj.get("relationship")) if obj.get("relationship") is not None else None,
-            "activities": Activities.from_dict(obj.get("activities")) if obj.get("activities") is not None else None
+            "fragment": FragmentFormat.from_dict(obj["fragment"]) if obj.get("fragment") is not None else None,
+            "file": FileFormat.from_dict(obj["file"]) if obj.get("file") is not None else None,
+            "analysis": Analysis.from_dict(obj["analysis"]) if obj.get("analysis") is not None else None,
+            "relationship": Relationship.from_dict(obj["relationship"]) if obj.get("relationship") is not None else None,
+            "activities": Activities.from_dict(obj["activities"]) if obj.get("activities") is not None else None
         })
         return _obj
 
 from pieces_os_client.models.analysis import Analysis
-Format.update_forward_refs()
+# TODO: Rewrite to not use raise_errors
+Format.model_rebuild(raise_errors=False)
 

@@ -18,17 +18,18 @@ import pprint
 import re  # noqa: F401
 import json
 
-
-from typing import Optional
-from pydantic import BaseModel
+from pydantic import BaseModel, ConfigDict
+from typing import Any, ClassVar, Dict, List, Optional
 from pieces_os_client.models.tracked_asset_event_creation_metadata import TrackedAssetEventCreationMetadata
 from pieces_os_client.models.tracked_asset_event_format_reclassification_metadata import TrackedAssetEventFormatReclassificationMetadata
 from pieces_os_client.models.tracked_asset_event_rename_metadata import TrackedAssetEventRenameMetadata
+from typing import Optional, Set
+from typing_extensions import Self
 
 class TrackedAssetEventMetadata(BaseModel):
     """
     TrackedAssetEventMetadata
-    """
+    """ # noqa: E501
     reclassification: Optional[TrackedAssetEventFormatReclassificationMetadata] = None
     creation: Optional[TrackedAssetEventCreationMetadata] = None
     rename: Optional[TrackedAssetEventRenameMetadata] = None
@@ -41,32 +42,47 @@ class TrackedAssetEventMetadata(BaseModel):
     annotation: Optional[ReferencedAnnotation] = None
     hint: Optional[ReferencedHint] = None
     anchor: Optional[ReferencedAnchor] = None
-    __properties = ["reclassification", "creation", "rename", "tag", "website", "person", "sensitive", "share", "search", "annotation", "hint", "anchor"]
+    __properties: ClassVar[List[str]] = ["reclassification", "creation", "rename", "tag", "website", "person", "sensitive", "share", "search", "annotation", "hint", "anchor"]
 
-    class Config:
-        """Pydantic configuration"""
-        allow_population_by_field_name = True
-        validate_assignment = True
+    model_config = ConfigDict(
+        populate_by_name=True,
+        validate_assignment=True,
+        protected_namespaces=(),
+    )
+
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
+        # TODO: pydantic v2: use .model_dump_json(by_alias=True, exclude_unset=True) instead
         return json.dumps(self.to_dict())
 
     @classmethod
-    def from_json(cls, json_str: str) -> TrackedAssetEventMetadata:
+    def from_json(cls, json_str: str) -> Optional[Self]:
         """Create an instance of TrackedAssetEventMetadata from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
-    def to_dict(self):
-        """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
-                          exclude={
-                          },
-                          exclude_none=True)
+    def to_dict(self) -> Dict[str, Any]:
+        """Return the dictionary representation of the model using alias.
+
+        This has the following differences from calling pydantic's
+        `self.model_dump(by_alias=True)`:
+
+        * `None` is only added to the output dict for nullable fields that
+          were set at model initialization. Other fields with value `None`
+          are ignored.
+        """
+        excluded_fields: Set[str] = set([
+        ])
+
+        _dict = self.model_dump(
+            by_alias=True,
+            exclude=excluded_fields,
+            exclude_none=True,
+        )
         # override the default output from pydantic by calling `to_dict()` of reclassification
         if self.reclassification:
             _dict['reclassification'] = self.reclassification.to_dict()
@@ -106,27 +122,27 @@ class TrackedAssetEventMetadata(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> TrackedAssetEventMetadata:
+    def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
         """Create an instance of TrackedAssetEventMetadata from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
-            return TrackedAssetEventMetadata.parse_obj(obj)
+            return cls.model_validate(obj)
 
-        _obj = TrackedAssetEventMetadata.parse_obj({
-            "reclassification": TrackedAssetEventFormatReclassificationMetadata.from_dict(obj.get("reclassification")) if obj.get("reclassification") is not None else None,
-            "creation": TrackedAssetEventCreationMetadata.from_dict(obj.get("creation")) if obj.get("creation") is not None else None,
-            "rename": TrackedAssetEventRenameMetadata.from_dict(obj.get("rename")) if obj.get("rename") is not None else None,
-            "tag": ReferencedTag.from_dict(obj.get("tag")) if obj.get("tag") is not None else None,
-            "website": ReferencedWebsite.from_dict(obj.get("website")) if obj.get("website") is not None else None,
-            "person": ReferencedPerson.from_dict(obj.get("person")) if obj.get("person") is not None else None,
-            "sensitive": ReferencedSensitive.from_dict(obj.get("sensitive")) if obj.get("sensitive") is not None else None,
-            "share": ReferencedShare.from_dict(obj.get("share")) if obj.get("share") is not None else None,
-            "search": TrackedAssetsEventSearchMetadata.from_dict(obj.get("search")) if obj.get("search") is not None else None,
-            "annotation": ReferencedAnnotation.from_dict(obj.get("annotation")) if obj.get("annotation") is not None else None,
-            "hint": ReferencedHint.from_dict(obj.get("hint")) if obj.get("hint") is not None else None,
-            "anchor": ReferencedAnchor.from_dict(obj.get("anchor")) if obj.get("anchor") is not None else None
+        _obj = cls.model_validate({
+            "reclassification": TrackedAssetEventFormatReclassificationMetadata.from_dict(obj["reclassification"]) if obj.get("reclassification") is not None else None,
+            "creation": TrackedAssetEventCreationMetadata.from_dict(obj["creation"]) if obj.get("creation") is not None else None,
+            "rename": TrackedAssetEventRenameMetadata.from_dict(obj["rename"]) if obj.get("rename") is not None else None,
+            "tag": ReferencedTag.from_dict(obj["tag"]) if obj.get("tag") is not None else None,
+            "website": ReferencedWebsite.from_dict(obj["website"]) if obj.get("website") is not None else None,
+            "person": ReferencedPerson.from_dict(obj["person"]) if obj.get("person") is not None else None,
+            "sensitive": ReferencedSensitive.from_dict(obj["sensitive"]) if obj.get("sensitive") is not None else None,
+            "share": ReferencedShare.from_dict(obj["share"]) if obj.get("share") is not None else None,
+            "search": TrackedAssetsEventSearchMetadata.from_dict(obj["search"]) if obj.get("search") is not None else None,
+            "annotation": ReferencedAnnotation.from_dict(obj["annotation"]) if obj.get("annotation") is not None else None,
+            "hint": ReferencedHint.from_dict(obj["hint"]) if obj.get("hint") is not None else None,
+            "anchor": ReferencedAnchor.from_dict(obj["anchor"]) if obj.get("anchor") is not None else None
         })
         return _obj
 
@@ -139,5 +155,6 @@ from pieces_os_client.models.referenced_share import ReferencedShare
 from pieces_os_client.models.referenced_tag import ReferencedTag
 from pieces_os_client.models.referenced_website import ReferencedWebsite
 from pieces_os_client.models.tracked_assets_event_search_metadata import TrackedAssetsEventSearchMetadata
-TrackedAssetEventMetadata.update_forward_refs()
+# TODO: Rewrite to not use raise_errors
+TrackedAssetEventMetadata.model_rebuild(raise_errors=False)
 

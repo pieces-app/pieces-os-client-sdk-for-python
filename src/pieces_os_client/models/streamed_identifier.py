@@ -18,9 +18,8 @@ import pprint
 import re  # noqa: F401
 import json
 
-
-from typing import Optional
-from pydantic import BaseModel, Field, StrictBool
+from pydantic import BaseModel, ConfigDict, Field, StrictBool
+from typing import Any, ClassVar, Dict, List, Optional
 from pieces_os_client.models.referenced_activity import ReferencedActivity
 from pieces_os_client.models.referenced_anchor import ReferencedAnchor
 from pieces_os_client.models.referenced_anchor_point import ReferencedAnchorPoint
@@ -38,11 +37,14 @@ from pieces_os_client.models.referenced_range import ReferencedRange
 from pieces_os_client.models.referenced_sensitive import ReferencedSensitive
 from pieces_os_client.models.referenced_tag import ReferencedTag
 from pieces_os_client.models.referenced_website import ReferencedWebsite
+from pieces_os_client.models.referenced_workstream_summary import ReferencedWorkstreamSummary
+from typing import Optional, Set
+from typing_extensions import Self
 
 class StreamedIdentifier(BaseModel):
     """
-    This is currently only used within /assets/steam/identifiers && /conversations/steam/identifiers && annotations but can be used with other as well, if we want to expand this class.  # noqa: E501
-    """
+    This is currently only used within /assets/steam/identifiers && /conversations/steam/identifiers && annotations but can be used with other as well, if we want to expand this class.
+    """ # noqa: E501
     asset: Optional[ReferencedAsset] = None
     conversation: Optional[ReferencedConversation] = None
     annotation: Optional[ReferencedAnnotation] = None
@@ -59,34 +61,50 @@ class StreamedIdentifier(BaseModel):
     website: Optional[ReferencedWebsite] = None
     application: Optional[ReferencedApplication] = None
     model: Optional[ReferencedModel] = None
+    workstream_summary: Optional[ReferencedWorkstreamSummary] = None
     workstream_pattern_engine_source: Optional[ReferencedIdentifiedWorkstreamPatternEngineSource] = Field(default=None, alias="workstreamPatternEngineSource")
     deleted: Optional[StrictBool] = Field(default=None, description="This is a specific bool that will let us know if we deleted an Identifierfrom the db.")
-    __properties = ["asset", "conversation", "annotation", "activity", "anchor", "anchorPoint", "hint", "conversationMessage", "format", "person", "range", "sensitive", "tag", "website", "application", "model", "workstreamPatternEngineSource", "deleted"]
+    __properties: ClassVar[List[str]] = ["asset", "conversation", "annotation", "activity", "anchor", "anchorPoint", "hint", "conversationMessage", "format", "person", "range", "sensitive", "tag", "website", "application", "model", "workstream_summary", "workstreamPatternEngineSource", "deleted"]
 
-    class Config:
-        """Pydantic configuration"""
-        allow_population_by_field_name = True
-        validate_assignment = True
+    model_config = ConfigDict(
+        populate_by_name=True,
+        validate_assignment=True,
+        protected_namespaces=(),
+    )
+
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
+        # TODO: pydantic v2: use .model_dump_json(by_alias=True, exclude_unset=True) instead
         return json.dumps(self.to_dict())
 
     @classmethod
-    def from_json(cls, json_str: str) -> StreamedIdentifier:
+    def from_json(cls, json_str: str) -> Optional[Self]:
         """Create an instance of StreamedIdentifier from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
-    def to_dict(self):
-        """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
-                          exclude={
-                          },
-                          exclude_none=True)
+    def to_dict(self) -> Dict[str, Any]:
+        """Return the dictionary representation of the model using alias.
+
+        This has the following differences from calling pydantic's
+        `self.model_dump(by_alias=True)`:
+
+        * `None` is only added to the output dict for nullable fields that
+          were set at model initialization. Other fields with value `None`
+          are ignored.
+        """
+        excluded_fields: Set[str] = set([
+        ])
+
+        _dict = self.model_dump(
+            by_alias=True,
+            exclude=excluded_fields,
+            exclude_none=True,
+        )
         # override the default output from pydantic by calling `to_dict()` of asset
         if self.asset:
             _dict['asset'] = self.asset.to_dict()
@@ -135,38 +153,42 @@ class StreamedIdentifier(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of model
         if self.model:
             _dict['model'] = self.model.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of workstream_summary
+        if self.workstream_summary:
+            _dict['workstream_summary'] = self.workstream_summary.to_dict()
         # override the default output from pydantic by calling `to_dict()` of workstream_pattern_engine_source
         if self.workstream_pattern_engine_source:
             _dict['workstreamPatternEngineSource'] = self.workstream_pattern_engine_source.to_dict()
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> StreamedIdentifier:
+    def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
         """Create an instance of StreamedIdentifier from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
-            return StreamedIdentifier.parse_obj(obj)
+            return cls.model_validate(obj)
 
-        _obj = StreamedIdentifier.parse_obj({
-            "asset": ReferencedAsset.from_dict(obj.get("asset")) if obj.get("asset") is not None else None,
-            "conversation": ReferencedConversation.from_dict(obj.get("conversation")) if obj.get("conversation") is not None else None,
-            "annotation": ReferencedAnnotation.from_dict(obj.get("annotation")) if obj.get("annotation") is not None else None,
-            "activity": ReferencedActivity.from_dict(obj.get("activity")) if obj.get("activity") is not None else None,
-            "anchor": ReferencedAnchor.from_dict(obj.get("anchor")) if obj.get("anchor") is not None else None,
-            "anchor_point": ReferencedAnchorPoint.from_dict(obj.get("anchorPoint")) if obj.get("anchorPoint") is not None else None,
-            "hint": ReferencedHint.from_dict(obj.get("hint")) if obj.get("hint") is not None else None,
-            "conversation_message": ReferencedConversationMessage.from_dict(obj.get("conversationMessage")) if obj.get("conversationMessage") is not None else None,
-            "format": ReferencedFormat.from_dict(obj.get("format")) if obj.get("format") is not None else None,
-            "person": ReferencedPerson.from_dict(obj.get("person")) if obj.get("person") is not None else None,
-            "range": ReferencedRange.from_dict(obj.get("range")) if obj.get("range") is not None else None,
-            "sensitive": ReferencedSensitive.from_dict(obj.get("sensitive")) if obj.get("sensitive") is not None else None,
-            "tag": ReferencedTag.from_dict(obj.get("tag")) if obj.get("tag") is not None else None,
-            "website": ReferencedWebsite.from_dict(obj.get("website")) if obj.get("website") is not None else None,
-            "application": ReferencedApplication.from_dict(obj.get("application")) if obj.get("application") is not None else None,
-            "model": ReferencedModel.from_dict(obj.get("model")) if obj.get("model") is not None else None,
-            "workstream_pattern_engine_source": ReferencedIdentifiedWorkstreamPatternEngineSource.from_dict(obj.get("workstreamPatternEngineSource")) if obj.get("workstreamPatternEngineSource") is not None else None,
+        _obj = cls.model_validate({
+            "asset": ReferencedAsset.from_dict(obj["asset"]) if obj.get("asset") is not None else None,
+            "conversation": ReferencedConversation.from_dict(obj["conversation"]) if obj.get("conversation") is not None else None,
+            "annotation": ReferencedAnnotation.from_dict(obj["annotation"]) if obj.get("annotation") is not None else None,
+            "activity": ReferencedActivity.from_dict(obj["activity"]) if obj.get("activity") is not None else None,
+            "anchor": ReferencedAnchor.from_dict(obj["anchor"]) if obj.get("anchor") is not None else None,
+            "anchorPoint": ReferencedAnchorPoint.from_dict(obj["anchorPoint"]) if obj.get("anchorPoint") is not None else None,
+            "hint": ReferencedHint.from_dict(obj["hint"]) if obj.get("hint") is not None else None,
+            "conversationMessage": ReferencedConversationMessage.from_dict(obj["conversationMessage"]) if obj.get("conversationMessage") is not None else None,
+            "format": ReferencedFormat.from_dict(obj["format"]) if obj.get("format") is not None else None,
+            "person": ReferencedPerson.from_dict(obj["person"]) if obj.get("person") is not None else None,
+            "range": ReferencedRange.from_dict(obj["range"]) if obj.get("range") is not None else None,
+            "sensitive": ReferencedSensitive.from_dict(obj["sensitive"]) if obj.get("sensitive") is not None else None,
+            "tag": ReferencedTag.from_dict(obj["tag"]) if obj.get("tag") is not None else None,
+            "website": ReferencedWebsite.from_dict(obj["website"]) if obj.get("website") is not None else None,
+            "application": ReferencedApplication.from_dict(obj["application"]) if obj.get("application") is not None else None,
+            "model": ReferencedModel.from_dict(obj["model"]) if obj.get("model") is not None else None,
+            "workstream_summary": ReferencedWorkstreamSummary.from_dict(obj["workstream_summary"]) if obj.get("workstream_summary") is not None else None,
+            "workstreamPatternEngineSource": ReferencedIdentifiedWorkstreamPatternEngineSource.from_dict(obj["workstreamPatternEngineSource"]) if obj.get("workstreamPatternEngineSource") is not None else None,
             "deleted": obj.get("deleted")
         })
         return _obj

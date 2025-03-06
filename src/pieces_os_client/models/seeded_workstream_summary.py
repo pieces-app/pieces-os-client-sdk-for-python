@@ -18,63 +18,85 @@ import pprint
 import re  # noqa: F401
 import json
 
-
-from typing import List, Optional
-from pydantic import BaseModel, Field, StrictStr, conlist
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictFloat, StrictInt, StrictStr
+from typing import Any, ClassVar, Dict, List, Optional, Union
 from pieces_os_client.models.applications import Applications
+from pieces_os_client.models.capabilities_enum import CapabilitiesEnum
 from pieces_os_client.models.embedded_model_schema import EmbeddedModelSchema
 from pieces_os_client.models.flattened_anchors import FlattenedAnchors
 from pieces_os_client.models.flattened_assets import FlattenedAssets
 from pieces_os_client.models.flattened_conversations import FlattenedConversations
 from pieces_os_client.models.flattened_persons import FlattenedPersons
 from pieces_os_client.models.flattened_ranges import FlattenedRanges
+from pieces_os_client.models.flattened_tags import FlattenedTags
 from pieces_os_client.models.flattened_websites import FlattenedWebsites
 from pieces_os_client.models.flattened_workstream_events import FlattenedWorkstreamEvents
 from pieces_os_client.models.model import Model
 from pieces_os_client.models.seeded_annotation import SeededAnnotation
+from typing import Optional, Set
+from typing_extensions import Self
 
 class SeededWorkstreamSummary(BaseModel):
     """
-    This is a seeded version of a WorkstreamSummary  # noqa: E501
-    """
+    This is a seeded version of a WorkstreamSummary Note: sources for the summary will be calculated based on the events used
+    """ # noqa: E501
     var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     events: Optional[FlattenedWorkstreamEvents] = None
-    name: StrictStr = Field(...)
-    annotations: Optional[conlist(SeededAnnotation)] = None
+    name: StrictStr
+    annotations: Optional[List[SeededAnnotation]] = None
     ranges: Optional[FlattenedRanges] = None
-    model: Model = Field(...)
+    model: Model
     websites: Optional[FlattenedWebsites] = None
     anchors: Optional[FlattenedAnchors] = None
     assets: Optional[FlattenedAssets] = None
     conversations: Optional[FlattenedConversations] = None
     persons: Optional[FlattenedPersons] = None
+    tags: Optional[FlattenedTags] = None
     applications: Optional[Applications] = None
-    __properties = ["schema", "events", "name", "annotations", "ranges", "model", "websites", "anchors", "assets", "conversations", "persons", "applications"]
+    workstream_summaries_vector: Optional[List[Union[StrictFloat, StrictInt]]] = Field(default=None, description="This is the embedding for the format.(NEEDs to connection.vector) and specific here because we can only index on a single name", alias="workstreamSummariesVector")
+    processing: Optional[CapabilitiesEnum] = None
+    favorited: Optional[StrictBool] = None
+    __properties: ClassVar[List[str]] = ["schema", "events", "name", "annotations", "ranges", "model", "websites", "anchors", "assets", "conversations", "persons", "tags", "applications", "workstreamSummariesVector", "processing", "favorited"]
 
-    class Config:
-        """Pydantic configuration"""
-        allow_population_by_field_name = True
-        validate_assignment = True
+    model_config = ConfigDict(
+        populate_by_name=True,
+        validate_assignment=True,
+        protected_namespaces=(),
+    )
+
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
+        # TODO: pydantic v2: use .model_dump_json(by_alias=True, exclude_unset=True) instead
         return json.dumps(self.to_dict())
 
     @classmethod
-    def from_json(cls, json_str: str) -> SeededWorkstreamSummary:
+    def from_json(cls, json_str: str) -> Optional[Self]:
         """Create an instance of SeededWorkstreamSummary from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
-    def to_dict(self):
-        """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
-                          exclude={
-                          },
-                          exclude_none=True)
+    def to_dict(self) -> Dict[str, Any]:
+        """Return the dictionary representation of the model using alias.
+
+        This has the following differences from calling pydantic's
+        `self.model_dump(by_alias=True)`:
+
+        * `None` is only added to the output dict for nullable fields that
+          were set at model initialization. Other fields with value `None`
+          are ignored.
+        """
+        excluded_fields: Set[str] = set([
+        ])
+
+        _dict = self.model_dump(
+            by_alias=True,
+            exclude=excluded_fields,
+            exclude_none=True,
+        )
         # override the default output from pydantic by calling `to_dict()` of var_schema
         if self.var_schema:
             _dict['schema'] = self.var_schema.to_dict()
@@ -84,9 +106,9 @@ class SeededWorkstreamSummary(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of each item in annotations (list)
         _items = []
         if self.annotations:
-            for _item in self.annotations:
-                if _item:
-                    _items.append(_item.to_dict())
+            for _item_annotations in self.annotations:
+                if _item_annotations:
+                    _items.append(_item_annotations.to_dict())
             _dict['annotations'] = _items
         # override the default output from pydantic by calling `to_dict()` of ranges
         if self.ranges:
@@ -109,33 +131,40 @@ class SeededWorkstreamSummary(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of persons
         if self.persons:
             _dict['persons'] = self.persons.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of tags
+        if self.tags:
+            _dict['tags'] = self.tags.to_dict()
         # override the default output from pydantic by calling `to_dict()` of applications
         if self.applications:
             _dict['applications'] = self.applications.to_dict()
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> SeededWorkstreamSummary:
+    def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
         """Create an instance of SeededWorkstreamSummary from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
-            return SeededWorkstreamSummary.parse_obj(obj)
+            return cls.model_validate(obj)
 
-        _obj = SeededWorkstreamSummary.parse_obj({
-            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
-            "events": FlattenedWorkstreamEvents.from_dict(obj.get("events")) if obj.get("events") is not None else None,
+        _obj = cls.model_validate({
+            "schema": EmbeddedModelSchema.from_dict(obj["schema"]) if obj.get("schema") is not None else None,
+            "events": FlattenedWorkstreamEvents.from_dict(obj["events"]) if obj.get("events") is not None else None,
             "name": obj.get("name"),
-            "annotations": [SeededAnnotation.from_dict(_item) for _item in obj.get("annotations")] if obj.get("annotations") is not None else None,
-            "ranges": FlattenedRanges.from_dict(obj.get("ranges")) if obj.get("ranges") is not None else None,
-            "model": Model.from_dict(obj.get("model")) if obj.get("model") is not None else None,
-            "websites": FlattenedWebsites.from_dict(obj.get("websites")) if obj.get("websites") is not None else None,
-            "anchors": FlattenedAnchors.from_dict(obj.get("anchors")) if obj.get("anchors") is not None else None,
-            "assets": FlattenedAssets.from_dict(obj.get("assets")) if obj.get("assets") is not None else None,
-            "conversations": FlattenedConversations.from_dict(obj.get("conversations")) if obj.get("conversations") is not None else None,
-            "persons": FlattenedPersons.from_dict(obj.get("persons")) if obj.get("persons") is not None else None,
-            "applications": Applications.from_dict(obj.get("applications")) if obj.get("applications") is not None else None
+            "annotations": [SeededAnnotation.from_dict(_item) for _item in obj["annotations"]] if obj.get("annotations") is not None else None,
+            "ranges": FlattenedRanges.from_dict(obj["ranges"]) if obj.get("ranges") is not None else None,
+            "model": Model.from_dict(obj["model"]) if obj.get("model") is not None else None,
+            "websites": FlattenedWebsites.from_dict(obj["websites"]) if obj.get("websites") is not None else None,
+            "anchors": FlattenedAnchors.from_dict(obj["anchors"]) if obj.get("anchors") is not None else None,
+            "assets": FlattenedAssets.from_dict(obj["assets"]) if obj.get("assets") is not None else None,
+            "conversations": FlattenedConversations.from_dict(obj["conversations"]) if obj.get("conversations") is not None else None,
+            "persons": FlattenedPersons.from_dict(obj["persons"]) if obj.get("persons") is not None else None,
+            "tags": FlattenedTags.from_dict(obj["tags"]) if obj.get("tags") is not None else None,
+            "applications": Applications.from_dict(obj["applications"]) if obj.get("applications") is not None else None,
+            "workstreamSummariesVector": obj.get("workstreamSummariesVector"),
+            "processing": obj.get("processing"),
+            "favorited": obj.get("favorited")
         })
         return _obj
 

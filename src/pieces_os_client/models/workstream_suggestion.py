@@ -18,9 +18,8 @@ import pprint
 import re  # noqa: F401
 import json
 
-
-from typing import Optional
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, ConfigDict, Field
+from typing import Any, ClassVar, Dict, List, Optional
 from pieces_os_client.models.embedded_model_schema import EmbeddedModelSchema
 from pieces_os_client.models.flattened_anchors import FlattenedAnchors
 from pieces_os_client.models.flattened_assets import FlattenedAssets
@@ -38,11 +37,13 @@ from pieces_os_client.models.referenced_website import ReferencedWebsite
 from pieces_os_client.models.referenced_workstream_summary import ReferencedWorkstreamSummary
 from pieces_os_client.models.seed import Seed
 from pieces_os_client.models.seeds import Seeds
+from typing import Optional, Set
+from typing_extensions import Self
 
 class WorkstreamSuggestion(BaseModel):
     """
-    This is an individual material that is apart of the workstream feed. might want to also consider plural uuids ie top websites/tags/and others..  related: this is an optional field that will only be calculated for first degree relationships.          ie. an anchor may have related.iterable.first.persons that are not associated but related.          via the workstream patturn engine.  current: if current is defined then this is the current viewed object  # noqa: E501
-    """
+    This is an individual material that is apart of the workstream feed. might want to also consider plural uuids ie top websites/tags/and others..  related: this is an optional field that will only be calculated for first degree relationships.          ie. an anchor may have related.iterable.first.persons that are not associated but related.          via the workstream patturn engine.  current: if current is defined then this is the current viewed object
+    """ # noqa: E501
     var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     summary: Optional[ReferencedWorkstreamSummary] = None
     asset: Optional[ReferencedAsset] = None
@@ -62,32 +63,47 @@ class WorkstreamSuggestion(BaseModel):
     persons: Optional[FlattenedPersons] = None
     related: Optional[WorkstreamSuggestions] = None
     current: Optional[WorkstreamSuggestion] = None
-    __properties = ["schema", "summary", "asset", "tag", "website", "anchor", "conversation", "person", "seed", "seeds", "summaries", "assets", "tags", "websites", "anchors", "conversations", "persons", "related", "current"]
+    __properties: ClassVar[List[str]] = ["schema", "summary", "asset", "tag", "website", "anchor", "conversation", "person", "seed", "seeds", "summaries", "assets", "tags", "websites", "anchors", "conversations", "persons", "related", "current"]
 
-    class Config:
-        """Pydantic configuration"""
-        allow_population_by_field_name = True
-        validate_assignment = True
+    model_config = ConfigDict(
+        populate_by_name=True,
+        validate_assignment=True,
+        protected_namespaces=(),
+    )
+
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
+        # TODO: pydantic v2: use .model_dump_json(by_alias=True, exclude_unset=True) instead
         return json.dumps(self.to_dict())
 
     @classmethod
-    def from_json(cls, json_str: str) -> WorkstreamSuggestion:
+    def from_json(cls, json_str: str) -> Optional[Self]:
         """Create an instance of WorkstreamSuggestion from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
-    def to_dict(self):
-        """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
-                          exclude={
-                          },
-                          exclude_none=True)
+    def to_dict(self) -> Dict[str, Any]:
+        """Return the dictionary representation of the model using alias.
+
+        This has the following differences from calling pydantic's
+        `self.model_dump(by_alias=True)`:
+
+        * `None` is only added to the output dict for nullable fields that
+          were set at model initialization. Other fields with value `None`
+          are ignored.
+        """
+        excluded_fields: Set[str] = set([
+        ])
+
+        _dict = self.model_dump(
+            by_alias=True,
+            exclude=excluded_fields,
+            exclude_none=True,
+        )
         # override the default output from pydantic by calling `to_dict()` of var_schema
         if self.var_schema:
             _dict['schema'] = self.var_schema.to_dict()
@@ -148,37 +164,38 @@ class WorkstreamSuggestion(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> WorkstreamSuggestion:
+    def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
         """Create an instance of WorkstreamSuggestion from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
-            return WorkstreamSuggestion.parse_obj(obj)
+            return cls.model_validate(obj)
 
-        _obj = WorkstreamSuggestion.parse_obj({
-            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
-            "summary": ReferencedWorkstreamSummary.from_dict(obj.get("summary")) if obj.get("summary") is not None else None,
-            "asset": ReferencedAsset.from_dict(obj.get("asset")) if obj.get("asset") is not None else None,
-            "tag": ReferencedTag.from_dict(obj.get("tag")) if obj.get("tag") is not None else None,
-            "website": ReferencedWebsite.from_dict(obj.get("website")) if obj.get("website") is not None else None,
-            "anchor": ReferencedAnchor.from_dict(obj.get("anchor")) if obj.get("anchor") is not None else None,
-            "conversation": ReferencedConversation.from_dict(obj.get("conversation")) if obj.get("conversation") is not None else None,
-            "person": ReferencedPerson.from_dict(obj.get("person")) if obj.get("person") is not None else None,
-            "seed": Seed.from_dict(obj.get("seed")) if obj.get("seed") is not None else None,
-            "seeds": Seeds.from_dict(obj.get("seeds")) if obj.get("seeds") is not None else None,
-            "summaries": FlattenedWorkstreamSummaries.from_dict(obj.get("summaries")) if obj.get("summaries") is not None else None,
-            "assets": FlattenedAssets.from_dict(obj.get("assets")) if obj.get("assets") is not None else None,
-            "tags": FlattenedTags.from_dict(obj.get("tags")) if obj.get("tags") is not None else None,
-            "websites": FlattenedWebsites.from_dict(obj.get("websites")) if obj.get("websites") is not None else None,
-            "anchors": FlattenedAnchors.from_dict(obj.get("anchors")) if obj.get("anchors") is not None else None,
-            "conversations": FlattenedConversations.from_dict(obj.get("conversations")) if obj.get("conversations") is not None else None,
-            "persons": FlattenedPersons.from_dict(obj.get("persons")) if obj.get("persons") is not None else None,
-            "related": WorkstreamSuggestions.from_dict(obj.get("related")) if obj.get("related") is not None else None,
-            "current": WorkstreamSuggestion.from_dict(obj.get("current")) if obj.get("current") is not None else None
+        _obj = cls.model_validate({
+            "schema": EmbeddedModelSchema.from_dict(obj["schema"]) if obj.get("schema") is not None else None,
+            "summary": ReferencedWorkstreamSummary.from_dict(obj["summary"]) if obj.get("summary") is not None else None,
+            "asset": ReferencedAsset.from_dict(obj["asset"]) if obj.get("asset") is not None else None,
+            "tag": ReferencedTag.from_dict(obj["tag"]) if obj.get("tag") is not None else None,
+            "website": ReferencedWebsite.from_dict(obj["website"]) if obj.get("website") is not None else None,
+            "anchor": ReferencedAnchor.from_dict(obj["anchor"]) if obj.get("anchor") is not None else None,
+            "conversation": ReferencedConversation.from_dict(obj["conversation"]) if obj.get("conversation") is not None else None,
+            "person": ReferencedPerson.from_dict(obj["person"]) if obj.get("person") is not None else None,
+            "seed": Seed.from_dict(obj["seed"]) if obj.get("seed") is not None else None,
+            "seeds": Seeds.from_dict(obj["seeds"]) if obj.get("seeds") is not None else None,
+            "summaries": FlattenedWorkstreamSummaries.from_dict(obj["summaries"]) if obj.get("summaries") is not None else None,
+            "assets": FlattenedAssets.from_dict(obj["assets"]) if obj.get("assets") is not None else None,
+            "tags": FlattenedTags.from_dict(obj["tags"]) if obj.get("tags") is not None else None,
+            "websites": FlattenedWebsites.from_dict(obj["websites"]) if obj.get("websites") is not None else None,
+            "anchors": FlattenedAnchors.from_dict(obj["anchors"]) if obj.get("anchors") is not None else None,
+            "conversations": FlattenedConversations.from_dict(obj["conversations"]) if obj.get("conversations") is not None else None,
+            "persons": FlattenedPersons.from_dict(obj["persons"]) if obj.get("persons") is not None else None,
+            "related": WorkstreamSuggestions.from_dict(obj["related"]) if obj.get("related") is not None else None,
+            "current": WorkstreamSuggestion.from_dict(obj["current"]) if obj.get("current") is not None else None
         })
         return _obj
 
 from pieces_os_client.models.workstream_suggestions import WorkstreamSuggestions
-WorkstreamSuggestion.update_forward_refs()
+# TODO: Rewrite to not use raise_errors
+WorkstreamSuggestion.model_rebuild(raise_errors=False)
 
