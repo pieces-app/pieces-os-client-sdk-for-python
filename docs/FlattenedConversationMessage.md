@@ -20,6 +20,13 @@ Name | Type | Description | Notes
 **anchors** | [**FlattenedAnchors**](FlattenedAnchors.md) |  | [optional] 
 **persons** | [**FlattenedPersons**](FlattenedPersons.md) |  | [optional] 
 **websites** | [**FlattenedWebsites**](FlattenedWebsites.md) |  | [optional] 
+**assets** | [**FlattenedAssets**](FlattenedAssets.md) |  | [optional] 
+**ranges** | [**FlattenedRanges**](FlattenedRanges.md) |  | [optional] 
+**summaries** | [**FlattenedWorkstreamSummaries**](FlattenedWorkstreamSummaries.md) |  | [optional] 
+**tags** | [**FlattenedTags**](FlattenedTags.md) |  | [optional] 
+**messages** | [**FlattenedConversationMessages**](FlattenedConversationMessages.md) |  | [optional] 
+**workstream_events** | [**FlattenedWorkstreamEvents**](FlattenedWorkstreamEvents.md) |  | [optional] 
+**sources** | [**FlattenedIdentifiedWorkstreamPatternEngineSources**](FlattenedIdentifiedWorkstreamPatternEngineSources.md) |  | [optional] 
 
 ## Example
 

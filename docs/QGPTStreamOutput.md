@@ -14,6 +14,7 @@ Name | Type | Description | Notes
 **error_message** | **str** | optional error message is the status code is NOT 200 | [optional] 
 **agent_routes** | [**QGPTAgentRoutes**](QGPTAgentRoutes.md) |  | [optional] 
 **extracted** | [**QGPTStreamedOutputExtractedMaterials**](QGPTStreamedOutputExtractedMaterials.md) |  | [optional] 
+**migration** | [**MigrationProgress**](MigrationProgress.md) |  | [optional] 
 
 ## Example
 

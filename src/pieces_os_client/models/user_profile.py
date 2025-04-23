@@ -24,6 +24,7 @@ from pydantic import BaseModel, Field, StrictStr
 from pieces_os_client.models.aesthetics import Aesthetics
 from pieces_os_client.models.allocation_cloud import AllocationCloud
 from pieces_os_client.models.auth0_user_metadata import Auth0UserMetadata
+from pieces_os_client.models.descope_user_metadata import DescopeUserMetadata
 from pieces_os_client.models.embedded_model_schema import EmbeddedModelSchema
 from pieces_os_client.models.external_providers import ExternalProviders
 from pieces_os_client.models.grouped_timestamp import GroupedTimestamp
@@ -45,7 +46,8 @@ class UserProfile(BaseModel):
     allocation: Optional[AllocationCloud] = None
     providers: Optional[ExternalProviders] = None
     auth0: Optional[Auth0UserMetadata] = None
-    __properties = ["schema", "picture", "email", "created", "updated", "username", "id", "name", "aesthetics", "vanityname", "allocation", "providers", "auth0"]
+    descope: Optional[DescopeUserMetadata] = None
+    __properties = ["schema", "picture", "email", "created", "updated", "username", "id", "name", "aesthetics", "vanityname", "allocation", "providers", "auth0", "descope"]
 
     class Config:
         """Pydantic configuration"""
@@ -92,6 +94,9 @@ class UserProfile(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of auth0
         if self.auth0:
             _dict['auth0'] = self.auth0.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of descope
+        if self.descope:
+            _dict['descope'] = self.descope.to_dict()
         return _dict
 
     @classmethod
@@ -116,7 +121,8 @@ class UserProfile(BaseModel):
             "vanityname": obj.get("vanityname"),
             "allocation": AllocationCloud.from_dict(obj.get("allocation")) if obj.get("allocation") is not None else None,
             "providers": ExternalProviders.from_dict(obj.get("providers")) if obj.get("providers") is not None else None,
-            "auth0": Auth0UserMetadata.from_dict(obj.get("auth0")) if obj.get("auth0") is not None else None
+            "auth0": Auth0UserMetadata.from_dict(obj.get("auth0")) if obj.get("auth0") is not None else None,
+            "descope": DescopeUserMetadata.from_dict(obj.get("descope")) if obj.get("descope") is not None else None
         })
         return _obj
 

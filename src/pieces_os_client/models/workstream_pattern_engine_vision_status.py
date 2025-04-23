@@ -20,18 +20,21 @@ import json
 
 
 from typing import Optional
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, StrictBool
 from pieces_os_client.models.anonymous_temporal_range import AnonymousTemporalRange
 from pieces_os_client.models.embedded_model_schema import EmbeddedModelSchema
+from pieces_os_client.models.migration_progress import MigrationProgress
 
 class WorkstreamPatternEngineVisionStatus(BaseModel):
     """
-    activation: can be active for forever w/ continous true, or it can be activated for the next couple hours  deactivation: here can be deactivated for forever w/ continuous true, or it can be deactivated for the next couple hours  Note: one or the other will be set and both are nullable.  # noqa: E501
+    activation: can be active for forever w/ continous true, or it can be activated for the next couple hours  deactivation: here can be deactivated for forever w/ continuous true, or it can be deactivated for the next couple hours  Note: one or the other will be set and both are nullable.  degraded: this is a boolean that will let the products know if we will be operating in a degraded experience (this            means that there was hardware requirements that caused vector searching to fail, therefor we will need to operate           in a slower, and more memory consumption manner)  # noqa: E501
     """
     var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     activation: Optional[AnonymousTemporalRange] = None
     deactivation: Optional[AnonymousTemporalRange] = None
-    __properties = ["schema", "activation", "deactivation"]
+    degraded: Optional[StrictBool] = None
+    migration: Optional[MigrationProgress] = None
+    __properties = ["schema", "activation", "deactivation", "degraded", "migration"]
 
     class Config:
         """Pydantic configuration"""
@@ -66,6 +69,9 @@ class WorkstreamPatternEngineVisionStatus(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of deactivation
         if self.deactivation:
             _dict['deactivation'] = self.deactivation.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of migration
+        if self.migration:
+            _dict['migration'] = self.migration.to_dict()
         return _dict
 
     @classmethod
@@ -80,7 +86,9 @@ class WorkstreamPatternEngineVisionStatus(BaseModel):
         _obj = WorkstreamPatternEngineVisionStatus.parse_obj({
             "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
             "activation": AnonymousTemporalRange.from_dict(obj.get("activation")) if obj.get("activation") is not None else None,
-            "deactivation": AnonymousTemporalRange.from_dict(obj.get("deactivation")) if obj.get("deactivation") is not None else None
+            "deactivation": AnonymousTemporalRange.from_dict(obj.get("deactivation")) if obj.get("deactivation") is not None else None,
+            "degraded": obj.get("degraded"),
+            "migration": MigrationProgress.from_dict(obj.get("migration")) if obj.get("migration") is not None else None
         })
         return _obj
 

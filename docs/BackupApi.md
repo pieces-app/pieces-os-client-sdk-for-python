@@ -99,6 +99,8 @@ void (empty response body)
 
 /backup/asset [POST]
 
+
+
 ### Example
 
 * Api Key Authentication (application):
@@ -175,7 +177,11 @@ void (empty response body)
 
 /backup/{backup}/restore [POST]
 
-Given a backup identifier version_timestamp.  we will restore a given backup from the cloud and override your local database!!!  NOTE!!!! This will NOT sync, ie all local snippets will get replaced with the restored database.
+Given a backup identifier version_timestamp.
+
+we will restore a given backup from the cloud and override your local database!!!
+
+NOTE!!!! This will NOT sync, ie all local snippets will get replaced with the restored database.
 
 ### Example
 
@@ -258,7 +264,9 @@ Name | Type | Description  | Notes
 
 /backup/{backup}/restore/streamed [POST]
 
-This take a local database and ensure that it is backed up to the cloud.  NOTE: This is a streamed version of the /backups/<backup>/restore. and Since the Generator is unable to generate a streamed endpoint. this is a place holder, and will need to be implemented isolated from the code generator.
+This take a local database and ensure that it is backed up to the cloud.
+
+NOTE: This is a streamed version of the /backups/<backup>/restore. and Since the Generator is unable to generate a streamed endpoint. this is a place holder, and will need to be implemented isolated from the code generator.
 
 ### Example
 
@@ -342,7 +350,9 @@ Name | Type | Description  | Notes
 
 /backup/{backup}/restore/streamed/websocket [WS]
 
-WEBOCKET IMPLEMENTATION: This take a local database and ensure that it is backed up to the cloud.  NOTE: This is a streamed version of the /backups/<backup>/restore. and Since the Generator is unable to generate a streamed endpoint. this is a place holder, and will need to be implemented isolated from the code generator.
+WEBOCKET IMPLEMENTATION: This take a local database and ensure that it is backed up to the cloud.
+
+NOTE: This is a streamed version of the /backups/<backup>/restore. and Since the Generator is unable to generate a streamed endpoint. this is a place holder, and will need to be implemented isolated from the code generator.
 
 ### Example
 
@@ -507,7 +517,11 @@ Name | Type | Description  | Notes
 
 /backup/{backup}/creation/cancel [POST]
 
-This is Going to cancel a create backup (streamed) or not streamed that is currently in progress.  This will throw a 500 if there is not a backup in progress.  TODO: ADD mofe DESCRIPITON To this.
+This is Going to cancel a create backup (streamed) or not streamed that is currently in progress.
+
+This will throw a 500 if there is not a backup in progress.
+
+TODO: ADD mofe DESCRIPITON To this.
 
 ### Example
 
@@ -663,7 +677,11 @@ Name | Type | Description  | Notes
 
 /backup/{backup}/restoration/cancel [POST]
 
-This will cancel a Restoration that is in progress and restore to the original database.  Note: if there is not a restore in progress we will return a 500.  TODO add
+This will cancel a Restoration that is in progress and restore to the original database.
+
+Note: if there is not a restore in progress we will return a 500.
+
+TODO add
 
 ### Example
 

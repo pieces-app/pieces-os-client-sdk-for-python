@@ -9,6 +9,7 @@ Name | Type | Description | Notes
 **parent** | [**Application**](Application.md) |  | [optional] 
 **port** | **int** | This is the port number in which we want to serve the copilot at. | [optional] 
 **type** | [**OSAppletEnum**](OSAppletEnum.md) |  | 
+**handler** | [**AppletServingHandlerType**](AppletServingHandlerType.md) |  | [optional] 
 
 ## Example
 

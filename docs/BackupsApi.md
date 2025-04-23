@@ -99,7 +99,9 @@ Name | Type | Description  | Notes
 
 /backups/create/streamed [POST]
 
-This take a local database and ensure that it is backed up to the cloud.  NOTE: This is a streamed version of the /backups/create. and Since the Generator is unable to generate a streamed endpoint. this is a place holder, and will need to be implemented isolated from the code generator.
+This take a local database and ensure that it is backed up to the cloud.
+
+NOTE: This is a streamed version of the /backups/create. and Since the Generator is unable to generate a streamed endpoint. this is a place holder, and will need to be implemented isolated from the code generator.
 
 ### Example
 
@@ -181,7 +183,9 @@ Name | Type | Description  | Notes
 
 /backups/create/streamed/websocket [WS]
 
-WEBSOCKET VERSION! This take a local database and ensure that it is backed up to the cloud.  NOTE: This is a streamed version of the /backups/create. and Since the Generator is unable to generate a streamed endpoint. this is a place holder, and will need to be implemented isolated from the code generator.
+WEBSOCKET VERSION! This take a local database and ensure that it is backed up to the cloud.
+
+NOTE: This is a streamed version of the /backups/create. and Since the Generator is unable to generate a streamed endpoint. this is a place holder, and will need to be implemented isolated from the code generator.
 
 ### Example
 
@@ -344,7 +348,9 @@ void (empty response body)
 
 /backups [GET]
 
-This will get a snapshot of Backsup within the cloud.  This endpoint requires our user to be authenticated and connected to the cloud.
+This will get a snapshot of Backsup within the cloud.
+
+This endpoint requires our user to be authenticated and connected to the cloud.
 
 ### Example
 

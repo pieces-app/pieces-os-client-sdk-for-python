@@ -16,7 +16,9 @@ Method | HTTP request | Description
 
 /sensitives/search [POST]
 
-This will search your sensitives for a specific sensitive  note: we will search the value of the sensitive
+This will search your sensitives for a specific sensitive
+
+note: we will search the value of the sensitive
 
 ### Example
 

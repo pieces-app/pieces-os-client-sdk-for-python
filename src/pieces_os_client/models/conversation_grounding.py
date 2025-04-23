@@ -30,7 +30,8 @@ class ConversationGrounding(BaseModel):
     var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     messages: Optional[FlattenedConversationMessages] = None
     temporal: Optional[TemporalRangeGrounding] = None
-    __properties = ["schema", "messages", "temporal"]
+    sources: Optional[FlattenedIdentifiedWorkstreamPatternEngineSources] = None
+    __properties = ["schema", "messages", "temporal", "sources"]
 
     class Config:
         """Pydantic configuration"""
@@ -65,6 +66,9 @@ class ConversationGrounding(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of temporal
         if self.temporal:
             _dict['temporal'] = self.temporal.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of sources
+        if self.sources:
+            _dict['sources'] = self.sources.to_dict()
         return _dict
 
     @classmethod
@@ -79,11 +83,13 @@ class ConversationGrounding(BaseModel):
         _obj = ConversationGrounding.parse_obj({
             "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
             "messages": FlattenedConversationMessages.from_dict(obj.get("messages")) if obj.get("messages") is not None else None,
-            "temporal": TemporalRangeGrounding.from_dict(obj.get("temporal")) if obj.get("temporal") is not None else None
+            "temporal": TemporalRangeGrounding.from_dict(obj.get("temporal")) if obj.get("temporal") is not None else None,
+            "sources": FlattenedIdentifiedWorkstreamPatternEngineSources.from_dict(obj.get("sources")) if obj.get("sources") is not None else None
         })
         return _obj
 
 from pieces_os_client.models.flattened_conversation_messages import FlattenedConversationMessages
+from pieces_os_client.models.flattened_identified_workstream_pattern_engine_sources import FlattenedIdentifiedWorkstreamPatternEngineSources
 from pieces_os_client.models.temporal_range_grounding import TemporalRangeGrounding
 ConversationGrounding.update_forward_refs()
 

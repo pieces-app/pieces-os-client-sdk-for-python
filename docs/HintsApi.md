@@ -322,7 +322,9 @@ This endpoint does not need any parameter.
 
 /hints/search [POST]
 
-This will search your hints for a specific hint  note: we will just search the hint value
+This will search your hints for a specific hint
+
+note: we will just search the hint value
 
 ### Example
 

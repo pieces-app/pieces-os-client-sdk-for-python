@@ -19,10 +19,12 @@ import re  # noqa: F401
 import json
 
 
-from typing import Optional
-from pydantic import BaseModel, Field, StrictStr
+from typing import List, Optional, Union
+from pydantic import BaseModel, Field, StrictFloat, StrictInt, StrictStr, conlist
 from pieces_os_client.models.application import Application
+from pieces_os_client.models.capabilities_enum import CapabilitiesEnum
 from pieces_os_client.models.embedded_model_schema import EmbeddedModelSchema
+from pieces_os_client.models.flattened_tags import FlattenedTags
 from pieces_os_client.models.referenced_workstream_summary import ReferencedWorkstreamSummary
 from pieces_os_client.models.score import Score
 from pieces_os_client.models.workstream_event_context import WorkstreamEventContext
@@ -30,7 +32,7 @@ from pieces_os_client.models.workstream_event_trigger import WorkstreamEventTrig
 
 class SeededWorkstreamEvent(BaseModel):
     """
-    This is a precreated version of a WorkstreamEvent event, this will be used ingested into PiecesOS and PiecesOS will do all the magic to transform this into relevant data show in the workstream feed.  # noqa: E501
+    This is a precreated version of a WorkstreamEvent event, this will be used ingested into PiecesOS and PiecesOS will do all the magic to transform this into relevant data show in the workstream feed.  NOTE: the source on the WorkstreamEvent is calculated based on the WorkstreamEvent's Context.(associated and created at the db level)  # noqa: E501
     """
     var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     score: Optional[Score] = None
@@ -39,7 +41,11 @@ class SeededWorkstreamEvent(BaseModel):
     context: Optional[WorkstreamEventContext] = None
     summary: Optional[ReferencedWorkstreamSummary] = None
     internal_identifier: Optional[StrictStr] = Field(default=None, description="This is used to override the event identifier, if this was an event that was originally in the internal events collection.")
-    __properties = ["schema", "score", "application", "trigger", "context", "summary", "internal_identifier"]
+    readable: Optional[StrictStr] = None
+    workstream_events_vector: Optional[conlist(Union[StrictFloat, StrictInt])] = Field(default=None, alias="workstreamEventsVector", description="This is the embedding for the format.(NEEDs to connection.vector) and specific here because we can only index on a single name")
+    processing: Optional[CapabilitiesEnum] = None
+    tags: Optional[FlattenedTags] = None
+    __properties = ["schema", "score", "application", "trigger", "context", "summary", "internal_identifier", "readable", "workstreamEventsVector", "processing", "tags"]
 
     class Config:
         """Pydantic configuration"""
@@ -83,6 +89,9 @@ class SeededWorkstreamEvent(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of summary
         if self.summary:
             _dict['summary'] = self.summary.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of tags
+        if self.tags:
+            _dict['tags'] = self.tags.to_dict()
         return _dict
 
     @classmethod
@@ -101,7 +110,11 @@ class SeededWorkstreamEvent(BaseModel):
             "trigger": WorkstreamEventTrigger.from_dict(obj.get("trigger")) if obj.get("trigger") is not None else None,
             "context": WorkstreamEventContext.from_dict(obj.get("context")) if obj.get("context") is not None else None,
             "summary": ReferencedWorkstreamSummary.from_dict(obj.get("summary")) if obj.get("summary") is not None else None,
-            "internal_identifier": obj.get("internal_identifier")
+            "internal_identifier": obj.get("internal_identifier"),
+            "readable": obj.get("readable"),
+            "workstream_events_vector": obj.get("workstreamEventsVector"),
+            "processing": obj.get("processing"),
+            "tags": FlattenedTags.from_dict(obj.get("tags")) if obj.get("tags") is not None else None
         })
         return _obj
 

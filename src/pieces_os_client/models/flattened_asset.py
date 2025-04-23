@@ -61,7 +61,8 @@ class FlattenedAsset(BaseModel):
     conversations: Optional[FlattenedConversations] = None
     demo: Optional[StrictBool] = Field(default=None, description="This will let us know if this asset was generated as a 'demo' snippet")
     summaries: Optional[FlattenedWorkstreamSummaries] = None
-    __properties = ["schema", "id", "name", "creator", "created", "updated", "synced", "deleted", "formats", "preview", "original", "shares", "mechanism", "websites", "interacted", "tags", "sensitives", "persons", "curated", "discovered", "activities", "score", "favorited", "pseudo", "annotations", "hints", "anchors", "conversations", "demo", "summaries"]
+    messages: Optional[FlattenedConversationMessages] = None
+    __properties = ["schema", "id", "name", "creator", "created", "updated", "synced", "deleted", "formats", "preview", "original", "shares", "mechanism", "websites", "interacted", "tags", "sensitives", "persons", "curated", "discovered", "activities", "score", "favorited", "pseudo", "annotations", "hints", "anchors", "conversations", "demo", "summaries", "messages"]
 
     class Config:
         """Pydantic configuration"""
@@ -147,6 +148,9 @@ class FlattenedAsset(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of summaries
         if self.summaries:
             _dict['summaries'] = self.summaries.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of messages
+        if self.messages:
+            _dict['messages'] = self.messages.to_dict()
         return _dict
 
     @classmethod
@@ -188,13 +192,15 @@ class FlattenedAsset(BaseModel):
             "anchors": FlattenedAnchors.from_dict(obj.get("anchors")) if obj.get("anchors") is not None else None,
             "conversations": FlattenedConversations.from_dict(obj.get("conversations")) if obj.get("conversations") is not None else None,
             "demo": obj.get("demo"),
-            "summaries": FlattenedWorkstreamSummaries.from_dict(obj.get("summaries")) if obj.get("summaries") is not None else None
+            "summaries": FlattenedWorkstreamSummaries.from_dict(obj.get("summaries")) if obj.get("summaries") is not None else None,
+            "messages": FlattenedConversationMessages.from_dict(obj.get("messages")) if obj.get("messages") is not None else None
         })
         return _obj
 
 from pieces_os_client.models.flattened_activities import FlattenedActivities
 from pieces_os_client.models.flattened_anchors import FlattenedAnchors
 from pieces_os_client.models.flattened_annotations import FlattenedAnnotations
+from pieces_os_client.models.flattened_conversation_messages import FlattenedConversationMessages
 from pieces_os_client.models.flattened_conversations import FlattenedConversations
 from pieces_os_client.models.flattened_formats import FlattenedFormats
 from pieces_os_client.models.flattened_hints import FlattenedHints

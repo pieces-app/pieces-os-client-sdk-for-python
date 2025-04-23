@@ -554,7 +554,11 @@ Name | Type | Description  | Notes
 
 Your GET endpoint
 
-This will retrieve all the users Providers that are connected to this account.  If called locally. we will 501 - because it is not implemented locally yet.  If called in the cloud, we will refresh && get your access tokens to access these providers.
+This will retrieve all the users Providers that are connected to this account.
+
+If called locally. we will 501 - because it is not implemented locally yet.
+
+If called in the cloud, we will refresh && get your access tokens to access these providers.
 
 ### Example
 
@@ -704,7 +708,7 @@ This endpoint does not need any parameter.
 
 /user/update/vanity [POST]
 
-This is a local route to update your vanityname. ie mark.pieces.cloud, where \"mark\" is the vanityname.
+This is a local route to update your vanityname. ie mark.pieces.cloud, where "mark" is the vanityname.
 
 ### Example
 

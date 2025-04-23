@@ -172,7 +172,9 @@ void (empty response body)
 
 /annotations [GET]
 
-This will get a snapshot of all the annotations.  This will take an optional filter as a query param.
+This will get a snapshot of all the annotations.
+
+This will take an optional filter as a query param.
 
 ### Example
 
@@ -326,7 +328,9 @@ This endpoint does not need any parameter.
 
 /annotations/search [POST]
 
-This will search your annotations for a specific annotation  note: we will just search the annotation value
+This will search your annotations for a specific annotation
+
+note: we will just search the annotation value
 
 ### Example
 

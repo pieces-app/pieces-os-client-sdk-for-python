@@ -30,8 +30,9 @@ class UserBetaStatus(BaseModel):
     """
     var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     auth0: Optional[Auth0UserBetaStatus] = None
+    descope: Optional[Auth0UserBetaStatus] = None
     user: StrictStr = Field(...)
-    __properties = ["schema", "auth0", "user"]
+    __properties = ["schema", "auth0", "descope", "user"]
 
     class Config:
         """Pydantic configuration"""
@@ -63,6 +64,9 @@ class UserBetaStatus(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of auth0
         if self.auth0:
             _dict['auth0'] = self.auth0.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of descope
+        if self.descope:
+            _dict['descope'] = self.descope.to_dict()
         return _dict
 
     @classmethod
@@ -77,6 +81,7 @@ class UserBetaStatus(BaseModel):
         _obj = UserBetaStatus.parse_obj({
             "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
             "auth0": Auth0UserBetaStatus.from_dict(obj.get("auth0")) if obj.get("auth0") is not None else None,
+            "descope": Auth0UserBetaStatus.from_dict(obj.get("descope")) if obj.get("descope") is not None else None,
             "user": obj.get("user")
         })
         return _obj

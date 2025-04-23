@@ -16,6 +16,8 @@ Name | Type | Description | Notes
 **model** | **str** | optional model id | [optional] 
 **temporal** | [**TemporalRangeGrounding**](TemporalRangeGrounding.md) |  | [optional] 
 **anchors** | [**FlattenedAnchors**](FlattenedAnchors.md) |  | [optional] 
+**sources** | [**FlattenedIdentifiedWorkstreamPatternEngineSources**](FlattenedIdentifiedWorkstreamPatternEngineSources.md) |  | [optional] 
+**summaries** | [**FlattenedWorkstreamSummaries**](FlattenedWorkstreamSummaries.md) |  | [optional] 
 
 ## Example
 

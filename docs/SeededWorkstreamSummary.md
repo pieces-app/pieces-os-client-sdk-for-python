@@ -1,6 +1,6 @@
 # SeededWorkstreamSummary
 
-This is a seeded version of a WorkstreamSummary
+This is a seeded version of a WorkstreamSummary Note: sources for the summary will be calculated based on the events used
 
 ## Properties
 Name | Type | Description | Notes
@@ -16,7 +16,11 @@ Name | Type | Description | Notes
 **assets** | [**FlattenedAssets**](FlattenedAssets.md) |  | [optional] 
 **conversations** | [**FlattenedConversations**](FlattenedConversations.md) |  | [optional] 
 **persons** | [**FlattenedPersons**](FlattenedPersons.md) |  | [optional] 
+**tags** | [**FlattenedTags**](FlattenedTags.md) |  | [optional] 
 **applications** | [**Applications**](Applications.md) |  | [optional] 
+**workstream_summaries_vector** | **List[float]** | This is the embedding for the format.(NEEDs to connection.vector) and specific here because we can only index on a single name | [optional] 
+**processing** | [**CapabilitiesEnum**](CapabilitiesEnum.md) |  | [optional] 
+**favorited** | **bool** |  | [optional] 
 
 ## Example
 

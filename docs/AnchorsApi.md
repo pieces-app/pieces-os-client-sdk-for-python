@@ -328,7 +328,9 @@ This endpoint does not need any parameter.
 
 /anchors/search [POST]
 
-This will search your anchors for a specific anchor  note: we will search all the anchor points
+This will search your anchors for a specific anchor
+
+note: we will search all the anchor points
 
 ### Example
 

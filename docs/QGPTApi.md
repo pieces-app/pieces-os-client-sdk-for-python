@@ -97,7 +97,14 @@ Name | Type | Description  | Notes
 
 /qgpt/persons/related [POST]
 
-Utilize this endpoint for Who Support, identifying individuals who can provide assistance when given context such as a Seed or a QGPT Conversation, for example.  Input:   - (optional) seed: Seed - Only supports fragments for now.   - (optional) conversation: QGPTConversation.  Output:   - persons: Persons
+Utilize this endpoint for Who Support, identifying individuals who can provide assistance when given context such as a Seed or a QGPT Conversation, for example.
+
+Input:
+  - (optional) seed: Seed - Only supports fragments for now.
+  - (optional) conversation: QGPTConversation.
+
+Output:
+  - persons: Persons
 
 ### Example
 
@@ -262,7 +269,11 @@ Name | Type | Description  | Notes
 
 /qgpt/question [POST]
 
-Processes relevant code snippets or UUIDs returned from the /qgpt/relevance endpoint, along with a question query, to provide possible answers.  Note:   - Relevant seeds must either include an ID used within the /qgpt/relevance endpoint or a seed with a fragment/string; otherwise, an error will be thrown.   - This endpoint utilizes your query and relevant snippets to generate multiple answers, each accompanied by a score.
+Processes relevant code snippets or UUIDs returned from the /qgpt/relevance endpoint, along with a question query, to provide possible answers.
+
+Note:
+  - Relevant seeds must either include an ID used within the /qgpt/relevance endpoint or a seed with a fragment/string; otherwise, an error will be thrown.
+  - This endpoint utilizes your query and relevant snippets to generate multiple answers, each accompanied by a score.
 
 ### Example
 
@@ -345,7 +356,21 @@ Name | Type | Description  | Notes
 
 /qgpt/relevance [POST]
 
-This is the first phase to the QGPT flow.  Please one of the following. 1. provide an absolute path on the users machine that we can use locally. 2. provide Seeds that you want to compare to, which will be ONLY fragment/string values(all other values will be ignored) 3. provide assets, here you can provide an iterable of the asset id, and we will do the rest 4. you can set your database boolean to true which will tell us to use your entire DB as the query space.  required - query: string; This is the question of the user. optional - question: boolean; This will by-pass the second endpoint and just ask the question and return the results(as an ease of use bool)  This endpoint will embed everything. and will return the relevance snippets that we will use in the next phase, to answer your question.  on the UI: we can show this to users (around this is the snippets we used to answer your question.)  Next: feed this information to the /qgpt/question [POST] endpoint to get your question answered.(unless you included the question:true optional boolean, then you will get the results from here.)
+This is the first phase to the QGPT flow. 
+Please one of the following.
+1. provide an absolute path on the users machine that we can use locally.
+2. provide Seeds that you want to compare to, which will be ONLY fragment/string values(all other values will be ignored)
+3. provide assets, here you can provide an iterable of the asset id, and we will do the rest
+4. you can set your database boolean to true which will tell us to use your entire DB as the query space.
+
+required - query: string; This is the question of the user.
+optional - question: boolean; This will by-pass the second endpoint and just ask the question and return the results(as an ease of use bool)
+
+This endpoint will embed everything. and will return the relevance snippets that we will use in the next phase, to answer your question.
+
+on the UI: we can show this to users (around this is the snippets we used to answer your question.)
+
+Next: feed this information to the /qgpt/question [POST] endpoint to get your question answered.(unless you included the question:true optional boolean, then you will get the results from here.)
 
 ### Example
 

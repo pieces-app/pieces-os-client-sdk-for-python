@@ -1,6 +1,6 @@
 # IdentifiedWorkstreamPatternEngineSource
 
-This is a specific persisted model for WorkstreamPatternEngineSources that are persisted in the database(not just on the WPE event)  note: there is a \"WorkstreamPatternEngineSource\" model however we will NOT be modify this because it is linked to a different model that would require additional code to properly associate/disassociate.  note: we get 3 raw events from the WPE data so far:(encapsulated in the \"WorkstreamPatternEngineSource\") event 1. browserUrl - defaults to null 2. appTitle - ** not sure on default here ** (this is because this is always present on all WPE events.) 3. windowTitle - defaults to \"Window Title Not Found\"  note: raw is the raw value from the WPE(expect I will replace the defaults w/ nullish values)
+This is a specific persisted model for WorkstreamPatternEngineSources that are persisted in the database(not just on the WPE event)  note: there is a \"WorkstreamPatternEngineSource\" model however we will NOT be modify this because it is linked to a different model that would require additional code to properly associate/disassociate.  note: we get 3 raw events from the WPE data so far:(encapsulated in the \"WorkstreamPatternEngineSource\") event 1. (deprecated) browserUrl - defaults to null 2. appTitle - ** not sure on default here ** (this is because this is always present on all WPE events.) 3. (deprecated) windowTitle - defaults to \"Window Title Not Found\"  NOTE we will no longer support adding window title and browser url on the source it will be generic(we will next update this to include these associations)  note: raw is the raw value from the WPE(expect I will replace the defaults w/ nullish values)
 
 ## Properties
 Name | Type | Description | Notes
@@ -13,6 +13,11 @@ Name | Type | Description | Notes
 **filter** | **bool** | This will determine if we want to filter this specific source | [optional] 
 **score** | [**Score**](Score.md) |  | [optional] 
 **readable** | **str** | This is the name of the source(defualt original data) this is NOT used for matching just for readability | 
+**summaries** | [**FlattenedWorkstreamSummaries**](FlattenedWorkstreamSummaries.md) |  | [optional] 
+**workstream_events** | [**FlattenedWorkstreamEvents**](FlattenedWorkstreamEvents.md) |  | [optional] 
+**conversations** | [**FlattenedConversations**](FlattenedConversations.md) |  | [optional] 
+**accessibility** | [**WorkstreamPatternEngineSourceSupportedAccessibility**](WorkstreamPatternEngineSourceSupportedAccessibility.md) |  | [optional] 
+**messages** | [**FlattenedConversationMessages**](FlattenedConversationMessages.md) |  | [optional] 
 
 ## Example
 

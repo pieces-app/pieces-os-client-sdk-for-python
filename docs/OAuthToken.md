@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **access_token** | **str** | The Access Token | 
 **token_type** | **str** |  | 
 **expires_in** | **int** |  | 
-**scope** | **str** |  | 
+**scope** | **str** |  | [optional] 
 **refresh_token** | **str** |  | [optional] 
 **id_token** | **str** |  | [optional] 
 

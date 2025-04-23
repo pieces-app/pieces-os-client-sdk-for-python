@@ -8,6 +8,7 @@ Name | Type | Description | Notes
 **var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 **port** | **int** |  | 
 **type** | [**OSAppletEnum**](OSAppletEnum.md) |  | 
+**handler** | [**AppletServingHandlerType**](AppletServingHandlerType.md) |  | 
 
 ## Example
 

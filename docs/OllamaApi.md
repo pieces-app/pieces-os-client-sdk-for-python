@@ -22,7 +22,8 @@ Method | HTTP request | Description
 
 /ollama/install [POST]
 
-This will start the installation for ollama. NOTE: This will return immediately, use the update status
+This will start the installation for ollama.
+NOTE: This will return immediately, use the update status
 
 ### Example
 
@@ -330,7 +331,8 @@ This endpoint does not need any parameter.
 
 /ollama/status [GET]
 
-This will get a status on Ollama, ie if ollama is installed, if it needs an update,  if there are installations in progress, or updates in progress
+This will get a status on Ollama, ie if ollama is installed, if it needs an update, 
+if there are installations in progress, or updates in progress
 
 ### Example
 
@@ -405,7 +407,11 @@ This endpoint does not need any parameter.
 
 /ollama/status/stream [WS]
 
-This provides a Websocket connection, that will emit a change on the initial connection and then all realtime updates: - if an update have started - if an installation has started - if Ollama has been installed/uninstalled - if an updated is required for Ollama
+This provides a Websocket connection, that will emit a change on the initial connection and then all realtime updates:
+- if an update have started
+- if an installation has started
+- if Ollama has been installed/uninstalled
+- if an updated is required for Ollama
 
 ### Example
 
@@ -480,7 +486,9 @@ This endpoint does not need any parameter.
 
 /ollama/uninstall [POST]
 
-This will uninstall Ollama.  NOTE: the request body is the installation that will be deleted.
+This will uninstall Ollama.
+
+NOTE: the request body is the installation that will be deleted.
 
 ### Example
 
@@ -559,7 +567,9 @@ Name | Type | Description  | Notes
 
 /ollama/update [POST]
 
-This will start the update for ollama. NOTE: This will return immediately, use the ollama status endpoint to checks it status. NOTE: This will required a user to pass in deployment that they would like to update to.(only thing required will be version here, and that this is a valid version to update to.)
+This will start the update for ollama.
+NOTE: This will return immediately, use the ollama status endpoint to checks it status.
+NOTE: This will required a user to pass in deployment that they would like to update to.(only thing required will be version here, and that this is a valid version to update to.)
 
 ### Example
 

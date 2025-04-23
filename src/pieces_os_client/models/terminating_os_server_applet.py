@@ -21,6 +21,7 @@ import json
 
 from typing import Optional
 from pydantic import BaseModel, Field, StrictInt
+from pieces_os_client.models.applet_serving_handler_type import AppletServingHandlerType
 from pieces_os_client.models.application import Application
 from pieces_os_client.models.embedded_model_schema import EmbeddedModelSchema
 from pieces_os_client.models.os_applet_enum import OSAppletEnum
@@ -33,7 +34,8 @@ class TerminatingOSServerApplet(BaseModel):
     parent: Optional[Application] = None
     port: Optional[StrictInt] = Field(default=None, description="Validation check if the port is passed in.")
     type: OSAppletEnum = Field(...)
-    __properties = ["schema", "parent", "port", "type"]
+    handler: Optional[AppletServingHandlerType] = None
+    __properties = ["schema", "parent", "port", "type", "handler"]
 
     class Config:
         """Pydantic configuration"""
@@ -65,6 +67,9 @@ class TerminatingOSServerApplet(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of parent
         if self.parent:
             _dict['parent'] = self.parent.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of handler
+        if self.handler:
+            _dict['handler'] = self.handler.to_dict()
         # set to None if port (nullable) is None
         # and __fields_set__ contains the field
         if self.port is None and "port" in self.__fields_set__:
@@ -85,7 +90,8 @@ class TerminatingOSServerApplet(BaseModel):
             "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
             "parent": Application.from_dict(obj.get("parent")) if obj.get("parent") is not None else None,
             "port": obj.get("port"),
-            "type": obj.get("type")
+            "type": obj.get("type"),
+            "handler": AppletServingHandlerType.from_dict(obj.get("handler")) if obj.get("handler") is not None else None
         })
         return _obj
 

@@ -12,7 +12,8 @@ Method | HTTP request | Description
 
 Convert Generic Classification
 
-This endpoint converts on a best effort basis from one generic format to another, i.e. from Code to HLJS 
+This endpoint converts on a best effort basis from one generic format to another, i.e. from Code to HLJS
+
 
 ### Example
 

@@ -1,6 +1,6 @@
 # SeededWorkstreamEvent
 
-This is a precreated version of a WorkstreamEvent event, this will be used ingested into PiecesOS and PiecesOS will do all the magic to transform this into relevant data show in the workstream feed.
+This is a precreated version of a WorkstreamEvent event, this will be used ingested into PiecesOS and PiecesOS will do all the magic to transform this into relevant data show in the workstream feed.  NOTE: the source on the WorkstreamEvent is calculated based on the WorkstreamEvent's Context.(associated and created at the db level)
 
 ## Properties
 Name | Type | Description | Notes
@@ -12,6 +12,10 @@ Name | Type | Description | Notes
 **context** | [**WorkstreamEventContext**](WorkstreamEventContext.md) |  | [optional] 
 **summary** | [**ReferencedWorkstreamSummary**](ReferencedWorkstreamSummary.md) |  | [optional] 
 **internal_identifier** | **str** | This is used to override the event identifier, if this was an event that was originally in the internal events collection. | [optional] 
+**readable** | **str** |  | [optional] 
+**workstream_events_vector** | **List[float]** | This is the embedding for the format.(NEEDs to connection.vector) and specific here because we can only index on a single name | [optional] 
+**processing** | [**CapabilitiesEnum**](CapabilitiesEnum.md) |  | [optional] 
+**tags** | [**FlattenedTags**](FlattenedTags.md) |  | [optional] 
 
 ## Example
 

@@ -576,7 +576,11 @@ This endpoint does not need any parameter.
 
 /assets/search [POST]
 
-Enables searching through your pieces and returns Assets (the results) based on your query.  When sending a query in the request body, fuzzy search is applied.  Additionally, the request body can include a search space, currently as a list of UUIDs (and potentially Seeds in the future). Optional filters can also be included in the request body, represented as an iterable of filters, all of which are combined using AND operations.
+Enables searching through your pieces and returns Assets (the results) based on your query.
+
+When sending a query in the request body, fuzzy search is applied.
+
+Additionally, the request body can include a search space, currently as a list of UUIDs (and potentially Seeds in the future). Optional filters can also be included in the request body, represented as an iterable of filters, all of which are combined using AND operations.
 
 ### Example
 
@@ -1051,7 +1055,11 @@ This endpoint does not need any parameter.
 
 /assets/search?query=string [GET]
 
-Performs a search across your pieces and returns Assets (the results) based on your query. Presently, it only requires your query to be sent in the body. It is mandatory to include searchable_tags (comma-separated values of tags) or a query string.  If a query is provided, a fuzzy search will be conducted. If searchable tags are provided, a tag-based search will be executed.  If neither are included, a 500 error will be returned.
+Performs a search across your pieces and returns Assets (the results) based on your query. Presently, it only requires your query to be sent in the body. It is mandatory to include searchable_tags (comma-separated values of tags) or a query string.
+
+If a query is provided, a fuzzy search will be conducted. If searchable tags are provided, a tag-based search will be executed.
+
+If neither are included, a 500 error will be returned.
 
 ### Example
 

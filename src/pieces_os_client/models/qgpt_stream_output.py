@@ -21,6 +21,7 @@ import json
 
 from typing import Optional, Union
 from pydantic import BaseModel, Field, StrictFloat, StrictInt, StrictStr
+from pieces_os_client.models.migration_progress import MigrationProgress
 from pieces_os_client.models.qgpt_agent_routes import QGPTAgentRoutes
 from pieces_os_client.models.qgpt_question_output import QGPTQuestionOutput
 from pieces_os_client.models.qgpt_relevance_output import QGPTRelevanceOutput
@@ -40,7 +41,8 @@ class QGPTStreamOutput(BaseModel):
     error_message: Optional[StrictStr] = Field(default=None, alias="errorMessage", description="optional error message is the status code is NOT 200")
     agent_routes: Optional[QGPTAgentRoutes] = Field(default=None, alias="agentRoutes")
     extracted: Optional[QGPTStreamedOutputExtractedMaterials] = None
-    __properties = ["request", "relevance", "question", "status", "conversation", "statusCode", "errorMessage", "agentRoutes", "extracted"]
+    migration: Optional[MigrationProgress] = None
+    __properties = ["request", "relevance", "question", "status", "conversation", "statusCode", "errorMessage", "agentRoutes", "extracted", "migration"]
 
     class Config:
         """Pydantic configuration"""
@@ -78,6 +80,9 @@ class QGPTStreamOutput(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of extracted
         if self.extracted:
             _dict['extracted'] = self.extracted.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of migration
+        if self.migration:
+            _dict['migration'] = self.migration.to_dict()
         # set to None if status_code (nullable) is None
         # and __fields_set__ contains the field
         if self.status_code is None and "status_code" in self.__fields_set__:
@@ -103,7 +108,8 @@ class QGPTStreamOutput(BaseModel):
             "status_code": obj.get("statusCode"),
             "error_message": obj.get("errorMessage"),
             "agent_routes": QGPTAgentRoutes.from_dict(obj.get("agentRoutes")) if obj.get("agentRoutes") is not None else None,
-            "extracted": QGPTStreamedOutputExtractedMaterials.from_dict(obj.get("extracted")) if obj.get("extracted") is not None else None
+            "extracted": QGPTStreamedOutputExtractedMaterials.from_dict(obj.get("extracted")) if obj.get("extracted") is not None else None,
+            "migration": MigrationProgress.from_dict(obj.get("migration")) if obj.get("migration") is not None else None
         })
         return _obj
 

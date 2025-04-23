@@ -22,6 +22,7 @@ import json
 from typing import Optional
 from pydantic import BaseModel, Field, StrictBool, StrictStr
 from pieces_os_client.models.embedded_model_schema import EmbeddedModelSchema
+from pieces_os_client.models.flattened_conversation_messages import FlattenedConversationMessages
 from pieces_os_client.models.flattened_conversations import FlattenedConversations
 from pieces_os_client.models.flattened_workstream_summaries import FlattenedWorkstreamSummaries
 from pieces_os_client.models.grouped_timestamp import GroupedTimestamp
@@ -41,7 +42,8 @@ class Range(BaseModel):
     between: Optional[StrictBool] = None
     summaries: Optional[FlattenedWorkstreamSummaries] = None
     conversations: Optional[FlattenedConversations] = None
-    __properties = ["schema", "id", "score", "created", "updated", "to", "from", "between", "summaries", "conversations"]
+    messages: Optional[FlattenedConversationMessages] = None
+    __properties = ["schema", "id", "score", "created", "updated", "to", "from", "between", "summaries", "conversations", "messages"]
 
     class Config:
         """Pydantic configuration"""
@@ -91,6 +93,9 @@ class Range(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of conversations
         if self.conversations:
             _dict['conversations'] = self.conversations.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of messages
+        if self.messages:
+            _dict['messages'] = self.messages.to_dict()
         return _dict
 
     @classmethod
@@ -112,7 +117,8 @@ class Range(BaseModel):
             "var_from": GroupedTimestamp.from_dict(obj.get("from")) if obj.get("from") is not None else None,
             "between": obj.get("between"),
             "summaries": FlattenedWorkstreamSummaries.from_dict(obj.get("summaries")) if obj.get("summaries") is not None else None,
-            "conversations": FlattenedConversations.from_dict(obj.get("conversations")) if obj.get("conversations") is not None else None
+            "conversations": FlattenedConversations.from_dict(obj.get("conversations")) if obj.get("conversations") is not None else None,
+            "messages": FlattenedConversationMessages.from_dict(obj.get("messages")) if obj.get("messages") is not None else None
         })
         return _obj
 

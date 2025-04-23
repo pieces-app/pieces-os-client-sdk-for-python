@@ -7,11 +7,13 @@ Method | HTTP request | Description
 [**conversation_associate_anchor**](ConversationApi.md#conversation_associate_anchor) | **POST** /conversation/{conversation}/anchors/associate/{anchor} | /conversation/{conversation}/anchors/associate/{anchor} [POST]
 [**conversation_associate_asset**](ConversationApi.md#conversation_associate_asset) | **POST** /conversation/{conversation}/assets/associate/{asset} | /conversation/{conversation}/assets/associate/{asset} [POST]
 [**conversation_associate_grounding_temporal_range_workstream**](ConversationApi.md#conversation_associate_grounding_temporal_range_workstream) | **POST** /conversation/{conversation}/grounding/temporal_range/workstreams/associate/{range} | /conversation/{conversation}/grounding/temporal/ranges/associate/{range} [POST]
+[**conversation_associate_grounding_workstream_pattern_engine_source**](ConversationApi.md#conversation_associate_grounding_workstream_pattern_engine_source) | **POST** /conversation/{conversation}/grounding/workstream_pattern_engine/sources/associate/{source} | /conversation/{conversation}/grounding/workstream_pattern_engine/sources/associate/{source} [POST]
 [**conversation_associate_website**](ConversationApi.md#conversation_associate_website) | **POST** /conversation/{conversation}/websites/associate/{website} | /conversation/{conversation}/websites/associate/{website} [POST]
 [**conversation_associate_workstream_summary**](ConversationApi.md#conversation_associate_workstream_summary) | **POST** /conversation/{conversation}/workstream_summaries/associate/{workstream_summary} | /conversation/{conversation}/workstream_summaries/associate/{workstream_summary} [POST]
 [**conversation_disassociate_anchor**](ConversationApi.md#conversation_disassociate_anchor) | **POST** /conversation/{conversation}/anchors/disassociate/{anchor} | /conversation/{conversation}/anchors/disassociate/{anchor} [POST]
 [**conversation_disassociate_asset**](ConversationApi.md#conversation_disassociate_asset) | **POST** /conversation/{conversation}/assets/disassociate/{asset} | /conversation/{conversation}/assets/disassociate/{asset} [POST]
 [**conversation_disassociate_grounding_temporal_range_workstream**](ConversationApi.md#conversation_disassociate_grounding_temporal_range_workstream) | **POST** /conversation/{conversation}/grounding/temporal_range/workstreams/disassociate/{range} | /conversation/{conversation}/grounding/temporal_range/workstreams/disassociate/{range} [POST]
+[**conversation_disassociate_grounding_workstream_pattern_engine_source**](ConversationApi.md#conversation_disassociate_grounding_workstream_pattern_engine_source) | **POST** /conversation/{conversation}/grounding/workstream_pattern_engine/sources/disassociate/{source} | /conversation/{conversation}/grounding/workstream_pattern_engine/sources/disassociate/{source} [POST]
 [**conversation_disassociate_website**](ConversationApi.md#conversation_disassociate_website) | **POST** /conversation/{conversation}/websites/disassociate/{website} | /website/{website}/websites/disassociate/{website} [POST]
 [**conversation_disassociate_workstream_summary**](ConversationApi.md#conversation_disassociate_workstream_summary) | **POST** /conversation/{conversation}/workstream_summaries/disassociate/{workstream_summary} | /conversation/{conversation}/workstream_summaries/disassociate/{workstream_summary} [POST]
 [**conversation_get_specific_conversation**](ConversationApi.md#conversation_get_specific_conversation) | **GET** /conversation/{conversation} | /conversation/{conversation} [GET]
@@ -237,6 +239,84 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **conversation** | **str**| This is the uuid of a conversation. | 
  **range** | **str**| This is a identifier that is used to identify a specific range. | 
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[application](../README.md#application)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: text/plain
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**204** | No Content |  -  |
+**500** | Internal Server Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **conversation_associate_grounding_workstream_pattern_engine_source**
+> conversation_associate_grounding_workstream_pattern_engine_source(conversation, source)
+
+/conversation/{conversation}/grounding/workstream_pattern_engine/sources/associate/{source} [POST]
+
+This will associate a conversation with a workstream_pattern_engine_source. This will do the same thing as the workstream_pattern_engine_source equivalent.
+
+### Example
+
+* Api Key Authentication (application):
+```python
+import time
+import os
+import pieces_os_client
+from pieces_os_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to http://localhost:1000
+# See configuration.py for a list of all supported configuration parameters.
+configuration = pieces_os_client.Configuration(
+    host = "http://localhost:1000"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: application
+configuration.api_key['application'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['application'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with pieces_os_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = pieces_os_client.ConversationApi(api_client)
+    conversation = 'conversation_example' # str | This is the uuid of a conversation.
+    source = 'source_example' # str | This is a identifier that is used to identify a specific WorkstreamPatternEngineSource
+
+    try:
+        # /conversation/{conversation}/grounding/workstream_pattern_engine/sources/associate/{source} [POST]
+        api_instance.conversation_associate_grounding_workstream_pattern_engine_source(conversation, source)
+    except Exception as e:
+        print("Exception when calling ConversationApi->conversation_associate_grounding_workstream_pattern_engine_source: %s\n" % e)
+```
+
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **conversation** | **str**| This is the uuid of a conversation. | 
+ **source** | **str**| This is a identifier that is used to identify a specific WorkstreamPatternEngineSource | 
 
 ### Return type
 
@@ -627,6 +707,84 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **conversation** | **str**| This is the uuid of a conversation. | 
  **range** | **str**| This is a identifier that is used to identify a specific range. | 
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[application](../README.md#application)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: text/plain
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**204** | No Content |  -  |
+**500** | Internal Server Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **conversation_disassociate_grounding_workstream_pattern_engine_source**
+> conversation_disassociate_grounding_workstream_pattern_engine_source(conversation, source)
+
+/conversation/{conversation}/grounding/workstream_pattern_engine/sources/disassociate/{source} [POST]
+
+This will enable us to disassociate a conversation from a workstream_pattern_engine_source. This will do the same thing as the workstream_pattern_engine_source equivalent.
+
+### Example
+
+* Api Key Authentication (application):
+```python
+import time
+import os
+import pieces_os_client
+from pieces_os_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to http://localhost:1000
+# See configuration.py for a list of all supported configuration parameters.
+configuration = pieces_os_client.Configuration(
+    host = "http://localhost:1000"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: application
+configuration.api_key['application'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['application'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with pieces_os_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = pieces_os_client.ConversationApi(api_client)
+    conversation = 'conversation_example' # str | This is the uuid of a conversation.
+    source = 'source_example' # str | This is a identifier that is used to identify a specific WorkstreamPatternEngineSource
+
+    try:
+        # /conversation/{conversation}/grounding/workstream_pattern_engine/sources/disassociate/{source} [POST]
+        api_instance.conversation_disassociate_grounding_workstream_pattern_engine_source(conversation, source)
+    except Exception as e:
+        print("Exception when calling ConversationApi->conversation_disassociate_grounding_workstream_pattern_engine_source: %s\n" % e)
+```
+
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **conversation** | **str**| This is the uuid of a conversation. | 
+ **source** | **str**| This is a identifier that is used to identify a specific WorkstreamPatternEngineSource | 
 
 ### Return type
 
@@ -1451,7 +1609,9 @@ Name | Type | Description  | Notes
 
 /conversation/{conversation}/search [POST]
 
-This will search a specific conversation for a match  note: here we will only search the conversationMessages for this given Conversation
+This will search a specific conversation for a match
+
+note: here we will only search the conversationMessages for this given Conversation
 
 ### Example
 

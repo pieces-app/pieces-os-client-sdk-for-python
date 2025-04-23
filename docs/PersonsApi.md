@@ -328,7 +328,9 @@ This endpoint does not need any parameter.
 
 /persons/search [POST]
 
-This will search your persons for a specific person  note: we will search, name, email, and username
+This will search your persons for a specific person
+
+note: we will search, name, email, and username
 
 ### Example
 

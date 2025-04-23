@@ -22,6 +22,8 @@ import json
 from typing import Optional
 from pydantic import BaseModel, Field
 from pieces_os_client.models.embedded_model_schema import EmbeddedModelSchema
+from pieces_os_client.models.native_accessibility import NativeAccessibility
+from pieces_os_client.models.native_ocr import NativeOCR
 
 class WorkstreamEventContext(BaseModel):
     """
@@ -30,7 +32,9 @@ class WorkstreamEventContext(BaseModel):
     var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     ide: Optional[WorkstreamEventTriggerContextIDE] = None
     browser: Optional[WorkstreamEventTriggerContextBrowser] = None
-    __properties = ["schema", "ide", "browser"]
+    native_ocr: Optional[NativeOCR] = None
+    accessibility: Optional[NativeAccessibility] = None
+    __properties = ["schema", "ide", "browser", "native_ocr", "accessibility"]
 
     class Config:
         """Pydantic configuration"""
@@ -65,6 +69,12 @@ class WorkstreamEventContext(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of browser
         if self.browser:
             _dict['browser'] = self.browser.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of native_ocr
+        if self.native_ocr:
+            _dict['native_ocr'] = self.native_ocr.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of accessibility
+        if self.accessibility:
+            _dict['accessibility'] = self.accessibility.to_dict()
         return _dict
 
     @classmethod
@@ -79,7 +89,9 @@ class WorkstreamEventContext(BaseModel):
         _obj = WorkstreamEventContext.parse_obj({
             "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
             "ide": WorkstreamEventTriggerContextIDE.from_dict(obj.get("ide")) if obj.get("ide") is not None else None,
-            "browser": WorkstreamEventTriggerContextBrowser.from_dict(obj.get("browser")) if obj.get("browser") is not None else None
+            "browser": WorkstreamEventTriggerContextBrowser.from_dict(obj.get("browser")) if obj.get("browser") is not None else None,
+            "native_ocr": NativeOCR.from_dict(obj.get("native_ocr")) if obj.get("native_ocr") is not None else None,
+            "accessibility": NativeAccessibility.from_dict(obj.get("accessibility")) if obj.get("accessibility") is not None else None
         })
         return _obj
 
