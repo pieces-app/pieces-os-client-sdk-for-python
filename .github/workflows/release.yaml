@@ -39,7 +39,7 @@ jobs:
 
       - name: Install dependencies
         run: |
-          pip install poetry -U
+          pip install poetry==2.0.0
           poetry install
 
       - name: Show dependencies
