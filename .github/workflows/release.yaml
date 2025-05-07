@@ -53,7 +53,7 @@ jobs:
           POETRY_PYPI_TOKEN_PYPI: ${{ secrets.PYPI_API_TOKEN }}
         run: |
           poetry build
-          poetry publish
+          poetry publish --build
 
       - name: Release
         uses: softprops/action-gh-release@v1
