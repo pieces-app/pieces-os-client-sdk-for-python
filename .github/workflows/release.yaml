@@ -20,6 +20,12 @@ jobs:
         with:
           python-version: 3.9
 
+      - name: Create and activate virtual environment
+        run: |
+          python -m venv venv
+          source venv/bin/activate
+          pip install --upgrade pip
+
       - name: Get version
         id: get_version
         run: |
