@@ -61,7 +61,7 @@ jobs:
       - name: Publish
         env:
           POETRY_PYPI_TOKEN_PYPI: ${{ secrets.PYPI_API_TOKEN }}
-        run: poetry publish --build
+        run: poetry publish
 
       - name: Release
         uses: softprops/action-gh-release@v1
