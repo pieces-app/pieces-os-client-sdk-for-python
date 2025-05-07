@@ -328,7 +328,9 @@ Name | Type | Description  | Notes
 
 /messages/search [POST]
 
-This will search your conversationMessages for a specific conversation_message  note: we will just search the conversation message values
+This will search your conversationMessages for a specific conversation_message
+
+note: we will just search the conversation message values
 
 ### Example
 

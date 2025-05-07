@@ -18,6 +18,9 @@ Name | Type | Description | Notes
 **interactions** | **int** | This is an optional value that will keep track of the number of times this has been interacted with. | [optional] 
 **persons** | [**FlattenedPersons**](FlattenedPersons.md) |  | [optional] 
 **score** | [**Score**](Score.md) |  | [optional] 
+**summaries** | [**FlattenedWorkstreamSummaries**](FlattenedWorkstreamSummaries.md) |  | [optional] 
+**workstream_events** | [**FlattenedWorkstreamEvents**](FlattenedWorkstreamEvents.md) |  | [optional] 
+**messages** | [**FlattenedConversationMessages**](FlattenedConversationMessages.md) |  | [optional] 
 
 ## Example
 

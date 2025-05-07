@@ -13,6 +13,8 @@ Name | Type | Description | Notes
 **messages** | [**FlattenedConversationMessages**](FlattenedConversationMessages.md) |  | [optional] 
 **pipeline** | [**QGPTPromptPipeline**](QGPTPromptPipeline.md) |  | [optional] 
 **temporal** | [**TemporalRangeGrounding**](TemporalRangeGrounding.md) |  | [optional] 
+**sources** | [**FlattenedIdentifiedWorkstreamPatternEngineSources**](FlattenedIdentifiedWorkstreamPatternEngineSources.md) |  | [optional] 
+**summaries** | [**FlattenedWorkstreamSummaries**](FlattenedWorkstreamSummaries.md) |  | [optional] 
 
 ## Example
 

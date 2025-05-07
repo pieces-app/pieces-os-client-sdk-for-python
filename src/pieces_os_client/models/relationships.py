@@ -19,16 +19,18 @@ import re  # noqa: F401
 import json
 
 
-from typing import List
+from typing import List, Optional
 from pydantic import BaseModel, Field, conlist
+from pieces_os_client.models.embedded_model_schema import EmbeddedModelSchema
 from pieces_os_client.models.relationship import Relationship
 
 class Relationships(BaseModel):
     """
     Relationships
     """
+    var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     iterable: conlist(Relationship) = Field(...)
-    __properties = ["iterable"]
+    __properties = ["schema", "iterable"]
 
     class Config:
         """Pydantic configuration"""
@@ -54,6 +56,9 @@ class Relationships(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
+        # override the default output from pydantic by calling `to_dict()` of var_schema
+        if self.var_schema:
+            _dict['schema'] = self.var_schema.to_dict()
         # override the default output from pydantic by calling `to_dict()` of each item in iterable (list)
         _items = []
         if self.iterable:
@@ -73,6 +78,7 @@ class Relationships(BaseModel):
             return Relationships.parse_obj(obj)
 
         _obj = Relationships.parse_obj({
+            "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
             "iterable": [Relationship.from_dict(_item) for _item in obj.get("iterable")] if obj.get("iterable") is not None else None
         })
         return _obj

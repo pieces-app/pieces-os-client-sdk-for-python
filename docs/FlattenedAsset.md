@@ -35,6 +35,7 @@ Name | Type | Description | Notes
 **conversations** | [**FlattenedConversations**](FlattenedConversations.md) |  | [optional] 
 **demo** | **bool** | This will let us know if this asset was generated as a &#39;demo&#39; snippet | [optional] 
 **summaries** | [**FlattenedWorkstreamSummaries**](FlattenedWorkstreamSummaries.md) |  | [optional] 
+**messages** | [**FlattenedConversationMessages**](FlattenedConversationMessages.md) |  | [optional] 
 
 ## Example
 

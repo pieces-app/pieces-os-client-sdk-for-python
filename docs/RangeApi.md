@@ -5,8 +5,10 @@ All URIs are relative to *http://localhost:1000*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**range_associate_conversation_grounding_temporal_range_workstreams**](RangeApi.md#range_associate_conversation_grounding_temporal_range_workstreams) | **POST** /range/{range}/conversations/grounding/temporal_range/workstreams/associate/{conversation} | /range/{range}/conversations/grounding/temporal_range/workstreams/associate/{conversation} [POST]
+[**range_associate_conversation_message**](RangeApi.md#range_associate_conversation_message) | **POST** /range/{range}/messages/associate/{message} | /range/{range}/messages/associate/{message} [POST]
 [**range_associate_workstream_summary**](RangeApi.md#range_associate_workstream_summary) | **POST** /range/{range}/workstream_summaries/associate/{workstream_summary} | /range/{range}/workstream_summaries/associate/{workstream_summary} [POST]
 [**range_disassociate_conversation_grounding_temporal_range_workstreams**](RangeApi.md#range_disassociate_conversation_grounding_temporal_range_workstreams) | **POST** /range/{range}/conversations/grounding/temporal_range/workstreams/disassociate/{conversation} | /range/{range}/conversations/grounding/temporal_range/workstreams/disassociate/{conversation} [POST]
+[**range_disassociate_conversation_message**](RangeApi.md#range_disassociate_conversation_message) | **POST** /range/{range}/messages/disassociate/{message} | /range/{range}/messages/disassociate/{message} [POST]
 [**range_disassociate_workstream_summary**](RangeApi.md#range_disassociate_workstream_summary) | **POST** /range/{range}/workstream_summaries/disassociate/{workstream_summary} | /range/{range}/workstream_summaries/disassociate/{workstream_summary} [POST]
 [**range_scores_increment**](RangeApi.md#range_scores_increment) | **POST** /range/{range}/scores/increment | &#39;/range/{range}/scores/increment&#39; [POST]
 [**range_update**](RangeApi.md#range_update) | **POST** /range/update | /range/update [POST]
@@ -69,6 +71,84 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **range** | **str**| This is a identifier that is used to identify a specific range. | 
  **conversation** | **str**| This is the uuid of a conversation. | 
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[application](../README.md#application)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: text/plain
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**204** | No Content |  -  |
+**500** | Internal Server Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **range_associate_conversation_message**
+> range_associate_conversation_message(range, message)
+
+/range/{range}/messages/associate/{message} [POST]
+
+This will associate a asset with a conversation_message. This will do the same thing as the conversation_message equivalent.
+
+### Example
+
+* Api Key Authentication (application):
+```python
+import time
+import os
+import pieces_os_client
+from pieces_os_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to http://localhost:1000
+# See configuration.py for a list of all supported configuration parameters.
+configuration = pieces_os_client.Configuration(
+    host = "http://localhost:1000"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: application
+configuration.api_key['application'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['application'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with pieces_os_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = pieces_os_client.RangeApi(api_client)
+    range = 'range_example' # str | This is a identifier that is used to identify a specific range.
+    message = 'message_example' # str | This is the uuid of a message.
+
+    try:
+        # /range/{range}/messages/associate/{message} [POST]
+        api_instance.range_associate_conversation_message(range, message)
+    except Exception as e:
+        print("Exception when calling RangeApi->range_associate_conversation_message: %s\n" % e)
+```
+
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **range** | **str**| This is a identifier that is used to identify a specific range. | 
+ **message** | **str**| This is the uuid of a message. | 
 
 ### Return type
 
@@ -225,6 +305,84 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **range** | **str**| This is a identifier that is used to identify a specific range. | 
  **conversation** | **str**| This is the uuid of a conversation. | 
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[application](../README.md#application)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: text/plain
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**204** | No Content |  -  |
+**500** | Internal Server Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **range_disassociate_conversation_message**
+> range_disassociate_conversation_message(range, message)
+
+/range/{range}/messages/disassociate/{message} [POST]
+
+This will enable us to disassociate a conversation_message from an range. This will do the same thing as the conversation_message equivalent.
+
+### Example
+
+* Api Key Authentication (application):
+```python
+import time
+import os
+import pieces_os_client
+from pieces_os_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to http://localhost:1000
+# See configuration.py for a list of all supported configuration parameters.
+configuration = pieces_os_client.Configuration(
+    host = "http://localhost:1000"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: application
+configuration.api_key['application'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['application'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with pieces_os_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = pieces_os_client.RangeApi(api_client)
+    range = 'range_example' # str | This is a identifier that is used to identify a specific range.
+    message = 'message_example' # str | This is the uuid of a message.
+
+    try:
+        # /range/{range}/messages/disassociate/{message} [POST]
+        api_instance.range_disassociate_conversation_message(range, message)
+    except Exception as e:
+        print("Exception when calling RangeApi->range_disassociate_conversation_message: %s\n" % e)
+```
+
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **range** | **str**| This is a identifier that is used to identify a specific range. | 
+ **message** | **str**| This is the uuid of a message. | 
 
 ### Return type
 

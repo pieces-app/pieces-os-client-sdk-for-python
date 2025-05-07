@@ -6,6 +6,7 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**asset_associate_anchor**](AssetApi.md#asset_associate_anchor) | **POST** /asset/{asset}/anchors/associate/{anchor} | /asset/{asset}/persons/associate/{anchor} [POST]
 [**asset_associate_conversation**](AssetApi.md#asset_associate_conversation) | **POST** /asset/{asset}/conversations/associate/{conversation} | /asset/{asset}/conversations/associate/{conversation} [POST]
+[**asset_associate_conversation_message**](AssetApi.md#asset_associate_conversation_message) | **POST** /asset/{asset}/messages/associate/{message} | /asset/{asset}/messages/associate/{message} [POST]
 [**asset_associate_hint**](AssetApi.md#asset_associate_hint) | **POST** /asset/{asset}/hints/associate/{hint} | /asset/{asset}/hints/associate/{hint} [POST]
 [**asset_associate_person**](AssetApi.md#asset_associate_person) | **POST** /asset/{asset}/persons/associate/{person} | /asset/{asset}/persons/associate/{person} [POST]
 [**asset_associate_tag**](AssetApi.md#asset_associate_tag) | **POST** /asset/{asset}/tags/associate/{tag} | /asset/{asset}/tags/associate/{tag} [POST]
@@ -13,6 +14,7 @@ Method | HTTP request | Description
 [**asset_associate_workstream_summary**](AssetApi.md#asset_associate_workstream_summary) | **POST** /asset/{asset}/workstream_summaries/associate/{workstream_summary} | /asset/{asset}/workstream_summaries/associate/{workstream_summary} [POST]
 [**asset_disassociate_anchor**](AssetApi.md#asset_disassociate_anchor) | **POST** /asset/{asset}/anchors/disassociate/{anchor} | /asset/{asset}/anchors/disassociate/{anchor} [POST]
 [**asset_disassociate_conversation**](AssetApi.md#asset_disassociate_conversation) | **POST** /asset/{asset}/conversations/disassociate/{conversation} | /asset/{asset}/conversations/disassociate/{conversation} [POST]
+[**asset_disassociate_conversation_message**](AssetApi.md#asset_disassociate_conversation_message) | **POST** /asset/{asset}/messages/disassociate/{message} | /asset/{asset}/messages/disassociate/{message} [POST]
 [**asset_disassociate_hint**](AssetApi.md#asset_disassociate_hint) | **POST** /asset/{asset}/hints/disassociate/{hint} | /asset/{asset}/hints/disassociate/{hint} [POST]
 [**asset_disassociate_person**](AssetApi.md#asset_disassociate_person) | **POST** /asset/{asset}/persons/disassociate/{person} | /asset/{asset}/persons/disassociate/{person} [POST]
 [**asset_disassociate_tag**](AssetApi.md#asset_disassociate_tag) | **POST** /asset/{asset}/tags/disassociate/{tag} | /asset/{asset}/tags/disassociate/{tag} [POST]
@@ -163,6 +165,84 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **asset** | **str**| The id (uuid) of the asset that you are trying to access. | 
  **conversation** | **str**| This is the uuid of a conversation. | 
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[application](../README.md#application)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: text/plain
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**204** | No Content |  -  |
+**500** | Internal Server Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **asset_associate_conversation_message**
+> asset_associate_conversation_message(asset, message)
+
+/asset/{asset}/messages/associate/{message} [POST]
+
+This will associate a asset with a conversation_message. This will do the same thing as the conversation_message equivalent.
+
+### Example
+
+* Api Key Authentication (application):
+```python
+import time
+import os
+import pieces_os_client
+from pieces_os_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to http://localhost:1000
+# See configuration.py for a list of all supported configuration parameters.
+configuration = pieces_os_client.Configuration(
+    host = "http://localhost:1000"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: application
+configuration.api_key['application'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['application'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with pieces_os_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = pieces_os_client.AssetApi(api_client)
+    asset = '2254f2c8-5797-40e8-ac56-41166dc0e159' # str | The id (uuid) of the asset that you are trying to access.
+    message = 'message_example' # str | This is the uuid of a message.
+
+    try:
+        # /asset/{asset}/messages/associate/{message} [POST]
+        api_instance.asset_associate_conversation_message(asset, message)
+    except Exception as e:
+        print("Exception when calling AssetApi->asset_associate_conversation_message: %s\n" % e)
+```
+
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **asset** | **str**| The id (uuid) of the asset that you are trying to access. | 
+ **message** | **str**| This is the uuid of a message. | 
 
 ### Return type
 
@@ -709,6 +789,84 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **asset** | **str**| The id (uuid) of the asset that you are trying to access. | 
  **conversation** | **str**| This is the uuid of a conversation. | 
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[application](../README.md#application)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: text/plain
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**204** | No Content |  -  |
+**500** | Internal Server Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **asset_disassociate_conversation_message**
+> asset_disassociate_conversation_message(asset, message)
+
+/asset/{asset}/messages/disassociate/{message} [POST]
+
+This will enable us to disassociate a conversation_message from an asset. This will do the same thing as the conversation_message equivalent.
+
+### Example
+
+* Api Key Authentication (application):
+```python
+import time
+import os
+import pieces_os_client
+from pieces_os_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to http://localhost:1000
+# See configuration.py for a list of all supported configuration parameters.
+configuration = pieces_os_client.Configuration(
+    host = "http://localhost:1000"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: application
+configuration.api_key['application'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['application'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with pieces_os_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = pieces_os_client.AssetApi(api_client)
+    asset = '2254f2c8-5797-40e8-ac56-41166dc0e159' # str | The id (uuid) of the asset that you are trying to access.
+    message = 'message_example' # str | This is the uuid of a message.
+
+    try:
+        # /asset/{asset}/messages/disassociate/{message} [POST]
+        api_instance.asset_disassociate_conversation_message(asset, message)
+    except Exception as e:
+        print("Exception when calling AssetApi->asset_disassociate_conversation_message: %s\n" % e)
+```
+
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **asset** | **str**| The id (uuid) of the asset that you are trying to access. | 
+ **message** | **str**| This is the uuid of a message. | 
 
 ### Return type
 
@@ -1362,7 +1520,7 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **asset_snapshot**
-> Asset asset_snapshot(asset, transferables=transferables)
+> Asset asset_snapshot(asset, transferables=transferables, package_activities=package_activities)
 
 /asset/{asset} [GET] Scoped To Asset
 
@@ -1402,10 +1560,11 @@ with pieces_os_client.ApiClient(configuration) as api_client:
     api_instance = pieces_os_client.AssetApi(api_client)
     asset = '2254f2c8-5797-40e8-ac56-41166dc0e159' # str | The id (uuid) of the asset that you are trying to access.
     transferables = True # bool | This is a boolean that will decided if we are want to return the transferable data (default) or not(performance enhancement) (optional)
+    package_activities = True # bool | This is a boolean that will decided if we are want to return the activities data (not default) or not(performance enhancement) (optional)
 
     try:
         # /asset/{asset} [GET] Scoped To Asset
-        api_response = api_instance.asset_snapshot(asset, transferables=transferables)
+        api_response = api_instance.asset_snapshot(asset, transferables=transferables, package_activities=package_activities)
         print("The response of AssetApi->asset_snapshot:\n")
         pprint(api_response)
     except Exception as e:
@@ -1420,6 +1579,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **asset** | **str**| The id (uuid) of the asset that you are trying to access. | 
  **transferables** | **bool**| This is a boolean that will decided if we are want to return the transferable data (default) or not(performance enhancement) | [optional] 
+ **package_activities** | **bool**| This is a boolean that will decided if we are want to return the activities data (not default) or not(performance enhancement) | [optional] 
 
 ### Return type
 

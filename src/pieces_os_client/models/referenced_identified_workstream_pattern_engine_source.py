@@ -22,7 +22,6 @@ import json
 from typing import Optional
 from pydantic import BaseModel, Field, StrictStr
 from pieces_os_client.models.embedded_model_schema import EmbeddedModelSchema
-from pieces_os_client.models.flattened_identified_workstream_pattern_engine_source import FlattenedIdentifiedWorkstreamPatternEngineSource
 
 class ReferencedIdentifiedWorkstreamPatternEngineSource(BaseModel):
     """
@@ -81,4 +80,6 @@ class ReferencedIdentifiedWorkstreamPatternEngineSource(BaseModel):
         })
         return _obj
 
+from pieces_os_client.models.flattened_identified_workstream_pattern_engine_source import FlattenedIdentifiedWorkstreamPatternEngineSource
+ReferencedIdentifiedWorkstreamPatternEngineSource.update_forward_refs()
 

@@ -24,6 +24,7 @@ from pydantic import BaseModel, Field, StrictBool, StrictStr
 from pieces_os_client.models.activities import Activities
 from pieces_os_client.models.anchors import Anchors
 from pieces_os_client.models.annotations import Annotations
+from pieces_os_client.models.conversation_messages import ConversationMessages
 from pieces_os_client.models.conversations import Conversations
 from pieces_os_client.models.embedded_model_schema import EmbeddedModelSchema
 from pieces_os_client.models.formats import Formats
@@ -73,8 +74,9 @@ class Asset(BaseModel):
     anchors: Optional[Anchors] = None
     conversations: Optional[Conversations] = None
     summaries: Optional[WorkstreamSummaries] = None
+    messages: Optional[ConversationMessages] = None
     demo: Optional[StrictBool] = Field(default=None, description="This will let us know if this asset was generated as a 'demo' snippet")
-    __properties = ["schema", "id", "name", "creator", "created", "updated", "synced", "deleted", "formats", "preview", "original", "shares", "mechanism", "websites", "interacted", "tags", "sensitives", "persons", "curated", "discovered", "activities", "score", "favorited", "pseudo", "annotations", "hints", "anchors", "conversations", "summaries", "demo"]
+    __properties = ["schema", "id", "name", "creator", "created", "updated", "synced", "deleted", "formats", "preview", "original", "shares", "mechanism", "websites", "interacted", "tags", "sensitives", "persons", "curated", "discovered", "activities", "score", "favorited", "pseudo", "annotations", "hints", "anchors", "conversations", "summaries", "messages", "demo"]
 
     class Config:
         """Pydantic configuration"""
@@ -163,6 +165,9 @@ class Asset(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of summaries
         if self.summaries:
             _dict['summaries'] = self.summaries.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of messages
+        if self.messages:
+            _dict['messages'] = self.messages.to_dict()
         return _dict
 
     @classmethod
@@ -204,6 +209,7 @@ class Asset(BaseModel):
             "anchors": Anchors.from_dict(obj.get("anchors")) if obj.get("anchors") is not None else None,
             "conversations": Conversations.from_dict(obj.get("conversations")) if obj.get("conversations") is not None else None,
             "summaries": WorkstreamSummaries.from_dict(obj.get("summaries")) if obj.get("summaries") is not None else None,
+            "messages": ConversationMessages.from_dict(obj.get("messages")) if obj.get("messages") is not None else None,
             "demo": obj.get("demo")
         })
         return _obj

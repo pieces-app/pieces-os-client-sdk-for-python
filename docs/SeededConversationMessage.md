@@ -12,6 +12,14 @@ Name | Type | Description | Notes
 **conversation** | [**ReferencedConversation**](ReferencedConversation.md) |  | [optional] 
 **sentiment** | [**ConversationMessageSentimentEnum**](ConversationMessageSentimentEnum.md) |  | [optional] 
 **role** | [**QGPTConversationMessageRoleEnum**](QGPTConversationMessageRoleEnum.md) |  | 
+**assets** | [**FlattenedAssets**](FlattenedAssets.md) |  | [optional] 
+**ranges** | [**FlattenedRanges**](FlattenedRanges.md) |  | [optional] 
+**summaries** | [**FlattenedWorkstreamSummaries**](FlattenedWorkstreamSummaries.md) |  | [optional] 
+**tags** | [**FlattenedTags**](FlattenedTags.md) |  | [optional] 
+**messages** | [**FlattenedConversationMessages**](FlattenedConversationMessages.md) |  | [optional] 
+**workstream_events** | [**FlattenedWorkstreamEvents**](FlattenedWorkstreamEvents.md) |  | [optional] 
+**sources** | [**FlattenedIdentifiedWorkstreamPatternEngineSources**](FlattenedIdentifiedWorkstreamPatternEngineSources.md) |  | [optional] 
+**anchors** | [**FlattenedAnchors**](FlattenedAnchors.md) |  | [optional] 
 
 ## Example
 

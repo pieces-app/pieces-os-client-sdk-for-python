@@ -17,7 +17,9 @@ Method | HTTP request | Description
 
 /websites/search [POST]
 
-This will search your websites for a specific website  note: we will search the url, and search the name of the website
+This will search your websites for a specific website
+
+note: we will search the url, and search the name of the website
 
 ### Example
 

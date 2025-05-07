@@ -16,6 +16,7 @@ Name | Type | Description | Notes
 **favorited** | **bool** |  | [optional] 
 **anchor** | **str** |  | [optional] 
 **conversation** | **str** |  | [optional] 
+**workstream_summary** | **str** |  | [optional] 
 **messages** | [**FlattenedConversationMessages**](FlattenedConversationMessages.md) |  | [optional] 
 
 ## Example

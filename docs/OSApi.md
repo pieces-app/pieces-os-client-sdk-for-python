@@ -35,7 +35,9 @@ Method | HTTP request | Description
 
 /os/link_provider [POST]
 
-This will link an external provider to your current auth0 account.  Will throw errors if your user is not signed in.
+This will link an external provider to your current auth0 account.
+
+Will throw errors if your user is not signed in.
 
 ### Example
 
@@ -116,7 +118,8 @@ Name | Type | Description  | Notes
 
 /os/applet/launch [POST]
 
-This will attempt to launch(serve) a micro_application. If one is already spun up we will just return the port number. TODO: take in an application and return a port number at minimum.
+This will attempt to launch(serve) a micro_application. If one is already spun up we will just return the port number.
+TODO: take in an application and return a port number at minimum.
 
 ### Example
 
@@ -504,7 +507,10 @@ This endpoint does not need any parameter.
 
 /os/filesystem/file/open [POST]
 
-This will accept a path and will launch a path in a given finder/file explorer window  note: TODO in the future add an endpoint for open/in || open/with (browser,files,...etc)       && if so we will want /os/open_with/file
+This will accept a path and will launch a path in a given finder/file explorer window
+
+note: TODO in the future add an endpoint for open/in || open/with (browser,files,...etc)
+      && if so we will want /os/open_with/file
 
 ### Example
 
@@ -580,7 +586,15 @@ void (empty response body)
 
 /os/filesystem/file/read/streamed [WS]
 
-This will stream(via a WS the contents of a file back to the client, given a file, it will read the contents and return to the client.  NOTE: will NOT support relative paths. only ABSOLUTE paths. NOTE: needs to be a File.(will not stream a folder) NOTE: we might want to put a limit on the size of the file(IE no more than a GB or something like that??) TODO: would be nice to cancel stream NOTE: for v2 we could have two query params i.e. find which could take in a relative path and or file name and        the other could be compress i.e. streaming a gzip vs the raw bytes..        the caveat here would be mack would need to decompress em.
+This will stream(via a WS the contents of a file back to the client, given a file, it will read the contents and return to the client.
+
+NOTE: will NOT support relative paths. only ABSOLUTE paths.
+NOTE: needs to be a File.(will not stream a folder)
+NOTE: we might want to put a limit on the size of the file(IE no more than a GB or something like that??)
+TODO: would be nice to cancel stream
+NOTE: for v2 we could have two query params i.e. find which could take in a relative path and or file name and 
+      the other could be compress i.e. streaming a gzip vs the raw bytes.. 
+      the caveat here would be mack would need to decompress em.
 
 ### Example
 
@@ -1039,7 +1053,11 @@ This endpoint does not need any parameter.
 
 /os/permissions [GET]
 
-This will only work on Macos and Windows.  And will get the permissions of the user's local machine w/ regard to anything needed to effectively run PiecesOS.  Note: this will let us know if we need to tell them to take action to enable any given permissions
+This will only work on Macos and Windows.
+
+And will get the permissions of the user's local machine w/ regard to anything needed to effectively run PiecesOS.
+
+Note: this will let us know if we need to tell them to take action to enable any given permissions
 
 ### Example
 
@@ -1114,7 +1132,9 @@ This endpoint does not need any parameter.
 
 /os/permissions/request [POST]
 
-This will only work on Macos and Windows.  This will request permissions for the given inputs
+This will only work on Macos and Windows.
+
+This will request permissions for the given inputs
 
 ### Example
 
@@ -1415,7 +1435,9 @@ This endpoint does not need any parameter.
 
 /os/settings/update [POST]
 
-This will ensure that we update the os settings.  This will emit a change via the setting stream as well.
+This will ensure that we update the os settings.
+
+This will emit a change via the setting stream as well.
 
 ### Example
 
@@ -1646,7 +1668,12 @@ Name | Type | Description  | Notes
 
 /os/update/check/stream [WS]
 
-This will first kick off the check.  Then will stream the progress.  **TODO lets think about if we want to have a closing NOTE: it is reccommended to use the stream instead of pulling(via the normal check endpoint).
+This will first kick off the check.
+
+Then will stream the progress.
+
+**TODO lets think about if we want to have a closing
+NOTE: it is reccommended to use the stream instead of pulling(via the normal check endpoint).
 
 ### Example
 

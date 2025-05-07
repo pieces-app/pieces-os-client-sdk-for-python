@@ -34,6 +34,7 @@ Name | Type | Description | Notes
 **anchors** | [**Anchors**](Anchors.md) |  | [optional] 
 **conversations** | [**Conversations**](Conversations.md) |  | [optional] 
 **summaries** | [**WorkstreamSummaries**](WorkstreamSummaries.md) |  | [optional] 
+**messages** | [**ConversationMessages**](ConversationMessages.md) |  | [optional] 
 **demo** | **bool** | This will let us know if this asset was generated as a &#39;demo&#39; snippet | [optional] 
 
 ## Example

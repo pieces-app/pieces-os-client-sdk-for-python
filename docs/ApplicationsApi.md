@@ -4,6 +4,7 @@ All URIs are relative to *http://localhost:1000*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**applications_bulk_update_application_capabilities**](ApplicationsApi.md#applications_bulk_update_application_capabilities) | **POST** /applications/update/capabilities | /applications/update/capabilities [POST]
 [**applications_external_related**](ApplicationsApi.md#applications_external_related) | **GET** /applications/external/related | /applications/external/related [GET]
 [**applications_external_snapshot**](ApplicationsApi.md#applications_external_snapshot) | **GET** /applications/external | /applications/external [GET]
 [**applications_register**](ApplicationsApi.md#applications_register) | **POST** /applications/register | /applications/register [POST]
@@ -13,6 +14,86 @@ Method | HTTP request | Description
 [**applications_specific_application_snapshot**](ApplicationsApi.md#applications_specific_application_snapshot) | **GET** /applications/{application} | /applications/{application} [GET]
 [**applications_stream_identifiers**](ApplicationsApi.md#applications_stream_identifiers) | **GET** /applications/stream/identifiers | /applications/stream/identifiers [WS]
 
+
+# **applications_bulk_update_application_capabilities**
+> Applications applications_bulk_update_application_capabilities(applications_bulk_update_capabilities_input=applications_bulk_update_capabilities_input)
+
+/applications/update/capabilities [POST]
+
+This will bulk update all our applications to have a set of specific capabilities(depending on the input)
+
+### Example
+
+* Api Key Authentication (application):
+```python
+import time
+import os
+import pieces_os_client
+from pieces_os_client.models.applications import Applications
+from pieces_os_client.models.applications_bulk_update_capabilities_input import ApplicationsBulkUpdateCapabilitiesInput
+from pieces_os_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to http://localhost:1000
+# See configuration.py for a list of all supported configuration parameters.
+configuration = pieces_os_client.Configuration(
+    host = "http://localhost:1000"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: application
+configuration.api_key['application'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['application'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with pieces_os_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = pieces_os_client.ApplicationsApi(api_client)
+    applications_bulk_update_capabilities_input = pieces_os_client.ApplicationsBulkUpdateCapabilitiesInput() # ApplicationsBulkUpdateCapabilitiesInput |  (optional)
+
+    try:
+        # /applications/update/capabilities [POST]
+        api_response = api_instance.applications_bulk_update_application_capabilities(applications_bulk_update_capabilities_input=applications_bulk_update_capabilities_input)
+        print("The response of ApplicationsApi->applications_bulk_update_application_capabilities:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling ApplicationsApi->applications_bulk_update_application_capabilities: %s\n" % e)
+```
+
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **applications_bulk_update_capabilities_input** | [**ApplicationsBulkUpdateCapabilitiesInput**](ApplicationsBulkUpdateCapabilitiesInput.md)|  | [optional] 
+
+### Return type
+
+[**Applications**](Applications.md)
+
+### Authorization
+
+[application](../README.md#application)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json, text/plain
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**500** | Internal Server Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **applications_external_related**
 > DetectedExternalApplications applications_external_related()

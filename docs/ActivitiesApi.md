@@ -97,7 +97,9 @@ Name | Type | Description  | Notes
 
 /activities/{activity}/delete [POST]
 
-This will delete a specific activity.  important note: if we delete an activity: that is going to be a generic or a specific/ we will also delete its counter part i.e the specific. and vise versa, this ensures that the references are always cleaned.
+This will delete a specific activity.
+
+important note: if we delete an activity: that is going to be a generic or a specific/ we will also delete its counter part i.e the specific. and vise versa, this ensures that the references are always cleaned.
 
 ### Example
 

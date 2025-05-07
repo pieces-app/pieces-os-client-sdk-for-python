@@ -248,7 +248,8 @@ This endpoint does not need any parameter.
 
 /users/{user} [GET] Scoped to Users
 
-This enables the client to get the current user.  This endpoint will return a UserPRofile or will throw an error since you are sending user uid.
+This enables the client to get the current user. 
+This endpoint will return a UserPRofile or will throw an error since you are sending user uid.
 
 ### Example
 

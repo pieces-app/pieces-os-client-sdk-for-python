@@ -31,7 +31,7 @@ class OAuthToken(BaseModel):
     access_token: StrictStr = Field(default=..., description="The Access Token")
     token_type: StrictStr = Field(...)
     expires_in: StrictInt = Field(...)
-    scope: StrictStr = Field(...)
+    scope: Optional[StrictStr] = None
     refresh_token: Optional[StrictStr] = None
     id_token: Optional[StrictStr] = None
     __properties = ["schema", "access_token", "token_type", "expires_in", "scope", "refresh_token", "id_token"]

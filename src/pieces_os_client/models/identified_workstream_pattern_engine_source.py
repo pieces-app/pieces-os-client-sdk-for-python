@@ -22,13 +22,18 @@ import json
 from typing import Optional
 from pydantic import BaseModel, Field, StrictBool, StrictStr
 from pieces_os_client.models.embedded_model_schema import EmbeddedModelSchema
+from pieces_os_client.models.flattened_conversation_messages import FlattenedConversationMessages
+from pieces_os_client.models.flattened_conversations import FlattenedConversations
+from pieces_os_client.models.flattened_workstream_events import FlattenedWorkstreamEvents
+from pieces_os_client.models.flattened_workstream_summaries import FlattenedWorkstreamSummaries
 from pieces_os_client.models.grouped_timestamp import GroupedTimestamp
 from pieces_os_client.models.score import Score
 from pieces_os_client.models.workstream_pattern_engine_source import WorkstreamPatternEngineSource
+from pieces_os_client.models.workstream_pattern_engine_source_supported_accessibility import WorkstreamPatternEngineSourceSupportedAccessibility
 
 class IdentifiedWorkstreamPatternEngineSource(BaseModel):
     """
-    This is a specific persisted model for WorkstreamPatternEngineSources that are persisted in the database(not just on the WPE event)  note: there is a \"WorkstreamPatternEngineSource\" model however we will NOT be modify this because it is linked to a different model that would require additional code to properly associate/disassociate.  note: we get 3 raw events from the WPE data so far:(encapsulated in the \"WorkstreamPatternEngineSource\") event 1. browserUrl - defaults to null 2. appTitle - ** not sure on default here ** (this is because this is always present on all WPE events.) 3. windowTitle - defaults to \"Window Title Not Found\"  note: raw is the raw value from the WPE(expect I will replace the defaults w/ nullish values)  # noqa: E501
+    This is a specific persisted model for WorkstreamPatternEngineSources that are persisted in the database(not just on the WPE event)  note: there is a \"WorkstreamPatternEngineSource\" model however we will NOT be modify this because it is linked to a different model that would require additional code to properly associate/disassociate.  note: we get 3 raw events from the WPE data so far:(encapsulated in the \"WorkstreamPatternEngineSource\") event 1. (deprecated) browserUrl - defaults to null 2. appTitle - ** not sure on default here ** (this is because this is always present on all WPE events.) 3. (deprecated) windowTitle - defaults to \"Window Title Not Found\"  NOTE we will no longer support adding window title and browser url on the source it will be generic(we will next update this to include these associations)  note: raw is the raw value from the WPE(expect I will replace the defaults w/ nullish values)  # noqa: E501
     """
     var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     id: StrictStr = Field(...)
@@ -38,7 +43,12 @@ class IdentifiedWorkstreamPatternEngineSource(BaseModel):
     filter: Optional[StrictBool] = Field(default=None, description="This will determine if we want to filter this specific source")
     score: Optional[Score] = None
     readable: StrictStr = Field(default=..., description="This is the name of the source(defualt original data) this is NOT used for matching just for readability")
-    __properties = ["schema", "id", "raw", "created", "updated", "filter", "score", "readable"]
+    summaries: Optional[FlattenedWorkstreamSummaries] = None
+    workstream_events: Optional[FlattenedWorkstreamEvents] = None
+    conversations: Optional[FlattenedConversations] = None
+    accessibility: Optional[WorkstreamPatternEngineSourceSupportedAccessibility] = None
+    messages: Optional[FlattenedConversationMessages] = None
+    __properties = ["schema", "id", "raw", "created", "updated", "filter", "score", "readable", "summaries", "workstream_events", "conversations", "accessibility", "messages"]
 
     class Config:
         """Pydantic configuration"""
@@ -79,6 +89,21 @@ class IdentifiedWorkstreamPatternEngineSource(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of score
         if self.score:
             _dict['score'] = self.score.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of summaries
+        if self.summaries:
+            _dict['summaries'] = self.summaries.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of workstream_events
+        if self.workstream_events:
+            _dict['workstream_events'] = self.workstream_events.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of conversations
+        if self.conversations:
+            _dict['conversations'] = self.conversations.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of accessibility
+        if self.accessibility:
+            _dict['accessibility'] = self.accessibility.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of messages
+        if self.messages:
+            _dict['messages'] = self.messages.to_dict()
         return _dict
 
     @classmethod
@@ -98,7 +123,12 @@ class IdentifiedWorkstreamPatternEngineSource(BaseModel):
             "updated": GroupedTimestamp.from_dict(obj.get("updated")) if obj.get("updated") is not None else None,
             "filter": obj.get("filter"),
             "score": Score.from_dict(obj.get("score")) if obj.get("score") is not None else None,
-            "readable": obj.get("readable")
+            "readable": obj.get("readable"),
+            "summaries": FlattenedWorkstreamSummaries.from_dict(obj.get("summaries")) if obj.get("summaries") is not None else None,
+            "workstream_events": FlattenedWorkstreamEvents.from_dict(obj.get("workstream_events")) if obj.get("workstream_events") is not None else None,
+            "conversations": FlattenedConversations.from_dict(obj.get("conversations")) if obj.get("conversations") is not None else None,
+            "accessibility": WorkstreamPatternEngineSourceSupportedAccessibility.from_dict(obj.get("accessibility")) if obj.get("accessibility") is not None else None,
+            "messages": FlattenedConversationMessages.from_dict(obj.get("messages")) if obj.get("messages") is not None else None
         })
         return _obj
 

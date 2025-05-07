@@ -9,6 +9,7 @@ Name | Type | Description | Notes
 **raw** | [**WorkstreamPatternEngineSource**](WorkstreamPatternEngineSource.md) |  | 
 **filter** | **bool** | This will determine if we want to filter this specific source | [optional] 
 **readable** | **str** | This is the name of the source(defualt original data) this is NOT used for matching just for readability | 
+**accessibility** | [**WorkstreamPatternEngineSourceSupportedAccessibility**](WorkstreamPatternEngineSourceSupportedAccessibility.md) |  | [optional] 
 
 ## Example
 

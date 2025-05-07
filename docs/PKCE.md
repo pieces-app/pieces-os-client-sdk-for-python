@@ -12,6 +12,7 @@ Name | Type | Description | Notes
 **seed** | [**SeededPKCE**](SeededPKCE.md) |  | [optional] 
 **token** | [**TokenizedPKCE**](TokenizedPKCE.md) |  | [optional] 
 **auth0** | [**Auth0**](Auth0.md) |  | [optional] 
+**descope** | [**Descope**](Descope.md) |  | [optional] 
 
 ## Example
 

@@ -19,9 +19,10 @@ import re  # noqa: F401
 import json
 
 
-from typing import Optional
-from pydantic import BaseModel, Field, StrictStr
+from typing import List, Optional, Union
+from pydantic import BaseModel, Field, StrictBool, StrictFloat, StrictInt, StrictStr, conlist
 from pieces_os_client.models.applications import Applications
+from pieces_os_client.models.capabilities_enum import CapabilitiesEnum
 from pieces_os_client.models.embedded_model_schema import EmbeddedModelSchema
 from pieces_os_client.models.grouped_timestamp import GroupedTimestamp
 from pieces_os_client.models.model import Model
@@ -47,7 +48,13 @@ class FlattenedWorkstreamSummary(BaseModel):
     conversations: Optional[FlattenedConversations] = None
     persons: Optional[FlattenedPersons] = None
     applications: Optional[Applications] = None
-    __properties = ["schema", "id", "score", "created", "updated", "events", "name", "annotations", "ranges", "model", "websites", "anchors", "assets", "conversations", "persons", "applications"]
+    tags: Optional[FlattenedTags] = None
+    sources: Optional[FlattenedIdentifiedWorkstreamPatternEngineSources] = None
+    workstream_summaries_vector: Optional[conlist(Union[StrictFloat, StrictInt])] = Field(default=None, alias="workstreamSummariesVector", description="This is the embedding for the format.(NEEDs to connection.vector) and specific here because we can only index on a single name")
+    processing: Optional[CapabilitiesEnum] = None
+    favorited: Optional[StrictBool] = None
+    messages: Optional[FlattenedConversationMessages] = None
+    __properties = ["schema", "id", "score", "created", "updated", "events", "name", "annotations", "ranges", "model", "websites", "anchors", "assets", "conversations", "persons", "applications", "tags", "sources", "workstreamSummariesVector", "processing", "favorited", "messages"]
 
     class Config:
         """Pydantic configuration"""
@@ -115,6 +122,15 @@ class FlattenedWorkstreamSummary(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of applications
         if self.applications:
             _dict['applications'] = self.applications.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of tags
+        if self.tags:
+            _dict['tags'] = self.tags.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of sources
+        if self.sources:
+            _dict['sources'] = self.sources.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of messages
+        if self.messages:
+            _dict['messages'] = self.messages.to_dict()
         return _dict
 
     @classmethod
@@ -142,16 +158,25 @@ class FlattenedWorkstreamSummary(BaseModel):
             "assets": FlattenedAssets.from_dict(obj.get("assets")) if obj.get("assets") is not None else None,
             "conversations": FlattenedConversations.from_dict(obj.get("conversations")) if obj.get("conversations") is not None else None,
             "persons": FlattenedPersons.from_dict(obj.get("persons")) if obj.get("persons") is not None else None,
-            "applications": Applications.from_dict(obj.get("applications")) if obj.get("applications") is not None else None
+            "applications": Applications.from_dict(obj.get("applications")) if obj.get("applications") is not None else None,
+            "tags": FlattenedTags.from_dict(obj.get("tags")) if obj.get("tags") is not None else None,
+            "sources": FlattenedIdentifiedWorkstreamPatternEngineSources.from_dict(obj.get("sources")) if obj.get("sources") is not None else None,
+            "workstream_summaries_vector": obj.get("workstreamSummariesVector"),
+            "processing": obj.get("processing"),
+            "favorited": obj.get("favorited"),
+            "messages": FlattenedConversationMessages.from_dict(obj.get("messages")) if obj.get("messages") is not None else None
         })
         return _obj
 
 from pieces_os_client.models.flattened_anchors import FlattenedAnchors
 from pieces_os_client.models.flattened_annotations import FlattenedAnnotations
 from pieces_os_client.models.flattened_assets import FlattenedAssets
+from pieces_os_client.models.flattened_conversation_messages import FlattenedConversationMessages
 from pieces_os_client.models.flattened_conversations import FlattenedConversations
+from pieces_os_client.models.flattened_identified_workstream_pattern_engine_sources import FlattenedIdentifiedWorkstreamPatternEngineSources
 from pieces_os_client.models.flattened_persons import FlattenedPersons
 from pieces_os_client.models.flattened_ranges import FlattenedRanges
+from pieces_os_client.models.flattened_tags import FlattenedTags
 from pieces_os_client.models.flattened_websites import FlattenedWebsites
 from pieces_os_client.models.flattened_workstream_events import FlattenedWorkstreamEvents
 FlattenedWorkstreamSummary.update_forward_refs()

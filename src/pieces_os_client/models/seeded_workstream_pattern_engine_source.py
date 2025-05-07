@@ -23,6 +23,7 @@ from typing import Optional
 from pydantic import BaseModel, Field, StrictBool, StrictStr
 from pieces_os_client.models.embedded_model_schema import EmbeddedModelSchema
 from pieces_os_client.models.workstream_pattern_engine_source import WorkstreamPatternEngineSource
+from pieces_os_client.models.workstream_pattern_engine_source_supported_accessibility import WorkstreamPatternEngineSourceSupportedAccessibility
 
 class SeededWorkstreamPatternEngineSource(BaseModel):
     """
@@ -32,7 +33,8 @@ class SeededWorkstreamPatternEngineSource(BaseModel):
     raw: WorkstreamPatternEngineSource = Field(...)
     filter: Optional[StrictBool] = Field(default=None, description="This will determine if we want to filter this specific source")
     readable: StrictStr = Field(default=..., description="This is the name of the source(defualt original data) this is NOT used for matching just for readability")
-    __properties = ["schema", "raw", "filter", "readable"]
+    accessibility: Optional[WorkstreamPatternEngineSourceSupportedAccessibility] = None
+    __properties = ["schema", "raw", "filter", "readable", "accessibility"]
 
     class Config:
         """Pydantic configuration"""
@@ -64,6 +66,9 @@ class SeededWorkstreamPatternEngineSource(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of raw
         if self.raw:
             _dict['raw'] = self.raw.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of accessibility
+        if self.accessibility:
+            _dict['accessibility'] = self.accessibility.to_dict()
         return _dict
 
     @classmethod
@@ -79,7 +84,8 @@ class SeededWorkstreamPatternEngineSource(BaseModel):
             "var_schema": EmbeddedModelSchema.from_dict(obj.get("schema")) if obj.get("schema") is not None else None,
             "raw": WorkstreamPatternEngineSource.from_dict(obj.get("raw")) if obj.get("raw") is not None else None,
             "filter": obj.get("filter"),
-            "readable": obj.get("readable")
+            "readable": obj.get("readable"),
+            "accessibility": WorkstreamPatternEngineSourceSupportedAccessibility.from_dict(obj.get("accessibility")) if obj.get("accessibility") is not None else None
         })
         return _obj
 

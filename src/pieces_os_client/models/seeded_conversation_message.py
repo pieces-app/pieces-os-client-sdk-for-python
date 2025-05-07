@@ -23,6 +23,14 @@ from typing import Optional
 from pydantic import BaseModel, Field
 from pieces_os_client.models.conversation_message_sentiment_enum import ConversationMessageSentimentEnum
 from pieces_os_client.models.embedded_model_schema import EmbeddedModelSchema
+from pieces_os_client.models.flattened_anchors import FlattenedAnchors
+from pieces_os_client.models.flattened_assets import FlattenedAssets
+from pieces_os_client.models.flattened_conversation_messages import FlattenedConversationMessages
+from pieces_os_client.models.flattened_identified_workstream_pattern_engine_sources import FlattenedIdentifiedWorkstreamPatternEngineSources
+from pieces_os_client.models.flattened_ranges import FlattenedRanges
+from pieces_os_client.models.flattened_tags import FlattenedTags
+from pieces_os_client.models.flattened_workstream_events import FlattenedWorkstreamEvents
+from pieces_os_client.models.flattened_workstream_summaries import FlattenedWorkstreamSummaries
 from pieces_os_client.models.fragment_format import FragmentFormat
 from pieces_os_client.models.grouped_timestamp import GroupedTimestamp
 from pieces_os_client.models.model import Model
@@ -40,7 +48,15 @@ class SeededConversationMessage(BaseModel):
     conversation: Optional[ReferencedConversation] = None
     sentiment: Optional[ConversationMessageSentimentEnum] = None
     role: QGPTConversationMessageRoleEnum = Field(...)
-    __properties = ["schema", "created", "model", "fragment", "conversation", "sentiment", "role"]
+    assets: Optional[FlattenedAssets] = None
+    ranges: Optional[FlattenedRanges] = None
+    summaries: Optional[FlattenedWorkstreamSummaries] = None
+    tags: Optional[FlattenedTags] = None
+    messages: Optional[FlattenedConversationMessages] = None
+    workstream_events: Optional[FlattenedWorkstreamEvents] = None
+    sources: Optional[FlattenedIdentifiedWorkstreamPatternEngineSources] = None
+    anchors: Optional[FlattenedAnchors] = None
+    __properties = ["schema", "created", "model", "fragment", "conversation", "sentiment", "role", "assets", "ranges", "summaries", "tags", "messages", "workstream_events", "sources", "anchors"]
 
     class Config:
         """Pydantic configuration"""
@@ -81,6 +97,30 @@ class SeededConversationMessage(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of conversation
         if self.conversation:
             _dict['conversation'] = self.conversation.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of assets
+        if self.assets:
+            _dict['assets'] = self.assets.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of ranges
+        if self.ranges:
+            _dict['ranges'] = self.ranges.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of summaries
+        if self.summaries:
+            _dict['summaries'] = self.summaries.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of tags
+        if self.tags:
+            _dict['tags'] = self.tags.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of messages
+        if self.messages:
+            _dict['messages'] = self.messages.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of workstream_events
+        if self.workstream_events:
+            _dict['workstream_events'] = self.workstream_events.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of sources
+        if self.sources:
+            _dict['sources'] = self.sources.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of anchors
+        if self.anchors:
+            _dict['anchors'] = self.anchors.to_dict()
         return _dict
 
     @classmethod
@@ -99,7 +139,15 @@ class SeededConversationMessage(BaseModel):
             "fragment": FragmentFormat.from_dict(obj.get("fragment")) if obj.get("fragment") is not None else None,
             "conversation": ReferencedConversation.from_dict(obj.get("conversation")) if obj.get("conversation") is not None else None,
             "sentiment": obj.get("sentiment"),
-            "role": obj.get("role")
+            "role": obj.get("role"),
+            "assets": FlattenedAssets.from_dict(obj.get("assets")) if obj.get("assets") is not None else None,
+            "ranges": FlattenedRanges.from_dict(obj.get("ranges")) if obj.get("ranges") is not None else None,
+            "summaries": FlattenedWorkstreamSummaries.from_dict(obj.get("summaries")) if obj.get("summaries") is not None else None,
+            "tags": FlattenedTags.from_dict(obj.get("tags")) if obj.get("tags") is not None else None,
+            "messages": FlattenedConversationMessages.from_dict(obj.get("messages")) if obj.get("messages") is not None else None,
+            "workstream_events": FlattenedWorkstreamEvents.from_dict(obj.get("workstream_events")) if obj.get("workstream_events") is not None else None,
+            "sources": FlattenedIdentifiedWorkstreamPatternEngineSources.from_dict(obj.get("sources")) if obj.get("sources") is not None else None,
+            "anchors": FlattenedAnchors.from_dict(obj.get("anchors")) if obj.get("anchors") is not None else None
         })
         return _obj
 

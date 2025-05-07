@@ -19,15 +19,17 @@ import re  # noqa: F401
 import json
 
 
-from typing import List, Optional
-from pydantic import BaseModel, Field, StrictStr, conlist
+from typing import List, Optional, Union
+from pydantic import BaseModel, Field, StrictBool, StrictFloat, StrictInt, StrictStr, conlist
 from pieces_os_client.models.applications import Applications
+from pieces_os_client.models.capabilities_enum import CapabilitiesEnum
 from pieces_os_client.models.embedded_model_schema import EmbeddedModelSchema
 from pieces_os_client.models.flattened_anchors import FlattenedAnchors
 from pieces_os_client.models.flattened_assets import FlattenedAssets
 from pieces_os_client.models.flattened_conversations import FlattenedConversations
 from pieces_os_client.models.flattened_persons import FlattenedPersons
 from pieces_os_client.models.flattened_ranges import FlattenedRanges
+from pieces_os_client.models.flattened_tags import FlattenedTags
 from pieces_os_client.models.flattened_websites import FlattenedWebsites
 from pieces_os_client.models.flattened_workstream_events import FlattenedWorkstreamEvents
 from pieces_os_client.models.model import Model
@@ -35,7 +37,7 @@ from pieces_os_client.models.seeded_annotation import SeededAnnotation
 
 class SeededWorkstreamSummary(BaseModel):
     """
-    This is a seeded version of a WorkstreamSummary  # noqa: E501
+    This is a seeded version of a WorkstreamSummary Note: sources for the summary will be calculated based on the events used  # noqa: E501
     """
     var_schema: Optional[EmbeddedModelSchema] = Field(default=None, alias="schema")
     events: Optional[FlattenedWorkstreamEvents] = None
@@ -48,8 +50,12 @@ class SeededWorkstreamSummary(BaseModel):
     assets: Optional[FlattenedAssets] = None
     conversations: Optional[FlattenedConversations] = None
     persons: Optional[FlattenedPersons] = None
+    tags: Optional[FlattenedTags] = None
     applications: Optional[Applications] = None
-    __properties = ["schema", "events", "name", "annotations", "ranges", "model", "websites", "anchors", "assets", "conversations", "persons", "applications"]
+    workstream_summaries_vector: Optional[conlist(Union[StrictFloat, StrictInt])] = Field(default=None, alias="workstreamSummariesVector", description="This is the embedding for the format.(NEEDs to connection.vector) and specific here because we can only index on a single name")
+    processing: Optional[CapabilitiesEnum] = None
+    favorited: Optional[StrictBool] = None
+    __properties = ["schema", "events", "name", "annotations", "ranges", "model", "websites", "anchors", "assets", "conversations", "persons", "tags", "applications", "workstreamSummariesVector", "processing", "favorited"]
 
     class Config:
         """Pydantic configuration"""
@@ -109,6 +115,9 @@ class SeededWorkstreamSummary(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of persons
         if self.persons:
             _dict['persons'] = self.persons.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of tags
+        if self.tags:
+            _dict['tags'] = self.tags.to_dict()
         # override the default output from pydantic by calling `to_dict()` of applications
         if self.applications:
             _dict['applications'] = self.applications.to_dict()
@@ -135,7 +144,11 @@ class SeededWorkstreamSummary(BaseModel):
             "assets": FlattenedAssets.from_dict(obj.get("assets")) if obj.get("assets") is not None else None,
             "conversations": FlattenedConversations.from_dict(obj.get("conversations")) if obj.get("conversations") is not None else None,
             "persons": FlattenedPersons.from_dict(obj.get("persons")) if obj.get("persons") is not None else None,
-            "applications": Applications.from_dict(obj.get("applications")) if obj.get("applications") is not None else None
+            "tags": FlattenedTags.from_dict(obj.get("tags")) if obj.get("tags") is not None else None,
+            "applications": Applications.from_dict(obj.get("applications")) if obj.get("applications") is not None else None,
+            "workstream_summaries_vector": obj.get("workstreamSummariesVector"),
+            "processing": obj.get("processing"),
+            "favorited": obj.get("favorited")
         })
         return _obj
 

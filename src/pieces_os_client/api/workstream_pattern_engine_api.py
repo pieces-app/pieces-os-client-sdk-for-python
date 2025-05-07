@@ -2183,7 +2183,7 @@ class WorkstreamPatternEngineApi:
 
     @validate_arguments
     def workstream_pattern_engine_processors_vision_status_stream(self, **kwargs) -> WorkstreamPatternEngineStatus:  # noqa: E501
-        """/workstream_pattern_engine/processors/vision/status/steam [WS]  # noqa: E501
+        """/workstream_pattern_engine/processors/vision/status/stream [WS]  # noqa: E501
 
         This is a websocket for the status of the workstream pattern engine for vision.  This will emit an event when this is first connected to, and will emit an event when every this value changes  This will emit a \"WorkstreamPatternEngineStatus\" Model.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
@@ -2211,7 +2211,7 @@ class WorkstreamPatternEngineApi:
 
     @validate_arguments
     def workstream_pattern_engine_processors_vision_status_stream_with_http_info(self, **kwargs) -> ApiResponse:  # noqa: E501
-        """/workstream_pattern_engine/processors/vision/status/steam [WS]  # noqa: E501
+        """/workstream_pattern_engine/processors/vision/status/stream [WS]  # noqa: E501
 
         This is a websocket for the status of the workstream pattern engine for vision.  This will emit an event when this is first connected to, and will emit an event when every this value changes  This will emit a \"WorkstreamPatternEngineStatus\" Model.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an

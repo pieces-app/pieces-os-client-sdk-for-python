@@ -48,6 +48,2050 @@ class ConversationMessageApi:
         self.api_client = api_client
 
     @validate_arguments
+    def conversation_message_associate_asset(self, message : Annotated[StrictStr, Field(..., description="This is the uuid of a message.")], asset : Annotated[StrictStr, Field(..., description="The id (uuid) of the asset that you are trying to access.")], **kwargs) -> None:  # noqa: E501
+        """/message/{message}/assets/associate/{asset} [POST]  # noqa: E501
+
+        This will associate a conversation-message with a asset. This will do the same thing as the asset equivalent.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.conversation_message_associate_asset(message, asset, async_req=True)
+        >>> result = thread.get()
+
+        :param message: This is the uuid of a message. (required)
+        :type message: str
+        :param asset: The id (uuid) of the asset that you are trying to access. (required)
+        :type asset: str
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _request_timeout: timeout setting for this request.
+               If one number provided, it will be total request
+               timeout. It can also be a pair (tuple) of
+               (connection, read) timeouts.
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: None
+        """
+        kwargs['_return_http_data_only'] = True
+        if '_preload_content' in kwargs:
+            message = "Error! Please call the conversation_message_associate_asset_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
+            raise ValueError(message)
+        return self.conversation_message_associate_asset_with_http_info(message, asset, **kwargs)  # noqa: E501
+
+    @validate_arguments
+    def conversation_message_associate_asset_with_http_info(self, message : Annotated[StrictStr, Field(..., description="This is the uuid of a message.")], asset : Annotated[StrictStr, Field(..., description="The id (uuid) of the asset that you are trying to access.")], **kwargs) -> ApiResponse:  # noqa: E501
+        """/message/{message}/assets/associate/{asset} [POST]  # noqa: E501
+
+        This will associate a conversation-message with a asset. This will do the same thing as the asset equivalent.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.conversation_message_associate_asset_with_http_info(message, asset, async_req=True)
+        >>> result = thread.get()
+
+        :param message: This is the uuid of a message. (required)
+        :type message: str
+        :param asset: The id (uuid) of the asset that you are trying to access. (required)
+        :type asset: str
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _preload_content: if False, the ApiResponse.data will
+                                 be set to none and raw_data will store the
+                                 HTTP response body without reading/decoding.
+                                 Default is True.
+        :type _preload_content: bool, optional
+        :param _return_http_data_only: response data instead of ApiResponse
+                                       object with status code, headers, etc
+        :type _return_http_data_only: bool, optional
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
+        :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: None
+        """
+
+        _params = locals()
+
+        _all_params = [
+            'message',
+            'asset'
+        ]
+        _all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers'
+            ]
+        )
+
+        # validate the arguments
+        for _key, _val in _params['kwargs'].items():
+            if _key not in _all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method conversation_message_associate_asset" % _key
+                )
+            _params[_key] = _val
+        del _params['kwargs']
+
+        _collection_formats = {}
+
+        # process the path parameters
+        _path_params = {}
+        if _params['message'] is not None:
+            _path_params['message'] = _params['message']
+
+        if _params['asset'] is not None:
+            _path_params['asset'] = _params['asset']
+
+
+        # process the query parameters
+        _query_params = []
+        # process the header parameters
+        _header_params = dict(_params.get('_headers', {}))
+        # process the form parameters
+        _form_params = []
+        _files = {}
+        # process the body parameter
+        _body_params = None
+        # set the HTTP header `Accept`
+        _header_params['Accept'] = self.api_client.select_header_accept(
+            ['text/plain'])  # noqa: E501
+
+        # authentication setting
+        _auth_settings = ['application']  # noqa: E501
+
+        _response_types_map = {}
+
+        return self.api_client.call_api(
+            '/message/{message}/assets/associate/{asset}', 'POST',
+            _path_params,
+            _query_params,
+            _header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            response_types_map=_response_types_map,
+            auth_settings=_auth_settings,
+            async_req=_params.get('async_req'),
+            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=_params.get('_preload_content', True),
+            _request_timeout=_params.get('_request_timeout'),
+            collection_formats=_collection_formats,
+            _request_auth=_params.get('_request_auth'))
+
+    @validate_arguments
+    def conversation_message_associate_conversation_message(self, message : Annotated[StrictStr, Field(..., description="This is the uuid of a message.")], additional_message : Annotated[StrictStr, Field(..., description="In the case of 2 route params we can use the additional prefix.")], **kwargs) -> None:  # noqa: E501
+        """/message/{message}/messages/associate/{additional_message} [POST]  # noqa: E501
+
+        This will associate a conversation_message with a conversation_message.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.conversation_message_associate_conversation_message(message, additional_message, async_req=True)
+        >>> result = thread.get()
+
+        :param message: This is the uuid of a message. (required)
+        :type message: str
+        :param additional_message: In the case of 2 route params we can use the additional prefix. (required)
+        :type additional_message: str
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _request_timeout: timeout setting for this request.
+               If one number provided, it will be total request
+               timeout. It can also be a pair (tuple) of
+               (connection, read) timeouts.
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: None
+        """
+        kwargs['_return_http_data_only'] = True
+        if '_preload_content' in kwargs:
+            message = "Error! Please call the conversation_message_associate_conversation_message_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
+            raise ValueError(message)
+        return self.conversation_message_associate_conversation_message_with_http_info(message, additional_message, **kwargs)  # noqa: E501
+
+    @validate_arguments
+    def conversation_message_associate_conversation_message_with_http_info(self, message : Annotated[StrictStr, Field(..., description="This is the uuid of a message.")], additional_message : Annotated[StrictStr, Field(..., description="In the case of 2 route params we can use the additional prefix.")], **kwargs) -> ApiResponse:  # noqa: E501
+        """/message/{message}/messages/associate/{additional_message} [POST]  # noqa: E501
+
+        This will associate a conversation_message with a conversation_message.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.conversation_message_associate_conversation_message_with_http_info(message, additional_message, async_req=True)
+        >>> result = thread.get()
+
+        :param message: This is the uuid of a message. (required)
+        :type message: str
+        :param additional_message: In the case of 2 route params we can use the additional prefix. (required)
+        :type additional_message: str
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _preload_content: if False, the ApiResponse.data will
+                                 be set to none and raw_data will store the
+                                 HTTP response body without reading/decoding.
+                                 Default is True.
+        :type _preload_content: bool, optional
+        :param _return_http_data_only: response data instead of ApiResponse
+                                       object with status code, headers, etc
+        :type _return_http_data_only: bool, optional
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
+        :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: None
+        """
+
+        _params = locals()
+
+        _all_params = [
+            'message',
+            'additional_message'
+        ]
+        _all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers'
+            ]
+        )
+
+        # validate the arguments
+        for _key, _val in _params['kwargs'].items():
+            if _key not in _all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method conversation_message_associate_conversation_message" % _key
+                )
+            _params[_key] = _val
+        del _params['kwargs']
+
+        _collection_formats = {}
+
+        # process the path parameters
+        _path_params = {}
+        if _params['message'] is not None:
+            _path_params['message'] = _params['message']
+
+        if _params['additional_message'] is not None:
+            _path_params['additional_message'] = _params['additional_message']
+
+
+        # process the query parameters
+        _query_params = []
+        # process the header parameters
+        _header_params = dict(_params.get('_headers', {}))
+        # process the form parameters
+        _form_params = []
+        _files = {}
+        # process the body parameter
+        _body_params = None
+        # set the HTTP header `Accept`
+        _header_params['Accept'] = self.api_client.select_header_accept(
+            ['text/plain'])  # noqa: E501
+
+        # authentication setting
+        _auth_settings = ['application']  # noqa: E501
+
+        _response_types_map = {}
+
+        return self.api_client.call_api(
+            '/message/{message}/messages/associate/{additional_message}', 'POST',
+            _path_params,
+            _query_params,
+            _header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            response_types_map=_response_types_map,
+            auth_settings=_auth_settings,
+            async_req=_params.get('async_req'),
+            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=_params.get('_preload_content', True),
+            _request_timeout=_params.get('_request_timeout'),
+            collection_formats=_collection_formats,
+            _request_auth=_params.get('_request_auth'))
+
+    @validate_arguments
+    def conversation_message_associate_range(self, message : Annotated[StrictStr, Field(..., description="This is the uuid of a message.")], range : Annotated[StrictStr, Field(..., description="This is a identifier that is used to identify a specific range.")], **kwargs) -> None:  # noqa: E501
+        """/message/{message}/ranges/associate/{range} [POST]  # noqa: E501
+
+        This will associate a conversation-message with a range. This will do the same thing as the range equivalent.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.conversation_message_associate_range(message, range, async_req=True)
+        >>> result = thread.get()
+
+        :param message: This is the uuid of a message. (required)
+        :type message: str
+        :param range: This is a identifier that is used to identify a specific range. (required)
+        :type range: str
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _request_timeout: timeout setting for this request.
+               If one number provided, it will be total request
+               timeout. It can also be a pair (tuple) of
+               (connection, read) timeouts.
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: None
+        """
+        kwargs['_return_http_data_only'] = True
+        if '_preload_content' in kwargs:
+            message = "Error! Please call the conversation_message_associate_range_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
+            raise ValueError(message)
+        return self.conversation_message_associate_range_with_http_info(message, range, **kwargs)  # noqa: E501
+
+    @validate_arguments
+    def conversation_message_associate_range_with_http_info(self, message : Annotated[StrictStr, Field(..., description="This is the uuid of a message.")], range : Annotated[StrictStr, Field(..., description="This is a identifier that is used to identify a specific range.")], **kwargs) -> ApiResponse:  # noqa: E501
+        """/message/{message}/ranges/associate/{range} [POST]  # noqa: E501
+
+        This will associate a conversation-message with a range. This will do the same thing as the range equivalent.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.conversation_message_associate_range_with_http_info(message, range, async_req=True)
+        >>> result = thread.get()
+
+        :param message: This is the uuid of a message. (required)
+        :type message: str
+        :param range: This is a identifier that is used to identify a specific range. (required)
+        :type range: str
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _preload_content: if False, the ApiResponse.data will
+                                 be set to none and raw_data will store the
+                                 HTTP response body without reading/decoding.
+                                 Default is True.
+        :type _preload_content: bool, optional
+        :param _return_http_data_only: response data instead of ApiResponse
+                                       object with status code, headers, etc
+        :type _return_http_data_only: bool, optional
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
+        :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: None
+        """
+
+        _params = locals()
+
+        _all_params = [
+            'message',
+            'range'
+        ]
+        _all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers'
+            ]
+        )
+
+        # validate the arguments
+        for _key, _val in _params['kwargs'].items():
+            if _key not in _all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method conversation_message_associate_range" % _key
+                )
+            _params[_key] = _val
+        del _params['kwargs']
+
+        _collection_formats = {}
+
+        # process the path parameters
+        _path_params = {}
+        if _params['message'] is not None:
+            _path_params['message'] = _params['message']
+
+        if _params['range'] is not None:
+            _path_params['range'] = _params['range']
+
+
+        # process the query parameters
+        _query_params = []
+        # process the header parameters
+        _header_params = dict(_params.get('_headers', {}))
+        # process the form parameters
+        _form_params = []
+        _files = {}
+        # process the body parameter
+        _body_params = None
+        # set the HTTP header `Accept`
+        _header_params['Accept'] = self.api_client.select_header_accept(
+            ['text/plain'])  # noqa: E501
+
+        # authentication setting
+        _auth_settings = ['application']  # noqa: E501
+
+        _response_types_map = {}
+
+        return self.api_client.call_api(
+            '/message/{message}/ranges/associate/{range}', 'POST',
+            _path_params,
+            _query_params,
+            _header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            response_types_map=_response_types_map,
+            auth_settings=_auth_settings,
+            async_req=_params.get('async_req'),
+            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=_params.get('_preload_content', True),
+            _request_timeout=_params.get('_request_timeout'),
+            collection_formats=_collection_formats,
+            _request_auth=_params.get('_request_auth'))
+
+    @validate_arguments
+    def conversation_message_associate_tag(self, message : Annotated[StrictStr, Field(..., description="This is the uuid of a message.")], tag : Annotated[StrictStr, Field(..., description="tag id")], **kwargs) -> None:  # noqa: E501
+        """/message/{message}/tags/associate/{tag} [POST]  # noqa: E501
+
+        This will associate a conversation-message with a tag. This will do the same thing as the tag equivalent.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.conversation_message_associate_tag(message, tag, async_req=True)
+        >>> result = thread.get()
+
+        :param message: This is the uuid of a message. (required)
+        :type message: str
+        :param tag: tag id (required)
+        :type tag: str
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _request_timeout: timeout setting for this request.
+               If one number provided, it will be total request
+               timeout. It can also be a pair (tuple) of
+               (connection, read) timeouts.
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: None
+        """
+        kwargs['_return_http_data_only'] = True
+        if '_preload_content' in kwargs:
+            message = "Error! Please call the conversation_message_associate_tag_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
+            raise ValueError(message)
+        return self.conversation_message_associate_tag_with_http_info(message, tag, **kwargs)  # noqa: E501
+
+    @validate_arguments
+    def conversation_message_associate_tag_with_http_info(self, message : Annotated[StrictStr, Field(..., description="This is the uuid of a message.")], tag : Annotated[StrictStr, Field(..., description="tag id")], **kwargs) -> ApiResponse:  # noqa: E501
+        """/message/{message}/tags/associate/{tag} [POST]  # noqa: E501
+
+        This will associate a conversation-message with a tag. This will do the same thing as the tag equivalent.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.conversation_message_associate_tag_with_http_info(message, tag, async_req=True)
+        >>> result = thread.get()
+
+        :param message: This is the uuid of a message. (required)
+        :type message: str
+        :param tag: tag id (required)
+        :type tag: str
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _preload_content: if False, the ApiResponse.data will
+                                 be set to none and raw_data will store the
+                                 HTTP response body without reading/decoding.
+                                 Default is True.
+        :type _preload_content: bool, optional
+        :param _return_http_data_only: response data instead of ApiResponse
+                                       object with status code, headers, etc
+        :type _return_http_data_only: bool, optional
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
+        :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: None
+        """
+
+        _params = locals()
+
+        _all_params = [
+            'message',
+            'tag'
+        ]
+        _all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers'
+            ]
+        )
+
+        # validate the arguments
+        for _key, _val in _params['kwargs'].items():
+            if _key not in _all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method conversation_message_associate_tag" % _key
+                )
+            _params[_key] = _val
+        del _params['kwargs']
+
+        _collection_formats = {}
+
+        # process the path parameters
+        _path_params = {}
+        if _params['message'] is not None:
+            _path_params['message'] = _params['message']
+
+        if _params['tag'] is not None:
+            _path_params['tag'] = _params['tag']
+
+
+        # process the query parameters
+        _query_params = []
+        # process the header parameters
+        _header_params = dict(_params.get('_headers', {}))
+        # process the form parameters
+        _form_params = []
+        _files = {}
+        # process the body parameter
+        _body_params = None
+        # set the HTTP header `Accept`
+        _header_params['Accept'] = self.api_client.select_header_accept(
+            ['text/plain'])  # noqa: E501
+
+        # authentication setting
+        _auth_settings = ['application']  # noqa: E501
+
+        _response_types_map = {}
+
+        return self.api_client.call_api(
+            '/message/{message}/tags/associate/{tag}', 'POST',
+            _path_params,
+            _query_params,
+            _header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            response_types_map=_response_types_map,
+            auth_settings=_auth_settings,
+            async_req=_params.get('async_req'),
+            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=_params.get('_preload_content', True),
+            _request_timeout=_params.get('_request_timeout'),
+            collection_formats=_collection_formats,
+            _request_auth=_params.get('_request_auth'))
+
+    @validate_arguments
+    def conversation_message_associate_workstream_event(self, message : Annotated[StrictStr, Field(..., description="This is the uuid of a message.")], workstream_event : Annotated[StrictStr, Field(..., description="This is a identifier that is used to identify a specific workstream_event.")], **kwargs) -> None:  # noqa: E501
+        """/message/{message}/workstream_events/associate/{workstream_event} [POST]  # noqa: E501
+
+        This will associate a conversation-message with a workstream_event. This will do the same thing as the workstream_event equivalent.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.conversation_message_associate_workstream_event(message, workstream_event, async_req=True)
+        >>> result = thread.get()
+
+        :param message: This is the uuid of a message. (required)
+        :type message: str
+        :param workstream_event: This is a identifier that is used to identify a specific workstream_event. (required)
+        :type workstream_event: str
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _request_timeout: timeout setting for this request.
+               If one number provided, it will be total request
+               timeout. It can also be a pair (tuple) of
+               (connection, read) timeouts.
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: None
+        """
+        kwargs['_return_http_data_only'] = True
+        if '_preload_content' in kwargs:
+            message = "Error! Please call the conversation_message_associate_workstream_event_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
+            raise ValueError(message)
+        return self.conversation_message_associate_workstream_event_with_http_info(message, workstream_event, **kwargs)  # noqa: E501
+
+    @validate_arguments
+    def conversation_message_associate_workstream_event_with_http_info(self, message : Annotated[StrictStr, Field(..., description="This is the uuid of a message.")], workstream_event : Annotated[StrictStr, Field(..., description="This is a identifier that is used to identify a specific workstream_event.")], **kwargs) -> ApiResponse:  # noqa: E501
+        """/message/{message}/workstream_events/associate/{workstream_event} [POST]  # noqa: E501
+
+        This will associate a conversation-message with a workstream_event. This will do the same thing as the workstream_event equivalent.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.conversation_message_associate_workstream_event_with_http_info(message, workstream_event, async_req=True)
+        >>> result = thread.get()
+
+        :param message: This is the uuid of a message. (required)
+        :type message: str
+        :param workstream_event: This is a identifier that is used to identify a specific workstream_event. (required)
+        :type workstream_event: str
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _preload_content: if False, the ApiResponse.data will
+                                 be set to none and raw_data will store the
+                                 HTTP response body without reading/decoding.
+                                 Default is True.
+        :type _preload_content: bool, optional
+        :param _return_http_data_only: response data instead of ApiResponse
+                                       object with status code, headers, etc
+        :type _return_http_data_only: bool, optional
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
+        :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: None
+        """
+
+        _params = locals()
+
+        _all_params = [
+            'message',
+            'workstream_event'
+        ]
+        _all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers'
+            ]
+        )
+
+        # validate the arguments
+        for _key, _val in _params['kwargs'].items():
+            if _key not in _all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method conversation_message_associate_workstream_event" % _key
+                )
+            _params[_key] = _val
+        del _params['kwargs']
+
+        _collection_formats = {}
+
+        # process the path parameters
+        _path_params = {}
+        if _params['message'] is not None:
+            _path_params['message'] = _params['message']
+
+        if _params['workstream_event'] is not None:
+            _path_params['workstream_event'] = _params['workstream_event']
+
+
+        # process the query parameters
+        _query_params = []
+        # process the header parameters
+        _header_params = dict(_params.get('_headers', {}))
+        # process the form parameters
+        _form_params = []
+        _files = {}
+        # process the body parameter
+        _body_params = None
+        # set the HTTP header `Accept`
+        _header_params['Accept'] = self.api_client.select_header_accept(
+            ['text/plain'])  # noqa: E501
+
+        # authentication setting
+        _auth_settings = ['application']  # noqa: E501
+
+        _response_types_map = {}
+
+        return self.api_client.call_api(
+            '/message/{message}/workstream_events/associate/{workstream_event}', 'POST',
+            _path_params,
+            _query_params,
+            _header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            response_types_map=_response_types_map,
+            auth_settings=_auth_settings,
+            async_req=_params.get('async_req'),
+            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=_params.get('_preload_content', True),
+            _request_timeout=_params.get('_request_timeout'),
+            collection_formats=_collection_formats,
+            _request_auth=_params.get('_request_auth'))
+
+    @validate_arguments
+    def conversation_message_associate_workstream_pattern_engine_source(self, message : Annotated[StrictStr, Field(..., description="This is the uuid of a message.")], source : Annotated[StrictStr, Field(..., description="This is a identifier that is used to identify a specific WorkstreamPatternEngineSource")], **kwargs) -> None:  # noqa: E501
+        """/message/{message}/workstream_pattern_engine/sources/associate/{source} [POST]  # noqa: E501
+
+        This will associate a conversation-message with a source. This will do the same thing as the source equivalent.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.conversation_message_associate_workstream_pattern_engine_source(message, source, async_req=True)
+        >>> result = thread.get()
+
+        :param message: This is the uuid of a message. (required)
+        :type message: str
+        :param source: This is a identifier that is used to identify a specific WorkstreamPatternEngineSource (required)
+        :type source: str
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _request_timeout: timeout setting for this request.
+               If one number provided, it will be total request
+               timeout. It can also be a pair (tuple) of
+               (connection, read) timeouts.
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: None
+        """
+        kwargs['_return_http_data_only'] = True
+        if '_preload_content' in kwargs:
+            message = "Error! Please call the conversation_message_associate_workstream_pattern_engine_source_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
+            raise ValueError(message)
+        return self.conversation_message_associate_workstream_pattern_engine_source_with_http_info(message, source, **kwargs)  # noqa: E501
+
+    @validate_arguments
+    def conversation_message_associate_workstream_pattern_engine_source_with_http_info(self, message : Annotated[StrictStr, Field(..., description="This is the uuid of a message.")], source : Annotated[StrictStr, Field(..., description="This is a identifier that is used to identify a specific WorkstreamPatternEngineSource")], **kwargs) -> ApiResponse:  # noqa: E501
+        """/message/{message}/workstream_pattern_engine/sources/associate/{source} [POST]  # noqa: E501
+
+        This will associate a conversation-message with a source. This will do the same thing as the source equivalent.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.conversation_message_associate_workstream_pattern_engine_source_with_http_info(message, source, async_req=True)
+        >>> result = thread.get()
+
+        :param message: This is the uuid of a message. (required)
+        :type message: str
+        :param source: This is a identifier that is used to identify a specific WorkstreamPatternEngineSource (required)
+        :type source: str
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _preload_content: if False, the ApiResponse.data will
+                                 be set to none and raw_data will store the
+                                 HTTP response body without reading/decoding.
+                                 Default is True.
+        :type _preload_content: bool, optional
+        :param _return_http_data_only: response data instead of ApiResponse
+                                       object with status code, headers, etc
+        :type _return_http_data_only: bool, optional
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
+        :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: None
+        """
+
+        _params = locals()
+
+        _all_params = [
+            'message',
+            'source'
+        ]
+        _all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers'
+            ]
+        )
+
+        # validate the arguments
+        for _key, _val in _params['kwargs'].items():
+            if _key not in _all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method conversation_message_associate_workstream_pattern_engine_source" % _key
+                )
+            _params[_key] = _val
+        del _params['kwargs']
+
+        _collection_formats = {}
+
+        # process the path parameters
+        _path_params = {}
+        if _params['message'] is not None:
+            _path_params['message'] = _params['message']
+
+        if _params['source'] is not None:
+            _path_params['source'] = _params['source']
+
+
+        # process the query parameters
+        _query_params = []
+        # process the header parameters
+        _header_params = dict(_params.get('_headers', {}))
+        # process the form parameters
+        _form_params = []
+        _files = {}
+        # process the body parameter
+        _body_params = None
+        # set the HTTP header `Accept`
+        _header_params['Accept'] = self.api_client.select_header_accept(
+            ['text/plain'])  # noqa: E501
+
+        # authentication setting
+        _auth_settings = ['application']  # noqa: E501
+
+        _response_types_map = {}
+
+        return self.api_client.call_api(
+            '/message/{message}/workstream_pattern_engine/sources/associate/{source}', 'POST',
+            _path_params,
+            _query_params,
+            _header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            response_types_map=_response_types_map,
+            auth_settings=_auth_settings,
+            async_req=_params.get('async_req'),
+            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=_params.get('_preload_content', True),
+            _request_timeout=_params.get('_request_timeout'),
+            collection_formats=_collection_formats,
+            _request_auth=_params.get('_request_auth'))
+
+    @validate_arguments
+    def conversation_message_associate_workstream_summary(self, message : Annotated[StrictStr, Field(..., description="This is the uuid of a message.")], workstream_summary : Annotated[StrictStr, Field(..., description="This is a identifier that is used to identify a specific workstream_summary.")], **kwargs) -> None:  # noqa: E501
+        """/message/{message}/workstream_summaries/associate/{workstream_summary} [POST]  # noqa: E501
+
+        This will associate a conversation-message with a workstream_summary. This will do the same thing as the workstream_summary equivalent.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.conversation_message_associate_workstream_summary(message, workstream_summary, async_req=True)
+        >>> result = thread.get()
+
+        :param message: This is the uuid of a message. (required)
+        :type message: str
+        :param workstream_summary: This is a identifier that is used to identify a specific workstream_summary. (required)
+        :type workstream_summary: str
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _request_timeout: timeout setting for this request.
+               If one number provided, it will be total request
+               timeout. It can also be a pair (tuple) of
+               (connection, read) timeouts.
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: None
+        """
+        kwargs['_return_http_data_only'] = True
+        if '_preload_content' in kwargs:
+            message = "Error! Please call the conversation_message_associate_workstream_summary_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
+            raise ValueError(message)
+        return self.conversation_message_associate_workstream_summary_with_http_info(message, workstream_summary, **kwargs)  # noqa: E501
+
+    @validate_arguments
+    def conversation_message_associate_workstream_summary_with_http_info(self, message : Annotated[StrictStr, Field(..., description="This is the uuid of a message.")], workstream_summary : Annotated[StrictStr, Field(..., description="This is a identifier that is used to identify a specific workstream_summary.")], **kwargs) -> ApiResponse:  # noqa: E501
+        """/message/{message}/workstream_summaries/associate/{workstream_summary} [POST]  # noqa: E501
+
+        This will associate a conversation-message with a workstream_summary. This will do the same thing as the workstream_summary equivalent.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.conversation_message_associate_workstream_summary_with_http_info(message, workstream_summary, async_req=True)
+        >>> result = thread.get()
+
+        :param message: This is the uuid of a message. (required)
+        :type message: str
+        :param workstream_summary: This is a identifier that is used to identify a specific workstream_summary. (required)
+        :type workstream_summary: str
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _preload_content: if False, the ApiResponse.data will
+                                 be set to none and raw_data will store the
+                                 HTTP response body without reading/decoding.
+                                 Default is True.
+        :type _preload_content: bool, optional
+        :param _return_http_data_only: response data instead of ApiResponse
+                                       object with status code, headers, etc
+        :type _return_http_data_only: bool, optional
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
+        :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: None
+        """
+
+        _params = locals()
+
+        _all_params = [
+            'message',
+            'workstream_summary'
+        ]
+        _all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers'
+            ]
+        )
+
+        # validate the arguments
+        for _key, _val in _params['kwargs'].items():
+            if _key not in _all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method conversation_message_associate_workstream_summary" % _key
+                )
+            _params[_key] = _val
+        del _params['kwargs']
+
+        _collection_formats = {}
+
+        # process the path parameters
+        _path_params = {}
+        if _params['message'] is not None:
+            _path_params['message'] = _params['message']
+
+        if _params['workstream_summary'] is not None:
+            _path_params['workstream_summary'] = _params['workstream_summary']
+
+
+        # process the query parameters
+        _query_params = []
+        # process the header parameters
+        _header_params = dict(_params.get('_headers', {}))
+        # process the form parameters
+        _form_params = []
+        _files = {}
+        # process the body parameter
+        _body_params = None
+        # set the HTTP header `Accept`
+        _header_params['Accept'] = self.api_client.select_header_accept(
+            ['text/plain'])  # noqa: E501
+
+        # authentication setting
+        _auth_settings = ['application']  # noqa: E501
+
+        _response_types_map = {}
+
+        return self.api_client.call_api(
+            '/message/{message}/workstream_summaries/associate/{workstream_summary}', 'POST',
+            _path_params,
+            _query_params,
+            _header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            response_types_map=_response_types_map,
+            auth_settings=_auth_settings,
+            async_req=_params.get('async_req'),
+            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=_params.get('_preload_content', True),
+            _request_timeout=_params.get('_request_timeout'),
+            collection_formats=_collection_formats,
+            _request_auth=_params.get('_request_auth'))
+
+    @validate_arguments
+    def conversation_message_disassociate_asset(self, message : Annotated[StrictStr, Field(..., description="This is the uuid of a message.")], asset : Annotated[StrictStr, Field(..., description="The id (uuid) of the asset that you are trying to access.")], **kwargs) -> None:  # noqa: E501
+        """/message/{message}/assets/disassociate/{asset} [POST]  # noqa: E501
+
+        This will enable us to disassociate a conversation_message from a asset. This will do the same thing as the asset equivalent.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.conversation_message_disassociate_asset(message, asset, async_req=True)
+        >>> result = thread.get()
+
+        :param message: This is the uuid of a message. (required)
+        :type message: str
+        :param asset: The id (uuid) of the asset that you are trying to access. (required)
+        :type asset: str
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _request_timeout: timeout setting for this request.
+               If one number provided, it will be total request
+               timeout. It can also be a pair (tuple) of
+               (connection, read) timeouts.
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: None
+        """
+        kwargs['_return_http_data_only'] = True
+        if '_preload_content' in kwargs:
+            message = "Error! Please call the conversation_message_disassociate_asset_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
+            raise ValueError(message)
+        return self.conversation_message_disassociate_asset_with_http_info(message, asset, **kwargs)  # noqa: E501
+
+    @validate_arguments
+    def conversation_message_disassociate_asset_with_http_info(self, message : Annotated[StrictStr, Field(..., description="This is the uuid of a message.")], asset : Annotated[StrictStr, Field(..., description="The id (uuid) of the asset that you are trying to access.")], **kwargs) -> ApiResponse:  # noqa: E501
+        """/message/{message}/assets/disassociate/{asset} [POST]  # noqa: E501
+
+        This will enable us to disassociate a conversation_message from a asset. This will do the same thing as the asset equivalent.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.conversation_message_disassociate_asset_with_http_info(message, asset, async_req=True)
+        >>> result = thread.get()
+
+        :param message: This is the uuid of a message. (required)
+        :type message: str
+        :param asset: The id (uuid) of the asset that you are trying to access. (required)
+        :type asset: str
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _preload_content: if False, the ApiResponse.data will
+                                 be set to none and raw_data will store the
+                                 HTTP response body without reading/decoding.
+                                 Default is True.
+        :type _preload_content: bool, optional
+        :param _return_http_data_only: response data instead of ApiResponse
+                                       object with status code, headers, etc
+        :type _return_http_data_only: bool, optional
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
+        :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: None
+        """
+
+        _params = locals()
+
+        _all_params = [
+            'message',
+            'asset'
+        ]
+        _all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers'
+            ]
+        )
+
+        # validate the arguments
+        for _key, _val in _params['kwargs'].items():
+            if _key not in _all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method conversation_message_disassociate_asset" % _key
+                )
+            _params[_key] = _val
+        del _params['kwargs']
+
+        _collection_formats = {}
+
+        # process the path parameters
+        _path_params = {}
+        if _params['message'] is not None:
+            _path_params['message'] = _params['message']
+
+        if _params['asset'] is not None:
+            _path_params['asset'] = _params['asset']
+
+
+        # process the query parameters
+        _query_params = []
+        # process the header parameters
+        _header_params = dict(_params.get('_headers', {}))
+        # process the form parameters
+        _form_params = []
+        _files = {}
+        # process the body parameter
+        _body_params = None
+        # set the HTTP header `Accept`
+        _header_params['Accept'] = self.api_client.select_header_accept(
+            ['text/plain'])  # noqa: E501
+
+        # authentication setting
+        _auth_settings = ['application']  # noqa: E501
+
+        _response_types_map = {}
+
+        return self.api_client.call_api(
+            '/message/{message}/assets/disassociate/{asset}', 'POST',
+            _path_params,
+            _query_params,
+            _header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            response_types_map=_response_types_map,
+            auth_settings=_auth_settings,
+            async_req=_params.get('async_req'),
+            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=_params.get('_preload_content', True),
+            _request_timeout=_params.get('_request_timeout'),
+            collection_formats=_collection_formats,
+            _request_auth=_params.get('_request_auth'))
+
+    @validate_arguments
+    def conversation_message_disassociate_conversation_message(self, message : Annotated[StrictStr, Field(..., description="This is the uuid of a message.")], additional_message : Annotated[StrictStr, Field(..., description="In the case of 2 route params we can use the additional prefix.")], **kwargs) -> None:  # noqa: E501
+        """/message/{message}/messages/disassociate/{additional_message} [POST]  # noqa: E501
+
+        This will enable us to disassociate a conversation_message from a conversation_message.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.conversation_message_disassociate_conversation_message(message, additional_message, async_req=True)
+        >>> result = thread.get()
+
+        :param message: This is the uuid of a message. (required)
+        :type message: str
+        :param additional_message: In the case of 2 route params we can use the additional prefix. (required)
+        :type additional_message: str
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _request_timeout: timeout setting for this request.
+               If one number provided, it will be total request
+               timeout. It can also be a pair (tuple) of
+               (connection, read) timeouts.
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: None
+        """
+        kwargs['_return_http_data_only'] = True
+        if '_preload_content' in kwargs:
+            message = "Error! Please call the conversation_message_disassociate_conversation_message_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
+            raise ValueError(message)
+        return self.conversation_message_disassociate_conversation_message_with_http_info(message, additional_message, **kwargs)  # noqa: E501
+
+    @validate_arguments
+    def conversation_message_disassociate_conversation_message_with_http_info(self, message : Annotated[StrictStr, Field(..., description="This is the uuid of a message.")], additional_message : Annotated[StrictStr, Field(..., description="In the case of 2 route params we can use the additional prefix.")], **kwargs) -> ApiResponse:  # noqa: E501
+        """/message/{message}/messages/disassociate/{additional_message} [POST]  # noqa: E501
+
+        This will enable us to disassociate a conversation_message from a conversation_message.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.conversation_message_disassociate_conversation_message_with_http_info(message, additional_message, async_req=True)
+        >>> result = thread.get()
+
+        :param message: This is the uuid of a message. (required)
+        :type message: str
+        :param additional_message: In the case of 2 route params we can use the additional prefix. (required)
+        :type additional_message: str
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _preload_content: if False, the ApiResponse.data will
+                                 be set to none and raw_data will store the
+                                 HTTP response body without reading/decoding.
+                                 Default is True.
+        :type _preload_content: bool, optional
+        :param _return_http_data_only: response data instead of ApiResponse
+                                       object with status code, headers, etc
+        :type _return_http_data_only: bool, optional
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
+        :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: None
+        """
+
+        _params = locals()
+
+        _all_params = [
+            'message',
+            'additional_message'
+        ]
+        _all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers'
+            ]
+        )
+
+        # validate the arguments
+        for _key, _val in _params['kwargs'].items():
+            if _key not in _all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method conversation_message_disassociate_conversation_message" % _key
+                )
+            _params[_key] = _val
+        del _params['kwargs']
+
+        _collection_formats = {}
+
+        # process the path parameters
+        _path_params = {}
+        if _params['message'] is not None:
+            _path_params['message'] = _params['message']
+
+        if _params['additional_message'] is not None:
+            _path_params['additional_message'] = _params['additional_message']
+
+
+        # process the query parameters
+        _query_params = []
+        # process the header parameters
+        _header_params = dict(_params.get('_headers', {}))
+        # process the form parameters
+        _form_params = []
+        _files = {}
+        # process the body parameter
+        _body_params = None
+        # set the HTTP header `Accept`
+        _header_params['Accept'] = self.api_client.select_header_accept(
+            ['text/plain'])  # noqa: E501
+
+        # authentication setting
+        _auth_settings = ['application']  # noqa: E501
+
+        _response_types_map = {}
+
+        return self.api_client.call_api(
+            '/message/{message}/messages/disassociate/{additional_message}', 'POST',
+            _path_params,
+            _query_params,
+            _header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            response_types_map=_response_types_map,
+            auth_settings=_auth_settings,
+            async_req=_params.get('async_req'),
+            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=_params.get('_preload_content', True),
+            _request_timeout=_params.get('_request_timeout'),
+            collection_formats=_collection_formats,
+            _request_auth=_params.get('_request_auth'))
+
+    @validate_arguments
+    def conversation_message_disassociate_range(self, message : Annotated[StrictStr, Field(..., description="This is the uuid of a message.")], range : Annotated[StrictStr, Field(..., description="This is a identifier that is used to identify a specific range.")], **kwargs) -> None:  # noqa: E501
+        """/message/{message}/ranges/disassociate/{range} [POST]  # noqa: E501
+
+        This will enable us to disassociate a conversation_message from a range. This will do the same thing as the range equivalent.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.conversation_message_disassociate_range(message, range, async_req=True)
+        >>> result = thread.get()
+
+        :param message: This is the uuid of a message. (required)
+        :type message: str
+        :param range: This is a identifier that is used to identify a specific range. (required)
+        :type range: str
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _request_timeout: timeout setting for this request.
+               If one number provided, it will be total request
+               timeout. It can also be a pair (tuple) of
+               (connection, read) timeouts.
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: None
+        """
+        kwargs['_return_http_data_only'] = True
+        if '_preload_content' in kwargs:
+            message = "Error! Please call the conversation_message_disassociate_range_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
+            raise ValueError(message)
+        return self.conversation_message_disassociate_range_with_http_info(message, range, **kwargs)  # noqa: E501
+
+    @validate_arguments
+    def conversation_message_disassociate_range_with_http_info(self, message : Annotated[StrictStr, Field(..., description="This is the uuid of a message.")], range : Annotated[StrictStr, Field(..., description="This is a identifier that is used to identify a specific range.")], **kwargs) -> ApiResponse:  # noqa: E501
+        """/message/{message}/ranges/disassociate/{range} [POST]  # noqa: E501
+
+        This will enable us to disassociate a conversation_message from a range. This will do the same thing as the range equivalent.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.conversation_message_disassociate_range_with_http_info(message, range, async_req=True)
+        >>> result = thread.get()
+
+        :param message: This is the uuid of a message. (required)
+        :type message: str
+        :param range: This is a identifier that is used to identify a specific range. (required)
+        :type range: str
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _preload_content: if False, the ApiResponse.data will
+                                 be set to none and raw_data will store the
+                                 HTTP response body without reading/decoding.
+                                 Default is True.
+        :type _preload_content: bool, optional
+        :param _return_http_data_only: response data instead of ApiResponse
+                                       object with status code, headers, etc
+        :type _return_http_data_only: bool, optional
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
+        :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: None
+        """
+
+        _params = locals()
+
+        _all_params = [
+            'message',
+            'range'
+        ]
+        _all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers'
+            ]
+        )
+
+        # validate the arguments
+        for _key, _val in _params['kwargs'].items():
+            if _key not in _all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method conversation_message_disassociate_range" % _key
+                )
+            _params[_key] = _val
+        del _params['kwargs']
+
+        _collection_formats = {}
+
+        # process the path parameters
+        _path_params = {}
+        if _params['message'] is not None:
+            _path_params['message'] = _params['message']
+
+        if _params['range'] is not None:
+            _path_params['range'] = _params['range']
+
+
+        # process the query parameters
+        _query_params = []
+        # process the header parameters
+        _header_params = dict(_params.get('_headers', {}))
+        # process the form parameters
+        _form_params = []
+        _files = {}
+        # process the body parameter
+        _body_params = None
+        # set the HTTP header `Accept`
+        _header_params['Accept'] = self.api_client.select_header_accept(
+            ['text/plain'])  # noqa: E501
+
+        # authentication setting
+        _auth_settings = ['application']  # noqa: E501
+
+        _response_types_map = {}
+
+        return self.api_client.call_api(
+            '/message/{message}/ranges/disassociate/{range}', 'POST',
+            _path_params,
+            _query_params,
+            _header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            response_types_map=_response_types_map,
+            auth_settings=_auth_settings,
+            async_req=_params.get('async_req'),
+            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=_params.get('_preload_content', True),
+            _request_timeout=_params.get('_request_timeout'),
+            collection_formats=_collection_formats,
+            _request_auth=_params.get('_request_auth'))
+
+    @validate_arguments
+    def conversation_message_disassociate_tag(self, message : Annotated[StrictStr, Field(..., description="This is the uuid of a message.")], tag : Annotated[StrictStr, Field(..., description="tag id")], **kwargs) -> None:  # noqa: E501
+        """/message/{message}/tags/disassociate/{tag} [POST]  # noqa: E501
+
+        This will enable us to disassociate a conversation_message from a tag. This will do the same thing as the tag equivalent.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.conversation_message_disassociate_tag(message, tag, async_req=True)
+        >>> result = thread.get()
+
+        :param message: This is the uuid of a message. (required)
+        :type message: str
+        :param tag: tag id (required)
+        :type tag: str
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _request_timeout: timeout setting for this request.
+               If one number provided, it will be total request
+               timeout. It can also be a pair (tuple) of
+               (connection, read) timeouts.
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: None
+        """
+        kwargs['_return_http_data_only'] = True
+        if '_preload_content' in kwargs:
+            message = "Error! Please call the conversation_message_disassociate_tag_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
+            raise ValueError(message)
+        return self.conversation_message_disassociate_tag_with_http_info(message, tag, **kwargs)  # noqa: E501
+
+    @validate_arguments
+    def conversation_message_disassociate_tag_with_http_info(self, message : Annotated[StrictStr, Field(..., description="This is the uuid of a message.")], tag : Annotated[StrictStr, Field(..., description="tag id")], **kwargs) -> ApiResponse:  # noqa: E501
+        """/message/{message}/tags/disassociate/{tag} [POST]  # noqa: E501
+
+        This will enable us to disassociate a conversation_message from a tag. This will do the same thing as the tag equivalent.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.conversation_message_disassociate_tag_with_http_info(message, tag, async_req=True)
+        >>> result = thread.get()
+
+        :param message: This is the uuid of a message. (required)
+        :type message: str
+        :param tag: tag id (required)
+        :type tag: str
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _preload_content: if False, the ApiResponse.data will
+                                 be set to none and raw_data will store the
+                                 HTTP response body without reading/decoding.
+                                 Default is True.
+        :type _preload_content: bool, optional
+        :param _return_http_data_only: response data instead of ApiResponse
+                                       object with status code, headers, etc
+        :type _return_http_data_only: bool, optional
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
+        :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: None
+        """
+
+        _params = locals()
+
+        _all_params = [
+            'message',
+            'tag'
+        ]
+        _all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers'
+            ]
+        )
+
+        # validate the arguments
+        for _key, _val in _params['kwargs'].items():
+            if _key not in _all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method conversation_message_disassociate_tag" % _key
+                )
+            _params[_key] = _val
+        del _params['kwargs']
+
+        _collection_formats = {}
+
+        # process the path parameters
+        _path_params = {}
+        if _params['message'] is not None:
+            _path_params['message'] = _params['message']
+
+        if _params['tag'] is not None:
+            _path_params['tag'] = _params['tag']
+
+
+        # process the query parameters
+        _query_params = []
+        # process the header parameters
+        _header_params = dict(_params.get('_headers', {}))
+        # process the form parameters
+        _form_params = []
+        _files = {}
+        # process the body parameter
+        _body_params = None
+        # set the HTTP header `Accept`
+        _header_params['Accept'] = self.api_client.select_header_accept(
+            ['text/plain'])  # noqa: E501
+
+        # authentication setting
+        _auth_settings = ['application']  # noqa: E501
+
+        _response_types_map = {}
+
+        return self.api_client.call_api(
+            '/message/{message}/tags/disassociate/{tag}', 'POST',
+            _path_params,
+            _query_params,
+            _header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            response_types_map=_response_types_map,
+            auth_settings=_auth_settings,
+            async_req=_params.get('async_req'),
+            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=_params.get('_preload_content', True),
+            _request_timeout=_params.get('_request_timeout'),
+            collection_formats=_collection_formats,
+            _request_auth=_params.get('_request_auth'))
+
+    @validate_arguments
+    def conversation_message_disassociate_workstream_event(self, message : Annotated[StrictStr, Field(..., description="This is the uuid of a message.")], workstream_event : Annotated[StrictStr, Field(..., description="This is a identifier that is used to identify a specific workstream_event.")], **kwargs) -> None:  # noqa: E501
+        """/message/{message}/workstream_events/disassociate/{workstream_event} [POST]  # noqa: E501
+
+        This will enable us to disassociate a conversation_message from a workstream_event. This will do the same thing as the workstream_event equivalent.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.conversation_message_disassociate_workstream_event(message, workstream_event, async_req=True)
+        >>> result = thread.get()
+
+        :param message: This is the uuid of a message. (required)
+        :type message: str
+        :param workstream_event: This is a identifier that is used to identify a specific workstream_event. (required)
+        :type workstream_event: str
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _request_timeout: timeout setting for this request.
+               If one number provided, it will be total request
+               timeout. It can also be a pair (tuple) of
+               (connection, read) timeouts.
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: None
+        """
+        kwargs['_return_http_data_only'] = True
+        if '_preload_content' in kwargs:
+            message = "Error! Please call the conversation_message_disassociate_workstream_event_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
+            raise ValueError(message)
+        return self.conversation_message_disassociate_workstream_event_with_http_info(message, workstream_event, **kwargs)  # noqa: E501
+
+    @validate_arguments
+    def conversation_message_disassociate_workstream_event_with_http_info(self, message : Annotated[StrictStr, Field(..., description="This is the uuid of a message.")], workstream_event : Annotated[StrictStr, Field(..., description="This is a identifier that is used to identify a specific workstream_event.")], **kwargs) -> ApiResponse:  # noqa: E501
+        """/message/{message}/workstream_events/disassociate/{workstream_event} [POST]  # noqa: E501
+
+        This will enable us to disassociate a conversation_message from a workstream_event. This will do the same thing as the workstream_event equivalent.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.conversation_message_disassociate_workstream_event_with_http_info(message, workstream_event, async_req=True)
+        >>> result = thread.get()
+
+        :param message: This is the uuid of a message. (required)
+        :type message: str
+        :param workstream_event: This is a identifier that is used to identify a specific workstream_event. (required)
+        :type workstream_event: str
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _preload_content: if False, the ApiResponse.data will
+                                 be set to none and raw_data will store the
+                                 HTTP response body without reading/decoding.
+                                 Default is True.
+        :type _preload_content: bool, optional
+        :param _return_http_data_only: response data instead of ApiResponse
+                                       object with status code, headers, etc
+        :type _return_http_data_only: bool, optional
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
+        :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: None
+        """
+
+        _params = locals()
+
+        _all_params = [
+            'message',
+            'workstream_event'
+        ]
+        _all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers'
+            ]
+        )
+
+        # validate the arguments
+        for _key, _val in _params['kwargs'].items():
+            if _key not in _all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method conversation_message_disassociate_workstream_event" % _key
+                )
+            _params[_key] = _val
+        del _params['kwargs']
+
+        _collection_formats = {}
+
+        # process the path parameters
+        _path_params = {}
+        if _params['message'] is not None:
+            _path_params['message'] = _params['message']
+
+        if _params['workstream_event'] is not None:
+            _path_params['workstream_event'] = _params['workstream_event']
+
+
+        # process the query parameters
+        _query_params = []
+        # process the header parameters
+        _header_params = dict(_params.get('_headers', {}))
+        # process the form parameters
+        _form_params = []
+        _files = {}
+        # process the body parameter
+        _body_params = None
+        # set the HTTP header `Accept`
+        _header_params['Accept'] = self.api_client.select_header_accept(
+            ['text/plain'])  # noqa: E501
+
+        # authentication setting
+        _auth_settings = ['application']  # noqa: E501
+
+        _response_types_map = {}
+
+        return self.api_client.call_api(
+            '/message/{message}/workstream_events/disassociate/{workstream_event}', 'POST',
+            _path_params,
+            _query_params,
+            _header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            response_types_map=_response_types_map,
+            auth_settings=_auth_settings,
+            async_req=_params.get('async_req'),
+            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=_params.get('_preload_content', True),
+            _request_timeout=_params.get('_request_timeout'),
+            collection_formats=_collection_formats,
+            _request_auth=_params.get('_request_auth'))
+
+    @validate_arguments
+    def conversation_message_disassociate_workstream_pattern_engine_source(self, message : Annotated[StrictStr, Field(..., description="This is the uuid of a message.")], source : Annotated[StrictStr, Field(..., description="This is a identifier that is used to identify a specific WorkstreamPatternEngineSource")], **kwargs) -> None:  # noqa: E501
+        """/message/{message}/workstream_pattern_engine/sources/disassociate/{source} [POST]  # noqa: E501
+
+        This will enable us to disassociate a conversation_message from a source. This will do the same thing as the source equivalent.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.conversation_message_disassociate_workstream_pattern_engine_source(message, source, async_req=True)
+        >>> result = thread.get()
+
+        :param message: This is the uuid of a message. (required)
+        :type message: str
+        :param source: This is a identifier that is used to identify a specific WorkstreamPatternEngineSource (required)
+        :type source: str
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _request_timeout: timeout setting for this request.
+               If one number provided, it will be total request
+               timeout. It can also be a pair (tuple) of
+               (connection, read) timeouts.
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: None
+        """
+        kwargs['_return_http_data_only'] = True
+        if '_preload_content' in kwargs:
+            message = "Error! Please call the conversation_message_disassociate_workstream_pattern_engine_source_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
+            raise ValueError(message)
+        return self.conversation_message_disassociate_workstream_pattern_engine_source_with_http_info(message, source, **kwargs)  # noqa: E501
+
+    @validate_arguments
+    def conversation_message_disassociate_workstream_pattern_engine_source_with_http_info(self, message : Annotated[StrictStr, Field(..., description="This is the uuid of a message.")], source : Annotated[StrictStr, Field(..., description="This is a identifier that is used to identify a specific WorkstreamPatternEngineSource")], **kwargs) -> ApiResponse:  # noqa: E501
+        """/message/{message}/workstream_pattern_engine/sources/disassociate/{source} [POST]  # noqa: E501
+
+        This will enable us to disassociate a conversation_message from a source. This will do the same thing as the source equivalent.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.conversation_message_disassociate_workstream_pattern_engine_source_with_http_info(message, source, async_req=True)
+        >>> result = thread.get()
+
+        :param message: This is the uuid of a message. (required)
+        :type message: str
+        :param source: This is a identifier that is used to identify a specific WorkstreamPatternEngineSource (required)
+        :type source: str
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _preload_content: if False, the ApiResponse.data will
+                                 be set to none and raw_data will store the
+                                 HTTP response body without reading/decoding.
+                                 Default is True.
+        :type _preload_content: bool, optional
+        :param _return_http_data_only: response data instead of ApiResponse
+                                       object with status code, headers, etc
+        :type _return_http_data_only: bool, optional
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
+        :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: None
+        """
+
+        _params = locals()
+
+        _all_params = [
+            'message',
+            'source'
+        ]
+        _all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers'
+            ]
+        )
+
+        # validate the arguments
+        for _key, _val in _params['kwargs'].items():
+            if _key not in _all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method conversation_message_disassociate_workstream_pattern_engine_source" % _key
+                )
+            _params[_key] = _val
+        del _params['kwargs']
+
+        _collection_formats = {}
+
+        # process the path parameters
+        _path_params = {}
+        if _params['message'] is not None:
+            _path_params['message'] = _params['message']
+
+        if _params['source'] is not None:
+            _path_params['source'] = _params['source']
+
+
+        # process the query parameters
+        _query_params = []
+        # process the header parameters
+        _header_params = dict(_params.get('_headers', {}))
+        # process the form parameters
+        _form_params = []
+        _files = {}
+        # process the body parameter
+        _body_params = None
+        # set the HTTP header `Accept`
+        _header_params['Accept'] = self.api_client.select_header_accept(
+            ['text/plain'])  # noqa: E501
+
+        # authentication setting
+        _auth_settings = ['application']  # noqa: E501
+
+        _response_types_map = {}
+
+        return self.api_client.call_api(
+            '/message/{message}/workstream_pattern_engine/sources/disassociate/{source}', 'POST',
+            _path_params,
+            _query_params,
+            _header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            response_types_map=_response_types_map,
+            auth_settings=_auth_settings,
+            async_req=_params.get('async_req'),
+            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=_params.get('_preload_content', True),
+            _request_timeout=_params.get('_request_timeout'),
+            collection_formats=_collection_formats,
+            _request_auth=_params.get('_request_auth'))
+
+    @validate_arguments
+    def conversation_message_disassociate_workstream_summary(self, message : Annotated[StrictStr, Field(..., description="This is the uuid of a message.")], workstream_summary : Annotated[StrictStr, Field(..., description="This is a identifier that is used to identify a specific workstream_summary.")], **kwargs) -> None:  # noqa: E501
+        """/message/{message}/workstream_summaries/disassociate/{workstream_summary} [POST]  # noqa: E501
+
+        This will enable us to disassociate a conversation_message from a workstream_summary. This will do the same thing as the workstream_summary equivalent.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.conversation_message_disassociate_workstream_summary(message, workstream_summary, async_req=True)
+        >>> result = thread.get()
+
+        :param message: This is the uuid of a message. (required)
+        :type message: str
+        :param workstream_summary: This is a identifier that is used to identify a specific workstream_summary. (required)
+        :type workstream_summary: str
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _request_timeout: timeout setting for this request.
+               If one number provided, it will be total request
+               timeout. It can also be a pair (tuple) of
+               (connection, read) timeouts.
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: None
+        """
+        kwargs['_return_http_data_only'] = True
+        if '_preload_content' in kwargs:
+            message = "Error! Please call the conversation_message_disassociate_workstream_summary_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
+            raise ValueError(message)
+        return self.conversation_message_disassociate_workstream_summary_with_http_info(message, workstream_summary, **kwargs)  # noqa: E501
+
+    @validate_arguments
+    def conversation_message_disassociate_workstream_summary_with_http_info(self, message : Annotated[StrictStr, Field(..., description="This is the uuid of a message.")], workstream_summary : Annotated[StrictStr, Field(..., description="This is a identifier that is used to identify a specific workstream_summary.")], **kwargs) -> ApiResponse:  # noqa: E501
+        """/message/{message}/workstream_summaries/disassociate/{workstream_summary} [POST]  # noqa: E501
+
+        This will enable us to disassociate a conversation_message from a workstream_summary. This will do the same thing as the workstream_summary equivalent.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.conversation_message_disassociate_workstream_summary_with_http_info(message, workstream_summary, async_req=True)
+        >>> result = thread.get()
+
+        :param message: This is the uuid of a message. (required)
+        :type message: str
+        :param workstream_summary: This is a identifier that is used to identify a specific workstream_summary. (required)
+        :type workstream_summary: str
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _preload_content: if False, the ApiResponse.data will
+                                 be set to none and raw_data will store the
+                                 HTTP response body without reading/decoding.
+                                 Default is True.
+        :type _preload_content: bool, optional
+        :param _return_http_data_only: response data instead of ApiResponse
+                                       object with status code, headers, etc
+        :type _return_http_data_only: bool, optional
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
+        :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: None
+        """
+
+        _params = locals()
+
+        _all_params = [
+            'message',
+            'workstream_summary'
+        ]
+        _all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers'
+            ]
+        )
+
+        # validate the arguments
+        for _key, _val in _params['kwargs'].items():
+            if _key not in _all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method conversation_message_disassociate_workstream_summary" % _key
+                )
+            _params[_key] = _val
+        del _params['kwargs']
+
+        _collection_formats = {}
+
+        # process the path parameters
+        _path_params = {}
+        if _params['message'] is not None:
+            _path_params['message'] = _params['message']
+
+        if _params['workstream_summary'] is not None:
+            _path_params['workstream_summary'] = _params['workstream_summary']
+
+
+        # process the query parameters
+        _query_params = []
+        # process the header parameters
+        _header_params = dict(_params.get('_headers', {}))
+        # process the form parameters
+        _form_params = []
+        _files = {}
+        # process the body parameter
+        _body_params = None
+        # set the HTTP header `Accept`
+        _header_params['Accept'] = self.api_client.select_header_accept(
+            ['text/plain'])  # noqa: E501
+
+        # authentication setting
+        _auth_settings = ['application']  # noqa: E501
+
+        _response_types_map = {}
+
+        return self.api_client.call_api(
+            '/message/{message}/workstream_summaries/disassociate/{workstream_summary}', 'POST',
+            _path_params,
+            _query_params,
+            _header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            response_types_map=_response_types_map,
+            auth_settings=_auth_settings,
+            async_req=_params.get('async_req'),
+            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=_params.get('_preload_content', True),
+            _request_timeout=_params.get('_request_timeout'),
+            collection_formats=_collection_formats,
+            _request_auth=_params.get('_request_auth'))
+
+    @validate_arguments
     def message_associate_anchor(self, message : Annotated[StrictStr, Field(..., description="This is the uuid of a message.")], anchor : Annotated[StrictStr, Field(..., description="This is the specific uuid of an anchor.")], **kwargs) -> None:  # noqa: E501
         """/message/{message}/anchors/associate/{anchor} [POST]  # noqa: E501
 

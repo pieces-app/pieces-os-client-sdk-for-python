@@ -173,7 +173,9 @@ void (empty response body)
 
 /models/{model}/delete/cache [POST]
 
-Deletes the data associated with a specific model, such as assets or libraries downloaded specifically for this model.   Note: This functionality is currently only available for LLM models.
+Deletes the data associated with a specific model, such as assets or libraries downloaded specifically for this model. 
+
+Note: This functionality is currently only available for LLM models.
 
 ### Example
 

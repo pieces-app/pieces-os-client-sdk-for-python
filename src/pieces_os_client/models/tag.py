@@ -23,7 +23,10 @@ from typing import Dict, Optional
 from pydantic import BaseModel, Field, StrictInt, StrictStr
 from pieces_os_client.models.embedded_model_schema import EmbeddedModelSchema
 from pieces_os_client.models.flattened_assets import FlattenedAssets
+from pieces_os_client.models.flattened_conversation_messages import FlattenedConversationMessages
 from pieces_os_client.models.flattened_persons import FlattenedPersons
+from pieces_os_client.models.flattened_workstream_events import FlattenedWorkstreamEvents
+from pieces_os_client.models.flattened_workstream_summaries import FlattenedWorkstreamSummaries
 from pieces_os_client.models.grouped_timestamp import GroupedTimestamp
 from pieces_os_client.models.mechanism_enum import MechanismEnum
 from pieces_os_client.models.relationship import Relationship
@@ -47,7 +50,10 @@ class Tag(BaseModel):
     interactions: Optional[StrictInt] = Field(default=None, description="This is an optional value that will keep track of the number of times this has been interacted with.")
     persons: Optional[FlattenedPersons] = None
     score: Optional[Score] = None
-    __properties = ["schema", "id", "text", "mechanisms", "assets", "created", "updated", "deleted", "category", "relationship", "interactions", "persons", "score"]
+    summaries: Optional[FlattenedWorkstreamSummaries] = None
+    workstream_events: Optional[FlattenedWorkstreamEvents] = None
+    messages: Optional[FlattenedConversationMessages] = None
+    __properties = ["schema", "id", "text", "mechanisms", "assets", "created", "updated", "deleted", "category", "relationship", "interactions", "persons", "score", "summaries", "workstream_events", "messages"]
 
     class Config:
         """Pydantic configuration"""
@@ -97,6 +103,15 @@ class Tag(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of score
         if self.score:
             _dict['score'] = self.score.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of summaries
+        if self.summaries:
+            _dict['summaries'] = self.summaries.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of workstream_events
+        if self.workstream_events:
+            _dict['workstream_events'] = self.workstream_events.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of messages
+        if self.messages:
+            _dict['messages'] = self.messages.to_dict()
         return _dict
 
     @classmethod
@@ -121,7 +136,10 @@ class Tag(BaseModel):
             "relationship": Relationship.from_dict(obj.get("relationship")) if obj.get("relationship") is not None else None,
             "interactions": obj.get("interactions"),
             "persons": FlattenedPersons.from_dict(obj.get("persons")) if obj.get("persons") is not None else None,
-            "score": Score.from_dict(obj.get("score")) if obj.get("score") is not None else None
+            "score": Score.from_dict(obj.get("score")) if obj.get("score") is not None else None,
+            "summaries": FlattenedWorkstreamSummaries.from_dict(obj.get("summaries")) if obj.get("summaries") is not None else None,
+            "workstream_events": FlattenedWorkstreamEvents.from_dict(obj.get("workstream_events")) if obj.get("workstream_events") is not None else None,
+            "messages": FlattenedConversationMessages.from_dict(obj.get("messages")) if obj.get("messages") is not None else None
         })
         return _obj
 

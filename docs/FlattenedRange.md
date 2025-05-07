@@ -15,6 +15,7 @@ Name | Type | Description | Notes
 **between** | **bool** |  | [optional] 
 **summaries** | [**FlattenedWorkstreamSummaries**](FlattenedWorkstreamSummaries.md) |  | [optional] 
 **conversations** | [**FlattenedConversations**](FlattenedConversations.md) |  | [optional] 
+**messages** | [**FlattenedConversationMessages**](FlattenedConversationMessages.md) |  | [optional] 
 
 ## Example
 

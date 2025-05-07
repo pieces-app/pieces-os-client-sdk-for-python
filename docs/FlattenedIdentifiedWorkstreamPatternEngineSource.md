@@ -12,6 +12,11 @@ Name | Type | Description | Notes
 **updated** | [**GroupedTimestamp**](GroupedTimestamp.md) |  | 
 **filter** | **bool** | This will determine if we want to filter this specific source | [optional] 
 **name** | **str** | This is the name of the source(defualt original data) this is NOT used for matching just for readability | 
+**summaries** | [**FlattenedWorkstreamSummaries**](FlattenedWorkstreamSummaries.md) |  | [optional] 
+**workstream_events** | [**FlattenedWorkstreamEvents**](FlattenedWorkstreamEvents.md) |  | [optional] 
+**conversations** | [**FlattenedConversations**](FlattenedConversations.md) |  | [optional] 
+**accessibility** | [**WorkstreamPatternEngineSourceSupportedAccessibility**](WorkstreamPatternEngineSourceSupportedAccessibility.md) |  | [optional] 
+**messages** | [**FlattenedConversationMessages**](FlattenedConversationMessages.md) |  | [optional] 
 
 ## Example
 

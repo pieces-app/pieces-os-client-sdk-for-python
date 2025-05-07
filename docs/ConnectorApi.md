@@ -332,7 +332,9 @@ Name | Type | Description  | Notes
 
 /{application}/suggestion [POST]
 
-Invoked whenever a code snippet is copied from an integration. For instance, if a JetBrains user copies code, this endpoint can be called to assess whether to suggest reusing a piece (if reuse is true, the endpoint provides assets that the user may consider using), saving the code snippet, or taking no action.   **Note: This endpoint could potentially accept a SeededFormat for the request body if required.
+Invoked whenever a code snippet is copied from an integration. For instance, if a JetBrains user copies code, this endpoint can be called to assess whether to suggest reusing a piece (if reuse is true, the endpoint provides assets that the user may consider using), saving the code snippet, or taking no action. 
+
+**Note: This endpoint could potentially accept a SeededFormat for the request body if required.
 
 ### Example
 

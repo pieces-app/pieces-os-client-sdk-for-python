@@ -25,6 +25,8 @@ from pieces_os_client.models.embedded_model_schema import EmbeddedModelSchema
 from pieces_os_client.models.flattened_anchors import FlattenedAnchors
 from pieces_os_client.models.flattened_assets import FlattenedAssets
 from pieces_os_client.models.flattened_conversation_messages import FlattenedConversationMessages
+from pieces_os_client.models.flattened_identified_workstream_pattern_engine_sources import FlattenedIdentifiedWorkstreamPatternEngineSources
+from pieces_os_client.models.flattened_workstream_summaries import FlattenedWorkstreamSummaries
 from pieces_os_client.models.qgpt_relevance_input_options import QGPTRelevanceInputOptions
 from pieces_os_client.models.seeds import Seeds
 from pieces_os_client.models.temporal_range_grounding import TemporalRangeGrounding
@@ -44,7 +46,9 @@ class QGPTRelevanceInput(BaseModel):
     model: Optional[StrictStr] = Field(default=None, description="optional model id")
     temporal: Optional[TemporalRangeGrounding] = None
     anchors: Optional[FlattenedAnchors] = None
-    __properties = ["schema", "query", "paths", "seeds", "assets", "messages", "options", "application", "model", "temporal", "anchors"]
+    sources: Optional[FlattenedIdentifiedWorkstreamPatternEngineSources] = None
+    summaries: Optional[FlattenedWorkstreamSummaries] = None
+    __properties = ["schema", "query", "paths", "seeds", "assets", "messages", "options", "application", "model", "temporal", "anchors", "sources", "summaries"]
 
     class Config:
         """Pydantic configuration"""
@@ -91,6 +95,12 @@ class QGPTRelevanceInput(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of anchors
         if self.anchors:
             _dict['anchors'] = self.anchors.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of sources
+        if self.sources:
+            _dict['sources'] = self.sources.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of summaries
+        if self.summaries:
+            _dict['summaries'] = self.summaries.to_dict()
         return _dict
 
     @classmethod
@@ -113,7 +123,9 @@ class QGPTRelevanceInput(BaseModel):
             "application": obj.get("application"),
             "model": obj.get("model"),
             "temporal": TemporalRangeGrounding.from_dict(obj.get("temporal")) if obj.get("temporal") is not None else None,
-            "anchors": FlattenedAnchors.from_dict(obj.get("anchors")) if obj.get("anchors") is not None else None
+            "anchors": FlattenedAnchors.from_dict(obj.get("anchors")) if obj.get("anchors") is not None else None,
+            "sources": FlattenedIdentifiedWorkstreamPatternEngineSources.from_dict(obj.get("sources")) if obj.get("sources") is not None else None,
+            "summaries": FlattenedWorkstreamSummaries.from_dict(obj.get("summaries")) if obj.get("summaries") is not None else None
         })
         return _obj
 

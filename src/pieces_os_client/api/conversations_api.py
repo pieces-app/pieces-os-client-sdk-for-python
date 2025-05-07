@@ -27,6 +27,7 @@ from typing import Optional
 from pieces_os_client.models.conversation import Conversation
 from pieces_os_client.models.conversations import Conversations
 from pieces_os_client.models.conversations_create_from_asset_output import ConversationsCreateFromAssetOutput
+from pieces_os_client.models.conversations_create_from_workstream_summary_output import ConversationsCreateFromWorkstreamSummaryOutput
 from pieces_os_client.models.flattened_conversations import FlattenedConversations
 from pieces_os_client.models.search_input import SearchInput
 from pieces_os_client.models.searched_conversations import SearchedConversations
@@ -178,6 +179,147 @@ class ConversationsApi:
 
         return self.api_client.call_api(
             '/conversations/create/from_asset/{asset}', 'POST',
+            _path_params,
+            _query_params,
+            _header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            response_types_map=_response_types_map,
+            auth_settings=_auth_settings,
+            async_req=_params.get('async_req'),
+            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=_params.get('_preload_content', True),
+            _request_timeout=_params.get('_request_timeout'),
+            collection_formats=_collection_formats,
+            _request_auth=_params.get('_request_auth'))
+
+    @validate_arguments
+    def conversations_create_from_workstream_summary(self, workstream_summary : Annotated[StrictStr, Field(..., description="This is a identifier that is used to identify a specific workstream_summary.")], **kwargs) -> ConversationsCreateFromWorkstreamSummaryOutput:  # noqa: E501
+        """/conversations/create/from_workstream_summary/{workstream_summary} [POST]  # noqa: E501
+
+        Creates a conversation based on an workstream_summary. It initiates a conversation and generates an initial message that includes a summary of the workstream_summary used as contextual grounding.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.conversations_create_from_workstream_summary(workstream_summary, async_req=True)
+        >>> result = thread.get()
+
+        :param workstream_summary: This is a identifier that is used to identify a specific workstream_summary. (required)
+        :type workstream_summary: str
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _request_timeout: timeout setting for this request.
+               If one number provided, it will be total request
+               timeout. It can also be a pair (tuple) of
+               (connection, read) timeouts.
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: ConversationsCreateFromWorkstreamSummaryOutput
+        """
+        kwargs['_return_http_data_only'] = True
+        if '_preload_content' in kwargs:
+            message = "Error! Please call the conversations_create_from_workstream_summary_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
+            raise ValueError(message)
+        return self.conversations_create_from_workstream_summary_with_http_info(workstream_summary, **kwargs)  # noqa: E501
+
+    @validate_arguments
+    def conversations_create_from_workstream_summary_with_http_info(self, workstream_summary : Annotated[StrictStr, Field(..., description="This is a identifier that is used to identify a specific workstream_summary.")], **kwargs) -> ApiResponse:  # noqa: E501
+        """/conversations/create/from_workstream_summary/{workstream_summary} [POST]  # noqa: E501
+
+        Creates a conversation based on an workstream_summary. It initiates a conversation and generates an initial message that includes a summary of the workstream_summary used as contextual grounding.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.conversations_create_from_workstream_summary_with_http_info(workstream_summary, async_req=True)
+        >>> result = thread.get()
+
+        :param workstream_summary: This is a identifier that is used to identify a specific workstream_summary. (required)
+        :type workstream_summary: str
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _preload_content: if False, the ApiResponse.data will
+                                 be set to none and raw_data will store the
+                                 HTTP response body without reading/decoding.
+                                 Default is True.
+        :type _preload_content: bool, optional
+        :param _return_http_data_only: response data instead of ApiResponse
+                                       object with status code, headers, etc
+        :type _return_http_data_only: bool, optional
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
+        :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: tuple(ConversationsCreateFromWorkstreamSummaryOutput, status_code(int), headers(HTTPHeaderDict))
+        """
+
+        _params = locals()
+
+        _all_params = [
+            'workstream_summary'
+        ]
+        _all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers'
+            ]
+        )
+
+        # validate the arguments
+        for _key, _val in _params['kwargs'].items():
+            if _key not in _all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method conversations_create_from_workstream_summary" % _key
+                )
+            _params[_key] = _val
+        del _params['kwargs']
+
+        _collection_formats = {}
+
+        # process the path parameters
+        _path_params = {}
+        if _params['workstream_summary'] is not None:
+            _path_params['workstream_summary'] = _params['workstream_summary']
+
+
+        # process the query parameters
+        _query_params = []
+        # process the header parameters
+        _header_params = dict(_params.get('_headers', {}))
+        # process the form parameters
+        _form_params = []
+        _files = {}
+        # process the body parameter
+        _body_params = None
+        # set the HTTP header `Accept`
+        _header_params['Accept'] = self.api_client.select_header_accept(
+            ['application/json', 'text/plain'])  # noqa: E501
+
+        # authentication setting
+        _auth_settings = ['application']  # noqa: E501
+
+        _response_types_map = {
+            '200': "ConversationsCreateFromWorkstreamSummaryOutput",
+            '500': "str",
+        }
+
+        return self.api_client.call_api(
+            '/conversations/create/from_workstream_summary/{workstream_summary}', 'POST',
             _path_params,
             _query_params,
             _header_params,

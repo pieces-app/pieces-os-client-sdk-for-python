@@ -40,8 +40,9 @@ class SeededAnnotation(BaseModel):
     favorited: Optional[StrictBool] = None
     anchor: Optional[StrictStr] = None
     conversation: Optional[StrictStr] = None
+    workstream_summary: Optional[StrictStr] = None
     messages: Optional[FlattenedConversationMessages] = None
-    __properties = ["schema", "mechanism", "asset", "person", "type", "text", "model", "pseudo", "favorited", "anchor", "conversation", "messages"]
+    __properties = ["schema", "mechanism", "asset", "person", "type", "text", "model", "pseudo", "favorited", "anchor", "conversation", "workstream_summary", "messages"]
 
     class Config:
         """Pydantic configuration"""
@@ -96,6 +97,7 @@ class SeededAnnotation(BaseModel):
             "favorited": obj.get("favorited"),
             "anchor": obj.get("anchor"),
             "conversation": obj.get("conversation"),
+            "workstream_summary": obj.get("workstream_summary"),
             "messages": FlattenedConversationMessages.from_dict(obj.get("messages")) if obj.get("messages") is not None else None
         })
         return _obj

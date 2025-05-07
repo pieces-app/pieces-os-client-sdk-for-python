@@ -15,7 +15,7 @@ Method | HTTP request | Description
 
 /discovery/discover/assets [POST]
 
-This is the endpoint used for bulk import. In both cases of the bulk import flow, fragments or files. When we already have \"snippets\" or fragments to discover and now our job is to check if they are actually valid snippets(clustering). Otherwise, we should have a file to parse && snippitize and then run through the clustering.
+This is the endpoint used for bulk import. In both cases of the bulk import flow, fragments or files. When we already have "snippets" or fragments to discover and now our job is to check if they are actually valid snippets(clustering). Otherwise, we should have a file to parse && snippitize and then run through the clustering.
 
 ### Example
 

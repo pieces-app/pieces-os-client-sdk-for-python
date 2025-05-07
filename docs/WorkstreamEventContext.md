@@ -8,6 +8,8 @@ Name | Type | Description | Notes
 **var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 **ide** | [**WorkstreamEventTriggerContextIDE**](WorkstreamEventTriggerContextIDE.md) |  | [optional] 
 **browser** | [**WorkstreamEventTriggerContextBrowser**](WorkstreamEventTriggerContextBrowser.md) |  | [optional] 
+**native_ocr** | [**NativeOCR**](NativeOCR.md) |  | [optional] 
+**accessibility** | [**NativeAccessibility**](NativeAccessibility.md) |  | [optional] 
 
 ## Example
 

@@ -9,6 +9,7 @@ Name | Type | Description | Notes
 **parent** | [**Application**](Application.md) |  | [optional] 
 **port** | **int** | Validation check if the port is passed in. | [optional] 
 **type** | [**OSAppletEnum**](OSAppletEnum.md) |  | 
+**handler** | [**AppletServingHandlerType**](AppletServingHandlerType.md) |  | [optional] 
 
 ## Example
 

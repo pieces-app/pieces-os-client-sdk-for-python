@@ -23,6 +23,8 @@ from typing import Optional
 from pydantic import BaseModel, Field, StrictStr
 from pieces_os_client.models.embedded_model_schema import EmbeddedModelSchema
 from pieces_os_client.models.flattened_conversation_messages import FlattenedConversationMessages
+from pieces_os_client.models.flattened_identified_workstream_pattern_engine_sources import FlattenedIdentifiedWorkstreamPatternEngineSources
+from pieces_os_client.models.flattened_workstream_summaries import FlattenedWorkstreamSummaries
 from pieces_os_client.models.qgpt_prompt_pipeline import QGPTPromptPipeline
 from pieces_os_client.models.relevant_qgpt_seeds import RelevantQGPTSeeds
 from pieces_os_client.models.temporal_range_grounding import TemporalRangeGrounding
@@ -39,7 +41,9 @@ class QGPTQuestionInput(BaseModel):
     messages: Optional[FlattenedConversationMessages] = None
     pipeline: Optional[QGPTPromptPipeline] = None
     temporal: Optional[TemporalRangeGrounding] = None
-    __properties = ["schema", "relevant", "query", "application", "model", "messages", "pipeline", "temporal"]
+    sources: Optional[FlattenedIdentifiedWorkstreamPatternEngineSources] = None
+    summaries: Optional[FlattenedWorkstreamSummaries] = None
+    __properties = ["schema", "relevant", "query", "application", "model", "messages", "pipeline", "temporal", "sources", "summaries"]
 
     class Config:
         """Pydantic configuration"""
@@ -80,6 +84,12 @@ class QGPTQuestionInput(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of temporal
         if self.temporal:
             _dict['temporal'] = self.temporal.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of sources
+        if self.sources:
+            _dict['sources'] = self.sources.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of summaries
+        if self.summaries:
+            _dict['summaries'] = self.summaries.to_dict()
         return _dict
 
     @classmethod
@@ -99,7 +109,9 @@ class QGPTQuestionInput(BaseModel):
             "model": obj.get("model"),
             "messages": FlattenedConversationMessages.from_dict(obj.get("messages")) if obj.get("messages") is not None else None,
             "pipeline": QGPTPromptPipeline.from_dict(obj.get("pipeline")) if obj.get("pipeline") is not None else None,
-            "temporal": TemporalRangeGrounding.from_dict(obj.get("temporal")) if obj.get("temporal") is not None else None
+            "temporal": TemporalRangeGrounding.from_dict(obj.get("temporal")) if obj.get("temporal") is not None else None,
+            "sources": FlattenedIdentifiedWorkstreamPatternEngineSources.from_dict(obj.get("sources")) if obj.get("sources") is not None else None,
+            "summaries": FlattenedWorkstreamSummaries.from_dict(obj.get("summaries")) if obj.get("summaries") is not None else None
         })
         return _obj
 

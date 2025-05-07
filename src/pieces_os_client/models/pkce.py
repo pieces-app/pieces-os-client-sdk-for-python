@@ -23,6 +23,7 @@ from typing import Optional
 from pydantic import BaseModel, Field
 from pieces_os_client.models.auth0 import Auth0
 from pieces_os_client.models.challenged_pkce import ChallengedPKCE
+from pieces_os_client.models.descope import Descope
 from pieces_os_client.models.embedded_model_schema import EmbeddedModelSchema
 from pieces_os_client.models.resulted_pkce import ResultedPKCE
 from pieces_os_client.models.revoked_pkce import RevokedPKCE
@@ -40,7 +41,8 @@ class PKCE(BaseModel):
     seed: Optional[SeededPKCE] = None
     token: Optional[TokenizedPKCE] = None
     auth0: Optional[Auth0] = None
-    __properties = ["schema", "result", "challenge", "revocation", "seed", "token", "auth0"]
+    descope: Optional[Descope] = None
+    __properties = ["schema", "result", "challenge", "revocation", "seed", "token", "auth0", "descope"]
 
     class Config:
         """Pydantic configuration"""
@@ -87,6 +89,9 @@ class PKCE(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of auth0
         if self.auth0:
             _dict['auth0'] = self.auth0.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of descope
+        if self.descope:
+            _dict['descope'] = self.descope.to_dict()
         return _dict
 
     @classmethod
@@ -105,7 +110,8 @@ class PKCE(BaseModel):
             "revocation": RevokedPKCE.from_dict(obj.get("revocation")) if obj.get("revocation") is not None else None,
             "seed": SeededPKCE.from_dict(obj.get("seed")) if obj.get("seed") is not None else None,
             "token": TokenizedPKCE.from_dict(obj.get("token")) if obj.get("token") is not None else None,
-            "auth0": Auth0.from_dict(obj.get("auth0")) if obj.get("auth0") is not None else None
+            "auth0": Auth0.from_dict(obj.get("auth0")) if obj.get("auth0") is not None else None,
+            "descope": Descope.from_dict(obj.get("descope")) if obj.get("descope") is not None else None
         })
         return _obj
 

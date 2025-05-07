@@ -345,20 +345,22 @@ class FormatApi:
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def format_snapshot(self, format : Annotated[StrictStr, Field(..., description="The id (uuid) for a specific format.")], transferable : Annotated[Optional[StrictBool], Field(description="This is a boolean that will decided if we are want to return the transferable data (default) or not(performance enhancement)")] = None, **kwargs) -> Format:  # noqa: E501
+    def format_snapshot(self, format : Annotated[StrictStr, Field(..., description="The id (uuid) for a specific format.")], transferable : Annotated[Optional[StrictBool], Field(description="This is a boolean that will decided if we are want to return the transferable data (default) or not(performance enhancement)")] = None, package_activities : Annotated[Optional[StrictBool], Field(description="This is a boolean that will decided if we are want to return the activities data (not default) or not(performance enhancement)")] = None, **kwargs) -> Format:  # noqa: E501
         """/format/{format} [GET] Scoped to Format  # noqa: E501
 
         Get a snapshot of a specific format.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.format_snapshot(format, transferable, async_req=True)
+        >>> thread = api.format_snapshot(format, transferable, package_activities, async_req=True)
         >>> result = thread.get()
 
         :param format: The id (uuid) for a specific format. (required)
         :type format: str
         :param transferable: This is a boolean that will decided if we are want to return the transferable data (default) or not(performance enhancement)
         :type transferable: bool
+        :param package_activities: This is a boolean that will decided if we are want to return the activities data (not default) or not(performance enhancement)
+        :type package_activities: bool
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
         :param _request_timeout: timeout setting for this request.
@@ -374,23 +376,25 @@ class FormatApi:
         if '_preload_content' in kwargs:
             message = "Error! Please call the format_snapshot_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
-        return self.format_snapshot_with_http_info(format, transferable, **kwargs)  # noqa: E501
+        return self.format_snapshot_with_http_info(format, transferable, package_activities, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def format_snapshot_with_http_info(self, format : Annotated[StrictStr, Field(..., description="The id (uuid) for a specific format.")], transferable : Annotated[Optional[StrictBool], Field(description="This is a boolean that will decided if we are want to return the transferable data (default) or not(performance enhancement)")] = None, **kwargs) -> ApiResponse:  # noqa: E501
+    def format_snapshot_with_http_info(self, format : Annotated[StrictStr, Field(..., description="The id (uuid) for a specific format.")], transferable : Annotated[Optional[StrictBool], Field(description="This is a boolean that will decided if we are want to return the transferable data (default) or not(performance enhancement)")] = None, package_activities : Annotated[Optional[StrictBool], Field(description="This is a boolean that will decided if we are want to return the activities data (not default) or not(performance enhancement)")] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """/format/{format} [GET] Scoped to Format  # noqa: E501
 
         Get a snapshot of a specific format.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.format_snapshot_with_http_info(format, transferable, async_req=True)
+        >>> thread = api.format_snapshot_with_http_info(format, transferable, package_activities, async_req=True)
         >>> result = thread.get()
 
         :param format: The id (uuid) for a specific format. (required)
         :type format: str
         :param transferable: This is a boolean that will decided if we are want to return the transferable data (default) or not(performance enhancement)
         :type transferable: bool
+        :param package_activities: This is a boolean that will decided if we are want to return the activities data (not default) or not(performance enhancement)
+        :type package_activities: bool
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
         :param _preload_content: if False, the ApiResponse.data will
@@ -420,7 +424,8 @@ class FormatApi:
 
         _all_params = [
             'format',
-            'transferable'
+            'transferable',
+            'package_activities'
         ]
         _all_params.extend(
             [
@@ -456,6 +461,9 @@ class FormatApi:
         _query_params = []
         if _params.get('transferable') is not None:  # noqa: E501
             _query_params.append(('transferable', _params['transferable']))
+
+        if _params.get('package_activities') is not None:  # noqa: E501
+            _query_params.append(('package_activities', _params['package_activities']))
 
         # process the header parameters
         _header_params = dict(_params.get('_headers', {}))

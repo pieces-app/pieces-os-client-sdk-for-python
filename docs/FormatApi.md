@@ -171,7 +171,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **format_snapshot**
-> Format format_snapshot(format, transferable=transferable)
+> Format format_snapshot(format, transferable=transferable, package_activities=package_activities)
 
 /format/{format} [GET] Scoped to Format
 
@@ -211,10 +211,11 @@ with pieces_os_client.ApiClient(configuration) as api_client:
     api_instance = pieces_os_client.FormatApi(api_client)
     format = '102ff265-fdfb-4142-8d94-4932d400199c' # str | The id (uuid) for a specific format.
     transferable = True # bool | This is a boolean that will decided if we are want to return the transferable data (default) or not(performance enhancement) (optional)
+    package_activities = True # bool | This is a boolean that will decided if we are want to return the activities data (not default) or not(performance enhancement) (optional)
 
     try:
         # /format/{format} [GET] Scoped to Format
-        api_response = api_instance.format_snapshot(format, transferable=transferable)
+        api_response = api_instance.format_snapshot(format, transferable=transferable, package_activities=package_activities)
         print("The response of FormatApi->format_snapshot:\n")
         pprint(api_response)
     except Exception as e:
@@ -229,6 +230,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **format** | **str**| The id (uuid) for a specific format. | 
  **transferable** | **bool**| This is a boolean that will decided if we are want to return the transferable data (default) or not(performance enhancement) | [optional] 
+ **package_activities** | **bool**| This is a boolean that will decided if we are want to return the activities data (not default) or not(performance enhancement) | [optional] 
 
 ### Return type
 
@@ -255,7 +257,13 @@ Name | Type | Description  | Notes
 
 [POST] /format/update/value
 
-This will update a format's value, ie, a formats fragment or file depending on what is provided.  code/text fragment behavior: If this format is an asset.preview.base we will update the asset.original's value. if this format is an asset.preview.original we will update the asset.preview.base's value.  code/text file behavior: If the the format that is update is the asset.preview.base is a fragment and the asset.original is file then we will update the asset.original's value to be bytes or string respectively. This goes the same for orignal to preview but will be go the reverse order so if the original is a file we will update the preview base's fragment string.  image fragment/file: We will not modify preview -> orignal or original -> preview here. so there are zero side effects in this case, and will update as normal. (this will be the case for all other value updates.)
+This will update a format's value, ie, a formats fragment or file depending on what is provided.
+
+code/text fragment behavior: If this format is an asset.preview.base we will update the asset.original's value. if this format is an asset.preview.original we will update the asset.preview.base's value.
+
+code/text file behavior: If the the format that is update is the asset.preview.base is a fragment and the asset.original is file then we will update the asset.original's value to be bytes or string respectively. This goes the same for orignal to preview but will be go the reverse order so if the original is a file we will update the preview base's fragment string.
+
+image fragment/file: We will not modify preview -> orignal or original -> preview here. so there are zero side effects in this case, and will update as normal. (this will be the case for all other value updates.)
 
 ### Example
 

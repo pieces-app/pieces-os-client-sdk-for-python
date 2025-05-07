@@ -18,6 +18,7 @@ Name | Type | Description | Notes
 **allocation** | [**AllocationCloud**](AllocationCloud.md) |  | [optional] 
 **providers** | [**ExternalProviders**](ExternalProviders.md) |  | [optional] 
 **auth0** | [**Auth0UserMetadata**](Auth0UserMetadata.md) |  | [optional] 
+**descope** | [**DescopeUserMetadata**](DescopeUserMetadata.md) |  | [optional] 
 
 ## Example
 

@@ -5,6 +5,7 @@ All URIs are relative to *http://localhost:1000*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**conversations_create_from_asset**](ConversationsApi.md#conversations_create_from_asset) | **POST** /conversations/create/from_asset/{asset} | /conversations/create/from_asset/{asset} [POST]
+[**conversations_create_from_workstream_summary**](ConversationsApi.md#conversations_create_from_workstream_summary) | **POST** /conversations/create/from_workstream_summary/{workstream_summary} | /conversations/create/from_workstream_summary/{workstream_summary} [POST]
 [**conversations_create_specific_conversation**](ConversationsApi.md#conversations_create_specific_conversation) | **POST** /conversations/create | /conversations/create [POST]
 [**conversations_delete_specific_conversation**](ConversationsApi.md#conversations_delete_specific_conversation) | **POST** /conversations/{conversation}/delete | /conversations/{conversation}/delete [POST]
 [**conversations_identifiers_snapshot**](ConversationsApi.md#conversations_identifiers_snapshot) | **GET** /conversations/identifiers | /conversations/identifiers [GET]
@@ -74,6 +75,85 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**ConversationsCreateFromAssetOutput**](ConversationsCreateFromAssetOutput.md)
+
+### Authorization
+
+[application](../README.md#application)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json, text/plain
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**500** | Internal Server Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **conversations_create_from_workstream_summary**
+> ConversationsCreateFromWorkstreamSummaryOutput conversations_create_from_workstream_summary(workstream_summary)
+
+/conversations/create/from_workstream_summary/{workstream_summary} [POST]
+
+Creates a conversation based on an workstream_summary. It initiates a conversation and generates an initial message that includes a summary of the workstream_summary used as contextual grounding.
+
+### Example
+
+* Api Key Authentication (application):
+```python
+import time
+import os
+import pieces_os_client
+from pieces_os_client.models.conversations_create_from_workstream_summary_output import ConversationsCreateFromWorkstreamSummaryOutput
+from pieces_os_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to http://localhost:1000
+# See configuration.py for a list of all supported configuration parameters.
+configuration = pieces_os_client.Configuration(
+    host = "http://localhost:1000"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: application
+configuration.api_key['application'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['application'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with pieces_os_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = pieces_os_client.ConversationsApi(api_client)
+    workstream_summary = 'workstream_summary_example' # str | This is a identifier that is used to identify a specific workstream_summary.
+
+    try:
+        # /conversations/create/from_workstream_summary/{workstream_summary} [POST]
+        api_response = api_instance.conversations_create_from_workstream_summary(workstream_summary)
+        print("The response of ConversationsApi->conversations_create_from_workstream_summary:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling ConversationsApi->conversations_create_from_workstream_summary: %s\n" % e)
+```
+
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **workstream_summary** | **str**| This is a identifier that is used to identify a specific workstream_summary. | 
+
+### Return type
+
+[**ConversationsCreateFromWorkstreamSummaryOutput**](ConversationsCreateFromWorkstreamSummaryOutput.md)
 
 ### Authorization
 
@@ -476,7 +556,9 @@ void (empty response body)
 
 /conversations/search [POST]
 
-This will search your conversations for a specific conversation  note: we will search annotations, the name of the conversation, and the conversation messages
+This will search your conversations for a specific conversation
+
+note: we will search annotations, the name of the conversation, and the conversation messages
 
 ### Example
 

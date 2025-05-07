@@ -19,7 +19,7 @@ Method | HTTP request | Description
 [**workstream_pattern_engine_processors_vision_events_specific_snapshot**](WorkstreamPatternEngineApi.md#workstream_pattern_engine_processors_vision_events_specific_snapshot) | **GET** /workstream_pattern_engine/processors/vision/data/events/{vision_event} | /workstream_pattern_engine/processors/vision/data/events/{vision_event} [GET]
 [**workstream_pattern_engine_processors_vision_metadata**](WorkstreamPatternEngineApi.md#workstream_pattern_engine_processors_vision_metadata) | **GET** /workstream_pattern_engine/processors/vision/metadata | /workstream_pattern_engine/processors/vision/metadata [GET]
 [**workstream_pattern_engine_processors_vision_status**](WorkstreamPatternEngineApi.md#workstream_pattern_engine_processors_vision_status) | **GET** /workstream_pattern_engine/processors/vision/status | /workstream_pattern_engine/processors/vision/status [GET]
-[**workstream_pattern_engine_processors_vision_status_stream**](WorkstreamPatternEngineApi.md#workstream_pattern_engine_processors_vision_status_stream) | **GET** /workstream_pattern_engine/processors/vision/status/stream | /workstream_pattern_engine/processors/vision/status/steam [WS]
+[**workstream_pattern_engine_processors_vision_status_stream**](WorkstreamPatternEngineApi.md#workstream_pattern_engine_processors_vision_status_stream) | **GET** /workstream_pattern_engine/processors/vision/status/stream | /workstream_pattern_engine/processors/vision/status/stream [WS]
 
 
 # **workstream_pattern_engine_create_ingestion**
@@ -27,7 +27,12 @@ Method | HTTP request | Description
 
 /workstream_pattern_engine/ingestions/create [POST]
 
-This will take in events from plugins that will be used to drive data to be displayed in the feed.  This is not guaranteed to display information that is taken into this endpoint in the feed.  We take a subset of the information provided in this endpoint + information from the WPE to curated a highly relevant Heads up display of useful materials.
+This will take in events from plugins that will be used to drive data to be displayed in the feed.
+
+This is not guaranteed to display information that is taken into this endpoint in the feed.
+
+We take a subset of the information provided in this endpoint + information from the WPE to curated a highly
+relevant Heads up display of useful materials.
 
 ### Example
 
@@ -182,7 +187,10 @@ This endpoint does not need any parameter.
 
 /workstream_pattern_engine/processors/vision/activate [POST]
 
-This will activate your Workstream Pattern Engine. This is used to aggregate information on your user's desktop, specifically recording the application in focus and aggregating relevant context that will then be used to ground the copilot conversations, as well as the feed.  Note: required to be a beta user to use this feature until this is live(roughly mid to late April)
+This will activate your Workstream Pattern Engine. This is used to aggregate information on your user's desktop, specifically recording
+the application in focus and aggregating relevant context that will then be used to ground the copilot conversations, as well as the feed.
+
+Note: required to be a beta user to use this feature until this is live(roughly mid to late April)
 
 ### Example
 
@@ -262,7 +270,9 @@ Name | Type | Description  | Notes
 
 /workstream_pattern_engine/processors/vision/calibration/capture [POST]
 
-This will attempt to capture the copilot/feed/xyz dimensions of current focused window  note: in the future we can make a differentiation of the dimensions based on the type of qrCode.
+This will attempt to capture the copilot/feed/xyz dimensions of current focused window
+
+note: in the future we can make a differentiation of the dimensions based on the type of qrCode.
 
 ### Example
 
@@ -337,7 +347,17 @@ This endpoint does not need any parameter.
 
 /workstream_pattern_engine/processors/vision/calibrations/focused [GET]
 
-This will get the copilot/feed/xyz dimensions of the focused window.  This endpoint will attempt to do the following: 1. get the focus window 2. we will do a lookup to see if we have the copilot/feed/xyz dimension for this window if not we will return null if so we will return the dimensions as well as when the dimensions were taken  note: in the future we can make a differentiation of the dimensions based on the type of qrCode. note: no need to pass in the window name: b/c we will just get the focused window note: we will also return the window name in the returnable so the dev can verify this is the window of the plugin.
+This will get the copilot/feed/xyz dimensions of the focused window.
+
+This endpoint will attempt to do the following:
+1. get the focus window
+2. we will do a lookup to see if we have the copilot/feed/xyz dimension for this window
+if not we will return null
+if so we will return the dimensions as well as when the dimensions were taken
+
+note: in the future we can make a differentiation of the dimensions based on the type of qrCode.
+note: no need to pass in the window name: b/c we will just get the focused window
+note: we will also return the window name in the returnable so the dev can verify this is the window of the plugin.
 
 ### Example
 
@@ -412,7 +432,11 @@ This endpoint does not need any parameter.
 
 /workstream_pattern_engine/processors/vision/calibrations [GET]
 
-This will return a snapshot of all of our captured copilot window Dimensions   note: this will return many captures note: will want to add type of calibration for this specific dimension(ie copilot/feed/xyz) note: in the future we can make a differentiation of the dimensions based on the type of qrCode.
+This will return a snapshot of all of our captured copilot window Dimensions 
+
+note: this will return many captures
+note: will want to add type of calibration for this specific dimension(ie copilot/feed/xyz)
+note: in the future we can make a differentiation of the dimensions based on the type of qrCode.
 
 ### Example
 
@@ -487,7 +511,9 @@ This endpoint does not need any parameter.
 
 /workstream_pattern_engine/processors/vision/data/clear [POST]
 
-This will clear the data for the Workstream Pattern Engine, specifically for our vision data.  This boy will accept ranges of time that the user wants to remove the processing from.
+This will clear the data for the Workstream Pattern Engine, specifically for our vision data.
+
+This boy will accept ranges of time that the user wants to remove the processing from.
 
 ### Example
 
@@ -565,7 +591,10 @@ void (empty response body)
 
 /workstream_pattern_engine/processors/vision/deactivate [POST]
 
-This will deactivate your Workstream Pattern Engine. This is used to aggregate information on your user's desktop, specifically recording the application in focus and aggregating relevant context that will then be used to ground the copilot conversations, as well as the feed.  Note: required to be a beta user to use this feature until this is live(roughly mid to late April)
+This will deactivate your Workstream Pattern Engine. This is used to aggregate information on your user's desktop, specifically recording
+the application in focus and aggregating relevant context that will then be used to ground the copilot conversations, as well as the feed.
+
+Note: required to be a beta user to use this feature until this is live(roughly mid to late April)
 
 ### Example
 
@@ -883,7 +912,10 @@ Name | Type | Description  | Notes
 
 /workstream_pattern_engine/processors/vision/data/events [GET]
 
-This will return a snapshot of all of the WPE qdrant events  note: if the transferables: are true then we will provide values for each of our events otherwise       we will just provide basic metadata
+This will return a snapshot of all of the WPE qdrant events
+
+note: if the transferables: are true then we will provide values for each of our events otherwise
+      we will just provide basic metadata
 
 ### Example
 
@@ -1118,7 +1150,10 @@ This endpoint does not need any parameter.
 
 /workstream_pattern_engine/processors/vision/status [GET]
 
-This will get a snapshot of the status your Workstream Pattern Engine. This is used to aggregate information on your user's desktop, specifically recording the application in focus and aggregating relevant context that will then be used to ground the copilot conversations, as well as the feed.  Note: required to be a beta user to use this feature until this is live(roughly mid to late April)
+This will get a snapshot of the status your Workstream Pattern Engine. This is used to aggregate information on your user's desktop, specifically recording
+the application in focus and aggregating relevant context that will then be used to ground the copilot conversations, as well as the feed.
+
+Note: required to be a beta user to use this feature until this is live(roughly mid to late April)
 
 ### Example
 
@@ -1192,9 +1227,13 @@ This endpoint does not need any parameter.
 # **workstream_pattern_engine_processors_vision_status_stream**
 > WorkstreamPatternEngineStatus workstream_pattern_engine_processors_vision_status_stream()
 
-/workstream_pattern_engine/processors/vision/status/steam [WS]
+/workstream_pattern_engine/processors/vision/status/stream [WS]
 
-This is a websocket for the status of the workstream pattern engine for vision.  This will emit an event when this is first connected to, and will emit an event when every this value changes  This will emit a \"WorkstreamPatternEngineStatus\" Model.
+This is a websocket for the status of the workstream pattern engine for vision.
+
+This will emit an event when this is first connected to, and will emit an event when every this value changes
+
+This will emit a "WorkstreamPatternEngineStatus" Model.
 
 ### Example
 
@@ -1230,7 +1269,7 @@ with pieces_os_client.ApiClient(configuration) as api_client:
     api_instance = pieces_os_client.WorkstreamPatternEngineApi(api_client)
 
     try:
-        # /workstream_pattern_engine/processors/vision/status/steam [WS]
+        # /workstream_pattern_engine/processors/vision/status/stream [WS]
         api_response = api_instance.workstream_pattern_engine_processors_vision_status_stream()
         print("The response of WorkstreamPatternEngineApi->workstream_pattern_engine_processors_vision_status_stream:\n")
         pprint(api_response)

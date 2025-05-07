@@ -20,6 +20,7 @@ Name | Type | Description | Notes
 **application_enter** | **bool** |  | [optional] 
 **application_leave** | **bool** |  | [optional] 
 **application_switch** | **bool** |  | [optional] 
+**native_screenshot** | **bool** |  | [optional] 
 
 ## Example
 
