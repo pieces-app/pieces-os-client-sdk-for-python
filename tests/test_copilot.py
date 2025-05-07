@@ -46,6 +46,8 @@ class BasicCopilotTest(unittest.TestCase):
         
         # Create a mock for send_message
         mock_send_message = Mock()
+
+        BasicChat._from_indices =Mock(return_value= [])
         self.copilot.ask_stream_ws.send_message = mock_send_message
         self.copilot.context._relevance_api = lambda query: RelevantQGPTSeeds(iterable=[])# Mock the contexts for now
         result = list(self.copilot.stream_question(query))
@@ -85,6 +87,7 @@ class BasicCopilotTest(unittest.TestCase):
         self.assertIsNone(self.copilot.chat)
         
         test_chat = BasicChat("test_conversation_id")
+        BasicChat._from_indices =Mock(return_value= [])
         self.copilot.chat = test_chat
         self.assertEqual(self.copilot.chat, test_chat)
         
