@@ -17,7 +17,7 @@ pydantic = "^1.10.5, <2"
 aenum = ">=3.1.11"
 websocket-client = "^1.8.0"
 
-[tool.poetry.dev-dependencies]
+[tool.poetry.group.dev.dependencies]
 pytest = ">=7.2.1"
 tox = ">=3.9.0"
 flake8 = ">=4.0.0"
