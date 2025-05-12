@@ -20,7 +20,7 @@ import json
 
 
 from typing import List, Optional
-from pydantic import BaseModel, Field, StrictStr, conlist
+from pydantic.v1 import BaseModel, Field, StrictStr, conlist
 from pieces_os_client.models.embedded_model_schema import EmbeddedModelSchema
 from pieces_os_client.models.mechanism_enum import MechanismEnum
 from pieces_os_client.models.seeded_anchor import SeededAnchor
@@ -71,52 +71,52 @@ class SeededAssetMetadata(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of var_schema
+        # override the default output from pydantic.v1 by calling `to_dict()` of var_schema
         if self.var_schema:
             _dict['schema'] = self.var_schema.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of each item in tags (list)
+        # override the default output from pydantic.v1 by calling `to_dict()` of each item in tags (list)
         _items = []
         if self.tags:
             for _item in self.tags:
                 if _item:
                     _items.append(_item.to_dict())
             _dict['tags'] = _items
-        # override the default output from pydantic by calling `to_dict()` of each item in websites (list)
+        # override the default output from pydantic.v1 by calling `to_dict()` of each item in websites (list)
         _items = []
         if self.websites:
             for _item in self.websites:
                 if _item:
                     _items.append(_item.to_dict())
             _dict['websites'] = _items
-        # override the default output from pydantic by calling `to_dict()` of each item in sensitives (list)
+        # override the default output from pydantic.v1 by calling `to_dict()` of each item in sensitives (list)
         _items = []
         if self.sensitives:
             for _item in self.sensitives:
                 if _item:
                     _items.append(_item.to_dict())
             _dict['sensitives'] = _items
-        # override the default output from pydantic by calling `to_dict()` of each item in persons (list)
+        # override the default output from pydantic.v1 by calling `to_dict()` of each item in persons (list)
         _items = []
         if self.persons:
             for _item in self.persons:
                 if _item:
                     _items.append(_item.to_dict())
             _dict['persons'] = _items
-        # override the default output from pydantic by calling `to_dict()` of each item in annotations (list)
+        # override the default output from pydantic.v1 by calling `to_dict()` of each item in annotations (list)
         _items = []
         if self.annotations:
             for _item in self.annotations:
                 if _item:
                     _items.append(_item.to_dict())
             _dict['annotations'] = _items
-        # override the default output from pydantic by calling `to_dict()` of each item in hints (list)
+        # override the default output from pydantic.v1 by calling `to_dict()` of each item in hints (list)
         _items = []
         if self.hints:
             for _item in self.hints:
                 if _item:
                     _items.append(_item.to_dict())
             _dict['hints'] = _items
-        # override the default output from pydantic by calling `to_dict()` of each item in anchors (list)
+        # override the default output from pydantic.v1 by calling `to_dict()` of each item in anchors (list)
         _items = []
         if self.anchors:
             for _item in self.anchors:

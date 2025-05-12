@@ -20,7 +20,7 @@ import json
 
 
 from typing import Optional, Union
-from pydantic import BaseModel, Field, StrictBool, StrictFloat, StrictInt, StrictStr
+from pydantic.v1 import BaseModel, Field, StrictBool, StrictFloat, StrictInt, StrictStr
 from pieces_os_client.models.anchor import Anchor
 from pieces_os_client.models.embedded_model_schema import EmbeddedModelSchema
 from pieces_os_client.models.searched_anchor_points import SearchedAnchorPoints
@@ -62,13 +62,13 @@ class SearchedAnchor(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of var_schema
+        # override the default output from pydantic.v1 by calling `to_dict()` of var_schema
         if self.var_schema:
             _dict['schema'] = self.var_schema.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of anchor
+        # override the default output from pydantic.v1 by calling `to_dict()` of anchor
         if self.anchor:
             _dict['anchor'] = self.anchor.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of points
+        # override the default output from pydantic.v1 by calling `to_dict()` of points
         if self.points:
             _dict['points'] = self.points.to_dict()
         return _dict

@@ -20,7 +20,7 @@ import json
 
 
 from typing import Optional, Union
-from pydantic import BaseModel, Field, StrictFloat, StrictInt, StrictStr
+from pydantic.v1 import BaseModel, Field, StrictFloat, StrictInt, StrictStr
 from pieces_os_client.models.embedded_model_schema import EmbeddedModelSchema
 from pieces_os_client.models.model_download_progress_status_enum import ModelDownloadProgressStatusEnum
 from pieces_os_client.models.os_file_streaming_read_progress import OSFileStreamingReadProgress
@@ -63,13 +63,13 @@ class OSFileStreamingRead(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of var_schema
+        # override the default output from pydantic.v1 by calling `to_dict()` of var_schema
         if self.var_schema:
             _dict['schema'] = self.var_schema.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of bytes
+        # override the default output from pydantic.v1 by calling `to_dict()` of bytes
         if self.bytes:
             _dict['bytes'] = self.bytes.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of progress
+        # override the default output from pydantic.v1 by calling `to_dict()` of progress
         if self.progress:
             _dict['progress'] = self.progress.to_dict()
         # set to None if percentage (nullable) is None

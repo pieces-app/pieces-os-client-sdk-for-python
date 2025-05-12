@@ -20,7 +20,7 @@ import json
 
 
 from typing import Optional
-from pydantic import BaseModel, Field
+from pydantic.v1 import BaseModel, Field
 from pieces_os_client.models.embedded_model_schema import EmbeddedModelSchema
 from pieces_os_client.models.ollama_deployment import OllamaDeployment
 from pieces_os_client.models.ollama_recommendation import OllamaRecommendation
@@ -61,22 +61,22 @@ class OllamaStatus(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of var_schema
+        # override the default output from pydantic.v1 by calling `to_dict()` of var_schema
         if self.var_schema:
             _dict['schema'] = self.var_schema.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of updating
+        # override the default output from pydantic.v1 by calling `to_dict()` of updating
         if self.updating:
             _dict['updating'] = self.updating.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of installing
+        # override the default output from pydantic.v1 by calling `to_dict()` of installing
         if self.installing:
             _dict['installing'] = self.installing.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of update_required
+        # override the default output from pydantic.v1 by calling `to_dict()` of update_required
         if self.update_required:
             _dict['updateRequired'] = self.update_required.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of installation
+        # override the default output from pydantic.v1 by calling `to_dict()` of installation
         if self.installation:
             _dict['installation'] = self.installation.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of recommendation
+        # override the default output from pydantic.v1 by calling `to_dict()` of recommendation
         if self.recommendation:
             _dict['recommendation'] = self.recommendation.to_dict()
         return _dict

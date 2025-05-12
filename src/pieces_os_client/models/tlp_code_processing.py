@@ -20,7 +20,7 @@ import json
 
 
 from typing import Optional
-from pydantic import BaseModel, Field
+from pydantic.v1 import BaseModel, Field
 from pieces_os_client.models.embedded_model_schema import EmbeddedModelSchema
 from pieces_os_client.models.tlp_code_directory_analytics import TLPCodeDirectoryAnalytics
 from pieces_os_client.models.tlp_code_file_analytics import TLPCodeFileAnalytics
@@ -62,19 +62,19 @@ class TLPCodeProcessing(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of var_schema
+        # override the default output from pydantic.v1 by calling `to_dict()` of var_schema
         if self.var_schema:
             _dict['schema'] = self.var_schema.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of fragment
+        # override the default output from pydantic.v1 by calling `to_dict()` of fragment
         if self.fragment:
             _dict['fragment'] = self.fragment.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of file
+        # override the default output from pydantic.v1 by calling `to_dict()` of file
         if self.file:
             _dict['file'] = self.file.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of directory
+        # override the default output from pydantic.v1 by calling `to_dict()` of directory
         if self.directory:
             _dict['directory'] = self.directory.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of repository
+        # override the default output from pydantic.v1 by calling `to_dict()` of repository
         if self.repository:
             _dict['repository'] = self.repository.to_dict()
         return _dict

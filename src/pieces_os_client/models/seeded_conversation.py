@@ -20,7 +20,7 @@ import json
 
 
 from typing import List, Optional
-from pydantic import BaseModel, Field, StrictBool, StrictStr, conlist
+from pydantic.v1 import BaseModel, Field, StrictBool, StrictStr, conlist
 from pieces_os_client.models.application import Application
 from pieces_os_client.models.conversation_type_enum import ConversationTypeEnum
 from pieces_os_client.models.embedded_model_schema import EmbeddedModelSchema
@@ -75,43 +75,43 @@ class SeededConversation(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of var_schema
+        # override the default output from pydantic.v1 by calling `to_dict()` of var_schema
         if self.var_schema:
             _dict['schema'] = self.var_schema.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of application
+        # override the default output from pydantic.v1 by calling `to_dict()` of application
         if self.application:
             _dict['application'] = self.application.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of each item in annotations (list)
+        # override the default output from pydantic.v1 by calling `to_dict()` of each item in annotations (list)
         _items = []
         if self.annotations:
             for _item in self.annotations:
                 if _item:
                     _items.append(_item.to_dict())
             _dict['annotations'] = _items
-        # override the default output from pydantic by calling `to_dict()` of each item in messages (list)
+        # override the default output from pydantic.v1 by calling `to_dict()` of each item in messages (list)
         _items = []
         if self.messages:
             for _item in self.messages:
                 if _item:
                     _items.append(_item.to_dict())
             _dict['messages'] = _items
-        # override the default output from pydantic by calling `to_dict()` of model
+        # override the default output from pydantic.v1 by calling `to_dict()` of model
         if self.model:
             _dict['model'] = self.model.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of assets
+        # override the default output from pydantic.v1 by calling `to_dict()` of assets
         if self.assets:
             _dict['assets'] = self.assets.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of websites
+        # override the default output from pydantic.v1 by calling `to_dict()` of websites
         if self.websites:
             _dict['websites'] = self.websites.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of each item in anchors (list)
+        # override the default output from pydantic.v1 by calling `to_dict()` of each item in anchors (list)
         _items = []
         if self.anchors:
             for _item in self.anchors:
                 if _item:
                     _items.append(_item.to_dict())
             _dict['anchors'] = _items
-        # override the default output from pydantic by calling `to_dict()` of pipeline
+        # override the default output from pydantic.v1 by calling `to_dict()` of pipeline
         if self.pipeline:
             _dict['pipeline'] = self.pipeline.to_dict()
         return _dict

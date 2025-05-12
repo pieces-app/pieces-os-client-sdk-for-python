@@ -20,7 +20,7 @@ import json
 
 
 from typing import Optional
-from pydantic import BaseModel, Field, StrictStr
+from pydantic.v1 import BaseModel, Field, StrictStr
 from pieces_os_client.models.edges import Edges
 from pieces_os_client.models.embedded_model_schema import EmbeddedModelSchema
 from pieces_os_client.models.embeddings import Embeddings
@@ -63,22 +63,22 @@ class Relationship(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of var_schema
+        # override the default output from pydantic.v1 by calling `to_dict()` of var_schema
         if self.var_schema:
             _dict['schema'] = self.var_schema.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of embeddings
+        # override the default output from pydantic.v1 by calling `to_dict()` of embeddings
         if self.embeddings:
             _dict['embeddings'] = self.embeddings.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of edges
+        # override the default output from pydantic.v1 by calling `to_dict()` of edges
         if self.edges:
             _dict['edges'] = self.edges.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of created
+        # override the default output from pydantic.v1 by calling `to_dict()` of created
         if self.created:
             _dict['created'] = self.created.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of updated
+        # override the default output from pydantic.v1 by calling `to_dict()` of updated
         if self.updated:
             _dict['updated'] = self.updated.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of deleted
+        # override the default output from pydantic.v1 by calling `to_dict()` of deleted
         if self.deleted:
             _dict['deleted'] = self.deleted.to_dict()
         return _dict

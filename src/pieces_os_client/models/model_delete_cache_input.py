@@ -20,7 +20,7 @@ import json
 
 
 from typing import Optional
-from pydantic import BaseModel, Field
+from pydantic.v1 import BaseModel, Field
 from pieces_os_client.models.embedded_model_schema import EmbeddedModelSchema
 
 class ModelDeleteCacheInput(BaseModel):
@@ -54,7 +54,7 @@ class ModelDeleteCacheInput(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of var_schema
+        # override the default output from pydantic.v1 by calling `to_dict()` of var_schema
         if self.var_schema:
             _dict['schema'] = self.var_schema.to_dict()
         return _dict

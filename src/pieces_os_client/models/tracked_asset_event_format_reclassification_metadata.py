@@ -20,7 +20,7 @@ import json
 
 
 from typing import Optional
-from pydantic import BaseModel, Field
+from pydantic.v1 import BaseModel, Field
 from pieces_os_client.models.classification import Classification
 from pieces_os_client.models.embedded_model_schema import EmbeddedModelSchema
 
@@ -57,13 +57,13 @@ class TrackedAssetEventFormatReclassificationMetadata(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of var_schema
+        # override the default output from pydantic.v1 by calling `to_dict()` of var_schema
         if self.var_schema:
             _dict['schema'] = self.var_schema.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of previous
+        # override the default output from pydantic.v1 by calling `to_dict()` of previous
         if self.previous:
             _dict['previous'] = self.previous.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of current
+        # override the default output from pydantic.v1 by calling `to_dict()` of current
         if self.current:
             _dict['current'] = self.current.to_dict()
         return _dict

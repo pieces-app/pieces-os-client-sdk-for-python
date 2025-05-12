@@ -20,7 +20,7 @@ import json
 
 
 from typing import Optional, Union
-from pydantic import BaseModel, Field, StrictBool, StrictFloat, StrictInt, StrictStr
+from pydantic.v1 import BaseModel, Field, StrictBool, StrictFloat, StrictInt, StrictStr
 from pieces_os_client.models.byte_descriptor import ByteDescriptor
 from pieces_os_client.models.embedded_model_schema import EmbeddedModelSchema
 from pieces_os_client.models.external_ml_provider_enum import ExternalMLProviderEnum
@@ -86,25 +86,25 @@ class Model(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of var_schema
+        # override the default output from pydantic.v1 by calling `to_dict()` of var_schema
         if self.var_schema:
             _dict['schema'] = self.var_schema.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of created
+        # override the default output from pydantic.v1 by calling `to_dict()` of created
         if self.created:
             _dict['created'] = self.created.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of bytes
+        # override the default output from pydantic.v1 by calling `to_dict()` of bytes
         if self.bytes:
             _dict['bytes'] = self.bytes.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of ram
+        # override the default output from pydantic.v1 by calling `to_dict()` of ram
         if self.ram:
             _dict['ram'] = self.ram.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of max_tokens
+        # override the default output from pydantic.v1 by calling `to_dict()` of max_tokens
         if self.max_tokens:
             _dict['maxTokens'] = self.max_tokens.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of capabilities
+        # override the default output from pydantic.v1 by calling `to_dict()` of capabilities
         if self.capabilities:
             _dict['capabilities'] = self.capabilities.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of score
+        # override the default output from pydantic.v1 by calling `to_dict()` of score
         if self.score:
             _dict['score'] = self.score.to_dict()
         # set to None if parameters (nullable) is None

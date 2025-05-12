@@ -17,10 +17,10 @@ import re  # noqa: F401
 import io
 import warnings
 
-from pydantic import validate_arguments, ValidationError
+from pydantic.v1 import validate_arguments, ValidationError
 
 from typing_extensions import Annotated
-from pydantic import Field, StrictStr
+from pydantic.v1 import Field, StrictStr
 
 from pieces_os_client.models.relationship import Relationship
 

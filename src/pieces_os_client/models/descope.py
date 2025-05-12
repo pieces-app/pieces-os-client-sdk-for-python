@@ -20,7 +20,7 @@ import json
 
 
 from typing import Optional
-from pydantic import BaseModel, Field, StrictStr
+from pydantic.v1 import BaseModel, Field, StrictStr
 from pieces_os_client.models.auth0_redirects import Auth0Redirects
 from pieces_os_client.models.descope_user import DescopeUser
 from pieces_os_client.models.o_auth_group import OAuthGroup
@@ -59,13 +59,13 @@ class Descope(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of redirects
+        # override the default output from pydantic.v1 by calling `to_dict()` of redirects
         if self.redirects:
             _dict['redirects'] = self.redirects.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of o_auth
+        # override the default output from pydantic.v1 by calling `to_dict()` of o_auth
         if self.o_auth:
             _dict['oAuth'] = self.o_auth.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of user
+        # override the default output from pydantic.v1 by calling `to_dict()` of user
         if self.user:
             _dict['user'] = self.user.to_dict()
         return _dict

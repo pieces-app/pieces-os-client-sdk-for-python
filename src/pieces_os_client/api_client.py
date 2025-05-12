@@ -24,7 +24,7 @@ import re
 import tempfile
 
 from urllib.parse import quote
-from pydantic import SecretStr
+from pydantic.v1 import SecretStr
 
 from pieces_os_client.configuration import Configuration
 from pieces_os_client.api_response import ApiResponse

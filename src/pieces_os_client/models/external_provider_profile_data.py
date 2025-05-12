@@ -20,7 +20,7 @@ import json
 
 
 from typing import Optional
-from pydantic import BaseModel, StrictBool, StrictInt, StrictStr
+from pydantic.v1 import BaseModel, StrictBool, StrictInt, StrictStr
 
 class ExternalProviderProfileData(BaseModel):
     """

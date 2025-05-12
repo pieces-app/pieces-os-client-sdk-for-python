@@ -20,7 +20,7 @@ import json
 
 
 from typing import Optional
-from pydantic import BaseModel, Field
+from pydantic.v1 import BaseModel, Field
 from pieces_os_client.models.embedded_model_schema import EmbeddedModelSchema
 from pieces_os_client.models.person_basic_type import PersonBasicType
 from pieces_os_client.models.user_profile import UserProfile
@@ -58,13 +58,13 @@ class PersonType(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of var_schema
+        # override the default output from pydantic.v1 by calling `to_dict()` of var_schema
         if self.var_schema:
             _dict['schema'] = self.var_schema.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of basic
+        # override the default output from pydantic.v1 by calling `to_dict()` of basic
         if self.basic:
             _dict['basic'] = self.basic.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of platform
+        # override the default output from pydantic.v1 by calling `to_dict()` of platform
         if self.platform:
             _dict['platform'] = self.platform.to_dict()
         return _dict

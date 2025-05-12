@@ -20,7 +20,7 @@ import json
 
 
 from typing import Optional
-from pydantic import BaseModel, Field
+from pydantic.v1 import BaseModel, Field
 from pieces_os_client.models.embedded_model_schema import EmbeddedModelSchema
 from pieces_os_client.models.language_server_protocol_location_range_position import LanguageServerProtocolLocationRangePosition
 
@@ -57,13 +57,13 @@ class LanguageServerProtocolLocationRange(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of var_schema
+        # override the default output from pydantic.v1 by calling `to_dict()` of var_schema
         if self.var_schema:
             _dict['schema'] = self.var_schema.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of start
+        # override the default output from pydantic.v1 by calling `to_dict()` of start
         if self.start:
             _dict['start'] = self.start.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of end
+        # override the default output from pydantic.v1 by calling `to_dict()` of end
         if self.end:
             _dict['end'] = self.end.to_dict()
         return _dict

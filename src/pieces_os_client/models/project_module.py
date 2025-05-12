@@ -20,7 +20,7 @@ import json
 
 
 from typing import Optional
-from pydantic import BaseModel, Field
+from pydantic.v1 import BaseModel, Field
 from pieces_os_client.models.anonymous_temporal_range import AnonymousTemporalRange
 from pieces_os_client.models.classifications import Classifications
 from pieces_os_client.models.document_contributors import DocumentContributors
@@ -61,19 +61,19 @@ class ProjectModule(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of var_schema
+        # override the default output from pydantic.v1 by calling `to_dict()` of var_schema
         if self.var_schema:
             _dict['schema'] = self.var_schema.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of anchor
+        # override the default output from pydantic.v1 by calling `to_dict()` of anchor
         if self.anchor:
             _dict['anchor'] = self.anchor.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of range
+        # override the default output from pydantic.v1 by calling `to_dict()` of range
         if self.range:
             _dict['range'] = self.range.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of contributors
+        # override the default output from pydantic.v1 by calling `to_dict()` of contributors
         if self.contributors:
             _dict['contributors'] = self.contributors.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of classifications
+        # override the default output from pydantic.v1 by calling `to_dict()` of classifications
         if self.classifications:
             _dict['classifications'] = self.classifications.to_dict()
         return _dict

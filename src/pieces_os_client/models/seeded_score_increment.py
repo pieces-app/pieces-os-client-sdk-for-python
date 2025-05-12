@@ -20,7 +20,7 @@ import json
 
 
 from typing import Optional
-from pydantic import BaseModel, Field
+from pydantic.v1 import BaseModel, Field
 from pieces_os_client.models.embedded_model_schema import EmbeddedModelSchema
 from pieces_os_client.models.seeded_score import SeededScore
 
@@ -89,109 +89,109 @@ class SeededScoreIncrement(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of var_schema
+        # override the default output from pydantic.v1 by calling `to_dict()` of var_schema
         if self.var_schema:
             _dict['schema'] = self.var_schema.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of asset
+        # override the default output from pydantic.v1 by calling `to_dict()` of asset
         if self.asset:
             _dict['asset'] = self.asset.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of assets
+        # override the default output from pydantic.v1 by calling `to_dict()` of assets
         if self.assets:
             _dict['assets'] = self.assets.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of website
+        # override the default output from pydantic.v1 by calling `to_dict()` of website
         if self.website:
             _dict['website'] = self.website.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of websites
+        # override the default output from pydantic.v1 by calling `to_dict()` of websites
         if self.websites:
             _dict['websites'] = self.websites.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of anchor
+        # override the default output from pydantic.v1 by calling `to_dict()` of anchor
         if self.anchor:
             _dict['anchor'] = self.anchor.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of anchors
+        # override the default output from pydantic.v1 by calling `to_dict()` of anchors
         if self.anchors:
             _dict['anchors'] = self.anchors.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of anchor_point
+        # override the default output from pydantic.v1 by calling `to_dict()` of anchor_point
         if self.anchor_point:
             _dict['anchorPoint'] = self.anchor_point.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of anchor_points
+        # override the default output from pydantic.v1 by calling `to_dict()` of anchor_points
         if self.anchor_points:
             _dict['anchorPoints'] = self.anchor_points.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of annotation
+        # override the default output from pydantic.v1 by calling `to_dict()` of annotation
         if self.annotation:
             _dict['annotation'] = self.annotation.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of annotations
+        # override the default output from pydantic.v1 by calling `to_dict()` of annotations
         if self.annotations:
             _dict['annotations'] = self.annotations.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of conversation
+        # override the default output from pydantic.v1 by calling `to_dict()` of conversation
         if self.conversation:
             _dict['conversation'] = self.conversation.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of conversations
+        # override the default output from pydantic.v1 by calling `to_dict()` of conversations
         if self.conversations:
             _dict['conversations'] = self.conversations.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of conversation_message
+        # override the default output from pydantic.v1 by calling `to_dict()` of conversation_message
         if self.conversation_message:
             _dict['conversationMessage'] = self.conversation_message.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of conversation_messages
+        # override the default output from pydantic.v1 by calling `to_dict()` of conversation_messages
         if self.conversation_messages:
             _dict['conversationMessages'] = self.conversation_messages.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of share
+        # override the default output from pydantic.v1 by calling `to_dict()` of share
         if self.share:
             _dict['share'] = self.share.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of shares
+        # override the default output from pydantic.v1 by calling `to_dict()` of shares
         if self.shares:
             _dict['shares'] = self.shares.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of sensitive
+        # override the default output from pydantic.v1 by calling `to_dict()` of sensitive
         if self.sensitive:
             _dict['sensitive'] = self.sensitive.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of sensitives
+        # override the default output from pydantic.v1 by calling `to_dict()` of sensitives
         if self.sensitives:
             _dict['sensitives'] = self.sensitives.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of hint
+        # override the default output from pydantic.v1 by calling `to_dict()` of hint
         if self.hint:
             _dict['hint'] = self.hint.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of hints
+        # override the default output from pydantic.v1 by calling `to_dict()` of hints
         if self.hints:
             _dict['hints'] = self.hints.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of person
+        # override the default output from pydantic.v1 by calling `to_dict()` of person
         if self.person:
             _dict['person'] = self.person.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of persons
+        # override the default output from pydantic.v1 by calling `to_dict()` of persons
         if self.persons:
             _dict['persons'] = self.persons.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of tag
+        # override the default output from pydantic.v1 by calling `to_dict()` of tag
         if self.tag:
             _dict['tag'] = self.tag.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of tags
+        # override the default output from pydantic.v1 by calling `to_dict()` of tags
         if self.tags:
             _dict['tags'] = self.tags.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of workstream_summary
+        # override the default output from pydantic.v1 by calling `to_dict()` of workstream_summary
         if self.workstream_summary:
             _dict['workstream_summary'] = self.workstream_summary.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of workstream_summaries
+        # override the default output from pydantic.v1 by calling `to_dict()` of workstream_summaries
         if self.workstream_summaries:
             _dict['workstream_summaries'] = self.workstream_summaries.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of workstream_events
+        # override the default output from pydantic.v1 by calling `to_dict()` of workstream_events
         if self.workstream_events:
             _dict['workstream_events'] = self.workstream_events.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of workstream_event
+        # override the default output from pydantic.v1 by calling `to_dict()` of workstream_event
         if self.workstream_event:
             _dict['workstream_event'] = self.workstream_event.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of ranges
+        # override the default output from pydantic.v1 by calling `to_dict()` of ranges
         if self.ranges:
             _dict['ranges'] = self.ranges.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of range
+        # override the default output from pydantic.v1 by calling `to_dict()` of range
         if self.range:
             _dict['range'] = self.range.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of workstream_pattern_engine_sources
+        # override the default output from pydantic.v1 by calling `to_dict()` of workstream_pattern_engine_sources
         if self.workstream_pattern_engine_sources:
             _dict['workstream_pattern_engine_sources'] = self.workstream_pattern_engine_sources.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of workstream_pattern_engine_source
+        # override the default output from pydantic.v1 by calling `to_dict()` of workstream_pattern_engine_source
         if self.workstream_pattern_engine_source:
             _dict['workstream_pattern_engine_source'] = self.workstream_pattern_engine_source.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of models
+        # override the default output from pydantic.v1 by calling `to_dict()` of models
         if self.models:
             _dict['models'] = self.models.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of model
+        # override the default output from pydantic.v1 by calling `to_dict()` of model
         if self.model:
             _dict['model'] = self.model.to_dict()
         return _dict

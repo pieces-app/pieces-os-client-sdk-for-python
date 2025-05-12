@@ -20,7 +20,7 @@ import json
 
 
 from typing import Optional
-from pydantic import BaseModel, Field, StrictStr
+from pydantic.v1 import BaseModel, Field, StrictStr
 from pieces_os_client.models.activities import Activities
 from pieces_os_client.models.application import Application
 from pieces_os_client.models.byte_descriptor import ByteDescriptor
@@ -82,46 +82,46 @@ class Format(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of var_schema
+        # override the default output from pydantic.v1 by calling `to_dict()` of var_schema
         if self.var_schema:
             _dict['schema'] = self.var_schema.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of classification
+        # override the default output from pydantic.v1 by calling `to_dict()` of classification
         if self.classification:
             _dict['classification'] = self.classification.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of application
+        # override the default output from pydantic.v1 by calling `to_dict()` of application
         if self.application:
             _dict['application'] = self.application.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of asset
+        # override the default output from pydantic.v1 by calling `to_dict()` of asset
         if self.asset:
             _dict['asset'] = self.asset.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of bytes
+        # override the default output from pydantic.v1 by calling `to_dict()` of bytes
         if self.bytes:
             _dict['bytes'] = self.bytes.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of created
+        # override the default output from pydantic.v1 by calling `to_dict()` of created
         if self.created:
             _dict['created'] = self.created.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of updated
+        # override the default output from pydantic.v1 by calling `to_dict()` of updated
         if self.updated:
             _dict['updated'] = self.updated.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of deleted
+        # override the default output from pydantic.v1 by calling `to_dict()` of deleted
         if self.deleted:
             _dict['deleted'] = self.deleted.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of synced
+        # override the default output from pydantic.v1 by calling `to_dict()` of synced
         if self.synced:
             _dict['synced'] = self.synced.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of fragment
+        # override the default output from pydantic.v1 by calling `to_dict()` of fragment
         if self.fragment:
             _dict['fragment'] = self.fragment.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of file
+        # override the default output from pydantic.v1 by calling `to_dict()` of file
         if self.file:
             _dict['file'] = self.file.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of analysis
+        # override the default output from pydantic.v1 by calling `to_dict()` of analysis
         if self.analysis:
             _dict['analysis'] = self.analysis.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of relationship
+        # override the default output from pydantic.v1 by calling `to_dict()` of relationship
         if self.relationship:
             _dict['relationship'] = self.relationship.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of activities
+        # override the default output from pydantic.v1 by calling `to_dict()` of activities
         if self.activities:
             _dict['activities'] = self.activities.to_dict()
         return _dict

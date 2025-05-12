@@ -20,7 +20,7 @@ import json
 
 
 from typing import Optional
-from pydantic import BaseModel, Field
+from pydantic.v1 import BaseModel, Field
 from pieces_os_client.models.embedded_model_schema import EmbeddedModelSchema
 from pieces_os_client.models.qgpt_task_pipeline_for_code_commentation import QGPTTaskPipelineForCodeCommentation
 from pieces_os_client.models.qgpt_task_pipeline_for_code_completion import QGPTTaskPipelineForCodeCompletion
@@ -64,22 +64,22 @@ class QGPTTaskPipeline(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of var_schema
+        # override the default output from pydantic.v1 by calling `to_dict()` of var_schema
         if self.var_schema:
             _dict['schema'] = self.var_schema.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of code_explanation
+        # override the default output from pydantic.v1 by calling `to_dict()` of code_explanation
         if self.code_explanation:
             _dict['code_explanation'] = self.code_explanation.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of code_commentation
+        # override the default output from pydantic.v1 by calling `to_dict()` of code_commentation
         if self.code_commentation:
             _dict['code_commentation'] = self.code_commentation.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of code_fix
+        # override the default output from pydantic.v1 by calling `to_dict()` of code_fix
         if self.code_fix:
             _dict['code_fix'] = self.code_fix.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of code_modification
+        # override the default output from pydantic.v1 by calling `to_dict()` of code_modification
         if self.code_modification:
             _dict['code_modification'] = self.code_modification.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of code_completion
+        # override the default output from pydantic.v1 by calling `to_dict()` of code_completion
         if self.code_completion:
             _dict['code_completion'] = self.code_completion.to_dict()
         return _dict

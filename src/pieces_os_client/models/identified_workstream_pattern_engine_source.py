@@ -20,7 +20,7 @@ import json
 
 
 from typing import Optional
-from pydantic import BaseModel, Field, StrictBool, StrictStr
+from pydantic.v1 import BaseModel, Field, StrictBool, StrictStr
 from pieces_os_client.models.embedded_model_schema import EmbeddedModelSchema
 from pieces_os_client.models.flattened_conversation_messages import FlattenedConversationMessages
 from pieces_os_client.models.flattened_conversations import FlattenedConversations
@@ -74,34 +74,34 @@ class IdentifiedWorkstreamPatternEngineSource(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of var_schema
+        # override the default output from pydantic.v1 by calling `to_dict()` of var_schema
         if self.var_schema:
             _dict['schema'] = self.var_schema.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of raw
+        # override the default output from pydantic.v1 by calling `to_dict()` of raw
         if self.raw:
             _dict['raw'] = self.raw.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of created
+        # override the default output from pydantic.v1 by calling `to_dict()` of created
         if self.created:
             _dict['created'] = self.created.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of updated
+        # override the default output from pydantic.v1 by calling `to_dict()` of updated
         if self.updated:
             _dict['updated'] = self.updated.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of score
+        # override the default output from pydantic.v1 by calling `to_dict()` of score
         if self.score:
             _dict['score'] = self.score.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of summaries
+        # override the default output from pydantic.v1 by calling `to_dict()` of summaries
         if self.summaries:
             _dict['summaries'] = self.summaries.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of workstream_events
+        # override the default output from pydantic.v1 by calling `to_dict()` of workstream_events
         if self.workstream_events:
             _dict['workstream_events'] = self.workstream_events.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of conversations
+        # override the default output from pydantic.v1 by calling `to_dict()` of conversations
         if self.conversations:
             _dict['conversations'] = self.conversations.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of accessibility
+        # override the default output from pydantic.v1 by calling `to_dict()` of accessibility
         if self.accessibility:
             _dict['accessibility'] = self.accessibility.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of messages
+        # override the default output from pydantic.v1 by calling `to_dict()` of messages
         if self.messages:
             _dict['messages'] = self.messages.to_dict()
         return _dict

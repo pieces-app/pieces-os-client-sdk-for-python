@@ -20,7 +20,7 @@ import json
 
 
 from typing import Optional
-from pydantic import BaseModel, Field, StrictBool
+from pydantic.v1 import BaseModel, Field, StrictBool
 from pieces_os_client.models.application import Application
 from pieces_os_client.models.available_formats import AvailableFormats
 from pieces_os_client.models.embedded_model_schema import EmbeddedModelSchema
@@ -67,22 +67,22 @@ class SeededAsset(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of var_schema
+        # override the default output from pydantic.v1 by calling `to_dict()` of var_schema
         if self.var_schema:
             _dict['schema'] = self.var_schema.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of metadata
+        # override the default output from pydantic.v1 by calling `to_dict()` of metadata
         if self.metadata:
             _dict['metadata'] = self.metadata.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of application
+        # override the default output from pydantic.v1 by calling `to_dict()` of application
         if self.application:
             _dict['application'] = self.application.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of format
+        # override the default output from pydantic.v1 by calling `to_dict()` of format
         if self.format:
             _dict['format'] = self.format.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of available
+        # override the default output from pydantic.v1 by calling `to_dict()` of available
         if self.available:
             _dict['available'] = self.available.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of enrichment
+        # override the default output from pydantic.v1 by calling `to_dict()` of enrichment
         if self.enrichment:
             _dict['enrichment'] = self.enrichment.to_dict()
         return _dict

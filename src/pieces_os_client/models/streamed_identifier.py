@@ -20,7 +20,7 @@ import json
 
 
 from typing import Optional
-from pydantic import BaseModel, Field, StrictBool
+from pydantic.v1 import BaseModel, Field, StrictBool
 from pieces_os_client.models.referenced_activity import ReferencedActivity
 from pieces_os_client.models.referenced_anchor import ReferencedAnchor
 from pieces_os_client.models.referenced_anchor_point import ReferencedAnchorPoint
@@ -89,58 +89,58 @@ class StreamedIdentifier(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of asset
+        # override the default output from pydantic.v1 by calling `to_dict()` of asset
         if self.asset:
             _dict['asset'] = self.asset.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of conversation
+        # override the default output from pydantic.v1 by calling `to_dict()` of conversation
         if self.conversation:
             _dict['conversation'] = self.conversation.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of annotation
+        # override the default output from pydantic.v1 by calling `to_dict()` of annotation
         if self.annotation:
             _dict['annotation'] = self.annotation.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of activity
+        # override the default output from pydantic.v1 by calling `to_dict()` of activity
         if self.activity:
             _dict['activity'] = self.activity.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of anchor
+        # override the default output from pydantic.v1 by calling `to_dict()` of anchor
         if self.anchor:
             _dict['anchor'] = self.anchor.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of anchor_point
+        # override the default output from pydantic.v1 by calling `to_dict()` of anchor_point
         if self.anchor_point:
             _dict['anchorPoint'] = self.anchor_point.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of hint
+        # override the default output from pydantic.v1 by calling `to_dict()` of hint
         if self.hint:
             _dict['hint'] = self.hint.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of conversation_message
+        # override the default output from pydantic.v1 by calling `to_dict()` of conversation_message
         if self.conversation_message:
             _dict['conversationMessage'] = self.conversation_message.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of format
+        # override the default output from pydantic.v1 by calling `to_dict()` of format
         if self.format:
             _dict['format'] = self.format.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of person
+        # override the default output from pydantic.v1 by calling `to_dict()` of person
         if self.person:
             _dict['person'] = self.person.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of range
+        # override the default output from pydantic.v1 by calling `to_dict()` of range
         if self.range:
             _dict['range'] = self.range.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of sensitive
+        # override the default output from pydantic.v1 by calling `to_dict()` of sensitive
         if self.sensitive:
             _dict['sensitive'] = self.sensitive.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of tag
+        # override the default output from pydantic.v1 by calling `to_dict()` of tag
         if self.tag:
             _dict['tag'] = self.tag.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of website
+        # override the default output from pydantic.v1 by calling `to_dict()` of website
         if self.website:
             _dict['website'] = self.website.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of application
+        # override the default output from pydantic.v1 by calling `to_dict()` of application
         if self.application:
             _dict['application'] = self.application.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of model
+        # override the default output from pydantic.v1 by calling `to_dict()` of model
         if self.model:
             _dict['model'] = self.model.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of workstream_summary
+        # override the default output from pydantic.v1 by calling `to_dict()` of workstream_summary
         if self.workstream_summary:
             _dict['workstream_summary'] = self.workstream_summary.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of workstream_pattern_engine_source
+        # override the default output from pydantic.v1 by calling `to_dict()` of workstream_pattern_engine_source
         if self.workstream_pattern_engine_source:
             _dict['workstreamPatternEngineSource'] = self.workstream_pattern_engine_source.to_dict()
         return _dict

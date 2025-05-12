@@ -20,7 +20,7 @@ import json
 
 
 from typing import Optional
-from pydantic import BaseModel, Field
+from pydantic.v1 import BaseModel, Field
 from pieces_os_client.models.embedded_model_schema import EmbeddedModelSchema
 from pieces_os_client.models.qgpt_conversation_pipeline_for_contextualized_code_dialog import QGPTConversationPipelineForContextualizedCodeDialog
 from pieces_os_client.models.qgpt_conversation_pipeline_for_contextualized_code_generation import QGPTConversationPipelineForContextualizedCodeGeneration
@@ -62,19 +62,19 @@ class QGPTConversationPipeline(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of var_schema
+        # override the default output from pydantic.v1 by calling `to_dict()` of var_schema
         if self.var_schema:
             _dict['schema'] = self.var_schema.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of contextualized_code_generation
+        # override the default output from pydantic.v1 by calling `to_dict()` of contextualized_code_generation
         if self.contextualized_code_generation:
             _dict['contextualized_code_generation'] = self.contextualized_code_generation.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of generalized_code_dialog
+        # override the default output from pydantic.v1 by calling `to_dict()` of generalized_code_dialog
         if self.generalized_code_dialog:
             _dict['generalized_code_dialog'] = self.generalized_code_dialog.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of contextualized_code_dialog
+        # override the default output from pydantic.v1 by calling `to_dict()` of contextualized_code_dialog
         if self.contextualized_code_dialog:
             _dict['contextualized_code_dialog'] = self.contextualized_code_dialog.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of contextualized_code_workstream_dialog
+        # override the default output from pydantic.v1 by calling `to_dict()` of contextualized_code_workstream_dialog
         if self.contextualized_code_workstream_dialog:
             _dict['contextualized_code_workstream_dialog'] = self.contextualized_code_workstream_dialog.to_dict()
         return _dict

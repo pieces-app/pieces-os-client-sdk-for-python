@@ -20,7 +20,7 @@ import json
 
 
 from typing import Optional
-from pydantic import BaseModel, Field
+from pydantic.v1 import BaseModel, Field
 from pieces_os_client.models.byte_descriptor import ByteDescriptor
 from pieces_os_client.models.embedded_model_schema import EmbeddedModelSchema
 
@@ -57,13 +57,13 @@ class OSFileStreamingReadProgress(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of var_schema
+        # override the default output from pydantic.v1 by calling `to_dict()` of var_schema
         if self.var_schema:
             _dict['schema'] = self.var_schema.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of total
+        # override the default output from pydantic.v1 by calling `to_dict()` of total
         if self.total:
             _dict['total'] = self.total.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of transferred
+        # override the default output from pydantic.v1 by calling `to_dict()` of transferred
         if self.transferred:
             _dict['transferred'] = self.transferred.to_dict()
         return _dict

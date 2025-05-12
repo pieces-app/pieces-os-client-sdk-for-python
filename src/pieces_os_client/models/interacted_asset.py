@@ -20,7 +20,7 @@ import json
 
 
 from typing import Optional
-from pydantic import BaseModel, Field, constr, validator
+from pydantic.v1 import BaseModel, Field, constr, validator
 from pieces_os_client.models.interacted_asset_interactions import InteractedAssetInteractions
 
 class InteractedAsset(BaseModel):
@@ -65,7 +65,7 @@ class InteractedAsset(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of interactions
+        # override the default output from pydantic.v1 by calling `to_dict()` of interactions
         if self.interactions:
             _dict['interactions'] = self.interactions.to_dict()
         return _dict

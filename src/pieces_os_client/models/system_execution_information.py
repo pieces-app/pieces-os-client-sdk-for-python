@@ -20,7 +20,7 @@ import json
 
 
 
-from pydantic import BaseModel, Field, StrictInt, StrictStr
+from pydantic.v1 import BaseModel, Field, StrictInt, StrictStr
 from pieces_os_client.models.system_execution_cpu_information import SystemExecutionCpuInformation
 
 class SystemExecutionInformation(BaseModel):
@@ -57,7 +57,7 @@ class SystemExecutionInformation(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of cpu
+        # override the default output from pydantic.v1 by calling `to_dict()` of cpu
         if self.cpu:
             _dict['cpu'] = self.cpu.to_dict()
         return _dict

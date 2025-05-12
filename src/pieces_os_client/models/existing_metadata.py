@@ -20,7 +20,7 @@ import json
 
 
 from typing import Optional
-from pydantic import BaseModel, Field
+from pydantic.v1 import BaseModel, Field
 from pieces_os_client.models.embedded_model_schema import EmbeddedModelSchema
 from pieces_os_client.models.referenced_tag import ReferencedTag
 from pieces_os_client.models.referenced_website import ReferencedWebsite
@@ -58,13 +58,13 @@ class ExistingMetadata(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of var_schema
+        # override the default output from pydantic.v1 by calling `to_dict()` of var_schema
         if self.var_schema:
             _dict['schema'] = self.var_schema.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of website
+        # override the default output from pydantic.v1 by calling `to_dict()` of website
         if self.website:
             _dict['website'] = self.website.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of tag
+        # override the default output from pydantic.v1 by calling `to_dict()` of tag
         if self.tag:
             _dict['tag'] = self.tag.to_dict()
         return _dict

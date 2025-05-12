@@ -20,7 +20,7 @@ import json
 
 
 from typing import Optional
-from pydantic import BaseModel, Field, StrictStr
+from pydantic.v1 import BaseModel, Field, StrictStr
 from pieces_os_client.models.auth0_user_beta_status import Auth0UserBetaStatus
 from pieces_os_client.models.embedded_model_schema import EmbeddedModelSchema
 
@@ -58,13 +58,13 @@ class UserBetaStatus(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of var_schema
+        # override the default output from pydantic.v1 by calling `to_dict()` of var_schema
         if self.var_schema:
             _dict['schema'] = self.var_schema.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of auth0
+        # override the default output from pydantic.v1 by calling `to_dict()` of auth0
         if self.auth0:
             _dict['auth0'] = self.auth0.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of descope
+        # override the default output from pydantic.v1 by calling `to_dict()` of descope
         if self.descope:
             _dict['descope'] = self.descope.to_dict()
         return _dict

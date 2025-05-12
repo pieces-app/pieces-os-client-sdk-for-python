@@ -20,7 +20,7 @@ import json
 
 
 from typing import Optional, Union
-from pydantic import BaseModel, Field, StrictFloat, StrictInt, StrictStr
+from pydantic.v1 import BaseModel, Field, StrictFloat, StrictInt, StrictStr
 from pieces_os_client.models.migration_progress import MigrationProgress
 from pieces_os_client.models.qgpt_agent_routes import QGPTAgentRoutes
 from pieces_os_client.models.qgpt_question_output import QGPTQuestionOutput
@@ -68,19 +68,19 @@ class QGPTStreamOutput(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of relevance
+        # override the default output from pydantic.v1 by calling `to_dict()` of relevance
         if self.relevance:
             _dict['relevance'] = self.relevance.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of question
+        # override the default output from pydantic.v1 by calling `to_dict()` of question
         if self.question:
             _dict['question'] = self.question.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of agent_routes
+        # override the default output from pydantic.v1 by calling `to_dict()` of agent_routes
         if self.agent_routes:
             _dict['agentRoutes'] = self.agent_routes.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of extracted
+        # override the default output from pydantic.v1 by calling `to_dict()` of extracted
         if self.extracted:
             _dict['extracted'] = self.extracted.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of migration
+        # override the default output from pydantic.v1 by calling `to_dict()` of migration
         if self.migration:
             _dict['migration'] = self.migration.to_dict()
         # set to None if status_code (nullable) is None

@@ -20,7 +20,7 @@ import json
 
 
 from typing import Optional
-from pydantic import BaseModel, Field
+from pydantic.v1 import BaseModel, Field
 from pieces_os_client.models.embedded_model_schema import EmbeddedModelSchema
 from pieces_os_client.models.flattened_conversation_messages import FlattenedConversationMessages
 
@@ -56,10 +56,10 @@ class ConversationSummarizeInput(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of var_schema
+        # override the default output from pydantic.v1 by calling `to_dict()` of var_schema
         if self.var_schema:
             _dict['schema'] = self.var_schema.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of messages
+        # override the default output from pydantic.v1 by calling `to_dict()` of messages
         if self.messages:
             _dict['messages'] = self.messages.to_dict()
         return _dict

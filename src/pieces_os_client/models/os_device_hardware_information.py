@@ -20,7 +20,7 @@ import json
 
 
 from typing import List, Optional
-from pydantic import BaseModel, Field, conlist
+from pydantic.v1 import BaseModel, Field, conlist
 from pieces_os_client.models.embedded_model_schema import EmbeddedModelSchema
 from pieces_os_client.models.os_device_cpu_hardware_information import OSDeviceCPUHardwareInformation
 from pieces_os_client.models.os_device_gpu_hardware_information import OSDeviceGPUHardwareInformation
@@ -60,24 +60,24 @@ class OSDeviceHardwareInformation(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of var_schema
+        # override the default output from pydantic.v1 by calling `to_dict()` of var_schema
         if self.var_schema:
             _dict['schema'] = self.var_schema.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of each item in cpus (list)
+        # override the default output from pydantic.v1 by calling `to_dict()` of each item in cpus (list)
         _items = []
         if self.cpus:
             for _item in self.cpus:
                 if _item:
                     _items.append(_item.to_dict())
             _dict['cpus'] = _items
-        # override the default output from pydantic by calling `to_dict()` of each item in gpus (list)
+        # override the default output from pydantic.v1 by calling `to_dict()` of each item in gpus (list)
         _items = []
         if self.gpus:
             for _item in self.gpus:
                 if _item:
                     _items.append(_item.to_dict())
             _dict['gpus'] = _items
-        # override the default output from pydantic by calling `to_dict()` of ram
+        # override the default output from pydantic.v1 by calling `to_dict()` of ram
         if self.ram:
             _dict['ram'] = self.ram.to_dict()
         return _dict

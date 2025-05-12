@@ -20,7 +20,7 @@ import json
 
 
 from typing import Optional
-from pydantic import BaseModel, Field
+from pydantic.v1 import BaseModel, Field
 from pieces_os_client.models.embedded_model_schema import EmbeddedModelSchema
 from pieces_os_client.models.mailgun_distribution import MailgunDistribution
 from pieces_os_client.models.seeded_git_hub_distribution import SeededGitHubDistribution
@@ -58,13 +58,13 @@ class SeededDistribution(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of var_schema
+        # override the default output from pydantic.v1 by calling `to_dict()` of var_schema
         if self.var_schema:
             _dict['schema'] = self.var_schema.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of mailgun
+        # override the default output from pydantic.v1 by calling `to_dict()` of mailgun
         if self.mailgun:
             _dict['mailgun'] = self.mailgun.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of github
+        # override the default output from pydantic.v1 by calling `to_dict()` of github
         if self.github:
             _dict['github'] = self.github.to_dict()
         return _dict

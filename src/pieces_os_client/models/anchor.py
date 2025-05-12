@@ -20,7 +20,7 @@ import json
 
 
 from typing import Optional
-from pydantic import BaseModel, Field, StrictBool, StrictStr
+from pydantic.v1 import BaseModel, Field, StrictBool, StrictStr
 from pieces_os_client.models.anchor_type_enum import AnchorTypeEnum
 from pieces_os_client.models.embedded_model_schema import EmbeddedModelSchema
 from pieces_os_client.models.flattened_anchor_points import FlattenedAnchorPoints
@@ -79,40 +79,40 @@ class Anchor(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of var_schema
+        # override the default output from pydantic.v1 by calling `to_dict()` of var_schema
         if self.var_schema:
             _dict['schema'] = self.var_schema.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of points
+        # override the default output from pydantic.v1 by calling `to_dict()` of points
         if self.points:
             _dict['points'] = self.points.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of created
+        # override the default output from pydantic.v1 by calling `to_dict()` of created
         if self.created:
             _dict['created'] = self.created.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of updated
+        # override the default output from pydantic.v1 by calling `to_dict()` of updated
         if self.updated:
             _dict['updated'] = self.updated.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of deleted
+        # override the default output from pydantic.v1 by calling `to_dict()` of deleted
         if self.deleted:
             _dict['deleted'] = self.deleted.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of assets
+        # override the default output from pydantic.v1 by calling `to_dict()` of assets
         if self.assets:
             _dict['assets'] = self.assets.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of annotations
+        # override the default output from pydantic.v1 by calling `to_dict()` of annotations
         if self.annotations:
             _dict['annotations'] = self.annotations.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of conversations
+        # override the default output from pydantic.v1 by calling `to_dict()` of conversations
         if self.conversations:
             _dict['conversations'] = self.conversations.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of score
+        # override the default output from pydantic.v1 by calling `to_dict()` of score
         if self.score:
             _dict['score'] = self.score.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of summaries
+        # override the default output from pydantic.v1 by calling `to_dict()` of summaries
         if self.summaries:
             _dict['summaries'] = self.summaries.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of persons
+        # override the default output from pydantic.v1 by calling `to_dict()` of persons
         if self.persons:
             _dict['persons'] = self.persons.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of messages
+        # override the default output from pydantic.v1 by calling `to_dict()` of messages
         if self.messages:
             _dict['messages'] = self.messages.to_dict()
         return _dict

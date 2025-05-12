@@ -20,7 +20,7 @@ import json
 
 
 from typing import Optional
-from pydantic import BaseModel, Field, StrictInt
+from pydantic.v1 import BaseModel, Field, StrictInt
 from pieces_os_client.models.applet_serving_handler_type import AppletServingHandlerType
 from pieces_os_client.models.application import Application
 from pieces_os_client.models.embedded_model_schema import EmbeddedModelSchema
@@ -61,13 +61,13 @@ class InactiveOSServerApplet(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of var_schema
+        # override the default output from pydantic.v1 by calling `to_dict()` of var_schema
         if self.var_schema:
             _dict['schema'] = self.var_schema.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of parent
+        # override the default output from pydantic.v1 by calling `to_dict()` of parent
         if self.parent:
             _dict['parent'] = self.parent.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of handler
+        # override the default output from pydantic.v1 by calling `to_dict()` of handler
         if self.handler:
             _dict['handler'] = self.handler.to_dict()
         # set to None if port (nullable) is None

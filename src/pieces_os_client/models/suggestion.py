@@ -20,7 +20,7 @@ import json
 
 
 from typing import Dict, Optional, Union
-from pydantic import BaseModel, Field, StrictFloat, StrictInt
+from pydantic.v1 import BaseModel, Field, StrictFloat, StrictInt
 from pieces_os_client.models.assets import Assets
 from pieces_os_client.models.embedded_model_schema import EmbeddedModelSchema
 from pieces_os_client.models.reuse_suggestion import ReuseSuggestion
@@ -63,19 +63,19 @@ class Suggestion(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of var_schema
+        # override the default output from pydantic.v1 by calling `to_dict()` of var_schema
         if self.var_schema:
             _dict['schema'] = self.var_schema.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of reuse
+        # override the default output from pydantic.v1 by calling `to_dict()` of reuse
         if self.reuse:
             _dict['reuse'] = self.reuse.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of save
+        # override the default output from pydantic.v1 by calling `to_dict()` of save
         if self.save:
             _dict['save'] = self.save.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of target
+        # override the default output from pydantic.v1 by calling `to_dict()` of target
         if self.target:
             _dict['target'] = self.target.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of assets
+        # override the default output from pydantic.v1 by calling `to_dict()` of assets
         if self.assets:
             _dict['assets'] = self.assets.to_dict()
         return _dict

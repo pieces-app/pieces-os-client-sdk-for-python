@@ -20,7 +20,7 @@ import json
 
 
 from typing import Optional
-from pydantic import BaseModel, Field, StrictStr
+from pydantic.v1 import BaseModel, Field, StrictStr
 from pieces_os_client.models.allocation_cloud_status import AllocationCloudStatus
 from pieces_os_client.models.allocation_cloud_urls import AllocationCloudUrls
 from pieces_os_client.models.embedded_model_schema import EmbeddedModelSchema
@@ -65,16 +65,16 @@ class AllocationCloud(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of var_schema
+        # override the default output from pydantic.v1 by calling `to_dict()` of var_schema
         if self.var_schema:
             _dict['schema'] = self.var_schema.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of urls
+        # override the default output from pydantic.v1 by calling `to_dict()` of urls
         if self.urls:
             _dict['urls'] = self.urls.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of status
+        # override the default output from pydantic.v1 by calling `to_dict()` of status
         if self.status:
             _dict['status'] = self.status.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of updated
+        # override the default output from pydantic.v1 by calling `to_dict()` of updated
         if self.updated:
             _dict['updated'] = self.updated.to_dict()
         return _dict

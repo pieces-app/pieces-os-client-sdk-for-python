@@ -20,7 +20,7 @@ import json
 
 
 from typing import Optional
-from pydantic import BaseModel, Field, StrictStr
+from pydantic.v1 import BaseModel, Field, StrictStr
 from pieces_os_client.models.embedded_model_schema import EmbeddedModelSchema
 from pieces_os_client.models.language_server_protocol_code import LanguageServerProtocolCode
 from pieces_os_client.models.language_server_protocol_code_description import LanguageServerProtocolCodeDescription
@@ -64,16 +64,16 @@ class LanguageServerProtocolDiagnostic(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of var_schema
+        # override the default output from pydantic.v1 by calling `to_dict()` of var_schema
         if self.var_schema:
             _dict['schema'] = self.var_schema.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of range
+        # override the default output from pydantic.v1 by calling `to_dict()` of range
         if self.range:
             _dict['range'] = self.range.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of code
+        # override the default output from pydantic.v1 by calling `to_dict()` of code
         if self.code:
             _dict['code'] = self.code.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of code_description
+        # override the default output from pydantic.v1 by calling `to_dict()` of code_description
         if self.code_description:
             _dict['codeDescription'] = self.code_description.to_dict()
         return _dict

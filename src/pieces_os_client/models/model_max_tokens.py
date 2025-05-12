@@ -20,7 +20,7 @@ import json
 
 
 from typing import Optional, Union
-from pydantic import BaseModel, Field, StrictFloat, StrictInt
+from pydantic.v1 import BaseModel, Field, StrictFloat, StrictInt
 from pieces_os_client.models.embedded_model_schema import EmbeddedModelSchema
 
 class ModelMaxTokens(BaseModel):
@@ -57,7 +57,7 @@ class ModelMaxTokens(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of var_schema
+        # override the default output from pydantic.v1 by calling `to_dict()` of var_schema
         if self.var_schema:
             _dict['schema'] = self.var_schema.to_dict()
         # set to None if total (nullable) is None

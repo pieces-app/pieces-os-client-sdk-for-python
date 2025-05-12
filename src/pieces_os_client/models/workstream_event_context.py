@@ -20,7 +20,7 @@ import json
 
 
 from typing import Optional
-from pydantic import BaseModel, Field
+from pydantic.v1 import BaseModel, Field
 from pieces_os_client.models.embedded_model_schema import EmbeddedModelSchema
 from pieces_os_client.models.native_accessibility import NativeAccessibility
 from pieces_os_client.models.native_ocr import NativeOCR
@@ -60,19 +60,19 @@ class WorkstreamEventContext(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of var_schema
+        # override the default output from pydantic.v1 by calling `to_dict()` of var_schema
         if self.var_schema:
             _dict['schema'] = self.var_schema.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of ide
+        # override the default output from pydantic.v1 by calling `to_dict()` of ide
         if self.ide:
             _dict['ide'] = self.ide.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of browser
+        # override the default output from pydantic.v1 by calling `to_dict()` of browser
         if self.browser:
             _dict['browser'] = self.browser.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of native_ocr
+        # override the default output from pydantic.v1 by calling `to_dict()` of native_ocr
         if self.native_ocr:
             _dict['native_ocr'] = self.native_ocr.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of accessibility
+        # override the default output from pydantic.v1 by calling `to_dict()` of accessibility
         if self.accessibility:
             _dict['accessibility'] = self.accessibility.to_dict()
         return _dict

@@ -20,7 +20,7 @@ import json
 
 
 from typing import List, Optional
-from pydantic import BaseModel, Field, StrictStr, conlist
+from pydantic.v1 import BaseModel, Field, StrictStr, conlist
 from pieces_os_client.models.asset_filter_phrase import AssetFilterPhrase
 from pieces_os_client.models.asset_filter_timestamp import AssetFilterTimestamp
 from pieces_os_client.models.classification_specific_enum import ClassificationSpecificEnum
@@ -65,19 +65,19 @@ class AssetFilter(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of var_schema
+        # override the default output from pydantic.v1 by calling `to_dict()` of var_schema
         if self.var_schema:
             _dict['schema'] = self.var_schema.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of phrase
+        # override the default output from pydantic.v1 by calling `to_dict()` of phrase
         if self.phrase:
             _dict['phrase'] = self.phrase.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of created
+        # override the default output from pydantic.v1 by calling `to_dict()` of created
         if self.created:
             _dict['created'] = self.created.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of updated
+        # override the default output from pydantic.v1 by calling `to_dict()` of updated
         if self.updated:
             _dict['updated'] = self.updated.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of operations
+        # override the default output from pydantic.v1 by calling `to_dict()` of operations
         if self.operations:
             _dict['operations'] = self.operations.to_dict()
         return _dict

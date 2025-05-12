@@ -20,7 +20,7 @@ import json
 
 
 from typing import Optional
-from pydantic import BaseModel, Field
+from pydantic.v1 import BaseModel, Field
 from pieces_os_client.models.embedded_model_schema import EmbeddedModelSchema
 from pieces_os_client.models.graphical_image_processing import GraphicalImageProcessing
 from pieces_os_client.models.graphical_ocr_processing import GraphicalOCRProcessing
@@ -60,16 +60,16 @@ class GraphicalMachineLearningProcessingEvent(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of var_schema
+        # override the default output from pydantic.v1 by calling `to_dict()` of var_schema
         if self.var_schema:
             _dict['schema'] = self.var_schema.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of ocr
+        # override the default output from pydantic.v1 by calling `to_dict()` of ocr
         if self.ocr:
             _dict['ocr'] = self.ocr.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of image
+        # override the default output from pydantic.v1 by calling `to_dict()` of image
         if self.image:
             _dict['image'] = self.image.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of svg
+        # override the default output from pydantic.v1 by calling `to_dict()` of svg
         if self.svg:
             _dict['svg'] = self.svg.to_dict()
         return _dict

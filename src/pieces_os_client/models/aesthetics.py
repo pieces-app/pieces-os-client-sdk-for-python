@@ -20,7 +20,7 @@ import json
 
 
 from typing import Optional
-from pydantic import BaseModel, Field
+from pydantic.v1 import BaseModel, Field
 from pieces_os_client.models.embedded_model_schema import EmbeddedModelSchema
 from pieces_os_client.models.font import Font
 from pieces_os_client.models.theme import Theme
@@ -58,13 +58,13 @@ class Aesthetics(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of var_schema
+        # override the default output from pydantic.v1 by calling `to_dict()` of var_schema
         if self.var_schema:
             _dict['schema'] = self.var_schema.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of theme
+        # override the default output from pydantic.v1 by calling `to_dict()` of theme
         if self.theme:
             _dict['theme'] = self.theme.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of font
+        # override the default output from pydantic.v1 by calling `to_dict()` of font
         if self.font:
             _dict['font'] = self.font.to_dict()
         return _dict

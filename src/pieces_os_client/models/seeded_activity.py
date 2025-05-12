@@ -20,7 +20,7 @@ import json
 
 
 from typing import Optional
-from pydantic import BaseModel, Field
+from pydantic.v1 import BaseModel, Field
 from pieces_os_client.models.application import Application
 from pieces_os_client.models.mechanism_enum import MechanismEnum
 from pieces_os_client.models.referenced_asset import ReferencedAsset
@@ -66,22 +66,22 @@ class SeededActivity(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of event
+        # override the default output from pydantic.v1 by calling `to_dict()` of event
         if self.event:
             _dict['event'] = self.event.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of application
+        # override the default output from pydantic.v1 by calling `to_dict()` of application
         if self.application:
             _dict['application'] = self.application.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of asset
+        # override the default output from pydantic.v1 by calling `to_dict()` of asset
         if self.asset:
             _dict['asset'] = self.asset.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of user
+        # override the default output from pydantic.v1 by calling `to_dict()` of user
         if self.user:
             _dict['user'] = self.user.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of format
+        # override the default output from pydantic.v1 by calling `to_dict()` of format
         if self.format:
             _dict['format'] = self.format.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of conversation
+        # override the default output from pydantic.v1 by calling `to_dict()` of conversation
         if self.conversation:
             _dict['conversation'] = self.conversation.to_dict()
         return _dict

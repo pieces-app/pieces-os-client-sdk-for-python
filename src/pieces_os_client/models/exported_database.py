@@ -20,7 +20,7 @@ import json
 
 
 from typing import List, Optional
-from pydantic import BaseModel, Field, StrictInt, StrictStr, conlist
+from pydantic.v1 import BaseModel, Field, StrictInt, StrictStr, conlist
 from pieces_os_client.models.embedded_model_schema import EmbeddedModelSchema
 from pieces_os_client.models.exported_database_formats import ExportedDatabaseFormats
 
@@ -86,16 +86,16 @@ class ExportedDatabase(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of values
+        # override the default output from pydantic.v1 by calling `to_dict()` of values
         if self.values:
             _dict['values'] = self.values.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of var_schema
+        # override the default output from pydantic.v1 by calling `to_dict()` of var_schema
         if self.var_schema:
             _dict['schema'] = self.var_schema.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of message_values
+        # override the default output from pydantic.v1 by calling `to_dict()` of message_values
         if self.message_values:
             _dict['messageValues'] = self.message_values.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of workstream_event_values
+        # override the default output from pydantic.v1 by calling `to_dict()` of workstream_event_values
         if self.workstream_event_values:
             _dict['workstreamEventValues'] = self.workstream_event_values.to_dict()
         return _dict

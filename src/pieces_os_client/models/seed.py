@@ -20,7 +20,7 @@ import json
 
 
 from typing import Optional
-from pydantic import BaseModel, Field, StrictStr, validator
+from pydantic.v1 import BaseModel, Field, StrictStr, validator
 from pieces_os_client.models.embedded_model_schema import EmbeddedModelSchema
 from pieces_os_client.models.seeded_anchor import SeededAnchor
 from pieces_os_client.models.seeded_asset import SeededAsset
@@ -73,19 +73,19 @@ class Seed(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of var_schema
+        # override the default output from pydantic.v1 by calling `to_dict()` of var_schema
         if self.var_schema:
             _dict['schema'] = self.var_schema.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of asset
+        # override the default output from pydantic.v1 by calling `to_dict()` of asset
         if self.asset:
             _dict['asset'] = self.asset.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of person
+        # override the default output from pydantic.v1 by calling `to_dict()` of person
         if self.person:
             _dict['person'] = self.person.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of anchor
+        # override the default output from pydantic.v1 by calling `to_dict()` of anchor
         if self.anchor:
             _dict['anchor'] = self.anchor.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of website
+        # override the default output from pydantic.v1 by calling `to_dict()` of website
         if self.website:
             _dict['website'] = self.website.to_dict()
         return _dict

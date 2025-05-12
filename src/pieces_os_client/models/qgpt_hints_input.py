@@ -20,7 +20,7 @@ import json
 
 
 from typing import Optional
-from pydantic import BaseModel, Field, StrictStr
+from pydantic.v1 import BaseModel, Field, StrictStr
 from pieces_os_client.models.qgpt_question_answer import QGPTQuestionAnswer
 from pieces_os_client.models.relevant_qgpt_seeds import RelevantQGPTSeeds
 
@@ -59,10 +59,10 @@ class QGPTHintsInput(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of answer
+        # override the default output from pydantic.v1 by calling `to_dict()` of answer
         if self.answer:
             _dict['answer'] = self.answer.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of relevant
+        # override the default output from pydantic.v1 by calling `to_dict()` of relevant
         if self.relevant:
             _dict['relevant'] = self.relevant.to_dict()
         return _dict

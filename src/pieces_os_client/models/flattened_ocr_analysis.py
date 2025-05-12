@@ -20,7 +20,7 @@ import json
 
 
 from typing import Optional
-from pydantic import BaseModel, Field, StrictStr
+from pydantic.v1 import BaseModel, Field, StrictStr
 from pieces_os_client.models.embedded_model_schema import EmbeddedModelSchema
 from pieces_os_client.models.model import Model
 
@@ -60,16 +60,16 @@ class FlattenedOCRAnalysis(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of var_schema
+        # override the default output from pydantic.v1 by calling `to_dict()` of var_schema
         if self.var_schema:
             _dict['schema'] = self.var_schema.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of raw
+        # override the default output from pydantic.v1 by calling `to_dict()` of raw
         if self.raw:
             _dict['raw'] = self.raw.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of hocr
+        # override the default output from pydantic.v1 by calling `to_dict()` of hocr
         if self.hocr:
             _dict['hocr'] = self.hocr.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of model
+        # override the default output from pydantic.v1 by calling `to_dict()` of model
         if self.model:
             _dict['model'] = self.model.to_dict()
         return _dict

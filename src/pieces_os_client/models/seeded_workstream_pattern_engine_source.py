@@ -20,7 +20,7 @@ import json
 
 
 from typing import Optional
-from pydantic import BaseModel, Field, StrictBool, StrictStr
+from pydantic.v1 import BaseModel, Field, StrictBool, StrictStr
 from pieces_os_client.models.embedded_model_schema import EmbeddedModelSchema
 from pieces_os_client.models.workstream_pattern_engine_source import WorkstreamPatternEngineSource
 from pieces_os_client.models.workstream_pattern_engine_source_supported_accessibility import WorkstreamPatternEngineSourceSupportedAccessibility
@@ -60,13 +60,13 @@ class SeededWorkstreamPatternEngineSource(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of var_schema
+        # override the default output from pydantic.v1 by calling `to_dict()` of var_schema
         if self.var_schema:
             _dict['schema'] = self.var_schema.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of raw
+        # override the default output from pydantic.v1 by calling `to_dict()` of raw
         if self.raw:
             _dict['raw'] = self.raw.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of accessibility
+        # override the default output from pydantic.v1 by calling `to_dict()` of accessibility
         if self.accessibility:
             _dict['accessibility'] = self.accessibility.to_dict()
         return _dict

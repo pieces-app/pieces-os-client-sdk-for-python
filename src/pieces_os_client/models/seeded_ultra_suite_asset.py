@@ -20,7 +20,7 @@ import json
 
 
 from typing import Optional
-from pydantic import BaseModel, Field, StrictStr
+from pydantic.v1 import BaseModel, Field, StrictStr
 from pieces_os_client.models.classification_specific_enum import ClassificationSpecificEnum
 from pieces_os_client.models.embedded_model_schema import EmbeddedModelSchema
 from pieces_os_client.models.seeded_format import SeededFormat
@@ -60,10 +60,10 @@ class SeededUltraSuiteAsset(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of var_schema
+        # override the default output from pydantic.v1 by calling `to_dict()` of var_schema
         if self.var_schema:
             _dict['schema'] = self.var_schema.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of format
+        # override the default output from pydantic.v1 by calling `to_dict()` of format
         if self.format:
             _dict['format'] = self.format.to_dict()
         return _dict

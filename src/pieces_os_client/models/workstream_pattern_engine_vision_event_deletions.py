@@ -20,7 +20,7 @@ import json
 
 
 from typing import Optional
-from pydantic import BaseModel, Field
+from pydantic.v1 import BaseModel, Field
 from pieces_os_client.models.embedded_model_schema import EmbeddedModelSchema
 from pieces_os_client.models.flattened_workstream_pattern_engine_vision_events import FlattenedWorkstreamPatternEngineVisionEvents
 from pieces_os_client.models.search_input import SearchInput
@@ -58,13 +58,13 @@ class WorkstreamPatternEngineVisionEventDeletions(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of var_schema
+        # override the default output from pydantic.v1 by calling `to_dict()` of var_schema
         if self.var_schema:
             _dict['schema'] = self.var_schema.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of search_scope
+        # override the default output from pydantic.v1 by calling `to_dict()` of search_scope
         if self.search_scope:
             _dict['search_scope'] = self.search_scope.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of identifiers
+        # override the default output from pydantic.v1 by calling `to_dict()` of identifiers
         if self.identifiers:
             _dict['identifiers'] = self.identifiers.to_dict()
         return _dict

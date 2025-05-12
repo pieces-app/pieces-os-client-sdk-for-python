@@ -20,7 +20,7 @@ import json
 
 
 from typing import Optional
-from pydantic import BaseModel, Field
+from pydantic.v1 import BaseModel, Field
 from pieces_os_client.models.classification import Classification
 from pieces_os_client.models.embedded_model_schema import EmbeddedModelSchema
 from pieces_os_client.models.language_server_protocol_location import LanguageServerProtocolLocation
@@ -60,16 +60,16 @@ class IDESelection(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of var_schema
+        # override the default output from pydantic.v1 by calling `to_dict()` of var_schema
         if self.var_schema:
             _dict['schema'] = self.var_schema.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of location
+        # override the default output from pydantic.v1 by calling `to_dict()` of location
         if self.location:
             _dict['location'] = self.location.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of classification
+        # override the default output from pydantic.v1 by calling `to_dict()` of classification
         if self.classification:
             _dict['classification'] = self.classification.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of value
+        # override the default output from pydantic.v1 by calling `to_dict()` of value
         if self.value:
             _dict['value'] = self.value.to_dict()
         return _dict

@@ -20,7 +20,7 @@ import json
 
 
 from typing import List, Optional
-from pydantic import BaseModel, Field, conlist
+from pydantic.v1 import BaseModel, Field, conlist
 from pieces_os_client.models.backup_streamed_progress import BackupStreamedProgress
 from pieces_os_client.models.embedded_model_schema import EmbeddedModelSchema
 
@@ -57,17 +57,17 @@ class BackupsStreamedProgress(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of var_schema
+        # override the default output from pydantic.v1 by calling `to_dict()` of var_schema
         if self.var_schema:
             _dict['schema'] = self.var_schema.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of each item in backups (list)
+        # override the default output from pydantic.v1 by calling `to_dict()` of each item in backups (list)
         _items = []
         if self.backups:
             for _item in self.backups:
                 if _item:
                     _items.append(_item.to_dict())
             _dict['backups'] = _items
-        # override the default output from pydantic by calling `to_dict()` of each item in restorations (list)
+        # override the default output from pydantic.v1 by calling `to_dict()` of each item in restorations (list)
         _items = []
         if self.restorations:
             for _item in self.restorations:

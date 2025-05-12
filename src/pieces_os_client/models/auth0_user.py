@@ -20,7 +20,7 @@ import json
 
 from datetime import datetime
 from typing import List, Optional
-from pydantic import BaseModel, Field, StrictBool, StrictInt, StrictStr, conlist
+from pydantic.v1 import BaseModel, Field, StrictBool, StrictInt, StrictStr, conlist
 from pieces_os_client.models.auth0_identity import Auth0Identity
 from pieces_os_client.models.auth0_user_metadata import Auth0UserMetadata
 
@@ -73,14 +73,14 @@ class Auth0User(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of each item in identities (list)
+        # override the default output from pydantic.v1 by calling `to_dict()` of each item in identities (list)
         _items = []
         if self.identities:
             for _item in self.identities:
                 if _item:
                     _items.append(_item.to_dict())
             _dict['identities'] = _items
-        # override the default output from pydantic by calling `to_dict()` of user_metadata
+        # override the default output from pydantic.v1 by calling `to_dict()` of user_metadata
         if self.user_metadata:
             _dict['user_metadata'] = self.user_metadata.to_dict()
         return _dict

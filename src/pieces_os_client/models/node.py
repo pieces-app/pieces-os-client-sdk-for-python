@@ -20,7 +20,7 @@ import json
 
 
 
-from pydantic import BaseModel, Field, StrictBool, StrictStr
+from pydantic.v1 import BaseModel, Field, StrictBool, StrictStr
 from pieces_os_client.models.grouped_timestamp import GroupedTimestamp
 from pieces_os_client.models.node_type_enum import NodeTypeEnum
 
@@ -58,7 +58,7 @@ class Node(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of created
+        # override the default output from pydantic.v1 by calling `to_dict()` of created
         if self.created:
             _dict['created'] = self.created.to_dict()
         return _dict

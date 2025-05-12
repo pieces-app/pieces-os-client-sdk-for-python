@@ -20,7 +20,7 @@ import json
 
 
 from typing import List, Optional
-from pydantic import BaseModel, Field, StrictStr, conlist, validator
+from pydantic.v1 import BaseModel, Field, StrictStr, conlist, validator
 from pieces_os_client.models.embedded_model_schema import EmbeddedModelSchema
 from pieces_os_client.models.seeded_pkceadditionalparameters import SeededPKCEADDITIONALPARAMETERS
 
@@ -123,10 +123,10 @@ class SeededPKCE(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of var_schema
+        # override the default output from pydantic.v1 by calling `to_dict()` of var_schema
         if self.var_schema:
             _dict['schema'] = self.var_schema.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of additional_parameters
+        # override the default output from pydantic.v1 by calling `to_dict()` of additional_parameters
         if self.additional_parameters:
             _dict['ADDITIONAL_PARAMETERS'] = self.additional_parameters.to_dict()
         return _dict

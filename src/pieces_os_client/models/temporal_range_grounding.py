@@ -20,7 +20,7 @@ import json
 
 
 from typing import Optional
-from pydantic import BaseModel
+from pydantic.v1 import BaseModel
 
 class TemporalRangeGrounding(BaseModel):
     """
@@ -53,7 +53,7 @@ class TemporalRangeGrounding(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of workstreams
+        # override the default output from pydantic.v1 by calling `to_dict()` of workstreams
         if self.workstreams:
             _dict['workstreams'] = self.workstreams.to_dict()
         return _dict

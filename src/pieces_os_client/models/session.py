@@ -20,7 +20,7 @@ import json
 
 
 from typing import Optional
-from pydantic import BaseModel, Field, StrictStr
+from pydantic.v1 import BaseModel, Field, StrictStr
 from pieces_os_client.models.grouped_timestamp import GroupedTimestamp
 
 class Session(BaseModel):
@@ -56,10 +56,10 @@ class Session(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of opened
+        # override the default output from pydantic.v1 by calling `to_dict()` of opened
         if self.opened:
             _dict['opened'] = self.opened.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of closed
+        # override the default output from pydantic.v1 by calling `to_dict()` of closed
         if self.closed:
             _dict['closed'] = self.closed.to_dict()
         return _dict

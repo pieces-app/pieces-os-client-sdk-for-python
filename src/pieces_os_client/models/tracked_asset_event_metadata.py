@@ -20,7 +20,7 @@ import json
 
 
 from typing import Optional
-from pydantic import BaseModel
+from pydantic.v1 import BaseModel
 from pieces_os_client.models.tracked_asset_event_creation_metadata import TrackedAssetEventCreationMetadata
 from pieces_os_client.models.tracked_asset_event_format_reclassification_metadata import TrackedAssetEventFormatReclassificationMetadata
 from pieces_os_client.models.tracked_asset_event_rename_metadata import TrackedAssetEventRenameMetadata
@@ -67,40 +67,40 @@ class TrackedAssetEventMetadata(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of reclassification
+        # override the default output from pydantic.v1 by calling `to_dict()` of reclassification
         if self.reclassification:
             _dict['reclassification'] = self.reclassification.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of creation
+        # override the default output from pydantic.v1 by calling `to_dict()` of creation
         if self.creation:
             _dict['creation'] = self.creation.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of rename
+        # override the default output from pydantic.v1 by calling `to_dict()` of rename
         if self.rename:
             _dict['rename'] = self.rename.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of tag
+        # override the default output from pydantic.v1 by calling `to_dict()` of tag
         if self.tag:
             _dict['tag'] = self.tag.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of website
+        # override the default output from pydantic.v1 by calling `to_dict()` of website
         if self.website:
             _dict['website'] = self.website.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of person
+        # override the default output from pydantic.v1 by calling `to_dict()` of person
         if self.person:
             _dict['person'] = self.person.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of sensitive
+        # override the default output from pydantic.v1 by calling `to_dict()` of sensitive
         if self.sensitive:
             _dict['sensitive'] = self.sensitive.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of share
+        # override the default output from pydantic.v1 by calling `to_dict()` of share
         if self.share:
             _dict['share'] = self.share.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of search
+        # override the default output from pydantic.v1 by calling `to_dict()` of search
         if self.search:
             _dict['search'] = self.search.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of annotation
+        # override the default output from pydantic.v1 by calling `to_dict()` of annotation
         if self.annotation:
             _dict['annotation'] = self.annotation.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of hint
+        # override the default output from pydantic.v1 by calling `to_dict()` of hint
         if self.hint:
             _dict['hint'] = self.hint.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of anchor
+        # override the default output from pydantic.v1 by calling `to_dict()` of anchor
         if self.anchor:
             _dict['anchor'] = self.anchor.to_dict()
         return _dict

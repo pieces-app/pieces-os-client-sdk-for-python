@@ -20,7 +20,7 @@ import json
 
 
 from typing import Optional
-from pydantic import BaseModel
+from pydantic.v1 import BaseModel
 
 class SeededTrackedAssetsEventMetadata(BaseModel):
     """
@@ -53,7 +53,7 @@ class SeededTrackedAssetsEventMetadata(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of search
+        # override the default output from pydantic.v1 by calling `to_dict()` of search
         if self.search:
             _dict['search'] = self.search.to_dict()
         return _dict

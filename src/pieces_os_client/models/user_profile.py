@@ -20,7 +20,7 @@ import json
 
 
 from typing import Optional
-from pydantic import BaseModel, Field, StrictStr
+from pydantic.v1 import BaseModel, Field, StrictStr
 from pieces_os_client.models.aesthetics import Aesthetics
 from pieces_os_client.models.allocation_cloud import AllocationCloud
 from pieces_os_client.models.auth0_user_metadata import Auth0UserMetadata
@@ -73,28 +73,28 @@ class UserProfile(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of var_schema
+        # override the default output from pydantic.v1 by calling `to_dict()` of var_schema
         if self.var_schema:
             _dict['schema'] = self.var_schema.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of created
+        # override the default output from pydantic.v1 by calling `to_dict()` of created
         if self.created:
             _dict['created'] = self.created.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of updated
+        # override the default output from pydantic.v1 by calling `to_dict()` of updated
         if self.updated:
             _dict['updated'] = self.updated.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of aesthetics
+        # override the default output from pydantic.v1 by calling `to_dict()` of aesthetics
         if self.aesthetics:
             _dict['aesthetics'] = self.aesthetics.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of allocation
+        # override the default output from pydantic.v1 by calling `to_dict()` of allocation
         if self.allocation:
             _dict['allocation'] = self.allocation.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of providers
+        # override the default output from pydantic.v1 by calling `to_dict()` of providers
         if self.providers:
             _dict['providers'] = self.providers.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of auth0
+        # override the default output from pydantic.v1 by calling `to_dict()` of auth0
         if self.auth0:
             _dict['auth0'] = self.auth0.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of descope
+        # override the default output from pydantic.v1 by calling `to_dict()` of descope
         if self.descope:
             _dict['descope'] = self.descope.to_dict()
         return _dict

@@ -20,7 +20,7 @@ import json
 
 
 from typing import Optional
-from pydantic import BaseModel, Field
+from pydantic.v1 import BaseModel, Field
 from pieces_os_client.models.conversation_message_sentiment_enum import ConversationMessageSentimentEnum
 from pieces_os_client.models.embedded_model_schema import EmbeddedModelSchema
 from pieces_os_client.models.flattened_anchors import FlattenedAnchors
@@ -82,43 +82,43 @@ class SeededConversationMessage(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of var_schema
+        # override the default output from pydantic.v1 by calling `to_dict()` of var_schema
         if self.var_schema:
             _dict['schema'] = self.var_schema.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of created
+        # override the default output from pydantic.v1 by calling `to_dict()` of created
         if self.created:
             _dict['created'] = self.created.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of model
+        # override the default output from pydantic.v1 by calling `to_dict()` of model
         if self.model:
             _dict['model'] = self.model.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of fragment
+        # override the default output from pydantic.v1 by calling `to_dict()` of fragment
         if self.fragment:
             _dict['fragment'] = self.fragment.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of conversation
+        # override the default output from pydantic.v1 by calling `to_dict()` of conversation
         if self.conversation:
             _dict['conversation'] = self.conversation.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of assets
+        # override the default output from pydantic.v1 by calling `to_dict()` of assets
         if self.assets:
             _dict['assets'] = self.assets.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of ranges
+        # override the default output from pydantic.v1 by calling `to_dict()` of ranges
         if self.ranges:
             _dict['ranges'] = self.ranges.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of summaries
+        # override the default output from pydantic.v1 by calling `to_dict()` of summaries
         if self.summaries:
             _dict['summaries'] = self.summaries.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of tags
+        # override the default output from pydantic.v1 by calling `to_dict()` of tags
         if self.tags:
             _dict['tags'] = self.tags.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of messages
+        # override the default output from pydantic.v1 by calling `to_dict()` of messages
         if self.messages:
             _dict['messages'] = self.messages.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of workstream_events
+        # override the default output from pydantic.v1 by calling `to_dict()` of workstream_events
         if self.workstream_events:
             _dict['workstream_events'] = self.workstream_events.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of sources
+        # override the default output from pydantic.v1 by calling `to_dict()` of sources
         if self.sources:
             _dict['sources'] = self.sources.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of anchors
+        # override the default output from pydantic.v1 by calling `to_dict()` of anchors
         if self.anchors:
             _dict['anchors'] = self.anchors.to_dict()
         return _dict

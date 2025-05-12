@@ -20,7 +20,7 @@ import json
 
 
 from typing import Optional
-from pydantic import BaseModel, Field
+from pydantic.v1 import BaseModel, Field
 from pieces_os_client.models.embedded_model_schema import EmbeddedModelSchema
 from pieces_os_client.models.tlp_code_fragment_suggested_reuse import TLPCodeFragmentSuggestedReuse
 from pieces_os_client.models.tlp_code_fragment_suggested_save import TLPCodeFragmentSuggestedSave
@@ -58,13 +58,13 @@ class TLPCodeSnippetSuggestedInteractions(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of var_schema
+        # override the default output from pydantic.v1 by calling `to_dict()` of var_schema
         if self.var_schema:
             _dict['schema'] = self.var_schema.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of save
+        # override the default output from pydantic.v1 by calling `to_dict()` of save
         if self.save:
             _dict['save'] = self.save.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of reuse
+        # override the default output from pydantic.v1 by calling `to_dict()` of reuse
         if self.reuse:
             _dict['reuse'] = self.reuse.to_dict()
         return _dict

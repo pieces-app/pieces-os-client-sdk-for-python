@@ -20,7 +20,7 @@ import json
 
 
 from typing import Optional
-from pydantic import BaseModel, Field, StrictBool
+from pydantic.v1 import BaseModel, Field, StrictBool
 from pieces_os_client.models.embedded_model_schema import EmbeddedModelSchema
 from pieces_os_client.models.grouped_timestamp import GroupedTimestamp
 from pieces_os_client.models.referenced_workstream_summary import ReferencedWorkstreamSummary
@@ -62,19 +62,19 @@ class SeededRange(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of var_schema
+        # override the default output from pydantic.v1 by calling `to_dict()` of var_schema
         if self.var_schema:
             _dict['schema'] = self.var_schema.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of to
+        # override the default output from pydantic.v1 by calling `to_dict()` of to
         if self.to:
             _dict['to'] = self.to.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of var_from
+        # override the default output from pydantic.v1 by calling `to_dict()` of var_from
         if self.var_from:
             _dict['from'] = self.var_from.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of summary
+        # override the default output from pydantic.v1 by calling `to_dict()` of summary
         if self.summary:
             _dict['summary'] = self.summary.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of conversation
+        # override the default output from pydantic.v1 by calling `to_dict()` of conversation
         if self.conversation:
             _dict['conversation'] = self.conversation.to_dict()
         return _dict

@@ -18,7 +18,7 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, Field, StrictFloat, StrictInt, StrictStr
+from pydantic.v1 import BaseModel, Field, StrictFloat, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional, Union
 from pieces_os_client.models.embedded_model_schema import EmbeddedModelSchema
 from pieces_os_client.models.model_download_progress_status_enum import ModelDownloadProgressStatusEnum
@@ -51,7 +51,7 @@ class OSFileReadStreamedProgress(BaseModel):
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
-        # TODO: pydantic v2: use .model_dump_json(by_alias=True, exclude_unset=True) instead
+        # TODO: pydantic.v1 v2: use .model_dump_json(by_alias=True, exclude_unset=True) instead
         return json.dumps(self.to_dict())
 
     @classmethod
@@ -62,7 +62,7 @@ class OSFileReadStreamedProgress(BaseModel):
     def to_dict(self) -> Dict[str, Any]:
         """Return the dictionary representation of the model using alias.
 
-        This has the following differences from calling pydantic's
+        This has the following differences from calling pydantic.v1's
         `self.model_dump(by_alias=True)`:
 
         * `None` is only added to the output dict for nullable fields that
@@ -77,10 +77,10 @@ class OSFileReadStreamedProgress(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # override the default output from pydantic by calling `to_dict()` of var_schema
+        # override the default output from pydantic.v1 by calling `to_dict()` of var_schema
         if self.var_schema:
             _dict['schema'] = self.var_schema.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of bytes
+        # override the default output from pydantic.v1 by calling `to_dict()` of bytes
         if self.bytes:
             _dict['bytes'] = self.bytes.to_dict()
         # set to None if percentage (nullable) is None

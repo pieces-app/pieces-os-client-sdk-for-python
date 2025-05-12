@@ -20,7 +20,7 @@ import json
 
 
 from typing import Optional
-from pydantic import BaseModel, Field
+from pydantic.v1 import BaseModel, Field
 from pieces_os_client.models.embedded_model_schema import EmbeddedModelSchema
 from pieces_os_client.models.flattened_anchors import FlattenedAnchors
 from pieces_os_client.models.flattened_persons import FlattenedPersons
@@ -64,22 +64,22 @@ class TextuallyExtractedMaterial(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of var_schema
+        # override the default output from pydantic.v1 by calling `to_dict()` of var_schema
         if self.var_schema:
             _dict['schema'] = self.var_schema.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of match
+        # override the default output from pydantic.v1 by calling `to_dict()` of match
         if self.match:
             _dict['match'] = self.match.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of websites
+        # override the default output from pydantic.v1 by calling `to_dict()` of websites
         if self.websites:
             _dict['websites'] = self.websites.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of anchors
+        # override the default output from pydantic.v1 by calling `to_dict()` of anchors
         if self.anchors:
             _dict['anchors'] = self.anchors.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of persons
+        # override the default output from pydantic.v1 by calling `to_dict()` of persons
         if self.persons:
             _dict['persons'] = self.persons.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of seeds
+        # override the default output from pydantic.v1 by calling `to_dict()` of seeds
         if self.seeds:
             _dict['seeds'] = self.seeds.to_dict()
         return _dict

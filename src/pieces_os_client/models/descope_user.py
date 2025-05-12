@@ -20,7 +20,7 @@ import json
 
 
 from typing import List, Optional
-from pydantic import BaseModel, Field, StrictBool, StrictInt, StrictStr, conlist
+from pydantic.v1 import BaseModel, Field, StrictBool, StrictInt, StrictStr, conlist
 from pieces_os_client.models.anonymous_temporal_range import AnonymousTemporalRange
 from pieces_os_client.models.auth0_open_ai_user_metadata import Auth0OpenAIUserMetadata
 from pieces_os_client.models.auth0_user_allocation_metadata import Auth0UserAllocationMetadata
@@ -75,13 +75,13 @@ class DescopeUser(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of allocation
+        # override the default output from pydantic.v1 by calling `to_dict()` of allocation
         if self.allocation:
             _dict['allocation'] = self.allocation.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of open_ai
+        # override the default output from pydantic.v1 by calling `to_dict()` of open_ai
         if self.open_ai:
             _dict['open_ai'] = self.open_ai.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of beta
+        # override the default output from pydantic.v1 by calling `to_dict()` of beta
         if self.beta:
             _dict['beta'] = self.beta.to_dict()
         return _dict

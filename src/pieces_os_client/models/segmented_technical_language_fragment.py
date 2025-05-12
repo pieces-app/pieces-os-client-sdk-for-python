@@ -20,7 +20,7 @@ import json
 
 
 from typing import Optional
-from pydantic import BaseModel, Field
+from pydantic.v1 import BaseModel, Field
 from pieces_os_client.models.classification_generic_enum import ClassificationGenericEnum
 from pieces_os_client.models.classification_specific_enum import ClassificationSpecificEnum
 from pieces_os_client.models.embedded_model_schema import EmbeddedModelSchema
@@ -60,10 +60,10 @@ class SegmentedTechnicalLanguageFragment(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of var_schema
+        # override the default output from pydantic.v1 by calling `to_dict()` of var_schema
         if self.var_schema:
             _dict['schema'] = self.var_schema.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of fragment
+        # override the default output from pydantic.v1 by calling `to_dict()` of fragment
         if self.fragment:
             _dict['fragment'] = self.fragment.to_dict()
         return _dict

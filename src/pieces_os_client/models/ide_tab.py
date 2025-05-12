@@ -20,7 +20,7 @@ import json
 
 
 from typing import Optional
-from pydantic import BaseModel, Field, StrictBool
+from pydantic.v1 import BaseModel, Field, StrictBool
 from pieces_os_client.models.anonymous_temporal_range import AnonymousTemporalRange
 from pieces_os_client.models.classification import Classification
 from pieces_os_client.models.document_contributors import DocumentContributors
@@ -68,28 +68,28 @@ class IDETab(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of var_schema
+        # override the default output from pydantic.v1 by calling `to_dict()` of var_schema
         if self.var_schema:
             _dict['schema'] = self.var_schema.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of value
+        # override the default output from pydantic.v1 by calling `to_dict()` of value
         if self.value:
             _dict['value'] = self.value.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of classification
+        # override the default output from pydantic.v1 by calling `to_dict()` of classification
         if self.classification:
             _dict['classification'] = self.classification.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of selections
+        # override the default output from pydantic.v1 by calling `to_dict()` of selections
         if self.selections:
             _dict['selections'] = self.selections.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of anchor
+        # override the default output from pydantic.v1 by calling `to_dict()` of anchor
         if self.anchor:
             _dict['anchor'] = self.anchor.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of range
+        # override the default output from pydantic.v1 by calling `to_dict()` of range
         if self.range:
             _dict['range'] = self.range.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of contributors
+        # override the default output from pydantic.v1 by calling `to_dict()` of contributors
         if self.contributors:
             _dict['contributors'] = self.contributors.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of lsp
+        # override the default output from pydantic.v1 by calling `to_dict()` of lsp
         if self.lsp:
             _dict['lsp'] = self.lsp.to_dict()
         return _dict

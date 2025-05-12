@@ -20,7 +20,7 @@ import json
 
 
 from typing import Optional, Union
-from pydantic import BaseModel, Field, StrictFloat, StrictInt, StrictStr
+from pydantic.v1 import BaseModel, Field, StrictFloat, StrictInt, StrictStr
 from pieces_os_client.models.embedded_model_schema import EmbeddedModelSchema
 from pieces_os_client.models.system_execution_information import SystemExecutionInformation
 from pieces_os_client.models.tlp_code_fragment_classification_metadata import TLPCodeFragmentClassificationMetadata
@@ -68,13 +68,13 @@ class TLPCodeFragmentClassification(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of var_schema
+        # override the default output from pydantic.v1 by calling `to_dict()` of var_schema
         if self.var_schema:
             _dict['schema'] = self.var_schema.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of metadata
+        # override the default output from pydantic.v1 by calling `to_dict()` of metadata
         if self.metadata:
             _dict['metadata'] = self.metadata.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of system
+        # override the default output from pydantic.v1 by calling `to_dict()` of system
         if self.system:
             _dict['system'] = self.system.to_dict()
         return _dict

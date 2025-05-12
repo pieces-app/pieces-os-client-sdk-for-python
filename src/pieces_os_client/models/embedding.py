@@ -20,7 +20,7 @@ import json
 
 
 from typing import List, Optional, Union
-from pydantic import BaseModel, Field, StrictFloat, StrictInt, conlist
+from pydantic.v1 import BaseModel, Field, StrictFloat, StrictInt, conlist
 from pieces_os_client.models.grouped_timestamp import GroupedTimestamp
 from pieces_os_client.models.model import Model
 
@@ -59,16 +59,16 @@ class Embedding(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of model
+        # override the default output from pydantic.v1 by calling `to_dict()` of model
         if self.model:
             _dict['model'] = self.model.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of created
+        # override the default output from pydantic.v1 by calling `to_dict()` of created
         if self.created:
             _dict['created'] = self.created.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of updated
+        # override the default output from pydantic.v1 by calling `to_dict()` of updated
         if self.updated:
             _dict['updated'] = self.updated.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of deleted
+        # override the default output from pydantic.v1 by calling `to_dict()` of deleted
         if self.deleted:
             _dict['deleted'] = self.deleted.to_dict()
         return _dict

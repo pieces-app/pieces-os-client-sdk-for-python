@@ -20,7 +20,7 @@ import json
 
 
 from typing import Optional
-from pydantic import BaseModel
+from pydantic.v1 import BaseModel
 from pieces_os_client.models.tracked_asset_event_format_reclassification_metadata import TrackedAssetEventFormatReclassificationMetadata
 
 class TrackedFormatEventMetadata(BaseModel):
@@ -54,7 +54,7 @@ class TrackedFormatEventMetadata(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of reclassification
+        # override the default output from pydantic.v1 by calling `to_dict()` of reclassification
         if self.reclassification:
             _dict['reclassification'] = self.reclassification.to_dict()
         return _dict

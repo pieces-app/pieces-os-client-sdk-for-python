@@ -20,7 +20,7 @@ import json
 
 
 from typing import Optional, Union
-from pydantic import BaseModel, Field, StrictFloat, StrictInt
+from pydantic.v1 import BaseModel, Field, StrictFloat, StrictInt
 from pieces_os_client.models.space import Space
 
 class TrackedAssetsEventSearchMetadataResults(BaseModel):
@@ -57,10 +57,10 @@ class TrackedAssetsEventSearchMetadataResults(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of assets
+        # override the default output from pydantic.v1 by calling `to_dict()` of assets
         if self.assets:
             _dict['assets'] = self.assets.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of space
+        # override the default output from pydantic.v1 by calling `to_dict()` of space
         if self.space:
             _dict['space'] = self.space.to_dict()
         return _dict

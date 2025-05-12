@@ -20,7 +20,7 @@ import json
 
 
 from typing import Optional
-from pydantic import BaseModel, Field, StrictBool, StrictStr
+from pydantic.v1 import BaseModel, Field, StrictBool, StrictStr
 from pieces_os_client.models.asset_filters import AssetFilters
 from pieces_os_client.models.asset_search_space import AssetSearchSpace
 from pieces_os_client.models.embedded_model_schema import EmbeddedModelSchema
@@ -60,13 +60,13 @@ class AssetsSearchWithFiltersInput(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of var_schema
+        # override the default output from pydantic.v1 by calling `to_dict()` of var_schema
         if self.var_schema:
             _dict['schema'] = self.var_schema.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of space
+        # override the default output from pydantic.v1 by calling `to_dict()` of space
         if self.space:
             _dict['space'] = self.space.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of filters
+        # override the default output from pydantic.v1 by calling `to_dict()` of filters
         if self.filters:
             _dict['filters'] = self.filters.to_dict()
         return _dict

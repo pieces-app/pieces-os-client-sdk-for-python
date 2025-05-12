@@ -20,7 +20,7 @@ import json
 
 
 from typing import Optional
-from pydantic import BaseModel, Field
+from pydantic.v1 import BaseModel, Field
 from pieces_os_client.models.embedded_model_schema import EmbeddedModelSchema
 from pieces_os_client.models.tracked_asset_event_creation_metadata_clipboard import TrackedAssetEventCreationMetadataClipboard
 from pieces_os_client.models.tracked_asset_event_creation_metadata_file import TrackedAssetEventCreationMetadataFile
@@ -58,13 +58,13 @@ class TrackedAssetEventCreationMetadata(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of var_schema
+        # override the default output from pydantic.v1 by calling `to_dict()` of var_schema
         if self.var_schema:
             _dict['schema'] = self.var_schema.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of clipboard
+        # override the default output from pydantic.v1 by calling `to_dict()` of clipboard
         if self.clipboard:
             _dict['clipboard'] = self.clipboard.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of file
+        # override the default output from pydantic.v1 by calling `to_dict()` of file
         if self.file:
             _dict['file'] = self.file.to_dict()
         return _dict

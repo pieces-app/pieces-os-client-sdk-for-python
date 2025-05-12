@@ -20,7 +20,7 @@ import json
 
 
 from typing import Optional
-from pydantic import BaseModel, Field, StrictBool, StrictStr
+from pydantic.v1 import BaseModel, Field, StrictBool, StrictStr
 from pieces_os_client.models.qgpt_question_input import QGPTQuestionInput
 from pieces_os_client.models.qgpt_relevance_input import QGPTRelevanceInput
 
@@ -61,10 +61,10 @@ class QGPTStreamInput(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of relevance
+        # override the default output from pydantic.v1 by calling `to_dict()` of relevance
         if self.relevance:
             _dict['relevance'] = self.relevance.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of question
+        # override the default output from pydantic.v1 by calling `to_dict()` of question
         if self.question:
             _dict['question'] = self.question.to_dict()
         return _dict

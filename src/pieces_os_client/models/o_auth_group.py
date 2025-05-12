@@ -20,7 +20,7 @@ import json
 
 
 from typing import Optional
-from pydantic import BaseModel
+from pydantic.v1 import BaseModel
 from pieces_os_client.models.o_auth_account import OAuthAccount
 from pieces_os_client.models.o_auth_token import OAuthToken
 
@@ -56,10 +56,10 @@ class OAuthGroup(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of token
+        # override the default output from pydantic.v1 by calling `to_dict()` of token
         if self.token:
             _dict['token'] = self.token.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of account
+        # override the default output from pydantic.v1 by calling `to_dict()` of account
         if self.account:
             _dict['account'] = self.account.to_dict()
         return _dict

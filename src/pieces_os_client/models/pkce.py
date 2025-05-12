@@ -20,7 +20,7 @@ import json
 
 
 from typing import Optional
-from pydantic import BaseModel, Field
+from pydantic.v1 import BaseModel, Field
 from pieces_os_client.models.auth0 import Auth0
 from pieces_os_client.models.challenged_pkce import ChallengedPKCE
 from pieces_os_client.models.descope import Descope
@@ -68,28 +68,28 @@ class PKCE(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of var_schema
+        # override the default output from pydantic.v1 by calling `to_dict()` of var_schema
         if self.var_schema:
             _dict['schema'] = self.var_schema.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of result
+        # override the default output from pydantic.v1 by calling `to_dict()` of result
         if self.result:
             _dict['result'] = self.result.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of challenge
+        # override the default output from pydantic.v1 by calling `to_dict()` of challenge
         if self.challenge:
             _dict['challenge'] = self.challenge.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of revocation
+        # override the default output from pydantic.v1 by calling `to_dict()` of revocation
         if self.revocation:
             _dict['revocation'] = self.revocation.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of seed
+        # override the default output from pydantic.v1 by calling `to_dict()` of seed
         if self.seed:
             _dict['seed'] = self.seed.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of token
+        # override the default output from pydantic.v1 by calling `to_dict()` of token
         if self.token:
             _dict['token'] = self.token.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of auth0
+        # override the default output from pydantic.v1 by calling `to_dict()` of auth0
         if self.auth0:
             _dict['auth0'] = self.auth0.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of descope
+        # override the default output from pydantic.v1 by calling `to_dict()` of descope
         if self.descope:
             _dict['descope'] = self.descope.to_dict()
         return _dict

@@ -20,7 +20,7 @@ import json
 
 
 from typing import List, Optional
-from pydantic import BaseModel, Field, StrictStr, conlist
+from pydantic.v1 import BaseModel, Field, StrictStr, conlist
 from pieces_os_client.models.access_enum import AccessEnum
 from pieces_os_client.models.asset import Asset
 from pieces_os_client.models.assets import Assets
@@ -63,20 +63,20 @@ class SeededShare(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of var_schema
+        # override the default output from pydantic.v1 by calling `to_dict()` of var_schema
         if self.var_schema:
             _dict['schema'] = self.var_schema.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of asset
+        # override the default output from pydantic.v1 by calling `to_dict()` of asset
         if self.asset:
             _dict['asset'] = self.asset.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of each item in users (list)
+        # override the default output from pydantic.v1 by calling `to_dict()` of each item in users (list)
         _items = []
         if self.users:
             for _item in self.users:
                 if _item:
                     _items.append(_item.to_dict())
             _dict['users'] = _items
-        # override the default output from pydantic by calling `to_dict()` of assets
+        # override the default output from pydantic.v1 by calling `to_dict()` of assets
         if self.assets:
             _dict['assets'] = self.assets.to_dict()
         return _dict

@@ -20,7 +20,7 @@ import json
 
 
 from typing import List, Optional
-from pydantic import BaseModel, Field, StrictStr, conlist
+from pydantic.v1 import BaseModel, Field, StrictStr, conlist
 from pieces_os_client.models.embedded_model_schema import EmbeddedModelSchema
 from pieces_os_client.models.flattened_anchors import FlattenedAnchors
 from pieces_os_client.models.flattened_assets import FlattenedAssets
@@ -74,31 +74,31 @@ class QGPTRelevanceInput(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of var_schema
+        # override the default output from pydantic.v1 by calling `to_dict()` of var_schema
         if self.var_schema:
             _dict['schema'] = self.var_schema.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of seeds
+        # override the default output from pydantic.v1 by calling `to_dict()` of seeds
         if self.seeds:
             _dict['seeds'] = self.seeds.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of assets
+        # override the default output from pydantic.v1 by calling `to_dict()` of assets
         if self.assets:
             _dict['assets'] = self.assets.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of messages
+        # override the default output from pydantic.v1 by calling `to_dict()` of messages
         if self.messages:
             _dict['messages'] = self.messages.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of options
+        # override the default output from pydantic.v1 by calling `to_dict()` of options
         if self.options:
             _dict['options'] = self.options.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of temporal
+        # override the default output from pydantic.v1 by calling `to_dict()` of temporal
         if self.temporal:
             _dict['temporal'] = self.temporal.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of anchors
+        # override the default output from pydantic.v1 by calling `to_dict()` of anchors
         if self.anchors:
             _dict['anchors'] = self.anchors.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of sources
+        # override the default output from pydantic.v1 by calling `to_dict()` of sources
         if self.sources:
             _dict['sources'] = self.sources.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of summaries
+        # override the default output from pydantic.v1 by calling `to_dict()` of summaries
         if self.summaries:
             _dict['summaries'] = self.summaries.to_dict()
         return _dict

@@ -20,7 +20,7 @@ import json
 
 
 from typing import Optional
-from pydantic import BaseModel
+from pydantic.v1 import BaseModel
 from pieces_os_client.models.grouped_timestamp import GroupedTimestamp
 from pieces_os_client.models.referenced_model import ReferencedModel
 
@@ -58,16 +58,16 @@ class PersonModel(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of asset
+        # override the default output from pydantic.v1 by calling `to_dict()` of asset
         if self.asset:
             _dict['asset'] = self.asset.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of model
+        # override the default output from pydantic.v1 by calling `to_dict()` of model
         if self.model:
             _dict['model'] = self.model.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of deleted
+        # override the default output from pydantic.v1 by calling `to_dict()` of deleted
         if self.deleted:
             _dict['deleted'] = self.deleted.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of explanation
+        # override the default output from pydantic.v1 by calling `to_dict()` of explanation
         if self.explanation:
             _dict['explanation'] = self.explanation.to_dict()
         return _dict

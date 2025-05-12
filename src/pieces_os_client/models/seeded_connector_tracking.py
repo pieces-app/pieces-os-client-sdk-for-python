@@ -20,7 +20,7 @@ import json
 
 
 from typing import Optional
-from pydantic import BaseModel, Field
+from pydantic.v1 import BaseModel, Field
 from pieces_os_client.models.embedded_model_schema import EmbeddedModelSchema
 from pieces_os_client.models.seeded_tracked_adoption_event import SeededTrackedAdoptionEvent
 from pieces_os_client.models.seeded_tracked_interaction_event import SeededTrackedInteractionEvent
@@ -68,34 +68,34 @@ class SeededConnectorTracking(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of var_schema
+        # override the default output from pydantic.v1 by calling `to_dict()` of var_schema
         if self.var_schema:
             _dict['schema'] = self.var_schema.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of format
+        # override the default output from pydantic.v1 by calling `to_dict()` of format
         if self.format:
             _dict['format'] = self.format.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of asset
+        # override the default output from pydantic.v1 by calling `to_dict()` of asset
         if self.asset:
             _dict['asset'] = self.asset.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of interaction
+        # override the default output from pydantic.v1 by calling `to_dict()` of interaction
         if self.interaction:
             _dict['interaction'] = self.interaction.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of keyboard
+        # override the default output from pydantic.v1 by calling `to_dict()` of keyboard
         if self.keyboard:
             _dict['keyboard'] = self.keyboard.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of session
+        # override the default output from pydantic.v1 by calling `to_dict()` of session
         if self.session:
             _dict['session'] = self.session.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of assets
+        # override the default output from pydantic.v1 by calling `to_dict()` of assets
         if self.assets:
             _dict['assets'] = self.assets.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of ml
+        # override the default output from pydantic.v1 by calling `to_dict()` of ml
         if self.ml:
             _dict['ml'] = self.ml.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of adoption
+        # override the default output from pydantic.v1 by calling `to_dict()` of adoption
         if self.adoption:
             _dict['adoption'] = self.adoption.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of conversation
+        # override the default output from pydantic.v1 by calling `to_dict()` of conversation
         if self.conversation:
             _dict['conversation'] = self.conversation.to_dict()
         return _dict

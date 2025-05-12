@@ -20,7 +20,7 @@ import json
 
 
 from typing import Optional
-from pydantic import BaseModel, Field, StrictStr
+from pydantic.v1 import BaseModel, Field, StrictStr
 from pieces_os_client.models.embedded_model_schema import EmbeddedModelSchema
 from pieces_os_client.models.embeddings_search_options import EmbeddingsSearchOptions
 from pieces_os_client.models.full_text_search_options import FullTextSearchOptions
@@ -64,22 +64,22 @@ class SearchEngine(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of var_schema
+        # override the default output from pydantic.v1 by calling `to_dict()` of var_schema
         if self.var_schema:
             _dict['schema'] = self.var_schema.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of embeddings
+        # override the default output from pydantic.v1 by calling `to_dict()` of embeddings
         if self.embeddings:
             _dict['embeddings'] = self.embeddings.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of full_text
+        # override the default output from pydantic.v1 by calling `to_dict()` of full_text
         if self.full_text:
             _dict['full_text'] = self.full_text.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of temporal
+        # override the default output from pydantic.v1 by calling `to_dict()` of temporal
         if self.temporal:
             _dict['temporal'] = self.temporal.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of workstream
+        # override the default output from pydantic.v1 by calling `to_dict()` of workstream
         if self.workstream:
             _dict['workstream'] = self.workstream.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of operations
+        # override the default output from pydantic.v1 by calling `to_dict()` of operations
         if self.operations:
             _dict['operations'] = self.operations.to_dict()
         return _dict

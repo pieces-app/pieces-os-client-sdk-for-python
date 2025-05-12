@@ -20,7 +20,7 @@ import json
 
 
 from typing import List
-from pydantic import BaseModel, Field, conlist
+from pydantic.v1 import BaseModel, Field, conlist
 from pieces_os_client.models.embedding import Embedding
 
 class Embeddings(BaseModel):
@@ -54,7 +54,7 @@ class Embeddings(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of each item in iterable (list)
+        # override the default output from pydantic.v1 by calling `to_dict()` of each item in iterable (list)
         _items = []
         if self.iterable:
             for _item in self.iterable:

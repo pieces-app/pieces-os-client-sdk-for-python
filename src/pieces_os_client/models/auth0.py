@@ -20,7 +20,7 @@ import json
 
 
 from typing import Optional
-from pydantic import BaseModel, Field, StrictStr
+from pydantic.v1 import BaseModel, Field, StrictStr
 from pieces_os_client.models.auth0_identity import Auth0Identity
 from pieces_os_client.models.auth0_redirects import Auth0Redirects
 from pieces_os_client.models.auth0_user import Auth0User
@@ -66,19 +66,19 @@ class Auth0(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of identity
+        # override the default output from pydantic.v1 by calling `to_dict()` of identity
         if self.identity:
             _dict['identity'] = self.identity.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of user
+        # override the default output from pydantic.v1 by calling `to_dict()` of user
         if self.user:
             _dict['user'] = self.user.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of metadata
+        # override the default output from pydantic.v1 by calling `to_dict()` of metadata
         if self.metadata:
             _dict['metadata'] = self.metadata.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of redirects
+        # override the default output from pydantic.v1 by calling `to_dict()` of redirects
         if self.redirects:
             _dict['redirects'] = self.redirects.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of o_auth
+        # override the default output from pydantic.v1 by calling `to_dict()` of o_auth
         if self.o_auth:
             _dict['oAuth'] = self.o_auth.to_dict()
         return _dict

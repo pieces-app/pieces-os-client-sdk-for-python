@@ -20,7 +20,7 @@ import json
 
 
 from typing import Optional
-from pydantic import BaseModel, Field, StrictStr
+from pydantic.v1 import BaseModel, Field, StrictStr
 from pieces_os_client.models.embedded_model_schema import EmbeddedModelSchema
 from pieces_os_client.models.grouped_timestamp import GroupedTimestamp
 from pieces_os_client.models.workstream_pattern_engine_source import WorkstreamPatternEngineSource
@@ -61,16 +61,16 @@ class WorkstreamPatternEngineVisionEvent(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of var_schema
+        # override the default output from pydantic.v1 by calling `to_dict()` of var_schema
         if self.var_schema:
             _dict['schema'] = self.var_schema.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of created
+        # override the default output from pydantic.v1 by calling `to_dict()` of created
         if self.created:
             _dict['created'] = self.created.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of source
+        # override the default output from pydantic.v1 by calling `to_dict()` of source
         if self.source:
             _dict['source'] = self.source.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of textual
+        # override the default output from pydantic.v1 by calling `to_dict()` of textual
         if self.textual:
             _dict['textual'] = self.textual.to_dict()
         return _dict

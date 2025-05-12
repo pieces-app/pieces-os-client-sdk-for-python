@@ -20,7 +20,7 @@ import json
 
 
 from typing import List, Optional, Union
-from pydantic import BaseModel, Field, StrictFloat, StrictInt, StrictStr, conlist
+from pydantic.v1 import BaseModel, Field, StrictFloat, StrictInt, StrictStr, conlist
 from pieces_os_client.models.application import Application
 from pieces_os_client.models.capabilities_enum import CapabilitiesEnum
 from pieces_os_client.models.embedded_model_schema import EmbeddedModelSchema
@@ -71,25 +71,25 @@ class SeededWorkstreamEvent(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of var_schema
+        # override the default output from pydantic.v1 by calling `to_dict()` of var_schema
         if self.var_schema:
             _dict['schema'] = self.var_schema.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of score
+        # override the default output from pydantic.v1 by calling `to_dict()` of score
         if self.score:
             _dict['score'] = self.score.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of application
+        # override the default output from pydantic.v1 by calling `to_dict()` of application
         if self.application:
             _dict['application'] = self.application.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of trigger
+        # override the default output from pydantic.v1 by calling `to_dict()` of trigger
         if self.trigger:
             _dict['trigger'] = self.trigger.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of context
+        # override the default output from pydantic.v1 by calling `to_dict()` of context
         if self.context:
             _dict['context'] = self.context.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of summary
+        # override the default output from pydantic.v1 by calling `to_dict()` of summary
         if self.summary:
             _dict['summary'] = self.summary.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of tags
+        # override the default output from pydantic.v1 by calling `to_dict()` of tags
         if self.tags:
             _dict['tags'] = self.tags.to_dict()
         return _dict

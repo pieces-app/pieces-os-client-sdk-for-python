@@ -20,7 +20,7 @@ import json
 
 
 from typing import List, Optional
-from pydantic import BaseModel, Field, StrictStr, conlist
+from pydantic.v1 import BaseModel, Field, StrictStr, conlist
 from pieces_os_client.models.embedded_model_schema import EmbeddedModelSchema
 from pieces_os_client.models.flattened_anchors import FlattenedAnchors
 from pieces_os_client.models.mechanism_enum import MechanismEnum
@@ -67,26 +67,26 @@ class SeededPerson(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of var_schema
+        # override the default output from pydantic.v1 by calling `to_dict()` of var_schema
         if self.var_schema:
             _dict['schema'] = self.var_schema.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of access
+        # override the default output from pydantic.v1 by calling `to_dict()` of access
         if self.access:
             _dict['access'] = self.access.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of type
+        # override the default output from pydantic.v1 by calling `to_dict()` of type
         if self.type:
             _dict['type'] = self.type.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of model
+        # override the default output from pydantic.v1 by calling `to_dict()` of model
         if self.model:
             _dict['model'] = self.model.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of each item in annotations (list)
+        # override the default output from pydantic.v1 by calling `to_dict()` of each item in annotations (list)
         _items = []
         if self.annotations:
             for _item in self.annotations:
                 if _item:
                     _items.append(_item.to_dict())
             _dict['annotations'] = _items
-        # override the default output from pydantic by calling `to_dict()` of anchors
+        # override the default output from pydantic.v1 by calling `to_dict()` of anchors
         if self.anchors:
             _dict['anchors'] = self.anchors.to_dict()
         return _dict

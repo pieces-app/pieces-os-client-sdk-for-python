@@ -20,7 +20,7 @@ import json
 
 
 from typing import Optional
-from pydantic import BaseModel, Field, StrictStr
+from pydantic.v1 import BaseModel, Field, StrictStr
 from pieces_os_client.models.embedded_model_schema import EmbeddedModelSchema
 from pieces_os_client.models.seeded_file import SeededFile
 from pieces_os_client.models.seeded_fragment import SeededFragment
@@ -61,16 +61,16 @@ class SeededDiscoverableAsset(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of var_schema
+        # override the default output from pydantic.v1 by calling `to_dict()` of var_schema
         if self.var_schema:
             _dict['schema'] = self.var_schema.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of file
+        # override the default output from pydantic.v1 by calling `to_dict()` of file
         if self.file:
             _dict['file'] = self.file.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of fragment
+        # override the default output from pydantic.v1 by calling `to_dict()` of fragment
         if self.fragment:
             _dict['fragment'] = self.fragment.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of filters
+        # override the default output from pydantic.v1 by calling `to_dict()` of filters
         if self.filters:
             _dict['filters'] = self.filters.to_dict()
         return _dict

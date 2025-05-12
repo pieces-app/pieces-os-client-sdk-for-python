@@ -20,7 +20,7 @@ import json
 
 
 from typing import Optional
-from pydantic import BaseModel, Field
+from pydantic.v1 import BaseModel, Field
 from pieces_os_client.models.browser_selection import BrowserSelection
 from pieces_os_client.models.embedded_model_schema import EmbeddedModelSchema
 from pieces_os_client.models.transferable_string import TransferableString
@@ -61,22 +61,22 @@ class BrowserTabValue(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of var_schema
+        # override the default output from pydantic.v1 by calling `to_dict()` of var_schema
         if self.var_schema:
             _dict['schema'] = self.var_schema.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of html
+        # override the default output from pydantic.v1 by calling `to_dict()` of html
         if self.html:
             _dict['html'] = self.html.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of md
+        # override the default output from pydantic.v1 by calling `to_dict()` of md
         if self.md:
             _dict['md'] = self.md.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of text
+        # override the default output from pydantic.v1 by calling `to_dict()` of text
         if self.text:
             _dict['text'] = self.text.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of snippet
+        # override the default output from pydantic.v1 by calling `to_dict()` of snippet
         if self.snippet:
             _dict['snippet'] = self.snippet.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of selection
+        # override the default output from pydantic.v1 by calling `to_dict()` of selection
         if self.selection:
             _dict['selection'] = self.selection.to_dict()
         return _dict

@@ -20,7 +20,7 @@ import json
 
 
 from typing import Optional
-from pydantic import BaseModel, Field
+from pydantic.v1 import BaseModel, Field
 from pieces_os_client.models.allocation_cloud_url import AllocationCloudUrl
 from pieces_os_client.models.embedded_model_schema import EmbeddedModelSchema
 
@@ -58,16 +58,16 @@ class AllocationCloudUrls(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of var_schema
+        # override the default output from pydantic.v1 by calling `to_dict()` of var_schema
         if self.var_schema:
             _dict['schema'] = self.var_schema.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of base
+        # override the default output from pydantic.v1 by calling `to_dict()` of base
         if self.base:
             _dict['base'] = self.base.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of id
+        # override the default output from pydantic.v1 by calling `to_dict()` of id
         if self.id:
             _dict['id'] = self.id.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of vanity
+        # override the default output from pydantic.v1 by calling `to_dict()` of vanity
         if self.vanity:
             _dict['vanity'] = self.vanity.to_dict()
         return _dict
