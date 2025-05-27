@@ -201,7 +201,7 @@ class BasicChat(Basic):
     def ranges(self) -> List["BasicRange"]:
         from . import BasicRange
         temporal = self.conversation.grounding.temporal if self.conversation.grounding else None
-        if not temporal or not temporal.workstreams or not temporal.workstreams.indices:
+        if not temporal or not temporal.workstreams or not temporal.workstreams.indices or not temporal.workstreams.iterable:
             return []
         return self._from_indices(
             temporal.workstreams.indices,
