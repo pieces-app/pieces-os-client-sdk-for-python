@@ -3,9 +3,4 @@ from .conversations_snapshot import ConversationsSnapshot
 from .anchor_snapshot import AnchorSnapshot
 
 
-__all__ = [
-	"AssetSnapshot",
-	"ConversationsSnapshot",
-    "AnchorSnapshot"
-]
-
+__all__ = ["AssetSnapshot", "ConversationsSnapshot", "AnchorSnapshot"]

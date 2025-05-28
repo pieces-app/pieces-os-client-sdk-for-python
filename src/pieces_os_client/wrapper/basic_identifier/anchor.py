@@ -1,202 +1,233 @@
 import os
-from typing import List, Optional
+from typing import List, Optional, TYPE_CHECKING
 
-from pieces_os_client.models.anchor import Anchor
 from pieces_os_client.models.anchor_type_enum import AnchorTypeEnum
-from pieces_os_client.models.seeded_anchor import SeededAnchor
-from pieces_os_client.wrapper.basic_identifier.asset import BasicAsset
-from pieces_os_client.wrapper.basic_identifier.chat import BasicChat
-from pieces_os_client.wrapper.basic_identifier.message import BasicMessage
+
+if TYPE_CHECKING:
+    from pieces_os_client.models.anchor import Anchor
+    from .chat import BasicChat
+    from .anchor import BasicAnchor
+    from .message import BasicMessage
+    from .asset import BasicAsset
 
 from ..streamed_identifiers.anchor_snapshot import AnchorSnapshot
 
 from .basic import Basic
 
+
 class BasicAnchor(Basic):
-	"""
-	A class to represent a basic anchor, initialized with an anchor ID.
-	"""
-	@property
-	def anchor(self) -> Anchor:
-		"""
-		Gets the Anchor instance of the anchor.
+    """
+    A class to represent a basic anchor, initialized with an anchor ID.
+    """
 
-		Returns:
-			The Anchor instance of the anchor.
-		"""
-		anchor = AnchorSnapshot.identifiers_snapshot.get(self._id)
-		if not anchor:
-			raise ValueError("Anchor not found")
-		return anchor
+    @property
+    def anchor(self) -> "Anchor":
+        """
+        Gets the Anchor instance of the anchor.
 
-	@property
-	def id(self) -> str:
-		"""
-		Gets the ID of the anchor.
+        Returns:
+                The Anchor instance of the anchor.
+        """
+        anchor = AnchorSnapshot.identifiers_snapshot.get(self._id)
+        if not anchor:
+            raise ValueError("Anchor not found")
+        return anchor
 
-		Returns:
-			The ID of the anchor.
-		"""
-		return self.anchor.id
+    @property
+    def id(self) -> str:
+        """
+        Gets the ID of the anchor.
 
-	@property
-	def name(self) -> str:
-		"""
-		Gets the name of the Anchor.
+        Returns:
+                The ID of the anchor.
+        """
+        return self.anchor.id
 
-		Returns:
-			returns the name of the Anchor
-		"""
-		return self.anchor.name 
+    @property
+    def name(self) -> str:
+        """
+        Gets the name of the Anchor.
 
-	@name.setter
-	def name(self, name):
-		"""
-		Sets the name of the anchor.
+        Returns:
+                returns the name of the Anchor
+        """
+        return self.anchor.name
 
-		Args:
-			name: The new name of the anchor.
-		"""
-		self.anchor.name = name
-		self._edit_anchor(self.anchor)
+    @name.setter
+    def name(self, name):
+        """
+        Sets the name of the anchor.
 
-	def delete(self):
-		"""
-		Deletes an Anchor.
-		"""
-		AnchorSnapshot.pieces_client.anchors_api.anchors_delete_specific_anchor(self.id)
+        Args:
+                name: The new name of the anchor.
+        """
+        self.anchor.name = name
+        self._edit_anchor(self.anchor)
 
-	@classmethod
-	def create(cls,type: AnchorTypeEnum,path: str) -> "BasicAnchor":
-		"""
-		Creates an Anchor.
+    def delete(self):
+        """
+        Deletes an Anchor.
+        """
+        AnchorSnapshot.pieces_client.anchors_api.anchors_delete_specific_anchor(self.id)
 
-		Args:
-			type: The type of the anchor. (FILE or DIRECTORY)
-			path: The path of the anchor.
+    @classmethod
+    def create(cls, type: AnchorTypeEnum, path: str) -> "BasicAnchor":
+        """
+        Creates an Anchor.
 
-		Returns:
-			The created BasicAnchor instance.
-		"""
-		anchor = AnchorSnapshot.pieces_client.anchors_api.anchors_create_new_anchor(False,seeded_anchor=SeededAnchor(
-			type = type,
-			fullpath = path
-		))
-		AnchorSnapshot.identifiers_snapshot[anchor.id] = anchor # Update the local cache
-		return BasicAnchor(anchor.id)
+        Args:
+                type: The type of the anchor. (FILE or DIRECTORY)
+                path: The path of the anchor.
 
-	@staticmethod
-	def _edit_anchor(anchor):
-		"""
-		Edits the anchor.
+        Returns:
+                The created BasicAnchor instance.
+        """
 
-		Args:
-			anchor: The anchor to edit.
-		"""
-		AnchorSnapshot.pieces_client.anchor_api.anchor_update(False, anchor)
-	
-	@property
-	def type(self) -> AnchorTypeEnum:
-		"""
-		Gets the type of the anchor.
+        from pieces_os_client.models.seeded_anchor import SeededAnchor
 
-		Returns:
-			The type of the anchor.
-		"""
-		return self.anchor.type
+        anchor = AnchorSnapshot.pieces_client.anchors_api.anchors_create_new_anchor(
+            False, seeded_anchor=SeededAnchor(type=type, fullpath=path)
+        )
+        AnchorSnapshot.identifiers_snapshot[anchor.id] = (
+            anchor  # Update the local cache
+        )
+        return BasicAnchor(anchor.id)
 
-	@property
-	def fullpath(self) -> List[str]:
-		"""
-		Gets the fullpath of the anchor.
+    @staticmethod
+    def _edit_anchor(anchor):
+        """
+        Edits the anchor.
 
-		Returns:
-			The fullpath of the anchor.
-		"""
-		return [point.reference.fullpath for point in self.anchor.points.iterable if point.reference and point.reference.fullpath]
+        Args:
+                anchor: The anchor to edit.
+        """
+        AnchorSnapshot.pieces_client.anchor_api.anchor_update(False, anchor)
 
-	@classmethod
-	def exists(cls, paths: List[str]) -> Optional["BasicAnchor"]:
-		"""
-		Checks if an anchor exists.
+    @property
+    def type(self) -> AnchorTypeEnum:
+        """
+        Gets the type of the anchor.
 
-		Args:
-			paths: The paths to check.
+        Returns:
+                The type of the anchor.
+        """
+        return self.anchor.type
 
-		Returns:
-			The existing anchor if found, otherwise None.
-		"""
-		for anchor in AnchorSnapshot.identifiers_snapshot.keys():
-			a = BasicAnchor(anchor)
-			if a.fullpath == paths:
-				return BasicAnchor(a.id)
-		
-	@property
-	def assets(self) -> Optional[List["BasicAsset"]]:
-		"""
-		Gets the assets of the anchor.
+    @property
+    def fullpath(self) -> List[str]:
+        """
+        Gets the fullpath of the anchor.
 
-		Returns:
-			The assets of the anchor.
-		"""
-		return [(asset.id) for asset in self.anchor.assets.iterable] if self.anchor.assets else None
+        Returns:
+                The fullpath of the anchor.
+        """
+        return [
+            point.reference.fullpath
+            for point in self.anchor.points.iterable
+            if point.reference and point.reference.fullpath
+        ]
 
-	@property
-	def chats(self) -> Optional[List["BasicChat"]]:
-		"""
-		Gets the chats of the anchor.
+    @classmethod
+    def exists(cls, paths: List[str]) -> Optional["BasicAnchor"]:
+        """
+        Checks if an anchor exists.
 
-		Returns:
-			The chats of the anchor.
-		"""
-		return [BasicChat(chat.id) for chat in self.anchor.conversations.iterable] if self.anchor.conversations else None
+        Args:
+                paths: The paths to check.
 
-	@property
-	def messages(self) -> Optional[List["BasicMessage"]]:
-		"""
-		Gets the messages of the anchor.
+        Returns:
+                The existing anchor if found, otherwise None.
+        """
+        for anchor in AnchorSnapshot.identifiers_snapshot.keys():
+            a = BasicAnchor(anchor)
+            if a.fullpath == paths:
+                return BasicAnchor(a.id)
 
-		Returns:
-			The messages of the anchor.
-		"""
-		return [BasicMessage(message.id) for message in self.anchor.messages.iterable] if self.anchor.messages else None
+    @property
+    def assets(self) -> Optional[List["BasicAsset"]]:
+        """
+        Gets the assets of the anchor.
 
-	@classmethod
-	def from_raw_content(cls, path: str) -> "BasicAnchor":
-		"""
-		Creates a BasicAnchor from the raw content.
-		If found an anchor exists it will not create one.
+        Returns:
+                The assets of the anchor.
+        """
+        return (
+            [(asset.id) for asset in self.anchor.assets.iterable]
+            if self.anchor.assets
+            else None
+        )
 
-		Args:
-			path (str): The path of the anchor.
+    @property
+    def chats(self) -> Optional[List["BasicChat"]]:
+        """
+        Gets the chats of the anchor.
 
-		Returns:
-			The created BasicAnchor instance.
-		"""
-		anchor = cls.exists([path])
-		if anchor:
-			return anchor
-		else:
-			anchor_type = AnchorTypeEnum.DIRECTORY if os.path.isdir(path) else AnchorTypeEnum.FILE
-			return cls.create(
-				anchor_type,
-				path
-			)
+        Returns:
+                The chats of the anchor.
+        """
+        from .chat import BasicChat
 
-	def associate_chat(self, chat: "BasicChat"):
-		"""
-		Associates a chat with the anchor.
+        return (
+            [BasicChat(chat.id) for chat in self.anchor.conversations.iterable]
+            if self.anchor.conversations
+            else None
+        )
 
-		Args:
-			chat: The BasicChat object to associate.
-		"""
-		AnchorSnapshot.pieces_client.anchor_api.anchor_associate_conversation(chat.id,self.anchor.id)
+    @property
+    def messages(self) -> Optional[List["BasicMessage"]]:
+        """
+        Gets the messages of the anchor.
 
-	def disassociate_chat(self, chat: "BasicChat"):
-		"""
-		Disassociates a chat from the anchor.
+        Returns:
+                The messages of the anchor.
+        """
+        from .message import BasicMessage
 
-		Args:
-			chat: The BasicChat object to disassociate.
-		"""
-		AnchorSnapshot.pieces_client.anchor_api.anchor_disassociate_conversation(chat.id,self.anchor.id)
+        return (
+            [BasicMessage(message.id) for message in self.anchor.messages.iterable]
+            if self.anchor.messages
+            else None
+        )
+
+    @classmethod
+    def from_raw_content(cls, path: str) -> "BasicAnchor":
+        """
+        Creates a BasicAnchor from the raw content.
+        If found an anchor exists it will not create one.
+
+        Args:
+                path (str): The path of the anchor.
+
+        Returns:
+                The created BasicAnchor instance.
+        """
+        anchor = cls.exists([path])
+        if anchor:
+            return anchor
+        else:
+            anchor_type = (
+                AnchorTypeEnum.DIRECTORY if os.path.isdir(path) else AnchorTypeEnum.FILE
+            )
+            return cls.create(anchor_type, path)
+
+    def associate_chat(self, chat: "BasicChat"):
+        """
+        Associates a chat with the anchor.
+
+        Args:
+                chat: The BasicChat object to associate.
+        """
+        AnchorSnapshot.pieces_client.anchor_api.anchor_associate_conversation(
+            chat.id, self.anchor.id
+        )
+
+    def disassociate_chat(self, chat: "BasicChat"):
+        """
+        Disassociates a chat from the anchor.
+
+        Args:
+                chat: The BasicChat object to disassociate.
+        """
+        AnchorSnapshot.pieces_client.anchor_api.anchor_disassociate_conversation(
+            chat.id, self.anchor.id
+        )

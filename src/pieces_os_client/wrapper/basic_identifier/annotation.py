@@ -1,12 +1,13 @@
 from typing import TYPE_CHECKING, Optional
 
-from pieces_os_client.models.annotation import Annotation
-from pieces_os_client.models.annotation_type_enum import AnnotationTypeEnum
-from pieces_os_client.models.seeded_annotation import SeededAnnotation
 from .basic import Basic
 
 if TYPE_CHECKING:
-	from . import BasicChat, BasicAsset
+	from pieces_os_client.models.annotation import Annotation
+	from pieces_os_client.models.annotation_type_enum import AnnotationTypeEnum
+	from pieces_os_client.models.seeded_annotation import SeededAnnotation
+	from .asset import BasicAsset
+	from .chat import BasicChat
 	from ..client import PiecesClient
 
 class BasicAnnotation(Basic):
@@ -18,7 +19,7 @@ class BasicAnnotation(Basic):
 		annotation (Annotation): The annotation object associated with the basic annotation.
 	"""
 
-	def __init__(self, pieces_client: "PiecesClient", annotation: Annotation) -> None:
+	def __init__(self, pieces_client: "PiecesClient", annotation: "Annotation") -> None:
 		"""
 		Initializes a BasicAnnotation object.
 
@@ -55,7 +56,7 @@ class BasicAnnotation(Basic):
 		return BasicAnnotation(pieces_client, pieces_client.annotation_api.annotation_specific_annotation_snapshot(id))
 
 	@property
-	def type(self) -> AnnotationTypeEnum:
+	def type(self) -> "AnnotationTypeEnum":
 		"""
 		Returns the type of the annotation.
 
@@ -93,7 +94,7 @@ class BasicAnnotation(Basic):
 		Returns:
 			The asset associated with the annotation.
 		"""
-		from . import BasicAsset
+		from .asset import BasicAsset
 		if self.annotation.asset:
 			return BasicAsset(self.annotation.asset.id)
 
@@ -105,12 +106,12 @@ class BasicAnnotation(Basic):
 		Returns:
 			The chat associated with the annotation.
 		"""
-		from . import BasicChat
+		from .chat import BasicChat
 		if self.annotation.conversation:
 			return BasicChat(self.annotation.conversation.id)
 
 	@staticmethod
-	def create(pieces_client, seeded_annotation: SeededAnnotation) -> "BasicAnnotation":
+	def create(pieces_client, seeded_annotation: "SeededAnnotation") -> "BasicAnnotation":
 		"""
 		Creates a new annotation based on the seeded annotation.
 
@@ -134,7 +135,7 @@ class BasicAnnotation(Basic):
 		self.pieces_client.annotations_api.annotations_delete_specific_annotation(self.annotation.id)
 
 
-	def _edit_annotation(self, annotation: Annotation):
+	def _edit_annotation(self, annotation: "Annotation"):
 		"""
 		Edits the given annotation.
 

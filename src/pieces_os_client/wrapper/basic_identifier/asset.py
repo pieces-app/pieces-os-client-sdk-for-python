@@ -2,22 +2,18 @@ from ..streamed_identifiers.assets_snapshot import AssetSnapshot
 from .basic import Basic
 from typing import Literal, Optional, List, TYPE_CHECKING
 
-from pieces_os_client.models.asset import Asset
 from pieces_os_client.models.classification_specific_enum import ClassificationSpecificEnum
 from pieces_os_client.models.classification_generic_enum import ClassificationGenericEnum
-from pieces_os_client.models.format import Format
-from pieces_os_client.models.seeded_asset import SeededAsset
-from pieces_os_client.models.seed import Seed
-from pieces_os_client.models.seeded_format import SeededFormat
-from pieces_os_client.models.seeded_fragment import SeededFragment
-from pieces_os_client.models.transferable_string import TransferableString
-from pieces_os_client.models.fragment_metadata import FragmentMetadata
-from pieces_os_client.models.asset_reclassification import AssetReclassification
-from pieces_os_client.models.linkify import Linkify
-from pieces_os_client.models.shares import Shares
 
 if TYPE_CHECKING:
-	from . import BasicAnnotation, BasicTag, BasicWebsite
+	from pieces_os_client.models.fragment_metadata import FragmentMetadata
+	from pieces_os_client.models.format import Format
+	from pieces_os_client.models.shares import Shares
+	from pieces_os_client.models.asset import Asset
+	from pieces_os_client.models.seed import Seed
+	from .annotation import BasicAnnotation
+	from .tag import BasicTag
+	from .website import BasicWebsite
 
 # Friendly wrapper (to avoid interacting with the pieces_os_client sdks models)
 
@@ -25,12 +21,29 @@ class BasicAsset(Basic):
 	"""
 	A wrapper class for managing assets.
 	"""
+	@classmethod
+	def identifiers_snapshot(cls):
+		if AssetSnapshot.identifiers_snapshot:
+			return AssetSnapshot.identifiers_snapshot
+		
+		AssetSnapshot.identifiers_snapshot = {item.id:None for item in cls.get_identifiers()}
+
+		return AssetSnapshot.identifiers_snapshot
+	
+	@staticmethod
+	def get_identifiers():
+		"""
+			:returns: The assets id
+		"""
+		assets_api = AssetSnapshot.pieces_client.assets_api
+		api_response = assets_api.assets_identifiers_snapshot()
+		return api_response.iterable
 		
 	@property
-	def asset(self) -> Asset:
+	def asset(self) -> "Asset":
 		asset = AssetSnapshot.identifiers_snapshot.get(self._id)
 		if not asset:
-			raise ValueError("Asset not found")
+			asset = AssetSnapshot.update_identifier(self._id)
 		return asset
 
 	@property
@@ -40,6 +53,14 @@ class BasicAsset(Basic):
 		"""
 		return self.asset.id
 
+	@property
+	def created_at(self):
+		return self.asset.created.readable if self.asset.created.readable else "Unknown"
+
+	@property
+	def updated_at(self):
+		return self.asset.updated.readable if self.asset.updated.readable else "Unknown"
+	
 	@property
 	def raw_content(self) -> Optional[str]:
 		"""
@@ -93,6 +114,10 @@ class BasicAsset(Basic):
 		format_api.format_update_value(transferable=False, format=original)
 
 	@property
+	def type(self) -> ClassificationGenericEnum:
+		return self.asset.original.reference.classification.generic
+
+	@property
 	def is_image(self) -> bool:
 		"""
 		Check if the asset is an image.
@@ -101,7 +126,7 @@ class BasicAsset(Basic):
 			bool: True if the asset is an image, otherwise False.
 		"""
 		return (
-			self.asset.original.reference.classification.generic ==
+			self.type ==
 			ClassificationGenericEnum.IMAGE
 		)
 
@@ -131,6 +156,7 @@ class BasicAsset(Basic):
 			ValueError: If the classification is not a string or ClassificationSpecificEnum.
 			NotImplementedError: If the asset is an image, reclassification is not supported.
 		"""
+		from pieces_os_client.models.asset_reclassification import AssetReclassification
 		if isinstance(classification, str):
 			if classification not in ClassificationSpecificEnum:
 				raise ValueError(f"Classification must be one from {list(ClassificationSpecificEnum)}")
@@ -158,7 +184,7 @@ class BasicAsset(Basic):
 		Returns:
 			str: The name of the asset if available, otherwise "Unnamed snippet".
 		"""
-		return self.asset.name if self.asset.name else "Unnamed snippet"
+		return self.asset.name if self.asset.name else "Unnamed material"
 	
 	@name.setter
 	def name(self, name: str):
@@ -196,7 +222,7 @@ class BasicAsset(Basic):
 		Returns:
 			Optional[Annotations]: The annotations if available, otherwise None.
 		"""
-		from . import BasicAnnotation
+		from .annotation import BasicAnnotation
 		if self.asset.annotations:
 			return [BasicAnnotation(AssetSnapshot.pieces_client,a) for a in self.asset.annotations.iterable]
 
@@ -208,7 +234,7 @@ class BasicAsset(Basic):
 		AssetSnapshot.pieces_client.assets_api.assets_delete_asset(self.id)
 
 	@classmethod
-	def create(cls,raw_content: str, metadata: Optional[FragmentMetadata] = None) -> str:
+	def create(cls,raw_content: str, metadata: Optional["FragmentMetadata"] = None) -> str:
 		"""
 		Create a new asset.
 
@@ -224,7 +250,7 @@ class BasicAsset(Basic):
 		created_asset_id = AssetSnapshot.pieces_client.assets_api.assets_create_new_asset(transferables=False, seed=seed).id
 		return created_asset_id
 
-	def share(self) -> Shares:
+	def share(self) -> "Shares":
 		"""
 		Generates a shareable link for the given asset.
 
@@ -235,7 +261,7 @@ class BasicAsset(Basic):
 
 
 	@classmethod
-	def share_raw_content(cls,raw_content:str) -> Shares:
+	def share_raw_content(cls,raw_content:str) -> "Shares":
 		"""
 		Generates a shareable link for the given user raw content.
 		Note: this will create an asset
@@ -255,7 +281,7 @@ class BasicAsset(Basic):
 
 		returns a list of BasicTag if there is a tag associated else None
 		"""
-		from . import BasicTag
+		from .tag import BasicTag
 		if self.asset.tags and self.asset.tags.iterable:
 			return [BasicTag(AssetSnapshot.pieces_client,tag) for tag in self.asset.tags.iterable]
 
@@ -271,7 +297,7 @@ class BasicAsset(Basic):
 
 	@property
 	def websites(self) -> Optional[List["BasicWebsite"]]:
-		from . import BasicWebsite
+		from .website import BasicWebsite
 		if self.asset.websites:
 			return [
 				BasicWebsite(AssetSnapshot.pieces_client,webstie) 
@@ -281,16 +307,16 @@ class BasicAsset(Basic):
 	@staticmethod
 	def search(query:str,search_type:Literal["fts","ncs","fuzzy"] = "fts") -> Optional[List["BasicAsset"]]:
 		"""
-	    Perform a search using either Full Text Search (FTS) or Neural Code Search (NCS) or Fuzzy search (fuzzy).
-	    
-	    Parameters:
-	        query (str): The search query string.
-	        search_type (Literal["fts", "ncs", "fuzzy"], optional): The type of search to perform.
-	            'fts' for Full Text Search (default) or 'ncs' for Neural Code Search.
-	    
-	    Returns:
-	        Optional[List["BasicAsset"]]: A list of search results or None if no results are found.
-	    """
+		Perform a search using either Full Text Search (FTS) or Neural Code Search (NCS) or Fuzzy search (fuzzy).
+		
+		Parameters:
+			query (str): The search query string.
+			search_type (Literal["fts", "ncs", "fuzzy"], optional): The type of search to perform.
+				'fts' for Full Text Search (default) or 'ncs' for Neural Code Search.
+		
+		Returns:
+			Optional[List["BasicAsset"]]: A list of search results or None if no results are found.
+		"""
 		if search_type == 'ncs':
 			results = AssetSnapshot.pieces_client.search_api.neural_code_search(query=query)
 		elif search_type == 'fts':
@@ -316,10 +342,15 @@ class BasicAsset(Basic):
 					return [BasicAsset(id) for id in combined_ids]
 
 	@staticmethod
-	def _get_seed(raw: str, metadata: Optional[FragmentMetadata] = None) -> Seed:
+	def _get_seed(raw: str, metadata: Optional["FragmentMetadata"] = None) -> "Seed":
+		from pieces_os_client.models.seeded_asset import SeededAsset
+		from pieces_os_client.models.seed import Seed
+		from pieces_os_client.models.seeded_format import SeededFormat
+		from pieces_os_client.models.seeded_fragment import SeededFragment
+		from pieces_os_client.models.transferable_string import TransferableString
 		return Seed(
 			asset=SeededAsset(
-				application=AssetSnapshot.pieces_client.tracked_application,
+				application=AssetSnapshot.pieces_client.application,
 				format=SeededFormat(
 					fragment=SeededFragment(
 						string=TransferableString(raw=raw),
@@ -346,7 +377,7 @@ class BasicAsset(Basic):
 		return self._ocr_from_format(format)
 
 	@staticmethod
-	def _get_ocr_format(src: Asset) -> Optional[Format]:
+	def _get_ocr_format(src: "Asset") -> Optional["Format"]:
 		"""
 		Get the OCR format of the asset.
 
@@ -362,7 +393,7 @@ class BasicAsset(Basic):
 		return next((element for element in src.formats.iterable if element.id == image_id), None)
 
 	@staticmethod
-	def _ocr_from_format(src: Optional[Format]) -> Optional[str]:
+	def _ocr_from_format(src: Optional["Format"]) -> Optional[str]:
 		"""
 		Extract OCR content from the format.
 
@@ -385,6 +416,7 @@ class BasicAsset(Basic):
 		"""
 			You need to either give the seed or the asset_id
 		"""
+		from pieces_os_client.models.linkify import Linkify
 		if asset:
 			kwargs = {"asset" : asset}
 		else:

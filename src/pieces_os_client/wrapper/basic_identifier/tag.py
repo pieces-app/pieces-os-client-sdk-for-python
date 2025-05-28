@@ -1,12 +1,10 @@
 from typing import TYPE_CHECKING, List, Optional
 
-from pieces_os_client.models.existent_metadata import ExistentMetadata
-from pieces_os_client.models.seeded_tag import SeededTag
-from pieces_os_client.models.tag import Tag
-
 from .basic import Basic
 
 if TYPE_CHECKING:
+	from pieces_os_client.models.seeded_tag import SeededTag
+	from pieces_os_client.models.tag import Tag
 	from .asset import BasicAsset
 	from ..client import PiecesClient
 
@@ -18,12 +16,12 @@ class BasicTag(Basic):
 	- pieces_client (PiecesClient): The client used to interact with the Pieces API.
 	- tag (Tag): The tag object associated with this BasicTag instance.
 	"""
-	def __init__(self, pieces_client: "PiecesClient", tag: Tag) -> None:
+	def __init__(self, pieces_client: "PiecesClient", tag: "Tag") -> None:
 		"""
 		Initializes a BasicTag instance.
 		
 		Args:
-		- tag (Tag): Pieces OS tag object
+		- tag (Tag): PiecesOS tag object
 		"""
 		self.tag = tag
 		self.pieces_client = pieces_client
@@ -53,11 +51,12 @@ class BasicTag(Basic):
 
 		Args:
 		- pieces_client: The PiecesClient object.
-		- raw_content: The content of the tag
+		- url: The URL of the website.
 
 		Returns:
 		- BasicWebsite: The existing BasicWebsite object if found, None otherwise.
 		"""
+		from pieces_os_client.models.existent_metadata import ExistentMetadata
 		existance = pieces_client.tags_api.tags_exists(ExistentMetadata(
 			value=raw_content
 		))
@@ -81,13 +80,14 @@ class BasicTag(Basic):
 		if tag:
 			return tag
 		else:
+			from pieces_os_client.models.seeded_tag import SeededTag
 			return cls.create(
 				pieces_client,
 				SeededTag(text=raw_content)
 			)
 
 	@staticmethod
-	def create(pieces_client: "PiecesClient", seeded_tag: SeededTag) -> "BasicTag":
+	def create(pieces_client: "PiecesClient", seeded_tag: "SeededTag") -> "BasicTag":
 		"""
 		Creates a new tag based on a seeded tag.
 
@@ -143,7 +143,7 @@ class BasicTag(Basic):
 		Returns:
 		- Optional[List["BasicAsset"]]: A list of BasicAsset objects associated with the tag.
 		"""
-		from . import BasicAsset
+		from .asset import BasicAsset
 		if self.tag.assets and self.tag.assets.iterable:
 			return [BasicAsset(asset.id) for asset in self.tag.assets.iterable]
 
@@ -171,7 +171,7 @@ class BasicTag(Basic):
 		"""
 		self.pieces_client.tags_api.tags_delete_specific_tag(self.tag.id)
 
-	def _edit_tag(self, tag: Tag):
+	def _edit_tag(self, tag: "Tag"):
 		"""
 		Edits the tag.
 

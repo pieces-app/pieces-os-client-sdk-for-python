@@ -3,11 +3,9 @@ from ..streamed_identifiers.range_snapshot import RangeSnapshot
 from .base_websocket import BaseWebsocket
 from websocket import WebSocketApp
 
-from pieces_os_client.models.streamed_identifiers import StreamedIdentifiers
-from pieces_os_client.models.range import Range
-
 if TYPE_CHECKING:
     from ..client import PiecesClient
+
 
 class RangesIdentifiersWS(BaseWebsocket):
     """
@@ -22,12 +20,15 @@ class RangesIdentifiersWS(BaseWebsocket):
         on_close (Optional[Callable[[WebSocketApp, str, str], None]]): Callback function to handle WebSocket closing.
     """
 
-    def __init__(self, pieces_client: "PiecesClient",
-                 on_range_update: Optional[Callable[[Range], None]] = None,
-                 on_range_remove: Optional[Callable[[Range], None]] = None,
-                 on_open_callback: Optional[Callable[[WebSocketApp], None]] = None,
-                 on_error: Optional[Callable[[WebSocketApp, Exception], None]] = None,
-                 on_close: Optional[Callable[[WebSocketApp, str, str], None]] = None):
+    def __init__(
+        self,
+        pieces_client: "PiecesClient",
+        on_range_update: Optional[Callable[["Range"], None]] = None,
+        on_range_remove: Optional[Callable[["Range"], None]] = None,
+        on_open_callback: Optional[Callable[[WebSocketApp], None]] = None,
+        on_error: Optional[Callable[[WebSocketApp, Exception], None]] = None,
+        on_close: Optional[Callable[[WebSocketApp, str, str], None]] = None,
+    ):
         """
         Initializes the RangesIdentifiersWS instance.
 
@@ -45,7 +46,13 @@ class RangesIdentifiersWS(BaseWebsocket):
         if on_range_remove:
             RangeSnapshot.on_remove_list.append(on_range_remove)
 
-        super().__init__(pieces_client, RangeSnapshot.streamed_identifiers_callback, on_open_callback, on_error, on_close)
+        super().__init__(
+            pieces_client,
+            RangeSnapshot.streamed_identifiers_callback,
+            on_open_callback,
+            on_error,
+            on_close,
+        )
         RangeSnapshot._initialized = self._initialized
 
     @property
@@ -66,9 +73,10 @@ class RangesIdentifiersWS(BaseWebsocket):
             ws (WebSocketApp): The WebSocket application instance.
             message (str): The incoming message in JSON format.
         """
+        from pieces_os_client.models.streamed_identifiers import StreamedIdentifiers
+
         self.on_message_callback(StreamedIdentifiers.from_json(message))
 
     @property
     def _is_initialized_on_open(self):
         return False
-
