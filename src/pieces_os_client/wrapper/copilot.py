@@ -132,7 +132,9 @@ class Copilot:
             use chat = None if you want to create a new conversation on asking
         """
         self._chat = chat
-        self.context.clear() # clear the context on changing the conversation
+        self.context.clear(
+            _notifiy=False
+        )  # clear the context on changing the conversation
         self._chat_id = chat._id if chat else None
 
 
