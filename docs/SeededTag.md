@@ -11,6 +11,7 @@ Name | Type | Description | Notes
 **mechanism** | [**MechanismEnum**](MechanismEnum.md) |  | [optional] 
 **category** | [**TagCategoryEnum**](TagCategoryEnum.md) |  | [optional] 
 **person** | **str** | uuid of the person, you want to add this tag too | [optional] 
+**tags_vector** | **List[float]** | This is the embedding for the format.(NEEDs to collectionection.vector) and specific here because we can only index on a single name NOTE: this the the vector index that corresponds the the couchbase lite index. | [optional] 
 
 ## Example
 

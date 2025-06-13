@@ -6,6 +6,7 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**workstream_summaries_specific_workstream_summary_snapshot**](WorkstreamSummaryApi.md#workstream_summaries_specific_workstream_summary_snapshot) | **GET** /workstream_summary/{workstream_summary} | /workstream_summary/{workstream_summary} [GET]
 [**workstream_summary_associate_anchor**](WorkstreamSummaryApi.md#workstream_summary_associate_anchor) | **POST** /workstream_summary/{workstream_summary}/anchors/associate/{anchor} | /workstream_summary/{workstream_summary}/anchors/associate/{anchor} [POST]
+[**workstream_summary_associate_annotation**](WorkstreamSummaryApi.md#workstream_summary_associate_annotation) | **POST** /workstream_summary/{workstream_summary}/annotations/associate/{annotation} | /workstream_summary/{workstream_summary}/annotations/associate/{annotation} [POST]
 [**workstream_summary_associate_asset**](WorkstreamSummaryApi.md#workstream_summary_associate_asset) | **POST** /workstream_summary/{workstream_summary}/assets/associate/{asset} | /workstream_summary/{workstream_summary}/assets/associate/{asset} [POST]
 [**workstream_summary_associate_conversation**](WorkstreamSummaryApi.md#workstream_summary_associate_conversation) | **POST** /workstream_summary/{workstream_summary}/conversations/associate/{conversation} | /workstream_summary/{workstream_summary}/conversations/associate/{conversation} [POST]
 [**workstream_summary_associate_conversation_message**](WorkstreamSummaryApi.md#workstream_summary_associate_conversation_message) | **POST** /workstream_summary/{workstream_summary}/messages/associate/{message} | /workstream_summary/{workstream_summary}/messages/associate/{message} [POST]
@@ -16,6 +17,7 @@ Method | HTTP request | Description
 [**workstream_summary_associate_workstream_event**](WorkstreamSummaryApi.md#workstream_summary_associate_workstream_event) | **POST** /workstream_summary/{workstream_summary}/workstream_events/associate/{workstream_event} | /workstream_summary/{workstream_summary}/workstream_events/associate/{workstream_event} [POST]
 [**workstream_summary_associate_workstream_pattern_engine_source**](WorkstreamSummaryApi.md#workstream_summary_associate_workstream_pattern_engine_source) | **POST** /workstream_summary/{workstream_summary}/workstream_pattern_engine/sources/associate/{source} | /workstream_summary/{workstream_summary}/workstream_pattern_engine/sources/associate/{source} [POST]
 [**workstream_summary_disassociate_anchor**](WorkstreamSummaryApi.md#workstream_summary_disassociate_anchor) | **POST** /workstream_summary/{workstream_summary}/anchors/disassociate/{anchor} | /workstream_summary/{workstream_summary}/anchors/disassociate/{anchor} [POST]
+[**workstream_summary_disassociate_annotation**](WorkstreamSummaryApi.md#workstream_summary_disassociate_annotation) | **POST** /workstream_summary/{workstream_summary}/annotations/disassociate/{annotation} | /workstream_summary/{workstream_summary}/annotations/disassociate/{annotation} [POST]
 [**workstream_summary_disassociate_asset**](WorkstreamSummaryApi.md#workstream_summary_disassociate_asset) | **POST** /workstream_summary/{workstream_summary}/assets/disassociate/{asset} | /workstream_summary/{workstream_summary}/assets/disassociate/{asset} [POST]
 [**workstream_summary_disassociate_conversation**](WorkstreamSummaryApi.md#workstream_summary_disassociate_conversation) | **POST** /workstream_summary/{workstream_summary}/conversations/disassociate/{conversation} | /workstream_summary/{workstream_summary}/conversations/disassociate/{conversation} [POST]
 [**workstream_summary_disassociate_conversation_message**](WorkstreamSummaryApi.md#workstream_summary_disassociate_conversation_message) | **POST** /workstream_summary/{workstream_summary}/messages/disassociate/{message} | /workstream_summary/{workstream_summary}/messages/disassociate/{message} [POST]
@@ -167,6 +169,84 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **workstream_summary** | **str**| This is a identifier that is used to identify a specific workstream_summary. | 
  **anchor** | **str**| This is the specific uuid of an anchor. | 
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[application](../README.md#application)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: text/plain
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**204** | No Content |  -  |
+**500** | Internal Server Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **workstream_summary_associate_annotation**
+> workstream_summary_associate_annotation(workstream_summary, annotation)
+
+/workstream_summary/{workstream_summary}/annotations/associate/{annotation} [POST]
+
+This will enable us to associate an annotation with a workstream summary.
+
+### Example
+
+* Api Key Authentication (application):
+```python
+import time
+import os
+import pieces_os_client
+from pieces_os_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to http://localhost:1000
+# See configuration.py for a list of all supported configuration parameters.
+configuration = pieces_os_client.Configuration(
+    host = "http://localhost:1000"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: application
+configuration.api_key['application'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['application'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with pieces_os_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = pieces_os_client.WorkstreamSummaryApi(api_client)
+    workstream_summary = 'workstream_summary_example' # str | This is a identifier that is used to identify a specific workstream_summary.
+    annotation = 'annotation_example' # str | This is a specific annotation uuid.
+
+    try:
+        # /workstream_summary/{workstream_summary}/annotations/associate/{annotation} [POST]
+        api_instance.workstream_summary_associate_annotation(workstream_summary, annotation)
+    except Exception as e:
+        print("Exception when calling WorkstreamSummaryApi->workstream_summary_associate_annotation: %s\n" % e)
+```
+
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **workstream_summary** | **str**| This is a identifier that is used to identify a specific workstream_summary. | 
+ **annotation** | **str**| This is a specific annotation uuid. | 
 
 ### Return type
 
@@ -947,6 +1027,84 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **workstream_summary** | **str**| This is a identifier that is used to identify a specific workstream_summary. | 
  **anchor** | **str**| This is the specific uuid of an anchor. | 
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[application](../README.md#application)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: text/plain
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**204** | No Content |  -  |
+**500** | Internal Server Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **workstream_summary_disassociate_annotation**
+> workstream_summary_disassociate_annotation(workstream_summary, annotation)
+
+/workstream_summary/{workstream_summary}/annotations/disassociate/{annotation} [POST]
+
+This will enable us to dissassociate an annotation from a workstream summary.
+
+### Example
+
+* Api Key Authentication (application):
+```python
+import time
+import os
+import pieces_os_client
+from pieces_os_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to http://localhost:1000
+# See configuration.py for a list of all supported configuration parameters.
+configuration = pieces_os_client.Configuration(
+    host = "http://localhost:1000"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: application
+configuration.api_key['application'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['application'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with pieces_os_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = pieces_os_client.WorkstreamSummaryApi(api_client)
+    workstream_summary = 'workstream_summary_example' # str | This is a identifier that is used to identify a specific workstream_summary.
+    annotation = 'annotation_example' # str | This is a specific annotation uuid.
+
+    try:
+        # /workstream_summary/{workstream_summary}/annotations/disassociate/{annotation} [POST]
+        api_instance.workstream_summary_disassociate_annotation(workstream_summary, annotation)
+    except Exception as e:
+        print("Exception when calling WorkstreamSummaryApi->workstream_summary_disassociate_annotation: %s\n" % e)
+```
+
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **workstream_summary** | **str**| This is a identifier that is used to identify a specific workstream_summary. | 
+ **annotation** | **str**| This is a specific annotation uuid. | 
 
 ### Return type
 

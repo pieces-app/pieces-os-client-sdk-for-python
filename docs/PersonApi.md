@@ -4,22 +4,108 @@ All URIs are relative to *http://localhost:1000*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**person_associate_additional_person**](PersonApi.md#person_associate_additional_person) | **POST** /person/{person}/persons/associate/{additional_person} | /person/{person}/persons/associate/{additional_person} [POST]
 [**person_associate_anchor**](PersonApi.md#person_associate_anchor) | **POST** /person/{person}/anchors/associate/{anchor} | /person/{person}/anchors/associate/{anchor} [POST]
+[**person_associate_annotation**](PersonApi.md#person_associate_annotation) | **POST** /person/{person}/annotations/associate/{annotation} | /person/{person}/annotations/associate/{annotation} [POST]
 [**person_associate_asset**](PersonApi.md#person_associate_asset) | **POST** /person/{person}/assets/associate/{asset} | /person/{person}/assets/associate/{asset} [POST]
 [**person_associate_message**](PersonApi.md#person_associate_message) | **POST** /person/{person}/messages/associate/{message} | /person/{person}/messages/associate/{message} [POST]
 [**person_associate_tag**](PersonApi.md#person_associate_tag) | **POST** /person/{person}/tags/associate/{tag} | /person/{person}/tags/associate/{tag} [POST]
 [**person_associate_website**](PersonApi.md#person_associate_website) | **POST** /person/{person}/websites/associate/{website} | /person/{person}/websites/associate/{website} [POST]
+[**person_associate_workstream_event**](PersonApi.md#person_associate_workstream_event) | **POST** /person/{person}/workstream_events/associate/{workstream_event} | /person/{person}/workstream_events/associate/{workstream_event} [POST]
+[**person_associate_workstream_pattern_engine_source**](PersonApi.md#person_associate_workstream_pattern_engine_source) | **POST** /person/{person}/workstream_pattern_engine/sources/associate/{source} | /person/{person}/workstream_pattern_engine/sources/associate/{source} [POST]
 [**person_associate_workstream_summary**](PersonApi.md#person_associate_workstream_summary) | **POST** /person/{person}/workstream_summaries/associate/{workstream_summary} | /person/{person}/workstream_summaries/associate/{workstream_summary} [POST]
+[**person_disassociate_additional_person**](PersonApi.md#person_disassociate_additional_person) | **POST** /person/{person}/persons/disassociate/{additional_person} | /person/{person}/persons/disassociate/{additional_person} [POST]
 [**person_disassociate_anchor**](PersonApi.md#person_disassociate_anchor) | **POST** /person/{person}/anchors/disassociate/{anchor} | /person/{person}/anchors/disassociate/{anchor} [POST]
+[**person_disassociate_annotation**](PersonApi.md#person_disassociate_annotation) | **POST** /person/{person}/annotations/disassociate/{annotation} | /person/{person}/annotations/disassociate/{annotation} [POST]
 [**person_disassociate_asset**](PersonApi.md#person_disassociate_asset) | **POST** /person/{person}/assets/disassociate/{asset} | /person/{person}/assets/disassociate/{asset} [POST]
 [**person_disassociate_message**](PersonApi.md#person_disassociate_message) | **POST** /person/{person}/messages/disassociate/{message} | /person/{person}/messages/disassociate/{message} [POST]
 [**person_disassociate_tag**](PersonApi.md#person_disassociate_tag) | **POST** /person/{person}/tags/disassociate/{tag} | /person/{person}/tags/disassociate/{tag} [POST]
 [**person_disassociate_website**](PersonApi.md#person_disassociate_website) | **POST** /person/{person}/websites/disassociate/{website} | /person/{person}/websites/disassociate/{website} [POST]
+[**person_disassociate_workstream_event**](PersonApi.md#person_disassociate_workstream_event) | **POST** /person/{person}/workstream_events/disassociate/{workstream_event} | /person/{person}/workstream_events/disassociate/{workstream_event} [POST]
+[**person_disassociate_workstream_pattern_engine_source**](PersonApi.md#person_disassociate_workstream_pattern_engine_source) | **POST** /person/{person}/workstream_pattern_engine/sources/disassociate/{source} | /person/{person}/workstream_pattern_engine/sources/disassociate/{source} [POST]
 [**person_disassociate_workstream_summary**](PersonApi.md#person_disassociate_workstream_summary) | **POST** /person/{person}/workstream_summaries/disassociate/{workstream_summary} | /person/{person}/workstream_summaries/disassociate/{workstream_summary} [POST]
 [**person_scores_increment**](PersonApi.md#person_scores_increment) | **POST** /person/{person}/scores/increment | &#39;/person/{person}/scores/increment&#39; [POST]
 [**person_snapshot**](PersonApi.md#person_snapshot) | **GET** /person/{person} | /person/{person} [GET]
 [**update_person**](PersonApi.md#update_person) | **POST** /person/update | /person/update [POST]
 
+
+# **person_associate_additional_person**
+> person_associate_additional_person(person, additional_person)
+
+/person/{person}/persons/associate/{additional_person} [POST]
+
+This will enable us to associate a person with another person.
+
+### Example
+
+* Api Key Authentication (application):
+```python
+import time
+import os
+import pieces_os_client
+from pieces_os_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to http://localhost:1000
+# See configuration.py for a list of all supported configuration parameters.
+configuration = pieces_os_client.Configuration(
+    host = "http://localhost:1000"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: application
+configuration.api_key['application'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['application'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with pieces_os_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = pieces_os_client.PersonApi(api_client)
+    person = 'person_example' # str | This is a uuid that represents a person.
+    additional_person = 'additional_person_example' # str | This is the uuid of a additional person.  note: we have additional person because we can only a route parameter a single time in 1 route       so this is required for the Persons<>Persons association
+
+    try:
+        # /person/{person}/persons/associate/{additional_person} [POST]
+        api_instance.person_associate_additional_person(person, additional_person)
+    except Exception as e:
+        print("Exception when calling PersonApi->person_associate_additional_person: %s\n" % e)
+```
+
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **person** | **str**| This is a uuid that represents a person. | 
+ **additional_person** | **str**| This is the uuid of a additional person.  note: we have additional person because we can only a route parameter a single time in 1 route       so this is required for the Persons&lt;&gt;Persons association | 
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[application](../README.md#application)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: text/plain
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**204** | No Content |  -  |
+**500** | Internal Server Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **person_associate_anchor**
 > person_associate_anchor(person, anchor)
@@ -77,6 +163,84 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **person** | **str**| This is a uuid that represents a person. | 
  **anchor** | **str**| This is the specific uuid of an anchor. | 
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[application](../README.md#application)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: text/plain
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**204** | No Content |  -  |
+**500** | Internal Server Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **person_associate_annotation**
+> person_associate_annotation(person, annotation)
+
+/person/{person}/annotations/associate/{annotation} [POST]
+
+This will associate an annotation with a person.
+
+### Example
+
+* Api Key Authentication (application):
+```python
+import time
+import os
+import pieces_os_client
+from pieces_os_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to http://localhost:1000
+# See configuration.py for a list of all supported configuration parameters.
+configuration = pieces_os_client.Configuration(
+    host = "http://localhost:1000"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: application
+configuration.api_key['application'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['application'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with pieces_os_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = pieces_os_client.PersonApi(api_client)
+    person = 'person_example' # str | This is a uuid that represents a person.
+    annotation = 'annotation_example' # str | This is a specific annotation uuid.
+
+    try:
+        # /person/{person}/annotations/associate/{annotation} [POST]
+        api_instance.person_associate_annotation(person, annotation)
+    except Exception as e:
+        print("Exception when calling PersonApi->person_associate_annotation: %s\n" % e)
+```
+
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **person** | **str**| This is a uuid that represents a person. | 
+ **annotation** | **str**| This is a specific annotation uuid. | 
 
 ### Return type
 
@@ -411,6 +575,162 @@ void (empty response body)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **person_associate_workstream_event**
+> person_associate_workstream_event(person, workstream_event)
+
+/person/{person}/workstream_events/associate/{workstream_event} [POST]
+
+This will enable us to associate a workstream event with a person.
+
+### Example
+
+* Api Key Authentication (application):
+```python
+import time
+import os
+import pieces_os_client
+from pieces_os_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to http://localhost:1000
+# See configuration.py for a list of all supported configuration parameters.
+configuration = pieces_os_client.Configuration(
+    host = "http://localhost:1000"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: application
+configuration.api_key['application'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['application'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with pieces_os_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = pieces_os_client.PersonApi(api_client)
+    person = 'person_example' # str | This is a uuid that represents a person.
+    workstream_event = 'workstream_event_example' # str | This is a identifier that is used to identify a specific workstream_event.
+
+    try:
+        # /person/{person}/workstream_events/associate/{workstream_event} [POST]
+        api_instance.person_associate_workstream_event(person, workstream_event)
+    except Exception as e:
+        print("Exception when calling PersonApi->person_associate_workstream_event: %s\n" % e)
+```
+
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **person** | **str**| This is a uuid that represents a person. | 
+ **workstream_event** | **str**| This is a identifier that is used to identify a specific workstream_event. | 
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[application](../README.md#application)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: text/plain
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**204** | No Content |  -  |
+**500** | Internal Server Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **person_associate_workstream_pattern_engine_source**
+> person_associate_workstream_pattern_engine_source(person, source)
+
+/person/{person}/workstream_pattern_engine/sources/associate/{source} [POST]
+
+This will enable us to associate a source with a person.
+
+### Example
+
+* Api Key Authentication (application):
+```python
+import time
+import os
+import pieces_os_client
+from pieces_os_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to http://localhost:1000
+# See configuration.py for a list of all supported configuration parameters.
+configuration = pieces_os_client.Configuration(
+    host = "http://localhost:1000"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: application
+configuration.api_key['application'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['application'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with pieces_os_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = pieces_os_client.PersonApi(api_client)
+    person = 'person_example' # str | This is a uuid that represents a person.
+    source = 'source_example' # str | This is a identifier that is used to identify a specific WorkstreamPatternEngineSource
+
+    try:
+        # /person/{person}/workstream_pattern_engine/sources/associate/{source} [POST]
+        api_instance.person_associate_workstream_pattern_engine_source(person, source)
+    except Exception as e:
+        print("Exception when calling PersonApi->person_associate_workstream_pattern_engine_source: %s\n" % e)
+```
+
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **person** | **str**| This is a uuid that represents a person. | 
+ **source** | **str**| This is a identifier that is used to identify a specific WorkstreamPatternEngineSource | 
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[application](../README.md#application)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: text/plain
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**204** | No Content |  -  |
+**500** | Internal Server Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **person_associate_workstream_summary**
 > person_associate_workstream_summary(person, workstream_summary)
 
@@ -489,6 +809,84 @@ void (empty response body)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **person_disassociate_additional_person**
+> person_disassociate_additional_person(person, additional_person)
+
+/person/{person}/persons/disassociate/{additional_person} [POST]
+
+This will enable us to disassociate a person from another person.
+
+### Example
+
+* Api Key Authentication (application):
+```python
+import time
+import os
+import pieces_os_client
+from pieces_os_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to http://localhost:1000
+# See configuration.py for a list of all supported configuration parameters.
+configuration = pieces_os_client.Configuration(
+    host = "http://localhost:1000"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: application
+configuration.api_key['application'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['application'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with pieces_os_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = pieces_os_client.PersonApi(api_client)
+    person = 'person_example' # str | This is a uuid that represents a person.
+    additional_person = 'additional_person_example' # str | This is the uuid of a additional person.  note: we have additional person because we can only a route parameter a single time in 1 route       so this is required for the Persons<>Persons association
+
+    try:
+        # /person/{person}/persons/disassociate/{additional_person} [POST]
+        api_instance.person_disassociate_additional_person(person, additional_person)
+    except Exception as e:
+        print("Exception when calling PersonApi->person_disassociate_additional_person: %s\n" % e)
+```
+
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **person** | **str**| This is a uuid that represents a person. | 
+ **additional_person** | **str**| This is the uuid of a additional person.  note: we have additional person because we can only a route parameter a single time in 1 route       so this is required for the Persons&lt;&gt;Persons association | 
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[application](../README.md#application)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: text/plain
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**204** | No Content |  -  |
+**500** | Internal Server Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **person_disassociate_anchor**
 > person_disassociate_anchor(person, anchor)
 
@@ -545,6 +943,84 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **person** | **str**| This is a uuid that represents a person. | 
  **anchor** | **str**| This is the specific uuid of an anchor. | 
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[application](../README.md#application)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: text/plain
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**204** | No Content |  -  |
+**500** | Internal Server Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **person_disassociate_annotation**
+> person_disassociate_annotation(person, annotation)
+
+/person/{person}/annotations/disassociate/{annotation} [POST]
+
+This will enable us to dissassociate an annotation from a person.
+
+### Example
+
+* Api Key Authentication (application):
+```python
+import time
+import os
+import pieces_os_client
+from pieces_os_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to http://localhost:1000
+# See configuration.py for a list of all supported configuration parameters.
+configuration = pieces_os_client.Configuration(
+    host = "http://localhost:1000"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: application
+configuration.api_key['application'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['application'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with pieces_os_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = pieces_os_client.PersonApi(api_client)
+    person = 'person_example' # str | This is a uuid that represents a person.
+    annotation = 'annotation_example' # str | This is a specific annotation uuid.
+
+    try:
+        # /person/{person}/annotations/disassociate/{annotation} [POST]
+        api_instance.person_disassociate_annotation(person, annotation)
+    except Exception as e:
+        print("Exception when calling PersonApi->person_disassociate_annotation: %s\n" % e)
+```
+
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **person** | **str**| This is a uuid that represents a person. | 
+ **annotation** | **str**| This is a specific annotation uuid. | 
 
 ### Return type
 
@@ -857,6 +1333,162 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **person** | **str**| This is a uuid that represents a person. | 
  **website** | **str**| website id | 
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[application](../README.md#application)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: text/plain
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**204** | No Content |  -  |
+**500** | Internal Server Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **person_disassociate_workstream_event**
+> person_disassociate_workstream_event(person, workstream_event)
+
+/person/{person}/workstream_events/disassociate/{workstream_event} [POST]
+
+This will enable us to disassociate a workstream event from a person.
+
+### Example
+
+* Api Key Authentication (application):
+```python
+import time
+import os
+import pieces_os_client
+from pieces_os_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to http://localhost:1000
+# See configuration.py for a list of all supported configuration parameters.
+configuration = pieces_os_client.Configuration(
+    host = "http://localhost:1000"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: application
+configuration.api_key['application'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['application'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with pieces_os_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = pieces_os_client.PersonApi(api_client)
+    person = 'person_example' # str | This is a uuid that represents a person.
+    workstream_event = 'workstream_event_example' # str | This is a identifier that is used to identify a specific workstream_event.
+
+    try:
+        # /person/{person}/workstream_events/disassociate/{workstream_event} [POST]
+        api_instance.person_disassociate_workstream_event(person, workstream_event)
+    except Exception as e:
+        print("Exception when calling PersonApi->person_disassociate_workstream_event: %s\n" % e)
+```
+
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **person** | **str**| This is a uuid that represents a person. | 
+ **workstream_event** | **str**| This is a identifier that is used to identify a specific workstream_event. | 
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[application](../README.md#application)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: text/plain
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**204** | No Content |  -  |
+**500** | Internal Server Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **person_disassociate_workstream_pattern_engine_source**
+> person_disassociate_workstream_pattern_engine_source(person, source)
+
+/person/{person}/workstream_pattern_engine/sources/disassociate/{source} [POST]
+
+This will enable us to disassociate a source from a person.
+
+### Example
+
+* Api Key Authentication (application):
+```python
+import time
+import os
+import pieces_os_client
+from pieces_os_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to http://localhost:1000
+# See configuration.py for a list of all supported configuration parameters.
+configuration = pieces_os_client.Configuration(
+    host = "http://localhost:1000"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: application
+configuration.api_key['application'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['application'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with pieces_os_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = pieces_os_client.PersonApi(api_client)
+    person = 'person_example' # str | This is a uuid that represents a person.
+    source = 'source_example' # str | This is a identifier that is used to identify a specific WorkstreamPatternEngineSource
+
+    try:
+        # /person/{person}/workstream_pattern_engine/sources/disassociate/{source} [POST]
+        api_instance.person_disassociate_workstream_pattern_engine_source(person, source)
+    except Exception as e:
+        print("Exception when calling PersonApi->person_disassociate_workstream_pattern_engine_source: %s\n" % e)
+```
+
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **person** | **str**| This is a uuid that represents a person. | 
+ **source** | **str**| This is a identifier that is used to identify a specific WorkstreamPatternEngineSource | 
 
 ### Return type
 

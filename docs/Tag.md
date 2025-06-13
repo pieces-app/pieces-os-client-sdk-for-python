@@ -21,6 +21,11 @@ Name | Type | Description | Notes
 **summaries** | [**FlattenedWorkstreamSummaries**](FlattenedWorkstreamSummaries.md) |  | [optional] 
 **workstream_events** | [**FlattenedWorkstreamEvents**](FlattenedWorkstreamEvents.md) |  | [optional] 
 **messages** | [**FlattenedConversationMessages**](FlattenedConversationMessages.md) |  | [optional] 
+**annotations** | [**FlattenedAnnotations**](FlattenedAnnotations.md) |  | [optional] 
+**tags_vector** | **List[float]** | This is the embedding for the format.(NEEDs to collectionection.vector) and specific here because we can only index on a single name NOTE: this the the vector index that corresponds the the couchbase lite index. | [optional] 
+**source_windows** | [**FlattenedWorkstreamPatternEngineSourceWindows**](FlattenedWorkstreamPatternEngineSourceWindows.md) |  | [optional] 
+**websites** | [**FlattenedWebsites**](FlattenedWebsites.md) |  | [optional] 
+**anchors** | [**FlattenedAnchors**](FlattenedAnchors.md) |  | [optional] 
 
 ## Example
 

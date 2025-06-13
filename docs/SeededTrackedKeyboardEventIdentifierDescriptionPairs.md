@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
-**assets_list_refreshed** | **str** |  | [optional] 
+**assets_list_refreshed** | **str** |  | [optional] [default to 'UNKNOWN']
 
 ## Example
 

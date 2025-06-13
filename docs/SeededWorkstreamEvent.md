@@ -13,9 +13,12 @@ Name | Type | Description | Notes
 **summary** | [**ReferencedWorkstreamSummary**](ReferencedWorkstreamSummary.md) |  | [optional] 
 **internal_identifier** | **str** | This is used to override the event identifier, if this was an event that was originally in the internal events collection. | [optional] 
 **readable** | **str** |  | [optional] 
-**workstream_events_vector** | **List[float]** | This is the embedding for the format.(NEEDs to connection.vector) and specific here because we can only index on a single name | [optional] 
+**workstream_events_vector** | **List[float]** | This is the embedding for the format.(NEEDs to connection.vector) and specific here because we can only index on a single name NOTE: this the the vector index that corresponds the the couchbase lite index. | [optional] 
 **processing** | [**CapabilitiesEnum**](CapabilitiesEnum.md) |  | [optional] 
 **tags** | [**FlattenedTags**](FlattenedTags.md) |  | [optional] 
+**anchors** | [**FlattenedAnchors**](FlattenedAnchors.md) |  | [optional] 
+**websites** | [**FlattenedWebsites**](FlattenedWebsites.md) |  | [optional] 
+**persons** | [**FlattenedPersons**](FlattenedPersons.md) |  | [optional] 
 
 ## Example
 

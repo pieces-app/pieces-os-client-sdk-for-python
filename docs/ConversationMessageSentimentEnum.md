@@ -4,6 +4,8 @@ This will describe the sentiment of a specific message ie if the message was lik
 
 ## Enum
 
+* `UNKNOWN` (value: `'UNKNOWN'`)
+
 * `LIKE` (value: `'LIKE'`)
 
 * `DISLIKE` (value: `'DISLIKE'`)

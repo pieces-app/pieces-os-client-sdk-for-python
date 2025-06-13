@@ -4,6 +4,8 @@ This will let us know how an asset was uploaded.  MANUAL: this is an event such 
 
 ## Enum
 
+* `UNKNOWN` (value: `'UNKNOWN'`)
+
 * `MANUAL` (value: `'MANUAL'`)
 
 * `RECOMMENDED` (value: `'RECOMMENDED'`)
@@ -14,7 +16,7 @@ This will let us know how an asset was uploaded.  MANUAL: this is an event such 
 
 * `DELETED` (value: `'DELETED'`)
 
-* `UNKNOWN` (value: `'UNKNOWN'`)
+* `EXTERNAL_AGENT` (value: `'EXTERNAL_AGENT'`)
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

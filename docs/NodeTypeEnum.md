@@ -4,6 +4,8 @@ This describes the type of a node ie an asset, tag, website, format... ETC
 
 ## Enum
 
+* `UNKNOWN` (value: `'UNKNOWN'`)
+
 * `TAG` (value: `'TAG'`)
 
 * `WEBSITE` (value: `'WEBSITE'`)

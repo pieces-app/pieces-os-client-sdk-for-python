@@ -4,6 +4,8 @@ This is a Model used for the Model class. This will be used to describe the prov
 
 ## Enum
 
+* `UNKNOWN` (value: `'UNKNOWN'`)
+
 * `APPLE` (value: `'APPLE'`)
 
 * `AMAZON` (value: `'AMAZON'`)
@@ -58,7 +60,7 @@ This is a Model used for the Model class. This will be used to describe the prov
 
 * `PERPLEXITY` (value: `'PERPLEXITY'`)
 
-* `UNKNOWN` (value: `'UNKNOWN'`)
+* `MINISHLABS` (value: `'MINISHLABS'`)
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

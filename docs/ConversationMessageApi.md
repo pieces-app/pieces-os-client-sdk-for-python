@@ -149,7 +149,7 @@ with pieces_os_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pieces_os_client.ConversationMessageApi(api_client)
     message = 'message_example' # str | This is the uuid of a message.
-    additional_message = 'additional_message_example' # str | In the case of 2 route params we can use the additional prefix.
+    additional_message = 'additional_message_example' # str | This is the uuid of a additional message.  note: we have additional message because we can only a route parameter a single time in 1 route       so this is required for the Messages<>Messages association
 
     try:
         # /message/{message}/messages/associate/{additional_message} [POST]
@@ -165,7 +165,7 @@ with pieces_os_client.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **message** | **str**| This is the uuid of a message. | 
- **additional_message** | **str**| In the case of 2 route params we can use the additional prefix. | 
+ **additional_message** | **str**| This is the uuid of a additional message.  note: we have additional message because we can only a route parameter a single time in 1 route       so this is required for the Messages&lt;&gt;Messages association | 
 
 ### Return type
 
@@ -695,7 +695,7 @@ with pieces_os_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pieces_os_client.ConversationMessageApi(api_client)
     message = 'message_example' # str | This is the uuid of a message.
-    additional_message = 'additional_message_example' # str | In the case of 2 route params we can use the additional prefix.
+    additional_message = 'additional_message_example' # str | This is the uuid of a additional message.  note: we have additional message because we can only a route parameter a single time in 1 route       so this is required for the Messages<>Messages association
 
     try:
         # /message/{message}/messages/disassociate/{additional_message} [POST]
@@ -711,7 +711,7 @@ with pieces_os_client.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **message** | **str**| This is the uuid of a message. | 
- **additional_message** | **str**| In the case of 2 route params we can use the additional prefix. | 
+ **additional_message** | **str**| This is the uuid of a additional message.  note: we have additional message because we can only a route parameter a single time in 1 route       so this is required for the Messages&lt;&gt;Messages association | 
 
 ### Return type
 
@@ -1203,7 +1203,7 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **message_associate_annotation**
-> message_associate_annotation(annotation, message)
+> message_associate_annotation(message, annotation)
 
 /message/{message}/annotations/associate/{annotation} [POST]
 
@@ -1240,12 +1240,12 @@ configuration.api_key['application'] = os.environ["API_KEY"]
 with pieces_os_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pieces_os_client.ConversationMessageApi(api_client)
-    annotation = 'annotation_example' # str | This is a specific annotation uuid.
     message = 'message_example' # str | This is the uuid of a message.
+    annotation = 'annotation_example' # str | This is a specific annotation uuid.
 
     try:
         # /message/{message}/annotations/associate/{annotation} [POST]
-        api_instance.message_associate_annotation(annotation, message)
+        api_instance.message_associate_annotation(message, annotation)
     except Exception as e:
         print("Exception when calling ConversationMessageApi->message_associate_annotation: %s\n" % e)
 ```
@@ -1256,8 +1256,8 @@ with pieces_os_client.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **annotation** | **str**| This is a specific annotation uuid. | 
  **message** | **str**| This is the uuid of a message. | 
+ **annotation** | **str**| This is a specific annotation uuid. | 
 
 ### Return type
 
@@ -1515,7 +1515,7 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **message_disassociate_annotation**
-> message_disassociate_annotation(annotation, message)
+> message_disassociate_annotation(message, annotation)
 
 /message/{message}/annotations/disassociate/{annotation} [POST]
 
@@ -1552,12 +1552,12 @@ configuration.api_key['application'] = os.environ["API_KEY"]
 with pieces_os_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pieces_os_client.ConversationMessageApi(api_client)
-    annotation = 'annotation_example' # str | This is a specific annotation uuid.
     message = 'message_example' # str | This is the uuid of a message.
+    annotation = 'annotation_example' # str | This is a specific annotation uuid.
 
     try:
         # /message/{message}/annotations/disassociate/{annotation} [POST]
-        api_instance.message_disassociate_annotation(annotation, message)
+        api_instance.message_disassociate_annotation(message, annotation)
     except Exception as e:
         print("Exception when calling ConversationMessageApi->message_disassociate_annotation: %s\n" % e)
 ```
@@ -1568,8 +1568,8 @@ with pieces_os_client.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **annotation** | **str**| This is a specific annotation uuid. | 
  **message** | **str**| This is the uuid of a message. | 
+ **annotation** | **str**| This is a specific annotation uuid. | 
 
 ### Return type
 

@@ -4,6 +4,8 @@ This is the enum that is use to describe the category of our Sensitive Model.
 
 ## Enum
 
+* `UNKNOWN` (value: `'UNKNOWN'`)
+
 * `SECRET` (value: `'SECRET'`)
 
 * `API_KEY` (value: `'API_KEY'`)

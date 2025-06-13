@@ -131,7 +131,7 @@ with pieces_os_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pieces_os_client.ActivityApi(api_client)
     pseudo = True # bool | This is helper boolean that will give you the ability to also include your pseudo assets, we will always default to false. (optional)
-    activity_filter_enum = 'activity_filter_enum_example' # str | This is an ActivityFilterEnum as a optional filter. Ensure you update ActivityFilterEnum if this is updated. (optional)
+    activity_filter_enum = 'UNKNOWN' # str | This is an ActivityFilterEnum as a optional filter. Ensure you update ActivityFilterEnum if this is updated. (optional) (default to 'UNKNOWN')
 
     try:
         # /activity/identifiers [GET]
@@ -149,7 +149,7 @@ with pieces_os_client.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **pseudo** | **bool**| This is helper boolean that will give you the ability to also include your pseudo assets, we will always default to false. | [optional] 
- **activity_filter_enum** | **str**| This is an ActivityFilterEnum as a optional filter. Ensure you update ActivityFilterEnum if this is updated. | [optional] 
+ **activity_filter_enum** | **str**| This is an ActivityFilterEnum as a optional filter. Ensure you update ActivityFilterEnum if this is updated. | [optional] [default to &#39;UNKNOWN&#39;]
 
 ### Return type
 

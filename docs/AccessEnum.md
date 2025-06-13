@@ -3,6 +3,8 @@
 
 ## Enum
 
+* `UNKNOWN` (value: `'UNKNOWN'`)
+
 * `PUBLIC` (value: `'PUBLIC'`)
 
 * `PRIVATE` (value: `'PRIVATE'`)

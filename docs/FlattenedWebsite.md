@@ -20,6 +20,11 @@ Name | Type | Description | Notes
 **score** | [**Score**](Score.md) |  | [optional] 
 **summaries** | [**FlattenedWorkstreamSummaries**](FlattenedWorkstreamSummaries.md) |  | [optional] 
 **messages** | [**FlattenedConversationMessages**](FlattenedConversationMessages.md) |  | [optional] 
+**annotations** | [**FlattenedAnnotations**](FlattenedAnnotations.md) |  | [optional] 
+**workstream_events** | [**FlattenedWorkstreamEvents**](FlattenedWorkstreamEvents.md) |  | [optional] 
+**sources** | [**FlattenedIdentifiedWorkstreamPatternEngineSources**](FlattenedIdentifiedWorkstreamPatternEngineSources.md) |  | [optional] 
+**source_windows** | [**FlattenedWorkstreamPatternEngineSourceWindows**](FlattenedWorkstreamPatternEngineSourceWindows.md) |  | [optional] 
+**tags** | [**FlattenedTags**](FlattenedTags.md) |  | [optional] 
 
 ## Example
 

@@ -5,8 +5,8 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
-**adoption_install** | **str** |  | [optional] 
-**adoption_uninstall** | **str** |  | [optional] 
+**adoption_install** | **str** |  | [optional] [default to 'UNKNOWN']
+**adoption_uninstall** | **str** |  | [optional] [default to 'UNKNOWN']
 
 ## Example
 

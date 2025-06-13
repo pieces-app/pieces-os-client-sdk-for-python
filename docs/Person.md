@@ -23,6 +23,9 @@ Name | Type | Description | Notes
 **summaries** | [**FlattenedWorkstreamSummaries**](FlattenedWorkstreamSummaries.md) |  | [optional] 
 **anchors** | [**FlattenedAnchors**](FlattenedAnchors.md) |  | [optional] 
 **messages** | [**FlattenedConversationMessages**](FlattenedConversationMessages.md) |  | [optional] 
+**persons** | [**FlattenedPersons**](FlattenedPersons.md) |  | [optional] 
+**workstream_events** | [**FlattenedWorkstreamEvents**](FlattenedWorkstreamEvents.md) |  | [optional] 
+**sources** | [**FlattenedIdentifiedWorkstreamPatternEngineSources**](FlattenedIdentifiedWorkstreamPatternEngineSources.md) |  | [optional] 
 
 ## Example
 
