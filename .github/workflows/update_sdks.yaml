@@ -31,7 +31,7 @@ jobs:
 
       - name: Clone generated_runtime repository
         run: |
-          git clone https://github.com/open-runtime/generated_runtime.git
+          git clone https://${{ secrets.GENERATED_RUNTIME_TOKEN }}@github.com/open-runtime/generated_runtime.git
 
       - name: Generate SDK
         run: |
