@@ -23,6 +23,10 @@ Name | Type | Description | Notes
 **anchor_folders** | **int** |  | 
 **isr_reports** | **int** |  | 
 **requests** | **int** |  | [optional] 
+**workstream_events** | **int** |  | [optional] 
+**workstream_summaries** | **int** |  | [optional] 
+**workstream_pattern_engine_sources** | **int** |  | [optional] 
+**workstream_pattern_engine_status** | [**WorkstreamPatternEngineStatus**](WorkstreamPatternEngineStatus.md) |  | [optional] 
 
 ## Example
 

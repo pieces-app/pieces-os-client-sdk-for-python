@@ -4,13 +4,13 @@ This is a simple enum used to determine the status of the Updating process.(of P
 
 ## Enum
 
+* `UNKNOWN` (value: `'UNKNOWN'`)
+
 * `READY_TO_RESTART` (value: `'READY_TO_RESTART'`)
 
 * `AVAILABLE` (value: `'AVAILABLE'`)
 
 * `DOWNLOADING` (value: `'DOWNLOADING'`)
-
-* `UNKNOWN` (value: `'UNKNOWN'`)
 
 * `UP_TO_DATE` (value: `'UP_TO_DATE'`)
 

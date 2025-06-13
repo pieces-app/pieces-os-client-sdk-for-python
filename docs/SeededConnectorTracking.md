@@ -15,6 +15,8 @@ Name | Type | Description | Notes
 **ml** | [**SeededTrackedMachineLearningEvent**](SeededTrackedMachineLearningEvent.md) |  | [optional] 
 **adoption** | [**SeededTrackedAdoptionEvent**](SeededTrackedAdoptionEvent.md) |  | [optional] 
 **conversation** | [**SeededTrackedConversationEvent**](SeededTrackedConversationEvent.md) |  | [optional] 
+**conversation_message** | [**SeededTrackedConversationMessageEvent**](SeededTrackedConversationMessageEvent.md) |  | [optional] 
+**workstream_summary** | [**SeededTrackedWorkstreamSummaryEvent**](SeededTrackedWorkstreamSummaryEvent.md) |  | [optional] 
 
 ## Example
 

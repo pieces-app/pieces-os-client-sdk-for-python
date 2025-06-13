@@ -20,6 +20,9 @@ Name | Type | Description | Notes
 **summaries** | [**FlattenedWorkstreamSummaries**](FlattenedWorkstreamSummaries.md) |  | [optional] 
 **persons** | [**FlattenedPersons**](FlattenedPersons.md) |  | [optional] 
 **messages** | [**FlattenedConversationMessages**](FlattenedConversationMessages.md) |  | [optional] 
+**workstream_events** | [**FlattenedWorkstreamEvents**](FlattenedWorkstreamEvents.md) |  | [optional] 
+**sources** | [**FlattenedIdentifiedWorkstreamPatternEngineSources**](FlattenedIdentifiedWorkstreamPatternEngineSources.md) |  | [optional] 
+**tags** | [**FlattenedTags**](FlattenedTags.md) |  | [optional] 
 
 ## Example
 

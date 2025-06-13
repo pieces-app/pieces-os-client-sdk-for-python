@@ -4,18 +4,184 @@ All URIs are relative to *http://localhost:1000*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**workstream_event_associate_anchor**](WorkstreamEventApi.md#workstream_event_associate_anchor) | **POST** /workstream_event/{workstream_event}/anchors/associate/{anchor} | /workstream_event/{workstream_event}/anchors/associate/{anchor} [POST]
+[**workstream_event_associate_annotation**](WorkstreamEventApi.md#workstream_event_associate_annotation) | **POST** /workstream_event/{workstream_event}/annotations/associate/{annotation} | /workstream_event/{workstream_event}/annotations/associate/{annotation} [POST]
 [**workstream_event_associate_conversation_message**](WorkstreamEventApi.md#workstream_event_associate_conversation_message) | **POST** /workstream_event/{workstream_event}/messages/associate/{message} | /workstream_event/{workstream_event}/messages/associate/{message} [POST]
+[**workstream_event_associate_person**](WorkstreamEventApi.md#workstream_event_associate_person) | **POST** /workstream_event/{workstream_event}/persons/associate/{person} | /workstream_event/{workstream_event}/persons/associate/{person} [POST]
+[**workstream_event_associate_source_window**](WorkstreamEventApi.md#workstream_event_associate_source_window) | **POST** /workstream_event/{workstream_event}/workstream_pattern_engine/source_windows/associate/{source_window} | /workstream_event/{workstream_event}/workstream_pattern_engine/source_windows/associate/{source_window} [POST]
 [**workstream_event_associate_tag**](WorkstreamEventApi.md#workstream_event_associate_tag) | **POST** /workstream_event/{workstream_event}/tags/associate/{tag} | /Workstream_event/{workstream_event}/tags/associate/{tag} [POST]
+[**workstream_event_associate_website**](WorkstreamEventApi.md#workstream_event_associate_website) | **POST** /workstream_event/{workstream_event}/websites/associate/{website} | /workstream_event/{workstream_event}/websites/associate/{website} [POST]
 [**workstream_event_associate_workstream_pattern_engine_source**](WorkstreamEventApi.md#workstream_event_associate_workstream_pattern_engine_source) | **POST** /workstream_event/{workstream_event}/workstream_pattern_engine/sources/associate/{source} | /workstream_event/{workstream_event}/workstream_pattern_engine/sources/associate/{source} [POST]
 [**workstream_event_associate_workstream_summary**](WorkstreamEventApi.md#workstream_event_associate_workstream_summary) | **POST** /workstream_event/{workstream_event}/workstream_summaries/associate/{workstream_summary} | /workstream_event/{workstream_event}/workstream_summaries/associate/{workstream_summary} [POST]
+[**workstream_event_disassociate_anchor**](WorkstreamEventApi.md#workstream_event_disassociate_anchor) | **POST** /workstream_event/{workstream_event}/anchors/disassociate/{anchor} | /workstream_event/{workstream_event}/anchors/disassociate/{anchor} [POST]
+[**workstream_event_disassociate_annotation**](WorkstreamEventApi.md#workstream_event_disassociate_annotation) | **POST** /workstream_event/{workstream_event}/annotations/disassociate/{annotation} | /workstream_event/{workstream_event}/annotations/disassociate/{annotation} [POST]
 [**workstream_event_disassociate_conversation_message**](WorkstreamEventApi.md#workstream_event_disassociate_conversation_message) | **POST** /workstream_event/{workstream_event}/messages/disassociate/{message} | /workstream_event/{workstream_event}/messages/disassociate/{message} [POST]
+[**workstream_event_disassociate_person**](WorkstreamEventApi.md#workstream_event_disassociate_person) | **POST** /workstream_event/{workstream_event}/persons/disassociate/{person} | /workstream_event/{workstream_event}/persons/disassociate/{person} [POST]
+[**workstream_event_disassociate_source_window**](WorkstreamEventApi.md#workstream_event_disassociate_source_window) | **POST** /workstream_event/{workstream_event}/workstream_pattern_engine/source_windows/disassociate/{source_window} | /workstream_event/{workstream_event}/workstream_pattern_engine/source_windows/disassociate/{source_window} [POST]
 [**workstream_event_disassociate_tag**](WorkstreamEventApi.md#workstream_event_disassociate_tag) | **POST** /workstream_event/{workstream_event}/tags/disassociate/{tag} | /workstream_event/{workstream_event}/tags/disassociate/{tag} [POST]
+[**workstream_event_disassociate_website**](WorkstreamEventApi.md#workstream_event_disassociate_website) | **POST** /workstream_event/{workstream_event}/websites/disassociate/{website} | /workstream_event/{workstream_event}/websites/disassociate/{website} [POST]
 [**workstream_event_disassociate_workstream_pattern_engine_source**](WorkstreamEventApi.md#workstream_event_disassociate_workstream_pattern_engine_source) | **POST** /workstream_event/{workstream_event}/workstream_pattern_engine/sources/disassociate/{source} | /workstream_event/{workstream_event}/workstream_pattern_engine/sources/disassociate/{source} [POST]
 [**workstream_event_disassociate_workstream_summary**](WorkstreamEventApi.md#workstream_event_disassociate_workstream_summary) | **POST** /workstream_event/{workstream_event}/workstream_summaries/disassociate/{workstream_summary} | /workstream_event/{workstream_event}/workstream_summaries/disassociate/{workstream_summary} [POST]
 [**workstream_event_scores_increment**](WorkstreamEventApi.md#workstream_event_scores_increment) | **POST** /workstream_event/{workstream_event}/scores/increment | &#39;/workstream_event/{workstream_event}/scores/increment&#39; [POST]
 [**workstream_event_update**](WorkstreamEventApi.md#workstream_event_update) | **POST** /workstream_event/update | /workstream_event/update [POST]
 [**workstream_events_specific_workstream_event_snapshot**](WorkstreamEventApi.md#workstream_events_specific_workstream_event_snapshot) | **GET** /workstream_event/{workstream_event} | /workstream_event/{workstream_event} [GET]
 
+
+# **workstream_event_associate_anchor**
+> workstream_event_associate_anchor(workstream_event, anchor)
+
+/workstream_event/{workstream_event}/anchors/associate/{anchor} [POST]
+
+This will enable us to associate an anchor with a workstream event.
+
+### Example
+
+* Api Key Authentication (application):
+```python
+import time
+import os
+import pieces_os_client
+from pieces_os_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to http://localhost:1000
+# See configuration.py for a list of all supported configuration parameters.
+configuration = pieces_os_client.Configuration(
+    host = "http://localhost:1000"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: application
+configuration.api_key['application'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['application'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with pieces_os_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = pieces_os_client.WorkstreamEventApi(api_client)
+    workstream_event = 'workstream_event_example' # str | This is a identifier that is used to identify a specific workstream_event.
+    anchor = 'anchor_example' # str | This is the specific uuid of an anchor.
+
+    try:
+        # /workstream_event/{workstream_event}/anchors/associate/{anchor} [POST]
+        api_instance.workstream_event_associate_anchor(workstream_event, anchor)
+    except Exception as e:
+        print("Exception when calling WorkstreamEventApi->workstream_event_associate_anchor: %s\n" % e)
+```
+
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **workstream_event** | **str**| This is a identifier that is used to identify a specific workstream_event. | 
+ **anchor** | **str**| This is the specific uuid of an anchor. | 
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[application](../README.md#application)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: text/plain
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**204** | No Content |  -  |
+**500** | Internal Server Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **workstream_event_associate_annotation**
+> workstream_event_associate_annotation(workstream_event, annotation)
+
+/workstream_event/{workstream_event}/annotations/associate/{annotation} [POST]
+
+This will enable us to associate an annotation with a workstream event.
+
+### Example
+
+* Api Key Authentication (application):
+```python
+import time
+import os
+import pieces_os_client
+from pieces_os_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to http://localhost:1000
+# See configuration.py for a list of all supported configuration parameters.
+configuration = pieces_os_client.Configuration(
+    host = "http://localhost:1000"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: application
+configuration.api_key['application'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['application'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with pieces_os_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = pieces_os_client.WorkstreamEventApi(api_client)
+    workstream_event = 'workstream_event_example' # str | This is a identifier that is used to identify a specific workstream_event.
+    annotation = 'annotation_example' # str | This is a specific annotation uuid.
+
+    try:
+        # /workstream_event/{workstream_event}/annotations/associate/{annotation} [POST]
+        api_instance.workstream_event_associate_annotation(workstream_event, annotation)
+    except Exception as e:
+        print("Exception when calling WorkstreamEventApi->workstream_event_associate_annotation: %s\n" % e)
+```
+
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **workstream_event** | **str**| This is a identifier that is used to identify a specific workstream_event. | 
+ **annotation** | **str**| This is a specific annotation uuid. | 
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[application](../README.md#application)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: text/plain
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**204** | No Content |  -  |
+**500** | Internal Server Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **workstream_event_associate_conversation_message**
 > workstream_event_associate_conversation_message(workstream_event, message)
@@ -95,6 +261,162 @@ void (empty response body)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **workstream_event_associate_person**
+> workstream_event_associate_person(workstream_event, person)
+
+/workstream_event/{workstream_event}/persons/associate/{person} [POST]
+
+This will enable us to associate a person with a workstream event.
+
+### Example
+
+* Api Key Authentication (application):
+```python
+import time
+import os
+import pieces_os_client
+from pieces_os_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to http://localhost:1000
+# See configuration.py for a list of all supported configuration parameters.
+configuration = pieces_os_client.Configuration(
+    host = "http://localhost:1000"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: application
+configuration.api_key['application'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['application'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with pieces_os_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = pieces_os_client.WorkstreamEventApi(api_client)
+    workstream_event = 'workstream_event_example' # str | This is a identifier that is used to identify a specific workstream_event.
+    person = 'person_example' # str | This is a uuid that represents a person.
+
+    try:
+        # /workstream_event/{workstream_event}/persons/associate/{person} [POST]
+        api_instance.workstream_event_associate_person(workstream_event, person)
+    except Exception as e:
+        print("Exception when calling WorkstreamEventApi->workstream_event_associate_person: %s\n" % e)
+```
+
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **workstream_event** | **str**| This is a identifier that is used to identify a specific workstream_event. | 
+ **person** | **str**| This is a uuid that represents a person. | 
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[application](../README.md#application)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: text/plain
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**204** | No Content |  -  |
+**500** | Internal Server Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **workstream_event_associate_source_window**
+> workstream_event_associate_source_window(workstream_event, source_window)
+
+/workstream_event/{workstream_event}/workstream_pattern_engine/source_windows/associate/{source_window} [POST]
+
+This will enable us to associate a source window with a workstream event.
+
+### Example
+
+* Api Key Authentication (application):
+```python
+import time
+import os
+import pieces_os_client
+from pieces_os_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to http://localhost:1000
+# See configuration.py for a list of all supported configuration parameters.
+configuration = pieces_os_client.Configuration(
+    host = "http://localhost:1000"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: application
+configuration.api_key['application'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['application'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with pieces_os_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = pieces_os_client.WorkstreamEventApi(api_client)
+    workstream_event = 'workstream_event_example' # str | This is a identifier that is used to identify a specific workstream_event.
+    source_window = 'source_window_example' # str | This is a identifier that is used to identify a specific WorkstreamPatternEngineSourceWindow
+
+    try:
+        # /workstream_event/{workstream_event}/workstream_pattern_engine/source_windows/associate/{source_window} [POST]
+        api_instance.workstream_event_associate_source_window(workstream_event, source_window)
+    except Exception as e:
+        print("Exception when calling WorkstreamEventApi->workstream_event_associate_source_window: %s\n" % e)
+```
+
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **workstream_event** | **str**| This is a identifier that is used to identify a specific workstream_event. | 
+ **source_window** | **str**| This is a identifier that is used to identify a specific WorkstreamPatternEngineSourceWindow | 
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[application](../README.md#application)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: text/plain
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**204** | No Content |  -  |
+**500** | Internal Server Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **workstream_event_associate_tag**
 > workstream_event_associate_tag(workstream_event, tag)
 
@@ -151,6 +473,84 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **workstream_event** | **str**| This is a identifier that is used to identify a specific workstream_event. | 
  **tag** | **str**| tag id | 
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[application](../README.md#application)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: text/plain
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**204** | No Content |  -  |
+**500** | Internal Server Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **workstream_event_associate_website**
+> workstream_event_associate_website(workstream_event, website)
+
+/workstream_event/{workstream_event}/websites/associate/{website} [POST]
+
+This will enable us to associate a website with a workstream event.
+
+### Example
+
+* Api Key Authentication (application):
+```python
+import time
+import os
+import pieces_os_client
+from pieces_os_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to http://localhost:1000
+# See configuration.py for a list of all supported configuration parameters.
+configuration = pieces_os_client.Configuration(
+    host = "http://localhost:1000"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: application
+configuration.api_key['application'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['application'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with pieces_os_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = pieces_os_client.WorkstreamEventApi(api_client)
+    workstream_event = 'workstream_event_example' # str | This is a identifier that is used to identify a specific workstream_event.
+    website = 'website_example' # str | website id
+
+    try:
+        # /workstream_event/{workstream_event}/websites/associate/{website} [POST]
+        api_instance.workstream_event_associate_website(workstream_event, website)
+    except Exception as e:
+        print("Exception when calling WorkstreamEventApi->workstream_event_associate_website: %s\n" % e)
+```
+
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **workstream_event** | **str**| This is a identifier that is used to identify a specific workstream_event. | 
+ **website** | **str**| website id | 
 
 ### Return type
 
@@ -329,6 +729,162 @@ void (empty response body)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **workstream_event_disassociate_anchor**
+> workstream_event_disassociate_anchor(workstream_event, anchor)
+
+/workstream_event/{workstream_event}/anchors/disassociate/{anchor} [POST]
+
+This will enable us to disassociate an anchor from a workstream event.
+
+### Example
+
+* Api Key Authentication (application):
+```python
+import time
+import os
+import pieces_os_client
+from pieces_os_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to http://localhost:1000
+# See configuration.py for a list of all supported configuration parameters.
+configuration = pieces_os_client.Configuration(
+    host = "http://localhost:1000"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: application
+configuration.api_key['application'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['application'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with pieces_os_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = pieces_os_client.WorkstreamEventApi(api_client)
+    workstream_event = 'workstream_event_example' # str | This is a identifier that is used to identify a specific workstream_event.
+    anchor = 'anchor_example' # str | This is the specific uuid of an anchor.
+
+    try:
+        # /workstream_event/{workstream_event}/anchors/disassociate/{anchor} [POST]
+        api_instance.workstream_event_disassociate_anchor(workstream_event, anchor)
+    except Exception as e:
+        print("Exception when calling WorkstreamEventApi->workstream_event_disassociate_anchor: %s\n" % e)
+```
+
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **workstream_event** | **str**| This is a identifier that is used to identify a specific workstream_event. | 
+ **anchor** | **str**| This is the specific uuid of an anchor. | 
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[application](../README.md#application)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: text/plain
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**204** | No Content |  -  |
+**500** | Internal Server Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **workstream_event_disassociate_annotation**
+> workstream_event_disassociate_annotation(workstream_event, annotation)
+
+/workstream_event/{workstream_event}/annotations/disassociate/{annotation} [POST]
+
+This will enable us to dissassociate an annotation from a workstream event.
+
+### Example
+
+* Api Key Authentication (application):
+```python
+import time
+import os
+import pieces_os_client
+from pieces_os_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to http://localhost:1000
+# See configuration.py for a list of all supported configuration parameters.
+configuration = pieces_os_client.Configuration(
+    host = "http://localhost:1000"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: application
+configuration.api_key['application'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['application'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with pieces_os_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = pieces_os_client.WorkstreamEventApi(api_client)
+    workstream_event = 'workstream_event_example' # str | This is a identifier that is used to identify a specific workstream_event.
+    annotation = 'annotation_example' # str | This is a specific annotation uuid.
+
+    try:
+        # /workstream_event/{workstream_event}/annotations/disassociate/{annotation} [POST]
+        api_instance.workstream_event_disassociate_annotation(workstream_event, annotation)
+    except Exception as e:
+        print("Exception when calling WorkstreamEventApi->workstream_event_disassociate_annotation: %s\n" % e)
+```
+
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **workstream_event** | **str**| This is a identifier that is used to identify a specific workstream_event. | 
+ **annotation** | **str**| This is a specific annotation uuid. | 
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[application](../README.md#application)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: text/plain
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**204** | No Content |  -  |
+**500** | Internal Server Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **workstream_event_disassociate_conversation_message**
 > workstream_event_disassociate_conversation_message(workstream_event, message)
 
@@ -407,6 +963,162 @@ void (empty response body)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **workstream_event_disassociate_person**
+> workstream_event_disassociate_person(workstream_event, person)
+
+/workstream_event/{workstream_event}/persons/disassociate/{person} [POST]
+
+This will enable us to disassociate a person from a workstream event.
+
+### Example
+
+* Api Key Authentication (application):
+```python
+import time
+import os
+import pieces_os_client
+from pieces_os_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to http://localhost:1000
+# See configuration.py for a list of all supported configuration parameters.
+configuration = pieces_os_client.Configuration(
+    host = "http://localhost:1000"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: application
+configuration.api_key['application'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['application'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with pieces_os_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = pieces_os_client.WorkstreamEventApi(api_client)
+    workstream_event = 'workstream_event_example' # str | This is a identifier that is used to identify a specific workstream_event.
+    person = 'person_example' # str | This is a uuid that represents a person.
+
+    try:
+        # /workstream_event/{workstream_event}/persons/disassociate/{person} [POST]
+        api_instance.workstream_event_disassociate_person(workstream_event, person)
+    except Exception as e:
+        print("Exception when calling WorkstreamEventApi->workstream_event_disassociate_person: %s\n" % e)
+```
+
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **workstream_event** | **str**| This is a identifier that is used to identify a specific workstream_event. | 
+ **person** | **str**| This is a uuid that represents a person. | 
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[application](../README.md#application)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: text/plain
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**204** | No Content |  -  |
+**500** | Internal Server Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **workstream_event_disassociate_source_window**
+> workstream_event_disassociate_source_window(workstream_event, source_window)
+
+/workstream_event/{workstream_event}/workstream_pattern_engine/source_windows/disassociate/{source_window} [POST]
+
+This will enable us to disassociate a source window from a workstream event.
+
+### Example
+
+* Api Key Authentication (application):
+```python
+import time
+import os
+import pieces_os_client
+from pieces_os_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to http://localhost:1000
+# See configuration.py for a list of all supported configuration parameters.
+configuration = pieces_os_client.Configuration(
+    host = "http://localhost:1000"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: application
+configuration.api_key['application'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['application'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with pieces_os_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = pieces_os_client.WorkstreamEventApi(api_client)
+    workstream_event = 'workstream_event_example' # str | This is a identifier that is used to identify a specific workstream_event.
+    source_window = 'source_window_example' # str | This is a identifier that is used to identify a specific WorkstreamPatternEngineSourceWindow
+
+    try:
+        # /workstream_event/{workstream_event}/workstream_pattern_engine/source_windows/disassociate/{source_window} [POST]
+        api_instance.workstream_event_disassociate_source_window(workstream_event, source_window)
+    except Exception as e:
+        print("Exception when calling WorkstreamEventApi->workstream_event_disassociate_source_window: %s\n" % e)
+```
+
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **workstream_event** | **str**| This is a identifier that is used to identify a specific workstream_event. | 
+ **source_window** | **str**| This is a identifier that is used to identify a specific WorkstreamPatternEngineSourceWindow | 
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[application](../README.md#application)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: text/plain
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**204** | No Content |  -  |
+**500** | Internal Server Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **workstream_event_disassociate_tag**
 > workstream_event_disassociate_tag(workstream_event, tag)
 
@@ -463,6 +1175,84 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **workstream_event** | **str**| This is a identifier that is used to identify a specific workstream_event. | 
  **tag** | **str**| tag id | 
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[application](../README.md#application)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: text/plain
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**204** | No Content |  -  |
+**500** | Internal Server Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **workstream_event_disassociate_website**
+> workstream_event_disassociate_website(workstream_event, website)
+
+/workstream_event/{workstream_event}/websites/disassociate/{website} [POST]
+
+This will enable us to disassociate a website from a workstream event.
+
+### Example
+
+* Api Key Authentication (application):
+```python
+import time
+import os
+import pieces_os_client
+from pieces_os_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to http://localhost:1000
+# See configuration.py for a list of all supported configuration parameters.
+configuration = pieces_os_client.Configuration(
+    host = "http://localhost:1000"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: application
+configuration.api_key['application'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['application'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with pieces_os_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = pieces_os_client.WorkstreamEventApi(api_client)
+    workstream_event = 'workstream_event_example' # str | This is a identifier that is used to identify a specific workstream_event.
+    website = 'website_example' # str | website id
+
+    try:
+        # /workstream_event/{workstream_event}/websites/disassociate/{website} [POST]
+        api_instance.workstream_event_disassociate_website(workstream_event, website)
+    except Exception as e:
+        print("Exception when calling WorkstreamEventApi->workstream_event_disassociate_website: %s\n" % e)
+```
+
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **workstream_event** | **str**| This is a identifier that is used to identify a specific workstream_event. | 
+ **website** | **str**| website id | 
 
 ### Return type
 

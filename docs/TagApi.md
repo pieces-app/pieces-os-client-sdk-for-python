@@ -4,20 +4,184 @@ All URIs are relative to *http://localhost:1000*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**tag_associate_anchor**](TagApi.md#tag_associate_anchor) | **POST** /tag/{tag}/anchors/associate/{anchor} | /tag/{tag}/anchors/associate/{anchor} [POST]
+[**tag_associate_annotation**](TagApi.md#tag_associate_annotation) | **POST** /tag/{tag}/annotations/associate/{annotation} | /tag/{tag}/annotations/associate/{annotation} [POST]
 [**tag_associate_asset**](TagApi.md#tag_associate_asset) | **POST** /tag/{tag}/assets/associate/{asset} | /tag/{tag}/assets/associate/{asset} [POST]
 [**tag_associate_conversation_message**](TagApi.md#tag_associate_conversation_message) | **POST** /tag/{tag}/messages/associate/{message} | /tag/{tag}/messages/associate/{message} [POST]
 [**tag_associate_person**](TagApi.md#tag_associate_person) | **POST** /tag/{tag}/persons/associate/{person} | /tag/{tag}/persons/associate/{person} [POST]
+[**tag_associate_website**](TagApi.md#tag_associate_website) | **POST** /tag/{tag}/websites/associate/{website} | /tag/{tag}/websites/associate/{website} [POST]
 [**tag_associate_workstream_event**](TagApi.md#tag_associate_workstream_event) | **POST** /tag/{tag}/workstream_events/associate/{workstream_event} | /tag/{tag}/workstream_events/associate/{workstream_event} [POST]
+[**tag_associate_workstream_pattern_engine_source_window**](TagApi.md#tag_associate_workstream_pattern_engine_source_window) | **POST** /tag/{tag}/workstream_pattern_engine/source_windows/associate/{source_window} | /tag/{tag}/workstream_pattern_engine/source_windows/associate/{source_window} [POST]
 [**tag_associate_workstream_summary**](TagApi.md#tag_associate_workstream_summary) | **POST** /tag/{tag}/workstream_summaries/associate/{workstream_summary} | /tag/{tag}/workstream_summaries/associate/{workstream_summary} [POST]
+[**tag_disassociate_anchor**](TagApi.md#tag_disassociate_anchor) | **POST** /tag/{tag}/anchors/disassociate/{anchor} | /tag/{tag}/anchors/disassociate/{anchor} [POST]
+[**tag_disassociate_annotation**](TagApi.md#tag_disassociate_annotation) | **POST** /tag/{tag}/annotations/disassociate/{annotation} | /tag/{tag}/annotations/disassociate/{annotation} [POST]
 [**tag_disassociate_asset**](TagApi.md#tag_disassociate_asset) | **POST** /tag/{tag}/assets/disassociate/{asset} | /tag/{tag}/assets/disassociate/{asset} [POST]
 [**tag_disassociate_conversation_message**](TagApi.md#tag_disassociate_conversation_message) | **POST** /tag/{tag}/messages/disassociate/{message} | /tag/{tag}/messages/disassociate/{message} [POST]
 [**tag_disassociate_person**](TagApi.md#tag_disassociate_person) | **POST** /tag/{tag}/persons/disassociate/{person} | /tag/{tag}/persons/disassociate/{person} [POST]
+[**tag_disassociate_website**](TagApi.md#tag_disassociate_website) | **POST** /tag/{tag}/websites/disassociate/{website} | /tag/{tag}/websites/disassociate/{website} [POST]
 [**tag_disassociate_workstream_event**](TagApi.md#tag_disassociate_workstream_event) | **POST** /tag/{tag}/workstream_events/disassociate/{workstream_event} | /tag/{tag}/workstream_events/disassociate/{workstream_event} [POST]
+[**tag_disassociate_workstream_pattern_engine_source_window**](TagApi.md#tag_disassociate_workstream_pattern_engine_source_window) | **POST** /tag/{tag}/workstream_pattern_engine/source_windows/disassociate/{source_window} | /tag/{tag}/workstream_pattern_engine/source_windows/disassociate/{source_window} [POST]
 [**tag_disassociate_workstream_summary**](TagApi.md#tag_disassociate_workstream_summary) | **POST** /tag/{tag}/workstream_summaries/disassociate/{workstream_summary} | /tag/{tag}/workstream_summaries/disassociate/{workstream_summary} [POST]
 [**tag_scores_increment**](TagApi.md#tag_scores_increment) | **POST** /tag/{tag}/scores/increment | &#39;/tag/{tag}/scores/increment&#39; [POST]
 [**tag_update**](TagApi.md#tag_update) | **POST** /tag/update | /tag/update [POST]
 [**tags_specific_tag_snapshot**](TagApi.md#tags_specific_tag_snapshot) | **GET** /tag/{tag} | /tag/{tag} [GET]
 
+
+# **tag_associate_anchor**
+> tag_associate_anchor(tag, anchor)
+
+/tag/{tag}/anchors/associate/{anchor} [POST]
+
+This will enable us to associate an anchor with a tag.
+
+### Example
+
+* Api Key Authentication (application):
+```python
+import time
+import os
+import pieces_os_client
+from pieces_os_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to http://localhost:1000
+# See configuration.py for a list of all supported configuration parameters.
+configuration = pieces_os_client.Configuration(
+    host = "http://localhost:1000"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: application
+configuration.api_key['application'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['application'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with pieces_os_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = pieces_os_client.TagApi(api_client)
+    tag = 'tag_example' # str | tag id
+    anchor = 'anchor_example' # str | This is the specific uuid of an anchor.
+
+    try:
+        # /tag/{tag}/anchors/associate/{anchor} [POST]
+        api_instance.tag_associate_anchor(tag, anchor)
+    except Exception as e:
+        print("Exception when calling TagApi->tag_associate_anchor: %s\n" % e)
+```
+
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **tag** | **str**| tag id | 
+ **anchor** | **str**| This is the specific uuid of an anchor. | 
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[application](../README.md#application)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: text/plain
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**204** | No Content |  -  |
+**500** | Internal Server Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **tag_associate_annotation**
+> tag_associate_annotation(tag, annotation)
+
+/tag/{tag}/annotations/associate/{annotation} [POST]
+
+This will enable us to associate an annotation with a tag.
+
+### Example
+
+* Api Key Authentication (application):
+```python
+import time
+import os
+import pieces_os_client
+from pieces_os_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to http://localhost:1000
+# See configuration.py for a list of all supported configuration parameters.
+configuration = pieces_os_client.Configuration(
+    host = "http://localhost:1000"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: application
+configuration.api_key['application'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['application'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with pieces_os_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = pieces_os_client.TagApi(api_client)
+    tag = 'tag_example' # str | tag id
+    annotation = 'annotation_example' # str | This is a specific annotation uuid.
+
+    try:
+        # /tag/{tag}/annotations/associate/{annotation} [POST]
+        api_instance.tag_associate_annotation(tag, annotation)
+    except Exception as e:
+        print("Exception when calling TagApi->tag_associate_annotation: %s\n" % e)
+```
+
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **tag** | **str**| tag id | 
+ **annotation** | **str**| This is a specific annotation uuid. | 
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[application](../README.md#application)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: text/plain
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**204** | No Content |  -  |
+**500** | Internal Server Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **tag_associate_asset**
 > tag_associate_asset(asset, tag)
@@ -253,6 +417,84 @@ void (empty response body)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **tag_associate_website**
+> tag_associate_website(tag, website)
+
+/tag/{tag}/websites/associate/{website} [POST]
+
+This will enable us to associate a website with a tag.
+
+### Example
+
+* Api Key Authentication (application):
+```python
+import time
+import os
+import pieces_os_client
+from pieces_os_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to http://localhost:1000
+# See configuration.py for a list of all supported configuration parameters.
+configuration = pieces_os_client.Configuration(
+    host = "http://localhost:1000"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: application
+configuration.api_key['application'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['application'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with pieces_os_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = pieces_os_client.TagApi(api_client)
+    tag = 'tag_example' # str | tag id
+    website = 'website_example' # str | website id
+
+    try:
+        # /tag/{tag}/websites/associate/{website} [POST]
+        api_instance.tag_associate_website(tag, website)
+    except Exception as e:
+        print("Exception when calling TagApi->tag_associate_website: %s\n" % e)
+```
+
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **tag** | **str**| tag id | 
+ **website** | **str**| website id | 
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[application](../README.md#application)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: text/plain
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**204** | No Content |  -  |
+**500** | Internal Server Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **tag_associate_workstream_event**
 > tag_associate_workstream_event(tag, workstream_event)
 
@@ -331,6 +573,84 @@ void (empty response body)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **tag_associate_workstream_pattern_engine_source_window**
+> tag_associate_workstream_pattern_engine_source_window(tag, source_window)
+
+/tag/{tag}/workstream_pattern_engine/source_windows/associate/{source_window} [POST]
+
+This will enable us to associate a source window with a tag.
+
+### Example
+
+* Api Key Authentication (application):
+```python
+import time
+import os
+import pieces_os_client
+from pieces_os_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to http://localhost:1000
+# See configuration.py for a list of all supported configuration parameters.
+configuration = pieces_os_client.Configuration(
+    host = "http://localhost:1000"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: application
+configuration.api_key['application'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['application'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with pieces_os_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = pieces_os_client.TagApi(api_client)
+    tag = 'tag_example' # str | tag id
+    source_window = 'source_window_example' # str | This is a identifier that is used to identify a specific WorkstreamPatternEngineSourceWindow
+
+    try:
+        # /tag/{tag}/workstream_pattern_engine/source_windows/associate/{source_window} [POST]
+        api_instance.tag_associate_workstream_pattern_engine_source_window(tag, source_window)
+    except Exception as e:
+        print("Exception when calling TagApi->tag_associate_workstream_pattern_engine_source_window: %s\n" % e)
+```
+
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **tag** | **str**| tag id | 
+ **source_window** | **str**| This is a identifier that is used to identify a specific WorkstreamPatternEngineSourceWindow | 
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[application](../README.md#application)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: text/plain
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**204** | No Content |  -  |
+**500** | Internal Server Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **tag_associate_workstream_summary**
 > tag_associate_workstream_summary(tag, workstream_summary)
 
@@ -387,6 +707,162 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **tag** | **str**| tag id | 
  **workstream_summary** | **str**| This is a identifier that is used to identify a specific workstream_summary. | 
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[application](../README.md#application)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: text/plain
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**204** | No Content |  -  |
+**500** | Internal Server Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **tag_disassociate_anchor**
+> tag_disassociate_anchor(tag, anchor)
+
+/tag/{tag}/anchors/disassociate/{anchor} [POST]
+
+This will enable us to disassociate an anchor from a tag.
+
+### Example
+
+* Api Key Authentication (application):
+```python
+import time
+import os
+import pieces_os_client
+from pieces_os_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to http://localhost:1000
+# See configuration.py for a list of all supported configuration parameters.
+configuration = pieces_os_client.Configuration(
+    host = "http://localhost:1000"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: application
+configuration.api_key['application'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['application'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with pieces_os_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = pieces_os_client.TagApi(api_client)
+    tag = 'tag_example' # str | tag id
+    anchor = 'anchor_example' # str | This is the specific uuid of an anchor.
+
+    try:
+        # /tag/{tag}/anchors/disassociate/{anchor} [POST]
+        api_instance.tag_disassociate_anchor(tag, anchor)
+    except Exception as e:
+        print("Exception when calling TagApi->tag_disassociate_anchor: %s\n" % e)
+```
+
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **tag** | **str**| tag id | 
+ **anchor** | **str**| This is the specific uuid of an anchor. | 
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[application](../README.md#application)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: text/plain
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**204** | No Content |  -  |
+**500** | Internal Server Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **tag_disassociate_annotation**
+> tag_disassociate_annotation(tag, annotation)
+
+/tag/{tag}/annotations/disassociate/{annotation} [POST]
+
+This will enable us to dissassociate an annotation from a tag.
+
+### Example
+
+* Api Key Authentication (application):
+```python
+import time
+import os
+import pieces_os_client
+from pieces_os_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to http://localhost:1000
+# See configuration.py for a list of all supported configuration parameters.
+configuration = pieces_os_client.Configuration(
+    host = "http://localhost:1000"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: application
+configuration.api_key['application'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['application'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with pieces_os_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = pieces_os_client.TagApi(api_client)
+    tag = 'tag_example' # str | tag id
+    annotation = 'annotation_example' # str | This is a specific annotation uuid.
+
+    try:
+        # /tag/{tag}/annotations/disassociate/{annotation} [POST]
+        api_instance.tag_disassociate_annotation(tag, annotation)
+    except Exception as e:
+        print("Exception when calling TagApi->tag_disassociate_annotation: %s\n" % e)
+```
+
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **tag** | **str**| tag id | 
+ **annotation** | **str**| This is a specific annotation uuid. | 
 
 ### Return type
 
@@ -643,6 +1119,84 @@ void (empty response body)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **tag_disassociate_website**
+> tag_disassociate_website(tag, website)
+
+/tag/{tag}/websites/disassociate/{website} [POST]
+
+This will enable us to disassociate a website from a tag.
+
+### Example
+
+* Api Key Authentication (application):
+```python
+import time
+import os
+import pieces_os_client
+from pieces_os_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to http://localhost:1000
+# See configuration.py for a list of all supported configuration parameters.
+configuration = pieces_os_client.Configuration(
+    host = "http://localhost:1000"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: application
+configuration.api_key['application'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['application'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with pieces_os_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = pieces_os_client.TagApi(api_client)
+    tag = 'tag_example' # str | tag id
+    website = 'website_example' # str | website id
+
+    try:
+        # /tag/{tag}/websites/disassociate/{website} [POST]
+        api_instance.tag_disassociate_website(tag, website)
+    except Exception as e:
+        print("Exception when calling TagApi->tag_disassociate_website: %s\n" % e)
+```
+
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **tag** | **str**| tag id | 
+ **website** | **str**| website id | 
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[application](../README.md#application)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: text/plain
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**204** | No Content |  -  |
+**500** | Internal Server Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **tag_disassociate_workstream_event**
 > tag_disassociate_workstream_event(tag, workstream_event)
 
@@ -699,6 +1253,84 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **tag** | **str**| tag id | 
  **workstream_event** | **str**| This is a identifier that is used to identify a specific workstream_event. | 
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[application](../README.md#application)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: text/plain
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**204** | No Content |  -  |
+**500** | Internal Server Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **tag_disassociate_workstream_pattern_engine_source_window**
+> tag_disassociate_workstream_pattern_engine_source_window(tag, source_window)
+
+/tag/{tag}/workstream_pattern_engine/source_windows/disassociate/{source_window} [POST]
+
+This will enable us to disassociate a source window from a tag.
+
+### Example
+
+* Api Key Authentication (application):
+```python
+import time
+import os
+import pieces_os_client
+from pieces_os_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to http://localhost:1000
+# See configuration.py for a list of all supported configuration parameters.
+configuration = pieces_os_client.Configuration(
+    host = "http://localhost:1000"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: application
+configuration.api_key['application'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['application'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with pieces_os_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = pieces_os_client.TagApi(api_client)
+    tag = 'tag_example' # str | tag id
+    source_window = 'source_window_example' # str | This is a identifier that is used to identify a specific WorkstreamPatternEngineSourceWindow
+
+    try:
+        # /tag/{tag}/workstream_pattern_engine/source_windows/disassociate/{source_window} [POST]
+        api_instance.tag_disassociate_workstream_pattern_engine_source_window(tag, source_window)
+    except Exception as e:
+        print("Exception when calling TagApi->tag_disassociate_workstream_pattern_engine_source_window: %s\n" % e)
+```
+
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **tag** | **str**| tag id | 
+ **source_window** | **str**| This is a identifier that is used to identify a specific WorkstreamPatternEngineSourceWindow | 
 
 ### Return type
 

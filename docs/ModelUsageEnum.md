@@ -4,6 +4,8 @@ These are all the possible uses for a model, i.e. code classification, OCR, text
 
 ## Enum
 
+* `UNKNOWN` (value: `'UNKNOWN'`)
+
 * `OCR` (value: `'OCR'`)
 
 * `CODE_CLASSIFICATION` (value: `'CODE_CLASSIFICATION'`)

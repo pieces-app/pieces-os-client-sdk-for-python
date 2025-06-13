@@ -22,11 +22,12 @@ Name | Type | Description | Notes
 **persons** | [**FlattenedPersons**](FlattenedPersons.md) |  | [optional] 
 **applications** | [**Applications**](Applications.md) |  | [optional] 
 **tags** | [**FlattenedTags**](FlattenedTags.md) |  | [optional] 
-**workstream_summaries_vector** | **List[float]** | This is the embedding for the format.(NEEDs to connection.vector) and specific here because we can only index on a single name | [optional] 
+**workstream_summaries_vector** | **List[float]** | This is the embedding for the format.(NEEDs to connection.vector) and specific here because we can only index on a single name NOTE: this the the vector index that corresponds the the couchbase lite index. | [optional] 
 **sources** | [**FlattenedIdentifiedWorkstreamPatternEngineSources**](FlattenedIdentifiedWorkstreamPatternEngineSources.md) |  | [optional] 
 **processing** | [**CapabilitiesEnum**](CapabilitiesEnum.md) |  | [optional] 
 **favorited** | **bool** |  | [optional] 
 **messages** | [**FlattenedConversationMessages**](FlattenedConversationMessages.md) |  | [optional] 
+**mechanism** | [**MechanismEnum**](MechanismEnum.md) |  | [optional] 
 
 ## Example
 

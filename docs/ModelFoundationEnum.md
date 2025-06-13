@@ -4,6 +4,8 @@ This is used to describe the foundational models used within POS.  Note: LATEST 
 
 ## Enum
 
+* `UNKNOWN` (value: `'UNKNOWN'`)
+
 * `GPT_3_DOT_5` (value: `'GPT_3.5'`)
 
 * `GPT_4` (value: `'GPT_4'`)
@@ -278,7 +280,7 @@ This is used to describe the foundational models used within POS.  Note: LATEST 
 
 * `ZEPHYR_LATEST` (value: `'ZEPHYR_LATEST'`)
 
-* `UNKNOWN` (value: `'UNKNOWN'`)
+* `POTION` (value: `'POTION'`)
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

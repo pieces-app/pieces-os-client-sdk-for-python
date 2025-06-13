@@ -4,6 +4,8 @@ This is the role enum used for a QGPT conversation
 
 ## Enum
 
+* `UNKNOWN` (value: `'UNKNOWN'`)
+
 * `USER` (value: `'USER'`)
 
 * `SYSTEM` (value: `'SYSTEM'`)

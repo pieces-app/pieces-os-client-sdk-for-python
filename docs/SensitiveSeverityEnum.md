@@ -4,6 +4,8 @@ This is the enum used to describe the severity of our sensitive model. ie low, m
 
 ## Enum
 
+* `UNKNOWN` (value: `'UNKNOWN'`)
+
 * `LOW` (value: `'LOW'`)
 
 * `MODERATE` (value: `'MODERATE'`)

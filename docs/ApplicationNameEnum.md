@@ -4,6 +4,8 @@ This is a running enumeration for the Names of all the Applications that can be 
 
 ## Enum
 
+* `UNKNOWN` (value: `'UNKNOWN'`)
+
 * `SUBLIME` (value: `'SUBLIME'`)
 
 * `VS_CODE` (value: `'VS_CODE'`)
@@ -86,7 +88,7 @@ This is a running enumeration for the Names of all the Applications that can be 
 
 * `NETBEANS` (value: `'NETBEANS'`)
 
-* `UNKNOWN` (value: `'UNKNOWN'`)
+* `OPERA` (value: `'OPERA'`)
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

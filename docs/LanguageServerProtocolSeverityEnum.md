@@ -4,6 +4,8 @@ modeled of of https://microsoft.github.io/language-server-protocol/specification
 
 ## Enum
 
+* `UNKNOWN` (value: `'UNKNOWN'`)
+
 * `ERROR` (value: `'ERROR'`)
 
 * `WARNING` (value: `'WARNING'`)

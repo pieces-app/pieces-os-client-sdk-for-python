@@ -4,6 +4,8 @@ Specifically supported renderings...usually between generic types
 
 ## Enum
 
+* `UNKNOWN` (value: `'UNKNOWN'`)
+
 * `HTML` (value: `'HTML'`)
 
 * `TWENTY_FOUR_BIT_ANSI_ESCAPED_SEQUENCES` (value: `'TWENTY_FOUR_BIT_ANSI_ESCAPED_SEQUENCES'`)

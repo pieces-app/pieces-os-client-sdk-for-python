@@ -40,6 +40,8 @@ Name | Type | Description | Notes
 **workstream_pattern_engine_source** | [**SeededScore**](SeededScore.md) |  | [optional] 
 **models** | [**SeededScore**](SeededScore.md) |  | [optional] 
 **model** | [**SeededScore**](SeededScore.md) |  | [optional] 
+**workstream_pattern_engine_source_windows** | [**SeededScore**](SeededScore.md) |  | [optional] 
+**workstream_pattern_engine_source_window** | [**SeededScore**](SeededScore.md) |  | [optional] 
 
 ## Example
 

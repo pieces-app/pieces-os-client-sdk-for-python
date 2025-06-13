@@ -4,6 +4,8 @@ This is an enum used to differentiate the different between different anchors. U
 
 ## Enum
 
+* `UNKNOWN` (value: `'UNKNOWN'`)
+
 * `FILE` (value: `'FILE'`)
 
 * `DIRECTORY` (value: `'DIRECTORY'`)

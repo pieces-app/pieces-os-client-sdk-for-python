@@ -4,6 +4,8 @@ This lets us know what capabilites in relation to ml/ cloud infrastructure you a
 
 ## Enum
 
+* `UNKNOWN` (value: `'UNKNOWN'`)
+
 * `LOCAL` (value: `'LOCAL'`)
 
 * `CLOUD` (value: `'CLOUD'`)

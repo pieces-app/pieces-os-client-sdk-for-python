@@ -4,15 +4,17 @@ All URIs are relative to *http://localhost:1000*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**send_local_notification**](NotificationsApi.md#send_local_notification) | **POST** /notifications/local/send | Send notification
+[**send_local_notification**](NotificationsApi.md#send_local_notification) | **POST** /notifications/local/send | /notifications/local/send [POST]
 
 
 # **send_local_notification**
-> send_local_notification(notification=notification)
+> LocalNotificationResponse send_local_notification(notification=notification)
 
-Send notification
+/notifications/local/send [POST]
 
-Retrieves a snapshot of all available models.
+This will accept a notification to send and will return the uuid of the notification
+
+for now: this will just be fire && forget notifications
 
 ### Example
 
@@ -21,6 +23,7 @@ Retrieves a snapshot of all available models.
 import time
 import os
 import pieces_os_client
+from pieces_os_client.models.local_notification_response import LocalNotificationResponse
 from pieces_os_client.models.notification import Notification
 from pieces_os_client.rest import ApiException
 from pprint import pprint
@@ -49,8 +52,10 @@ with pieces_os_client.ApiClient(configuration) as api_client:
     notification = pieces_os_client.Notification() # Notification |  (optional)
 
     try:
-        # Send notification
-        api_instance.send_local_notification(notification=notification)
+        # /notifications/local/send [POST]
+        api_response = api_instance.send_local_notification(notification=notification)
+        print("The response of NotificationsApi->send_local_notification:\n")
+        pprint(api_response)
     except Exception as e:
         print("Exception when calling NotificationsApi->send_local_notification: %s\n" % e)
 ```
@@ -65,7 +70,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-void (empty response body)
+[**LocalNotificationResponse**](LocalNotificationResponse.md)
 
 ### Authorization
 
@@ -74,7 +79,7 @@ void (empty response body)
 ### HTTP request headers
 
  - **Content-Type**: application/json
- - **Accept**: Not defined
+ - **Accept**: application/json
 
 ### HTTP response details
 | Status code | Description | Response headers |

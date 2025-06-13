@@ -6,7 +6,7 @@ These are all of the available event types that are permitted in an object pair 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
-**assets_searched** | **str** | A If the assets were searched | [optional] 
+**assets_searched** | **str** | A If the assets were searched | [optional] [default to 'UNKNOWN']
 
 ## Example
 

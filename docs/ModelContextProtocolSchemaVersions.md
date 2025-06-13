@@ -5,6 +5,7 @@ This is the request body that will return all the support schemas
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 **iterable** | [**List[ModelContextProtocolSchemaVersion]**](ModelContextProtocolSchemaVersion.md) | This is a singular version for MCP | 
 
 ## Example

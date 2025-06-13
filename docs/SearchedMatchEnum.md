@@ -3,6 +3,8 @@
 
 ## Enum
 
+* `UNKNOWN` (value: `'UNKNOWN'`)
+
 * `TITLE` (value: `'TITLE'`)
 
 * `ANNOTATION` (value: `'ANNOTATION'`)

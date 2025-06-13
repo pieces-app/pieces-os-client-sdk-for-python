@@ -4,6 +4,8 @@ Code block type like function, class, abstract
 
 ## Enum
 
+* `UNKNOWN` (value: `'UNKNOWN'`)
+
 * `FUNCTION` (value: `'FUNCTION'`)
 
 * `METHOD` (value: `'METHOD'`)

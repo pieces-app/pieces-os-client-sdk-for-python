@@ -4,6 +4,8 @@ Enum used for the status a Migration
 
 ## Enum
 
+* `UNKNOWN` (value: `'UNKNOWN'`)
+
 * `INITIALIZED` (value: `'INITIALIZED'`)
 
 * `IN_MINUS_PROGRESS` (value: `'IN-PROGRESS'`)
@@ -11,8 +13,6 @@ Enum used for the status a Migration
 * `COMPLETED` (value: `'COMPLETED'`)
 
 * `FAILED` (value: `'FAILED'`)
-
-* `UNKNOWN` (value: `'UNKNOWN'`)
 
 * `CANCELED` (value: `'CANCELED'`)
 

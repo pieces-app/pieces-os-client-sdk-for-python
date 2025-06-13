@@ -5,12 +5,14 @@ All URIs are relative to *http://localhost:1000*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**conversation_associate_anchor**](ConversationApi.md#conversation_associate_anchor) | **POST** /conversation/{conversation}/anchors/associate/{anchor} | /conversation/{conversation}/anchors/associate/{anchor} [POST]
+[**conversation_associate_annotation**](ConversationApi.md#conversation_associate_annotation) | **POST** /conversation/{conversation}/annotations/associate/{annotation} | /conversation/{conversation}/annotations/associate/{annotation} [POST]
 [**conversation_associate_asset**](ConversationApi.md#conversation_associate_asset) | **POST** /conversation/{conversation}/assets/associate/{asset} | /conversation/{conversation}/assets/associate/{asset} [POST]
 [**conversation_associate_grounding_temporal_range_workstream**](ConversationApi.md#conversation_associate_grounding_temporal_range_workstream) | **POST** /conversation/{conversation}/grounding/temporal_range/workstreams/associate/{range} | /conversation/{conversation}/grounding/temporal/ranges/associate/{range} [POST]
 [**conversation_associate_grounding_workstream_pattern_engine_source**](ConversationApi.md#conversation_associate_grounding_workstream_pattern_engine_source) | **POST** /conversation/{conversation}/grounding/workstream_pattern_engine/sources/associate/{source} | /conversation/{conversation}/grounding/workstream_pattern_engine/sources/associate/{source} [POST]
 [**conversation_associate_website**](ConversationApi.md#conversation_associate_website) | **POST** /conversation/{conversation}/websites/associate/{website} | /conversation/{conversation}/websites/associate/{website} [POST]
 [**conversation_associate_workstream_summary**](ConversationApi.md#conversation_associate_workstream_summary) | **POST** /conversation/{conversation}/workstream_summaries/associate/{workstream_summary} | /conversation/{conversation}/workstream_summaries/associate/{workstream_summary} [POST]
 [**conversation_disassociate_anchor**](ConversationApi.md#conversation_disassociate_anchor) | **POST** /conversation/{conversation}/anchors/disassociate/{anchor} | /conversation/{conversation}/anchors/disassociate/{anchor} [POST]
+[**conversation_disassociate_annotation**](ConversationApi.md#conversation_disassociate_annotation) | **POST** /conversation/{conversation}/annotations/disassociate/{annotation} | /conversation/{conversation}/annotations/disassociate/{annotation} [POST]
 [**conversation_disassociate_asset**](ConversationApi.md#conversation_disassociate_asset) | **POST** /conversation/{conversation}/assets/disassociate/{asset} | /conversation/{conversation}/assets/disassociate/{asset} [POST]
 [**conversation_disassociate_grounding_temporal_range_workstream**](ConversationApi.md#conversation_disassociate_grounding_temporal_range_workstream) | **POST** /conversation/{conversation}/grounding/temporal_range/workstreams/disassociate/{range} | /conversation/{conversation}/grounding/temporal_range/workstreams/disassociate/{range} [POST]
 [**conversation_disassociate_grounding_workstream_pattern_engine_source**](ConversationApi.md#conversation_disassociate_grounding_workstream_pattern_engine_source) | **POST** /conversation/{conversation}/grounding/workstream_pattern_engine/sources/disassociate/{source} | /conversation/{conversation}/grounding/workstream_pattern_engine/sources/disassociate/{source} [POST]
@@ -21,6 +23,7 @@ Method | HTTP request | Description
 [**conversation_grounding_messages_disassociate_message**](ConversationApi.md#conversation_grounding_messages_disassociate_message) | **POST** /conversation/{conversation}/grounding/messages/disassociate/{message} | /conversation/{conversation}/grounding/messages/disassociate/{message} [POST]
 [**conversation_scores_increment**](ConversationApi.md#conversation_scores_increment) | **POST** /conversation/{conversation}/scores/increment | /conversation/{conversation}/scores/increment [POST]
 [**conversation_specific_conversation_messages**](ConversationApi.md#conversation_specific_conversation_messages) | **GET** /conversation/{conversation}/messages | /conversation/{conversation}/messages [GET]
+[**conversation_specific_conversation_prepare**](ConversationApi.md#conversation_specific_conversation_prepare) | **POST** /conversation/{conversation}/prepare | /conversation/{conversation}/prepare [POST]
 [**conversation_specific_conversation_rename**](ConversationApi.md#conversation_specific_conversation_rename) | **POST** /conversation/{conversation}/rename | /conversation/{conversation}/rename [POST]
 [**conversation_summarize**](ConversationApi.md#conversation_summarize) | **POST** /conversation/{conversation}/summarize | /conversation/{conversation}/summarize [POST]
 [**conversation_update**](ConversationApi.md#conversation_update) | **POST** /conversation/update | /conversation/update [POST]
@@ -83,6 +86,84 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **conversation** | **str**| This is the uuid of a conversation. | 
  **anchor** | **str**| This is the specific uuid of an anchor. | 
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[application](../README.md#application)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: text/plain
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**204** | No Content |  -  |
+**500** | Internal Server Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **conversation_associate_annotation**
+> conversation_associate_annotation(conversation, annotation)
+
+/conversation/{conversation}/annotations/associate/{annotation} [POST]
+
+This will enable us to associate an annotation with a conversation.
+
+### Example
+
+* Api Key Authentication (application):
+```python
+import time
+import os
+import pieces_os_client
+from pieces_os_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to http://localhost:1000
+# See configuration.py for a list of all supported configuration parameters.
+configuration = pieces_os_client.Configuration(
+    host = "http://localhost:1000"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: application
+configuration.api_key['application'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['application'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with pieces_os_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = pieces_os_client.ConversationApi(api_client)
+    conversation = 'conversation_example' # str | This is the uuid of a conversation.
+    annotation = 'annotation_example' # str | This is a specific annotation uuid.
+
+    try:
+        # /conversation/{conversation}/annotations/associate/{annotation} [POST]
+        api_instance.conversation_associate_annotation(conversation, annotation)
+    except Exception as e:
+        print("Exception when calling ConversationApi->conversation_associate_annotation: %s\n" % e)
+```
+
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **conversation** | **str**| This is the uuid of a conversation. | 
+ **annotation** | **str**| This is a specific annotation uuid. | 
 
 ### Return type
 
@@ -551,6 +632,84 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **conversation** | **str**| This is the uuid of a conversation. | 
  **anchor** | **str**| This is the specific uuid of an anchor. | 
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[application](../README.md#application)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: text/plain
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**204** | No Content |  -  |
+**500** | Internal Server Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **conversation_disassociate_annotation**
+> conversation_disassociate_annotation(conversation, annotation)
+
+/conversation/{conversation}/annotations/disassociate/{annotation} [POST]
+
+This will enable us to dissassociate an annotation from a conversation.
+
+### Example
+
+* Api Key Authentication (application):
+```python
+import time
+import os
+import pieces_os_client
+from pieces_os_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to http://localhost:1000
+# See configuration.py for a list of all supported configuration parameters.
+configuration = pieces_os_client.Configuration(
+    host = "http://localhost:1000"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: application
+configuration.api_key['application'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['application'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with pieces_os_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = pieces_os_client.ConversationApi(api_client)
+    conversation = 'conversation_example' # str | This is the uuid of a conversation.
+    annotation = 'annotation_example' # str | This is a specific annotation uuid.
+
+    try:
+        # /conversation/{conversation}/annotations/disassociate/{annotation} [POST]
+        api_instance.conversation_disassociate_annotation(conversation, annotation)
+    except Exception as e:
+        print("Exception when calling ConversationApi->conversation_disassociate_annotation: %s\n" % e)
+```
+
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **conversation** | **str**| This is the uuid of a conversation. | 
+ **annotation** | **str**| This is a specific annotation uuid. | 
 
 ### Return type
 
@@ -1356,6 +1515,82 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
+**500** | Internal Server Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **conversation_specific_conversation_prepare**
+> conversation_specific_conversation_prepare(conversation)
+
+/conversation/{conversation}/prepare [POST]
+
+This endpoint will prepare a conversation within the copilot and should be called on a focus in the input
+
+### Example
+
+* Api Key Authentication (application):
+```python
+import time
+import os
+import pieces_os_client
+from pieces_os_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to http://localhost:1000
+# See configuration.py for a list of all supported configuration parameters.
+configuration = pieces_os_client.Configuration(
+    host = "http://localhost:1000"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: application
+configuration.api_key['application'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['application'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with pieces_os_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = pieces_os_client.ConversationApi(api_client)
+    conversation = 'conversation_example' # str | This is the uuid of a conversation.
+
+    try:
+        # /conversation/{conversation}/prepare [POST]
+        api_instance.conversation_specific_conversation_prepare(conversation)
+    except Exception as e:
+        print("Exception when calling ConversationApi->conversation_specific_conversation_prepare: %s\n" % e)
+```
+
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **conversation** | **str**| This is the uuid of a conversation. | 
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[application](../README.md#application)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: text/plain
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**204** | No Content |  -  |
 **500** | Internal Server Error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

@@ -17,6 +17,7 @@ Method | HTTP request | Description
 [**os_filesystem_pick_folders**](OSApi.md#os_filesystem_pick_folders) | **POST** /os/filesystem/folders/pick | /os/filesystem/folders/pick [POST]
 [**os_memory_optimize**](OSApi.md#os_memory_optimize) | **POST** /os/memory/optimize | /os/memory/optimize [POST]
 [**os_metadata**](OSApi.md#os_metadata) | **GET** /os/metadata | /os/metadata [GET]
+[**os_nano_models_prepare**](OSApi.md#os_nano_models_prepare) | **POST** /os/nano_models/prepare | /os/nano_models/prepare [POST]
 [**os_permissions**](OSApi.md#os_permissions) | **GET** /os/permissions | /os/permissions [GET]
 [**os_permissions_request**](OSApi.md#os_permissions_request) | **POST** /os/permissions/request | /os/permissions/request [POST]
 [**os_restart**](OSApi.md#os_restart) | **GET** /os/restart | Your GET endpoint
@@ -1044,6 +1045,85 @@ This endpoint does not need any parameter.
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
+**500** | Internal Server Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **os_nano_models_prepare**
+> os_nano_models_prepare(nano_models_preparation_input=nano_models_preparation_input)
+
+/os/nano_models/prepare [POST]
+
+This endpoint will prepare our nano models
+
+note: for now we will support task specific model groups.
+
+### Example
+
+* Api Key Authentication (application):
+```python
+import time
+import os
+import pieces_os_client
+from pieces_os_client.models.nano_models_preparation_input import NanoModelsPreparationInput
+from pieces_os_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to http://localhost:1000
+# See configuration.py for a list of all supported configuration parameters.
+configuration = pieces_os_client.Configuration(
+    host = "http://localhost:1000"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: application
+configuration.api_key['application'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['application'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with pieces_os_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = pieces_os_client.OSApi(api_client)
+    nano_models_preparation_input = pieces_os_client.NanoModelsPreparationInput() # NanoModelsPreparationInput |  (optional)
+
+    try:
+        # /os/nano_models/prepare [POST]
+        api_instance.os_nano_models_prepare(nano_models_preparation_input=nano_models_preparation_input)
+    except Exception as e:
+        print("Exception when calling OSApi->os_nano_models_prepare: %s\n" % e)
+```
+
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **nano_models_preparation_input** | [**NanoModelsPreparationInput**](NanoModelsPreparationInput.md)|  | [optional] 
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[application](../README.md#application)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: text/plain
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**204** | No Content |  -  |
 **500** | Internal Server Error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

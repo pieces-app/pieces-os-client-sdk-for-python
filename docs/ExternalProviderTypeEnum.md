@@ -4,9 +4,9 @@ This is an enum to describe the provider used to authenticate a user.  IMPORTANT
 
 ## Enum
 
-* `GITHUB` (value: `'github'`)
+* `UNKNOWN` (value: `'UNKNOWN'`)
 
-* `AUTH0` (value: `'auth0'`)
+* `GITHUB` (value: `'github'`)
 
 * `GOOGLE_MINUS_OAUTH2` (value: `'google-oauth2'`)
 
@@ -19,6 +19,16 @@ This is an enum to describe the provider used to authenticate a user.  IMPORTANT
 * `FACEBOOK` (value: `'facebook'`)
 
 * `WAAD` (value: `'waad'`)
+
+* `DISCORD` (value: `'discord'`)
+
+* `GITLAB` (value: `'gitlab'`)
+
+* `APPLE` (value: `'apple'`)
+
+* `USERNAME_EMAIL` (value: `'username_email'`)
+
+* `SLACK` (value: `'slack'`)
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

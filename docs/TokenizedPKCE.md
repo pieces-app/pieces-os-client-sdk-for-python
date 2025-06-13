@@ -6,7 +6,7 @@ This is the flow that mobile apps use to access an API. Use this endpoint to exc
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
-**grant_type** | **str** | Denotes the flow you are using. For Authorization Code, use authorization_code or refresh_token. | 
+**grant_type** | **str** | Denotes the flow you are using. For Authorization Code, use authorization_code or refresh_token. | [default to 'UNKNOWN']
 **client_id** | **str** | Your application&#39;s Client ID. | 
 **code** | **str** | The Authorization Code received from the initial /authorize call. | 
 **redirect_uri** | **str** | This is required only if it was set at the GET /authorize endpoint. The values must match. | 

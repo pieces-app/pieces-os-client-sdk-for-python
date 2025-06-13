@@ -4,6 +4,8 @@ OPEN: Means that privacy is fully open CLOSED: Means that privacy is fully locke
 
 ## Enum
 
+* `UNKNOWN` (value: `'UNKNOWN'`)
+
 * `OPEN` (value: `'OPEN'`)
 
 * `CLOSED` (value: `'CLOSED'`)

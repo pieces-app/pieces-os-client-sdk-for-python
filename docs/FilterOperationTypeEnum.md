@@ -3,6 +3,8 @@
 
 ## Enum
 
+* `UNKNOWN` (value: `'UNKNOWN'`)
+
 * `AND` (value: `'AND'`)
 
 * `OR` (value: `'OR'`)

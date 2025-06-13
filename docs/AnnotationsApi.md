@@ -208,7 +208,7 @@ configuration.api_key['application'] = os.environ["API_KEY"]
 with pieces_os_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pieces_os_client.AnnotationsApi(api_client)
-    annotation_type_filter = 'annotation_type_filter_example' # str | This is an AnnotationTypeEnum as a optional filter. (optional)
+    annotation_type_filter = 'UNKNOWN' # str | This is an AnnotationTypeEnum as a optional filter. (optional) (default to 'UNKNOWN')
 
     try:
         # /annotations [GET]
@@ -225,7 +225,7 @@ with pieces_os_client.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **annotation_type_filter** | **str**| This is an AnnotationTypeEnum as a optional filter. | [optional] 
+ **annotation_type_filter** | **str**| This is an AnnotationTypeEnum as a optional filter. | [optional] [default to &#39;UNKNOWN&#39;]
 
 ### Return type
 

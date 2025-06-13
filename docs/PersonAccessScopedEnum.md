@@ -4,6 +4,8 @@ This is an enum that will help provide information around what permission this p
 
 ## Enum
 
+* `UNKNOWN` (value: `'UNKNOWN'`)
+
 * `OWNER` (value: `'OWNER'`)
 
 * `EDITOR` (value: `'EDITOR'`)

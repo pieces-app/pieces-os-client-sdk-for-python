@@ -4,6 +4,8 @@ This is the specific role of a format.
 
 ## Enum
 
+* `UNKNOWN` (value: `'UNKNOWN'`)
+
 * `ORIGINAL` (value: `'ORIGINAL'`)
 
 * `ADDITIONAL` (value: `'ADDITIONAL'`)

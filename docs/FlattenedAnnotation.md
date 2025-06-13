@@ -1,6 +1,6 @@
 # FlattenedAnnotation
 
-This is the flattened Version of the annotation, IMPORTANT: when referencing these, ONLY Take the UUID, do NOT polinate(ie w/ asset/person/model) the FlattenedAnnotation as it can create an infinite loop.
+This is the flattened Version of the annotation, IMPORTANT: when referencing these, ONLY Take the UUID, do NOT polinate(ie w/ asset/person/model) the FlattenedAnnotation as it can create an infinite loop.  UPDATE: the singular fields on here(asset, person, anchor, conversation, and summary) are all now deprecated... an annotation will now have a many to many relationship with all of it materials.
 
 ## Properties
 Name | Type | Description | Notes
@@ -23,6 +23,14 @@ Name | Type | Description | Notes
 **score** | [**Score**](Score.md) |  | [optional] 
 **messages** | [**FlattenedConversationMessages**](FlattenedConversationMessages.md) |  | [optional] 
 **summary** | [**ReferencedWorkstreamSummary**](ReferencedWorkstreamSummary.md) |  | [optional] 
+**assets** | [**FlattenedAssets**](FlattenedAssets.md) |  | [optional] 
+**persons** | [**FlattenedPersons**](FlattenedPersons.md) |  | [optional] 
+**anchors** | [**FlattenedAnchors**](FlattenedAnchors.md) |  | [optional] 
+**conversations** | [**FlattenedConversations**](FlattenedConversations.md) |  | [optional] 
+**summaries** | [**FlattenedWorkstreamSummaries**](FlattenedWorkstreamSummaries.md) |  | [optional] 
+**websites** | [**FlattenedWebsites**](FlattenedWebsites.md) |  | [optional] 
+**tags** | [**FlattenedTags**](FlattenedTags.md) |  | [optional] 
+**workstream_events** | [**FlattenedWorkstreamEvents**](FlattenedWorkstreamEvents.md) |  | [optional] 
 
 ## Example
 
