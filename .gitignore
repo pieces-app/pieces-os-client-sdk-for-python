@@ -51,3 +51,4 @@ docs/_build/
 
 # macOS metadata
 .DS_Store
+pieces-os-client-sdk-for-python.iml

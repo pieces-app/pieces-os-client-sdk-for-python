@@ -7,6 +7,7 @@ on:
         description: 'Version of the SDKs'
         required: true
         default: '1.0.0'
+        type: string
 
 permissions:
   contents: write
@@ -18,6 +19,8 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Set up Java
         uses: actions/setup-java@v4
@@ -25,13 +28,21 @@ jobs:
           distribution: 'temurin'
           java-version: '11'
 
+      - name: Set up SSH key
+        uses: shimataro/ssh-key-action@v2
+        with:
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          name: id_rsa
+          known_hosts: "github.com"
+          if_key_exists: replace
+
       - name: Install OpenAPI Generator CLI
         run: |
           npm install -g @openapitools/openapi-generator-cli
 
       - name: Clone generated_runtime repository
         run: |
-          git clone https://github.com/open-runtime/generated_runtime.git
+          git clone git@github.com:open-runtime/generated_runtime.git
 
       - name: Generate SDK
         run: |
@@ -40,37 +51,41 @@ jobs:
           TEMPLATE_OVERRIDE_DIR=$(realpath "${SPEC_DIR}/common/templates/python")
           OUTPUT_DIR="generated"
           VERSION="${{ github.event.inputs.version }}"
-
-          openapi-generator-cli \
-            generate -g python-pydantic-v1 \
+          
+          openapi-generator-cli generate \
+            -g python-pydantic-v1 \
             --skip-operation-example \
-            -i $SPEC_FILE \
-            -o $OUTPUT_DIR \
-            --additional-properties=packageName=pieces_os_client,packageVersion=$VERSION,generateExamples=false,generateApiDocs=true,generateModelDocs=true
+            -i "$SPEC_FILE" \
+            -o "$OUTPUT_DIR" \
+            --additional-properties=packageName=pieces_os_client,packageVersion="$VERSION",generateExamples=false,generateApiDocs=true,generateModelDocs=true
 
       - name: Copy and organize files
         run: |
           OUTPUT_DIR="generated"
-
+          
           # Copy wrapper to generated output
-          cp -r ./src/pieces_os_client/wrapper/ $OUTPUT_DIR/pieces_os_client/wrapper
-
+          if [ -d "./src/pieces_os_client/wrapper/" ]; then
+            cp -r ./src/pieces_os_client/wrapper/ "$OUTPUT_DIR/pieces_os_client/wrapper"
+          fi
+          
           # Remove old files
           rm -rf ./src/pieces_os_client/
           rm -rf ./docs
-
+          
           # Copy new files
-          cp -r $OUTPUT_DIR/pieces_os_client ./src/pieces_os_client/
-          cp -r $OUTPUT_DIR/docs ./docs
-
+          cp -r "$OUTPUT_DIR/pieces_os_client" ./src/pieces_os_client/
+          cp -r "$OUTPUT_DIR/docs" ./docs
+          
           # Clean up
-          rm -rf $OUTPUT_DIR
+          rm -rf "$OUTPUT_DIR"
           rm -rf generated_runtime
 
       - name: Apply post-generation fixes
         run: |
           # Run the Python script to apply fixes
-          python .github/workflows/post_generation_fixes.py
+          if [ -f ".github/workflows/post_generation_fixes.py" ]; then
+            python .github/workflows/post_generation_fixes.py
+          fi
 
       - name: Clean up __init__.py files
         run: |
@@ -89,8 +104,13 @@ jobs:
           title: "Update SDK to version ${{ github.event.inputs.version }}"
           body: |
             This PR updates the Pieces OS Client SDK to version ${{ github.event.inputs.version }}.
-
+            
             Generated from the latest OpenAPI specification.
+            
+            ## Changes
+            - Updated SDK to version ${{ github.event.inputs.version }}
+            - Regenerated from latest OpenAPI spec
+            - Applied post-generation fixes
           branch: update-sdk-${{ github.event.inputs.version }}
           reviewers: bishoy-at-pieces
           delete-branch: true
