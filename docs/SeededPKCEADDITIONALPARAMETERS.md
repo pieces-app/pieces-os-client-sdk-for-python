@@ -5,8 +5,8 @@ Append any additional parameter to the end of your request, and it will be sent 
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**access_type** | **str** |  | [optional] 
-**display** | **str** |  | [optional] 
+**access_type** | **str** |  | [optional] [default to 'UNKNOWN']
+**display** | **str** |  | [optional] [default to 'UNKNOWN']
 
 ## Example
 

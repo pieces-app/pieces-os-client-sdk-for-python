@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 **person** | [**SeededPerson**](SeededPerson.md) |  | [optional] 
 **anchor** | [**SeededAnchor**](SeededAnchor.md) |  | [optional] 
 **website** | [**SeededWebsite**](SeededWebsite.md) |  | [optional] 
-**type** | **str** |  | [optional] 
+**type** | [**SeedTypeEnum**](SeedTypeEnum.md) |  | [optional] 
 
 ## Example
 

@@ -1,6 +1,6 @@
 # SeededWorkstreamSuggestionsRefresh
 
-This is used in the input of the /workstream/feed/refresh  The application here will let us know if what scope you would like to refresh the stream for. IE an Application will  provide bias in the items that are displayed.  note: context can be used here to provide further bias to the suggestions.
+This is used in the input of the /workstream/feed/refresh  The application here will let us know if what scope you would like to refresh the stream for. IE an Application will  provide bias in the items that are displayed.  note: context can be used here to provide further bias to the suggestions.  if query is provided we will use global search.
 
 ## Properties
 Name | Type | Description | Notes
@@ -8,6 +8,7 @@ Name | Type | Description | Notes
 **var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 **application** | [**Application**](Application.md) |  | 
 **context** | [**WorkstreamEventContext**](WorkstreamEventContext.md) |  | [optional] 
+**query** | **str** |  | [optional] 
 
 ## Example
 

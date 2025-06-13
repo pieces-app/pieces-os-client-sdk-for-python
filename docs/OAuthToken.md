@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 **access_token** | **str** | The Access Token | 
-**token_type** | **str** |  | 
+**token_type** | **str** |  | [default to 'UNKNOWN']
 **expires_in** | **int** |  | 
 **scope** | **str** |  | [optional] 
 **refresh_token** | **str** |  | [optional] 

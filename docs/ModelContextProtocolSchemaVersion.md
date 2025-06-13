@@ -5,6 +5,7 @@ This is a singular schema version for MCP
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 **version** | **str** |  | 
 **entry_endpoint** | **str** | this is the endpoint that the use should use to configure the server. | 
 

@@ -4,6 +4,8 @@ ddr3, ddr4, ddr5, gddr6 : this is the type of the RAM
 
 ## Enum
 
+* `UNKNOWN` (value: `'UNKNOWN'`)
+
 * `DDR2` (value: `'DDR2'`)
 
 * `DDR3` (value: `'DDR3'`)

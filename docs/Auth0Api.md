@@ -232,7 +232,7 @@ configuration.api_key['application'] = os.environ["API_KEY"]
 with pieces_os_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pieces_os_client.Auth0Api(api_client)
-    grant_type = 'grant_type_example' # str | Denotes the flow you are using. For Authorization Code, use authorization_code or refresh_token.
+    grant_type = 'UNKNOWN' # str | Denotes the flow you are using. For Authorization Code, use authorization_code or refresh_token. (default to 'UNKNOWN')
     client_id = 'client_id_example' # str | Your application's Client ID.
     code = 'code_example' # str | The Authorization Code received from the initial /authorize call.
     redirect_uri = 'redirect_uri_example' # str | This is required only if it was set at the GET /authorize endpoint. The values must match.
@@ -255,7 +255,7 @@ with pieces_os_client.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **grant_type** | **str**| Denotes the flow you are using. For Authorization Code, use authorization_code or refresh_token. | 
+ **grant_type** | **str**| Denotes the flow you are using. For Authorization Code, use authorization_code or refresh_token. | [default to &#39;UNKNOWN&#39;]
  **client_id** | **str**| Your application&#39;s Client ID. | 
  **code** | **str**| The Authorization Code received from the initial /authorize call. | 
  **redirect_uri** | **str**| This is required only if it was set at the GET /authorize endpoint. The values must match. | 

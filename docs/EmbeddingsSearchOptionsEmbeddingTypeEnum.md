@@ -4,6 +4,8 @@ TODO
 
 ## Enum
 
+* `UNKNOWN` (value: `'UNKNOWN'`)
+
 * `JINA` (value: `'JINA'`)
 
 * `NCS` (value: `'NCS'`)

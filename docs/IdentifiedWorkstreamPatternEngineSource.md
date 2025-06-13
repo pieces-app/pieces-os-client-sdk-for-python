@@ -18,6 +18,10 @@ Name | Type | Description | Notes
 **conversations** | [**FlattenedConversations**](FlattenedConversations.md) |  | [optional] 
 **accessibility** | [**WorkstreamPatternEngineSourceSupportedAccessibility**](WorkstreamPatternEngineSourceSupportedAccessibility.md) |  | [optional] 
 **messages** | [**FlattenedConversationMessages**](FlattenedConversationMessages.md) |  | [optional] 
+**websites** | [**FlattenedWebsites**](FlattenedWebsites.md) |  | [optional] 
+**anchors** | [**FlattenedAnchors**](FlattenedAnchors.md) |  | [optional] 
+**persons** | [**FlattenedPersons**](FlattenedPersons.md) |  | [optional] 
+**workstream_pattern_engine_sources_vector** | **List[float]** | This is the embedding for the wpeSource.(NEEDs to collectionection.vector) and specific here because we can only index on a single name NOTE: this the the vector index that corresponds the the couchbase lite index. | [optional] 
 
 ## Example
 

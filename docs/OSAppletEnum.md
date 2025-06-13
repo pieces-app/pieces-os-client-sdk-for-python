@@ -4,6 +4,8 @@ This is an enum specifically for the different types of micro_applications/exper
 
 ## Enum
 
+* `UNKNOWN_APPLET_MODULE` (value: `'UNKNOWN_APPLET_MODULE'`)
+
 * `COPILOT` (value: `'COPILOT'`)
 
 * `PIECES_OS_TOOLBAR` (value: `'PIECES_OS_TOOLBAR'`)
@@ -33,8 +35,6 @@ This is an enum specifically for the different types of micro_applications/exper
 * `FUTURE_APPLET_MODULE_PLACEHOLDER_B` (value: `'FUTURE_APPLET_MODULE_PLACEHOLDER_B'`)
 
 * `FUTURE_APPLET_MODULE_PLACEHOLDER_C` (value: `'FUTURE_APPLET_MODULE_PLACEHOLDER_C'`)
-
-* `UNKNOWN_APPLET_MODULE` (value: `'UNKNOWN_APPLET_MODULE'`)
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

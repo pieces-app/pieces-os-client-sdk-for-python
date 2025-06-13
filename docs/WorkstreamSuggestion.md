@@ -24,6 +24,16 @@ Name | Type | Description | Notes
 **persons** | [**FlattenedPersons**](FlattenedPersons.md) |  | [optional] 
 **related** | [**WorkstreamSuggestions**](WorkstreamSuggestions.md) |  | [optional] 
 **current** | [**WorkstreamSuggestion**](WorkstreamSuggestion.md) |  | [optional] 
+**annotation** | [**ReferencedAnnotation**](ReferencedAnnotation.md) |  | [optional] 
+**annotations** | [**FlattenedAnnotations**](FlattenedAnnotations.md) |  | [optional] 
+**conversation_message** | [**ReferencedConversationMessage**](ReferencedConversationMessage.md) |  | [optional] 
+**conversation_messages** | [**FlattenedConversationMessages**](FlattenedConversationMessages.md) |  | [optional] 
+**hint** | [**ReferencedHint**](ReferencedHint.md) |  | [optional] 
+**hints** | [**FlattenedHints**](FlattenedHints.md) |  | [optional] 
+**sensitive** | [**ReferencedSensitive**](ReferencedSensitive.md) |  | [optional] 
+**sensitives** | [**FlattenedSensitives**](FlattenedSensitives.md) |  | [optional] 
+**source** | [**ReferencedIdentifiedWorkstreamPatternEngineSource**](ReferencedIdentifiedWorkstreamPatternEngineSource.md) |  | [optional] 
+**sources** | [**FlattenedIdentifiedWorkstreamPatternEngineSources**](FlattenedIdentifiedWorkstreamPatternEngineSources.md) |  | [optional] 
 
 ## Example
 

@@ -4,6 +4,8 @@ This is a specific Enum used for the QGPT Stream.
 
 ## Enum
 
+* `UNKNOWN` (value: `'UNKNOWN'`)
+
 * `CANCELED` (value: `'CANCELED'`)
 
 * `INITIALIZED` (value: `'INITIALIZED'`)
@@ -13,8 +15,6 @@ This is a specific Enum used for the QGPT Stream.
 * `COMPLETED` (value: `'COMPLETED'`)
 
 * `FAILED` (value: `'FAILED'`)
-
-* `UNKNOWN` (value: `'UNKNOWN'`)
 
 * `STOPPED` (value: `'STOPPED'`)
 

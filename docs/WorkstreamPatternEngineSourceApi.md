@@ -4,18 +4,102 @@ All URIs are relative to *http://localhost:1000*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**workstream_pattern_engine_source_associate_anchor**](WorkstreamPatternEngineSourceApi.md#workstream_pattern_engine_source_associate_anchor) | **POST** /workstream_pattern_engine/source/{source}/anchors/associate/{anchor} | /workstream_pattern_engine/source/{source}/anchors/associate/{anchor} [POST]
 [**workstream_pattern_engine_source_associate_conversation**](WorkstreamPatternEngineSourceApi.md#workstream_pattern_engine_source_associate_conversation) | **POST** /workstream_pattern_engine/source/{source}/conversations/grounding/sources/associate/{conversation} | /workstream_pattern_engine/source/{source}/conversations/grounding/sources/associate/{conversation} [POST]
 [**workstream_pattern_engine_source_associate_conversation_message**](WorkstreamPatternEngineSourceApi.md#workstream_pattern_engine_source_associate_conversation_message) | **POST** /workstream_pattern_engine/source/{source}/messages/associate/{message} | /workstream_pattern_engine/source/{source}/messages/associate/{message} [POST]
+[**workstream_pattern_engine_source_associate_person**](WorkstreamPatternEngineSourceApi.md#workstream_pattern_engine_source_associate_person) | **POST** /workstream_pattern_engine/source/{source}/persons/associate/{person} | /workstream_pattern_engine/source/{source}/persons/associate/{person} [POST]
+[**workstream_pattern_engine_source_associate_website**](WorkstreamPatternEngineSourceApi.md#workstream_pattern_engine_source_associate_website) | **POST** /workstream_pattern_engine/source/{source}/websites/associate/{website} | /workstream_pattern_engine/source/{source}/websites/associate/{website} [POST]
 [**workstream_pattern_engine_source_associate_workstream_event**](WorkstreamPatternEngineSourceApi.md#workstream_pattern_engine_source_associate_workstream_event) | **POST** /workstream_pattern_engine/source/{source}/workstream_events/associate/{workstream_event} | /workstream_pattern_engine/source/{source}/workstream_events/associate/{workstream_event} [POST]
 [**workstream_pattern_engine_source_associate_workstream_summary**](WorkstreamPatternEngineSourceApi.md#workstream_pattern_engine_source_associate_workstream_summary) | **POST** /workstream_pattern_engine/source/{source}/workstream_summaries/associate/{workstream_summary} | /workstream_pattern_engine/source/{source}/workstream_summaries/associate/{workstream_summary} [POST]
+[**workstream_pattern_engine_source_disassociate_anchor**](WorkstreamPatternEngineSourceApi.md#workstream_pattern_engine_source_disassociate_anchor) | **POST** /workstream_pattern_engine/source/{source}/anchors/disassociate/{anchor} | /workstream_pattern_engine/source/{source}/anchors/disassociate/{anchor} [POST]
 [**workstream_pattern_engine_source_disassociate_conversation**](WorkstreamPatternEngineSourceApi.md#workstream_pattern_engine_source_disassociate_conversation) | **POST** /workstream_pattern_engine/source/{source}/conversations/grounding/sources/disassociate/{conversation} | /workstream_pattern_engine/source/{source}/conversations/grounding/sources/disassociate/{conversation} [POST]
 [**workstream_pattern_engine_source_disassociate_conversation_message**](WorkstreamPatternEngineSourceApi.md#workstream_pattern_engine_source_disassociate_conversation_message) | **POST** /workstream_pattern_engine/source/{source}/messages/disassociate/{message} | /workstream_pattern_engine/source/{source}/messages/disassociate/{message} [POST]
+[**workstream_pattern_engine_source_disassociate_person**](WorkstreamPatternEngineSourceApi.md#workstream_pattern_engine_source_disassociate_person) | **POST** /workstream_pattern_engine/source/{source}/persons/disassociate/{person} | /workstream_pattern_engine/source/{source}/persons/disassociate/{person} [POST]
+[**workstream_pattern_engine_source_disassociate_website**](WorkstreamPatternEngineSourceApi.md#workstream_pattern_engine_source_disassociate_website) | **POST** /workstream_pattern_engine/source/{source}/websites/disassociate/{website} | /workstream_pattern_engine/source/{source}/websites/disassociate/{website} [POST]
 [**workstream_pattern_engine_source_disassociate_workstream_event**](WorkstreamPatternEngineSourceApi.md#workstream_pattern_engine_source_disassociate_workstream_event) | **POST** /workstream_pattern_engine/source/{source}/workstream_events/disassociate/{workstream_event} | /workstream_pattern_engine/source/{source}/workstream_events/disassociate/{workstream_event} [POST]
 [**workstream_pattern_engine_source_disassociate_workstream_summary**](WorkstreamPatternEngineSourceApi.md#workstream_pattern_engine_source_disassociate_workstream_summary) | **POST** /workstream_pattern_engine/source/{source}/workstream_summaries/disassociate/{workstream_summary} | /workstream_pattern_engine/source/{source}/workstream_summaries/disassociate/{workstream_summary} [POST]
 [**workstream_pattern_engine_source_scores_increment**](WorkstreamPatternEngineSourceApi.md#workstream_pattern_engine_source_scores_increment) | **POST** /workstream_pattern_engine/source/{source}/scores/increment | &#39;/workstream_pattern_engine/source/{source}/scores/increment&#39; [POST]
 [**workstream_pattern_engine_source_update**](WorkstreamPatternEngineSourceApi.md#workstream_pattern_engine_source_update) | **POST** /workstream_pattern_engine/source/update | /workstream_pattern_engine/source/update [POST]
 [**workstream_pattern_engine_sources_specific_source_snapshot**](WorkstreamPatternEngineSourceApi.md#workstream_pattern_engine_sources_specific_source_snapshot) | **GET** /workstream_pattern_engine/source/{source} | /workstream_pattern_engine/source/{source} [GET]
 
+
+# **workstream_pattern_engine_source_associate_anchor**
+> workstream_pattern_engine_source_associate_anchor(source, anchor)
+
+/workstream_pattern_engine/source/{source}/anchors/associate/{anchor} [POST]
+
+This will enable us to associate an anchor with a source.
+
+### Example
+
+* Api Key Authentication (application):
+```python
+import time
+import os
+import pieces_os_client
+from pieces_os_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to http://localhost:1000
+# See configuration.py for a list of all supported configuration parameters.
+configuration = pieces_os_client.Configuration(
+    host = "http://localhost:1000"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: application
+configuration.api_key['application'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['application'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with pieces_os_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = pieces_os_client.WorkstreamPatternEngineSourceApi(api_client)
+    source = 'source_example' # str | This is a identifier that is used to identify a specific WorkstreamPatternEngineSource
+    anchor = 'anchor_example' # str | This is the specific uuid of an anchor.
+
+    try:
+        # /workstream_pattern_engine/source/{source}/anchors/associate/{anchor} [POST]
+        api_instance.workstream_pattern_engine_source_associate_anchor(source, anchor)
+    except Exception as e:
+        print("Exception when calling WorkstreamPatternEngineSourceApi->workstream_pattern_engine_source_associate_anchor: %s\n" % e)
+```
+
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **source** | **str**| This is a identifier that is used to identify a specific WorkstreamPatternEngineSource | 
+ **anchor** | **str**| This is the specific uuid of an anchor. | 
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[application](../README.md#application)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: text/plain
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**204** | No Content |  -  |
+**500** | Internal Server Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **workstream_pattern_engine_source_associate_conversation**
 > workstream_pattern_engine_source_associate_conversation(source, conversation)
@@ -151,6 +235,162 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **source** | **str**| This is a identifier that is used to identify a specific WorkstreamPatternEngineSource | 
  **message** | **str**| This is the uuid of a message. | 
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[application](../README.md#application)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: text/plain
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**204** | No Content |  -  |
+**500** | Internal Server Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **workstream_pattern_engine_source_associate_person**
+> workstream_pattern_engine_source_associate_person(source, person)
+
+/workstream_pattern_engine/source/{source}/persons/associate/{person} [POST]
+
+This will enable us to associate a person with a source.
+
+### Example
+
+* Api Key Authentication (application):
+```python
+import time
+import os
+import pieces_os_client
+from pieces_os_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to http://localhost:1000
+# See configuration.py for a list of all supported configuration parameters.
+configuration = pieces_os_client.Configuration(
+    host = "http://localhost:1000"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: application
+configuration.api_key['application'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['application'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with pieces_os_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = pieces_os_client.WorkstreamPatternEngineSourceApi(api_client)
+    source = 'source_example' # str | This is a identifier that is used to identify a specific WorkstreamPatternEngineSource
+    person = 'person_example' # str | This is a uuid that represents a person.
+
+    try:
+        # /workstream_pattern_engine/source/{source}/persons/associate/{person} [POST]
+        api_instance.workstream_pattern_engine_source_associate_person(source, person)
+    except Exception as e:
+        print("Exception when calling WorkstreamPatternEngineSourceApi->workstream_pattern_engine_source_associate_person: %s\n" % e)
+```
+
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **source** | **str**| This is a identifier that is used to identify a specific WorkstreamPatternEngineSource | 
+ **person** | **str**| This is a uuid that represents a person. | 
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[application](../README.md#application)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: text/plain
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**204** | No Content |  -  |
+**500** | Internal Server Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **workstream_pattern_engine_source_associate_website**
+> workstream_pattern_engine_source_associate_website(source, website)
+
+/workstream_pattern_engine/source/{source}/websites/associate/{website} [POST]
+
+This will enable us to associate a website with a source.
+
+### Example
+
+* Api Key Authentication (application):
+```python
+import time
+import os
+import pieces_os_client
+from pieces_os_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to http://localhost:1000
+# See configuration.py for a list of all supported configuration parameters.
+configuration = pieces_os_client.Configuration(
+    host = "http://localhost:1000"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: application
+configuration.api_key['application'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['application'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with pieces_os_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = pieces_os_client.WorkstreamPatternEngineSourceApi(api_client)
+    source = 'source_example' # str | This is a identifier that is used to identify a specific WorkstreamPatternEngineSource
+    website = 'website_example' # str | website id
+
+    try:
+        # /workstream_pattern_engine/source/{source}/websites/associate/{website} [POST]
+        api_instance.workstream_pattern_engine_source_associate_website(source, website)
+    except Exception as e:
+        print("Exception when calling WorkstreamPatternEngineSourceApi->workstream_pattern_engine_source_associate_website: %s\n" % e)
+```
+
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **source** | **str**| This is a identifier that is used to identify a specific WorkstreamPatternEngineSource | 
+ **website** | **str**| website id | 
 
 ### Return type
 
@@ -329,6 +569,84 @@ void (empty response body)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **workstream_pattern_engine_source_disassociate_anchor**
+> workstream_pattern_engine_source_disassociate_anchor(source, anchor)
+
+/workstream_pattern_engine/source/{source}/anchors/disassociate/{anchor} [POST]
+
+This will enable us to disassociate an anchor from a source.
+
+### Example
+
+* Api Key Authentication (application):
+```python
+import time
+import os
+import pieces_os_client
+from pieces_os_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to http://localhost:1000
+# See configuration.py for a list of all supported configuration parameters.
+configuration = pieces_os_client.Configuration(
+    host = "http://localhost:1000"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: application
+configuration.api_key['application'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['application'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with pieces_os_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = pieces_os_client.WorkstreamPatternEngineSourceApi(api_client)
+    source = 'source_example' # str | This is a identifier that is used to identify a specific WorkstreamPatternEngineSource
+    anchor = 'anchor_example' # str | This is the specific uuid of an anchor.
+
+    try:
+        # /workstream_pattern_engine/source/{source}/anchors/disassociate/{anchor} [POST]
+        api_instance.workstream_pattern_engine_source_disassociate_anchor(source, anchor)
+    except Exception as e:
+        print("Exception when calling WorkstreamPatternEngineSourceApi->workstream_pattern_engine_source_disassociate_anchor: %s\n" % e)
+```
+
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **source** | **str**| This is a identifier that is used to identify a specific WorkstreamPatternEngineSource | 
+ **anchor** | **str**| This is the specific uuid of an anchor. | 
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[application](../README.md#application)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: text/plain
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**204** | No Content |  -  |
+**500** | Internal Server Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **workstream_pattern_engine_source_disassociate_conversation**
 > workstream_pattern_engine_source_disassociate_conversation(source, conversation)
 
@@ -463,6 +781,162 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **source** | **str**| This is a identifier that is used to identify a specific WorkstreamPatternEngineSource | 
  **message** | **str**| This is the uuid of a message. | 
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[application](../README.md#application)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: text/plain
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**204** | No Content |  -  |
+**500** | Internal Server Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **workstream_pattern_engine_source_disassociate_person**
+> workstream_pattern_engine_source_disassociate_person(source, person)
+
+/workstream_pattern_engine/source/{source}/persons/disassociate/{person} [POST]
+
+This will enable us to disassociate a person from a source.
+
+### Example
+
+* Api Key Authentication (application):
+```python
+import time
+import os
+import pieces_os_client
+from pieces_os_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to http://localhost:1000
+# See configuration.py for a list of all supported configuration parameters.
+configuration = pieces_os_client.Configuration(
+    host = "http://localhost:1000"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: application
+configuration.api_key['application'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['application'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with pieces_os_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = pieces_os_client.WorkstreamPatternEngineSourceApi(api_client)
+    source = 'source_example' # str | This is a identifier that is used to identify a specific WorkstreamPatternEngineSource
+    person = 'person_example' # str | This is a uuid that represents a person.
+
+    try:
+        # /workstream_pattern_engine/source/{source}/persons/disassociate/{person} [POST]
+        api_instance.workstream_pattern_engine_source_disassociate_person(source, person)
+    except Exception as e:
+        print("Exception when calling WorkstreamPatternEngineSourceApi->workstream_pattern_engine_source_disassociate_person: %s\n" % e)
+```
+
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **source** | **str**| This is a identifier that is used to identify a specific WorkstreamPatternEngineSource | 
+ **person** | **str**| This is a uuid that represents a person. | 
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[application](../README.md#application)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: text/plain
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**204** | No Content |  -  |
+**500** | Internal Server Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **workstream_pattern_engine_source_disassociate_website**
+> workstream_pattern_engine_source_disassociate_website(source, website)
+
+/workstream_pattern_engine/source/{source}/websites/disassociate/{website} [POST]
+
+This will enable us to disassociate a website from a source.
+
+### Example
+
+* Api Key Authentication (application):
+```python
+import time
+import os
+import pieces_os_client
+from pieces_os_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to http://localhost:1000
+# See configuration.py for a list of all supported configuration parameters.
+configuration = pieces_os_client.Configuration(
+    host = "http://localhost:1000"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: application
+configuration.api_key['application'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['application'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with pieces_os_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = pieces_os_client.WorkstreamPatternEngineSourceApi(api_client)
+    source = 'source_example' # str | This is a identifier that is used to identify a specific WorkstreamPatternEngineSource
+    website = 'website_example' # str | website id
+
+    try:
+        # /workstream_pattern_engine/source/{source}/websites/disassociate/{website} [POST]
+        api_instance.workstream_pattern_engine_source_disassociate_website(source, website)
+    except Exception as e:
+        print("Exception when calling WorkstreamPatternEngineSourceApi->workstream_pattern_engine_source_disassociate_website: %s\n" % e)
+```
+
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **source** | **str**| This is a identifier that is used to identify a specific WorkstreamPatternEngineSource | 
+ **website** | **str**| website id | 
 
 ### Return type
 

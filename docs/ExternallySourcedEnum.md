@@ -4,6 +4,8 @@ This is an enum that will highlight something that is externally sourced.
 
 ## Enum
 
+* `UNKNOWN` (value: `'UNKNOWN'`)
+
 * `TWITTER` (value: `'TWITTER'`)
 
 * `MEDIUM` (value: `'MEDIUM'`)

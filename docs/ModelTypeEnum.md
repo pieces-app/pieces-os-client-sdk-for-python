@@ -4,6 +4,8 @@ This will describe the type of Model balanced, speed, accuracy...
 
 ## Enum
 
+* `UNKNOWN` (value: `'UNKNOWN'`)
+
 * `BALANCED` (value: `'BALANCED'`)
 
 * `SPEED` (value: `'SPEED'`)

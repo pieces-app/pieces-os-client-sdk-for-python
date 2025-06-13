@@ -4,6 +4,8 @@ EXTERNAL_RESOURCE_REFERENCE can be thought of as anything such as URL, URI, UNIX
 
 ## Enum
 
+* `UNKNOWN` (value: `'UNKNOWN'`)
+
 * `CODE` (value: `'CODE'`)
 
 * `TEXT` (value: `'TEXT'`)
@@ -13,8 +15,6 @@ EXTERNAL_RESOURCE_REFERENCE can be thought of as anything such as URL, URI, UNIX
 * `VIDEO` (value: `'VIDEO'`)
 
 * `EXTERNAL_RESOURCE_REFERENCE` (value: `'EXTERNAL_RESOURCE_REFERENCE'`)
-
-* `UNKNOWN` (value: `'UNKNOWN'`)
 
 * `FILE` (value: `'FILE'`)
 

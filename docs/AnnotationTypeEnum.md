@@ -4,6 +4,8 @@ This is used to describe a specific type of annotation. NOTE** This is linked to
 
 ## Enum
 
+* `UNKNOWN` (value: `'UNKNOWN'`)
+
 * `DESCRIPTION` (value: `'DESCRIPTION'`)
 
 * `COMMENT` (value: `'COMMENT'`)

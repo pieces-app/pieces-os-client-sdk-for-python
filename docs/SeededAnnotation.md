@@ -18,6 +18,14 @@ Name | Type | Description | Notes
 **conversation** | **str** |  | [optional] 
 **workstream_summary** | **str** |  | [optional] 
 **messages** | [**FlattenedConversationMessages**](FlattenedConversationMessages.md) |  | [optional] 
+**assets** | [**FlattenedAssets**](FlattenedAssets.md) |  | [optional] 
+**persons** | [**FlattenedPersons**](FlattenedPersons.md) |  | [optional] 
+**anchors** | [**FlattenedAnchors**](FlattenedAnchors.md) |  | [optional] 
+**conversations** | [**FlattenedConversations**](FlattenedConversations.md) |  | [optional] 
+**websites** | [**FlattenedWebsites**](FlattenedWebsites.md) |  | [optional] 
+**tags** | [**FlattenedTags**](FlattenedTags.md) |  | [optional] 
+**summaries** | [**FlattenedWorkstreamSummaries**](FlattenedWorkstreamSummaries.md) |  | [optional] 
+**workstream_events** | [**FlattenedWorkstreamEvents**](FlattenedWorkstreamEvents.md) |  | [optional] 
 
 ## Example
 

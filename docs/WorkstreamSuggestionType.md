@@ -22,6 +22,16 @@ Name | Type | Description | Notes
 **anchors** | **bool** |  | [optional] 
 **conversations** | **bool** |  | [optional] 
 **persons** | **bool** |  | [optional] 
+**annotation** | **bool** |  | [optional] 
+**annotations** | **bool** |  | [optional] 
+**conversation_message** | **bool** |  | [optional] 
+**conversation_messages** | **bool** |  | [optional] 
+**hint** | **bool** |  | [optional] 
+**hints** | **bool** |  | [optional] 
+**sensitive** | **bool** |  | [optional] 
+**sensitives** | **bool** |  | [optional] 
+**source** | **bool** |  | [optional] 
+**sources** | **bool** |  | [optional] 
 
 ## Example
 
