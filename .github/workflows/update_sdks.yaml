@@ -1,0 +1,96 @@
+name: Update SDKs
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Version of the SDKs'
+        required: true
+        default: '1.0.0'
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  update-dependencies:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '11'
+
+      - name: Install OpenAPI Generator CLI
+        run: |
+          npm install -g @openapitools/openapi-generator-cli
+
+      - name: Clone generated_runtime repository
+        run: |
+          git clone https://github.com/open-runtime/generated_runtime.git
+
+      - name: Generate SDK
+        run: |
+          SPEC_DIR="generated_runtime/spec"
+          SPEC_FILE="${SPEC_DIR}/modules/core/isomorphic.openapi.yaml"
+          TEMPLATE_OVERRIDE_DIR=$(realpath "${SPEC_DIR}/common/templates/python")
+          OUTPUT_DIR="generated"
+          VERSION="${{ github.event.inputs.version }}"
+
+          openapi-generator-cli \
+            generate -g python-pydantic-v1 \
+            --skip-operation-example \
+            -i $SPEC_FILE \
+            -o $OUTPUT_DIR \
+            --additional-properties=packageName=pieces_os_client,packageVersion=$VERSION,generateExamples=false,generateApiDocs=true,generateModelDocs=true
+
+      - name: Copy and organize files
+        run: |
+          OUTPUT_DIR="generated"
+
+          # Copy wrapper to generated output
+          cp -r ./src/pieces_os_client/wrapper/ $OUTPUT_DIR/pieces_os_client/wrapper
+
+          # Remove old files
+          rm -rf ./src/pieces_os_client/
+          rm -rf ./docs
+
+          # Copy new files
+          cp -r $OUTPUT_DIR/pieces_os_client ./src/pieces_os_client/
+          cp -r $OUTPUT_DIR/docs ./docs
+
+          # Clean up
+          rm -rf $OUTPUT_DIR
+          rm -rf generated_runtime
+
+      - name: Apply post-generation fixes
+        run: |
+          # Run the Python script to apply fixes
+          python .github/workflows/post_generation_fixes.py
+
+      - name: Clean up __init__.py files
+        run: |
+          # Remove import statements from main __init__.py (keep version)
+          sed -i '/^from pieces_os_client\./d' ./src/pieces_os_client/__init__.py
+          
+          # Clear the __init__.py files
+          echo '' > ./src/pieces_os_client/api/__init__.py
+          echo '' > ./src/pieces_os_client/models/__init__.py
+
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v5
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: "chore: update SDK to version ${{ github.event.inputs.version }}"
+          title: "Update SDK to version ${{ github.event.inputs.version }}"
+          body: |
+            This PR updates the Pieces OS Client SDK to version ${{ github.event.inputs.version }}.
+
+            Generated from the latest OpenAPI specification.
+          branch: update-sdk-${{ github.event.inputs.version }}
+          reviewers: bishoy-at-pieces
+          delete-branch: true
