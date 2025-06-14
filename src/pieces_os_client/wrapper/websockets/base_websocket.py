@@ -53,6 +53,7 @@ class BaseWebsocket(ABC):
 	def _is_initialized_on_open(self):
 		return True
 
+	@property
 	@abstractmethod
 	def url(self) -> str:
 		"""
