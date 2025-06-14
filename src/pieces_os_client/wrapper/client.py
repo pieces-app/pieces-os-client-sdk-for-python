@@ -40,6 +40,8 @@ from pieces_os_client.api.anchor_api import AnchorApi
 from pieces_os_client.api.range_api import RangeApi
 from pieces_os_client.api.ranges_api import RangesApi
 from pieces_os_client.api.model_api import ModelApi
+from pieces_os_client.api.applications_api import ApplicationsApi
+from pieces_os_client.api.application_api import ApplicationApi
 from pieces_os_client.api.workstream_pattern_engine_api import WorkstreamPatternEngineApi
 
 from pieces_os_client.models.seeded_connector_connection import SeededConnectorConnection
@@ -201,6 +203,8 @@ class PiecesClient:
         self.work_stream_pattern_engine_api = WorkstreamPatternEngineApi(self.api_client)
         self.range_api = RangeApi(self.api_client)
         self.ranges_api = RangesApi(self.api_client)
+        self.application_api = ApplicationApi(self.api_client)
+        self.applications_api = ApplicationsApi(self.api_client)
 
         # Websocket urls
         ws_base_url:str = host.replace('http','ws')

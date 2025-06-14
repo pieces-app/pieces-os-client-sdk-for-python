@@ -26,7 +26,10 @@ class LongTermMemory:
     def __init__(self, context: "Context"):
         self.context = context
         self.pieces_client = self.context.pieces_client
-    
+ 
+    def update(self):
+        self.ltm_status = self.pieces_client.work_stream_pattern_engine_api.workstream_pattern_engine_processors_vision_status()   
+
     @property
     def is_enabled(self) -> bool:
         """Checks if the LTM is enabled
@@ -34,6 +37,7 @@ class LongTermMemory:
         Returns:
             bool: Whether the LTM is enabled
         """
+        self.update()
         if self.ltm_status:
             return self.ltm_status.vision.activation is not None if self.ltm_status.vision is not None else False # checking the activation status
         return False

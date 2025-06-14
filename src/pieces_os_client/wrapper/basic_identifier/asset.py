@@ -15,6 +15,7 @@ from pieces_os_client.models.fragment_metadata import FragmentMetadata
 from pieces_os_client.models.asset_reclassification import AssetReclassification
 from pieces_os_client.models.linkify import Linkify
 from pieces_os_client.models.shares import Shares
+from pieces_os_client.models.share import Share
 
 if TYPE_CHECKING:
 	from . import BasicAnnotation, BasicTag, BasicWebsite
@@ -200,6 +201,9 @@ class BasicAsset(Basic):
 		if self.asset.annotations:
 			return [BasicAnnotation(AssetSnapshot.pieces_client,a) for a in self.asset.annotations.iterable]
 
+	@property
+	def shares(self) -> List[Share]:
+		return self.asset.shares.iterable if self.asset.shares else []
 
 	def delete(self) -> None:
 		"""

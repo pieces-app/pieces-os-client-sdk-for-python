@@ -157,7 +157,7 @@ class Copilot:
         if chat:
             self.context._init(chat)
         else:
-            self.context.clear()
+            self.context.clear(_notifiy = False)
         self._chat_id = chat._id if chat else None
 
 
