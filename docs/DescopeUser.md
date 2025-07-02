@@ -25,6 +25,8 @@ Name | Type | Description | Notes
 **allocation** | [**Auth0UserAllocationMetadata**](Auth0UserAllocationMetadata.md) |  | [optional] 
 **open_ai** | [**Auth0OpenAIUserMetadata**](Auth0OpenAIUserMetadata.md) |  | [optional] 
 **beta** | [**AnonymousTemporalRange**](AnonymousTemporalRange.md) |  | [optional] 
+**subscriptions** | [**DescopeUserSubscriptions**](DescopeUserSubscriptions.md) |  | [optional] 
+**api_keys** | **List[str]** |  | [optional] 
 
 ## Example
 

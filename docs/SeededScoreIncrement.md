@@ -42,6 +42,8 @@ Name | Type | Description | Notes
 **model** | [**SeededScore**](SeededScore.md) |  | [optional] 
 **workstream_pattern_engine_source_windows** | [**SeededScore**](SeededScore.md) |  | [optional] 
 **workstream_pattern_engine_source_window** | [**SeededScore**](SeededScore.md) |  | [optional] 
+**subscription** | [**SeededScore**](SeededScore.md) |  | [optional] 
+**subscriptions** | [**SeededScore**](SeededScore.md) |  | [optional] 
 
 ## Example
 

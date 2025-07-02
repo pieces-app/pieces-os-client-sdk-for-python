@@ -12,6 +12,7 @@ Name | Type | Description | Notes
 **username** | **str** |  | [optional] 
 **picture** | **str** |  | [optional] 
 **vanityname** | **str** |  | [optional] 
+**subscriptions** | [**FlattenedSubscriptions**](FlattenedSubscriptions.md) |  | [optional] 
 
 ## Example
 
