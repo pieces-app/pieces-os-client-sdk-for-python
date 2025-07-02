@@ -24,6 +24,8 @@ Name | Type | Description | Notes
 **workstream_summary** | [**ReferencedWorkstreamSummary**](ReferencedWorkstreamSummary.md) |  | [optional] 
 **workstream_pattern_engine_source** | [**ReferencedIdentifiedWorkstreamPatternEngineSource**](ReferencedIdentifiedWorkstreamPatternEngineSource.md) |  | [optional] 
 **workstream_pattern_engine_source_window** | [**ReferencedWorkstreamPatternEngineSourceWindow**](ReferencedWorkstreamPatternEngineSourceWindow.md) |  | [optional] 
+**subscription** | [**ReferencedSubscription**](ReferencedSubscription.md) |  | [optional] 
+**updated** | [**GroupedTimestamp**](GroupedTimestamp.md) |  | [optional] 
 **deleted** | **bool** | This is a specific bool that will let us know if we deleted an Identifierfrom the db. | [optional] 
 
 ## Example

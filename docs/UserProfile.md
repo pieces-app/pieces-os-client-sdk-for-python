@@ -19,6 +19,8 @@ Name | Type | Description | Notes
 **providers** | [**ExternalProviders**](ExternalProviders.md) |  | [optional] 
 **auth0** | [**Auth0UserMetadata**](Auth0UserMetadata.md) |  | [optional] 
 **descope** | [**DescopeUserMetadata**](DescopeUserMetadata.md) |  | [optional] 
+**subscriptions** | [**FlattenedSubscriptions**](FlattenedSubscriptions.md) |  | [optional] 
+**api_keys** | **List[str]** |  | [optional] 
 
 ## Example
 

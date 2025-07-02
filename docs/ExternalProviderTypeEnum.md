@@ -30,6 +30,8 @@ This is an enum to describe the provider used to authenticate a user.  IMPORTANT
 
 * `SLACK` (value: `'slack'`)
 
+* `MICROSOFT` (value: `'microsoft'`)
+
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
 

@@ -218,6 +218,8 @@ This is used to describe the foundational models used within POS.  Note: LATEST 
 
 * `CLAUDE_3_DOT_5` (value: `'CLAUDE_3.5'`)
 
+* `CLAUDE_4` (value: `'CLAUDE_4'`)
+
 * `CLAUDE_LATEST` (value: `'CLAUDE_LATEST'`)
 
 * `GRANITE_LATEST` (value: `'GRANITE_LATEST'`)

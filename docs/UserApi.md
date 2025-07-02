@@ -8,9 +8,12 @@ Method | HTTP request | Description
 [**refresh_user**](UserApi.md#refresh_user) | **GET** /user/refresh | /user/refresh [GET]
 [**select_user**](UserApi.md#select_user) | **POST** /user/select | /user/select [POST]
 [**stream_user**](UserApi.md#stream_user) | **GET** /user/stream | /user/stream [WS]
+[**stream_user_last_checked_in**](UserApi.md#stream_user_last_checked_in) | **GET** /user/last_checked_in/stream | /user/last_checked_in/stream [WS]
 [**update_user**](UserApi.md#update_user) | **POST** /user/update | /user/update [POST]
 [**user_access_token**](UserApi.md#user_access_token) | **GET** /user/access_token | &#39;/user/access_token&#39; [GET]
 [**user_beta_status**](UserApi.md#user_beta_status) | **POST** /user/beta/status | /user/beta/status [POST]
+[**user_checkout**](UserApi.md#user_checkout) | **POST** /user/checkout | /user/checkout [POST]
+[**user_manage_subscriptions**](UserApi.md#user_manage_subscriptions) | **POST** /user/manage/subscriptions | /user/manage/subscriptions [POST]
 [**user_providers**](UserApi.md#user_providers) | **GET** /user/providers | Your GET endpoint
 [**user_snapshot**](UserApi.md#user_snapshot) | **GET** /user | /user [GET]
 [**user_update_vanity**](UserApi.md#user_update_vanity) | **POST** /user/update/vanity | /user/update/vanity [POST]
@@ -317,6 +320,80 @@ This endpoint does not need any parameter.
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **stream_user_last_checked_in**
+> UserLastCheckedInStreamOutput stream_user_last_checked_in()
+
+/user/last_checked_in/stream [WS]
+
+Provides a WebSocket connection that streams user last checked in data including userId, lastCheckedIn timestamp, and needsRefresh flag.
+
+### Example
+
+* Api Key Authentication (application):
+```python
+import time
+import os
+import pieces_os_client
+from pieces_os_client.models.user_last_checked_in_stream_output import UserLastCheckedInStreamOutput
+from pieces_os_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to http://localhost:1000
+# See configuration.py for a list of all supported configuration parameters.
+configuration = pieces_os_client.Configuration(
+    host = "http://localhost:1000"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: application
+configuration.api_key['application'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['application'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with pieces_os_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = pieces_os_client.UserApi(api_client)
+
+    try:
+        # /user/last_checked_in/stream [WS]
+        api_response = api_instance.stream_user_last_checked_in()
+        print("The response of UserApi->stream_user_last_checked_in:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling UserApi->stream_user_last_checked_in: %s\n" % e)
+```
+
+
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+[**UserLastCheckedInStreamOutput**](UserLastCheckedInStreamOutput.md)
+
+### Authorization
+
+[application](../README.md#application)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **update_user**
 > UserProfile update_user(user_profile=user_profile)
 
@@ -546,6 +623,166 @@ Name | Type | Description  | Notes
 **200** | OK |  -  |
 **500** | Internal Server Error |  -  |
 **511** | Authentication Required, This means that you user needs to be authenticated with OS in order to change the beta status |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **user_checkout**
+> UserCheckoutOutput user_checkout(user_checkout_input=user_checkout_input)
+
+/user/checkout [POST]
+
+Process user checkout operation. This endpoint is designed to be extensible for future checkout functionality.
+
+### Example
+
+* Api Key Authentication (application):
+```python
+import time
+import os
+import pieces_os_client
+from pieces_os_client.models.user_checkout_input import UserCheckoutInput
+from pieces_os_client.models.user_checkout_output import UserCheckoutOutput
+from pieces_os_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to http://localhost:1000
+# See configuration.py for a list of all supported configuration parameters.
+configuration = pieces_os_client.Configuration(
+    host = "http://localhost:1000"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: application
+configuration.api_key['application'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['application'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with pieces_os_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = pieces_os_client.UserApi(api_client)
+    user_checkout_input = pieces_os_client.UserCheckoutInput() # UserCheckoutInput |  (optional)
+
+    try:
+        # /user/checkout [POST]
+        api_response = api_instance.user_checkout(user_checkout_input=user_checkout_input)
+        print("The response of UserApi->user_checkout:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling UserApi->user_checkout: %s\n" % e)
+```
+
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **user_checkout_input** | [**UserCheckoutInput**](UserCheckoutInput.md)|  | [optional] 
+
+### Return type
+
+[**UserCheckoutOutput**](UserCheckoutOutput.md)
+
+### Authorization
+
+[application](../README.md#application)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json, text/plain
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**500** | Internal Server Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **user_manage_subscriptions**
+> UserManageSubscriptionsOutput user_manage_subscriptions(user_manage_subscriptions_input=user_manage_subscriptions_input)
+
+/user/manage/subscriptions [POST]
+
+Manage user subscriptions. This endpoint is designed to be extensible for future subscription management functionality.
+
+### Example
+
+* Api Key Authentication (application):
+```python
+import time
+import os
+import pieces_os_client
+from pieces_os_client.models.user_manage_subscriptions_input import UserManageSubscriptionsInput
+from pieces_os_client.models.user_manage_subscriptions_output import UserManageSubscriptionsOutput
+from pieces_os_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to http://localhost:1000
+# See configuration.py for a list of all supported configuration parameters.
+configuration = pieces_os_client.Configuration(
+    host = "http://localhost:1000"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: application
+configuration.api_key['application'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['application'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with pieces_os_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = pieces_os_client.UserApi(api_client)
+    user_manage_subscriptions_input = pieces_os_client.UserManageSubscriptionsInput() # UserManageSubscriptionsInput |  (optional)
+
+    try:
+        # /user/manage/subscriptions [POST]
+        api_response = api_instance.user_manage_subscriptions(user_manage_subscriptions_input=user_manage_subscriptions_input)
+        print("The response of UserApi->user_manage_subscriptions:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling UserApi->user_manage_subscriptions: %s\n" % e)
+```
+
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **user_manage_subscriptions_input** | [**UserManageSubscriptionsInput**](UserManageSubscriptionsInput.md)|  | [optional] 
+
+### Return type
+
+[**UserManageSubscriptionsOutput**](UserManageSubscriptionsOutput.md)
+
+### Authorization
+
+[application](../README.md#application)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json, text/plain
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**500** | Internal Server Error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
