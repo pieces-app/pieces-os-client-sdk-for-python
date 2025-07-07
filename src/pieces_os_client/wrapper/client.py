@@ -83,7 +83,7 @@ class PiecesClient:
                 platform = self.local_os,
                 version = __version__)) 
         self._connect_websockets = kwargs.get("connect_websockets",True)
-        self.user = BasicUser(self)   
+        self.user = BasicUser(self)
         self.copilot = Copilot(self)
         self._startup()
 
@@ -92,14 +92,18 @@ class PiecesClient:
         if self._is_started_runned:
             return True
 
-        if not self.is_pieces_running(): # Check if PiecesOS is running or not
+        # Check if PiecesOS is running
+        if not self.is_pieces_running():
             return False
 
-        self._is_started_runned = True
         self.host # Make sure no issues in porting scanning and caching the port
         self._tracked_application = self.connector_api.connect(seeded_connector_connection=self._seeded_connector).application
         self.api_client.set_default_header("application",self._tracked_application.id)
+        # Make sure the user is logged in
+        if not self.user_api.user_snapshot().user:
+            return False
 
+        self._is_started_runned = True
         if self._connect_websockets:
             self.conversation_ws = ConversationWS(self)
             self.assets_ws = AssetsIdentifiersWS(self)
@@ -110,7 +114,7 @@ class PiecesClient:
             self.range_ws = RangesIdentifiersWS(self)
             # Start all initilized websockets
             BaseWebsocket.start_all()
-        
+
         self.model_name = "GPT-3.5-turbo Chat Model"
         return True
 
@@ -173,7 +177,7 @@ class PiecesClient:
     def connect_apis(self,host:str):
         if not host.startswith("http"):
             raise TypeError("Invalid host url\n Host should start with http or https")
-        
+
         self.api_client = ApiClient(Configuration(host))
         self.conversation_message_api = ConversationMessageApi(self.api_client)
         self.conversation_messages_api = ConversationMessagesApi(self.api_client)
@@ -271,7 +275,7 @@ class PiecesClient:
             Waits for all the assets/conversations and all the started websockets to open
         """
         self._check_startup()
-    
+
     @staticmethod
     def wait_for_cache():
         BaseWebsocket.wait_all()
@@ -290,7 +294,6 @@ class PiecesClient:
         """
             Returns Pieces OS Version
         """
-        self.ensure_initialization()
         return self.well_known_api.get_well_known_version()
  
     @property
@@ -299,7 +302,6 @@ class PiecesClient:
             Calls the well known health api
             /.well-known/health [GET]
         """
-        self.ensure_initialization()
         return self.well_known_api.get_well_known_health()
 
 
@@ -337,7 +339,7 @@ class PiecesClient:
 
     def _check_startup(self):
         if not self._startup():
-            raise ValueError("PiecesClient is not started successfully\nPerhaps Pieces OS is not running")
+            raise ValueError("PiecesClient is not started successfully\nPerhaps Pieces OS is not running or the user is not logged in")
 
 
     def __str__(self) -> str:
