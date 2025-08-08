@@ -115,7 +115,7 @@ class PiecesClient:
             # Start all initilized websockets
             BaseWebsocket.start_all()
 
-        self.model_name = "GPT-3.5-turbo Chat Model"
+        self.model_name = "o4 Mini Chat Model"
         return True
 
     @property
