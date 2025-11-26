@@ -4,9 +4,9 @@ on:
   workflow_dispatch:
     inputs:
       version:
-        description: 'Version of the SDKs'
+        description: "Version of the SDKs"
         required: true
-        default: '1.0.0'
+        default: "1.0.0"
         type: string
 
 permissions:
@@ -25,8 +25,8 @@ jobs:
       - name: Set up Java
         uses: actions/setup-java@v4
         with:
-          distribution: 'temurin'
-          java-version: '11'
+          distribution: "temurin"
+          java-version: "11"
 
       - name: Set up SSH key
         uses: shimataro/ssh-key-action@v2
@@ -44,16 +44,21 @@ jobs:
         run: |
           git clone git@github.com:open-runtime/generated_runtime.git
 
+      - name: Update the public sdk
+        run: |
+          cd scripts/specs
+          sh remove_internal_endpoints.sh
+
       - name: Generate SDK
         run: |
-          SPEC_DIR="generated_runtime/spec"
+          SPEC_DIR="generated_runtime/public/spec"
           SPEC_FILE="${SPEC_DIR}/modules/core/isomorphic.openapi.yaml"
           TEMPLATE_OVERRIDE_DIR=$(realpath "${SPEC_DIR}/common/templates/python")
           OUTPUT_DIR="generated"
           VERSION="${{ github.event.inputs.version }}"
-          
+
           openapi-generator-cli generate \
-            -g python-pydantic-v1 \
+            -g python \
             --skip-operation-example \
             -i "$SPEC_FILE" \
             -o "$OUTPUT_DIR" \
@@ -62,20 +67,20 @@ jobs:
       - name: Copy and organize files
         run: |
           OUTPUT_DIR="generated"
-          
+
           # Copy wrapper to generated output
           if [ -d "./src/pieces_os_client/wrapper/" ]; then
             cp -r ./src/pieces_os_client/wrapper/ "$OUTPUT_DIR/pieces_os_client/wrapper"
           fi
-          
+
           # Remove old files
           rm -rf ./src/pieces_os_client/
           rm -rf ./docs
-          
+
           # Copy new files
           cp -r "$OUTPUT_DIR/pieces_os_client" ./src/pieces_os_client/
           cp -r "$OUTPUT_DIR/docs" ./docs
-          
+
           # Clean up
           rm -rf "$OUTPUT_DIR"
           rm -rf generated_runtime
@@ -91,7 +96,7 @@ jobs:
         run: |
           # Remove import statements from main __init__.py (keep version)
           sed -i '/^from pieces_os_client\./d' ./src/pieces_os_client/__init__.py
-          
+
           # Clear the __init__.py files
           echo '' > ./src/pieces_os_client/api/__init__.py
           echo '' > ./src/pieces_os_client/models/__init__.py
@@ -104,9 +109,9 @@ jobs:
           title: "Update SDK to version ${{ github.event.inputs.version }}"
           body: |
             This PR updates the Pieces OS Client SDK to version ${{ github.event.inputs.version }}.
-            
+
             Generated from the latest OpenAPI specification.
-            
+
             ## Changes
             - Updated SDK to version ${{ github.event.inputs.version }}
             - Regenerated from latest OpenAPI spec
