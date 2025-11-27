@@ -46,7 +46,7 @@ jobs:
 
       - name: Update the public sdk
         run: |
-          cd scripts/specs
+          cd generated_runtime/scripts/specs
           sh remove_internal_endpoints.sh
 
       - name: Generate SDK
