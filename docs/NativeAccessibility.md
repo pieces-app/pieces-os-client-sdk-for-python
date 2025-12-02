@@ -3,15 +3,16 @@
 This is a specific model to encapsulate NativeAccessibility data from the LTM(used within the WorkstreamEvent.
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 **accessibility_text** | **str** | The accessibility text extracted. | 
 **app_title** | **str** | The title of the application. | 
-**window_title** | **str** | The title of the window. | 
 **browser_url** | **str** | The URL of the browser. | [optional] 
+**is_cached** | **bool** | Indicates whether the workflow mapping is cached. &#x60;cached&#x60; means that it has been used as context either in a conversation or in a summary, xyz | 
 **is_merged** | **bool** | Indicates whether the workflow mapping is merged. | 
-**is_cached** | **bool** | Indicates whether the workflow mapping is cached. | 
+**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
+**window_title** | **str** | The title of the window. | 
 
 ## Example
 
@@ -23,7 +24,7 @@ json = "{}"
 # create an instance of NativeAccessibility from a JSON string
 native_accessibility_instance = NativeAccessibility.from_json(json)
 # print the JSON string representation of the object
-print NativeAccessibility.to_json()
+print(NativeAccessibility.to_json())
 
 # convert the object into a dict
 native_accessibility_dict = native_accessibility_instance.to_dict()

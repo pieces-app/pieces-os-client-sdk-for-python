@@ -2,10 +2,11 @@
 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 **iterable** | [**List[AssetFilter]**](AssetFilter.md) |  | 
+**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 **type** | [**FilterOperationTypeEnum**](FilterOperationTypeEnum.md) |  | [optional] 
 
 ## Example
@@ -18,7 +19,7 @@ json = "{}"
 # create an instance of AssetFilters from a JSON string
 asset_filters_instance = AssetFilters.from_json(json)
 # print the JSON string representation of the object
-print AssetFilters.to_json()
+print(AssetFilters.to_json())
 
 # convert the object into a dict
 asset_filters_dict = asset_filters_instance.to_dict()

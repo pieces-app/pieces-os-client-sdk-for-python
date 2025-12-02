@@ -1,13 +1,16 @@
 # QGPTRelevanceInputOptions
 
+This is the options for the relevance input.  behavior: if this is provided and DEEP_STUDY then we will start the deep study flow. (NOTE: you can only have 1 deep study running at a time)
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
+**behavior** | [**WorkstreamSummaryBehaviorEnum**](WorkstreamSummaryBehaviorEnum.md) |  | [optional] 
 **database** | **bool** | This is an optional boolen that will tell us to use our entire snippet database as the sample. | [optional] 
-**question** | **bool** | This is an optional boolean, that will let the serve know if you want to combine the 2 endpointsboth relevance &amp;&amp; the Question endpoint to return the final results. | [optional] 
 **pipeline** | [**QGPTPromptPipeline**](QGPTPromptPipeline.md) |  | [optional] 
+**question** | **bool** | This is an optional boolean, that will let the serve know if you want to combine the 2 endpointsboth relevance &amp;&amp; the Question endpoint to return the final results. | [optional] 
+**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 
 ## Example
 
@@ -19,7 +22,7 @@ json = "{}"
 # create an instance of QGPTRelevanceInputOptions from a JSON string
 qgpt_relevance_input_options_instance = QGPTRelevanceInputOptions.from_json(json)
 # print the JSON string representation of the object
-print QGPTRelevanceInputOptions.to_json()
+print(QGPTRelevanceInputOptions.to_json())
 
 # convert the object into a dict
 qgpt_relevance_input_options_dict = qgpt_relevance_input_options_instance.to_dict()

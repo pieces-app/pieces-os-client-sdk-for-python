@@ -3,11 +3,12 @@
 This is the referenced version of a hint, main used for the uuid.
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 **id** | **str** |  | 
 **reference** | [**FlattenedHint**](FlattenedHint.md) |  | [optional] 
+**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 
 ## Example
 
@@ -19,7 +20,7 @@ json = "{}"
 # create an instance of ReferencedHint from a JSON string
 referenced_hint_instance = ReferencedHint.from_json(json)
 # print the JSON string representation of the object
-print ReferencedHint.to_json()
+print(ReferencedHint.to_json())
 
 # convert the object into a dict
 referenced_hint_dict = referenced_hint_instance.to_dict()

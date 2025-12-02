@@ -3,21 +3,22 @@
 This is a pre-Conversation object.  This will hold together a conversation. Ie allthe message within a conversation.  All the additional properties on here used on here like(anchors/assets) are used for context that will seed the conversation.  model is a calculated property, and will be the model of the last message sent if applicable.
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
-**name** | **str** | This is a name that is customized. | [optional] 
-**favorited** | **bool** |  | [optional] 
-**application** | [**Application**](Application.md) |  | [optional] 
+**anchors** | [**List[SeededAnchor]**](SeededAnchor.md) |  | [optional] 
 **annotations** | [**List[SeededAnnotation]**](SeededAnnotation.md) |  | [optional] 
+**application** | [**Application**](Application.md) |  | [optional] 
+**assets** | [**FlattenedAssets**](FlattenedAssets.md) |  | [optional] 
+**demo** | **bool** | This will let us know if this conversation was generated as a &#39;demo&#39; conversation | [optional] 
+**favorited** | **bool** |  | [optional] 
 **messages** | [**List[SeededConversationMessage]**](SeededConversationMessage.md) |  | [optional] 
 **model** | [**ReferencedModel**](ReferencedModel.md) |  | [optional] 
-**assets** | [**FlattenedAssets**](FlattenedAssets.md) |  | [optional] 
-**websites** | [**FlattenedWebsites**](FlattenedWebsites.md) |  | [optional] 
-**anchors** | [**List[SeededAnchor]**](SeededAnchor.md) |  | [optional] 
-**type** | [**ConversationTypeEnum**](ConversationTypeEnum.md) |  | 
+**name** | **str** | This is a name that is customized. | [optional] 
 **pipeline** | [**QGPTPromptPipeline**](QGPTPromptPipeline.md) |  | [optional] 
-**demo** | **bool** | This will let us know if this conversation was generated as a &#39;demo&#39; conversation | [optional] 
+**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
+**type** | [**ConversationTypeEnum**](ConversationTypeEnum.md) |  | 
+**websites** | [**FlattenedWebsites**](FlattenedWebsites.md) |  | [optional] 
 
 ## Example
 
@@ -29,7 +30,7 @@ json = "{}"
 # create an instance of SeededConversation from a JSON string
 seeded_conversation_instance = SeededConversation.from_json(json)
 # print the JSON string representation of the object
-print SeededConversation.to_json()
+print(SeededConversation.to_json())
 
 # convert the object into a dict
 seeded_conversation_dict = seeded_conversation_instance.to_dict()

@@ -3,11 +3,12 @@
 This is the input data model for the /assets/recommend [GET] endpoint. It includes both a list of assets but also 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 **assets** | [**Assets**](Assets.md) |  | 
 **interactions** | [**InteractedAssets**](InteractedAssets.md) |  | 
+**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 
 ## Example
 
@@ -19,7 +20,7 @@ json = "{}"
 # create an instance of SeededAssetsRecommendation from a JSON string
 seeded_assets_recommendation_instance = SeededAssetsRecommendation.from_json(json)
 # print the JSON string representation of the object
-print SeededAssetsRecommendation.to_json()
+print(SeededAssetsRecommendation.to_json())
 
 # convert the object into a dict
 seeded_assets_recommendation_dict = seeded_assets_recommendation_instance.to_dict()

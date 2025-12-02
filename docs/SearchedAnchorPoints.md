@@ -3,10 +3,11 @@
 This is the plural Model used to return many SearchedAnchorPoint.
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 **iterable** | [**List[SearchedAnchorPoint]**](SearchedAnchorPoint.md) |  | 
+**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 
 ## Example
 
@@ -18,7 +19,7 @@ json = "{}"
 # create an instance of SearchedAnchorPoints from a JSON string
 searched_anchor_points_instance = SearchedAnchorPoints.from_json(json)
 # print the JSON string representation of the object
-print SearchedAnchorPoints.to_json()
+print(SearchedAnchorPoints.to_json())
 
 # convert the object into a dict
 searched_anchor_points_dict = searched_anchor_points_instance.to_dict()

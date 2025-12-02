@@ -6,6 +6,7 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**hints**](QGPTApi.md#hints) | **POST** /qgpt/hints | /qgpt/hints [POST]
 [**persons_related**](QGPTApi.md#persons_related) | **POST** /qgpt/persons/related | /qgpt/persons/related [POST]
+[**qgpt_behavior_specific_retrieval_activations**](QGPTApi.md#qgpt_behavior_specific_retrieval_activations) | **GET** /qgpt/behavior_specific_retrieval/activations | /qgpt/behavior_specific_retrieval/activations [GET]
 [**qgpt_stream**](QGPTApi.md#qgpt_stream) | **GET** /qgpt/stream | /qgpt/stream [WS]
 [**question**](QGPTApi.md#question) | **POST** /qgpt/question | /qgpt/question [POST]
 [**relevance**](QGPTApi.md#relevance) | **POST** /qgpt/relevance | /qgpt/relevance [POST]
@@ -22,9 +23,8 @@ Generates suggested questions that users can ask. It accepts the answer displaye
 ### Example
 
 * Api Key Authentication (application):
+
 ```python
-import time
-import os
 import pieces_os_client
 from pieces_os_client.models.qgpt_hints_input import QGPTHintsInput
 from pieces_os_client.models.qgpt_question_output import QGPTQuestionOutput
@@ -67,6 +67,7 @@ with pieces_os_client.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **qgpt_hints_input** | [**QGPTHintsInput**](QGPTHintsInput.md)|  | [optional] 
@@ -85,6 +86,7 @@ Name | Type | Description  | Notes
  - **Accept**: application/json, text/plain
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
@@ -109,9 +111,8 @@ Output:
 ### Example
 
 * Api Key Authentication (application):
+
 ```python
-import time
-import os
 import pieces_os_client
 from pieces_os_client.models.qgpt_persons_related_input import QGPTPersonsRelatedInput
 from pieces_os_client.models.qgpt_persons_related_output import QGPTPersonsRelatedOutput
@@ -155,6 +156,7 @@ with pieces_os_client.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **transferables** | **bool**| This is a boolean that will decided if we are want to return the transferable data (default) or not(performance enhancement) | [optional] 
@@ -174,6 +176,84 @@ Name | Type | Description  | Notes
  - **Accept**: application/json, text/plain
 
 ### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**500** | Internal Server Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **qgpt_behavior_specific_retrieval_activations**
+> QGPTBehaviorSpecificRetrievalActivationsOutput qgpt_behavior_specific_retrieval_activations()
+
+/qgpt/behavior_specific_retrieval/activations [GET]
+
+This will provide a running count of the number of deep study activations for the user. for the QGPT flow.
+
+
+### Example
+
+* Api Key Authentication (application):
+
+```python
+import pieces_os_client
+from pieces_os_client.models.qgpt_behavior_specific_retrieval_activations_output import QGPTBehaviorSpecificRetrievalActivationsOutput
+from pieces_os_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to http://localhost:1000
+# See configuration.py for a list of all supported configuration parameters.
+configuration = pieces_os_client.Configuration(
+    host = "http://localhost:1000"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: application
+configuration.api_key['application'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['application'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with pieces_os_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = pieces_os_client.QGPTApi(api_client)
+
+    try:
+        # /qgpt/behavior_specific_retrieval/activations [GET]
+        api_response = api_instance.qgpt_behavior_specific_retrieval_activations()
+        print("The response of QGPTApi->qgpt_behavior_specific_retrieval_activations:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling QGPTApi->qgpt_behavior_specific_retrieval_activations: %s\n" % e)
+```
+
+
+
+### Parameters
+
+This endpoint does not need any parameter.
+
+### Return type
+
+[**QGPTBehaviorSpecificRetrievalActivationsOutput**](QGPTBehaviorSpecificRetrievalActivationsOutput.md)
+
+### Authorization
+
+[application](../README.md#application)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json, text/plain
+
+### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
@@ -191,9 +271,8 @@ Provides a WebSocket connection that streams inputs to the qGPT model. It handle
 ### Example
 
 * Api Key Authentication (application):
+
 ```python
-import time
-import os
 import pieces_os_client
 from pieces_os_client.models.qgpt_stream_input import QGPTStreamInput
 from pieces_os_client.models.qgpt_stream_output import QGPTStreamOutput
@@ -236,6 +315,7 @@ with pieces_os_client.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **qgpt_stream_input** | [**QGPTStreamInput**](QGPTStreamInput.md)|  | [optional] 
@@ -254,6 +334,7 @@ Name | Type | Description  | Notes
  - **Accept**: application/json, text/plain
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
@@ -278,9 +359,8 @@ Note:
 ### Example
 
 * Api Key Authentication (application):
+
 ```python
-import time
-import os
 import pieces_os_client
 from pieces_os_client.models.qgpt_question_input import QGPTQuestionInput
 from pieces_os_client.models.qgpt_question_output import QGPTQuestionOutput
@@ -323,6 +403,7 @@ with pieces_os_client.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **qgpt_question_input** | [**QGPTQuestionInput**](QGPTQuestionInput.md)|  | [optional] 
@@ -341,6 +422,7 @@ Name | Type | Description  | Notes
  - **Accept**: application/json, text/plain
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
@@ -375,9 +457,8 @@ Next: feed this information to the /qgpt/question [POST] endpoint to get your qu
 ### Example
 
 * Api Key Authentication (application):
+
 ```python
-import time
-import os
 import pieces_os_client
 from pieces_os_client.models.qgpt_relevance_input import QGPTRelevanceInput
 from pieces_os_client.models.qgpt_relevance_output import QGPTRelevanceOutput
@@ -420,6 +501,7 @@ with pieces_os_client.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **qgpt_relevance_input** | [**QGPTRelevanceInput**](QGPTRelevanceInput.md)|  | [optional] 
@@ -438,6 +520,7 @@ Name | Type | Description  | Notes
  - **Accept**: application/json, text/plain
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
@@ -458,9 +541,8 @@ This will take in a followup question and the history of the conversation, and e
 ### Example
 
 * Api Key Authentication (application):
+
 ```python
-import time
-import os
 import pieces_os_client
 from pieces_os_client.models.qgpt_reprompt_input import QGPTRepromptInput
 from pieces_os_client.models.qgpt_reprompt_output import QGPTRepromptOutput
@@ -503,6 +585,7 @@ with pieces_os_client.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **qgpt_reprompt_input** | [**QGPTRepromptInput**](QGPTRepromptInput.md)|  | [optional] 
@@ -521,6 +604,7 @@ Name | Type | Description  | Notes
  - **Accept**: application/json, text/plain
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |

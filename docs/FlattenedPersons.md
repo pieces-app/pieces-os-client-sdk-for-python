@@ -3,11 +3,12 @@
 This is the plural of Person. will have top level meta about the person including an iterable of all the person.
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
-**iterable** | [**List[ReferencedPerson]**](ReferencedPerson.md) |  | 
 **indices** | **Dict[str, int]** | This is a Map&lt;String, int&gt; where the the key is an person id. | [optional] 
+**iterable** | [**List[ReferencedPerson]**](ReferencedPerson.md) |  | 
+**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 **score** | [**Score**](Score.md) |  | [optional] 
 
 ## Example
@@ -20,7 +21,7 @@ json = "{}"
 # create an instance of FlattenedPersons from a JSON string
 flattened_persons_instance = FlattenedPersons.from_json(json)
 # print the JSON string representation of the object
-print FlattenedPersons.to_json()
+print(FlattenedPersons.to_json())
 
 # convert the object into a dict
 flattened_persons_dict = flattened_persons_instance.to_dict()

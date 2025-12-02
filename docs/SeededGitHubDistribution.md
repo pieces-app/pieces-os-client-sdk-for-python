@@ -2,10 +2,11 @@
 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 **gist** | [**SeededGitHubGistDistribution**](SeededGitHubGistDistribution.md) |  | [optional] 
+**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 
 ## Example
 
@@ -17,7 +18,7 @@ json = "{}"
 # create an instance of SeededGitHubDistribution from a JSON string
 seeded_git_hub_distribution_instance = SeededGitHubDistribution.from_json(json)
 # print the JSON string representation of the object
-print SeededGitHubDistribution.to_json()
+print(SeededGitHubDistribution.to_json())
 
 # convert the object into a dict
 seeded_git_hub_distribution_dict = seeded_git_hub_distribution_instance.to_dict()

@@ -28,9 +28,8 @@ NOTE: This will return immediately, use the update status
 ### Example
 
 * Api Key Authentication (application):
+
 ```python
-import time
-import os
 import pieces_os_client
 from pieces_os_client.models.foundry_deployment import FoundryDeployment
 from pieces_os_client.rest import ApiException
@@ -70,6 +69,7 @@ with pieces_os_client.ApiClient(configuration) as api_client:
 
 
 ### Parameters
+
 This endpoint does not need any parameter.
 
 ### Return type
@@ -86,6 +86,7 @@ This endpoint does not need any parameter.
  - **Accept**: application/json, text/plain
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
@@ -103,9 +104,8 @@ This will cancel a specific installation that is in-progress.
 ### Example
 
 * Api Key Authentication (application):
+
 ```python
-import time
-import os
 import pieces_os_client
 from pieces_os_client.models.foundry_deployment import FoundryDeployment
 from pieces_os_client.rest import ApiException
@@ -147,6 +147,7 @@ with pieces_os_client.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **identifier** | **str**| This is a identifier that is used to identify a specific generic event. | 
@@ -165,6 +166,7 @@ Name | Type | Description  | Notes
  - **Accept**: application/json, text/plain
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
@@ -182,9 +184,8 @@ This will get the status of a given installation
 ### Example
 
 * Api Key Authentication (application):
+
 ```python
-import time
-import os
 import pieces_os_client
 from pieces_os_client.models.foundry_deployment import FoundryDeployment
 from pieces_os_client.rest import ApiException
@@ -226,6 +227,7 @@ with pieces_os_client.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **identifier** | **str**| This is a identifier that is used to identify a specific generic event. | 
@@ -244,6 +246,7 @@ Name | Type | Description  | Notes
  - **Accept**: application/json, text/plain
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
@@ -261,9 +264,8 @@ This will return all the installation in a given session
 ### Example
 
 * Api Key Authentication (application):
+
 ```python
-import time
-import os
 import pieces_os_client
 from pieces_os_client.models.foundry_deployments import FoundryDeployments
 from pieces_os_client.rest import ApiException
@@ -303,6 +305,7 @@ with pieces_os_client.ApiClient(configuration) as api_client:
 
 
 ### Parameters
+
 This endpoint does not need any parameter.
 
 ### Return type
@@ -319,6 +322,7 @@ This endpoint does not need any parameter.
  - **Accept**: application/json, text/plain
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
@@ -337,9 +341,8 @@ if there are installations in progress, or updates in progress
 ### Example
 
 * Api Key Authentication (application):
+
 ```python
-import time
-import os
 import pieces_os_client
 from pieces_os_client.models.foundry_status import FoundryStatus
 from pieces_os_client.rest import ApiException
@@ -379,6 +382,7 @@ with pieces_os_client.ApiClient(configuration) as api_client:
 
 
 ### Parameters
+
 This endpoint does not need any parameter.
 
 ### Return type
@@ -395,6 +399,7 @@ This endpoint does not need any parameter.
  - **Accept**: application/json, text/plain
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
@@ -416,9 +421,8 @@ This provides a Websocket connection, that will emit a change on the initial con
 ### Example
 
 * Api Key Authentication (application):
+
 ```python
-import time
-import os
 import pieces_os_client
 from pieces_os_client.models.foundry_status import FoundryStatus
 from pieces_os_client.rest import ApiException
@@ -458,6 +462,7 @@ with pieces_os_client.ApiClient(configuration) as api_client:
 
 
 ### Parameters
+
 This endpoint does not need any parameter.
 
 ### Return type
@@ -474,6 +479,7 @@ This endpoint does not need any parameter.
  - **Accept**: application/json, text/plain
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
@@ -493,9 +499,8 @@ NOTE: the request body is the installation that will be deleted.
 ### Example
 
 * Api Key Authentication (application):
+
 ```python
-import time
-import os
 import pieces_os_client
 from pieces_os_client.models.foundry_deployment import FoundryDeployment
 from pieces_os_client.rest import ApiException
@@ -537,6 +542,7 @@ with pieces_os_client.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **foundry_deployment** | [**FoundryDeployment**](FoundryDeployment.md)|  | [optional] 
@@ -555,6 +561,7 @@ Name | Type | Description  | Notes
  - **Accept**: application/json, text/plain
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
@@ -574,9 +581,8 @@ NOTE: This will required a user to pass in deployment that they would like to up
 ### Example
 
 * Api Key Authentication (application):
+
 ```python
-import time
-import os
 import pieces_os_client
 from pieces_os_client.models.foundry_deployment import FoundryDeployment
 from pieces_os_client.rest import ApiException
@@ -618,6 +624,7 @@ with pieces_os_client.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **foundry_deployment** | [**FoundryDeployment**](FoundryDeployment.md)|  | [optional] 
@@ -636,6 +643,7 @@ Name | Type | Description  | Notes
  - **Accept**: application/json, text/plain
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
@@ -653,9 +661,8 @@ This will cancel a specific update that is in-progress.
 ### Example
 
 * Api Key Authentication (application):
+
 ```python
-import time
-import os
 import pieces_os_client
 from pieces_os_client.models.foundry_deployment import FoundryDeployment
 from pieces_os_client.rest import ApiException
@@ -697,6 +704,7 @@ with pieces_os_client.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **identifier** | **str**| This is a identifier that is used to identify a specific generic event. | 
@@ -715,6 +723,7 @@ Name | Type | Description  | Notes
  - **Accept**: application/json, text/plain
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
@@ -732,9 +741,8 @@ This will get the status of a given update.
 ### Example
 
 * Api Key Authentication (application):
+
 ```python
-import time
-import os
 import pieces_os_client
 from pieces_os_client.models.foundry_deployment import FoundryDeployment
 from pieces_os_client.rest import ApiException
@@ -776,6 +784,7 @@ with pieces_os_client.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **identifier** | **str**| This is a identifier that is used to identify a specific generic event. | 
@@ -794,6 +803,7 @@ Name | Type | Description  | Notes
  - **Accept**: application/json, text/plain
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
@@ -811,9 +821,8 @@ This will return all the attempted updates in a given session
 ### Example
 
 * Api Key Authentication (application):
+
 ```python
-import time
-import os
 import pieces_os_client
 from pieces_os_client.models.foundry_deployments import FoundryDeployments
 from pieces_os_client.rest import ApiException
@@ -853,6 +862,7 @@ with pieces_os_client.ApiClient(configuration) as api_client:
 
 
 ### Parameters
+
 This endpoint does not need any parameter.
 
 ### Return type
@@ -869,6 +879,7 @@ This endpoint does not need any parameter.
  - **Accept**: application/json, text/plain
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |

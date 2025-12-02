@@ -3,10 +3,11 @@
 This is the plural of QGPTQuestionAnswer
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 **iterable** | [**List[QGPTQuestionAnswer]**](QGPTQuestionAnswer.md) |  | 
+**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 
 ## Example
 
@@ -18,7 +19,7 @@ json = "{}"
 # create an instance of QGPTQuestionAnswers from a JSON string
 qgpt_question_answers_instance = QGPTQuestionAnswers.from_json(json)
 # print the JSON string representation of the object
-print QGPTQuestionAnswers.to_json()
+print(QGPTQuestionAnswers.to_json())
 
 # convert the object into a dict
 qgpt_question_answers_dict = qgpt_question_answers_instance.to_dict()

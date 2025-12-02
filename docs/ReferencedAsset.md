@@ -3,11 +3,12 @@
 A reference to a asset, which at minimum must have the asset's id. But in the case of a hydrated client API it may have a populated reference of type Asset.
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 **id** | **str** |  | 
 **reference** | [**FlattenedAsset**](FlattenedAsset.md) |  | [optional] 
+**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 
 ## Example
 
@@ -19,7 +20,7 @@ json = "{}"
 # create an instance of ReferencedAsset from a JSON string
 referenced_asset_instance = ReferencedAsset.from_json(json)
 # print the JSON string representation of the object
-print ReferencedAsset.to_json()
+print(ReferencedAsset.to_json())
 
 # convert the object into a dict
 referenced_asset_dict = referenced_asset_instance.to_dict()

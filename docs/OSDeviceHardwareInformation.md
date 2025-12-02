@@ -3,12 +3,13 @@
 this will let us know specific hardware information
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 **cpus** | [**List[OSDeviceCPUHardwareInformation]**](OSDeviceCPUHardwareInformation.md) |  | [optional] 
 **gpus** | [**List[OSDeviceGPUHardwareInformation]**](OSDeviceGPUHardwareInformation.md) |  | [optional] 
 **ram** | [**OSDeviceRAMHardwareInformation**](OSDeviceRAMHardwareInformation.md) |  | [optional] 
+**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 
 ## Example
 
@@ -20,7 +21,7 @@ json = "{}"
 # create an instance of OSDeviceHardwareInformation from a JSON string
 os_device_hardware_information_instance = OSDeviceHardwareInformation.from_json(json)
 # print the JSON string representation of the object
-print OSDeviceHardwareInformation.to_json()
+print(OSDeviceHardwareInformation.to_json())
 
 # convert the object into a dict
 os_device_hardware_information_dict = os_device_hardware_information_instance.to_dict()

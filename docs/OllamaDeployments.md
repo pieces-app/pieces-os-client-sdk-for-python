@@ -3,10 +3,11 @@
 This is the plural model for Deployment of Ollama.
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 **iterable** | [**List[OllamaDeployment]**](OllamaDeployment.md) |  | 
+**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 
 ## Example
 
@@ -18,7 +19,7 @@ json = "{}"
 # create an instance of OllamaDeployments from a JSON string
 ollama_deployments_instance = OllamaDeployments.from_json(json)
 # print the JSON string representation of the object
-print OllamaDeployments.to_json()
+print(OllamaDeployments.to_json())
 
 # convert the object into a dict
 ollama_deployments_dict = ollama_deployments_instance.to_dict()

@@ -3,13 +3,14 @@
 This is a String representaion of any of these changes.  [NOT IMPLEMENTED] base64, base64_url, data_url [IMPLEMENTED] raw
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
-**raw** | **str** | IMPLEMENTED | [optional] 
 **var_base64** | **str** | NOT IMPLEMENTED | [optional] 
 **base64_url** | **str** | NOT IMPLEMENTED | [optional] 
 **data_url** | **str** | NOT IMPLEMENTED | [optional] 
+**raw** | **str** | IMPLEMENTED | [optional] 
+**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 
 ## Example
 
@@ -21,7 +22,7 @@ json = "{}"
 # create an instance of TransferableString from a JSON string
 transferable_string_instance = TransferableString.from_json(json)
 # print the JSON string representation of the object
-print TransferableString.to_json()
+print(TransferableString.to_json())
 
 # convert the object into a dict
 transferable_string_dict = transferable_string_instance.to_dict()

@@ -22,9 +22,8 @@ Creates a machine learning model. By default, all models created through this en
 ### Example
 
 * Api Key Authentication (application):
+
 ```python
-import time
-import os
 import pieces_os_client
 from pieces_os_client.models.model import Model
 from pieces_os_client.models.seeded_model import SeededModel
@@ -67,6 +66,7 @@ with pieces_os_client.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **seeded_model** | [**SeededModel**](SeededModel.md)|  | [optional] 
@@ -85,6 +85,7 @@ Name | Type | Description  | Notes
  - **Accept**: application/json, text/plain
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
@@ -102,9 +103,8 @@ Deletes a specific model. It is exclusively available for custom models with the
 ### Example
 
 * Api Key Authentication (application):
+
 ```python
-import time
-import os
 import pieces_os_client
 from pieces_os_client.rest import ApiException
 from pprint import pprint
@@ -143,6 +143,7 @@ with pieces_os_client.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **model** | **str**| model id | 
@@ -161,6 +162,7 @@ void (empty response body)
  - **Accept**: text/plain
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **204** | No Content |  -  |
@@ -180,9 +182,8 @@ Note: This functionality is currently only available for LLM models.
 ### Example
 
 * Api Key Authentication (application):
+
 ```python
-import time
-import os
 import pieces_os_client
 from pieces_os_client.models.model_delete_cache_input import ModelDeleteCacheInput
 from pieces_os_client.models.model_delete_cache_output import ModelDeleteCacheOutput
@@ -226,6 +227,7 @@ with pieces_os_client.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **model** | **str**| model id | 
@@ -245,6 +247,7 @@ Name | Type | Description  | Notes
  - **Accept**: application/json, text/plain
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
@@ -262,9 +265,8 @@ This will get a snapshot of all of your models.
 ### Example
 
 * Api Key Authentication (application):
+
 ```python
-import time
-import os
 import pieces_os_client
 from pieces_os_client.models.models import Models
 from pieces_os_client.rest import ApiException
@@ -304,6 +306,7 @@ with pieces_os_client.ApiClient(configuration) as api_client:
 
 
 ### Parameters
+
 This endpoint does not need any parameter.
 
 ### Return type
@@ -320,6 +323,7 @@ This endpoint does not need any parameter.
  - **Accept**: application/json, text/plain
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
@@ -337,9 +341,8 @@ Provides a WebSocket connection that emits changes to your model identifiers (UU
 ### Example
 
 * Api Key Authentication (application):
+
 ```python
-import time
-import os
 import pieces_os_client
 from pieces_os_client.models.streamed_identifiers import StreamedIdentifiers
 from pieces_os_client.rest import ApiException
@@ -379,6 +382,7 @@ with pieces_os_client.ApiClient(configuration) as api_client:
 
 
 ### Parameters
+
 This endpoint does not need any parameter.
 
 ### Return type
@@ -395,6 +399,7 @@ This endpoint does not need any parameter.
  - **Accept**: application/json, text/plain
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
@@ -412,9 +417,8 @@ Unloads all available machine learning models that are unloadable.
 ### Example
 
 * Api Key Authentication (application):
+
 ```python
-import time
-import os
 import pieces_os_client
 from pieces_os_client.rest import ApiException
 from pprint import pprint
@@ -451,6 +455,7 @@ with pieces_os_client.ApiClient(configuration) as api_client:
 
 
 ### Parameters
+
 This endpoint does not need any parameter.
 
 ### Return type
@@ -467,6 +472,7 @@ void (empty response body)
  - **Accept**: text/plain
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **204** | No Content |  -  |

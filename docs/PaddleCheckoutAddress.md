@@ -2,15 +2,16 @@
 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
-**id** | **str** |  | 
-**country_code** | **str** |  | 
-**postal_code** | **str** |  | 
 **city** | **str** |  | 
-**region** | **str** |  | [optional] 
+**country_code** | **str** |  | 
 **first_line** | **str** |  | [optional] 
+**id** | **str** |  | 
+**postal_code** | **str** |  | 
+**region** | **str** |  | [optional] 
+**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 
 ## Example
 
@@ -22,7 +23,7 @@ json = "{}"
 # create an instance of PaddleCheckoutAddress from a JSON string
 paddle_checkout_address_instance = PaddleCheckoutAddress.from_json(json)
 # print the JSON string representation of the object
-print PaddleCheckoutAddress.to_json()
+print(PaddleCheckoutAddress.to_json())
 
 # convert the object into a dict
 paddle_checkout_address_dict = paddle_checkout_address_instance.to_dict()

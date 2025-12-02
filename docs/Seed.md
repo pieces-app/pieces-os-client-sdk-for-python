@@ -3,14 +3,15 @@
 A seed Model used to wrap a format or asset  Note: we will expand this now to support additional paramerters.  Note: however if create an asset, only pass in the asset, not passing in an asset in this case will cause the endpoint to fail.  TODO: for a breaking change update the type enum here to add support for the additional materials or remove it entirely.
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
+**anchor** | [**SeededAnchor**](SeededAnchor.md) |  | [optional] 
 **asset** | [**SeededAsset**](SeededAsset.md) |  | [optional] 
 **person** | [**SeededPerson**](SeededPerson.md) |  | [optional] 
-**anchor** | [**SeededAnchor**](SeededAnchor.md) |  | [optional] 
-**website** | [**SeededWebsite**](SeededWebsite.md) |  | [optional] 
+**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 **type** | [**SeedTypeEnum**](SeedTypeEnum.md) |  | [optional] 
+**website** | [**SeededWebsite**](SeededWebsite.md) |  | [optional] 
 
 ## Example
 
@@ -22,7 +23,7 @@ json = "{}"
 # create an instance of Seed from a JSON string
 seed_instance = Seed.from_json(json)
 # print the JSON string representation of the object
-print Seed.to_json()
+print(Seed.to_json())
 
 # convert the object into a dict
 seed_dict = seed_instance.to_dict()

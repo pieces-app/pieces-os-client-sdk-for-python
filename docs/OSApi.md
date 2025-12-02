@@ -16,7 +16,6 @@ Method | HTTP request | Description
 [**os_filesystem_pick_files**](OSApi.md#os_filesystem_pick_files) | **POST** /os/filesystem/files/pick | /os/filesystem/files/pick [POST]
 [**os_filesystem_pick_folders**](OSApi.md#os_filesystem_pick_folders) | **POST** /os/filesystem/folders/pick | /os/filesystem/folders/pick [POST]
 [**os_memory_optimize**](OSApi.md#os_memory_optimize) | **POST** /os/memory/optimize | /os/memory/optimize [POST]
-[**os_metadata**](OSApi.md#os_metadata) | **GET** /os/metadata | /os/metadata [GET]
 [**os_nano_models_prepare**](OSApi.md#os_nano_models_prepare) | **POST** /os/nano_models/prepare | /os/nano_models/prepare [POST]
 [**os_permissions**](OSApi.md#os_permissions) | **GET** /os/permissions | /os/permissions [GET]
 [**os_permissions_request**](OSApi.md#os_permissions_request) | **POST** /os/permissions/request | /os/permissions/request [POST]
@@ -29,6 +28,7 @@ Method | HTTP request | Description
 [**os_update_check_stream**](OSApi.md#os_update_check_stream) | **GET** /os/update/check/stream | /os/update/check/stream [WS]
 [**sign_into_os**](OSApi.md#sign_into_os) | **POST** /os/sign_in | 
 [**sign_out_of_os**](OSApi.md#sign_out_of_os) | **POST** /os/sign_out | /os/sign_out [POST]
+[**stream_os_migration_status**](OSApi.md#stream_os_migration_status) | **GET** /os/status/stream | /os/status/stream [WS]
 
 
 # **link_provider**
@@ -43,9 +43,8 @@ Will throw errors if your user is not signed in.
 ### Example
 
 * Api Key Authentication (application):
+
 ```python
-import time
-import os
 import pieces_os_client
 from pieces_os_client.models.returned_user_profile import ReturnedUserProfile
 from pieces_os_client.models.seeded_external_provider import SeededExternalProvider
@@ -88,6 +87,7 @@ with pieces_os_client.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **seeded_external_provider** | [**SeededExternalProvider**](SeededExternalProvider.md)|  | [optional] 
@@ -106,6 +106,7 @@ Name | Type | Description  | Notes
  - **Accept**: application/json, text/plain
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
@@ -125,9 +126,8 @@ TODO: take in an application and return a port number at minimum.
 ### Example
 
 * Api Key Authentication (application):
+
 ```python
-import time
-import os
 import pieces_os_client
 from pieces_os_client.models.active_os_server_applet import ActiveOSServerApplet
 from pieces_os_client.models.inactive_os_server_applet import InactiveOSServerApplet
@@ -170,6 +170,7 @@ with pieces_os_client.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **inactive_os_server_applet** | [**InactiveOSServerApplet**](InactiveOSServerApplet.md)|  | [optional] 
@@ -188,6 +189,7 @@ Name | Type | Description  | Notes
  - **Accept**: application/json, text/plain
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
@@ -205,9 +207,8 @@ This will attempt to restart a micro_application.(this will shut down the copilo
 ### Example
 
 * Api Key Authentication (application):
+
 ```python
-import time
-import os
 import pieces_os_client
 from pieces_os_client.models.active_os_server_applet import ActiveOSServerApplet
 from pieces_os_client.models.inactive_os_server_applet import InactiveOSServerApplet
@@ -250,6 +251,7 @@ with pieces_os_client.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **inactive_os_server_applet** | [**InactiveOSServerApplet**](InactiveOSServerApplet.md)|  | [optional] 
@@ -268,6 +270,7 @@ Name | Type | Description  | Notes
  - **Accept**: application/json, text/plain
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
@@ -285,9 +288,8 @@ This will attempt to shutdown or terminate a specified micro_application.
 ### Example
 
 * Api Key Authentication (application):
+
 ```python
-import time
-import os
 import pieces_os_client
 from pieces_os_client.models.terminating_os_server_applet import TerminatingOSServerApplet
 from pieces_os_client.rest import ApiException
@@ -327,6 +329,7 @@ with pieces_os_client.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **terminating_os_server_applet** | [**TerminatingOSServerApplet**](TerminatingOSServerApplet.md)|  | [optional] 
@@ -345,6 +348,7 @@ void (empty response body)
  - **Accept**: text/plain
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **204** | No Content |  -  |
@@ -362,9 +366,8 @@ This will accept a url and launch this in an external browser.
 ### Example
 
 * Api Key Authentication (application):
+
 ```python
-import time
-import os
 import pieces_os_client
 from pieces_os_client.rest import ApiException
 from pprint import pprint
@@ -403,6 +406,7 @@ with pieces_os_client.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **body** | **str**|  | [optional] 
@@ -421,6 +425,7 @@ void (empty response body)
  - **Accept**: text/plain
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **204** | No Content |  -  |
@@ -438,9 +443,8 @@ This will get information related to your specific device.
 ### Example
 
 * Api Key Authentication (application):
+
 ```python
-import time
-import os
 import pieces_os_client
 from pieces_os_client.models.os_device_information_returnable import OSDeviceInformationReturnable
 from pieces_os_client.rest import ApiException
@@ -480,6 +484,7 @@ with pieces_os_client.ApiClient(configuration) as api_client:
 
 
 ### Parameters
+
 This endpoint does not need any parameter.
 
 ### Return type
@@ -496,6 +501,7 @@ This endpoint does not need any parameter.
  - **Accept**: application/json, text/plain
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
@@ -516,9 +522,8 @@ note: TODO in the future add an endpoint for open/in || open/with (browser,files
 ### Example
 
 * Api Key Authentication (application):
+
 ```python
-import time
-import os
 import pieces_os_client
 from pieces_os_client.rest import ApiException
 from pprint import pprint
@@ -557,6 +562,7 @@ with pieces_os_client.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **body** | **str**|  | [optional] 
@@ -575,6 +581,7 @@ void (empty response body)
  - **Accept**: text/plain
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **204** | No Content |  -  |
@@ -600,9 +607,8 @@ NOTE: for v2 we could have two query params i.e. find which could take in a rela
 ### Example
 
 * Api Key Authentication (application):
+
 ```python
-import time
-import os
 import pieces_os_client
 from pieces_os_client.models.os_file_streaming_read import OSFileStreamingRead
 from pieces_os_client.models.os_file_streaming_read_attempt import OSFileStreamingReadAttempt
@@ -645,6 +651,7 @@ with pieces_os_client.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **os_file_streaming_read_attempt** | [**OSFileStreamingReadAttempt**](OSFileStreamingReadAttempt.md)|  | [optional] 
@@ -663,6 +670,7 @@ Name | Type | Description  | Notes
  - **Accept**: application/json, text/plain
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
@@ -680,9 +688,8 @@ This will determine in a given path is a file/a directory or invalid.
 ### Example
 
 * Api Key Authentication (application):
+
 ```python
-import time
-import os
 import pieces_os_client
 from pieces_os_client.models.verified_os_filesystem_path import VerifiedOSFilesystemPath
 from pieces_os_client.rest import ApiException
@@ -724,6 +731,7 @@ with pieces_os_client.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **body** | **str**|  | [optional] 
@@ -742,6 +750,7 @@ Name | Type | Description  | Notes
  - **Accept**: application/json, text/plain
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
@@ -759,9 +768,8 @@ This will trigger a filer picker and return the string paths of the files that w
 ### Example
 
 * Api Key Authentication (application):
+
 ```python
-import time
-import os
 import pieces_os_client
 from pieces_os_client.models.file_picker_input import FilePickerInput
 from pieces_os_client.rest import ApiException
@@ -803,6 +811,7 @@ with pieces_os_client.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **file_picker_input** | [**FilePickerInput**](FilePickerInput.md)|  | [optional] 
@@ -821,6 +830,7 @@ Name | Type | Description  | Notes
  - **Accept**: application/json, text/plain
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
@@ -838,9 +848,8 @@ This will trigger a folder picker and return the string paths of the folders tha
 ### Example
 
 * Api Key Authentication (application):
+
 ```python
-import time
-import os
 import pieces_os_client
 from pieces_os_client.rest import ApiException
 from pprint import pprint
@@ -879,6 +888,7 @@ with pieces_os_client.ApiClient(configuration) as api_client:
 
 
 ### Parameters
+
 This endpoint does not need any parameter.
 
 ### Return type
@@ -895,6 +905,7 @@ This endpoint does not need any parameter.
  - **Accept**: application/json, text/plain
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
@@ -912,9 +923,8 @@ This will optimize memory across PiecesOS.(TODO in the future might want to acce
 ### Example
 
 * Api Key Authentication (application):
+
 ```python
-import time
-import os
 import pieces_os_client
 from pieces_os_client.rest import ApiException
 from pprint import pprint
@@ -951,6 +961,7 @@ with pieces_os_client.ApiClient(configuration) as api_client:
 
 
 ### Parameters
+
 This endpoint does not need any parameter.
 
 ### Return type
@@ -967,84 +978,10 @@ void (empty response body)
  - **Accept**: application/json
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **204** | No Content |  -  |
-**500** | Internal Server Error |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **os_metadata**
-> OSServerMetadata os_metadata()
-
-/os/metadata [GET]
-
-This will return metadata (total materials) in your pieces drive.
-
-### Example
-
-* Api Key Authentication (application):
-```python
-import time
-import os
-import pieces_os_client
-from pieces_os_client.models.os_server_metadata import OSServerMetadata
-from pieces_os_client.rest import ApiException
-from pprint import pprint
-
-# Defining the host is optional and defaults to http://localhost:1000
-# See configuration.py for a list of all supported configuration parameters.
-configuration = pieces_os_client.Configuration(
-    host = "http://localhost:1000"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-# Configure API key authorization: application
-configuration.api_key['application'] = os.environ["API_KEY"]
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['application'] = 'Bearer'
-
-# Enter a context with an instance of the API client
-with pieces_os_client.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = pieces_os_client.OSApi(api_client)
-
-    try:
-        # /os/metadata [GET]
-        api_response = api_instance.os_metadata()
-        print("The response of OSApi->os_metadata:\n")
-        pprint(api_response)
-    except Exception as e:
-        print("Exception when calling OSApi->os_metadata: %s\n" % e)
-```
-
-
-
-### Parameters
-This endpoint does not need any parameter.
-
-### Return type
-
-[**OSServerMetadata**](OSServerMetadata.md)
-
-### Authorization
-
-[application](../README.md#application)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json, text/plain
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | OK |  -  |
 **500** | Internal Server Error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -1061,9 +998,8 @@ note: for now we will support task specific model groups.
 ### Example
 
 * Api Key Authentication (application):
+
 ```python
-import time
-import os
 import pieces_os_client
 from pieces_os_client.models.nano_models_preparation_input import NanoModelsPreparationInput
 from pieces_os_client.rest import ApiException
@@ -1103,6 +1039,7 @@ with pieces_os_client.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **nano_models_preparation_input** | [**NanoModelsPreparationInput**](NanoModelsPreparationInput.md)|  | [optional] 
@@ -1121,6 +1058,7 @@ void (empty response body)
  - **Accept**: text/plain
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **204** | No Content |  -  |
@@ -1142,9 +1080,8 @@ Note: this will let us know if we need to tell them to take action to enable any
 ### Example
 
 * Api Key Authentication (application):
+
 ```python
-import time
-import os
 import pieces_os_client
 from pieces_os_client.models.os_permissions import OSPermissions
 from pieces_os_client.rest import ApiException
@@ -1184,6 +1121,7 @@ with pieces_os_client.ApiClient(configuration) as api_client:
 
 
 ### Parameters
+
 This endpoint does not need any parameter.
 
 ### Return type
@@ -1200,6 +1138,7 @@ This endpoint does not need any parameter.
  - **Accept**: application/json, text/plain
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
@@ -1219,9 +1158,8 @@ This will request permissions for the given inputs
 ### Example
 
 * Api Key Authentication (application):
+
 ```python
-import time
-import os
 import pieces_os_client
 from pieces_os_client.models.os_permissions import OSPermissions
 from pieces_os_client.rest import ApiException
@@ -1263,6 +1201,7 @@ with pieces_os_client.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **os_permissions** | [**OSPermissions**](OSPermissions.md)|  | [optional] 
@@ -1281,6 +1220,7 @@ Name | Type | Description  | Notes
  - **Accept**: application/json, text/plain
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
@@ -1298,9 +1238,8 @@ This will restart PiecesOS, if successfull with return a 204. This is a LOCALOS 
 ### Example
 
 * Api Key Authentication (application):
+
 ```python
-import time
-import os
 import pieces_os_client
 from pieces_os_client.rest import ApiException
 from pprint import pprint
@@ -1337,6 +1276,7 @@ with pieces_os_client.ApiClient(configuration) as api_client:
 
 
 ### Parameters
+
 This endpoint does not need any parameter.
 
 ### Return type
@@ -1353,6 +1293,7 @@ void (empty response body)
  - **Accept**: text/plain
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **204** | No Content |  -  |
@@ -1370,9 +1311,8 @@ This is a snapshot of the piecesOS settings
 ### Example
 
 * Api Key Authentication (application):
+
 ```python
-import time
-import os
 import pieces_os_client
 from pieces_os_client.models.os_server_settings import OSServerSettings
 from pieces_os_client.rest import ApiException
@@ -1412,6 +1352,7 @@ with pieces_os_client.ApiClient(configuration) as api_client:
 
 
 ### Parameters
+
 This endpoint does not need any parameter.
 
 ### Return type
@@ -1428,6 +1369,7 @@ This endpoint does not need any parameter.
  - **Accept**: application/json, text/plain
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
@@ -1445,9 +1387,8 @@ This is a websocket that will emit a change on the update of the OSSettings.
 ### Example
 
 * Api Key Authentication (application):
+
 ```python
-import time
-import os
 import pieces_os_client
 from pieces_os_client.models.os_server_settings import OSServerSettings
 from pieces_os_client.rest import ApiException
@@ -1487,6 +1428,7 @@ with pieces_os_client.ApiClient(configuration) as api_client:
 
 
 ### Parameters
+
 This endpoint does not need any parameter.
 
 ### Return type
@@ -1503,6 +1445,7 @@ This endpoint does not need any parameter.
  - **Accept**: application/json, text/plain
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
@@ -1522,9 +1465,8 @@ This will emit a change via the setting stream as well.
 ### Example
 
 * Api Key Authentication (application):
+
 ```python
-import time
-import os
 import pieces_os_client
 from pieces_os_client.models.os_server_settings import OSServerSettings
 from pieces_os_client.rest import ApiException
@@ -1566,6 +1508,7 @@ with pieces_os_client.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **os_server_settings** | [**OSServerSettings**](OSServerSettings.md)|  | [optional] 
@@ -1584,6 +1527,7 @@ Name | Type | Description  | Notes
  - **Accept**: application/json, text/plain
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
@@ -1601,9 +1545,8 @@ This will force quit PiecesOS
 ### Example
 
 * Api Key Authentication (application):
+
 ```python
-import time
-import os
 import pieces_os_client
 from pieces_os_client.rest import ApiException
 from pprint import pprint
@@ -1640,6 +1583,7 @@ with pieces_os_client.ApiClient(configuration) as api_client:
 
 
 ### Parameters
+
 This endpoint does not need any parameter.
 
 ### Return type
@@ -1656,6 +1600,7 @@ void (empty response body)
  - **Accept**: text/plain
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **204** | No Content |  -  |
@@ -1673,9 +1618,8 @@ This is a helper endpoint that will check the status of an update for PiecesOS. 
 ### Example
 
 * Api Key Authentication (application):
+
 ```python
-import time
-import os
 import pieces_os_client
 from pieces_os_client.models.os_server_update_status import OSServerUpdateStatus
 from pieces_os_client.models.unchecked_os_server_update import UncheckedOSServerUpdate
@@ -1718,6 +1662,7 @@ with pieces_os_client.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **unchecked_os_server_update** | [**UncheckedOSServerUpdate**](UncheckedOSServerUpdate.md)|  | [optional] 
@@ -1736,6 +1681,7 @@ Name | Type | Description  | Notes
  - **Accept**: application/json, text/plain
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
@@ -1758,9 +1704,8 @@ NOTE: it is reccommended to use the stream instead of pulling(via the normal che
 ### Example
 
 * Api Key Authentication (application):
+
 ```python
-import time
-import os
 import pieces_os_client
 from pieces_os_client.models.os_server_update_status import OSServerUpdateStatus
 from pieces_os_client.rest import ApiException
@@ -1800,6 +1745,7 @@ with pieces_os_client.ApiClient(configuration) as api_client:
 
 
 ### Parameters
+
 This endpoint does not need any parameter.
 
 ### Return type
@@ -1816,6 +1762,7 @@ This endpoint does not need any parameter.
  - **Accept**: application/json, text/plain
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
@@ -1833,9 +1780,8 @@ A trigger that launches a Sign into OS Server
 ### Example
 
 * Api Key Authentication (application):
+
 ```python
-import time
-import os
 import pieces_os_client
 from pieces_os_client.models.user_profile import UserProfile
 from pieces_os_client.rest import ApiException
@@ -1875,6 +1821,7 @@ with pieces_os_client.ApiClient(configuration) as api_client:
 
 
 ### Parameters
+
 This endpoint does not need any parameter.
 
 ### Return type
@@ -1891,6 +1838,7 @@ This endpoint does not need any parameter.
  - **Accept**: application/json
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
@@ -1907,9 +1855,8 @@ A trigger that signs out a user from the OS
 ### Example
 
 * Api Key Authentication (application):
+
 ```python
-import time
-import os
 import pieces_os_client
 from pieces_os_client.models.users import Users
 from pieces_os_client.rest import ApiException
@@ -1949,6 +1896,7 @@ with pieces_os_client.ApiClient(configuration) as api_client:
 
 
 ### Parameters
+
 This endpoint does not need any parameter.
 
 ### Return type
@@ -1965,9 +1913,86 @@ This endpoint does not need any parameter.
  - **Accept**: application/json
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **stream_os_migration_status**
+> OSMigrationStatusResponse stream_os_migration_status()
+
+/os/status/stream [WS]
+
+Provides a WebSocket connection that streams real-time OS migration status updates including overall progress, active migrations, and status changes.
+
+### Example
+
+* Api Key Authentication (application):
+
+```python
+import pieces_os_client
+from pieces_os_client.models.os_migration_status_response import OSMigrationStatusResponse
+from pieces_os_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to http://localhost:1000
+# See configuration.py for a list of all supported configuration parameters.
+configuration = pieces_os_client.Configuration(
+    host = "http://localhost:1000"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: application
+configuration.api_key['application'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['application'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with pieces_os_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = pieces_os_client.OSApi(api_client)
+
+    try:
+        # /os/status/stream [WS]
+        api_response = api_instance.stream_os_migration_status()
+        print("The response of OSApi->stream_os_migration_status:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling OSApi->stream_os_migration_status: %s\n" % e)
+```
+
+
+
+### Parameters
+
+This endpoint does not need any parameter.
+
+### Return type
+
+[**OSMigrationStatusResponse**](OSMigrationStatusResponse.md)
+
+### Authorization
+
+[application](../README.md#application)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json, text/plain
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**500** | Internal Server Error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

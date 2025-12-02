@@ -3,10 +3,11 @@
 This is the returnable for the \"\"/external_provider/api_key/delete\" endpoint
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 **metadata** | [**Auth0UserMetadata**](Auth0UserMetadata.md) |  | 
+**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 
 ## Example
 
@@ -18,7 +19,7 @@ json = "{}"
 # create an instance of DeletedExternalProviderApiKey from a JSON string
 deleted_external_provider_api_key_instance = DeletedExternalProviderApiKey.from_json(json)
 # print the JSON string representation of the object
-print DeletedExternalProviderApiKey.to_json()
+print(DeletedExternalProviderApiKey.to_json())
 
 # convert the object into a dict
 deleted_external_provider_api_key_dict = deleted_external_provider_api_key_instance.to_dict()

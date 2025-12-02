@@ -3,13 +3,14 @@
 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**raw** | **List[float]** | this is the raw value of the embedding | 
-**model** | [**Model**](Model.md) |  | 
 **created** | [**GroupedTimestamp**](GroupedTimestamp.md) |  | 
-**updated** | [**GroupedTimestamp**](GroupedTimestamp.md) |  | 
 **deleted** | [**GroupedTimestamp**](GroupedTimestamp.md) |  | [optional] 
+**model** | [**Model**](Model.md) |  | 
+**raw** | **List[float]** | this is the raw value of the embedding | 
+**updated** | [**GroupedTimestamp**](GroupedTimestamp.md) |  | 
 
 ## Example
 
@@ -21,7 +22,7 @@ json = "{}"
 # create an instance of Embedding from a JSON string
 embedding_instance = Embedding.from_json(json)
 # print the JSON string representation of the object
-print Embedding.to_json()
+print(Embedding.to_json())
 
 # convert the object into a dict
 embedding_dict = embedding_instance.to_dict()

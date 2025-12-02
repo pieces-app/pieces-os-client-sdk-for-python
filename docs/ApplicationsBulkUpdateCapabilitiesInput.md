@@ -3,10 +3,11 @@
 This is an endpoint to bulk update your applications to a specific capabilitiesEnum
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 **capabilities** | [**CapabilitiesEnum**](CapabilitiesEnum.md) |  | 
+**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 
 ## Example
 
@@ -18,7 +19,7 @@ json = "{}"
 # create an instance of ApplicationsBulkUpdateCapabilitiesInput from a JSON string
 applications_bulk_update_capabilities_input_instance = ApplicationsBulkUpdateCapabilitiesInput.from_json(json)
 # print the JSON string representation of the object
-print ApplicationsBulkUpdateCapabilitiesInput.to_json()
+print(ApplicationsBulkUpdateCapabilitiesInput.to_json())
 
 # convert the object into a dict
 applications_bulk_update_capabilities_input_dict = applications_bulk_update_capabilities_input_instance.to_dict()

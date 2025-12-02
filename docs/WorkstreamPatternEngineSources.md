@@ -3,10 +3,11 @@
 This is a plural version of the WPE qdrant applications
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 **iterable** | [**List[WorkstreamPatternEngineSource]**](WorkstreamPatternEngineSource.md) |  | 
+**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 
 ## Example
 
@@ -18,7 +19,7 @@ json = "{}"
 # create an instance of WorkstreamPatternEngineSources from a JSON string
 workstream_pattern_engine_sources_instance = WorkstreamPatternEngineSources.from_json(json)
 # print the JSON string representation of the object
-print WorkstreamPatternEngineSources.to_json()
+print(WorkstreamPatternEngineSources.to_json())
 
 # convert the object into a dict
 workstream_pattern_engine_sources_dict = workstream_pattern_engine_sources_instance.to_dict()

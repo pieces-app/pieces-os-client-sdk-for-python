@@ -3,10 +3,11 @@
 This is a plural representation of the ProjectModule
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 **iterable** | [**List[ProjectModule]**](ProjectModule.md) |  | 
+**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 
 ## Example
 
@@ -18,7 +19,7 @@ json = "{}"
 # create an instance of ProjectModules from a JSON string
 project_modules_instance = ProjectModules.from_json(json)
 # print the JSON string representation of the object
-print ProjectModules.to_json()
+print(ProjectModules.to_json())
 
 # convert the object into a dict
 project_modules_dict = project_modules_instance.to_dict()

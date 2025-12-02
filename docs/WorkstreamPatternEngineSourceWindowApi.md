@@ -25,9 +25,8 @@ This will enable us to associate a tag with a source window.
 ### Example
 
 * Api Key Authentication (application):
+
 ```python
-import time
-import os
 import pieces_os_client
 from pieces_os_client.rest import ApiException
 from pprint import pprint
@@ -67,6 +66,7 @@ with pieces_os_client.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **source_window** | **str**| This is a identifier that is used to identify a specific WorkstreamPatternEngineSourceWindow | 
@@ -86,6 +86,7 @@ void (empty response body)
  - **Accept**: text/plain
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **204** | No Content |  -  |
@@ -103,9 +104,8 @@ This will enable us to associate a website with a source window.
 ### Example
 
 * Api Key Authentication (application):
+
 ```python
-import time
-import os
 import pieces_os_client
 from pieces_os_client.rest import ApiException
 from pprint import pprint
@@ -145,6 +145,7 @@ with pieces_os_client.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **source_window** | **str**| This is a identifier that is used to identify a specific WorkstreamPatternEngineSourceWindow | 
@@ -164,6 +165,7 @@ void (empty response body)
  - **Accept**: text/plain
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **204** | No Content |  -  |
@@ -181,9 +183,8 @@ This will enable us to associate a workstream event with a source window.
 ### Example
 
 * Api Key Authentication (application):
+
 ```python
-import time
-import os
 import pieces_os_client
 from pieces_os_client.rest import ApiException
 from pprint import pprint
@@ -223,6 +224,7 @@ with pieces_os_client.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **source_window** | **str**| This is a identifier that is used to identify a specific WorkstreamPatternEngineSourceWindow | 
@@ -242,6 +244,7 @@ void (empty response body)
  - **Accept**: text/plain
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **204** | No Content |  -  |
@@ -259,9 +262,8 @@ This will enable us to disassociate a tag from a source window.
 ### Example
 
 * Api Key Authentication (application):
+
 ```python
-import time
-import os
 import pieces_os_client
 from pieces_os_client.rest import ApiException
 from pprint import pprint
@@ -301,6 +303,7 @@ with pieces_os_client.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **source_window** | **str**| This is a identifier that is used to identify a specific WorkstreamPatternEngineSourceWindow | 
@@ -320,6 +323,7 @@ void (empty response body)
  - **Accept**: text/plain
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **204** | No Content |  -  |
@@ -337,9 +341,8 @@ This will enable us to disassociate a website from a source window.
 ### Example
 
 * Api Key Authentication (application):
+
 ```python
-import time
-import os
 import pieces_os_client
 from pieces_os_client.rest import ApiException
 from pprint import pprint
@@ -379,6 +382,7 @@ with pieces_os_client.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **source_window** | **str**| This is a identifier that is used to identify a specific WorkstreamPatternEngineSourceWindow | 
@@ -398,6 +402,7 @@ void (empty response body)
  - **Accept**: text/plain
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **204** | No Content |  -  |
@@ -415,9 +420,8 @@ This will enable us to disassociate a workstream event from a source window.
 ### Example
 
 * Api Key Authentication (application):
+
 ```python
-import time
-import os
 import pieces_os_client
 from pieces_os_client.rest import ApiException
 from pprint import pprint
@@ -457,6 +461,7 @@ with pieces_os_client.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **source_window** | **str**| This is a identifier that is used to identify a specific WorkstreamPatternEngineSourceWindow | 
@@ -476,6 +481,7 @@ void (empty response body)
  - **Accept**: text/plain
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **204** | No Content |  -  |
@@ -493,9 +499,8 @@ This will enable us to increment the scores for the workstream pattern engine so
 ### Example
 
 * Api Key Authentication (application):
+
 ```python
-import time
-import os
 import pieces_os_client
 from pieces_os_client.models.seeded_score_increment import SeededScoreIncrement
 from pieces_os_client.rest import ApiException
@@ -536,6 +541,7 @@ with pieces_os_client.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **source_window** | **str**| This is a identifier that is used to identify a specific WorkstreamPatternEngineSourceWindow | 
@@ -555,6 +561,7 @@ void (empty response body)
  - **Accept**: text/plain
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **204** | No Content |  -  |
@@ -572,9 +579,8 @@ This will enable us to get a specific source window for the workstream pattern e
 ### Example
 
 * Api Key Authentication (application):
+
 ```python
-import time
-import os
 import pieces_os_client
 from pieces_os_client.models.workstream_pattern_engine_source_window import WorkstreamPatternEngineSourceWindow
 from pieces_os_client.rest import ApiException
@@ -617,6 +623,7 @@ with pieces_os_client.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **source_window** | **str**| This is a identifier that is used to identify a specific WorkstreamPatternEngineSourceWindow | 
@@ -636,6 +643,7 @@ Name | Type | Description  | Notes
  - **Accept**: application/json, text/plain
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
@@ -653,9 +661,8 @@ This will enable us to update a source window for the workstream pattern engine.
 ### Example
 
 * Api Key Authentication (application):
+
 ```python
-import time
-import os
 import pieces_os_client
 from pieces_os_client.models.workstream_pattern_engine_source_window import WorkstreamPatternEngineSourceWindow
 from pieces_os_client.rest import ApiException
@@ -698,6 +705,7 @@ with pieces_os_client.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **transferables** | **bool**| This is a boolean that will decided if we are want to return the transferable data (default) or not(performance enhancement) | [optional] 
@@ -717,6 +725,7 @@ Name | Type | Description  | Notes
  - **Accept**: application/json, text/plain
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |

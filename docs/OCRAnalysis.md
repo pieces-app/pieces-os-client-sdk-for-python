@@ -3,14 +3,15 @@
 This is the data collected during the ocr analysis of an image.
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
-**id** | **str** |  | 
-**raw** | [**Format**](Format.md) |  | 
 **hocr** | [**Format**](Format.md) |  | 
+**id** | **str** |  | 
 **image** | **str** | this is a reference the the imageAnalysis. | 
 **model** | [**Model**](Model.md) |  | 
+**raw** | [**Format**](Format.md) |  | 
+**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 
 ## Example
 
@@ -22,7 +23,7 @@ json = "{}"
 # create an instance of OCRAnalysis from a JSON string
 ocr_analysis_instance = OCRAnalysis.from_json(json)
 # print the JSON string representation of the object
-print OCRAnalysis.to_json()
+print(OCRAnalysis.to_json())
 
 # convert the object into a dict
 ocr_analysis_dict = ocr_analysis_instance.to_dict()

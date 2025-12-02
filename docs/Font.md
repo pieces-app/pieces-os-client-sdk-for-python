@@ -3,6 +3,7 @@
 This will describe the font that the user sees.
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
@@ -18,7 +19,7 @@ json = "{}"
 # create an instance of Font from a JSON string
 font_instance = Font.from_json(json)
 # print the JSON string representation of the object
-print Font.to_json()
+print(Font.to_json())
 
 # convert the object into a dict
 font_dict = font_instance.to_dict()

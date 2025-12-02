@@ -3,17 +3,18 @@
 This is the flattened source window for the workstream pattern engine
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
+**created** | [**GroupedTimestamp**](GroupedTimestamp.md) |  | 
 **id** | **str** | The id of the flattened source window | 
 **name** | **str** | The name of the flattened source window | 
-**created** | [**GroupedTimestamp**](GroupedTimestamp.md) |  | 
-**updated** | [**GroupedTimestamp**](GroupedTimestamp.md) |  | 
+**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 **score** | [**Score**](Score.md) |  | [optional] 
-**workstream_events** | [**FlattenedWorkstreamEvents**](FlattenedWorkstreamEvents.md) |  | [optional] 
-**websites** | [**FlattenedWebsites**](FlattenedWebsites.md) |  | [optional] 
 **tags** | [**FlattenedTags**](FlattenedTags.md) |  | [optional] 
+**updated** | [**GroupedTimestamp**](GroupedTimestamp.md) |  | 
+**websites** | [**FlattenedWebsites**](FlattenedWebsites.md) |  | [optional] 
+**workstream_events** | [**FlattenedWorkstreamEvents**](FlattenedWorkstreamEvents.md) |  | [optional] 
 
 ## Example
 
@@ -25,7 +26,7 @@ json = "{}"
 # create an instance of FlattenedWorkstreamPatternEngineSourceWindow from a JSON string
 flattened_workstream_pattern_engine_source_window_instance = FlattenedWorkstreamPatternEngineSourceWindow.from_json(json)
 # print the JSON string representation of the object
-print FlattenedWorkstreamPatternEngineSourceWindow.to_json()
+print(FlattenedWorkstreamPatternEngineSourceWindow.to_json())
 
 # convert the object into a dict
 flattened_workstream_pattern_engine_source_window_dict = flattened_workstream_pattern_engine_source_window_instance.to_dict()

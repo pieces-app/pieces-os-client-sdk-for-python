@@ -3,10 +3,11 @@
 This is the plural model for Deployment of Foundry.
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 **iterable** | [**List[FoundryDeployment]**](FoundryDeployment.md) |  | 
+**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 
 ## Example
 
@@ -18,7 +19,7 @@ json = "{}"
 # create an instance of FoundryDeployments from a JSON string
 foundry_deployments_instance = FoundryDeployments.from_json(json)
 # print the JSON string representation of the object
-print FoundryDeployments.to_json()
+print(FoundryDeployments.to_json())
 
 # convert the object into a dict
 foundry_deployments_dict = foundry_deployments_instance.to_dict()

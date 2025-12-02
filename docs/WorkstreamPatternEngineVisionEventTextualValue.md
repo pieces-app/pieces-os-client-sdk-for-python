@@ -3,11 +3,12 @@
 note: we could add a summarize property. TODO: might need an extracted bool to say to aggregate the extracted
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
-**ocr** | [**TransferableString**](TransferableString.md) |  | [optional] 
 **extracted** | [**TextuallyExtractedMaterial**](TextuallyExtractedMaterial.md) |  | [optional] 
+**ocr** | [**TransferableString**](TransferableString.md) |  | [optional] 
+**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 
 ## Example
 
@@ -19,7 +20,7 @@ json = "{}"
 # create an instance of WorkstreamPatternEngineVisionEventTextualValue from a JSON string
 workstream_pattern_engine_vision_event_textual_value_instance = WorkstreamPatternEngineVisionEventTextualValue.from_json(json)
 # print the JSON string representation of the object
-print WorkstreamPatternEngineVisionEventTextualValue.to_json()
+print(WorkstreamPatternEngineVisionEventTextualValue.to_json())
 
 # convert the object into a dict
 workstream_pattern_engine_vision_event_textual_value_dict = workstream_pattern_engine_vision_event_textual_value_instance.to_dict()

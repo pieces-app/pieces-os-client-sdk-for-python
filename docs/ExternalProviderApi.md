@@ -19,9 +19,8 @@ This will create a specific external_provider api_key from a specific user Auth0
 ### Example
 
 * Api Key Authentication (application):
+
 ```python
-import time
-import os
 import pieces_os_client
 from pieces_os_client.models.created_external_provider_api_key import CreatedExternalProviderApiKey
 from pieces_os_client.models.precreated_external_provider_api_key import PrecreatedExternalProviderApiKey
@@ -64,6 +63,7 @@ with pieces_os_client.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **precreated_external_provider_api_key** | [**PrecreatedExternalProviderApiKey**](PrecreatedExternalProviderApiKey.md)|  | [optional] 
@@ -82,6 +82,7 @@ Name | Type | Description  | Notes
  - **Accept**: application/json, text/plain
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
@@ -100,9 +101,8 @@ This will remove a specific external_provider api_key from a specific user Auth0
 ### Example
 
 * Api Key Authentication (application):
+
 ```python
-import time
-import os
 import pieces_os_client
 from pieces_os_client.models.deleted_external_provider_api_key import DeletedExternalProviderApiKey
 from pieces_os_client.models.predeleted_external_provider_api_key import PredeletedExternalProviderApiKey
@@ -145,6 +145,7 @@ with pieces_os_client.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **predeleted_external_provider_api_key** | [**PredeletedExternalProviderApiKey**](PredeletedExternalProviderApiKey.md)|  | [optional] 
@@ -163,6 +164,7 @@ Name | Type | Description  | Notes
  - **Accept**: application/json, text/plain
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
@@ -181,9 +183,8 @@ This will update a specific external_provider api_key from a specific user Auth0
 ### Example
 
 * Api Key Authentication (application):
+
 ```python
-import time
-import os
 import pieces_os_client
 from pieces_os_client.models.preupdated_external_provider_api_key import PreupdatedExternalProviderApiKey
 from pieces_os_client.models.updated_external_provider_api_key import UpdatedExternalProviderApiKey
@@ -226,6 +227,7 @@ with pieces_os_client.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **preupdated_external_provider_api_key** | [**PreupdatedExternalProviderApiKey**](PreupdatedExternalProviderApiKey.md)|  | [optional] 
@@ -244,6 +246,7 @@ Name | Type | Description  | Notes
  - **Accept**: application/json, text/plain
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |

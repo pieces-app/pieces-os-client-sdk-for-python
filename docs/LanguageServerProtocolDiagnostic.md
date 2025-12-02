@@ -3,15 +3,16 @@
 TODO
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
-**range** | [**LanguageServerProtocolLocationRange**](LanguageServerProtocolLocationRange.md) |  | 
-**severity** | [**LanguageServerProtocolSeverityEnum**](LanguageServerProtocolSeverityEnum.md) |  | [optional] 
 **code** | [**LanguageServerProtocolCode**](LanguageServerProtocolCode.md) |  | [optional] 
 **code_description** | [**LanguageServerProtocolCodeDescription**](LanguageServerProtocolCodeDescription.md) |  | [optional] 
-**source** | **str** |  | [optional] 
 **message** | **str** |  | 
+**range** | [**LanguageServerProtocolLocationRange**](LanguageServerProtocolLocationRange.md) |  | 
+**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
+**severity** | [**LanguageServerProtocolSeverityEnum**](LanguageServerProtocolSeverityEnum.md) |  | [optional] 
+**source** | **str** |  | [optional] 
 
 ## Example
 
@@ -23,7 +24,7 @@ json = "{}"
 # create an instance of LanguageServerProtocolDiagnostic from a JSON string
 language_server_protocol_diagnostic_instance = LanguageServerProtocolDiagnostic.from_json(json)
 # print the JSON string representation of the object
-print LanguageServerProtocolDiagnostic.to_json()
+print(LanguageServerProtocolDiagnostic.to_json())
 
 # convert the object into a dict
 language_server_protocol_diagnostic_dict = language_server_protocol_diagnostic_instance.to_dict()

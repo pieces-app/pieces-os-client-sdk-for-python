@@ -11,9 +11,13 @@ Method | HTTP request | Description
 [**stream_user_last_checked_in**](UserApi.md#stream_user_last_checked_in) | **GET** /user/last_checked_in/stream | /user/last_checked_in/stream [WS]
 [**update_user**](UserApi.md#update_user) | **POST** /user/update | /user/update [POST]
 [**user_access_token**](UserApi.md#user_access_token) | **GET** /user/access_token | &#39;/user/access_token&#39; [GET]
+[**user_associate_entity**](UserApi.md#user_associate_entity) | **POST** /user/{user}/entities/associate/{entity} | /user/{user}/entities/associate/{entity} [POST]
 [**user_beta_status**](UserApi.md#user_beta_status) | **POST** /user/beta/status | /user/beta/status [POST]
 [**user_checkout**](UserApi.md#user_checkout) | **POST** /user/checkout | /user/checkout [POST]
+[**user_disassociate_entity**](UserApi.md#user_disassociate_entity) | **POST** /user/{user}/entities/disassociate/{entity} | /user/{user}/entities/disassociate/{entity} [POST]
+[**user_has_feature_access**](UserApi.md#user_has_feature_access) | **POST** /user/has_feature_access | /user/has_feature_access [POST]
 [**user_manage_subscriptions**](UserApi.md#user_manage_subscriptions) | **POST** /user/manage/subscriptions | /user/manage/subscriptions [POST]
+[**user_paddle_refresh**](UserApi.md#user_paddle_refresh) | **GET** /user/paddle/refresh | /user/paddle/refresh [GET]
 [**user_providers**](UserApi.md#user_providers) | **GET** /user/providers | Your GET endpoint
 [**user_snapshot**](UserApi.md#user_snapshot) | **GET** /user | /user [GET]
 [**user_update_vanity**](UserApi.md#user_update_vanity) | **POST** /user/update/vanity | /user/update/vanity [POST]
@@ -29,9 +33,8 @@ An endpoint to clear the current user.
 ### Example
 
 * Api Key Authentication (application):
+
 ```python
-import time
-import os
 import pieces_os_client
 from pieces_os_client.rest import ApiException
 from pprint import pprint
@@ -68,6 +71,7 @@ with pieces_os_client.ApiClient(configuration) as api_client:
 
 
 ### Parameters
+
 This endpoint does not need any parameter.
 
 ### Return type
@@ -84,6 +88,7 @@ void (empty response body)
  - **Accept**: Not defined
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **204** | No Content |  -  |
@@ -100,9 +105,8 @@ This will refresh a user.
 ### Example
 
 * Api Key Authentication (application):
+
 ```python
-import time
-import os
 import pieces_os_client
 from pieces_os_client.models.user_profile import UserProfile
 from pieces_os_client.rest import ApiException
@@ -142,6 +146,7 @@ with pieces_os_client.ApiClient(configuration) as api_client:
 
 
 ### Parameters
+
 This endpoint does not need any parameter.
 
 ### Return type
@@ -158,6 +163,7 @@ This endpoint does not need any parameter.
  - **Accept**: application/json, text/plain
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
@@ -177,9 +183,8 @@ This will select the current user.
 * OAuth Authentication (auth0):
 * OAuth Authentication (auth0):
 * OAuth Authentication (auth0):
+
 ```python
-import time
-import os
 import pieces_os_client
 from pieces_os_client.models.auth0_user import Auth0User
 from pieces_os_client.models.user_profile import UserProfile
@@ -222,6 +227,7 @@ with pieces_os_client.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **auth0_user** | [**Auth0User**](Auth0User.md)|  | [optional] 
@@ -240,6 +246,7 @@ Name | Type | Description  | Notes
  - **Accept**: application/json
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
@@ -256,9 +263,8 @@ Provides a WebSocket connection that streams user data.
 ### Example
 
 * Api Key Authentication (application):
+
 ```python
-import time
-import os
 import pieces_os_client
 from pieces_os_client.models.user_profile import UserProfile
 from pieces_os_client.rest import ApiException
@@ -298,6 +304,7 @@ with pieces_os_client.ApiClient(configuration) as api_client:
 
 
 ### Parameters
+
 This endpoint does not need any parameter.
 
 ### Return type
@@ -314,6 +321,7 @@ This endpoint does not need any parameter.
  - **Accept**: application/json
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
@@ -330,9 +338,8 @@ Provides a WebSocket connection that streams user last checked in data including
 ### Example
 
 * Api Key Authentication (application):
+
 ```python
-import time
-import os
 import pieces_os_client
 from pieces_os_client.models.user_last_checked_in_stream_output import UserLastCheckedInStreamOutput
 from pieces_os_client.rest import ApiException
@@ -372,6 +379,7 @@ with pieces_os_client.ApiClient(configuration) as api_client:
 
 
 ### Parameters
+
 This endpoint does not need any parameter.
 
 ### Return type
@@ -388,6 +396,7 @@ This endpoint does not need any parameter.
  - **Accept**: application/json
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
@@ -404,9 +413,8 @@ This will update a specific user in the database.
 ### Example
 
 * Api Key Authentication (application):
+
 ```python
-import time
-import os
 import pieces_os_client
 from pieces_os_client.models.user_profile import UserProfile
 from pieces_os_client.rest import ApiException
@@ -448,6 +456,7 @@ with pieces_os_client.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **user_profile** | [**UserProfile**](UserProfile.md)|  | [optional] 
@@ -466,6 +475,7 @@ Name | Type | Description  | Notes
  - **Accept**: application/json
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
@@ -482,9 +492,8 @@ This will return a user accessToken for usage w/ this user.
 ### Example
 
 * Api Key Authentication (application):
+
 ```python
-import time
-import os
 import pieces_os_client
 from pieces_os_client.rest import ApiException
 from pprint import pprint
@@ -523,6 +532,7 @@ with pieces_os_client.ApiClient(configuration) as api_client:
 
 
 ### Parameters
+
 This endpoint does not need any parameter.
 
 ### Return type
@@ -539,9 +549,92 @@ This endpoint does not need any parameter.
  - **Accept**: text/plain
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | This will return the PKCE token. |  -  |
+**500** | Internal Server Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **user_associate_entity**
+> user_associate_entity(user, entity, entity_associate_to_user_input=entity_associate_to_user_input)
+
+/user/{user}/entities/associate/{entity} [POST]
+
+Creates an association between a User and an Entity.
+
+### Example
+
+* Api Key Authentication (application):
+
+```python
+import pieces_os_client
+from pieces_os_client.models.entity_associate_to_user_input import EntityAssociateToUserInput
+from pieces_os_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to http://localhost:1000
+# See configuration.py for a list of all supported configuration parameters.
+configuration = pieces_os_client.Configuration(
+    host = "http://localhost:1000"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: application
+configuration.api_key['application'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['application'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with pieces_os_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = pieces_os_client.UserApi(api_client)
+    user = '497f6eca-6276-4993-bfeb-53cbbbba6f08' # str | The id (uuid) for a specific user.
+    entity = 'entity_example' # str | This is the uuid of an entity (organization or team).
+    entity_associate_to_user_input = pieces_os_client.EntityAssociateToUserInput() # EntityAssociateToUserInput |  (optional)
+
+    try:
+        # /user/{user}/entities/associate/{entity} [POST]
+        api_instance.user_associate_entity(user, entity, entity_associate_to_user_input=entity_associate_to_user_input)
+    except Exception as e:
+        print("Exception when calling UserApi->user_associate_entity: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **user** | **str**| The id (uuid) for a specific user. | 
+ **entity** | **str**| This is the uuid of an entity (organization or team). | 
+ **entity_associate_to_user_input** | [**EntityAssociateToUserInput**](EntityAssociateToUserInput.md)|  | [optional] 
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[application](../README.md#application)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: text/plain
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**204** | No Content |  -  |
 **500** | Internal Server Error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -556,9 +649,8 @@ This will be an endpoint to give access or remove access immediately from a give
 ### Example
 
 * Api Key Authentication (application):
+
 ```python
-import time
-import os
 import pieces_os_client
 from pieces_os_client.models.user_beta_status import UserBetaStatus
 from pieces_os_client.rest import ApiException
@@ -600,6 +692,7 @@ with pieces_os_client.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **user_beta_status** | [**UserBetaStatus**](UserBetaStatus.md)|  | [optional] 
@@ -618,6 +711,7 @@ Name | Type | Description  | Notes
  - **Accept**: application/json, text/plain
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
@@ -636,9 +730,8 @@ Process user checkout operation. This endpoint is designed to be extensible for 
 ### Example
 
 * Api Key Authentication (application):
+
 ```python
-import time
-import os
 import pieces_os_client
 from pieces_os_client.models.user_checkout_input import UserCheckoutInput
 from pieces_os_client.models.user_checkout_output import UserCheckoutOutput
@@ -681,6 +774,7 @@ with pieces_os_client.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **user_checkout_input** | [**UserCheckoutInput**](UserCheckoutInput.md)|  | [optional] 
@@ -699,9 +793,180 @@ Name | Type | Description  | Notes
  - **Accept**: application/json, text/plain
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
+**500** | Internal Server Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **user_disassociate_entity**
+> user_disassociate_entity(user, entity)
+
+/user/{user}/entities/disassociate/{entity} [POST]
+
+Removes an association between a User and an Entity.
+
+### Example
+
+* Api Key Authentication (application):
+
+```python
+import pieces_os_client
+from pieces_os_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to http://localhost:1000
+# See configuration.py for a list of all supported configuration parameters.
+configuration = pieces_os_client.Configuration(
+    host = "http://localhost:1000"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: application
+configuration.api_key['application'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['application'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with pieces_os_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = pieces_os_client.UserApi(api_client)
+    user = '497f6eca-6276-4993-bfeb-53cbbbba6f08' # str | The id (uuid) for a specific user.
+    entity = 'entity_example' # str | This is the uuid of an entity (organization or team).
+
+    try:
+        # /user/{user}/entities/disassociate/{entity} [POST]
+        api_instance.user_disassociate_entity(user, entity)
+    except Exception as e:
+        print("Exception when calling UserApi->user_disassociate_entity: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **user** | **str**| The id (uuid) for a specific user. | 
+ **entity** | **str**| This is the uuid of an entity (organization or team). | 
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[application](../README.md#application)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: text/plain
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**204** | No Content |  -  |
+**500** | Internal Server Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **user_has_feature_access**
+> HasFeatureAccessOutput user_has_feature_access(has_feature_access_input)
+
+/user/has_feature_access [POST]
+
+Check if the current user has access to a specific feature with optional context.
+This endpoint validates feature access based on the user's organization configuration
+and optional context-specific requirements. The context is provided as nested optional models:
+allowedCloudModels (for cloud model access validation), deniedWorkstreamPatternEngineSource
+(for application/source denial checks), deniedWorkstreamPatternEngineWebsite (for website
+denial checks), and processing (for processing capability validation).
+
+
+### Example
+
+* Api Key Authentication (application):
+
+```python
+import pieces_os_client
+from pieces_os_client.models.has_feature_access_input import HasFeatureAccessInput
+from pieces_os_client.models.has_feature_access_output import HasFeatureAccessOutput
+from pieces_os_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to http://localhost:1000
+# See configuration.py for a list of all supported configuration parameters.
+configuration = pieces_os_client.Configuration(
+    host = "http://localhost:1000"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: application
+configuration.api_key['application'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['application'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with pieces_os_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = pieces_os_client.UserApi(api_client)
+    has_feature_access_input = pieces_os_client.HasFeatureAccessInput() # HasFeatureAccessInput | Input containing the feature to check and optional context for validation.
+
+    try:
+        # /user/has_feature_access [POST]
+        api_response = api_instance.user_has_feature_access(has_feature_access_input)
+        print("The response of UserApi->user_has_feature_access:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling UserApi->user_has_feature_access: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **has_feature_access_input** | [**HasFeatureAccessInput**](HasFeatureAccessInput.md)| Input containing the feature to check and optional context for validation. | 
+
+### Return type
+
+[**HasFeatureAccessOutput**](HasFeatureAccessOutput.md)
+
+### Authorization
+
+[application](../README.md#application)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json, text/plain
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**400** | Bad Request - Invalid input parameters or missing required context for the feature. |  -  |
+**401** | Unauthorized - User is not authenticated. |  -  |
+**404** | Not Found - User profile not found or feature does not exist. |  -  |
+**422** | Unprocessable Entity - Invalid context provided for the requested feature. |  -  |
 **500** | Internal Server Error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -716,9 +981,8 @@ Manage user subscriptions. This endpoint is designed to be extensible for future
 ### Example
 
 * Api Key Authentication (application):
+
 ```python
-import time
-import os
 import pieces_os_client
 from pieces_os_client.models.user_manage_subscriptions_input import UserManageSubscriptionsInput
 from pieces_os_client.models.user_manage_subscriptions_output import UserManageSubscriptionsOutput
@@ -761,6 +1025,7 @@ with pieces_os_client.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **user_manage_subscriptions_input** | [**UserManageSubscriptionsInput**](UserManageSubscriptionsInput.md)|  | [optional] 
@@ -779,6 +1044,83 @@ Name | Type | Description  | Notes
  - **Accept**: application/json, text/plain
 
 ### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**500** | Internal Server Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **user_paddle_refresh**
+> RefreshedPaddleUser user_paddle_refresh()
+
+/user/paddle/refresh [GET]
+
+Get the latest payment/paddle information from the server and return user profile information.
+
+### Example
+
+* Api Key Authentication (application):
+
+```python
+import pieces_os_client
+from pieces_os_client.models.refreshed_paddle_user import RefreshedPaddleUser
+from pieces_os_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to http://localhost:1000
+# See configuration.py for a list of all supported configuration parameters.
+configuration = pieces_os_client.Configuration(
+    host = "http://localhost:1000"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: application
+configuration.api_key['application'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['application'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with pieces_os_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = pieces_os_client.UserApi(api_client)
+
+    try:
+        # /user/paddle/refresh [GET]
+        api_response = api_instance.user_paddle_refresh()
+        print("The response of UserApi->user_paddle_refresh:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling UserApi->user_paddle_refresh: %s\n" % e)
+```
+
+
+
+### Parameters
+
+This endpoint does not need any parameter.
+
+### Return type
+
+[**RefreshedPaddleUser**](RefreshedPaddleUser.md)
+
+### Authorization
+
+[application](../README.md#application)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json, text/plain
+
+### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
@@ -800,9 +1142,8 @@ If called in the cloud, we will refresh && get your access tokens to access thes
 ### Example
 
 * Api Key Authentication (application):
+
 ```python
-import time
-import os
 import pieces_os_client
 from pieces_os_client.models.returned_user_profile import ReturnedUserProfile
 from pieces_os_client.rest import ApiException
@@ -842,6 +1183,7 @@ with pieces_os_client.ApiClient(configuration) as api_client:
 
 
 ### Parameters
+
 This endpoint does not need any parameter.
 
 ### Return type
@@ -858,6 +1200,7 @@ This endpoint does not need any parameter.
  - **Accept**: application/json, text/plain
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
@@ -876,9 +1219,8 @@ This will return a snapshot of the current user. This will return our ReturnUser
 ### Example
 
 * Api Key Authentication (application):
+
 ```python
-import time
-import os
 import pieces_os_client
 from pieces_os_client.models.returned_user_profile import ReturnedUserProfile
 from pieces_os_client.rest import ApiException
@@ -918,6 +1260,7 @@ with pieces_os_client.ApiClient(configuration) as api_client:
 
 
 ### Parameters
+
 This endpoint does not need any parameter.
 
 ### Return type
@@ -934,6 +1277,7 @@ This endpoint does not need any parameter.
  - **Accept**: application/json
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
@@ -950,9 +1294,8 @@ This is a local route to update your vanityname. ie mark.pieces.cloud, where "ma
 ### Example
 
 * Api Key Authentication (application):
+
 ```python
-import time
-import os
 import pieces_os_client
 from pieces_os_client.models.user_profile import UserProfile
 from pieces_os_client.rest import ApiException
@@ -994,6 +1337,7 @@ with pieces_os_client.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **user_profile** | [**UserProfile**](UserProfile.md)| This will take an update userProfile, with the updated vanity name! | [optional] 
@@ -1012,6 +1356,7 @@ Name | Type | Description  | Notes
  - **Accept**: application/json, text/plain
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |

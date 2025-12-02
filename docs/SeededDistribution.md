@@ -3,11 +3,12 @@
 TODO if we add another distribution add to this, Distribution, and flattenedDistribution.  can only use this Model with our Linkify Model.
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
-**mailgun** | [**MailgunDistribution**](MailgunDistribution.md) |  | [optional] 
 **github** | [**SeededGitHubDistribution**](SeededGitHubDistribution.md) |  | [optional] 
+**mailgun** | [**MailgunDistribution**](MailgunDistribution.md) |  | [optional] 
+**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 
 ## Example
 
@@ -19,7 +20,7 @@ json = "{}"
 # create an instance of SeededDistribution from a JSON string
 seeded_distribution_instance = SeededDistribution.from_json(json)
 # print the JSON string representation of the object
-print SeededDistribution.to_json()
+print(SeededDistribution.to_json())
 
 # convert the object into a dict
 seeded_distribution_dict = seeded_distribution_instance.to_dict()

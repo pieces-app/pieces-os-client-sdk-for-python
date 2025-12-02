@@ -3,10 +3,11 @@
 This will describe the theme that belongs to a user.
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 **dark** | **bool** |  | 
+**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 
 ## Example
 
@@ -18,7 +19,7 @@ json = "{}"
 # create an instance of Theme from a JSON string
 theme_instance = Theme.from_json(json)
 # print the JSON string representation of the object
-print Theme.to_json()
+print(Theme.to_json())
 
 # convert the object into a dict
 theme_dict = theme_instance.to_dict()

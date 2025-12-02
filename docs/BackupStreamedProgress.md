@@ -3,12 +3,13 @@
 This is a specific model to the /backups/create/streamed.
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**backup** | [**Backup**](Backup.md) |  | [optional] 
+**percentage** | **float** | Optionally if the download is in progress you will recieve a download percent(from 0-100). | [optional] 
 **var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 **status** | [**ModelDownloadProgressStatusEnum**](ModelDownloadProgressStatusEnum.md) |  | [optional] 
-**percentage** | **float** | Optionally if the download is in progress you will recieve a download percent(from 0-100). | [optional] 
-**backup** | [**Backup**](Backup.md) |  | [optional] 
 
 ## Example
 
@@ -20,7 +21,7 @@ json = "{}"
 # create an instance of BackupStreamedProgress from a JSON string
 backup_streamed_progress_instance = BackupStreamedProgress.from_json(json)
 # print the JSON string representation of the object
-print BackupStreamedProgress.to_json()
+print(BackupStreamedProgress.to_json())
 
 # convert the object into a dict
 backup_streamed_progress_dict = backup_streamed_progress_instance.to_dict()

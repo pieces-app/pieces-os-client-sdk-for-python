@@ -2,12 +2,13 @@
 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**type** | **str** |  | 
 **code** | **str** |  | 
 **detail** | **str** |  | 
 **documentation_url** | **str** |  | 
+**type** | **str** |  | 
 
 ## Example
 
@@ -19,7 +20,7 @@ json = "{}"
 # create an instance of PaddleCheckoutErrorEventError from a JSON string
 paddle_checkout_error_event_error_instance = PaddleCheckoutErrorEventError.from_json(json)
 # print the JSON string representation of the object
-print PaddleCheckoutErrorEventError.to_json()
+print(PaddleCheckoutErrorEventError.to_json())
 
 # convert the object into a dict
 paddle_checkout_error_event_error_dict = paddle_checkout_error_event_error_instance.to_dict()

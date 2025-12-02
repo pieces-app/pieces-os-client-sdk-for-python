@@ -3,11 +3,12 @@
 This is a model that represents multiple Tag Models
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
-**iterable** | [**List[Tag]**](Tag.md) |  | 
 **indices** | **Dict[str, int]** | This is a Map&lt;String, int&gt; where the the key is an tag id. | [optional] 
+**iterable** | [**List[Tag]**](Tag.md) |  | 
+**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 **score** | [**Score**](Score.md) |  | [optional] 
 
 ## Example
@@ -20,7 +21,7 @@ json = "{}"
 # create an instance of Tags from a JSON string
 tags_instance = Tags.from_json(json)
 # print the JSON string representation of the object
-print Tags.to_json()
+print(Tags.to_json())
 
 # convert the object into a dict
 tags_dict = tags_instance.to_dict()

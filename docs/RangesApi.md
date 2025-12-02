@@ -20,9 +20,8 @@ This will create a new Range in the database.
 ### Example
 
 * Api Key Authentication (application):
+
 ```python
-import time
-import os
 import pieces_os_client
 from pieces_os_client.models.range import Range
 from pieces_os_client.models.seeded_range import SeededRange
@@ -65,6 +64,7 @@ with pieces_os_client.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **seeded_range** | [**SeededRange**](SeededRange.md)|  | [optional] 
@@ -83,6 +83,7 @@ Name | Type | Description  | Notes
  - **Accept**: application/json, text/plain
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
@@ -100,9 +101,8 @@ This will delete a specific range from the database!
 ### Example
 
 * Api Key Authentication (application):
+
 ```python
-import time
-import os
 import pieces_os_client
 from pieces_os_client.rest import ApiException
 from pprint import pprint
@@ -141,6 +141,7 @@ with pieces_os_client.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **range** | **str**| This is a identifier that is used to identify a specific range. | 
@@ -159,6 +160,7 @@ void (empty response body)
  - **Accept**: text/plain
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **204** | No Content |  -  |
@@ -176,9 +178,8 @@ This will get a snapshot of all your ranges.
 ### Example
 
 * Api Key Authentication (application):
+
 ```python
-import time
-import os
 import pieces_os_client
 from pieces_os_client.models.ranges import Ranges
 from pieces_os_client.rest import ApiException
@@ -218,6 +219,7 @@ with pieces_os_client.ApiClient(configuration) as api_client:
 
 
 ### Parameters
+
 This endpoint does not need any parameter.
 
 ### Return type
@@ -234,6 +236,7 @@ This endpoint does not need any parameter.
  - **Accept**: application/json, text/plain
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
@@ -251,9 +254,8 @@ Provides a WebSocket connection that emits changes to your range identifiers (UU
 ### Example
 
 * Api Key Authentication (application):
+
 ```python
-import time
-import os
 import pieces_os_client
 from pieces_os_client.models.streamed_identifiers import StreamedIdentifiers
 from pieces_os_client.rest import ApiException
@@ -293,6 +295,7 @@ with pieces_os_client.ApiClient(configuration) as api_client:
 
 
 ### Parameters
+
 This endpoint does not need any parameter.
 
 ### Return type
@@ -309,6 +312,7 @@ This endpoint does not need any parameter.
  - **Accept**: application/json, text/plain
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |

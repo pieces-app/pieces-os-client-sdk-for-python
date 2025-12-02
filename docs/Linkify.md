@@ -3,14 +3,15 @@
 This is the incoming linkify model.  if access is PRIVATE then please provide and array of users to enable the link for. 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**access** | [**AccessEnum**](AccessEnum.md) |  | 
+**asset** | [**Asset**](Asset.md) |  | [optional] 
+**distributions** | [**SeededDistributions**](SeededDistributions.md) |  | [optional] 
 **var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 **seed** | [**Seed**](Seed.md) |  | [optional] 
-**asset** | [**Asset**](Asset.md) |  | [optional] 
 **users** | [**List[SeededUser]**](SeededUser.md) | this is an array of users. | [optional] 
-**access** | [**AccessEnum**](AccessEnum.md) |  | 
-**distributions** | [**SeededDistributions**](SeededDistributions.md) |  | [optional] 
 
 ## Example
 
@@ -22,7 +23,7 @@ json = "{}"
 # create an instance of Linkify from a JSON string
 linkify_instance = Linkify.from_json(json)
 # print the JSON string representation of the object
-print Linkify.to_json()
+print(Linkify.to_json())
 
 # convert the object into a dict
 linkify_dict = linkify_instance.to_dict()

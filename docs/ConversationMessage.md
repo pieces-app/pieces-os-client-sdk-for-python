@@ -1,32 +1,35 @@
 # ConversationMessage
 
-This is a fully referenced ConversationMessage.  This has the minimum amount of properties to keep this light weight  (will consider additional properties in the future like people/tags/links xyz)
+This is a fully referenced ConversationMessage.  This has the minimum amount of properties to keep this light weight  (will consider additional properties in the future like people/tags/links xyz)  summaryRoot: one-to-one relationship to the summary created from this message. This allows us to know which summary was created by this message.  agent_id: this is an identifier that will let use know what thinking message came from what agent            specifically within the DEEP_STUDY flow.
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
-**id** | **str** |  | 
-**created** | [**GroupedTimestamp**](GroupedTimestamp.md) |  | 
-**updated** | [**GroupedTimestamp**](GroupedTimestamp.md) |  | 
-**deleted** | [**GroupedTimestamp**](GroupedTimestamp.md) |  | [optional] 
-**model** | [**Model**](Model.md) |  | [optional] 
-**fragment** | [**FragmentFormat**](FragmentFormat.md) |  | [optional] 
-**conversation** | [**ReferencedConversation**](ReferencedConversation.md) |  | 
-**sentiment** | [**ConversationMessageSentimentEnum**](ConversationMessageSentimentEnum.md) |  | [optional] 
-**role** | [**QGPTConversationMessageRoleEnum**](QGPTConversationMessageRoleEnum.md) |  | 
-**score** | [**Score**](Score.md) |  | [optional] 
-**annotations** | [**FlattenedAnnotations**](FlattenedAnnotations.md) |  | [optional] 
-**websites** | [**FlattenedWebsites**](FlattenedWebsites.md) |  | [optional] 
-**persons** | [**FlattenedPersons**](FlattenedPersons.md) |  | [optional] 
+**agent** | [**ConversationMessageAgent**](ConversationMessageAgent.md) |  | [optional] 
 **anchors** | [**FlattenedAnchors**](FlattenedAnchors.md) |  | [optional] 
+**annotations** | [**FlattenedAnnotations**](FlattenedAnnotations.md) |  | [optional] 
 **assets** | [**FlattenedAssets**](FlattenedAssets.md) |  | [optional] 
-**ranges** | [**FlattenedRanges**](FlattenedRanges.md) |  | [optional] 
-**summaries** | [**FlattenedWorkstreamSummaries**](FlattenedWorkstreamSummaries.md) |  | [optional] 
-**tags** | [**FlattenedTags**](FlattenedTags.md) |  | [optional] 
+**conversation** | [**ReferencedConversation**](ReferencedConversation.md) |  | 
+**created** | [**GroupedTimestamp**](GroupedTimestamp.md) |  | 
+**deleted** | [**GroupedTimestamp**](GroupedTimestamp.md) |  | [optional] 
+**fragment** | [**FragmentFormat**](FragmentFormat.md) |  | [optional] 
+**id** | **str** |  | 
 **messages** | [**FlattenedConversationMessages**](FlattenedConversationMessages.md) |  | [optional] 
-**workstream_events** | [**FlattenedWorkstreamEvents**](FlattenedWorkstreamEvents.md) |  | [optional] 
+**model** | [**Model**](Model.md) |  | [optional] 
+**persons** | [**FlattenedPersons**](FlattenedPersons.md) |  | [optional] 
+**ranges** | [**FlattenedRanges**](FlattenedRanges.md) |  | [optional] 
+**role** | [**QGPTConversationMessageRoleEnum**](QGPTConversationMessageRoleEnum.md) |  | 
+**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
+**score** | [**Score**](Score.md) |  | [optional] 
+**sentiment** | [**ConversationMessageSentimentEnum**](ConversationMessageSentimentEnum.md) |  | [optional] 
 **sources** | [**FlattenedIdentifiedWorkstreamPatternEngineSources**](FlattenedIdentifiedWorkstreamPatternEngineSources.md) |  | [optional] 
+**summaries** | [**FlattenedWorkstreamSummaries**](FlattenedWorkstreamSummaries.md) |  | [optional] 
+**summary_root** | [**ReferencedWorkstreamSummary**](ReferencedWorkstreamSummary.md) |  | [optional] 
+**tags** | [**FlattenedTags**](FlattenedTags.md) |  | [optional] 
+**updated** | [**GroupedTimestamp**](GroupedTimestamp.md) |  | 
+**websites** | [**FlattenedWebsites**](FlattenedWebsites.md) |  | [optional] 
+**workstream_events** | [**FlattenedWorkstreamEvents**](FlattenedWorkstreamEvents.md) |  | [optional] 
 
 ## Example
 
@@ -38,7 +41,7 @@ json = "{}"
 # create an instance of ConversationMessage from a JSON string
 conversation_message_instance = ConversationMessage.from_json(json)
 # print the JSON string representation of the object
-print ConversationMessage.to_json()
+print(ConversationMessage.to_json())
 
 # convert the object into a dict
 conversation_message_dict = conversation_message_instance.to_dict()

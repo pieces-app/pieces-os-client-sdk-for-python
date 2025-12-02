@@ -3,11 +3,12 @@
 This is the input model for the FilePicker
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
-**allowed_extensions** | **List[str]** |  | [optional] 
 **allow_multiple** | **bool** | default behavior is set to true | [optional] 
+**allowed_extensions** | **List[str]** |  | [optional] 
+**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 
 ## Example
 
@@ -19,7 +20,7 @@ json = "{}"
 # create an instance of FilePickerInput from a JSON string
 file_picker_input_instance = FilePickerInput.from_json(json)
 # print the JSON string representation of the object
-print FilePickerInput.to_json()
+print(FilePickerInput.to_json())
 
 # convert the object into a dict
 file_picker_input_dict = file_picker_input_instance.to_dict()

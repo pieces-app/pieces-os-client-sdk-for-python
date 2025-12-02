@@ -3,12 +3,13 @@
 A Context that is returned from almost all calls to the ContextAPI
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
-**os** | **str** | This is th UUID of the OS that this context is currently connected to. This attempts to be the same as Segment&#39;s anonmyousId feild. It is attempted to be set at initial installation at Pieces/.identity/.os | 
 **application** | [**Application**](Application.md) |  | 
 **health** | [**Health**](Health.md) |  | 
+**os** | **str** | This is th UUID of the OS that this context is currently connected to. This attempts to be the same as Segment&#39;s anonmyousId feild. It is attempted to be set at initial installation at Pieces/.identity/.os | 
+**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 **user** | [**UserProfile**](UserProfile.md) |  | [optional] 
 
 ## Example
@@ -21,7 +22,7 @@ json = "{}"
 # create an instance of Context from a JSON string
 context_instance = Context.from_json(json)
 # print the JSON string representation of the object
-print Context.to_json()
+print(Context.to_json())
 
 # convert the object into a dict
 context_dict = context_instance.to_dict()

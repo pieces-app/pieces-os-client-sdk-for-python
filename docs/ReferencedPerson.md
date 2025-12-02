@@ -3,11 +3,12 @@
 [DAG Safe] version of a Person Model. 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 **id** | **str** |  | 
 **reference** | [**FlattenedPerson**](FlattenedPerson.md) |  | [optional] 
+**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 
 ## Example
 
@@ -19,7 +20,7 @@ json = "{}"
 # create an instance of ReferencedPerson from a JSON string
 referenced_person_instance = ReferencedPerson.from_json(json)
 # print the JSON string representation of the object
-print ReferencedPerson.to_json()
+print(ReferencedPerson.to_json())
 
 # convert the object into a dict
 referenced_person_dict = referenced_person_instance.to_dict()

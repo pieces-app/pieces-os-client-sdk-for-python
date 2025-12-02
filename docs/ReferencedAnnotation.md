@@ -3,11 +3,12 @@
 This is the referenced version of a annotation, main used for the uuid.
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 **id** | **str** |  | 
 **reference** | [**FlattenedAnnotation**](FlattenedAnnotation.md) |  | [optional] 
+**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 
 ## Example
 
@@ -19,7 +20,7 @@ json = "{}"
 # create an instance of ReferencedAnnotation from a JSON string
 referenced_annotation_instance = ReferencedAnnotation.from_json(json)
 # print the JSON string representation of the object
-print ReferencedAnnotation.to_json()
+print(ReferencedAnnotation.to_json())
 
 # convert the object into a dict
 referenced_annotation_dict = referenced_annotation_instance.to_dict()

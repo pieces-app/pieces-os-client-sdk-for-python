@@ -3,10 +3,11 @@
 For now this will just return the id of the notification  This will be light weight in order to scale.
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 **id** | **int** |  | 
+**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 
 ## Example
 
@@ -18,7 +19,7 @@ json = "{}"
 # create an instance of LocalNotificationResponse from a JSON string
 local_notification_response_instance = LocalNotificationResponse.from_json(json)
 # print the JSON string representation of the object
-print LocalNotificationResponse.to_json()
+print(LocalNotificationResponse.to_json())
 
 # convert the object into a dict
 local_notification_response_dict = local_notification_response_instance.to_dict()

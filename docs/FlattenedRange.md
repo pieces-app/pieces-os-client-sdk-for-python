@@ -3,19 +3,20 @@
 This is a DAG-Safe minimal representation of a Range.
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
-**id** | **str** |  | 
-**score** | [**Score**](Score.md) |  | [optional] 
-**created** | [**GroupedTimestamp**](GroupedTimestamp.md) |  | 
-**updated** | [**GroupedTimestamp**](GroupedTimestamp.md) |  | 
-**to** | [**GroupedTimestamp**](GroupedTimestamp.md) |  | [optional] 
-**var_from** | [**GroupedTimestamp**](GroupedTimestamp.md) |  | [optional] 
 **between** | **bool** |  | [optional] 
-**summaries** | [**FlattenedWorkstreamSummaries**](FlattenedWorkstreamSummaries.md) |  | [optional] 
 **conversations** | [**FlattenedConversations**](FlattenedConversations.md) |  | [optional] 
+**created** | [**GroupedTimestamp**](GroupedTimestamp.md) |  | 
+**var_from** | [**GroupedTimestamp**](GroupedTimestamp.md) |  | [optional] 
+**id** | **str** |  | 
 **messages** | [**FlattenedConversationMessages**](FlattenedConversationMessages.md) |  | [optional] 
+**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
+**score** | [**Score**](Score.md) |  | [optional] 
+**summaries** | [**FlattenedWorkstreamSummaries**](FlattenedWorkstreamSummaries.md) |  | [optional] 
+**to** | [**GroupedTimestamp**](GroupedTimestamp.md) |  | [optional] 
+**updated** | [**GroupedTimestamp**](GroupedTimestamp.md) |  | 
 
 ## Example
 
@@ -27,7 +28,7 @@ json = "{}"
 # create an instance of FlattenedRange from a JSON string
 flattened_range_instance = FlattenedRange.from_json(json)
 # print the JSON string representation of the object
-print FlattenedRange.to_json()
+print(FlattenedRange.to_json())
 
 # convert the object into a dict
 flattened_range_dict = flattened_range_instance.to_dict()

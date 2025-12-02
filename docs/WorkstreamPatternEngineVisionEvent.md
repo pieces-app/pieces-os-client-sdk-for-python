@@ -3,11 +3,12 @@
 This will return a specific event for the WPE.  note: value is nullable here because we may want to pass in transferables:true/false
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
-**id** | **str** |  | 
 **created** | [**GroupedTimestamp**](GroupedTimestamp.md) |  | 
+**id** | **str** |  | 
+**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 **source** | [**WorkstreamPatternEngineSource**](WorkstreamPatternEngineSource.md) |  | [optional] 
 **textual** | [**WorkstreamPatternEngineVisionEventTextualValue**](WorkstreamPatternEngineVisionEventTextualValue.md) |  | [optional] 
 
@@ -21,7 +22,7 @@ json = "{}"
 # create an instance of WorkstreamPatternEngineVisionEvent from a JSON string
 workstream_pattern_engine_vision_event_instance = WorkstreamPatternEngineVisionEvent.from_json(json)
 # print the JSON string representation of the object
-print WorkstreamPatternEngineVisionEvent.to_json()
+print(WorkstreamPatternEngineVisionEvent.to_json())
 
 # convert the object into a dict
 workstream_pattern_engine_vision_event_dict = workstream_pattern_engine_vision_event_instance.to_dict()

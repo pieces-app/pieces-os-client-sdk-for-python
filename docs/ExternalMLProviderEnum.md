@@ -62,6 +62,10 @@ This is a Model used for the Model class. This will be used to describe the prov
 
 * `MINISHLABS` (value: `'MINISHLABS'`)
 
+* `MSFT_AZURE_OPEN_AI` (value: `'MSFT_AZURE_OPEN_AI'`)
+
+* `AWS_BEDROCK` (value: `'AWS_BEDROCK'`)
+
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
 

@@ -3,10 +3,11 @@
 This is the seeded source window for the workstream pattern engine
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 **name** | **str** | The name of the seeded source window | 
+**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 **workstream_events** | [**FlattenedWorkstreamEvents**](FlattenedWorkstreamEvents.md) |  | [optional] 
 
 ## Example
@@ -19,7 +20,7 @@ json = "{}"
 # create an instance of SeededWorkstreamPatternEngineSourceWindow from a JSON string
 seeded_workstream_pattern_engine_source_window_instance = SeededWorkstreamPatternEngineSourceWindow.from_json(json)
 # print the JSON string representation of the object
-print SeededWorkstreamPatternEngineSourceWindow.to_json()
+print(SeededWorkstreamPatternEngineSourceWindow.to_json())
 
 # convert the object into a dict
 seeded_workstream_pattern_engine_source_window_dict = seeded_workstream_pattern_engine_source_window_instance.to_dict()

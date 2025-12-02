@@ -3,11 +3,12 @@
 This is a plural version of a Conversation.
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
-**iterable** | [**List[Conversation]**](Conversation.md) |  | 
 **indices** | **Dict[str, int]** | This is a Map&lt;String, int&gt; where the the key is an Conversation id. | [optional] 
+**iterable** | [**List[Conversation]**](Conversation.md) |  | 
+**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 **score** | [**Score**](Score.md) |  | [optional] 
 
 ## Example
@@ -20,7 +21,7 @@ json = "{}"
 # create an instance of Conversations from a JSON string
 conversations_instance = Conversations.from_json(json)
 # print the JSON string representation of the object
-print Conversations.to_json()
+print(Conversations.to_json())
 
 # convert the object into a dict
 conversations_dict = conversations_instance.to_dict()

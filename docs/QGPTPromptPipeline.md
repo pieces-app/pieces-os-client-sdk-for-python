@@ -3,11 +3,12 @@
 This is a model related to switching between different prompts based on if we are dealing with  various tasks or if we are attempting to converse with LLMs via conversation.  You will have 2 options-  1) task- This is specifically for 1 off task operations for instance explaning a bit of code 2) conversation- This is specifically for conversing with our LLMs, will provide better results && high fedility                responses for instance contextualize code conversations.
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**conversation** | [**QGPTConversationPipeline**](QGPTConversationPipeline.md) |  | [optional] 
 **var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 **task** | [**QGPTTaskPipeline**](QGPTTaskPipeline.md) |  | [optional] 
-**conversation** | [**QGPTConversationPipeline**](QGPTConversationPipeline.md) |  | [optional] 
 
 ## Example
 
@@ -19,7 +20,7 @@ json = "{}"
 # create an instance of QGPTPromptPipeline from a JSON string
 qgpt_prompt_pipeline_instance = QGPTPromptPipeline.from_json(json)
 # print the JSON string representation of the object
-print QGPTPromptPipeline.to_json()
+print(QGPTPromptPipeline.to_json())
 
 # convert the object into a dict
 qgpt_prompt_pipeline_dict = qgpt_prompt_pipeline_instance.to_dict()

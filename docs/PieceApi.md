@@ -17,9 +17,8 @@ This is a cloud only Api. This will get a preview of your publically accessble P
 ### Example
 
 * Api Key Authentication (application):
+
 ```python
-import time
-import os
 import pieces_os_client
 from pieces_os_client.rest import ApiException
 from pprint import pprint
@@ -60,6 +59,7 @@ with pieces_os_client.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **p** | **str**| this is the a query param, that a shortened version of the share. | 
@@ -78,6 +78,7 @@ Name | Type | Description  | Notes
  - **Accept**: text/html
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |

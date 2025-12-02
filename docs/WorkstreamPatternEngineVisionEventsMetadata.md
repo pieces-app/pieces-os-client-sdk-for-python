@@ -3,13 +3,14 @@
 This is specific model that will return the size of the WPE in bytes
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 **bytes** | [**ByteDescriptor**](ByteDescriptor.md) |  | 
-**total** | **int** | This is the total number of events. | 
-**oldest** | [**WorkstreamPatternEngineVisionEvent**](WorkstreamPatternEngineVisionEvent.md) |  | [optional] 
 **newest** | [**WorkstreamPatternEngineVisionEvent**](WorkstreamPatternEngineVisionEvent.md) |  | [optional] 
+**oldest** | [**WorkstreamPatternEngineVisionEvent**](WorkstreamPatternEngineVisionEvent.md) |  | [optional] 
+**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
+**total** | **int** | This is the total number of events. | 
 
 ## Example
 
@@ -21,7 +22,7 @@ json = "{}"
 # create an instance of WorkstreamPatternEngineVisionEventsMetadata from a JSON string
 workstream_pattern_engine_vision_events_metadata_instance = WorkstreamPatternEngineVisionEventsMetadata.from_json(json)
 # print the JSON string representation of the object
-print WorkstreamPatternEngineVisionEventsMetadata.to_json()
+print(WorkstreamPatternEngineVisionEventsMetadata.to_json())
 
 # convert the object into a dict
 workstream_pattern_engine_vision_events_metadata_dict = workstream_pattern_engine_vision_events_metadata_instance.to_dict()

@@ -3,10 +3,11 @@
 This is the plural of activity
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 **iterable** | [**List[Activity]**](Activity.md) |  | 
+**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 
 ## Example
 
@@ -18,7 +19,7 @@ json = "{}"
 # create an instance of Activities from a JSON string
 activities_instance = Activities.from_json(json)
 # print the JSON string representation of the object
-print Activities.to_json()
+print(Activities.to_json())
 
 # convert the object into a dict
 activities_dict = activities_instance.to_dict()

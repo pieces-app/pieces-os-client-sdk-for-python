@@ -3,16 +3,17 @@
 This is use as the score for an asset.  Manual: will be the raw sum of the asset activity events ranks with mechanismEnum == manual Automatic: will be the raw sum of the asset activity events ranks with mechanismEnum == automatic
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
-**manual** | **int** | These are points assigned via manual user driven events. | 
 **automatic** | **int** | These are point assigned via automatic activity events. | 
+**manual** | **int** | These are points assigned via manual user driven events. | 
 **priority** | **int** |  | [optional] 
-**reuse** | **int** |  | [optional] 
-**update** | **int** |  | [optional] 
 **reference** | **int** |  | [optional] 
+**reuse** | **int** |  | [optional] 
+**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 **searched** | **int** |  | [optional] 
+**update** | **int** |  | [optional] 
 
 ## Example
 
@@ -24,7 +25,7 @@ json = "{}"
 # create an instance of Score from a JSON string
 score_instance = Score.from_json(json)
 # print the JSON string representation of the object
-print Score.to_json()
+print(Score.to_json())
 
 # convert the object into a dict
 score_dict = score_instance.to_dict()

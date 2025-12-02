@@ -3,15 +3,16 @@
 User Metadata from Descope
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
-**global_id** | **str** |  | 
-**vanityname** | **str** | this is the vanityname of the user.(set from their custom CNAME dns record.) ie mark.pieces.cloud where \&quot;mark\&quot; is the vanityname. | [optional] 
 **allocation** | [**Auth0UserAllocationMetadata**](Auth0UserAllocationMetadata.md) |  | [optional] 
-**open_ai** | [**Auth0OpenAIUserMetadata**](Auth0OpenAIUserMetadata.md) |  | [optional] 
 **beta** | [**AnonymousTemporalRange**](AnonymousTemporalRange.md) |  | [optional] 
 **descope_id** | **str** |  | 
+**global_id** | **str** |  | 
+**open_ai** | [**Auth0OpenAIUserMetadata**](Auth0OpenAIUserMetadata.md) |  | [optional] 
+**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
+**vanityname** | **str** | this is the vanityname of the user.(set from their custom CNAME dns record.) ie mark.pieces.cloud where \&quot;mark\&quot; is the vanityname. | [optional] 
 
 ## Example
 
@@ -23,7 +24,7 @@ json = "{}"
 # create an instance of DescopeUserMetadata from a JSON string
 descope_user_metadata_instance = DescopeUserMetadata.from_json(json)
 # print the JSON string representation of the object
-print DescopeUserMetadata.to_json()
+print(DescopeUserMetadata.to_json())
 
 # convert the object into a dict
 descope_user_metadata_dict = descope_user_metadata_instance.to_dict()

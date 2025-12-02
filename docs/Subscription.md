@@ -2,24 +2,26 @@
 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
+**active** | **bool** |  | 
+**cancelled** | [**GroupedTimestamp**](GroupedTimestamp.md) |  | [optional] 
+**created** | [**GroupedTimestamp**](GroupedTimestamp.md) |  | 
+**entities** | [**FlattenedEntities**](FlattenedEntities.md) |  | [optional] 
 **id** | **str** | The id of the subscription | 
 **name** | **str** | The name of the subscription | 
-**created** | [**GroupedTimestamp**](GroupedTimestamp.md) |  | 
-**updated** | [**GroupedTimestamp**](GroupedTimestamp.md) |  | 
-**user** | [**ReferencedUser**](ReferencedUser.md) |  | 
 **next_billing_date** | [**GroupedTimestamp**](GroupedTimestamp.md) |  | [optional] 
 **paused** | [**GroupedTimestamp**](GroupedTimestamp.md) |  | [optional] 
-**cancelled** | [**GroupedTimestamp**](GroupedTimestamp.md) |  | [optional] 
-**active** | **bool** |  | 
-**term** | [**SubscriptionTermEnum**](SubscriptionTermEnum.md) |  | 
-**quantity** | **int** |  | 
-**subscription_id** | **str** |  | 
-**product_id** | **str** |  | 
-**score** | [**Score**](Score.md) |  | [optional] 
 **price_id** | **str** |  | 
+**product_id** | **str** |  | 
+**quantity** | **int** |  | 
+**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
+**score** | [**Score**](Score.md) |  | [optional] 
+**subscription_id** | **str** |  | 
+**term** | [**SubscriptionTermEnum**](SubscriptionTermEnum.md) |  | 
+**updated** | [**GroupedTimestamp**](GroupedTimestamp.md) |  | 
+**user** | [**ReferencedUser**](ReferencedUser.md) |  | 
 
 ## Example
 
@@ -31,7 +33,7 @@ json = "{}"
 # create an instance of Subscription from a JSON string
 subscription_instance = Subscription.from_json(json)
 # print the JSON string representation of the object
-print Subscription.to_json()
+print(Subscription.to_json())
 
 # convert the object into a dict
 subscription_dict = subscription_instance.to_dict()

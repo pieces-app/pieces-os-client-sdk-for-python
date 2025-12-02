@@ -3,10 +3,11 @@
 TODO
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 **diagnostics** | [**LanguageServerProtocolDiagnostics**](LanguageServerProtocolDiagnostics.md) |  | [optional] 
+**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 
 ## Example
 
@@ -18,7 +19,7 @@ json = "{}"
 # create an instance of LanguageServerProtocol from a JSON string
 language_server_protocol_instance = LanguageServerProtocol.from_json(json)
 # print the JSON string representation of the object
-print LanguageServerProtocol.to_json()
+print(LanguageServerProtocol.to_json())
 
 # convert the object into a dict
 language_server_protocol_dict = language_server_protocol_instance.to_dict()

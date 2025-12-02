@@ -3,11 +3,12 @@
 This is the source windows for the workstream pattern engine
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
-**iterable** | [**List[WorkstreamPatternEngineSourceWindow]**](WorkstreamPatternEngineSourceWindow.md) | This is the iterable of the source windows | 
 **indices** | **Dict[str, int]** | This is a Map&lt;String, int&gt; where the the key is an source window id. | [optional] 
+**iterable** | [**List[WorkstreamPatternEngineSourceWindow]**](WorkstreamPatternEngineSourceWindow.md) | This is the iterable of the source windows | 
+**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 **score** | [**Score**](Score.md) |  | [optional] 
 
 ## Example
@@ -20,7 +21,7 @@ json = "{}"
 # create an instance of WorkstreamPatternEngineSourceWindows from a JSON string
 workstream_pattern_engine_source_windows_instance = WorkstreamPatternEngineSourceWindows.from_json(json)
 # print the JSON string representation of the object
-print WorkstreamPatternEngineSourceWindows.to_json()
+print(WorkstreamPatternEngineSourceWindows.to_json())
 
 # convert the object into a dict
 workstream_pattern_engine_source_windows_dict = workstream_pattern_engine_source_windows_instance.to_dict()

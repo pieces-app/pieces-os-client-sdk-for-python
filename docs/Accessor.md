@@ -3,13 +3,14 @@
 This is used to determine who has accessed a share. and how many times. The user here is the user that accessed this Piece.(optional) if undefined then this user was not logged in yet.
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
+**count** | **int** | how many times this user accessed this piece. | 
 **id** | **str** |  | 
 **os** | **str** | this is an os id. | 
+**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 **share** | **str** |  | 
-**count** | **int** | how many times this user accessed this piece. | 
 **user** | [**FlattenedUserProfile**](FlattenedUserProfile.md) |  | [optional] 
 
 ## Example
@@ -22,7 +23,7 @@ json = "{}"
 # create an instance of Accessor from a JSON string
 accessor_instance = Accessor.from_json(json)
 # print the JSON string representation of the object
-print Accessor.to_json()
+print(Accessor.to_json())
 
 # convert the object into a dict
 accessor_dict = accessor_instance.to_dict()

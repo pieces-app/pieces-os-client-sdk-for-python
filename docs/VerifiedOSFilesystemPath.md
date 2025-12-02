@@ -3,15 +3,16 @@
 This will return is the given path was verified/ or it was invalid.  and if it is valid if it is a file/folder  note: file/directory are both null.
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
-**path** | **str** |  | 
-**file** | **bool** |  | [optional] 
-**directory** | **bool** |  | [optional] 
-**verified** | **bool** | This means if the path(file/folder) exists on the machine. | 
-**denied** | **bool** | This means that attempting to access the file was not aloud(ie no permission) | [optional] 
 **bytes** | [**ByteDescriptor**](ByteDescriptor.md) |  | [optional] 
+**denied** | **bool** | This means that attempting to access the file was not aloud(ie no permission) | [optional] 
+**directory** | **bool** |  | [optional] 
+**file** | **bool** |  | [optional] 
+**path** | **str** |  | 
+**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
+**verified** | **bool** | This means if the path(file/folder) exists on the machine. | 
 
 ## Example
 
@@ -23,7 +24,7 @@ json = "{}"
 # create an instance of VerifiedOSFilesystemPath from a JSON string
 verified_os_filesystem_path_instance = VerifiedOSFilesystemPath.from_json(json)
 # print the JSON string representation of the object
-print VerifiedOSFilesystemPath.to_json()
+print(VerifiedOSFilesystemPath.to_json())
 
 # convert the object into a dict
 verified_os_filesystem_path_dict = verified_os_filesystem_path_instance.to_dict()

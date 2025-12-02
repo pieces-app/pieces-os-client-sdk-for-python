@@ -3,11 +3,12 @@
 This is a DAG-Safe Minimal version of a ConversationMessage.
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 **id** | **str** |  | 
 **reference** | [**FlattenedConversationMessage**](FlattenedConversationMessage.md) |  | [optional] 
+**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 
 ## Example
 
@@ -19,7 +20,7 @@ json = "{}"
 # create an instance of ReferencedConversationMessage from a JSON string
 referenced_conversation_message_instance = ReferencedConversationMessage.from_json(json)
 # print the JSON string representation of the object
-print ReferencedConversationMessage.to_json()
+print(ReferencedConversationMessage.to_json())
 
 # convert the object into a dict
 referenced_conversation_message_dict = referenced_conversation_message_instance.to_dict()

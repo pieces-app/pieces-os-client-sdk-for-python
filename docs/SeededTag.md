@@ -3,15 +3,16 @@
 This is the minimum information needed when creating a Tag.  Default we will attach manual to a tag unless otherwise specified for mechanism.  you can optionally add an asset, format, or person uuid to attach this tag directly to it  TODO consider updating these asset,format to referenced Models
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
-**text** | **str** | This is the description of the tag. | 
 **asset** | **str** | this is a uuid that references an asset. | [optional] 
-**mechanism** | [**MechanismEnum**](MechanismEnum.md) |  | [optional] 
 **category** | [**TagCategoryEnum**](TagCategoryEnum.md) |  | [optional] 
+**mechanism** | [**MechanismEnum**](MechanismEnum.md) |  | [optional] 
 **person** | **str** | uuid of the person, you want to add this tag too | [optional] 
-**tags_vector** | **List[float]** | This is the embedding for the format.(NEEDs to collectionection.vector) and specific here because we can only index on a single name NOTE: this the the vector index that corresponds the the couchbase lite index. | [optional] 
+**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
+**tags_vector** | **List[float]** | This is the embedding for the format.(NEEDs to collection.vector) and specific here because we can only index on a single name NOTE: this is the vector index that corresponds to the couchbase lite index. | [optional] 
+**text** | **str** | This is the description of the tag. | 
 
 ## Example
 
@@ -23,7 +24,7 @@ json = "{}"
 # create an instance of SeededTag from a JSON string
 seeded_tag_instance = SeededTag.from_json(json)
 # print the JSON string representation of the object
-print SeededTag.to_json()
+print(SeededTag.to_json())
 
 # convert the object into a dict
 seeded_tag_dict = seeded_tag_instance.to_dict()

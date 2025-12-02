@@ -3,10 +3,11 @@
 modeled off of (https://microsoft.github.io/language-server-protocol/specifications/lsp/3.17/specification/#codeDescription)
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 **href** | **str** |  | 
+**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 
 ## Example
 
@@ -18,7 +19,7 @@ json = "{}"
 # create an instance of LanguageServerProtocolCodeDescription from a JSON string
 language_server_protocol_code_description_instance = LanguageServerProtocolCodeDescription.from_json(json)
 # print the JSON string representation of the object
-print LanguageServerProtocolCodeDescription.to_json()
+print(LanguageServerProtocolCodeDescription.to_json())
 
 # convert the object into a dict
 language_server_protocol_code_description_dict = language_server_protocol_code_description_instance.to_dict()

@@ -17,9 +17,8 @@ Establishes a WebSocket connection to stream real-time updates for the specified
 ### Example
 
 * Api Key Authentication (application):
+
 ```python
-import time
-import os
 import pieces_os_client
 from pieces_os_client.models.os_applet_enum import OSAppletEnum
 from pieces_os_client.rest import ApiException
@@ -62,6 +61,7 @@ with pieces_os_client.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **application** | **str**| This is a uuid that represents an application | 
@@ -81,6 +81,7 @@ Name | Type | Description  | Notes
  - **Accept**: application/websocket, application/json, text/plain
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | WebSocket connection established successfully. |  -  |

@@ -2,10 +2,11 @@
 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 **iterable** | [**List[ReferencedActivity]**](ReferencedActivity.md) |  | 
+**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 
 ## Example
 
@@ -17,7 +18,7 @@ json = "{}"
 # create an instance of FlattenedActivities from a JSON string
 flattened_activities_instance = FlattenedActivities.from_json(json)
 # print the JSON string representation of the object
-print FlattenedActivities.to_json()
+print(FlattenedActivities.to_json())
 
 # convert the object into a dict
 flattened_activities_dict = flattened_activities_instance.to_dict()
