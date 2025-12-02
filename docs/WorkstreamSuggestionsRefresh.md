@@ -3,6 +3,7 @@
 This will return the new refreshed suggestions, about what data changed, and the data that was used to bias the suggestions.
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
@@ -18,7 +19,7 @@ json = "{}"
 # create an instance of WorkstreamSuggestionsRefresh from a JSON string
 workstream_suggestions_refresh_instance = WorkstreamSuggestionsRefresh.from_json(json)
 # print the JSON string representation of the object
-print WorkstreamSuggestionsRefresh.to_json()
+print(WorkstreamSuggestionsRefresh.to_json())
 
 # convert the object into a dict
 workstream_suggestions_refresh_dict = workstream_suggestions_refresh_instance.to_dict()

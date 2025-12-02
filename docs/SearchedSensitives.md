@@ -3,10 +3,11 @@
 This is the plural Model used to return many SearchedSensitive.
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 **iterable** | [**List[SearchedSensitive]**](SearchedSensitive.md) |  | 
+**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 
 ## Example
 
@@ -18,7 +19,7 @@ json = "{}"
 # create an instance of SearchedSensitives from a JSON string
 searched_sensitives_instance = SearchedSensitives.from_json(json)
 # print the JSON string representation of the object
-print SearchedSensitives.to_json()
+print(SearchedSensitives.to_json())
 
 # convert the object into a dict
 searched_sensitives_dict = searched_sensitives_instance.to_dict()

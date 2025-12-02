@@ -2,11 +2,12 @@
 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
-**iterable** | [**List[SeededDiscoverableHtmlWebpage]**](SeededDiscoverableHtmlWebpage.md) |  | 
 **application** | **str** | This is the applicaiton Id used to connect to Pieces OS. | 
+**iterable** | [**List[SeededDiscoverableHtmlWebpage]**](SeededDiscoverableHtmlWebpage.md) |  | 
+**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 
 ## Example
 
@@ -18,7 +19,7 @@ json = "{}"
 # create an instance of SeededDiscoverableHtmlWebpages from a JSON string
 seeded_discoverable_html_webpages_instance = SeededDiscoverableHtmlWebpages.from_json(json)
 # print the JSON string representation of the object
-print SeededDiscoverableHtmlWebpages.to_json()
+print(SeededDiscoverableHtmlWebpages.to_json())
 
 # convert the object into a dict
 seeded_discoverable_html_webpages_dict = seeded_discoverable_html_webpages_instance.to_dict()

@@ -3,17 +3,18 @@
 This is the seededSensitive, this does not have an id yet as we will add it on the server side.  can optionally pass in our mechanism here, as the default will be manual unless specified.  TODO consider updating these asset,format to referenced Models
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 **asset** | **str** |  | 
-**text** | **str** | this is the string representative of the sensative piece of data. | 
-**mechanism** | [**MechanismEnum**](MechanismEnum.md) |  | [optional] 
 **category** | [**SensitiveCategoryEnum**](SensitiveCategoryEnum.md) |  | 
-**severity** | [**SensitiveSeverityEnum**](SensitiveSeverityEnum.md) |  | 
-**name** | **str** |  | 
 **description** | **str** |  | 
+**mechanism** | [**MechanismEnum**](MechanismEnum.md) |  | [optional] 
 **metadata** | [**SensitiveMetadata**](SensitiveMetadata.md) |  | [optional] 
+**name** | **str** |  | 
+**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
+**severity** | [**SensitiveSeverityEnum**](SensitiveSeverityEnum.md) |  | 
+**text** | **str** | this is the string representative of the sensative piece of data. | 
 
 ## Example
 
@@ -25,7 +26,7 @@ json = "{}"
 # create an instance of SeededSensitive from a JSON string
 seeded_sensitive_instance = SeededSensitive.from_json(json)
 # print the JSON string representation of the object
-print SeededSensitive.to_json()
+print(SeededSensitive.to_json())
 
 # convert the object into a dict
 seeded_sensitive_dict = seeded_sensitive_instance.to_dict()

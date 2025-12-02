@@ -3,16 +3,18 @@
 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
-**name** | [**ApplicationNameEnum**](ApplicationNameEnum.md) |  | 
-**version** | **str** | This is the specific version number 0.0.0 | 
-**platform** | [**PlatformEnum**](PlatformEnum.md) |  | 
-**capabilities** | [**CapabilitiesEnum**](CapabilitiesEnum.md) |  | [optional] 
-**privacy** | [**PrivacyEnum**](PrivacyEnum.md) |  | [optional] 
 **automatic_unload** | **bool** | This is a proper that will let us know if we will proactivity unload all of your machine learning models.by default this is false. | [optional] 
+**capabilities** | [**CapabilitiesEnum**](CapabilitiesEnum.md) |  | [optional] 
+**descriptor** | **str** | A descriptor for additional application context. Currently used for MCP client names to identify specific connected MCP clients. | [optional] 
 **enrichment** | [**SeededAssetEnrichment**](SeededAssetEnrichment.md) |  | [optional] 
+**name** | [**ApplicationNameEnum**](ApplicationNameEnum.md) |  | 
+**platform** | [**PlatformEnum**](PlatformEnum.md) |  | 
+**privacy** | [**PrivacyEnum**](PrivacyEnum.md) |  | [optional] 
+**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
+**version** | **str** | This is the specific version number 0.0.0 | 
 
 ## Example
 
@@ -24,7 +26,7 @@ json = "{}"
 # create an instance of SeededTrackedApplication from a JSON string
 seeded_tracked_application_instance = SeededTrackedApplication.from_json(json)
 # print the JSON string representation of the object
-print SeededTrackedApplication.to_json()
+print(SeededTrackedApplication.to_json())
 
 # convert the object into a dict
 seeded_tracked_application_dict = seeded_tracked_application_instance.to_dict()

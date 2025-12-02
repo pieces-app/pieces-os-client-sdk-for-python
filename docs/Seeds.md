@@ -3,10 +3,11 @@
 This is a plural model for multiple Seed.
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 **iterable** | [**List[Seed]**](Seed.md) |  | 
+**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 
 ## Example
 
@@ -18,7 +19,7 @@ json = "{}"
 # create an instance of Seeds from a JSON string
 seeds_instance = Seeds.from_json(json)
 # print the JSON string representation of the object
-print Seeds.to_json()
+print(Seeds.to_json())
 
 # convert the object into a dict
 seeds_dict = seeds_instance.to_dict()

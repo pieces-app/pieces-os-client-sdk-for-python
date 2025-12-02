@@ -3,10 +3,11 @@
 This is the plural Model used to return many SearchedPerson.
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 **iterable** | [**List[SearchedPerson]**](SearchedPerson.md) |  | 
+**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 
 ## Example
 
@@ -18,7 +19,7 @@ json = "{}"
 # create an instance of SearchedPersons from a JSON string
 searched_persons_instance = SearchedPersons.from_json(json)
 # print the JSON string representation of the object
-print SearchedPersons.to_json()
+print(SearchedPersons.to_json())
 
 # convert the object into a dict
 searched_persons_dict = searched_persons_instance.to_dict()

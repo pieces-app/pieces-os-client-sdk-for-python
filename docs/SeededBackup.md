@@ -3,6 +3,7 @@
 This is a precursor to a Backup, for now this will not need to take any properties.
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
@@ -17,7 +18,7 @@ json = "{}"
 # create an instance of SeededBackup from a JSON string
 seeded_backup_instance = SeededBackup.from_json(json)
 # print the JSON string representation of the object
-print SeededBackup.to_json()
+print(SeededBackup.to_json())
 
 # convert the object into a dict
 seeded_backup_dict = seeded_backup_instance.to_dict()

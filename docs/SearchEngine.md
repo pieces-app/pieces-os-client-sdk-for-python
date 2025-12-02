@@ -3,15 +3,16 @@
 This will determine the type of search that will run  These are all different searching methods all of which are exclusive. Meaning that you cannot mix & match types.  operations: is here if you want to build complex searching behavior. (A || B) && (B || C) , note this can get very complex but can be as flexible as you need.
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
-**query** | **str** |  | [optional] 
 **embeddings** | [**EmbeddingsSearchOptions**](EmbeddingsSearchOptions.md) |  | [optional] 
 **full_text** | [**FullTextSearchOptions**](FullTextSearchOptions.md) |  | [optional] 
+**operations** | [**SearchEngines**](SearchEngines.md) |  | [optional] 
+**query** | **str** |  | [optional] 
+**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 **temporal** | [**TemporalSearchOptions**](TemporalSearchOptions.md) |  | [optional] 
 **workstream** | [**WorkstreamSearchOptions**](WorkstreamSearchOptions.md) |  | [optional] 
-**operations** | [**SearchEngines**](SearchEngines.md) |  | [optional] 
 
 ## Example
 
@@ -23,7 +24,7 @@ json = "{}"
 # create an instance of SearchEngine from a JSON string
 search_engine_instance = SearchEngine.from_json(json)
 # print the JSON string representation of the object
-print SearchEngine.to_json()
+print(SearchEngine.to_json())
 
 # convert the object into a dict
 search_engine_dict = search_engine_instance.to_dict()

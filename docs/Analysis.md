@@ -3,13 +3,14 @@
 This the the MlAnalysis Object, that will go on a format.  this will hold all the different analysis models!  ** keep format just a uuid for now **
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 **code** | [**CodeAnalysis**](CodeAnalysis.md) |  | [optional] 
-**id** | **str** |  | 
 **format** | **str** | this is a reference to the format that it belongs too. | 
+**id** | **str** |  | 
 **image** | [**ImageAnalysis**](ImageAnalysis.md) |  | [optional] 
+**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 
 ## Example
 
@@ -21,7 +22,7 @@ json = "{}"
 # create an instance of Analysis from a JSON string
 analysis_instance = Analysis.from_json(json)
 # print the JSON string representation of the object
-print Analysis.to_json()
+print(Analysis.to_json())
 
 # convert the object into a dict
 analysis_dict = analysis_instance.to_dict()

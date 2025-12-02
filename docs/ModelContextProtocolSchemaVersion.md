@@ -3,11 +3,12 @@
 This is a singular schema version for MCP
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**entry_endpoint** | **str** | this is the endpoint that the use should use to configure the server. | 
 **var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 **version** | **str** |  | 
-**entry_endpoint** | **str** | this is the endpoint that the use should use to configure the server. | 
 
 ## Example
 
@@ -19,7 +20,7 @@ json = "{}"
 # create an instance of ModelContextProtocolSchemaVersion from a JSON string
 model_context_protocol_schema_version_instance = ModelContextProtocolSchemaVersion.from_json(json)
 # print the JSON string representation of the object
-print ModelContextProtocolSchemaVersion.to_json()
+print(ModelContextProtocolSchemaVersion.to_json())
 
 # convert the object into a dict
 model_context_protocol_schema_version_dict = model_context_protocol_schema_version_instance.to_dict()

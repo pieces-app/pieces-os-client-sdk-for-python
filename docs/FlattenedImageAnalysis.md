@@ -2,12 +2,13 @@
 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
+**analysis** | **str** | this is a reference to our (parent)analysis | 
 **id** | **str** |  | 
 **ocr** | [**FlattenedOCRAnalysis**](FlattenedOCRAnalysis.md) |  | [optional] 
-**analysis** | **str** | this is a reference to our (parent)analysis | 
+**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 
 ## Example
 
@@ -19,7 +20,7 @@ json = "{}"
 # create an instance of FlattenedImageAnalysis from a JSON string
 flattened_image_analysis_instance = FlattenedImageAnalysis.from_json(json)
 # print the JSON string representation of the object
-print FlattenedImageAnalysis.to_json()
+print(FlattenedImageAnalysis.to_json())
 
 # convert the object into a dict
 flattened_image_analysis_dict = flattened_image_analysis_instance.to_dict()

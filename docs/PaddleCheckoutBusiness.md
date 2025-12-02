@@ -2,11 +2,12 @@
 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 **id** | **str** |  | 
 **name** | **str** |  | 
+**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 **tax_identifier** | **str** |  | 
 
 ## Example
@@ -19,7 +20,7 @@ json = "{}"
 # create an instance of PaddleCheckoutBusiness from a JSON string
 paddle_checkout_business_instance = PaddleCheckoutBusiness.from_json(json)
 # print the JSON string representation of the object
-print PaddleCheckoutBusiness.to_json()
+print(PaddleCheckoutBusiness.to_json())
 
 # convert the object into a dict
 paddle_checkout_business_dict = paddle_checkout_business_instance.to_dict()

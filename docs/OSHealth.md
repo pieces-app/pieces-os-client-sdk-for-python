@@ -3,10 +3,11 @@
 This is a specific model for the health of our OS Server.
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 **id** | **str** | id of your OS | 
+**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 **version** | **str** | this is the current OS version | 
 
 ## Example
@@ -19,7 +20,7 @@ json = "{}"
 # create an instance of OSHealth from a JSON string
 os_health_instance = OSHealth.from_json(json)
 # print the JSON string representation of the object
-print OSHealth.to_json()
+print(OSHealth.to_json())
 
 # convert the object into a dict
 os_health_dict = os_health_instance.to_dict()

@@ -3,14 +3,15 @@
 This will get used in the Websocket and in the get request for Foundry Note:  - updating (nullable) will be used in the case an update is underway  - installing (nullable) will be used in the case an installation is underway  - updateRequired (nullable) will be used in the case an update is required  - installation (nullable) will be provided in the case Foundry is installed.
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
-**updating** | [**FoundryDeployment**](FoundryDeployment.md) |  | [optional] 
-**installing** | [**FoundryDeployment**](FoundryDeployment.md) |  | [optional] 
-**update_required** | [**FoundryDeployment**](FoundryDeployment.md) |  | [optional] 
 **installation** | [**FoundryDeployment**](FoundryDeployment.md) |  | [optional] 
+**installing** | [**FoundryDeployment**](FoundryDeployment.md) |  | [optional] 
 **recommendation** | [**FoundryRecommendation**](FoundryRecommendation.md) |  | [optional] 
+**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
+**update_required** | [**FoundryDeployment**](FoundryDeployment.md) |  | [optional] 
+**updating** | [**FoundryDeployment**](FoundryDeployment.md) |  | [optional] 
 
 ## Example
 
@@ -22,7 +23,7 @@ json = "{}"
 # create an instance of FoundryStatus from a JSON string
 foundry_status_instance = FoundryStatus.from_json(json)
 # print the JSON string representation of the object
-print FoundryStatus.to_json()
+print(FoundryStatus.to_json())
 
 # convert the object into a dict
 foundry_status_dict = foundry_status_instance.to_dict()

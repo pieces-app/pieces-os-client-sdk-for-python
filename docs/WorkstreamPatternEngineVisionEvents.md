@@ -3,10 +3,11 @@
 This is a plural snapshot of all of the events within WPE qdrant
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 **iterable** | [**List[WorkstreamPatternEngineVisionEvent]**](WorkstreamPatternEngineVisionEvent.md) |  | 
+**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 
 ## Example
 
@@ -18,7 +19,7 @@ json = "{}"
 # create an instance of WorkstreamPatternEngineVisionEvents from a JSON string
 workstream_pattern_engine_vision_events_instance = WorkstreamPatternEngineVisionEvents.from_json(json)
 # print the JSON string representation of the object
-print WorkstreamPatternEngineVisionEvents.to_json()
+print(WorkstreamPatternEngineVisionEvents.to_json())
 
 # convert the object into a dict
 workstream_pattern_engine_vision_events_dict = workstream_pattern_engine_vision_events_instance.to_dict()

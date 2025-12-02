@@ -3,11 +3,12 @@
 This is a collection of many WorkstreamSummary
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
-**iterable** | [**List[WorkstreamSummary]**](WorkstreamSummary.md) |  | 
 **indices** | **Dict[str, int]** | This is a Map&lt;String, int&gt; where the the key is an summary id. | [optional] 
+**iterable** | [**List[WorkstreamSummary]**](WorkstreamSummary.md) |  | 
+**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 **score** | [**Score**](Score.md) |  | [optional] 
 
 ## Example
@@ -20,7 +21,7 @@ json = "{}"
 # create an instance of WorkstreamSummaries from a JSON string
 workstream_summaries_instance = WorkstreamSummaries.from_json(json)
 # print the JSON string representation of the object
-print WorkstreamSummaries.to_json()
+print(WorkstreamSummaries.to_json())
 
 # convert the object into a dict
 workstream_summaries_dict = workstream_summaries_instance.to_dict()

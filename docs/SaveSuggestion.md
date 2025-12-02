@@ -3,6 +3,7 @@
 This is the SaveSuggestion. Mainly creating an additional model here because I imagine that we will want to add some additional data to this in the future (potentially with more numerical data that is emitted from the ML Models)  **Note: suggested is required here because we will want to say if we reccomend to take this action of save or not.
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
@@ -18,7 +19,7 @@ json = "{}"
 # create an instance of SaveSuggestion from a JSON string
 save_suggestion_instance = SaveSuggestion.from_json(json)
 # print the JSON string representation of the object
-print SaveSuggestion.to_json()
+print(SaveSuggestion.to_json())
 
 # convert the object into a dict
 save_suggestion_dict = save_suggestion_instance.to_dict()

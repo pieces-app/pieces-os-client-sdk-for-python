@@ -3,10 +3,11 @@
 This is the model for the output for the \"/conversations/create/from_workstream_summary/{workstream_summary}\" endpoints.
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 **conversation** | [**ReferencedConversation**](ReferencedConversation.md) |  | 
+**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 
 ## Example
 
@@ -18,7 +19,7 @@ json = "{}"
 # create an instance of ConversationsCreateFromWorkstreamSummaryOutput from a JSON string
 conversations_create_from_workstream_summary_output_instance = ConversationsCreateFromWorkstreamSummaryOutput.from_json(json)
 # print the JSON string representation of the object
-print ConversationsCreateFromWorkstreamSummaryOutput.to_json()
+print(ConversationsCreateFromWorkstreamSummaryOutput.to_json())
 
 # convert the object into a dict
 conversations_create_from_workstream_summary_output_dict = conversations_create_from_workstream_summary_output_instance.to_dict()

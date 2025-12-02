@@ -3,10 +3,11 @@
 This is a returnable for the metrics/formats/ordered
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 **ordered** | **List[str]** |  | 
+**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 
 ## Example
 
@@ -18,7 +19,7 @@ json = "{}"
 # create an instance of OrderedMetrics from a JSON string
 ordered_metrics_instance = OrderedMetrics.from_json(json)
 # print the JSON string representation of the object
-print OrderedMetrics.to_json()
+print(OrderedMetrics.to_json())
 
 # convert the object into a dict
 ordered_metrics_dict = ordered_metrics_instance.to_dict()

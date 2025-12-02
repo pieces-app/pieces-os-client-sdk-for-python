@@ -3,14 +3,15 @@
 TODO
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
-**workstream_pattern_engine_source_window** | [**WorkstreamPatternEngineSourceWindow**](WorkstreamPatternEngineSourceWindow.md) |  | [optional] 
 **exact** | **bool** |  | 
+**identifier** | **str** | This is the uuid of the source. | 
+**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 **similarity** | **float** |  | 
 **temporal** | **bool** |  | [optional] 
-**identifier** | **str** | This is the uuid of the source. | 
+**workstream_pattern_engine_source_window** | [**WorkstreamPatternEngineSourceWindow**](WorkstreamPatternEngineSourceWindow.md) |  | [optional] 
 
 ## Example
 
@@ -22,7 +23,7 @@ json = "{}"
 # create an instance of SearchedWorkstreamPatternEngineSourceWindow from a JSON string
 searched_workstream_pattern_engine_source_window_instance = SearchedWorkstreamPatternEngineSourceWindow.from_json(json)
 # print the JSON string representation of the object
-print SearchedWorkstreamPatternEngineSourceWindow.to_json()
+print(SearchedWorkstreamPatternEngineSourceWindow.to_json())
 
 # convert the object into a dict
 searched_workstream_pattern_engine_source_window_dict = searched_workstream_pattern_engine_source_window_instance.to_dict()

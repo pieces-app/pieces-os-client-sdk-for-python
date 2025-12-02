@@ -3,11 +3,12 @@
 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
-**iterable** | [**List[IdentifiedWorkstreamPatternEngineSource]**](IdentifiedWorkstreamPatternEngineSource.md) |  | 
 **indices** | **Dict[str, int]** | This is a Map&lt;String, int&gt; where the the key is an source id. | [optional] 
+**iterable** | [**List[IdentifiedWorkstreamPatternEngineSource]**](IdentifiedWorkstreamPatternEngineSource.md) |  | 
+**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 **score** | [**Score**](Score.md) |  | [optional] 
 
 ## Example
@@ -20,7 +21,7 @@ json = "{}"
 # create an instance of IdentifiedWorkstreamPatternEngineSources from a JSON string
 identified_workstream_pattern_engine_sources_instance = IdentifiedWorkstreamPatternEngineSources.from_json(json)
 # print the JSON string representation of the object
-print IdentifiedWorkstreamPatternEngineSources.to_json()
+print(IdentifiedWorkstreamPatternEngineSources.to_json())
 
 # convert the object into a dict
 identified_workstream_pattern_engine_sources_dict = identified_workstream_pattern_engine_sources_instance.to_dict()

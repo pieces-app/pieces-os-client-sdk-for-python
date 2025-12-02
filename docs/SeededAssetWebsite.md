@@ -3,12 +3,13 @@
 This is similar to an SeededWebsite, where this is the minimum information of a website, but this can get added to a seededAsset,  where you may not yet have an asset id.
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**mechanism** | [**MechanismEnum**](MechanismEnum.md) |  | [optional] 
+**name** | **str** |  | 
 **var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 **url** | **str** |  | 
-**name** | **str** |  | 
-**mechanism** | [**MechanismEnum**](MechanismEnum.md) |  | [optional] 
 
 ## Example
 
@@ -20,7 +21,7 @@ json = "{}"
 # create an instance of SeededAssetWebsite from a JSON string
 seeded_asset_website_instance = SeededAssetWebsite.from_json(json)
 # print the JSON string representation of the object
-print SeededAssetWebsite.to_json()
+print(SeededAssetWebsite.to_json())
 
 # convert the object into a dict
 seeded_asset_website_dict = seeded_asset_website_instance.to_dict()

@@ -17,9 +17,8 @@ Exposes an endpoint for the MacOS Services plugin to send over MacOS Specific Da
 ### Example
 
 * Api Key Authentication (application):
+
 ```python
-import time
-import os
 import pieces_os_client
 from pieces_os_client.models.asset import Asset
 from pieces_os_client.models.seeded_mac_os_asset import SeededMacOSAsset
@@ -62,6 +61,7 @@ with pieces_os_client.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **seeded_mac_os_asset** | [**SeededMacOSAsset**](SeededMacOSAsset.md)| A SeededMacosApplication which contains the value and an Application Instance | [optional] 
@@ -80,6 +80,7 @@ Name | Type | Description  | Notes
  - **Accept**: application/json
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |

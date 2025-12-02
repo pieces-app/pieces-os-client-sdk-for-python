@@ -2,11 +2,12 @@
 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 **id** | **str** |  | 
 **reference** | [**FlattenedApplication**](FlattenedApplication.md) |  | [optional] 
+**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 
 ## Example
 
@@ -18,7 +19,7 @@ json = "{}"
 # create an instance of ReferencedApplication from a JSON string
 referenced_application_instance = ReferencedApplication.from_json(json)
 # print the JSON string representation of the object
-print ReferencedApplication.to_json()
+print(ReferencedApplication.to_json())
 
 # convert the object into a dict
 referenced_application_dict = referenced_application_instance.to_dict()

@@ -3,10 +3,11 @@
 This is a plural of RelevantQGPTSeed.
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 **iterable** | [**List[RelevantQGPTSeed]**](RelevantQGPTSeed.md) |  | 
+**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 
 ## Example
 
@@ -18,7 +19,7 @@ json = "{}"
 # create an instance of RelevantQGPTSeeds from a JSON string
 relevant_qgpt_seeds_instance = RelevantQGPTSeeds.from_json(json)
 # print the JSON string representation of the object
-print RelevantQGPTSeeds.to_json()
+print(RelevantQGPTSeeds.to_json())
 
 # convert the object into a dict
 relevant_qgpt_seeds_dict = relevant_qgpt_seeds_instance.to_dict()

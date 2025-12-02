@@ -3,13 +3,14 @@
 TODO
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
-**raw** | [**WorkstreamPatternEngineSource**](WorkstreamPatternEngineSource.md) |  | 
-**filter** | **bool** | This will determine if we want to filter this specific source | [optional] 
-**readable** | **str** | This is the name of the source(defualt original data) this is NOT used for matching just for readability | 
 **accessibility** | [**WorkstreamPatternEngineSourceSupportedAccessibility**](WorkstreamPatternEngineSourceSupportedAccessibility.md) |  | [optional] 
+**filter** | **bool** | This will determine if we want to filter this specific source | [optional] 
+**raw** | [**WorkstreamPatternEngineSource**](WorkstreamPatternEngineSource.md) |  | 
+**readable** | **str** | This is the name of the source(defualt original data) this is NOT used for matching just for readability | 
+**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 
 ## Example
 
@@ -21,7 +22,7 @@ json = "{}"
 # create an instance of SeededWorkstreamPatternEngineSource from a JSON string
 seeded_workstream_pattern_engine_source_instance = SeededWorkstreamPatternEngineSource.from_json(json)
 # print the JSON string representation of the object
-print SeededWorkstreamPatternEngineSource.to_json()
+print(SeededWorkstreamPatternEngineSource.to_json())
 
 # convert the object into a dict
 seeded_workstream_pattern_engine_source_dict = seeded_workstream_pattern_engine_source_instance.to_dict()

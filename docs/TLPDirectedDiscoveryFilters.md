@@ -3,6 +3,7 @@
 Contains array of TLPDirectedDiscoveryFilter
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **iterable** | [**List[TLPDirectedDiscoveryFilter]**](TLPDirectedDiscoveryFilter.md) | Array that contains filters like class/function/loop | 
@@ -17,7 +18,7 @@ json = "{}"
 # create an instance of TLPDirectedDiscoveryFilters from a JSON string
 tlp_directed_discovery_filters_instance = TLPDirectedDiscoveryFilters.from_json(json)
 # print the JSON string representation of the object
-print TLPDirectedDiscoveryFilters.to_json()
+print(TLPDirectedDiscoveryFilters.to_json())
 
 # convert the object into a dict
 tlp_directed_discovery_filters_dict = tlp_directed_discovery_filters_instance.to_dict()

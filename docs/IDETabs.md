@@ -3,10 +3,11 @@
 This is a plural representation of a IDETab
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 **iterable** | [**List[IDETab]**](IDETab.md) |  | 
+**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 
 ## Example
 
@@ -18,7 +19,7 @@ json = "{}"
 # create an instance of IDETabs from a JSON string
 ide_tabs_instance = IDETabs.from_json(json)
 # print the JSON string representation of the object
-print IDETabs.to_json()
+print(IDETabs.to_json())
 
 # convert the object into a dict
 ide_tabs_dict = ide_tabs_instance.to_dict()

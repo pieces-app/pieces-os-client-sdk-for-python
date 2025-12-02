@@ -18,6 +18,8 @@ This is a simple enum used to determine the status of the Updating process.(of P
 
 * `CONTACT_SUPPORT` (value: `'CONTACT_SUPPORT'`)
 
+* `UPDATE_VIA_MICROSOFT_STORE` (value: `'UPDATE_VIA_MICROSOFT_STORE'`)
+
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
 

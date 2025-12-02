@@ -3,14 +3,15 @@
 This is used for the Websites searching endpoint.  website here is only provided if transferables are set to true.  temporal: if this is provided this means that their material matched the input via a timestamp.  TODO will want to consider returning related materials to this material potentially both associated/ and not associated materials ie suggestion: WorkstreamSuggestions
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
-**website** | [**Website**](Website.md) |  | [optional] 
 **exact** | **bool** |  | 
+**identifier** | **str** | This is the uuid of the website. | 
+**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 **similarity** | **float** |  | 
 **temporal** | **bool** |  | [optional] 
-**identifier** | **str** | This is the uuid of the website. | 
+**website** | [**Website**](Website.md) |  | [optional] 
 
 ## Example
 
@@ -22,7 +23,7 @@ json = "{}"
 # create an instance of SearchedWebsite from a JSON string
 searched_website_instance = SearchedWebsite.from_json(json)
 # print the JSON string representation of the object
-print SearchedWebsite.to_json()
+print(SearchedWebsite.to_json())
 
 # convert the object into a dict
 searched_website_dict = searched_website_instance.to_dict()

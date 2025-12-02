@@ -3,11 +3,12 @@
 This is a model for metadata of a file!
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
-**name** | **str** | This is the name of your file. | [optional] 
 **ext** | [**ClassificationSpecificEnum**](ClassificationSpecificEnum.md) |  | [optional] 
+**name** | **str** | This is the name of your file. | [optional] 
+**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 **size** | **int** | This is the size(in bytes) | [optional] 
 
 ## Example
@@ -20,7 +21,7 @@ json = "{}"
 # create an instance of FileMetadata from a JSON string
 file_metadata_instance = FileMetadata.from_json(json)
 # print the JSON string representation of the object
-print FileMetadata.to_json()
+print(FileMetadata.to_json())
 
 # convert the object into a dict
 file_metadata_dict = file_metadata_instance.to_dict()

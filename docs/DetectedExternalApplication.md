@@ -3,10 +3,11 @@
 This is a detected External Application that comes from our endpoint that will get a snapshot of the installed applications on your machine.
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 **name** | **str** | this is the name of the application | 
+**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 **version** | **str** |  | [optional] 
 
 ## Example
@@ -19,7 +20,7 @@ json = "{}"
 # create an instance of DetectedExternalApplication from a JSON string
 detected_external_application_instance = DetectedExternalApplication.from_json(json)
 # print the JSON string representation of the object
-print DetectedExternalApplication.to_json()
+print(DetectedExternalApplication.to_json())
 
 # convert the object into a dict
 detected_external_application_dict = detected_external_application_instance.to_dict()

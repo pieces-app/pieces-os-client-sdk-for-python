@@ -3,6 +3,7 @@
 Output model for the user manage subscriptions endpoint. Contains user reference and can be extended with additional properties.
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
@@ -18,7 +19,7 @@ json = "{}"
 # create an instance of UserManageSubscriptionsOutput from a JSON string
 user_manage_subscriptions_output_instance = UserManageSubscriptionsOutput.from_json(json)
 # print the JSON string representation of the object
-print UserManageSubscriptionsOutput.to_json()
+print(UserManageSubscriptionsOutput.to_json())
 
 # convert the object into a dict
 user_manage_subscriptions_output_dict = user_manage_subscriptions_output_instance.to_dict()

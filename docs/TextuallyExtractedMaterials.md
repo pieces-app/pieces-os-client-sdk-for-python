@@ -3,10 +3,11 @@
 This is a plural of an Extraction
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 **iterable** | [**List[TextuallyExtractedMaterial]**](TextuallyExtractedMaterial.md) |  | 
+**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 
 ## Example
 
@@ -18,7 +19,7 @@ json = "{}"
 # create an instance of TextuallyExtractedMaterials from a JSON string
 textually_extracted_materials_instance = TextuallyExtractedMaterials.from_json(json)
 # print the JSON string representation of the object
-print TextuallyExtractedMaterials.to_json()
+print(TextuallyExtractedMaterials.to_json())
 
 # convert the object into a dict
 textually_extracted_materials_dict = textually_extracted_materials_instance.to_dict()

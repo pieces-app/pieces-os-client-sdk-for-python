@@ -3,10 +3,11 @@
 This is the plural Model used to return many SearchedWorkstreamSummary.
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 **iterable** | [**List[SearchedWorkstreamSummary]**](SearchedWorkstreamSummary.md) |  | 
+**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 
 ## Example
 
@@ -18,7 +19,7 @@ json = "{}"
 # create an instance of SearchedWorkstreamSummaries from a JSON string
 searched_workstream_summaries_instance = SearchedWorkstreamSummaries.from_json(json)
 # print the JSON string representation of the object
-print SearchedWorkstreamSummaries.to_json()
+print(SearchedWorkstreamSummaries.to_json())
 
 # convert the object into a dict
 searched_workstream_summaries_dict = searched_workstream_summaries_instance.to_dict()

@@ -3,10 +3,11 @@
 TODO: description This the plural of a single copilot Capture.  This will return all the the given copilot captures
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 **iterable** | [**List[WorkstreamPatternEngineVisionCalibration]**](WorkstreamPatternEngineVisionCalibration.md) |  | 
+**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 
 ## Example
 
@@ -18,7 +19,7 @@ json = "{}"
 # create an instance of WorkstreamPatternEngineVisionCalibrations from a JSON string
 workstream_pattern_engine_vision_calibrations_instance = WorkstreamPatternEngineVisionCalibrations.from_json(json)
 # print the JSON string representation of the object
-print WorkstreamPatternEngineVisionCalibrations.to_json()
+print(WorkstreamPatternEngineVisionCalibrations.to_json())
 
 # convert the object into a dict
 workstream_pattern_engine_vision_calibrations_dict = workstream_pattern_engine_vision_calibrations_instance.to_dict()

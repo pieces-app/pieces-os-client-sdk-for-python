@@ -3,6 +3,7 @@
 A minimal reference to a Subscription, with just an id and an optional reference to the FlattenedSubscription.
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **str** |  | 
@@ -19,7 +20,7 @@ json = "{}"
 # create an instance of ReferencedSubscription from a JSON string
 referenced_subscription_instance = ReferencedSubscription.from_json(json)
 # print the JSON string representation of the object
-print ReferencedSubscription.to_json()
+print(ReferencedSubscription.to_json())
 
 # convert the object into a dict
 referenced_subscription_dict = referenced_subscription_instance.to_dict()

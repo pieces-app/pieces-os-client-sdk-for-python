@@ -3,47 +3,57 @@
 This is the body for a respective scores increment,  This will enable us to know what material we want to increment, all of which are optional, if it is defined we will attempt to increment the material.
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
-**asset** | [**SeededScore**](SeededScore.md) |  | [optional] 
-**assets** | [**SeededScore**](SeededScore.md) |  | [optional] 
-**website** | [**SeededScore**](SeededScore.md) |  | [optional] 
-**websites** | [**SeededScore**](SeededScore.md) |  | [optional] 
 **anchor** | [**SeededScore**](SeededScore.md) |  | [optional] 
-**anchors** | [**SeededScore**](SeededScore.md) |  | [optional] 
 **anchor_point** | [**SeededScore**](SeededScore.md) |  | [optional] 
 **anchor_points** | [**SeededScore**](SeededScore.md) |  | [optional] 
+**anchors** | [**SeededScore**](SeededScore.md) |  | [optional] 
 **annotation** | [**SeededScore**](SeededScore.md) |  | [optional] 
 **annotations** | [**SeededScore**](SeededScore.md) |  | [optional] 
+**asset** | [**SeededScore**](SeededScore.md) |  | [optional] 
+**assets** | [**SeededScore**](SeededScore.md) |  | [optional] 
 **conversation** | [**SeededScore**](SeededScore.md) |  | [optional] 
-**conversations** | [**SeededScore**](SeededScore.md) |  | [optional] 
 **conversation_message** | [**SeededScore**](SeededScore.md) |  | [optional] 
 **conversation_messages** | [**SeededScore**](SeededScore.md) |  | [optional] 
-**share** | [**SeededScore**](SeededScore.md) |  | [optional] 
-**shares** | [**SeededScore**](SeededScore.md) |  | [optional] 
-**sensitive** | [**SeededScore**](SeededScore.md) |  | [optional] 
-**sensitives** | [**SeededScore**](SeededScore.md) |  | [optional] 
+**conversations** | [**SeededScore**](SeededScore.md) |  | [optional] 
+**entities** | [**SeededScore**](SeededScore.md) |  | [optional] 
+**entity** | [**SeededScore**](SeededScore.md) |  | [optional] 
+**entity_to_subscription_association** | [**SeededScore**](SeededScore.md) |  | [optional] 
+**entity_to_subscription_associations** | [**SeededScore**](SeededScore.md) |  | [optional] 
+**entity_to_user_association** | [**SeededScore**](SeededScore.md) |  | [optional] 
+**entity_to_user_associations** | [**SeededScore**](SeededScore.md) |  | [optional] 
 **hint** | [**SeededScore**](SeededScore.md) |  | [optional] 
 **hints** | [**SeededScore**](SeededScore.md) |  | [optional] 
+**model** | [**SeededScore**](SeededScore.md) |  | [optional] 
+**models** | [**SeededScore**](SeededScore.md) |  | [optional] 
 **person** | [**SeededScore**](SeededScore.md) |  | [optional] 
 **persons** | [**SeededScore**](SeededScore.md) |  | [optional] 
-**tag** | [**SeededScore**](SeededScore.md) |  | [optional] 
-**tags** | [**SeededScore**](SeededScore.md) |  | [optional] 
-**workstream_summary** | [**SeededScore**](SeededScore.md) |  | [optional] 
-**workstream_summaries** | [**SeededScore**](SeededScore.md) |  | [optional] 
-**workstream_events** | [**SeededScore**](SeededScore.md) |  | [optional] 
-**workstream_event** | [**SeededScore**](SeededScore.md) |  | [optional] 
-**ranges** | [**SeededScore**](SeededScore.md) |  | [optional] 
 **range** | [**SeededScore**](SeededScore.md) |  | [optional] 
-**workstream_pattern_engine_sources** | [**SeededScore**](SeededScore.md) |  | [optional] 
-**workstream_pattern_engine_source** | [**SeededScore**](SeededScore.md) |  | [optional] 
-**models** | [**SeededScore**](SeededScore.md) |  | [optional] 
-**model** | [**SeededScore**](SeededScore.md) |  | [optional] 
-**workstream_pattern_engine_source_windows** | [**SeededScore**](SeededScore.md) |  | [optional] 
-**workstream_pattern_engine_source_window** | [**SeededScore**](SeededScore.md) |  | [optional] 
+**ranges** | [**SeededScore**](SeededScore.md) |  | [optional] 
+**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
+**sensitive** | [**SeededScore**](SeededScore.md) |  | [optional] 
+**sensitives** | [**SeededScore**](SeededScore.md) |  | [optional] 
+**share** | [**SeededScore**](SeededScore.md) |  | [optional] 
+**shares** | [**SeededScore**](SeededScore.md) |  | [optional] 
 **subscription** | [**SeededScore**](SeededScore.md) |  | [optional] 
 **subscriptions** | [**SeededScore**](SeededScore.md) |  | [optional] 
+**tag** | [**SeededScore**](SeededScore.md) |  | [optional] 
+**tags** | [**SeededScore**](SeededScore.md) |  | [optional] 
+**users** | [**SeededScore**](SeededScore.md) |  | [optional] 
+**website** | [**SeededScore**](SeededScore.md) |  | [optional] 
+**websites** | [**SeededScore**](SeededScore.md) |  | [optional] 
+**workstream_event** | [**SeededScore**](SeededScore.md) |  | [optional] 
+**workstream_events** | [**SeededScore**](SeededScore.md) |  | [optional] 
+**workstream_pattern_engine_source** | [**SeededScore**](SeededScore.md) |  | [optional] 
+**workstream_pattern_engine_source_window** | [**SeededScore**](SeededScore.md) |  | [optional] 
+**workstream_pattern_engine_source_windows** | [**SeededScore**](SeededScore.md) |  | [optional] 
+**workstream_pattern_engine_sources** | [**SeededScore**](SeededScore.md) |  | [optional] 
+**workstream_summaries** | [**SeededScore**](SeededScore.md) |  | [optional] 
+**workstream_summary** | [**SeededScore**](SeededScore.md) |  | [optional] 
+**workstream_summary_to_workstream_summaries_associations** | [**SeededScore**](SeededScore.md) |  | [optional] 
+**workstream_summary_to_workstream_summary_association** | [**SeededScore**](SeededScore.md) |  | [optional] 
 
 ## Example
 
@@ -55,7 +65,7 @@ json = "{}"
 # create an instance of SeededScoreIncrement from a JSON string
 seeded_score_increment_instance = SeededScoreIncrement.from_json(json)
 # print the JSON string representation of the object
-print SeededScoreIncrement.to_json()
+print(SeededScoreIncrement.to_json())
 
 # convert the object into a dict
 seeded_score_increment_dict = seeded_score_increment_instance.to_dict()

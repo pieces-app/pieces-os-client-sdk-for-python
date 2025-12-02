@@ -3,6 +3,7 @@
 This is the input model for '/model/{model}/delete/cache'
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
@@ -17,7 +18,7 @@ json = "{}"
 # create an instance of ModelDeleteCacheInput from a JSON string
 model_delete_cache_input_instance = ModelDeleteCacheInput.from_json(json)
 # print the JSON string representation of the object
-print ModelDeleteCacheInput.to_json()
+print(ModelDeleteCacheInput.to_json())
 
 # convert the object into a dict
 model_delete_cache_input_dict = model_delete_cache_input_instance.to_dict()

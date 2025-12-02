@@ -3,10 +3,11 @@
 This is a model for metadata of a file!
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 **ext** | [**ClassificationSpecificEnum**](ClassificationSpecificEnum.md) |  | [optional] 
+**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 
 ## Example
 
@@ -18,7 +19,7 @@ json = "{}"
 # create an instance of FragmentMetadata from a JSON string
 fragment_metadata_instance = FragmentMetadata.from_json(json)
 # print the JSON string representation of the object
-print FragmentMetadata.to_json()
+print(FragmentMetadata.to_json())
 
 # convert the object into a dict
 fragment_metadata_dict = fragment_metadata_instance.to_dict()

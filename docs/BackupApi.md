@@ -26,9 +26,8 @@ Method | HTTP request | Description
 ### Example
 
 * Api Key Authentication (application):
+
 ```python
-import time
-import os
 import pieces_os_client
 from pieces_os_client.models.assets import Assets
 from pieces_os_client.rest import ApiException
@@ -68,6 +67,7 @@ with pieces_os_client.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **assets** | [**Assets**](Assets.md)|  | [optional] 
@@ -86,6 +86,7 @@ void (empty response body)
  - **Accept**: text/plain
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **204** | No Content |  -  |
@@ -99,14 +100,11 @@ void (empty response body)
 
 /backup/asset [POST]
 
-
-
 ### Example
 
 * Api Key Authentication (application):
+
 ```python
-import time
-import os
 import pieces_os_client
 from pieces_os_client.models.asset import Asset
 from pieces_os_client.rest import ApiException
@@ -146,6 +144,7 @@ with pieces_os_client.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **asset** | [**Asset**](Asset.md)|  | [optional] 
@@ -164,6 +163,7 @@ void (empty response body)
  - **Accept**: text/plain
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **204** | No Content |  -  |
@@ -186,9 +186,8 @@ NOTE!!!! This will NOT sync, ie all local snippets will get replaced with the re
 ### Example
 
 * Api Key Authentication (application):
+
 ```python
-import time
-import os
 import pieces_os_client
 from pieces_os_client.models.backup import Backup
 from pieces_os_client.rest import ApiException
@@ -231,6 +230,7 @@ with pieces_os_client.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **backup** | **str**| This is a identifier that is used to identify a specific backup.(version_timestamp) | 
@@ -250,12 +250,13 @@ Name | Type | Description  | Notes
  - **Accept**: application/json, text/plain
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
 **500** | Internal Server Error |  -  |
-**511** | Authentication Required, This means that you user needs to be authenticated with OS in order to perform this action |  -  |
 **505** | HTTP Version Not Supported, This means that your user needs to update their local os, or they cannot perform backup operations with the cloud |  -  |
+**511** | Authentication Required, This means that you user needs to be authenticated with OS in order to perform this action |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -271,9 +272,8 @@ NOTE: This is a streamed version of the /backups/<backup>/restore. and Since the
 ### Example
 
 * Api Key Authentication (application):
+
 ```python
-import time
-import os
 import pieces_os_client
 from pieces_os_client.models.backup import Backup
 from pieces_os_client.models.backup_streamed_progress import BackupStreamedProgress
@@ -317,6 +317,7 @@ with pieces_os_client.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **backup** | **str**| This is a identifier that is used to identify a specific backup.(version_timestamp) | 
@@ -336,12 +337,13 @@ Name | Type | Description  | Notes
  - **Accept**: application/json, text/plain
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
 **500** | Internal Server Error |  -  |
-**511** | Authentication Required, This means that you user needs to be authenticated with OS in order to change the beta status |  -  |
 **505** | HTTP Version Not Supported, This means that your user needs to update their local os, or they cannot perform backup operation with the cloud |  -  |
+**511** | Authentication Required, This means that you user needs to be authenticated with OS in order to change the beta status |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -357,9 +359,8 @@ NOTE: This is a streamed version of the /backups/<backup>/restore. and Since the
 ### Example
 
 * Api Key Authentication (application):
+
 ```python
-import time
-import os
 import pieces_os_client
 from pieces_os_client.models.backup import Backup
 from pieces_os_client.models.backup_streamed_progress import BackupStreamedProgress
@@ -403,6 +404,7 @@ with pieces_os_client.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **backup** | **str**| This is a identifier that is used to identify a specific backup.(version_timestamp) | 
@@ -422,12 +424,13 @@ Name | Type | Description  | Notes
  - **Accept**: application/json, text/plain
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
 **500** | Internal Server Error |  -  |
-**511** | Authentication Required, This means that you user needs to be authenticated with OS in order to change the beta status |  -  |
 **505** | HTTP Version Not Supported, This means that your user needs to update their local os, or they cannot perform backup operation with the cloud |  -  |
+**511** | Authentication Required, This means that you user needs to be authenticated with OS in order to change the beta status |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -441,9 +444,8 @@ This will just get the metadata associated with a specific backup.
 ### Example
 
 * Api Key Authentication (application):
+
 ```python
-import time
-import os
 import pieces_os_client
 from pieces_os_client.models.backup import Backup
 from pieces_os_client.rest import ApiException
@@ -485,6 +487,7 @@ with pieces_os_client.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **backup** | **str**| This is a identifier that is used to identify a specific backup.(version_timestamp) | 
@@ -503,12 +506,13 @@ Name | Type | Description  | Notes
  - **Accept**: application/json, text/plain
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
 **500** | Internal Server Error |  -  |
-**511** | Authentication Required, This means that you user needs to be authenticated with OS in order to change the beta status |  -  |
 **505** | HTTP Version Not Supported, This means that your user needs to update their local os, or they cannot perform backup operation with the cloud |  -  |
+**511** | Authentication Required, This means that you user needs to be authenticated with OS in order to change the beta status |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -526,9 +530,8 @@ TODO: ADD mofe DESCRIPITON To this.
 ### Example
 
 * Api Key Authentication (application):
+
 ```python
-import time
-import os
 import pieces_os_client
 from pieces_os_client.rest import ApiException
 from pprint import pprint
@@ -567,6 +570,7 @@ with pieces_os_client.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **backup** | **str**| This is a identifier that is used to identify a specific backup.(version_timestamp) | 
@@ -585,6 +589,7 @@ void (empty response body)
  - **Accept**: text/plain
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **204** | No Content |  -  |
@@ -602,9 +607,8 @@ TODO add a description:
 ### Example
 
 * Api Key Authentication (application):
+
 ```python
-import time
-import os
 import pieces_os_client
 from pieces_os_client.models.backup_status import BackupStatus
 from pieces_os_client.rest import ApiException
@@ -646,6 +650,7 @@ with pieces_os_client.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **backup** | **str**| This is a identifier that is used to identify a specific backup.(version_timestamp) | 
@@ -664,6 +669,7 @@ Name | Type | Description  | Notes
  - **Accept**: application/json, text/plain
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
@@ -686,9 +692,8 @@ TODO add
 ### Example
 
 * Api Key Authentication (application):
+
 ```python
-import time
-import os
 import pieces_os_client
 from pieces_os_client.models.backup import Backup
 from pieces_os_client.rest import ApiException
@@ -729,6 +734,7 @@ with pieces_os_client.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **backup** | **str**| This is a identifier that is used to identify a specific backup.(version_timestamp) | 
@@ -748,6 +754,7 @@ void (empty response body)
  - **Accept**: text/plain
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **204** | No Content |  -  |
@@ -765,9 +772,8 @@ TODO add a description:
 ### Example
 
 * Api Key Authentication (application):
+
 ```python
-import time
-import os
 import pieces_os_client
 from pieces_os_client.models.backup_status import BackupStatus
 from pieces_os_client.rest import ApiException
@@ -809,6 +815,7 @@ with pieces_os_client.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **backup** | **str**| This is a identifier that is used to identify a specific backup.(version_timestamp) | 
@@ -827,6 +834,7 @@ Name | Type | Description  | Notes
  - **Accept**: application/json, text/plain
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |

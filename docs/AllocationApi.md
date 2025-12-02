@@ -18,9 +18,8 @@ This will get a snapshot of a specific allocation.
 ### Example
 
 * Api Key Authentication (application):
+
 ```python
-import time
-import os
 import pieces_os_client
 from pieces_os_client.models.allocation_cloud import AllocationCloud
 from pieces_os_client.rest import ApiException
@@ -62,6 +61,7 @@ with pieces_os_client.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **allocation** | **str**|  | 
@@ -80,6 +80,7 @@ Name | Type | Description  | Notes
  - **Accept**: application/json, text/plain
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
@@ -97,9 +98,8 @@ This will update a specific allocation.
 ### Example
 
 * Api Key Authentication (application):
+
 ```python
-import time
-import os
 import pieces_os_client
 from pieces_os_client.models.allocation_cloud import AllocationCloud
 from pieces_os_client.rest import ApiException
@@ -141,6 +141,7 @@ with pieces_os_client.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **allocation_cloud** | [**AllocationCloud**](AllocationCloud.md)|  | [optional] 
@@ -159,6 +160,7 @@ Name | Type | Description  | Notes
  - **Accept**: application/json, text/plain
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |

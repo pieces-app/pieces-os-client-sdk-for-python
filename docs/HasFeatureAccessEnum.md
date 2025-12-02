@@ -1,0 +1,49 @@
+# HasFeatureAccessEnum
+
+Enum representing different feature access types for instance configuration.
+
+## Enum
+
+* `UNKNOWN` (value: `'UNKNOWN'`)
+
+* `CONNECT_TO_CLOUD` (value: `'CONNECT_TO_CLOUD'`)
+
+* `UPDATE_ALLOCATION_CLOUD` (value: `'UPDATE_ALLOCATION_CLOUD'`)
+
+* `RECONNECT_TO_CLOUD` (value: `'RECONNECT_TO_CLOUD'`)
+
+* `SHARE_SNIPPET` (value: `'SHARE_SNIPPET'`)
+
+* `CLOUD_BACKUP_CREATION` (value: `'CLOUD_BACKUP_CREATION'`)
+
+* `LIST_CLOUD_BACKUPS` (value: `'LIST_CLOUD_BACKUPS'`)
+
+* `LIST_SPECIFIC_CLOUD_BACKUP` (value: `'LIST_SPECIFIC_CLOUD_BACKUP'`)
+
+* `RESTORE_CLOUD_BACKUP` (value: `'RESTORE_CLOUD_BACKUP'`)
+
+* `DELETE_CLOUD_BACKUP` (value: `'DELETE_CLOUD_BACKUP'`)
+
+* `IP_LOOKUP` (value: `'IP_LOOKUP'`)
+
+* `SENTRY` (value: `'SENTRY'`)
+
+* `BIG_QUERY` (value: `'BIG_QUERY'`)
+
+* `SEGMENT` (value: `'SEGMENT'`)
+
+* `CUSTOM_ANALYTICS` (value: `'CUSTOM_ANALYTICS'`)
+
+* `SEND_INTERNAL_SUMMARY_REPORTS_TO_USER_TEAM_SERVICE` (value: `'SEND_INTERNAL_SUMMARY_REPORTS_TO_USER_TEAM_SERVICE'`)
+
+* `ALLOWED_CLOUD_MODELS` (value: `'ALLOWED_CLOUD_MODELS'`)
+
+* `DENIED_WORKSTREAM_PATTERN_ENGINE_SOURCES` (value: `'DENIED_WORKSTREAM_PATTERN_ENGINE_SOURCES'`)
+
+* `DENIED_WORKSTREAM_PATTERN_ENGINE_WEBSITES` (value: `'DENIED_WORKSTREAM_PATTERN_ENGINE_WEBSITES'`)
+
+* `EXTERNAL_PROVIDER_PROCESSING` (value: `'EXTERNAL_PROVIDER_PROCESSING'`)
+
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+

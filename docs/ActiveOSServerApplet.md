@@ -3,12 +3,13 @@
 TODO
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
-**port** | **int** |  | 
-**type** | [**OSAppletEnum**](OSAppletEnum.md) |  | 
 **handler** | [**AppletServingHandlerType**](AppletServingHandlerType.md) |  | 
+**port** | **int** |  | 
+**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
+**type** | [**OSAppletEnum**](OSAppletEnum.md) |  | 
 
 ## Example
 
@@ -20,7 +21,7 @@ json = "{}"
 # create an instance of ActiveOSServerApplet from a JSON string
 active_os_server_applet_instance = ActiveOSServerApplet.from_json(json)
 # print the JSON string representation of the object
-print ActiveOSServerApplet.to_json()
+print(ActiveOSServerApplet.to_json())
 
 # convert the object into a dict
 active_os_server_applet_dict = active_os_server_applet_instance.to_dict()

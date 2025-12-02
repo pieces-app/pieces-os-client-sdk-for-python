@@ -3,10 +3,11 @@
 This is the searched subscriptions.
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 **iterable** | [**List[SearchedSubscription]**](SearchedSubscription.md) | This is the iterable of the searched subscriptions | 
+**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 
 ## Example
 
@@ -18,7 +19,7 @@ json = "{}"
 # create an instance of SearchedSubscriptions from a JSON string
 searched_subscriptions_instance = SearchedSubscriptions.from_json(json)
 # print the JSON string representation of the object
-print SearchedSubscriptions.to_json()
+print(SearchedSubscriptions.to_json())
 
 # convert the object into a dict
 searched_subscriptions_dict = searched_subscriptions_instance.to_dict()

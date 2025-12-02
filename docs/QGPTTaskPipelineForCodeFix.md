@@ -3,10 +3,11 @@
 This task is for fixing a bit of code.  This is a class so that we can add optional properties in the future.  Note: the snippet && language that needs to be fixed should be within the QGPTQuestionInput.relevant.
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 **error** | **str** | This is the error message provided from the IDE, that we can use to provide the solution. | [optional] 
+**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 
 ## Example
 
@@ -18,7 +19,7 @@ json = "{}"
 # create an instance of QGPTTaskPipelineForCodeFix from a JSON string
 qgpt_task_pipeline_for_code_fix_instance = QGPTTaskPipelineForCodeFix.from_json(json)
 # print the JSON string representation of the object
-print QGPTTaskPipelineForCodeFix.to_json()
+print(QGPTTaskPipelineForCodeFix.to_json())
 
 # convert the object into a dict
 qgpt_task_pipeline_for_code_fix_dict = qgpt_task_pipeline_for_code_fix_instance.to_dict()

@@ -3,10 +3,11 @@
 This is the plural Model used to return many SearchedAnnotation.
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 **iterable** | [**List[SearchedAnnotation]**](SearchedAnnotation.md) |  | 
+**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 
 ## Example
 
@@ -18,7 +19,7 @@ json = "{}"
 # create an instance of SearchedAnnotations from a JSON string
 searched_annotations_instance = SearchedAnnotations.from_json(json)
 # print the JSON string representation of the object
-print SearchedAnnotations.to_json()
+print(SearchedAnnotations.to_json())
 
 # convert the object into a dict
 searched_annotations_dict = searched_annotations_instance.to_dict()

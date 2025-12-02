@@ -3,10 +3,11 @@
 This is the output model for '/model/{model}/delete/cache'
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 **model** | [**ReferencedModel**](ReferencedModel.md) |  | 
+**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 
 ## Example
 
@@ -18,7 +19,7 @@ json = "{}"
 # create an instance of ModelDeleteCacheOutput from a JSON string
 model_delete_cache_output_instance = ModelDeleteCacheOutput.from_json(json)
 # print the JSON string representation of the object
-print ModelDeleteCacheOutput.to_json()
+print(ModelDeleteCacheOutput.to_json())
 
 # convert the object into a dict
 model_delete_cache_output_dict = model_delete_cache_output_instance.to_dict()

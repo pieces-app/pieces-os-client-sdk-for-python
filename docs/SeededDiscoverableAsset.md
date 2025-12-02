@@ -3,13 +3,14 @@
 Assumption: filters applied in this model will overwrite filters passed in SeededDiscoverableAssets
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
-**file** | [**SeededFile**](SeededFile.md) |  | [optional] 
-**fragment** | [**SeededFragment**](SeededFragment.md) |  | [optional] 
 **directory** | **str** |  | [optional] 
+**file** | [**SeededFile**](SeededFile.md) |  | [optional] 
 **filters** | [**TLPDirectedDiscoveryFilters**](TLPDirectedDiscoveryFilters.md) |  | [optional] 
+**fragment** | [**SeededFragment**](SeededFragment.md) |  | [optional] 
+**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 
 ## Example
 
@@ -21,7 +22,7 @@ json = "{}"
 # create an instance of SeededDiscoverableAsset from a JSON string
 seeded_discoverable_asset_instance = SeededDiscoverableAsset.from_json(json)
 # print the JSON string representation of the object
-print SeededDiscoverableAsset.to_json()
+print(SeededDiscoverableAsset.to_json())
 
 # convert the object into a dict
 seeded_discoverable_asset_dict = seeded_discoverable_asset_instance.to_dict()

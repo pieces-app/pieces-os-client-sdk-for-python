@@ -2,10 +2,11 @@
 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 **path** | **str** |  | 
+**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 
 ## Example
 
@@ -17,7 +18,7 @@ json = "{}"
 # create an instance of OSFileStreamingReadAttempt from a JSON string
 os_file_streaming_read_attempt_instance = OSFileStreamingReadAttempt.from_json(json)
 # print the JSON string representation of the object
-print OSFileStreamingReadAttempt.to_json()
+print(OSFileStreamingReadAttempt.to_json())
 
 # convert the object into a dict
 os_file_streaming_read_attempt_dict = os_file_streaming_read_attempt_instance.to_dict()

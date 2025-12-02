@@ -3,10 +3,11 @@
 if reuse was used in the reaction then we can provide the uuid of the asset that was reused.
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 **asset** | **str** |  | 
+**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 
 ## Example
 
@@ -18,7 +19,7 @@ json = "{}"
 # create an instance of ReuseReaction from a JSON string
 reuse_reaction_instance = ReuseReaction.from_json(json)
 # print the JSON string representation of the object
-print ReuseReaction.to_json()
+print(ReuseReaction.to_json())
 
 # convert the object into a dict
 reuse_reaction_dict = reuse_reaction_instance.to_dict()

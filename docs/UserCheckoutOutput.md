@@ -3,6 +3,7 @@
 Output model for the user checkout endpoint. Contains user reference and can be extended with additional properties.
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
@@ -18,7 +19,7 @@ json = "{}"
 # create an instance of UserCheckoutOutput from a JSON string
 user_checkout_output_instance = UserCheckoutOutput.from_json(json)
 # print the JSON string representation of the object
-print UserCheckoutOutput.to_json()
+print(UserCheckoutOutput.to_json())
 
 # convert the object into a dict
 user_checkout_output_dict = user_checkout_output_instance.to_dict()

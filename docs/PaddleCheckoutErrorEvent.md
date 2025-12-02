@@ -2,12 +2,13 @@
 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
-**name** | **str** |  | 
 **data** | **object** |  | 
 **error** | [**PaddleCheckoutErrorEventError**](PaddleCheckoutErrorEventError.md) |  | [optional] 
+**name** | **str** |  | 
+**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 
 ## Example
 
@@ -19,7 +20,7 @@ json = "{}"
 # create an instance of PaddleCheckoutErrorEvent from a JSON string
 paddle_checkout_error_event_instance = PaddleCheckoutErrorEvent.from_json(json)
 # print the JSON string representation of the object
-print PaddleCheckoutErrorEvent.to_json()
+print(PaddleCheckoutErrorEvent.to_json())
 
 # convert the object into a dict
 paddle_checkout_error_event_dict = paddle_checkout_error_event_instance.to_dict()

@@ -2,11 +2,12 @@
 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
-**interval** | **str** | e.g. &#39;month&#39;, &#39;year&#39; | 
 **frequency** | **int** |  | 
+**interval** | **str** | e.g. &#39;month&#39;, &#39;year&#39; | 
+**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 
 ## Example
 
@@ -18,7 +19,7 @@ json = "{}"
 # create an instance of PaddleCheckoutBillingCycle from a JSON string
 paddle_checkout_billing_cycle_instance = PaddleCheckoutBillingCycle.from_json(json)
 # print the JSON string representation of the object
-print PaddleCheckoutBillingCycle.to_json()
+print(PaddleCheckoutBillingCycle.to_json())
 
 # convert the object into a dict
 paddle_checkout_billing_cycle_dict = paddle_checkout_billing_cycle_instance.to_dict()

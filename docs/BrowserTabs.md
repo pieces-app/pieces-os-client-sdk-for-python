@@ -3,10 +3,11 @@
 This is a plural representation of the BrowserTab
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 **iterable** | [**List[BrowserTab]**](BrowserTab.md) |  | 
+**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 
 ## Example
 
@@ -18,7 +19,7 @@ json = "{}"
 # create an instance of BrowserTabs from a JSON string
 browser_tabs_instance = BrowserTabs.from_json(json)
 # print the JSON string representation of the object
-print BrowserTabs.to_json()
+print(BrowserTabs.to_json())
 
 # convert the object into a dict
 browser_tabs_dict = browser_tabs_instance.to_dict()

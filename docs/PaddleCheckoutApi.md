@@ -21,9 +21,8 @@ type for warning/error) to select the correct payload schema.
 ### Example
 
 * Api Key Authentication (application):
+
 ```python
-import time
-import os
 import pieces_os_client
 from pieces_os_client.models.paddle_checkout_event import PaddleCheckoutEvent
 from pieces_os_client.rest import ApiException
@@ -65,6 +64,7 @@ with pieces_os_client.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **paddle_checkout_event** | [**PaddleCheckoutEvent**](PaddleCheckoutEvent.md)|  | 
@@ -83,6 +83,7 @@ Name | Type | Description  | Notes
  - **Accept**: text/plain
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Successfully processed |  -  |

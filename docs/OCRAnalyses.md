@@ -2,10 +2,11 @@
 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 **iterable** | [**List[OCRAnalysis]**](OCRAnalysis.md) |  | 
+**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 
 ## Example
 
@@ -17,7 +18,7 @@ json = "{}"
 # create an instance of OCRAnalyses from a JSON string
 ocr_analyses_instance = OCRAnalyses.from_json(json)
 # print the JSON string representation of the object
-print OCRAnalyses.to_json()
+print(OCRAnalyses.to_json())
 
 # convert the object into a dict
 ocr_analyses_dict = ocr_analyses_instance.to_dict()

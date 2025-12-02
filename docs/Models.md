@@ -3,10 +3,11 @@
 This is a List of MachineLearning Models
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 **iterable** | [**List[Model]**](Model.md) |  | 
+**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 **score** | [**Score**](Score.md) |  | [optional] 
 
 ## Example
@@ -19,7 +20,7 @@ json = "{}"
 # create an instance of Models from a JSON string
 models_instance = Models.from_json(json)
 # print the JSON string representation of the object
-print Models.to_json()
+print(Models.to_json())
 
 # convert the object into a dict
 models_dict = models_instance.to_dict()

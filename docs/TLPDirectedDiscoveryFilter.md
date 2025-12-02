@@ -3,6 +3,7 @@
 Contains enum which represents code block type
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **name** | [**TLPDirectedDiscoveryFilterEnum**](TLPDirectedDiscoveryFilterEnum.md) |  | 
@@ -17,7 +18,7 @@ json = "{}"
 # create an instance of TLPDirectedDiscoveryFilter from a JSON string
 tlp_directed_discovery_filter_instance = TLPDirectedDiscoveryFilter.from_json(json)
 # print the JSON string representation of the object
-print TLPDirectedDiscoveryFilter.to_json()
+print(TLPDirectedDiscoveryFilter.to_json())
 
 # convert the object into a dict
 tlp_directed_discovery_filter_dict = tlp_directed_discovery_filter_instance.to_dict()

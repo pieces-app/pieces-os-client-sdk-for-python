@@ -90,6 +90,18 @@ This is a running enumeration for the Names of all the Applications that can be 
 
 * `OPERA` (value: `'OPERA'`)
 
+* `PIECES_SAVED_MATERIALS_APPLET` (value: `'PIECES_SAVED_MATERIALS_APPLET'`)
+
+* `PIECES_SETTINGS_APPLET` (value: `'PIECES_SETTINGS_APPLET'`)
+
+* `PIECES_WORKSTREAM_ACTIVITY_APPLET` (value: `'PIECES_WORKSTREAM_ACTIVITY_APPLET'`)
+
+* `PIECES_OS_TOOLBAR_APPLET` (value: `'PIECES_OS_TOOLBAR_APPLET'`)
+
+* `PIECES_COPILOT_APPLET` (value: `'PIECES_COPILOT_APPLET'`)
+
+* `MCP_CLIENT` (value: `'MCP_CLIENT'`)
+
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
 

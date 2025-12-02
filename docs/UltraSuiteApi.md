@@ -17,9 +17,8 @@ This Endpoint will create an Asset that is sent from UltraSuite.
 ### Example
 
 * Api Key Authentication (application):
+
 ```python
-import time
-import os
 import pieces_os_client
 from pieces_os_client.models.asset import Asset
 from pieces_os_client.models.seeded_ultra_suite_asset import SeededUltraSuiteAsset
@@ -62,6 +61,7 @@ with pieces_os_client.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **seeded_ultra_suite_asset** | [**SeededUltraSuiteAsset**](SeededUltraSuiteAsset.md)|  | [optional] 
@@ -80,6 +80,7 @@ Name | Type | Description  | Notes
  - **Accept**: application/json
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |

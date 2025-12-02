@@ -18,9 +18,8 @@ This will trigger a refresh(recalculation) of the suggestions items.
 ### Example
 
 * Api Key Authentication (application):
+
 ```python
-import time
-import os
 import pieces_os_client
 from pieces_os_client.models.seeded_workstream_suggestions_refresh import SeededWorkstreamSuggestionsRefresh
 from pieces_os_client.models.workstream_suggestions_refresh import WorkstreamSuggestionsRefresh
@@ -63,6 +62,7 @@ with pieces_os_client.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **seeded_workstream_suggestions_refresh** | [**SeededWorkstreamSuggestionsRefresh**](SeededWorkstreamSuggestionsRefresh.md)|  | [optional] 
@@ -81,6 +81,7 @@ Name | Type | Description  | Notes
  - **Accept**: application/json, text/plain
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
@@ -98,9 +99,8 @@ Provides a WebSocket connection that emits changes to your workstream suggestion
 ### Example
 
 * Api Key Authentication (application):
+
 ```python
-import time
-import os
 import pieces_os_client
 from pieces_os_client.models.workstream_suggestions import WorkstreamSuggestions
 from pieces_os_client.rest import ApiException
@@ -140,6 +140,7 @@ with pieces_os_client.ApiClient(configuration) as api_client:
 
 
 ### Parameters
+
 This endpoint does not need any parameter.
 
 ### Return type
@@ -156,6 +157,7 @@ This endpoint does not need any parameter.
  - **Accept**: application/json, text/plain
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |

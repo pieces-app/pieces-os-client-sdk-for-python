@@ -3,6 +3,7 @@
 This is the given context for the browser,  a client can pass through many of the same tab if they would like,  note: however please try to only side 3 unique website/anchors
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
@@ -18,7 +19,7 @@ json = "{}"
 # create an instance of WorkstreamEventTriggerContextBrowser from a JSON string
 workstream_event_trigger_context_browser_instance = WorkstreamEventTriggerContextBrowser.from_json(json)
 # print the JSON string representation of the object
-print WorkstreamEventTriggerContextBrowser.to_json()
+print(WorkstreamEventTriggerContextBrowser.to_json())
 
 # convert the object into a dict
 workstream_event_trigger_context_browser_dict = workstream_event_trigger_context_browser_instance.to_dict()

@@ -3,13 +3,14 @@
 A DocumentContributor is a preseeded representation of a Person  This can be used in the case of the browser, or in the IDE  If they are apart of an IDE, we can in the future provide git information (IE add a Git object for their commits)  person: this is most important part which is the email/name xyz
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 **classification** | [**Classification**](Classification.md) |  | [optional] 
-**value** | [**TransferableString**](TransferableString.md) |  | [optional] 
 **person** | [**PersonBasicType**](PersonBasicType.md) |  | 
+**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 **updated** | [**GroupedTimestamp**](GroupedTimestamp.md) |  | [optional] 
+**value** | [**TransferableString**](TransferableString.md) |  | [optional] 
 
 ## Example
 
@@ -21,7 +22,7 @@ json = "{}"
 # create an instance of DocumentContributor from a JSON string
 document_contributor_instance = DocumentContributor.from_json(json)
 # print the JSON string representation of the object
-print DocumentContributor.to_json()
+print(DocumentContributor.to_json())
 
 # convert the object into a dict
 document_contributor_dict = document_contributor_instance.to_dict()

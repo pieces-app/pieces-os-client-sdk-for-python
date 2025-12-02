@@ -3,10 +3,11 @@
 This will let us know specific hardware information related to the RAM.
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 **memory** | **float** |  | [optional] 
+**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 **speed** | **float** |  | [optional] 
 **type** | [**OSDeviceRAMTypeEnum**](OSDeviceRAMTypeEnum.md) |  | [optional] 
 
@@ -20,7 +21,7 @@ json = "{}"
 # create an instance of OSDeviceRAMHardwareInformation from a JSON string
 os_device_ram_hardware_information_instance = OSDeviceRAMHardwareInformation.from_json(json)
 # print the JSON string representation of the object
-print OSDeviceRAMHardwareInformation.to_json()
+print(OSDeviceRAMHardwareInformation.to_json())
 
 # convert the object into a dict
 os_device_ram_hardware_information_dict = os_device_ram_hardware_information_instance.to_dict()

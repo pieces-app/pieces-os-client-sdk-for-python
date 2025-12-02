@@ -3,11 +3,12 @@
 similarity: this is optional from 0 - 1, (where 1 is exact and 0 is everything)  TODO consider a plural of types for running many embedding search scopes
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
-**type** | [**EmbeddingsSearchOptionsEmbeddingTypeEnum**](EmbeddingsSearchOptionsEmbeddingTypeEnum.md) |  | 
 **similarity** | **float** |  | [optional] 
+**type** | [**EmbeddingsSearchOptionsEmbeddingTypeEnum**](EmbeddingsSearchOptionsEmbeddingTypeEnum.md) |  | 
 
 ## Example
 
@@ -19,7 +20,7 @@ json = "{}"
 # create an instance of EmbeddingsSearchOptions from a JSON string
 embeddings_search_options_instance = EmbeddingsSearchOptions.from_json(json)
 # print the JSON string representation of the object
-print EmbeddingsSearchOptions.to_json()
+print(EmbeddingsSearchOptions.to_json())
 
 # convert the object into a dict
 embeddings_search_options_dict = embeddings_search_options_instance.to_dict()

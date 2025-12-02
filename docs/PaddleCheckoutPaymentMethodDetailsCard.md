@@ -2,12 +2,13 @@
 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**type** | **str** |  | 
-**last4** | **str** |  | 
 **expiry_month** | **int** |  | 
 **expiry_year** | **int** |  | 
+**last4** | **str** |  | 
+**type** | **str** |  | 
 
 ## Example
 
@@ -19,7 +20,7 @@ json = "{}"
 # create an instance of PaddleCheckoutPaymentMethodDetailsCard from a JSON string
 paddle_checkout_payment_method_details_card_instance = PaddleCheckoutPaymentMethodDetailsCard.from_json(json)
 # print the JSON string representation of the object
-print PaddleCheckoutPaymentMethodDetailsCard.to_json()
+print(PaddleCheckoutPaymentMethodDetailsCard.to_json())
 
 # convert the object into a dict
 paddle_checkout_payment_method_details_card_dict = paddle_checkout_payment_method_details_card_instance.to_dict()

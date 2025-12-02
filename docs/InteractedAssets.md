@@ -3,10 +3,11 @@
 A model which contains a list of InteractedAssets with potentially additional properties.
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 **iterable** | [**List[InteractedAsset]**](InteractedAsset.md) |  | 
+**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 
 ## Example
 
@@ -18,7 +19,7 @@ json = "{}"
 # create an instance of InteractedAssets from a JSON string
 interacted_assets_instance = InteractedAssets.from_json(json)
 # print the JSON string representation of the object
-print InteractedAssets.to_json()
+print(InteractedAssets.to_json())
 
 # convert the object into a dict
 interacted_assets_dict = interacted_assets_instance.to_dict()

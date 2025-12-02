@@ -3,13 +3,14 @@
 TODO
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
+**handler** | [**AppletServingHandlerType**](AppletServingHandlerType.md) |  | [optional] 
 **parent** | [**Application**](Application.md) |  | [optional] 
 **port** | **int** | Validation check if the port is passed in. | [optional] 
+**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 **type** | [**OSAppletEnum**](OSAppletEnum.md) |  | 
-**handler** | [**AppletServingHandlerType**](AppletServingHandlerType.md) |  | [optional] 
 
 ## Example
 
@@ -21,7 +22,7 @@ json = "{}"
 # create an instance of TerminatingOSServerApplet from a JSON string
 terminating_os_server_applet_instance = TerminatingOSServerApplet.from_json(json)
 # print the JSON string representation of the object
-print TerminatingOSServerApplet.to_json()
+print(TerminatingOSServerApplet.to_json())
 
 # convert the object into a dict
 terminating_os_server_applet_dict = terminating_os_server_applet_instance.to_dict()

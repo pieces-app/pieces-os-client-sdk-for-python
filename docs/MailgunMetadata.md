@@ -3,10 +3,11 @@
 TODO add additional properties. TODO eventually modify this model to look like the response from Mailgun.
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 **message_id** | **str** | This is the id given to us from mailgun when the email was sent successfully. | 
+**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 
 ## Example
 
@@ -18,7 +19,7 @@ json = "{}"
 # create an instance of MailgunMetadata from a JSON string
 mailgun_metadata_instance = MailgunMetadata.from_json(json)
 # print the JSON string representation of the object
-print MailgunMetadata.to_json()
+print(MailgunMetadata.to_json())
 
 # convert the object into a dict
 mailgun_metadata_dict = mailgun_metadata_instance.to_dict()

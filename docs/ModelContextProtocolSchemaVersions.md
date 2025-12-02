@@ -3,10 +3,11 @@
 This is the request body that will return all the support schemas
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 **iterable** | [**List[ModelContextProtocolSchemaVersion]**](ModelContextProtocolSchemaVersion.md) | This is a singular version for MCP | 
+**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 
 ## Example
 
@@ -18,7 +19,7 @@ json = "{}"
 # create an instance of ModelContextProtocolSchemaVersions from a JSON string
 model_context_protocol_schema_versions_instance = ModelContextProtocolSchemaVersions.from_json(json)
 # print the JSON string representation of the object
-print ModelContextProtocolSchemaVersions.to_json()
+print(ModelContextProtocolSchemaVersions.to_json())
 
 # convert the object into a dict
 model_context_protocol_schema_versions_dict = model_context_protocol_schema_versions_instance.to_dict()

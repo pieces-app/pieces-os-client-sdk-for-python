@@ -2,10 +2,11 @@
 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 **iterable** | [**List[Relationship]**](Relationship.md) |  | 
+**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 
 ## Example
 
@@ -17,7 +18,7 @@ json = "{}"
 # create an instance of Relationships from a JSON string
 relationships_instance = Relationships.from_json(json)
 # print the JSON string representation of the object
-print Relationships.to_json()
+print(Relationships.to_json())
 
 # convert the object into a dict
 relationships_dict = relationships_instance.to_dict()

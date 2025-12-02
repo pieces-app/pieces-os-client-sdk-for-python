@@ -2,6 +2,7 @@
 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
@@ -17,7 +18,7 @@ json = "{}"
 # create an instance of SeededRangeConversationGroundingAssociation from a JSON string
 seeded_range_conversation_grounding_association_instance = SeededRangeConversationGroundingAssociation.from_json(json)
 # print the JSON string representation of the object
-print SeededRangeConversationGroundingAssociation.to_json()
+print(SeededRangeConversationGroundingAssociation.to_json())
 
 # convert the object into a dict
 seeded_range_conversation_grounding_association_dict = seeded_range_conversation_grounding_association_instance.to_dict()

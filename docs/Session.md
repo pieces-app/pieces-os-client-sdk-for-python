@@ -3,11 +3,12 @@
 This is a specific model that will let us know at what time this user was using the application.
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**closed** | [**GroupedTimestamp**](GroupedTimestamp.md) |  | [optional] 
 **id** | **str** | The UUID of the current Session | 
 **opened** | [**GroupedTimestamp**](GroupedTimestamp.md) |  | 
-**closed** | [**GroupedTimestamp**](GroupedTimestamp.md) |  | [optional] 
 
 ## Example
 
@@ -19,7 +20,7 @@ json = "{}"
 # create an instance of Session from a JSON string
 session_instance = Session.from_json(json)
 # print the JSON string representation of the object
-print Session.to_json()
+print(Session.to_json())
 
 # convert the object into a dict
 session_dict = session_instance.to_dict()

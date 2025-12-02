@@ -3,6 +3,7 @@
 This is used for a returnable in the contest ingestion endpoint for the Feed.
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
@@ -17,7 +18,7 @@ json = "{}"
 # create an instance of WorkstreamIngestion from a JSON string
 workstream_ingestion_instance = WorkstreamIngestion.from_json(json)
 # print the JSON string representation of the object
-print WorkstreamIngestion.to_json()
+print(WorkstreamIngestion.to_json())
 
 # convert the object into a dict
 workstream_ingestion_dict = workstream_ingestion_instance.to_dict()

@@ -3,27 +3,28 @@
 A representation of Data for a particular Form Factor of an Asset.[DAG Compatible - Directed Acyclic Graph Data Structure]  FlattenedFormats prevent Cycles in Reference because all outbound references are strings as opposed to crosspollinated objects.  i.e. FlattenedFormat.asset is Type String  fragment or file will always be defined. Even thought they are both optional.
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
-**id** | **str** |  | 
-**creator** | **str** |  | 
-**classification** | [**Classification**](Classification.md) |  | 
-**icon** | **str** |  | [optional] 
-**role** | [**Role**](Role.md) |  | 
+**activities** | [**FlattenedActivities**](FlattenedActivities.md) |  | [optional] 
+**analysis** | [**FlattenedAnalysis**](FlattenedAnalysis.md) |  | [optional] 
 **application** | [**Application**](Application.md) |  | 
 **asset** | **str** | A uuid model. 36 Characters (4 Dashes, 32 Numbers/Letters)  | 
 **bytes** | [**ByteDescriptor**](ByteDescriptor.md) |  | 
-**created** | [**GroupedTimestamp**](GroupedTimestamp.md) |  | 
-**updated** | [**GroupedTimestamp**](GroupedTimestamp.md) |  | 
-**deleted** | [**GroupedTimestamp**](GroupedTimestamp.md) |  | [optional] 
-**synced** | [**GroupedTimestamp**](GroupedTimestamp.md) |  | [optional] 
+**classification** | [**Classification**](Classification.md) |  | 
 **cloud** | **str** | This is a path used to determine what path this format lives at within the cloud. | [optional] 
-**fragment** | [**FragmentFormat**](FragmentFormat.md) |  | [optional] 
+**created** | [**GroupedTimestamp**](GroupedTimestamp.md) |  | 
+**creator** | **str** |  | 
+**deleted** | [**GroupedTimestamp**](GroupedTimestamp.md) |  | [optional] 
 **file** | [**FileFormat**](FileFormat.md) |  | [optional] 
-**analysis** | [**FlattenedAnalysis**](FlattenedAnalysis.md) |  | [optional] 
+**fragment** | [**FragmentFormat**](FragmentFormat.md) |  | [optional] 
+**icon** | **str** |  | [optional] 
+**id** | **str** |  | 
 **relationship** | [**Relationship**](Relationship.md) |  | [optional] 
-**activities** | [**FlattenedActivities**](FlattenedActivities.md) |  | [optional] 
+**role** | [**Role**](Role.md) |  | 
+**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
+**synced** | [**GroupedTimestamp**](GroupedTimestamp.md) |  | [optional] 
+**updated** | [**GroupedTimestamp**](GroupedTimestamp.md) |  | 
 
 ## Example
 
@@ -35,7 +36,7 @@ json = "{}"
 # create an instance of FlattenedFormat from a JSON string
 flattened_format_instance = FlattenedFormat.from_json(json)
 # print the JSON string representation of the object
-print FlattenedFormat.to_json()
+print(FlattenedFormat.to_json())
 
 # convert the object into a dict
 flattened_format_dict = flattened_format_instance.to_dict()

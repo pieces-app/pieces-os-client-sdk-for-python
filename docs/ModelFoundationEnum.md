@@ -284,6 +284,10 @@ This is used to describe the foundational models used within POS.  Note: LATEST 
 
 * `POTION` (value: `'POTION'`)
 
+* `MSFT_AZURE_OPEN_AI_LATEST` (value: `'MSFT_AZURE_OPEN_AI_LATEST'`)
+
+* `AWS_BEDROCK_LATEST` (value: `'AWS_BEDROCK_LATEST'`)
+
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
 

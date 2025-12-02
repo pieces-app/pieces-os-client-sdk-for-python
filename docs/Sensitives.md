@@ -3,10 +3,11 @@
 This is a model that represents many individual sensitive pieces of data.
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 **iterable** | [**List[Sensitive]**](Sensitive.md) |  | 
+**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 **score** | [**Score**](Score.md) |  | [optional] 
 
 ## Example
@@ -19,7 +20,7 @@ json = "{}"
 # create an instance of Sensitives from a JSON string
 sensitives_instance = Sensitives.from_json(json)
 # print the JSON string representation of the object
-print Sensitives.to_json()
+print(Sensitives.to_json())
 
 # convert the object into a dict
 sensitives_dict = sensitives_instance.to_dict()

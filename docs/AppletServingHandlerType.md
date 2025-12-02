@@ -3,12 +3,13 @@
 A type representing a handler with optional folder/asset flags and a required key
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**is_folder** | **bool** | Indicates if the handler is for a folder (optional) | [optional] 
 **is_asset** | **bool** | Indicates if the handler is for an asset (optional) | [optional] 
-**version** | **str** | The version of the applet served by the handler | [optional] 
+**is_folder** | **bool** | Indicates if the handler is for a folder (optional) | [optional] 
 **type** | **str** | A required unique identifier for the handler | 
+**version** | **str** | The version of the applet served by the handler | [optional] 
 
 ## Example
 
@@ -20,7 +21,7 @@ json = "{}"
 # create an instance of AppletServingHandlerType from a JSON string
 applet_serving_handler_type_instance = AppletServingHandlerType.from_json(json)
 # print the JSON string representation of the object
-print AppletServingHandlerType.to_json()
+print(AppletServingHandlerType.to_json())
 
 # convert the object into a dict
 applet_serving_handler_type_dict = applet_serving_handler_type_instance.to_dict()

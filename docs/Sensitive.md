@@ -3,23 +3,24 @@
 This is a fully referenced representation of a sensitive pieces of data.
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
-**id** | **str** |  | 
-**created** | [**GroupedTimestamp**](GroupedTimestamp.md) |  | 
-**updated** | [**GroupedTimestamp**](GroupedTimestamp.md) |  | 
-**deleted** | [**GroupedTimestamp**](GroupedTimestamp.md) |  | [optional] 
 **asset** | [**FlattenedAsset**](FlattenedAsset.md) |  | 
-**text** | **str** |  | 
-**mechanism** | [**MechanismEnum**](MechanismEnum.md) |  | 
 **category** | [**SensitiveCategoryEnum**](SensitiveCategoryEnum.md) |  | 
-**severity** | [**SensitiveSeverityEnum**](SensitiveSeverityEnum.md) |  | 
-**name** | **str** |  | 
+**created** | [**GroupedTimestamp**](GroupedTimestamp.md) |  | 
+**deleted** | [**GroupedTimestamp**](GroupedTimestamp.md) |  | [optional] 
 **description** | **str** |  | 
-**metadata** | [**SensitiveMetadata**](SensitiveMetadata.md) |  | [optional] 
+**id** | **str** |  | 
 **interactions** | **int** | This is an optional value that will keep track of the number of times this has been interacted with. | [optional] 
+**mechanism** | [**MechanismEnum**](MechanismEnum.md) |  | 
+**metadata** | [**SensitiveMetadata**](SensitiveMetadata.md) |  | [optional] 
+**name** | **str** |  | 
+**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 **score** | [**Score**](Score.md) |  | [optional] 
+**severity** | [**SensitiveSeverityEnum**](SensitiveSeverityEnum.md) |  | 
+**text** | **str** |  | 
+**updated** | [**GroupedTimestamp**](GroupedTimestamp.md) |  | 
 
 ## Example
 
@@ -31,7 +32,7 @@ json = "{}"
 # create an instance of Sensitive from a JSON string
 sensitive_instance = Sensitive.from_json(json)
 # print the JSON string representation of the object
-print Sensitive.to_json()
+print(Sensitive.to_json())
 
 # convert the object into a dict
 sensitive_dict = sensitive_instance.to_dict()

@@ -2,11 +2,12 @@
 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
-**iterable** | [**List[SeededDiscoverableRelatedTag]**](SeededDiscoverableRelatedTag.md) |  | 
 **application** | **str** | This is the application id that this request is sent from. | 
+**iterable** | [**List[SeededDiscoverableRelatedTag]**](SeededDiscoverableRelatedTag.md) |  | 
+**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 
 ## Example
 
@@ -18,7 +19,7 @@ json = "{}"
 # create an instance of SeededDiscoverableRelatedTags from a JSON string
 seeded_discoverable_related_tags_instance = SeededDiscoverableRelatedTags.from_json(json)
 # print the JSON string representation of the object
-print SeededDiscoverableRelatedTags.to_json()
+print(SeededDiscoverableRelatedTags.to_json())
 
 # convert the object into a dict
 seeded_discoverable_related_tags_dict = seeded_discoverable_related_tags_instance.to_dict()

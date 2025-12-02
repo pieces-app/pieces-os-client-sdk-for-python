@@ -3,16 +3,18 @@
 This is a FlattenedUserProfile that includes information that is not sensative in relation to a user.
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
-**id** | **str** | this is the uuid that identifies a user. | 
 **email** | **str** |  | [optional] 
+**entities** | [**FlattenedEntities**](FlattenedEntities.md) |  | [optional] 
+**id** | **str** | this is the uuid that identifies a user. | 
 **name** | **str** |  | [optional] 
-**username** | **str** |  | [optional] 
 **picture** | **str** |  | [optional] 
-**vanityname** | **str** |  | [optional] 
+**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 **subscriptions** | [**FlattenedSubscriptions**](FlattenedSubscriptions.md) |  | [optional] 
+**username** | **str** |  | [optional] 
+**vanityname** | **str** |  | [optional] 
 
 ## Example
 
@@ -24,7 +26,7 @@ json = "{}"
 # create an instance of FlattenedUserProfile from a JSON string
 flattened_user_profile_instance = FlattenedUserProfile.from_json(json)
 # print the JSON string representation of the object
-print FlattenedUserProfile.to_json()
+print(FlattenedUserProfile.to_json())
 
 # convert the object into a dict
 flattened_user_profile_dict = flattened_user_profile_instance.to_dict()

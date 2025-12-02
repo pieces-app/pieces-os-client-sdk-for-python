@@ -3,12 +3,13 @@
 This is similar to an SeededTag, where this is the minimum information of a tag, but this can get added to a seededAsset,  where you may not yet have an asset id.
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**category** | [**TagCategoryEnum**](TagCategoryEnum.md) |  | [optional] 
+**mechanism** | [**MechanismEnum**](MechanismEnum.md) |  | [optional] 
 **var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 **text** | **str** | this is the text that represents the tag. | 
-**mechanism** | [**MechanismEnum**](MechanismEnum.md) |  | [optional] 
-**category** | [**TagCategoryEnum**](TagCategoryEnum.md) |  | [optional] 
 
 ## Example
 
@@ -20,7 +21,7 @@ json = "{}"
 # create an instance of SeededAssetTag from a JSON string
 seeded_asset_tag_instance = SeededAssetTag.from_json(json)
 # print the JSON string representation of the object
-print SeededAssetTag.to_json()
+print(SeededAssetTag.to_json())
 
 # convert the object into a dict
 seeded_asset_tag_dict = seeded_asset_tag_instance.to_dict()

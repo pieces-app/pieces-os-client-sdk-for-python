@@ -3,11 +3,12 @@
 This is the plural of a Hint.
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
-**iterable** | [**List[Hint]**](Hint.md) |  | 
 **indices** | **Dict[str, int]** | This is a Map&lt;String, int&gt; where the the key is an hint id. | [optional] 
+**iterable** | [**List[Hint]**](Hint.md) |  | 
+**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 **score** | [**Score**](Score.md) |  | [optional] 
 
 ## Example
@@ -20,7 +21,7 @@ json = "{}"
 # create an instance of Hints from a JSON string
 hints_instance = Hints.from_json(json)
 # print the JSON string representation of the object
-print Hints.to_json()
+print(Hints.to_json())
 
 # convert the object into a dict
 hints_dict = hints_instance.to_dict()

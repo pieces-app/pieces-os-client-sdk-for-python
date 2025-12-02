@@ -3,11 +3,12 @@
 This is a collection of many Shadow Activity events.
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
-**iterable** | [**List[WorkstreamEvent]**](WorkstreamEvent.md) |  | 
 **indices** | **Dict[str, int]** | This is a Map&lt;String, int&gt; where the the key is an activity id. | [optional] 
+**iterable** | [**List[WorkstreamEvent]**](WorkstreamEvent.md) |  | 
+**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 **score** | [**Score**](Score.md) |  | [optional] 
 
 ## Example
@@ -20,7 +21,7 @@ json = "{}"
 # create an instance of WorkstreamEvents from a JSON string
 workstream_events_instance = WorkstreamEvents.from_json(json)
 # print the JSON string representation of the object
-print WorkstreamEvents.to_json()
+print(WorkstreamEvents.to_json())
 
 # convert the object into a dict
 workstream_events_dict = workstream_events_instance.to_dict()

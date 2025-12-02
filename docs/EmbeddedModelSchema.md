@@ -3,10 +3,11 @@
 This is a model that will keep track of all of our version related to our models. ie (1) the database migration and (2) the global semantic version of the api.
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **migration** | **int** | this is the current database version that this model was used for. | 
-**semantic** | [**EmbeddedModelSchemaSemanticVersionEnum**](EmbeddedModelSchemaSemanticVersionEnum.md) |  | 
+**semantic** | [**EmbeddedModelSchemaSemanticVersionEnum**](EmbeddedModelSchemaSemanticVersionEnum.md) |  | [default to EmbeddedModelSchemaSemanticVersionEnum.MAJOR_0_MINOR_0_PATCH_1]
 
 ## Example
 
@@ -18,7 +19,7 @@ json = "{}"
 # create an instance of EmbeddedModelSchema from a JSON string
 embedded_model_schema_instance = EmbeddedModelSchema.from_json(json)
 # print the JSON string representation of the object
-print EmbeddedModelSchema.to_json()
+print(EmbeddedModelSchema.to_json())
 
 # convert the object into a dict
 embedded_model_schema_dict = embedded_model_schema_instance.to_dict()

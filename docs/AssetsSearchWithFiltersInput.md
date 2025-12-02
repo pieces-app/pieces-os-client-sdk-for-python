@@ -2,13 +2,14 @@
 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
-**query** | **str** |  | [optional] 
-**space** | [**AssetSearchSpace**](AssetSearchSpace.md) |  | [optional] 
-**filters** | [**AssetFilters**](AssetFilters.md) |  | [optional] 
 **casing** | **bool** | This is an optional bool that will let us know, if we want to ignore case or not.(default is to allow casing)ie casing:true. | [optional] 
+**filters** | [**AssetFilters**](AssetFilters.md) |  | [optional] 
+**query** | **str** |  | [optional] 
+**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
+**space** | [**AssetSearchSpace**](AssetSearchSpace.md) |  | [optional] 
 
 ## Example
 
@@ -20,7 +21,7 @@ json = "{}"
 # create an instance of AssetsSearchWithFiltersInput from a JSON string
 assets_search_with_filters_input_instance = AssetsSearchWithFiltersInput.from_json(json)
 # print the JSON string representation of the object
-print AssetsSearchWithFiltersInput.to_json()
+print(AssetsSearchWithFiltersInput.to_json())
 
 # convert the object into a dict
 assets_search_with_filters_input_dict = assets_search_with_filters_input_instance.to_dict()

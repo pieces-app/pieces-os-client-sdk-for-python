@@ -2,10 +2,11 @@
 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 **iterable** | [**List[ImageAnalysis]**](ImageAnalysis.md) |  | 
+**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 
 ## Example
 
@@ -17,7 +18,7 @@ json = "{}"
 # create an instance of ImageAnalyses from a JSON string
 image_analyses_instance = ImageAnalyses.from_json(json)
 # print the JSON string representation of the object
-print ImageAnalyses.to_json()
+print(ImageAnalyses.to_json())
 
 # convert the object into a dict
 image_analyses_dict = image_analyses_instance.to_dict()

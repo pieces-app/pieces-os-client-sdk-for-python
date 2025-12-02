@@ -3,11 +3,12 @@
 modeled after this (https://microsoft.github.io/language-server-protocol/specifications/lsp/3.17/specification/#position)
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
-**line** | **int** |  | 
 **character** | **int** |  | 
+**line** | **int** |  | 
+**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 
 ## Example
 
@@ -19,7 +20,7 @@ json = "{}"
 # create an instance of LanguageServerProtocolLocationRangePosition from a JSON string
 language_server_protocol_location_range_position_instance = LanguageServerProtocolLocationRangePosition.from_json(json)
 # print the JSON string representation of the object
-print LanguageServerProtocolLocationRangePosition.to_json()
+print(LanguageServerProtocolLocationRangePosition.to_json())
 
 # convert the object into a dict
 language_server_protocol_location_range_position_dict = language_server_protocol_location_range_position_instance.to_dict()

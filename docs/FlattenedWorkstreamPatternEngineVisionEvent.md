@@ -3,11 +3,12 @@
 This is a flattened version of the WorkstreamPatternEngineVisionEvent, where the referenced to other materials are also flattened(DAG Safe)  Note: TODO later add textual and need to correspond w/ both transferables as well as the FlattenedMaterial
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
-**id** | **str** |  | 
 **created** | [**GroupedTimestamp**](GroupedTimestamp.md) |  | 
+**id** | **str** |  | 
+**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 
 ## Example
 
@@ -19,7 +20,7 @@ json = "{}"
 # create an instance of FlattenedWorkstreamPatternEngineVisionEvent from a JSON string
 flattened_workstream_pattern_engine_vision_event_instance = FlattenedWorkstreamPatternEngineVisionEvent.from_json(json)
 # print the JSON string representation of the object
-print FlattenedWorkstreamPatternEngineVisionEvent.to_json()
+print(FlattenedWorkstreamPatternEngineVisionEvent.to_json())
 
 # convert the object into a dict
 flattened_workstream_pattern_engine_vision_event_dict = flattened_workstream_pattern_engine_vision_event_instance.to_dict()

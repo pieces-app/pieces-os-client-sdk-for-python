@@ -3,14 +3,15 @@
 Query is your followup question.  Conversation is a list of the back and fourth with the qgpt bot. where the first entry in the array was the last message sent.
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
-**query** | **str** |  | 
-**conversation** | [**QGPTConversation**](QGPTConversation.md) |  | 
 **application** | **str** | optional application id | [optional] 
+**conversation** | [**QGPTConversation**](QGPTConversation.md) |  | 
 **model** | **str** | optional model id | [optional] 
 **pipeline** | [**QGPTPromptPipeline**](QGPTPromptPipeline.md) |  | [optional] 
+**query** | **str** |  | 
+**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 
 ## Example
 
@@ -22,7 +23,7 @@ json = "{}"
 # create an instance of QGPTRepromptInput from a JSON string
 qgpt_reprompt_input_instance = QGPTRepromptInput.from_json(json)
 # print the JSON string representation of the object
-print QGPTRepromptInput.to_json()
+print(QGPTRepromptInput.to_json())
 
 # convert the object into a dict
 qgpt_reprompt_input_dict = qgpt_reprompt_input_instance.to_dict()

@@ -2,15 +2,16 @@
 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**balance** | **float** |  | 
+**credit** | **float** |  | 
+**discount** | **float** |  | 
 **var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 **subtotal** | **float** |  | 
 **tax** | **float** |  | 
 **total** | **float** |  | 
-**discount** | **float** |  | 
-**balance** | **float** |  | 
-**credit** | **float** |  | 
 
 ## Example
 
@@ -22,7 +23,7 @@ json = "{}"
 # create an instance of PaddleCheckoutTotals from a JSON string
 paddle_checkout_totals_instance = PaddleCheckoutTotals.from_json(json)
 # print the JSON string representation of the object
-print PaddleCheckoutTotals.to_json()
+print(PaddleCheckoutTotals.to_json())
 
 # convert the object into a dict
 paddle_checkout_totals_dict = paddle_checkout_totals_instance.to_dict()

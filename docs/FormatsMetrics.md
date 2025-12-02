@@ -3,10 +3,11 @@
 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 **iterable** | [**List[FormatMetric]**](FormatMetric.md) |  | 
+**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 
 ## Example
 
@@ -18,7 +19,7 @@ json = "{}"
 # create an instance of FormatsMetrics from a JSON string
 formats_metrics_instance = FormatsMetrics.from_json(json)
 # print the JSON string representation of the object
-print FormatsMetrics.to_json()
+print(FormatsMetrics.to_json())
 
 # convert the object into a dict
 formats_metrics_dict = formats_metrics_instance.to_dict()

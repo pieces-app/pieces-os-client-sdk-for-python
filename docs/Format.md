@@ -3,27 +3,28 @@
 A representation of Data for a particular Form Factor of an Asset.  Below asset HAS to be Flattened because it is a leaf node and must prevent cycles agressively.
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
-**id** | **str** |  | 
-**creator** | **str** |  | 
-**classification** | [**Classification**](Classification.md) |  | 
-**icon** | **str** |  | [optional] 
-**role** | [**Role**](Role.md) |  | 
+**activities** | [**Activities**](Activities.md) |  | [optional] 
+**analysis** | [**Analysis**](Analysis.md) |  | [optional] 
 **application** | [**Application**](Application.md) |  | 
 **asset** | [**FlattenedAsset**](FlattenedAsset.md) |  | 
 **bytes** | [**ByteDescriptor**](ByteDescriptor.md) |  | 
-**created** | [**GroupedTimestamp**](GroupedTimestamp.md) |  | 
-**updated** | [**GroupedTimestamp**](GroupedTimestamp.md) |  | 
-**deleted** | [**GroupedTimestamp**](GroupedTimestamp.md) |  | [optional] 
-**synced** | [**GroupedTimestamp**](GroupedTimestamp.md) |  | [optional] 
+**classification** | [**Classification**](Classification.md) |  | 
 **cloud** | **str** | This is a path used to determine what path this format lives at within the cloud. | [optional] 
-**fragment** | [**FragmentFormat**](FragmentFormat.md) |  | [optional] 
+**created** | [**GroupedTimestamp**](GroupedTimestamp.md) |  | 
+**creator** | **str** |  | 
+**deleted** | [**GroupedTimestamp**](GroupedTimestamp.md) |  | [optional] 
 **file** | [**FileFormat**](FileFormat.md) |  | [optional] 
-**analysis** | [**Analysis**](Analysis.md) |  | [optional] 
+**fragment** | [**FragmentFormat**](FragmentFormat.md) |  | [optional] 
+**icon** | **str** |  | [optional] 
+**id** | **str** |  | 
 **relationship** | [**Relationship**](Relationship.md) |  | [optional] 
-**activities** | [**Activities**](Activities.md) |  | [optional] 
+**role** | [**Role**](Role.md) |  | 
+**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
+**synced** | [**GroupedTimestamp**](GroupedTimestamp.md) |  | [optional] 
+**updated** | [**GroupedTimestamp**](GroupedTimestamp.md) |  | 
 
 ## Example
 
@@ -35,7 +36,7 @@ json = "{}"
 # create an instance of Format from a JSON string
 format_instance = Format.from_json(json)
 # print the JSON string representation of the object
-print Format.to_json()
+print(Format.to_json())
 
 # convert the object into a dict
 format_dict = format_instance.to_dict()

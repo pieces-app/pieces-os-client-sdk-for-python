@@ -3,6 +3,7 @@
 Append any additional parameter to the end of your request, and it will be sent to the provider. For example, access_type=offline (for Google Refresh Tokens) , display=popup (for Windows Live popup mode).
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **access_type** | **str** |  | [optional] [default to 'UNKNOWN']
@@ -18,7 +19,7 @@ json = "{}"
 # create an instance of SeededPKCEADDITIONALPARAMETERS from a JSON string
 seeded_pkceadditionalparameters_instance = SeededPKCEADDITIONALPARAMETERS.from_json(json)
 # print the JSON string representation of the object
-print SeededPKCEADDITIONALPARAMETERS.to_json()
+print(SeededPKCEADDITIONALPARAMETERS.to_json())
 
 # convert the object into a dict
 seeded_pkceadditionalparameters_dict = seeded_pkceadditionalparameters_instance.to_dict()

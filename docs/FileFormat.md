@@ -3,10 +3,11 @@
 This describes a FileFormat. If you need meta data you can get all of that from your format wrapper.
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 **bytes** | [**TransferableBytes**](TransferableBytes.md) |  | [optional] 
+**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 **string** | [**TransferableString**](TransferableString.md) |  | [optional] 
 
 ## Example
@@ -19,7 +20,7 @@ json = "{}"
 # create an instance of FileFormat from a JSON string
 file_format_instance = FileFormat.from_json(json)
 # print the JSON string representation of the object
-print FileFormat.to_json()
+print(FileFormat.to_json())
 
 # convert the object into a dict
 file_format_dict = file_format_instance.to_dict()

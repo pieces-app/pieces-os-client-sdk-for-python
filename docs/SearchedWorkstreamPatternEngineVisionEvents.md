@@ -3,10 +3,11 @@
 This will return a list of the returned events.
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 **iterable** | [**List[SearchedWorkstreamPatternEngineVisionEvent]**](SearchedWorkstreamPatternEngineVisionEvent.md) |  | 
+**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 
 ## Example
 
@@ -18,7 +19,7 @@ json = "{}"
 # create an instance of SearchedWorkstreamPatternEngineVisionEvents from a JSON string
 searched_workstream_pattern_engine_vision_events_instance = SearchedWorkstreamPatternEngineVisionEvents.from_json(json)
 # print the JSON string representation of the object
-print SearchedWorkstreamPatternEngineVisionEvents.to_json()
+print(SearchedWorkstreamPatternEngineVisionEvents.to_json())
 
 # convert the object into a dict
 searched_workstream_pattern_engine_vision_events_dict = searched_workstream_pattern_engine_vision_events_instance.to_dict()

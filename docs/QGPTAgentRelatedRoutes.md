@@ -3,10 +3,11 @@
 This is specific for all the related materials, like people, tags, websites... xyz
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 **people** | **bool** | optional bool, that will say if we reccomend to run related.people on this conversation, IFF set to TRUE. | [optional] 
+**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 
 ## Example
 
@@ -18,7 +19,7 @@ json = "{}"
 # create an instance of QGPTAgentRelatedRoutes from a JSON string
 qgpt_agent_related_routes_instance = QGPTAgentRelatedRoutes.from_json(json)
 # print the JSON string representation of the object
-print QGPTAgentRelatedRoutes.to_json()
+print(QGPTAgentRelatedRoutes.to_json())
 
 # convert the object into a dict
 qgpt_agent_related_routes_dict = qgpt_agent_related_routes_instance.to_dict()

@@ -3,11 +3,12 @@
 [DAG Safe] version of a Tag Model. 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 **id** | **str** |  | 
 **reference** | [**FlattenedTag**](FlattenedTag.md) |  | [optional] 
+**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 
 ## Example
 
@@ -19,7 +20,7 @@ json = "{}"
 # create an instance of ReferencedTag from a JSON string
 referenced_tag_instance = ReferencedTag.from_json(json)
 # print the JSON string representation of the object
-print ReferencedTag.to_json()
+print(ReferencedTag.to_json())
 
 # convert the object into a dict
 referenced_tag_dict = referenced_tag_instance.to_dict()
