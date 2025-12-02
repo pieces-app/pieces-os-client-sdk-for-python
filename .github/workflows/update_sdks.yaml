@@ -53,7 +53,7 @@ jobs:
         run: |
           SPEC_DIR="generated_runtime/public/spec"
           SPEC_FILE="${SPEC_DIR}/modules/core/isomorphic.openapi.yaml"
-          TEMPLATE_OVERRIDE_DIR=$(realpath "${SPEC_DIR}/common/templates/python")
+          TEMPLATE_OVERRIDE_DIR=$(realpath "generated_runtime/spec/common/templates/python")
           OUTPUT_DIR="generated"
           VERSION="${{ github.event.inputs.version }}"
 
