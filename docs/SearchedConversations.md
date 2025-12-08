@@ -3,10 +3,11 @@
 This is the plural Model used to return many SearchedConversation.
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 **iterable** | [**List[SearchedConversation]**](SearchedConversation.md) |  | 
+**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 
 ## Example
 
@@ -18,7 +19,7 @@ json = "{}"
 # create an instance of SearchedConversations from a JSON string
 searched_conversations_instance = SearchedConversations.from_json(json)
 # print the JSON string representation of the object
-print SearchedConversations.to_json()
+print(SearchedConversations.to_json())
 
 # convert the object into a dict
 searched_conversations_dict = searched_conversations_instance.to_dict()

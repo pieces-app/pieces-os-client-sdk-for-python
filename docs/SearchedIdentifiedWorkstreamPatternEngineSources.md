@@ -3,10 +3,11 @@
 This is the plural Model used to return many SearchedIdentifiedWorkstreamPatternEngineSource.
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 **iterable** | [**List[SearchedIdentifiedWorkstreamPatternEngineSource]**](SearchedIdentifiedWorkstreamPatternEngineSource.md) |  | 
+**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 
 ## Example
 
@@ -18,7 +19,7 @@ json = "{}"
 # create an instance of SearchedIdentifiedWorkstreamPatternEngineSources from a JSON string
 searched_identified_workstream_pattern_engine_sources_instance = SearchedIdentifiedWorkstreamPatternEngineSources.from_json(json)
 # print the JSON string representation of the object
-print SearchedIdentifiedWorkstreamPatternEngineSources.to_json()
+print(SearchedIdentifiedWorkstreamPatternEngineSources.to_json())
 
 # convert the object into a dict
 searched_identified_workstream_pattern_engine_sources_dict = searched_identified_workstream_pattern_engine_sources_instance.to_dict()

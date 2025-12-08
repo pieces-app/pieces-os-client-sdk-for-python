@@ -3,29 +3,30 @@
 This is a Flattened Version of a Tag.
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
-**id** | **str** |  | 
-**text** | **str** |  | 
-**mechanisms** | [**Dict[str, MechanismEnum]**](MechanismEnum.md) | This is a Map&lt;String, MechanismEnum&gt; where the the key is an asset id. | [optional] 
-**assets** | [**FlattenedAssets**](FlattenedAssets.md) |  | [optional] 
-**created** | [**GroupedTimestamp**](GroupedTimestamp.md) |  | 
-**updated** | [**GroupedTimestamp**](GroupedTimestamp.md) |  | 
-**deleted** | [**GroupedTimestamp**](GroupedTimestamp.md) |  | [optional] 
-**category** | [**TagCategoryEnum**](TagCategoryEnum.md) |  | 
-**relationship** | [**Relationship**](Relationship.md) |  | [optional] 
-**interactions** | **int** | This is an optional value that will keep track of the number of times this has been interacted with. | [optional] 
-**persons** | [**FlattenedPersons**](FlattenedPersons.md) |  | [optional] 
-**score** | [**Score**](Score.md) |  | [optional] 
-**summaries** | [**FlattenedWorkstreamSummaries**](FlattenedWorkstreamSummaries.md) |  | [optional] 
-**workstream_events** | [**FlattenedWorkstreamEvents**](FlattenedWorkstreamEvents.md) |  | [optional] 
-**messages** | [**FlattenedConversationMessages**](FlattenedConversationMessages.md) |  | [optional] 
-**annotations** | [**FlattenedAnnotations**](FlattenedAnnotations.md) |  | [optional] 
-**tags_vector** | **List[float]** | This is the embedding for the format.(NEEDs to collectionection.vector) and specific here because we can only index on a single name NOTE: this the the vector index that corresponds the the couchbase lite index. | [optional] 
-**source_windows** | [**FlattenedWorkstreamPatternEngineSourceWindows**](FlattenedWorkstreamPatternEngineSourceWindows.md) |  | [optional] 
-**websites** | [**FlattenedWebsites**](FlattenedWebsites.md) |  | [optional] 
 **anchors** | [**FlattenedAnchors**](FlattenedAnchors.md) |  | [optional] 
+**annotations** | [**FlattenedAnnotations**](FlattenedAnnotations.md) |  | [optional] 
+**assets** | [**FlattenedAssets**](FlattenedAssets.md) |  | [optional] 
+**category** | [**TagCategoryEnum**](TagCategoryEnum.md) |  | 
+**created** | [**GroupedTimestamp**](GroupedTimestamp.md) |  | 
+**deleted** | [**GroupedTimestamp**](GroupedTimestamp.md) |  | [optional] 
+**id** | **str** |  | 
+**interactions** | **int** | This is an optional value that will keep track of the number of times this has been interacted with. | [optional] 
+**mechanisms** | [**Dict[str, MechanismEnum]**](MechanismEnum.md) | This is a Map&lt;String, MechanismEnum&gt; where the the key is an asset id. | [optional] 
+**messages** | [**FlattenedConversationMessages**](FlattenedConversationMessages.md) |  | [optional] 
+**persons** | [**FlattenedPersons**](FlattenedPersons.md) |  | [optional] 
+**relationship** | [**Relationship**](Relationship.md) |  | [optional] 
+**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
+**score** | [**Score**](Score.md) |  | [optional] 
+**source_windows** | [**FlattenedWorkstreamPatternEngineSourceWindows**](FlattenedWorkstreamPatternEngineSourceWindows.md) |  | [optional] 
+**summaries** | [**FlattenedWorkstreamSummaries**](FlattenedWorkstreamSummaries.md) |  | [optional] 
+**tags_vector** | **List[float]** | This is the embedding for the format.(NEEDs to collection.vector) and specific here because we can only index on a single name NOTE: this is the vector index that corresponds to the couchbase lite index. | [optional] 
+**text** | **str** |  | 
+**updated** | [**GroupedTimestamp**](GroupedTimestamp.md) |  | 
+**websites** | [**FlattenedWebsites**](FlattenedWebsites.md) |  | [optional] 
+**workstream_events** | [**FlattenedWorkstreamEvents**](FlattenedWorkstreamEvents.md) |  | [optional] 
 
 ## Example
 
@@ -37,7 +38,7 @@ json = "{}"
 # create an instance of FlattenedTag from a JSON string
 flattened_tag_instance = FlattenedTag.from_json(json)
 # print the JSON string representation of the object
-print FlattenedTag.to_json()
+print(FlattenedTag.to_json())
 
 # convert the object into a dict
 flattened_tag_dict = flattened_tag_instance.to_dict()

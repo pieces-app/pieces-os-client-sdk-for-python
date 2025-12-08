@@ -3,11 +3,12 @@
 modeled after this (https://microsoft.github.io/language-server-protocol/specifications/lsp/3.17/specification/#location)  uri: is jsut a file path  range: here is the location of where this item is within the file.
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**range** | [**LanguageServerProtocolLocationRange**](LanguageServerProtocolLocationRange.md) |  | 
 **var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 **uri** | **str** |  | 
-**range** | [**LanguageServerProtocolLocationRange**](LanguageServerProtocolLocationRange.md) |  | 
 
 ## Example
 
@@ -19,7 +20,7 @@ json = "{}"
 # create an instance of LanguageServerProtocolLocation from a JSON string
 language_server_protocol_location_instance = LanguageServerProtocolLocation.from_json(json)
 # print the JSON string representation of the object
-print LanguageServerProtocolLocation.to_json()
+print(LanguageServerProtocolLocation.to_json())
 
 # convert the object into a dict
 language_server_protocol_location_dict = language_server_protocol_location_instance.to_dict()

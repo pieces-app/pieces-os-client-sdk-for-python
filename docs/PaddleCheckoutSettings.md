@@ -2,12 +2,13 @@
 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 **display_mode** | **str** | e.g. &#39;wide-overlay&#39; | 
-**theme** | **str** | e.g. &#39;light&#39; or &#39;dark&#39; | 
 **locale** | **str** |  | [optional] 
+**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
+**theme** | **str** | e.g. &#39;light&#39; or &#39;dark&#39; | 
 
 ## Example
 
@@ -19,7 +20,7 @@ json = "{}"
 # create an instance of PaddleCheckoutSettings from a JSON string
 paddle_checkout_settings_instance = PaddleCheckoutSettings.from_json(json)
 # print the JSON string representation of the object
-print PaddleCheckoutSettings.to_json()
+print(PaddleCheckoutSettings.to_json())
 
 # convert the object into a dict
 paddle_checkout_settings_dict = paddle_checkout_settings_instance.to_dict()

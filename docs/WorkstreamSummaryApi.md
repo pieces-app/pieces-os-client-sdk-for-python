@@ -16,6 +16,7 @@ Method | HTTP request | Description
 [**workstream_summary_associate_website**](WorkstreamSummaryApi.md#workstream_summary_associate_website) | **POST** /workstream_summary/{workstream_summary}/websites/associate/{website} | /workstream_summary/{workstream_summary}/websites/associate/{website} [POST]
 [**workstream_summary_associate_workstream_event**](WorkstreamSummaryApi.md#workstream_summary_associate_workstream_event) | **POST** /workstream_summary/{workstream_summary}/workstream_events/associate/{workstream_event} | /workstream_summary/{workstream_summary}/workstream_events/associate/{workstream_event} [POST]
 [**workstream_summary_associate_workstream_pattern_engine_source**](WorkstreamSummaryApi.md#workstream_summary_associate_workstream_pattern_engine_source) | **POST** /workstream_summary/{workstream_summary}/workstream_pattern_engine/sources/associate/{source} | /workstream_summary/{workstream_summary}/workstream_pattern_engine/sources/associate/{source} [POST]
+[**workstream_summary_associate_workstream_summary**](WorkstreamSummaryApi.md#workstream_summary_associate_workstream_summary) | **POST** /workstream_summary/{workstream_summary}/workstream_summaries/associate/{additional_workstream_summary} | /workstream_summary/{workstream_summary}/workstream_summaries/associate/{additional_workstream_summary} [POST]
 [**workstream_summary_disassociate_anchor**](WorkstreamSummaryApi.md#workstream_summary_disassociate_anchor) | **POST** /workstream_summary/{workstream_summary}/anchors/disassociate/{anchor} | /workstream_summary/{workstream_summary}/anchors/disassociate/{anchor} [POST]
 [**workstream_summary_disassociate_annotation**](WorkstreamSummaryApi.md#workstream_summary_disassociate_annotation) | **POST** /workstream_summary/{workstream_summary}/annotations/disassociate/{annotation} | /workstream_summary/{workstream_summary}/annotations/disassociate/{annotation} [POST]
 [**workstream_summary_disassociate_asset**](WorkstreamSummaryApi.md#workstream_summary_disassociate_asset) | **POST** /workstream_summary/{workstream_summary}/assets/disassociate/{asset} | /workstream_summary/{workstream_summary}/assets/disassociate/{asset} [POST]
@@ -27,13 +28,17 @@ Method | HTTP request | Description
 [**workstream_summary_disassociate_website**](WorkstreamSummaryApi.md#workstream_summary_disassociate_website) | **POST** /workstream_summary/{workstream_summary}/websites/disassociate/{website} | /workstream_summary/{workstream_summary}/websites/disassociate/{website} [POST]
 [**workstream_summary_disassociate_workstream_event**](WorkstreamSummaryApi.md#workstream_summary_disassociate_workstream_event) | **POST** /workstream_summary/{workstream_summary}/workstream_events/disassociate/{workstream_event} | /workstream_summary/{workstream_summary}/workstream_events/disassociate/{workstream_event} [POST]
 [**workstream_summary_disassociate_workstream_pattern_engine_source**](WorkstreamSummaryApi.md#workstream_summary_disassociate_workstream_pattern_engine_source) | **POST** /workstream_summary/{workstream_summary}/workstream_pattern_engine/sources/disassociate/{source} | /workstream_summary/{workstream_summary}/workstream_pattern_engine/sources/disassociate/{source} [POST]
+[**workstream_summary_disassociate_workstream_summary**](WorkstreamSummaryApi.md#workstream_summary_disassociate_workstream_summary) | **POST** /workstream_summary/{workstream_summary}/workstream_summaries/disassociate/{additional_workstream_summary} | /workstream_summary/{workstream_summary}/workstream_summaries/disassociate/{additional_workstream_summary} [POST]
+[**workstream_summary_get_child_identifiers**](WorkstreamSummaryApi.md#workstream_summary_get_child_identifiers) | **GET** /workstream_summary/{workstream_summary}/child/identifiers | /workstream_summary/{workstream_summary}/child/identifiers [GET]
+[**workstream_summary_get_parent_identifiers**](WorkstreamSummaryApi.md#workstream_summary_get_parent_identifiers) | **GET** /workstream_summary/{workstream_summary}/parent/identifiers | /workstream_summary/{workstream_summary}/parent/identifiers [GET]
 [**workstream_summary_regenerate_specific_summary**](WorkstreamSummaryApi.md#workstream_summary_regenerate_specific_summary) | **POST** /workstream_summary/{workstream_summary}/regenerate/summary | /workstream_summary/{workstream_summary}/regenerate/summary [POST]
 [**workstream_summary_scores_increment**](WorkstreamSummaryApi.md#workstream_summary_scores_increment) | **POST** /workstream_summary/{workstream_summary}/scores/increment | &#39;/workstream_summary/{workstream_summary}/scores/increment&#39; [POST]
 [**workstream_summary_update**](WorkstreamSummaryApi.md#workstream_summary_update) | **POST** /workstream_summary/update | /workstream_summary/update [POST]
+[**workstream_summary_update_value**](WorkstreamSummaryApi.md#workstream_summary_update_value) | **POST** /workstream_summary/update/value | /workstream_summary/update/value [POST]
 
 
 # **workstream_summaries_specific_workstream_summary_snapshot**
-> WorkstreamSummary workstream_summaries_specific_workstream_summary_snapshot(workstream_summary, transferables=transferables)
+> WorkstreamSummary workstream_summaries_specific_workstream_summary_snapshot(workstream_summary, transferables=transferables, association_metadata=association_metadata)
 
 /workstream_summary/{workstream_summary} [GET]
 
@@ -42,9 +47,8 @@ This will get a snapshot of a single workstream_summary.
 ### Example
 
 * Api Key Authentication (application):
+
 ```python
-import time
-import os
 import pieces_os_client
 from pieces_os_client.models.workstream_summary import WorkstreamSummary
 from pieces_os_client.rest import ApiException
@@ -73,10 +77,11 @@ with pieces_os_client.ApiClient(configuration) as api_client:
     api_instance = pieces_os_client.WorkstreamSummaryApi(api_client)
     workstream_summary = 'workstream_summary_example' # str | This is a identifier that is used to identify a specific workstream_summary.
     transferables = True # bool | This is a boolean that will decided if we are want to return the transferable data (default) or not(performance enhancement) (optional)
+    association_metadata = 'association_metadata_example' # str | This is a query param, if this is provided then we will fetch additional association metadata for each of the associations that we have support for on a given material.  i.e if this is set to true on a workstream_summary you will also receive accurate child + parent relationship uuids on the material snapshot. used in the /workstream_summary/{workstream_summary} endpoint , but will scale to other endpoints in the future. (optional)
 
     try:
         # /workstream_summary/{workstream_summary} [GET]
-        api_response = api_instance.workstream_summaries_specific_workstream_summary_snapshot(workstream_summary, transferables=transferables)
+        api_response = api_instance.workstream_summaries_specific_workstream_summary_snapshot(workstream_summary, transferables=transferables, association_metadata=association_metadata)
         print("The response of WorkstreamSummaryApi->workstream_summaries_specific_workstream_summary_snapshot:\n")
         pprint(api_response)
     except Exception as e:
@@ -87,10 +92,12 @@ with pieces_os_client.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **workstream_summary** | **str**| This is a identifier that is used to identify a specific workstream_summary. | 
  **transferables** | **bool**| This is a boolean that will decided if we are want to return the transferable data (default) or not(performance enhancement) | [optional] 
+ **association_metadata** | **str**| This is a query param, if this is provided then we will fetch additional association metadata for each of the associations that we have support for on a given material.  i.e if this is set to true on a workstream_summary you will also receive accurate child + parent relationship uuids on the material snapshot. used in the /workstream_summary/{workstream_summary} endpoint , but will scale to other endpoints in the future. | [optional] 
 
 ### Return type
 
@@ -106,6 +113,7 @@ Name | Type | Description  | Notes
  - **Accept**: application/json, text/plain
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
@@ -123,9 +131,8 @@ This will associate a anchor with a workstream_summary. This will do the same th
 ### Example
 
 * Api Key Authentication (application):
+
 ```python
-import time
-import os
 import pieces_os_client
 from pieces_os_client.rest import ApiException
 from pprint import pprint
@@ -165,6 +172,7 @@ with pieces_os_client.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **workstream_summary** | **str**| This is a identifier that is used to identify a specific workstream_summary. | 
@@ -184,6 +192,7 @@ void (empty response body)
  - **Accept**: text/plain
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **204** | No Content |  -  |
@@ -201,9 +210,8 @@ This will enable us to associate an annotation with a workstream summary.
 ### Example
 
 * Api Key Authentication (application):
+
 ```python
-import time
-import os
 import pieces_os_client
 from pieces_os_client.rest import ApiException
 from pprint import pprint
@@ -243,6 +251,7 @@ with pieces_os_client.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **workstream_summary** | **str**| This is a identifier that is used to identify a specific workstream_summary. | 
@@ -262,6 +271,7 @@ void (empty response body)
  - **Accept**: text/plain
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **204** | No Content |  -  |
@@ -279,9 +289,8 @@ This will associate an asset with a workstream_summary. This will do the same th
 ### Example
 
 * Api Key Authentication (application):
+
 ```python
-import time
-import os
 import pieces_os_client
 from pieces_os_client.rest import ApiException
 from pprint import pprint
@@ -321,6 +330,7 @@ with pieces_os_client.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **workstream_summary** | **str**| This is a identifier that is used to identify a specific workstream_summary. | 
@@ -340,6 +350,7 @@ void (empty response body)
  - **Accept**: text/plain
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **204** | No Content |  -  |
@@ -357,9 +368,8 @@ This will associate an conversation with a workstream_summary. This will do the 
 ### Example
 
 * Api Key Authentication (application):
+
 ```python
-import time
-import os
 import pieces_os_client
 from pieces_os_client.rest import ApiException
 from pprint import pprint
@@ -399,6 +409,7 @@ with pieces_os_client.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **workstream_summary** | **str**| This is a identifier that is used to identify a specific workstream_summary. | 
@@ -418,6 +429,7 @@ void (empty response body)
  - **Accept**: text/plain
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **204** | No Content |  -  |
@@ -435,9 +447,8 @@ This will associate a workstream_summary with a conversation_message. This will 
 ### Example
 
 * Api Key Authentication (application):
+
 ```python
-import time
-import os
 import pieces_os_client
 from pieces_os_client.rest import ApiException
 from pprint import pprint
@@ -477,6 +488,7 @@ with pieces_os_client.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **workstream_summary** | **str**| This is a identifier that is used to identify a specific workstream_summary. | 
@@ -496,6 +508,7 @@ void (empty response body)
  - **Accept**: text/plain
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **204** | No Content |  -  |
@@ -513,9 +526,8 @@ This will associate an person with a workstream_summary. This will do the same t
 ### Example
 
 * Api Key Authentication (application):
+
 ```python
-import time
-import os
 import pieces_os_client
 from pieces_os_client.rest import ApiException
 from pprint import pprint
@@ -555,6 +567,7 @@ with pieces_os_client.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **workstream_summary** | **str**| This is a identifier that is used to identify a specific workstream_summary. | 
@@ -574,6 +587,7 @@ void (empty response body)
  - **Accept**: text/plain
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **204** | No Content |  -  |
@@ -591,9 +605,8 @@ This will associate a range with a workstream_summary. This will do the same thi
 ### Example
 
 * Api Key Authentication (application):
+
 ```python
-import time
-import os
 import pieces_os_client
 from pieces_os_client.rest import ApiException
 from pprint import pprint
@@ -633,6 +646,7 @@ with pieces_os_client.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **workstream_summary** | **str**| This is a identifier that is used to identify a specific workstream_summary. | 
@@ -652,6 +666,7 @@ void (empty response body)
  - **Accept**: text/plain
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **204** | No Content |  -  |
@@ -669,9 +684,8 @@ This will associate a workstream_summary with a tag. This will do the same thing
 ### Example
 
 * Api Key Authentication (application):
+
 ```python
-import time
-import os
 import pieces_os_client
 from pieces_os_client.rest import ApiException
 from pprint import pprint
@@ -711,6 +725,7 @@ with pieces_os_client.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **workstream_summary** | **str**| This is a identifier that is used to identify a specific workstream_summary. | 
@@ -730,6 +745,7 @@ void (empty response body)
  - **Accept**: text/plain
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **204** | No Content |  -  |
@@ -747,9 +763,8 @@ This will associate a website with a workstream_summary. This will do the same t
 ### Example
 
 * Api Key Authentication (application):
+
 ```python
-import time
-import os
 import pieces_os_client
 from pieces_os_client.rest import ApiException
 from pprint import pprint
@@ -789,6 +804,7 @@ with pieces_os_client.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **workstream_summary** | **str**| This is a identifier that is used to identify a specific workstream_summary. | 
@@ -808,6 +824,7 @@ void (empty response body)
  - **Accept**: text/plain
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **204** | No Content |  -  |
@@ -825,9 +842,8 @@ This will associate a workstream_summary with a workstream_event. This will do t
 ### Example
 
 * Api Key Authentication (application):
+
 ```python
-import time
-import os
 import pieces_os_client
 from pieces_os_client.rest import ApiException
 from pprint import pprint
@@ -867,6 +883,7 @@ with pieces_os_client.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **workstream_summary** | **str**| This is a identifier that is used to identify a specific workstream_summary. | 
@@ -886,6 +903,7 @@ void (empty response body)
  - **Accept**: text/plain
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **204** | No Content |  -  |
@@ -903,9 +921,8 @@ This will associate a workstream_summary with a workstream_pattern_engine_source
 ### Example
 
 * Api Key Authentication (application):
+
 ```python
-import time
-import os
 import pieces_os_client
 from pieces_os_client.rest import ApiException
 from pprint import pprint
@@ -945,6 +962,7 @@ with pieces_os_client.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **workstream_summary** | **str**| This is a identifier that is used to identify a specific workstream_summary. | 
@@ -964,6 +982,89 @@ void (empty response body)
  - **Accept**: text/plain
 
 ### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**204** | No Content |  -  |
+**500** | Internal Server Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **workstream_summary_associate_workstream_summary**
+> workstream_summary_associate_workstream_summary(workstream_summary, additional_workstream_summary, workstream_summary_associate_workstream_summary_input=workstream_summary_associate_workstream_summary_input)
+
+/workstream_summary/{workstream_summary}/workstream_summaries/associate/{additional_workstream_summary} [POST]
+
+This will associate a workstream_summary with a workstream_summary.
+
+### Example
+
+* Api Key Authentication (application):
+
+```python
+import pieces_os_client
+from pieces_os_client.models.workstream_summary_associate_workstream_summary_input import WorkstreamSummaryAssociateWorkstreamSummaryInput
+from pieces_os_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to http://localhost:1000
+# See configuration.py for a list of all supported configuration parameters.
+configuration = pieces_os_client.Configuration(
+    host = "http://localhost:1000"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: application
+configuration.api_key['application'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['application'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with pieces_os_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = pieces_os_client.WorkstreamSummaryApi(api_client)
+    workstream_summary = 'workstream_summary_example' # str | This is a identifier that is used to identify a specific workstream_summary.
+    additional_workstream_summary = 'additional_workstream_summary_example' # str | This is the uuid of a additional workstream_summary. note: we have additional workstream_summary because we can only a route parameter a single time in 1 route       so this is required for the WorkstreamSummary<>WorkstreamSummary association
+    workstream_summary_associate_workstream_summary_input = pieces_os_client.WorkstreamSummaryAssociateWorkstreamSummaryInput() # WorkstreamSummaryAssociateWorkstreamSummaryInput |  (optional)
+
+    try:
+        # /workstream_summary/{workstream_summary}/workstream_summaries/associate/{additional_workstream_summary} [POST]
+        api_instance.workstream_summary_associate_workstream_summary(workstream_summary, additional_workstream_summary, workstream_summary_associate_workstream_summary_input=workstream_summary_associate_workstream_summary_input)
+    except Exception as e:
+        print("Exception when calling WorkstreamSummaryApi->workstream_summary_associate_workstream_summary: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **workstream_summary** | **str**| This is a identifier that is used to identify a specific workstream_summary. | 
+ **additional_workstream_summary** | **str**| This is the uuid of a additional workstream_summary. note: we have additional workstream_summary because we can only a route parameter a single time in 1 route       so this is required for the WorkstreamSummary&lt;&gt;WorkstreamSummary association | 
+ **workstream_summary_associate_workstream_summary_input** | [**WorkstreamSummaryAssociateWorkstreamSummaryInput**](WorkstreamSummaryAssociateWorkstreamSummaryInput.md)|  | [optional] 
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[application](../README.md#application)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: text/plain
+
+### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **204** | No Content |  -  |
@@ -981,9 +1082,8 @@ This will enable us to disassociate a anchor from a workstream_summary. This wil
 ### Example
 
 * Api Key Authentication (application):
+
 ```python
-import time
-import os
 import pieces_os_client
 from pieces_os_client.rest import ApiException
 from pprint import pprint
@@ -1023,6 +1123,7 @@ with pieces_os_client.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **workstream_summary** | **str**| This is a identifier that is used to identify a specific workstream_summary. | 
@@ -1042,6 +1143,7 @@ void (empty response body)
  - **Accept**: text/plain
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **204** | No Content |  -  |
@@ -1059,9 +1161,8 @@ This will enable us to dissassociate an annotation from a workstream summary.
 ### Example
 
 * Api Key Authentication (application):
+
 ```python
-import time
-import os
 import pieces_os_client
 from pieces_os_client.rest import ApiException
 from pprint import pprint
@@ -1101,6 +1202,7 @@ with pieces_os_client.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **workstream_summary** | **str**| This is a identifier that is used to identify a specific workstream_summary. | 
@@ -1120,6 +1222,7 @@ void (empty response body)
  - **Accept**: text/plain
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **204** | No Content |  -  |
@@ -1137,9 +1240,8 @@ This will enable us to disassociate a asset from a workstream_summary. This will
 ### Example
 
 * Api Key Authentication (application):
+
 ```python
-import time
-import os
 import pieces_os_client
 from pieces_os_client.rest import ApiException
 from pprint import pprint
@@ -1179,6 +1281,7 @@ with pieces_os_client.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **workstream_summary** | **str**| This is a identifier that is used to identify a specific workstream_summary. | 
@@ -1198,6 +1301,7 @@ void (empty response body)
  - **Accept**: text/plain
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **204** | No Content |  -  |
@@ -1215,9 +1319,8 @@ This will enable us to disassociate a conversation from a workstream_summary. Th
 ### Example
 
 * Api Key Authentication (application):
+
 ```python
-import time
-import os
 import pieces_os_client
 from pieces_os_client.rest import ApiException
 from pprint import pprint
@@ -1257,6 +1360,7 @@ with pieces_os_client.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **workstream_summary** | **str**| This is a identifier that is used to identify a specific workstream_summary. | 
@@ -1276,6 +1380,7 @@ void (empty response body)
  - **Accept**: text/plain
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **204** | No Content |  -  |
@@ -1293,9 +1398,8 @@ This will enable us to disassociate a conversation_message from an workstream_su
 ### Example
 
 * Api Key Authentication (application):
+
 ```python
-import time
-import os
 import pieces_os_client
 from pieces_os_client.rest import ApiException
 from pprint import pprint
@@ -1335,6 +1439,7 @@ with pieces_os_client.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **workstream_summary** | **str**| This is a identifier that is used to identify a specific workstream_summary. | 
@@ -1354,6 +1459,7 @@ void (empty response body)
  - **Accept**: text/plain
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **204** | No Content |  -  |
@@ -1371,9 +1477,8 @@ This will enable us to disassociate a person from a workstream_summary. This wil
 ### Example
 
 * Api Key Authentication (application):
+
 ```python
-import time
-import os
 import pieces_os_client
 from pieces_os_client.rest import ApiException
 from pprint import pprint
@@ -1413,6 +1518,7 @@ with pieces_os_client.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **workstream_summary** | **str**| This is a identifier that is used to identify a specific workstream_summary. | 
@@ -1432,6 +1538,7 @@ void (empty response body)
  - **Accept**: text/plain
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **204** | No Content |  -  |
@@ -1449,9 +1556,8 @@ This will enable us to disassociate a range from a workstream_summary. This will
 ### Example
 
 * Api Key Authentication (application):
+
 ```python
-import time
-import os
 import pieces_os_client
 from pieces_os_client.rest import ApiException
 from pprint import pprint
@@ -1491,6 +1597,7 @@ with pieces_os_client.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **workstream_summary** | **str**| This is a identifier that is used to identify a specific workstream_summary. | 
@@ -1510,6 +1617,7 @@ void (empty response body)
  - **Accept**: text/plain
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **204** | No Content |  -  |
@@ -1527,9 +1635,8 @@ This will enable us to disassociate a workstream_summary from a tag. This will d
 ### Example
 
 * Api Key Authentication (application):
+
 ```python
-import time
-import os
 import pieces_os_client
 from pieces_os_client.rest import ApiException
 from pprint import pprint
@@ -1569,6 +1676,7 @@ with pieces_os_client.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **workstream_summary** | **str**| This is a identifier that is used to identify a specific workstream_summary. | 
@@ -1588,6 +1696,7 @@ void (empty response body)
  - **Accept**: text/plain
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **204** | No Content |  -  |
@@ -1605,9 +1714,8 @@ This will enable us to disassociate a website from a workstream_summary. This wi
 ### Example
 
 * Api Key Authentication (application):
+
 ```python
-import time
-import os
 import pieces_os_client
 from pieces_os_client.rest import ApiException
 from pprint import pprint
@@ -1647,6 +1755,7 @@ with pieces_os_client.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **workstream_summary** | **str**| This is a identifier that is used to identify a specific workstream_summary. | 
@@ -1666,6 +1775,7 @@ void (empty response body)
  - **Accept**: text/plain
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **204** | No Content |  -  |
@@ -1683,9 +1793,8 @@ This will enable us to disassociate a workstream_summary from a workstream_event
 ### Example
 
 * Api Key Authentication (application):
+
 ```python
-import time
-import os
 import pieces_os_client
 from pieces_os_client.rest import ApiException
 from pprint import pprint
@@ -1725,6 +1834,7 @@ with pieces_os_client.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **workstream_summary** | **str**| This is a identifier that is used to identify a specific workstream_summary. | 
@@ -1744,6 +1854,7 @@ void (empty response body)
  - **Accept**: text/plain
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **204** | No Content |  -  |
@@ -1761,9 +1872,8 @@ This will enable us to disassociate a workstream_summary from a workstream_patte
 ### Example
 
 * Api Key Authentication (application):
+
 ```python
-import time
-import os
 import pieces_os_client
 from pieces_os_client.rest import ApiException
 from pprint import pprint
@@ -1803,6 +1913,7 @@ with pieces_os_client.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **workstream_summary** | **str**| This is a identifier that is used to identify a specific workstream_summary. | 
@@ -1822,9 +1933,253 @@ void (empty response body)
  - **Accept**: text/plain
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **204** | No Content |  -  |
+**500** | Internal Server Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **workstream_summary_disassociate_workstream_summary**
+> workstream_summary_disassociate_workstream_summary(workstream_summary, additional_workstream_summary)
+
+/workstream_summary/{workstream_summary}/workstream_summaries/disassociate/{additional_workstream_summary} [POST]
+
+This will enable us to disassociate a workstream_summary from a workstream_summary.
+
+### Example
+
+* Api Key Authentication (application):
+
+```python
+import pieces_os_client
+from pieces_os_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to http://localhost:1000
+# See configuration.py for a list of all supported configuration parameters.
+configuration = pieces_os_client.Configuration(
+    host = "http://localhost:1000"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: application
+configuration.api_key['application'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['application'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with pieces_os_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = pieces_os_client.WorkstreamSummaryApi(api_client)
+    workstream_summary = 'workstream_summary_example' # str | This is a identifier that is used to identify a specific workstream_summary.
+    additional_workstream_summary = 'additional_workstream_summary_example' # str | This is the uuid of a additional workstream_summary. note: we have additional workstream_summary because we can only a route parameter a single time in 1 route       so this is required for the WorkstreamSummary<>WorkstreamSummary association
+
+    try:
+        # /workstream_summary/{workstream_summary}/workstream_summaries/disassociate/{additional_workstream_summary} [POST]
+        api_instance.workstream_summary_disassociate_workstream_summary(workstream_summary, additional_workstream_summary)
+    except Exception as e:
+        print("Exception when calling WorkstreamSummaryApi->workstream_summary_disassociate_workstream_summary: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **workstream_summary** | **str**| This is a identifier that is used to identify a specific workstream_summary. | 
+ **additional_workstream_summary** | **str**| This is the uuid of a additional workstream_summary. note: we have additional workstream_summary because we can only a route parameter a single time in 1 route       so this is required for the WorkstreamSummary&lt;&gt;WorkstreamSummary association | 
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[application](../README.md#application)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: text/plain
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**204** | No Content |  -  |
+**500** | Internal Server Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **workstream_summary_get_child_identifiers**
+> FlattenedWorkstreamSummaries workstream_summary_get_child_identifiers(workstream_summary, transferables=transferables)
+
+/workstream_summary/{workstream_summary}/child/identifiers [GET]
+
+This will get child identifiers for a specific workstream summary.
+
+### Example
+
+* Api Key Authentication (application):
+
+```python
+import pieces_os_client
+from pieces_os_client.models.flattened_workstream_summaries import FlattenedWorkstreamSummaries
+from pieces_os_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to http://localhost:1000
+# See configuration.py for a list of all supported configuration parameters.
+configuration = pieces_os_client.Configuration(
+    host = "http://localhost:1000"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: application
+configuration.api_key['application'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['application'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with pieces_os_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = pieces_os_client.WorkstreamSummaryApi(api_client)
+    workstream_summary = 'workstream_summary_example' # str | This is a identifier that is used to identify a specific workstream_summary.
+    transferables = True # bool | This is a boolean that will decided if we are want to return the transferable data (default) or not(performance enhancement) (optional)
+
+    try:
+        # /workstream_summary/{workstream_summary}/child/identifiers [GET]
+        api_response = api_instance.workstream_summary_get_child_identifiers(workstream_summary, transferables=transferables)
+        print("The response of WorkstreamSummaryApi->workstream_summary_get_child_identifiers:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling WorkstreamSummaryApi->workstream_summary_get_child_identifiers: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **workstream_summary** | **str**| This is a identifier that is used to identify a specific workstream_summary. | 
+ **transferables** | **bool**| This is a boolean that will decided if we are want to return the transferable data (default) or not(performance enhancement) | [optional] 
+
+### Return type
+
+[**FlattenedWorkstreamSummaries**](FlattenedWorkstreamSummaries.md)
+
+### Authorization
+
+[application](../README.md#application)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json, text/plain
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**500** | Internal Server Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **workstream_summary_get_parent_identifiers**
+> FlattenedWorkstreamSummaries workstream_summary_get_parent_identifiers(workstream_summary, transferables=transferables)
+
+/workstream_summary/{workstream_summary}/parent/identifiers [GET]
+
+This will get parent identifiers for a specific workstream summary.
+
+### Example
+
+* Api Key Authentication (application):
+
+```python
+import pieces_os_client
+from pieces_os_client.models.flattened_workstream_summaries import FlattenedWorkstreamSummaries
+from pieces_os_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to http://localhost:1000
+# See configuration.py for a list of all supported configuration parameters.
+configuration = pieces_os_client.Configuration(
+    host = "http://localhost:1000"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: application
+configuration.api_key['application'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['application'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with pieces_os_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = pieces_os_client.WorkstreamSummaryApi(api_client)
+    workstream_summary = 'workstream_summary_example' # str | This is a identifier that is used to identify a specific workstream_summary.
+    transferables = True # bool | This is a boolean that will decided if we are want to return the transferable data (default) or not(performance enhancement) (optional)
+
+    try:
+        # /workstream_summary/{workstream_summary}/parent/identifiers [GET]
+        api_response = api_instance.workstream_summary_get_parent_identifiers(workstream_summary, transferables=transferables)
+        print("The response of WorkstreamSummaryApi->workstream_summary_get_parent_identifiers:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling WorkstreamSummaryApi->workstream_summary_get_parent_identifiers: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **workstream_summary** | **str**| This is a identifier that is used to identify a specific workstream_summary. | 
+ **transferables** | **bool**| This is a boolean that will decided if we are want to return the transferable data (default) or not(performance enhancement) | [optional] 
+
+### Return type
+
+[**FlattenedWorkstreamSummaries**](FlattenedWorkstreamSummaries.md)
+
+### Authorization
+
+[application](../README.md#application)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json, text/plain
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
 **500** | Internal Server Error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -1840,9 +2195,8 @@ but it will just regen for now
 ### Example
 
 * Api Key Authentication (application):
+
 ```python
-import time
-import os
 import pieces_os_client
 from pieces_os_client.models.workstream_summary import WorkstreamSummary
 from pieces_os_client.rest import ApiException
@@ -1885,6 +2239,7 @@ with pieces_os_client.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **workstream_summary** | **str**| This is a identifier that is used to identify a specific workstream_summary. | 
@@ -1904,12 +2259,13 @@ Name | Type | Description  | Notes
  - **Accept**: application/json, text/plain
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
+**412** | if we return a 412, this means that the summary was set to local or the events were in |  -  |
 **500** | Internal Server Error |  -  |
 **511** | if we return a 511, they need to adjust their processing to blended or cloud for all of their models. |  -  |
-**412** | if we return a 412, this means that the summary was set to local or the events were in |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -1923,9 +2279,8 @@ This will take in a SeededScoreIncrement and will increment the material relativ
 ### Example
 
 * Api Key Authentication (application):
+
 ```python
-import time
-import os
 import pieces_os_client
 from pieces_os_client.models.seeded_score_increment import SeededScoreIncrement
 from pieces_os_client.rest import ApiException
@@ -1966,6 +2321,7 @@ with pieces_os_client.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **workstream_summary** | **str**| This is a identifier that is used to identify a specific workstream_summary. | 
@@ -1985,6 +2341,7 @@ void (empty response body)
  - **Accept**: text/plain
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **204** | No Content |  -  |
@@ -2002,9 +2359,8 @@ This will update a specific workstream_summary.
 ### Example
 
 * Api Key Authentication (application):
+
 ```python
-import time
-import os
 import pieces_os_client
 from pieces_os_client.models.workstream_summary import WorkstreamSummary
 from pieces_os_client.rest import ApiException
@@ -2047,6 +2403,7 @@ with pieces_os_client.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **transferables** | **bool**| This is a boolean that will decided if we are want to return the transferable data (default) or not(performance enhancement) | [optional] 
@@ -2066,9 +2423,91 @@ Name | Type | Description  | Notes
  - **Accept**: application/json, text/plain
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
+**500** | Internal Server Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **workstream_summary_update_value**
+> WorkstreamSummaryUpdateValueOutput workstream_summary_update_value(workstream_summary_update_value_input=workstream_summary_update_value_input)
+
+/workstream_summary/update/value [POST]
+
+This will update the value of a workstream summary.
+
+### Example
+
+* Api Key Authentication (application):
+
+```python
+import pieces_os_client
+from pieces_os_client.models.workstream_summary_update_value_input import WorkstreamSummaryUpdateValueInput
+from pieces_os_client.models.workstream_summary_update_value_output import WorkstreamSummaryUpdateValueOutput
+from pieces_os_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to http://localhost:1000
+# See configuration.py for a list of all supported configuration parameters.
+configuration = pieces_os_client.Configuration(
+    host = "http://localhost:1000"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: application
+configuration.api_key['application'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['application'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with pieces_os_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = pieces_os_client.WorkstreamSummaryApi(api_client)
+    workstream_summary_update_value_input = pieces_os_client.WorkstreamSummaryUpdateValueInput() # WorkstreamSummaryUpdateValueInput | This is the input model for updating a workstream summary's value. (optional)
+
+    try:
+        # /workstream_summary/update/value [POST]
+        api_response = api_instance.workstream_summary_update_value(workstream_summary_update_value_input=workstream_summary_update_value_input)
+        print("The response of WorkstreamSummaryApi->workstream_summary_update_value:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling WorkstreamSummaryApi->workstream_summary_update_value: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **workstream_summary_update_value_input** | [**WorkstreamSummaryUpdateValueInput**](WorkstreamSummaryUpdateValueInput.md)| This is the input model for updating a workstream summary&#39;s value. | [optional] 
+
+### Return type
+
+[**WorkstreamSummaryUpdateValueOutput**](WorkstreamSummaryUpdateValueOutput.md)
+
+### Authorization
+
+[application](../README.md#application)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json, text/plain
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK, you will get an updated workstream summary. |  -  |
 **500** | Internal Server Error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

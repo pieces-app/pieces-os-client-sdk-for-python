@@ -3,10 +3,11 @@
 This will return the permission of this specific operating system w/ relation to given features.
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 **processing** | [**OSProcessingPermissions**](OSProcessingPermissions.md) |  | [optional] 
+**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 
 ## Example
 
@@ -18,7 +19,7 @@ json = "{}"
 # create an instance of OSPermissions from a JSON string
 os_permissions_instance = OSPermissions.from_json(json)
 # print the JSON string representation of the object
-print OSPermissions.to_json()
+print(OSPermissions.to_json())
 
 # convert the object into a dict
 os_permissions_dict = os_permissions_instance.to_dict()

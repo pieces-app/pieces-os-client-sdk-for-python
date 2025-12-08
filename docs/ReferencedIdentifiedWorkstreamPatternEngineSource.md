@@ -2,11 +2,12 @@
 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 **id** | **str** |  | 
 **reference** | [**FlattenedIdentifiedWorkstreamPatternEngineSource**](FlattenedIdentifiedWorkstreamPatternEngineSource.md) |  | [optional] 
+**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 
 ## Example
 
@@ -18,7 +19,7 @@ json = "{}"
 # create an instance of ReferencedIdentifiedWorkstreamPatternEngineSource from a JSON string
 referenced_identified_workstream_pattern_engine_source_instance = ReferencedIdentifiedWorkstreamPatternEngineSource.from_json(json)
 # print the JSON string representation of the object
-print ReferencedIdentifiedWorkstreamPatternEngineSource.to_json()
+print(ReferencedIdentifiedWorkstreamPatternEngineSource.to_json())
 
 # convert the object into a dict
 referenced_identified_workstream_pattern_engine_source_dict = referenced_identified_workstream_pattern_engine_source_instance.to_dict()

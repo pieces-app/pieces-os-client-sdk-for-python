@@ -3,12 +3,13 @@
 This is a modle that will return fro mthe search endpoint that will just contain an array of assets!
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
-**iterable** | [**List[SearchedAsset]**](SearchedAsset.md) |  | 
-**suggested** | **float** | the number of fuzzy/suggested search results. | 
 **exact** | **float** | the number of exact results | 
+**iterable** | [**List[SearchedAsset]**](SearchedAsset.md) |  | 
+**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
+**suggested** | **float** | the number of fuzzy/suggested search results. | 
 
 ## Example
 
@@ -20,7 +21,7 @@ json = "{}"
 # create an instance of SearchedAssets from a JSON string
 searched_assets_instance = SearchedAssets.from_json(json)
 # print the JSON string representation of the object
-print SearchedAssets.to_json()
+print(SearchedAssets.to_json())
 
 # convert the object into a dict
 searched_assets_dict = searched_assets_instance.to_dict()

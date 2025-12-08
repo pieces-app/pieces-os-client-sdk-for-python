@@ -3,6 +3,7 @@
 This is the input body for the /os/nano_models/prepare endpoint
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
@@ -18,7 +19,7 @@ json = "{}"
 # create an instance of NanoModelsPreparationInput from a JSON string
 nano_models_preparation_input_instance = NanoModelsPreparationInput.from_json(json)
 # print the JSON string representation of the object
-print NanoModelsPreparationInput.to_json()
+print(NanoModelsPreparationInput.to_json())
 
 # convert the object into a dict
 nano_models_preparation_input_dict = nano_models_preparation_input_instance.to_dict()

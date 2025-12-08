@@ -2,14 +2,15 @@
 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**anchor** | **str** | Cannot create an AnchorPoint w/o a Anchor. | 
+**fullpath** | **str** |  | 
+**platform** | [**PlatformEnum**](PlatformEnum.md) |  | [optional] 
 **var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 **type** | [**AnchorTypeEnum**](AnchorTypeEnum.md) |  | 
 **watch** | **bool** |  | [optional] 
-**fullpath** | **str** |  | 
-**anchor** | **str** | Cannot create an AnchorPoint w/o a Anchor. | 
-**platform** | [**PlatformEnum**](PlatformEnum.md) |  | [optional] 
 
 ## Example
 
@@ -21,7 +22,7 @@ json = "{}"
 # create an instance of SeededAnchorPoint from a JSON string
 seeded_anchor_point_instance = SeededAnchorPoint.from_json(json)
 # print the JSON string representation of the object
-print SeededAnchorPoint.to_json()
+print(SeededAnchorPoint.to_json())
 
 # convert the object into a dict
 seeded_anchor_point_dict = seeded_anchor_point_instance.to_dict()

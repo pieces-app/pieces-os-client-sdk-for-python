@@ -3,11 +3,12 @@
 Top-level wrapper that discriminates on name or type
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
-**name** | **str** |  | 
 **data** | **object** |  | 
+**name** | **str** |  | 
+**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 **code** | **str** |  | [optional] 
 **detail** | **str** |  | [optional] 
 **documentation_url** | **str** |  | [optional] 
@@ -24,7 +25,7 @@ json = "{}"
 # create an instance of PaddleCheckoutEvent from a JSON string
 paddle_checkout_event_instance = PaddleCheckoutEvent.from_json(json)
 # print the JSON string representation of the object
-print PaddleCheckoutEvent.to_json()
+print(PaddleCheckoutEvent.to_json())
 
 # convert the object into a dict
 paddle_checkout_event_dict = paddle_checkout_event_instance.to_dict()

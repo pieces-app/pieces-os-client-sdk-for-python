@@ -3,10 +3,11 @@
 This is the plural Model used to return many SearchedHint.
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 **iterable** | [**List[SearchedHint]**](SearchedHint.md) |  | 
+**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 
 ## Example
 
@@ -18,7 +19,7 @@ json = "{}"
 # create an instance of SearchedHints from a JSON string
 searched_hints_instance = SearchedHints.from_json(json)
 # print the JSON string representation of the object
-print SearchedHints.to_json()
+print(SearchedHints.to_json())
 
 # convert the object into a dict
 searched_hints_dict = searched_hints_instance.to_dict()

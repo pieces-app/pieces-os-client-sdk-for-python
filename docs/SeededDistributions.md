@@ -3,10 +3,11 @@
 This is the plural version of a SeededDistribution that is not referenced just yet.
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 **iterable** | [**List[SeededDistribution]**](SeededDistribution.md) |  | 
+**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 
 ## Example
 
@@ -18,7 +19,7 @@ json = "{}"
 # create an instance of SeededDistributions from a JSON string
 seeded_distributions_instance = SeededDistributions.from_json(json)
 # print the JSON string representation of the object
-print SeededDistributions.to_json()
+print(SeededDistributions.to_json())
 
 # convert the object into a dict
 seeded_distributions_dict = seeded_distributions_instance.to_dict()

@@ -3,11 +3,12 @@
 This is the referenced version of a Anchor, main used for the uuid.
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 **id** | **str** |  | 
 **reference** | [**FlattenedAnchor**](FlattenedAnchor.md) |  | [optional] 
+**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 
 ## Example
 
@@ -19,7 +20,7 @@ json = "{}"
 # create an instance of ReferencedAnchor from a JSON string
 referenced_anchor_instance = ReferencedAnchor.from_json(json)
 # print the JSON string representation of the object
-print ReferencedAnchor.to_json()
+print(ReferencedAnchor.to_json())
 
 # convert the object into a dict
 referenced_anchor_dict = referenced_anchor_instance.to_dict()

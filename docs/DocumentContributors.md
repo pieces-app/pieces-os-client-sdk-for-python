@@ -3,10 +3,11 @@
 This is a plural representation of the DocumentContributor
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 **iterable** | [**List[DocumentContributor]**](DocumentContributor.md) |  | 
+**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 
 ## Example
 
@@ -18,7 +19,7 @@ json = "{}"
 # create an instance of DocumentContributors from a JSON string
 document_contributors_instance = DocumentContributors.from_json(json)
 # print the JSON string representation of the object
-print DocumentContributors.to_json()
+print(DocumentContributors.to_json())
 
 # convert the object into a dict
 document_contributors_dict = document_contributors_instance.to_dict()

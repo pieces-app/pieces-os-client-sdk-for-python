@@ -3,10 +3,11 @@
 This is a health model used to determine the \"health\" of the os server and cloud server(Coming Soon). READONLY Model.
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 **os** | [**OSHealth**](OSHealth.md) |  | 
+**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 
 ## Example
 
@@ -18,7 +19,7 @@ json = "{}"
 # create an instance of Health from a JSON string
 health_instance = Health.from_json(json)
 # print the JSON string representation of the object
-print Health.to_json()
+print(Health.to_json())
 
 # convert the object into a dict
 health_dict = health_instance.to_dict()

@@ -3,21 +3,22 @@
 A minimal, creation-focused model for creating a Subscription. Uses string IDs for references.
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
-**user** | [**ReferencedUser**](ReferencedUser.md) |  | 
-**next_billing_date** | [**GroupedTimestamp**](GroupedTimestamp.md) |  | [optional] 
-**paused** | [**GroupedTimestamp**](GroupedTimestamp.md) |  | [optional] 
+**active** | **bool** |  | 
 **cancelled** | [**GroupedTimestamp**](GroupedTimestamp.md) |  | [optional] 
 **created** | [**GroupedTimestamp**](GroupedTimestamp.md) |  | 
-**active** | **bool** |  | 
-**term** | [**SubscriptionTermEnum**](SubscriptionTermEnum.md) |  | 
-**quantity** | **int** |  | 
-**subscription_id** | **str** |  | 
-**product_id** | **str** |  | 
 **name** | **str** |  | 
+**next_billing_date** | [**GroupedTimestamp**](GroupedTimestamp.md) |  | [optional] 
+**paused** | [**GroupedTimestamp**](GroupedTimestamp.md) |  | [optional] 
 **price_id** | **str** |  | 
+**product_id** | **str** |  | 
+**quantity** | **int** |  | 
+**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
+**subscription_id** | **str** |  | 
+**term** | [**SubscriptionTermEnum**](SubscriptionTermEnum.md) |  | 
+**user** | [**ReferencedUser**](ReferencedUser.md) |  | 
 
 ## Example
 
@@ -29,7 +30,7 @@ json = "{}"
 # create an instance of SeededSubscription from a JSON string
 seeded_subscription_instance = SeededSubscription.from_json(json)
 # print the JSON string representation of the object
-print SeededSubscription.to_json()
+print(SeededSubscription.to_json())
 
 # convert the object into a dict
 seeded_subscription_dict = seeded_subscription_instance.to_dict()

@@ -3,11 +3,12 @@
 This is the output model for \"/conversation/{conversation}/summarize
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
-**conversation** | [**ReferencedConversation**](ReferencedConversation.md) |  | 
 **annotation** | [**ReferencedAnnotation**](ReferencedAnnotation.md) |  | 
+**conversation** | [**ReferencedConversation**](ReferencedConversation.md) |  | 
+**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 
 ## Example
 
@@ -19,7 +20,7 @@ json = "{}"
 # create an instance of ConversationSummarizeOutput from a JSON string
 conversation_summarize_output_instance = ConversationSummarizeOutput.from_json(json)
 # print the JSON string representation of the object
-print ConversationSummarizeOutput.to_json()
+print(ConversationSummarizeOutput.to_json())
 
 # convert the object into a dict
 conversation_summarize_output_dict = conversation_summarize_output_instance.to_dict()

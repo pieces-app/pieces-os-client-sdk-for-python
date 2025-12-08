@@ -22,9 +22,8 @@ Creates a User From a oAuth Token
 * OAuth Authentication (auth0):
 * OAuth Authentication (auth0):
 * OAuth Authentication (auth0):
+
 ```python
-import time
-import os
 import pieces_os_client
 from pieces_os_client.models.o_auth_token import OAuthToken
 from pieces_os_client.models.user_profile import UserProfile
@@ -67,6 +66,7 @@ with pieces_os_client.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **o_auth_token** | [**OAuthToken**](OAuthToken.md)|  | [optional] 
@@ -85,6 +85,7 @@ Name | Type | Description  | Notes
  - **Accept**: application/json
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
@@ -101,9 +102,8 @@ Locally Removing a user for the purpose of Signing Out
 ### Example
 
 * Api Key Authentication (application):
+
 ```python
-import time
-import os
 import pieces_os_client
 from pieces_os_client.models.users import Users
 from pieces_os_client.rest import ApiException
@@ -145,6 +145,7 @@ with pieces_os_client.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **user** | **str**|  | 
@@ -163,6 +164,7 @@ Name | Type | Description  | Notes
  - **Accept**: application/json
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
@@ -179,9 +181,8 @@ this will return a snapshot of all of the users that are in the users database. 
 ### Example
 
 * Api Key Authentication (application):
+
 ```python
-import time
-import os
 import pieces_os_client
 from pieces_os_client.models.users import Users
 from pieces_os_client.rest import ApiException
@@ -221,6 +222,7 @@ with pieces_os_client.ApiClient(configuration) as api_client:
 
 
 ### Parameters
+
 This endpoint does not need any parameter.
 
 ### Return type
@@ -237,6 +239,7 @@ This endpoint does not need any parameter.
  - **Accept**: application/json
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
@@ -254,9 +257,8 @@ This endpoint will return a UserPRofile or will throw an error since you are sen
 ### Example
 
 * Api Key Authentication (application):
+
 ```python
-import time
-import os
 import pieces_os_client
 from pieces_os_client.models.user_profile import UserProfile
 from pieces_os_client.rest import ApiException
@@ -298,6 +300,7 @@ with pieces_os_client.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **user** | **str**| The id (uuid) for a specific user. | 
@@ -316,6 +319,7 @@ Name | Type | Description  | Notes
  - **Accept**: application/json
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |

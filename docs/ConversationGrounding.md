@@ -3,12 +3,13 @@
 This is the context used for grounding the ml models with reguard to a conversation.
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 **messages** | [**FlattenedConversationMessages**](FlattenedConversationMessages.md) |  | [optional] 
-**temporal** | [**TemporalRangeGrounding**](TemporalRangeGrounding.md) |  | [optional] 
+**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 **sources** | [**FlattenedIdentifiedWorkstreamPatternEngineSources**](FlattenedIdentifiedWorkstreamPatternEngineSources.md) |  | [optional] 
+**temporal** | [**TemporalRangeGrounding**](TemporalRangeGrounding.md) |  | [optional] 
 
 ## Example
 
@@ -20,7 +21,7 @@ json = "{}"
 # create an instance of ConversationGrounding from a JSON string
 conversation_grounding_instance = ConversationGrounding.from_json(json)
 # print the JSON string representation of the object
-print ConversationGrounding.to_json()
+print(ConversationGrounding.to_json())
 
 # convert the object into a dict
 conversation_grounding_dict = conversation_grounding_instance.to_dict()

@@ -5,7 +5,12 @@ All URIs are relative to *http://localhost:1000*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**workstream_pattern_engine_create_ingestion**](WorkstreamPatternEngineApi.md#workstream_pattern_engine_create_ingestion) | **POST** /workstream_pattern_engine/ingestions/create | /workstream_pattern_engine/ingestions/create [POST]
+[**workstream_pattern_engine_processors_activate**](WorkstreamPatternEngineApi.md#workstream_pattern_engine_processors_activate) | **POST** /workstream_pattern_engine/processors/{processor}/activate | /workstream_pattern_engine/processors/{processor}/activate [POST]
+[**workstream_pattern_engine_processors_data_clear**](WorkstreamPatternEngineApi.md#workstream_pattern_engine_processors_data_clear) | **POST** /workstream_pattern_engine/processors/{processor}/data/clear | /workstream_pattern_engine/processors/{processor}/data/clear [POST]
+[**workstream_pattern_engine_processors_deactivate**](WorkstreamPatternEngineApi.md#workstream_pattern_engine_processors_deactivate) | **POST** /workstream_pattern_engine/processors/{processor}/deactivate | /workstream_pattern_engine/processors/{processor}/deactivate [POST]
 [**workstream_pattern_engine_processors_sources**](WorkstreamPatternEngineApi.md#workstream_pattern_engine_processors_sources) | **GET** /workstream_pattern_engine/processors/sources | /workstream_pattern_engine/processors/sources [GET]
+[**workstream_pattern_engine_processors_status**](WorkstreamPatternEngineApi.md#workstream_pattern_engine_processors_status) | **GET** /workstream_pattern_engine/processors/status | /workstream_pattern_engine/processors/status [GET]
+[**workstream_pattern_engine_processors_unified_status_stream**](WorkstreamPatternEngineApi.md#workstream_pattern_engine_processors_unified_status_stream) | **GET** /workstream_pattern_engine/processors/status/stream | /workstream_pattern_engine/processors/status/stream [WS]
 [**workstream_pattern_engine_processors_vision_activate**](WorkstreamPatternEngineApi.md#workstream_pattern_engine_processors_vision_activate) | **POST** /workstream_pattern_engine/processors/vision/activate | /workstream_pattern_engine/processors/vision/activate [POST]
 [**workstream_pattern_engine_processors_vision_calibration_capture**](WorkstreamPatternEngineApi.md#workstream_pattern_engine_processors_vision_calibration_capture) | **POST** /workstream_pattern_engine/processors/vision/calibration/capture | /workstream_pattern_engine/processors/vision/calibration/capture [POST]
 [**workstream_pattern_engine_processors_vision_calibrations_focused**](WorkstreamPatternEngineApi.md#workstream_pattern_engine_processors_vision_calibrations_focused) | **GET** /workstream_pattern_engine/processors/vision/calibrations/focused | /workstream_pattern_engine/processors/vision/calibrations/focused [GET]
@@ -37,9 +42,8 @@ relevant Heads up display of useful materials.
 ### Example
 
 * Api Key Authentication (application):
+
 ```python
-import time
-import os
 import pieces_os_client
 from pieces_os_client.models.seeded_workstream_ingestion import SeededWorkstreamIngestion
 from pieces_os_client.models.workstream_ingestion import WorkstreamIngestion
@@ -82,6 +86,7 @@ with pieces_os_client.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **seeded_workstream_ingestion** | [**SeededWorkstreamIngestion**](SeededWorkstreamIngestion.md)|  | [optional] 
@@ -100,6 +105,262 @@ Name | Type | Description  | Notes
  - **Accept**: application/json, text/plain
 
 ### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**500** | Internal Server Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **workstream_pattern_engine_processors_activate**
+> WorkstreamPatternEngineStatus workstream_pattern_engine_processors_activate(processor, workstream_pattern_engine_status=workstream_pattern_engine_status)
+
+/workstream_pattern_engine/processors/{processor}/activate [POST]
+
+Activates the Workstream Pattern Engine processor. Once activated, the system will 
+monitor processor-specific operations across all applications, extracting and processing 
+relevant content to enhance copilot conversations and feed recommendations.
+
+### Example
+
+* Api Key Authentication (application):
+
+```python
+import pieces_os_client
+from pieces_os_client.models.workstream_pattern_engine_status import WorkstreamPatternEngineStatus
+from pieces_os_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to http://localhost:1000
+# See configuration.py for a list of all supported configuration parameters.
+configuration = pieces_os_client.Configuration(
+    host = "http://localhost:1000"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: application
+configuration.api_key['application'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['application'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with pieces_os_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = pieces_os_client.WorkstreamPatternEngineApi(api_client)
+    processor = UNKNOWN # str | The processor type to operate on (e.g., vision, clipboard) (default to UNKNOWN)
+    workstream_pattern_engine_status = pieces_os_client.WorkstreamPatternEngineStatus() # WorkstreamPatternEngineStatus |  (optional)
+
+    try:
+        # /workstream_pattern_engine/processors/{processor}/activate [POST]
+        api_response = api_instance.workstream_pattern_engine_processors_activate(processor, workstream_pattern_engine_status=workstream_pattern_engine_status)
+        print("The response of WorkstreamPatternEngineApi->workstream_pattern_engine_processors_activate:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling WorkstreamPatternEngineApi->workstream_pattern_engine_processors_activate: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **processor** | **str**| The processor type to operate on (e.g., vision, clipboard) | [default to UNKNOWN]
+ **workstream_pattern_engine_status** | [**WorkstreamPatternEngineStatus**](WorkstreamPatternEngineStatus.md)|  | [optional] 
+
+### Return type
+
+[**WorkstreamPatternEngineStatus**](WorkstreamPatternEngineStatus.md)
+
+### Authorization
+
+[application](../README.md#application)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json, text/plain
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**500** | Internal Server Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **workstream_pattern_engine_processors_data_clear**
+> workstream_pattern_engine_processors_data_clear(processor, workstream_pattern_engine_data_cleanup_request=workstream_pattern_engine_data_cleanup_request)
+
+/workstream_pattern_engine/processors/{processor}/data/clear [POST]
+
+Clears data collected by the Workstream Pattern Engine processor.
+
+Accepts time ranges to selectively remove processor history:
+- Specify 'from' and 'to' for a specific range
+- Use only 'to' to clear everything before a certain time
+- Use only 'from' to clear everything after a certain time
+- Omit 'from' and set 'to' to current time to clear all data
+
+### Example
+
+* Api Key Authentication (application):
+
+```python
+import pieces_os_client
+from pieces_os_client.models.workstream_pattern_engine_data_cleanup_request import WorkstreamPatternEngineDataCleanupRequest
+from pieces_os_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to http://localhost:1000
+# See configuration.py for a list of all supported configuration parameters.
+configuration = pieces_os_client.Configuration(
+    host = "http://localhost:1000"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: application
+configuration.api_key['application'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['application'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with pieces_os_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = pieces_os_client.WorkstreamPatternEngineApi(api_client)
+    processor = UNKNOWN # str | The processor type to operate on (e.g., vision, clipboard) (default to UNKNOWN)
+    workstream_pattern_engine_data_cleanup_request = pieces_os_client.WorkstreamPatternEngineDataCleanupRequest() # WorkstreamPatternEngineDataCleanupRequest |  (optional)
+
+    try:
+        # /workstream_pattern_engine/processors/{processor}/data/clear [POST]
+        api_instance.workstream_pattern_engine_processors_data_clear(processor, workstream_pattern_engine_data_cleanup_request=workstream_pattern_engine_data_cleanup_request)
+    except Exception as e:
+        print("Exception when calling WorkstreamPatternEngineApi->workstream_pattern_engine_processors_data_clear: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **processor** | **str**| The processor type to operate on (e.g., vision, clipboard) | [default to UNKNOWN]
+ **workstream_pattern_engine_data_cleanup_request** | [**WorkstreamPatternEngineDataCleanupRequest**](WorkstreamPatternEngineDataCleanupRequest.md)|  | [optional] 
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[application](../README.md#application)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: text/plain
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**204** | No Content |  -  |
+**500** | Internal Server Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **workstream_pattern_engine_processors_deactivate**
+> WorkstreamPatternEngineStatus workstream_pattern_engine_processors_deactivate(processor, workstream_pattern_engine_status=workstream_pattern_engine_status)
+
+/workstream_pattern_engine/processors/{processor}/deactivate [POST]
+
+Deactivates the Workstream Pattern Engine processor. This stops all processor 
+monitoring activities while preserving previously collected data.
+
+Deactivation can be temporary (time-based) or permanent based on the request parameters.
+
+### Example
+
+* Api Key Authentication (application):
+
+```python
+import pieces_os_client
+from pieces_os_client.models.workstream_pattern_engine_status import WorkstreamPatternEngineStatus
+from pieces_os_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to http://localhost:1000
+# See configuration.py for a list of all supported configuration parameters.
+configuration = pieces_os_client.Configuration(
+    host = "http://localhost:1000"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: application
+configuration.api_key['application'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['application'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with pieces_os_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = pieces_os_client.WorkstreamPatternEngineApi(api_client)
+    processor = UNKNOWN # str | The processor type to operate on (e.g., vision, clipboard) (default to UNKNOWN)
+    workstream_pattern_engine_status = pieces_os_client.WorkstreamPatternEngineStatus() # WorkstreamPatternEngineStatus |  (optional)
+
+    try:
+        # /workstream_pattern_engine/processors/{processor}/deactivate [POST]
+        api_response = api_instance.workstream_pattern_engine_processors_deactivate(processor, workstream_pattern_engine_status=workstream_pattern_engine_status)
+        print("The response of WorkstreamPatternEngineApi->workstream_pattern_engine_processors_deactivate:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling WorkstreamPatternEngineApi->workstream_pattern_engine_processors_deactivate: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **processor** | **str**| The processor type to operate on (e.g., vision, clipboard) | [default to UNKNOWN]
+ **workstream_pattern_engine_status** | [**WorkstreamPatternEngineStatus**](WorkstreamPatternEngineStatus.md)|  | [optional] 
+
+### Return type
+
+[**WorkstreamPatternEngineStatus**](WorkstreamPatternEngineStatus.md)
+
+### Authorization
+
+[application](../README.md#application)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json, text/plain
+
+### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
@@ -117,9 +378,8 @@ This will return all of the applications(focused windows) that have events saved
 ### Example
 
 * Api Key Authentication (application):
+
 ```python
-import time
-import os
 import pieces_os_client
 from pieces_os_client.models.workstream_pattern_engine_sources import WorkstreamPatternEngineSources
 from pieces_os_client.rest import ApiException
@@ -159,6 +419,7 @@ with pieces_os_client.ApiClient(configuration) as api_client:
 
 
 ### Parameters
+
 This endpoint does not need any parameter.
 
 ### Return type
@@ -175,6 +436,170 @@ This endpoint does not need any parameter.
  - **Accept**: application/json, text/plain
 
 ### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**500** | Internal Server Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **workstream_pattern_engine_processors_status**
+> WorkstreamPatternEngineStatus workstream_pattern_engine_processors_status()
+
+/workstream_pattern_engine/processors/status [GET]
+
+This will get a snapshot of the status of your Workstream Pattern Engine processor. 
+The processor monitors and aggregates relevant context that will be used to ground 
+copilot conversations and enhance the feed.
+
+### Example
+
+* Api Key Authentication (application):
+
+```python
+import pieces_os_client
+from pieces_os_client.models.workstream_pattern_engine_status import WorkstreamPatternEngineStatus
+from pieces_os_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to http://localhost:1000
+# See configuration.py for a list of all supported configuration parameters.
+configuration = pieces_os_client.Configuration(
+    host = "http://localhost:1000"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: application
+configuration.api_key['application'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['application'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with pieces_os_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = pieces_os_client.WorkstreamPatternEngineApi(api_client)
+
+    try:
+        # /workstream_pattern_engine/processors/status [GET]
+        api_response = api_instance.workstream_pattern_engine_processors_status()
+        print("The response of WorkstreamPatternEngineApi->workstream_pattern_engine_processors_status:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling WorkstreamPatternEngineApi->workstream_pattern_engine_processors_status: %s\n" % e)
+```
+
+
+
+### Parameters
+
+This endpoint does not need any parameter.
+
+### Return type
+
+[**WorkstreamPatternEngineStatus**](WorkstreamPatternEngineStatus.md)
+
+### Authorization
+
+[application](../README.md#application)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json, text/plain
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**500** | Internal Server Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **workstream_pattern_engine_processors_unified_status_stream**
+> WorkstreamPatternEngineStatus workstream_pattern_engine_processors_unified_status_stream()
+
+/workstream_pattern_engine/processors/status/stream [WS]
+
+WebSocket endpoint for real-time status updates of all workstream pattern engine processors.
+
+This single stream provides continuous updates for all processor types (vision, clipboard, etc.),
+eliminating the need for separate connections per processor. The response includes the full
+WorkstreamPatternEngineStatus which contains status information for all active processors.
+
+Events are emitted whenever any processor's status changes, including:
+- Processor activation/deactivation
+- Status updates (events processed, degraded mode, etc.)
+- Error conditions
+
+### Example
+
+* Api Key Authentication (application):
+
+```python
+import pieces_os_client
+from pieces_os_client.models.workstream_pattern_engine_status import WorkstreamPatternEngineStatus
+from pieces_os_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to http://localhost:1000
+# See configuration.py for a list of all supported configuration parameters.
+configuration = pieces_os_client.Configuration(
+    host = "http://localhost:1000"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: application
+configuration.api_key['application'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['application'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with pieces_os_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = pieces_os_client.WorkstreamPatternEngineApi(api_client)
+
+    try:
+        # /workstream_pattern_engine/processors/status/stream [WS]
+        api_response = api_instance.workstream_pattern_engine_processors_unified_status_stream()
+        print("The response of WorkstreamPatternEngineApi->workstream_pattern_engine_processors_unified_status_stream:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling WorkstreamPatternEngineApi->workstream_pattern_engine_processors_unified_status_stream: %s\n" % e)
+```
+
+
+
+### Parameters
+
+This endpoint does not need any parameter.
+
+### Return type
+
+[**WorkstreamPatternEngineStatus**](WorkstreamPatternEngineStatus.md)
+
+### Authorization
+
+[application](../README.md#application)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json, text/plain
+
+### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
@@ -195,9 +620,8 @@ Note: required to be a beta user to use this feature until this is live(roughly 
 ### Example
 
 * Api Key Authentication (application):
+
 ```python
-import time
-import os
 import pieces_os_client
 from pieces_os_client.models.workstream_pattern_engine_status import WorkstreamPatternEngineStatus
 from pieces_os_client.rest import ApiException
@@ -239,6 +663,7 @@ with pieces_os_client.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **workstream_pattern_engine_status** | [**WorkstreamPatternEngineStatus**](WorkstreamPatternEngineStatus.md)|  | [optional] 
@@ -257,6 +682,7 @@ Name | Type | Description  | Notes
  - **Accept**: application/json, text/plain
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
@@ -277,9 +703,8 @@ note: in the future we can make a differentiation of the dimensions based on the
 ### Example
 
 * Api Key Authentication (application):
+
 ```python
-import time
-import os
 import pieces_os_client
 from pieces_os_client.models.workstream_pattern_engine_vision_calibration import WorkstreamPatternEngineVisionCalibration
 from pieces_os_client.rest import ApiException
@@ -319,6 +744,7 @@ with pieces_os_client.ApiClient(configuration) as api_client:
 
 
 ### Parameters
+
 This endpoint does not need any parameter.
 
 ### Return type
@@ -335,6 +761,7 @@ This endpoint does not need any parameter.
  - **Accept**: application/json, text/plain
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
@@ -362,9 +789,8 @@ note: we will also return the window name in the returnable so the dev can verif
 ### Example
 
 * Api Key Authentication (application):
+
 ```python
-import time
-import os
 import pieces_os_client
 from pieces_os_client.models.workstream_pattern_engine_vision_calibration import WorkstreamPatternEngineVisionCalibration
 from pieces_os_client.rest import ApiException
@@ -404,6 +830,7 @@ with pieces_os_client.ApiClient(configuration) as api_client:
 
 
 ### Parameters
+
 This endpoint does not need any parameter.
 
 ### Return type
@@ -420,6 +847,7 @@ This endpoint does not need any parameter.
  - **Accept**: application/json, text/plain
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
@@ -441,9 +869,8 @@ note: in the future we can make a differentiation of the dimensions based on the
 ### Example
 
 * Api Key Authentication (application):
+
 ```python
-import time
-import os
 import pieces_os_client
 from pieces_os_client.models.workstream_pattern_engine_vision_calibrations import WorkstreamPatternEngineVisionCalibrations
 from pieces_os_client.rest import ApiException
@@ -483,6 +910,7 @@ with pieces_os_client.ApiClient(configuration) as api_client:
 
 
 ### Parameters
+
 This endpoint does not need any parameter.
 
 ### Return type
@@ -499,6 +927,7 @@ This endpoint does not need any parameter.
  - **Accept**: application/json, text/plain
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
@@ -518,9 +947,8 @@ This boy will accept ranges of time that the user wants to remove the processing
 ### Example
 
 * Api Key Authentication (application):
+
 ```python
-import time
-import os
 import pieces_os_client
 from pieces_os_client.models.workstream_pattern_engine_data_cleanup_request import WorkstreamPatternEngineDataCleanupRequest
 from pieces_os_client.rest import ApiException
@@ -560,6 +988,7 @@ with pieces_os_client.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **workstream_pattern_engine_data_cleanup_request** | [**WorkstreamPatternEngineDataCleanupRequest**](WorkstreamPatternEngineDataCleanupRequest.md)|  | [optional] 
@@ -578,6 +1007,7 @@ void (empty response body)
  - **Accept**: text/plain
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **204** | No Content |  -  |
@@ -599,9 +1029,8 @@ Note: required to be a beta user to use this feature until this is live(roughly 
 ### Example
 
 * Api Key Authentication (application):
+
 ```python
-import time
-import os
 import pieces_os_client
 from pieces_os_client.models.workstream_pattern_engine_status import WorkstreamPatternEngineStatus
 from pieces_os_client.rest import ApiException
@@ -643,6 +1072,7 @@ with pieces_os_client.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **workstream_pattern_engine_status** | [**WorkstreamPatternEngineStatus**](WorkstreamPatternEngineStatus.md)|  | [optional] 
@@ -661,6 +1091,7 @@ Name | Type | Description  | Notes
  - **Accept**: application/json, text/plain
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
@@ -679,9 +1110,8 @@ This will delete a single event.
 ### Example
 
 * Api Key Authentication (application):
+
 ```python
-import time
-import os
 import pieces_os_client
 from pieces_os_client.rest import ApiException
 from pprint import pprint
@@ -720,6 +1150,7 @@ with pieces_os_client.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **vision_event** | **str**| This is a identifier that is used to identify a specific WPE_vision event. | 
@@ -738,6 +1169,7 @@ void (empty response body)
  - **Accept**: text/plain
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **204** | No Content |  -  |
@@ -755,9 +1187,8 @@ This will remove the UUIDs that were removed from the qdrant event.
 ### Example
 
 * Api Key Authentication (application):
+
 ```python
-import time
-import os
 import pieces_os_client
 from pieces_os_client.models.flattened_workstream_pattern_engine_vision_events import FlattenedWorkstreamPatternEngineVisionEvents
 from pieces_os_client.models.workstream_pattern_engine_vision_event_deletions import WorkstreamPatternEngineVisionEventDeletions
@@ -800,6 +1231,7 @@ with pieces_os_client.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **workstream_pattern_engine_vision_event_deletions** | [**WorkstreamPatternEngineVisionEventDeletions**](WorkstreamPatternEngineVisionEventDeletions.md)|  | [optional] 
@@ -818,6 +1250,7 @@ Name | Type | Description  | Notes
  - **Accept**: application/json, text/plain
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
@@ -835,9 +1268,8 @@ This will search your WPE events and will return a list of events that match the
 ### Example
 
 * Api Key Authentication (application):
+
 ```python
-import time
-import os
 import pieces_os_client
 from pieces_os_client.models.search_input import SearchInput
 from pieces_os_client.models.searched_workstream_pattern_engine_vision_events import SearchedWorkstreamPatternEngineVisionEvents
@@ -881,6 +1313,7 @@ with pieces_os_client.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **transferables** | **bool**| This is a boolean that will decided if we are want to return the transferable data (default) or not(performance enhancement) | [optional] 
@@ -900,6 +1333,7 @@ Name | Type | Description  | Notes
  - **Accept**: application/json, text/plain
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
@@ -920,9 +1354,8 @@ note: if the transferables: are true then we will provide values for each of our
 ### Example
 
 * Api Key Authentication (application):
+
 ```python
-import time
-import os
 import pieces_os_client
 from pieces_os_client.models.workstream_pattern_engine_vision_events import WorkstreamPatternEngineVisionEvents
 from pieces_os_client.rest import ApiException
@@ -964,6 +1397,7 @@ with pieces_os_client.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **transferables** | **bool**| This is a boolean that will decided if we are want to return the transferable data (default) or not(performance enhancement) | [optional] 
@@ -982,6 +1416,7 @@ Name | Type | Description  | Notes
  - **Accept**: application/json, text/plain
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
@@ -999,9 +1434,8 @@ This will return a specific event from the WPE.
 ### Example
 
 * Api Key Authentication (application):
+
 ```python
-import time
-import os
 import pieces_os_client
 from pieces_os_client.models.workstream_pattern_engine_vision_event import WorkstreamPatternEngineVisionEvent
 from pieces_os_client.rest import ApiException
@@ -1044,6 +1478,7 @@ with pieces_os_client.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **vision_event** | **str**| This is a identifier that is used to identify a specific WPE_vision event. | 
@@ -1063,6 +1498,7 @@ Name | Type | Description  | Notes
  - **Accept**: application/json, text/plain
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
@@ -1080,9 +1516,8 @@ This is an endpoint that will return the metadata of the vision data (WPE qdrant
 ### Example
 
 * Api Key Authentication (application):
+
 ```python
-import time
-import os
 import pieces_os_client
 from pieces_os_client.models.workstream_pattern_engine_vision_metadata import WorkstreamPatternEngineVisionMetadata
 from pieces_os_client.rest import ApiException
@@ -1122,6 +1557,7 @@ with pieces_os_client.ApiClient(configuration) as api_client:
 
 
 ### Parameters
+
 This endpoint does not need any parameter.
 
 ### Return type
@@ -1138,6 +1574,7 @@ This endpoint does not need any parameter.
  - **Accept**: application/json, text/plain
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
@@ -1158,9 +1595,8 @@ Note: required to be a beta user to use this feature until this is live(roughly 
 ### Example
 
 * Api Key Authentication (application):
+
 ```python
-import time
-import os
 import pieces_os_client
 from pieces_os_client.models.workstream_pattern_engine_status import WorkstreamPatternEngineStatus
 from pieces_os_client.rest import ApiException
@@ -1200,6 +1636,7 @@ with pieces_os_client.ApiClient(configuration) as api_client:
 
 
 ### Parameters
+
 This endpoint does not need any parameter.
 
 ### Return type
@@ -1216,6 +1653,7 @@ This endpoint does not need any parameter.
  - **Accept**: application/json, text/plain
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
@@ -1238,9 +1676,8 @@ This will emit a "WorkstreamPatternEngineStatus" Model.
 ### Example
 
 * Api Key Authentication (application):
+
 ```python
-import time
-import os
 import pieces_os_client
 from pieces_os_client.models.workstream_pattern_engine_status import WorkstreamPatternEngineStatus
 from pieces_os_client.rest import ApiException
@@ -1280,6 +1717,7 @@ with pieces_os_client.ApiClient(configuration) as api_client:
 
 
 ### Parameters
+
 This endpoint does not need any parameter.
 
 ### Return type
@@ -1296,6 +1734,7 @@ This endpoint does not need any parameter.
  - **Accept**: application/json, text/plain
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |

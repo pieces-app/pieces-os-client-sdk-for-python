@@ -3,11 +3,12 @@
 This is multiple ReferencedTags(which includes an optional FlattenedTag Model within the reference model).
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
-**iterable** | [**List[ReferencedTag]**](ReferencedTag.md) |  | 
 **indices** | **Dict[str, int]** | This is a Map&lt;String, int&gt; where the the key is an tag id. | [optional] 
+**iterable** | [**List[ReferencedTag]**](ReferencedTag.md) |  | 
+**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 **score** | [**Score**](Score.md) |  | [optional] 
 
 ## Example
@@ -20,7 +21,7 @@ json = "{}"
 # create an instance of FlattenedTags from a JSON string
 flattened_tags_instance = FlattenedTags.from_json(json)
 # print the JSON string representation of the object
-print FlattenedTags.to_json()
+print(FlattenedTags.to_json())
 
 # convert the object into a dict
 flattened_tags_dict = flattened_tags_instance.to_dict()

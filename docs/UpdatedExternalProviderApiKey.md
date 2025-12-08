@@ -3,10 +3,11 @@
 This is the update Auth0UserMetadata object, and the specific update output model for \"/external_provider/api_key/update\"
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 **metadata** | [**Auth0UserMetadata**](Auth0UserMetadata.md) |  | 
+**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 
 ## Example
 
@@ -18,7 +19,7 @@ json = "{}"
 # create an instance of UpdatedExternalProviderApiKey from a JSON string
 updated_external_provider_api_key_instance = UpdatedExternalProviderApiKey.from_json(json)
 # print the JSON string representation of the object
-print UpdatedExternalProviderApiKey.to_json()
+print(UpdatedExternalProviderApiKey.to_json())
 
 # convert the object into a dict
 updated_external_provider_api_key_dict = updated_external_provider_api_key_instance.to_dict()

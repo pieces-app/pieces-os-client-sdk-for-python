@@ -3,12 +3,13 @@
 This will describe the MaxTokens for an MLModel  total is required.  iff there is a differentiator with inputs/outputs, then we can also provide those as well.
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
-**total** | **float** |  | 
 **input** | **float** |  | [optional] 
 **output** | **float** |  | [optional] 
+**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
+**total** | **float** |  | 
 
 ## Example
 
@@ -20,7 +21,7 @@ json = "{}"
 # create an instance of ModelMaxTokens from a JSON string
 model_max_tokens_instance = ModelMaxTokens.from_json(json)
 # print the JSON string representation of the object
-print ModelMaxTokens.to_json()
+print(ModelMaxTokens.to_json())
 
 # convert the object into a dict
 model_max_tokens_dict = model_max_tokens_instance.to_dict()

@@ -3,13 +3,14 @@
 Note: parent is optional here in the case that (parent here is the integration that wants the module launched(VSCode))
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
+**handler** | [**AppletServingHandlerType**](AppletServingHandlerType.md) |  | [optional] 
 **parent** | [**Application**](Application.md) |  | [optional] 
 **port** | **int** | This is the port number in which we want to serve the copilot at. | [optional] 
+**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 **type** | [**OSAppletEnum**](OSAppletEnum.md) |  | 
-**handler** | [**AppletServingHandlerType**](AppletServingHandlerType.md) |  | [optional] 
 
 ## Example
 
@@ -21,7 +22,7 @@ json = "{}"
 # create an instance of InactiveOSServerApplet from a JSON string
 inactive_os_server_applet_instance = InactiveOSServerApplet.from_json(json)
 # print the JSON string representation of the object
-print InactiveOSServerApplet.to_json()
+print(InactiveOSServerApplet.to_json())
 
 # convert the object into a dict
 inactive_os_server_applet_dict = inactive_os_server_applet_instance.to_dict()

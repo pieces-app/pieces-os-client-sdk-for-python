@@ -3,12 +3,13 @@
 This is the given context for an IDE.  tabs: this here refers to the tabs w/in the IDE.  Modules here are the given repositories  Name: this is the name of a workspace, but not required.
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
-**tabs** | [**IDETabs**](IDETabs.md) |  | [optional] 
 **modules** | [**ProjectModules**](ProjectModules.md) |  | [optional] 
 **name** | **str** |  | [optional] 
+**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
+**tabs** | [**IDETabs**](IDETabs.md) |  | [optional] 
 
 ## Example
 
@@ -20,7 +21,7 @@ json = "{}"
 # create an instance of WorkstreamEventTriggerContextIDE from a JSON string
 workstream_event_trigger_context_ide_instance = WorkstreamEventTriggerContextIDE.from_json(json)
 # print the JSON string representation of the object
-print WorkstreamEventTriggerContextIDE.to_json()
+print(WorkstreamEventTriggerContextIDE.to_json())
 
 # convert the object into a dict
 workstream_event_trigger_context_ide_dict = workstream_event_trigger_context_ide_instance.to_dict()

@@ -3,20 +3,21 @@
 Note: - if mechanism == internal we will not display to the user.
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
-**id** | **str** |  | 
-**created** | [**GroupedTimestamp**](GroupedTimestamp.md) |  | 
-**updated** | [**GroupedTimestamp**](GroupedTimestamp.md) |  | 
-**event** | [**SeededConnectorTracking**](SeededConnectorTracking.md) |  | 
 **application** | [**Application**](Application.md) |  | 
-**deleted** | [**GroupedTimestamp**](GroupedTimestamp.md) |  | [optional] 
 **asset** | [**ReferencedAsset**](ReferencedAsset.md) |  | [optional] 
+**created** | [**GroupedTimestamp**](GroupedTimestamp.md) |  | 
+**deleted** | [**GroupedTimestamp**](GroupedTimestamp.md) |  | [optional] 
+**event** | [**SeededConnectorTracking**](SeededConnectorTracking.md) |  | 
 **format** | [**ReferencedFormat**](ReferencedFormat.md) |  | [optional] 
-**user** | [**FlattenedUserProfile**](FlattenedUserProfile.md) |  | [optional] 
+**id** | **str** |  | 
 **mechanism** | [**MechanismEnum**](MechanismEnum.md) |  | 
 **rank** | **int** |  | [optional] 
+**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
+**updated** | [**GroupedTimestamp**](GroupedTimestamp.md) |  | 
+**user** | [**FlattenedUserProfile**](FlattenedUserProfile.md) |  | [optional] 
 
 ## Example
 
@@ -28,7 +29,7 @@ json = "{}"
 # create an instance of FlattenedActivity from a JSON string
 flattened_activity_instance = FlattenedActivity.from_json(json)
 # print the JSON string representation of the object
-print FlattenedActivity.to_json()
+print(FlattenedActivity.to_json())
 
 # convert the object into a dict
 flattened_activity_dict = flattened_activity_instance.to_dict()

@@ -3,15 +3,16 @@
 This will return a list of the returned events.
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
+**application** | **str** |  | [optional] 
 **event** | [**WorkstreamPatternEngineVisionEvent**](WorkstreamPatternEngineVisionEvent.md) |  | [optional] 
 **exact** | **bool** |  | [optional] 
+**identifier** | **str** | This is the uuid of the event. | 
+**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 **similarity** | **float** |  | [optional] 
 **temporal** | **bool** |  | [optional] 
-**application** | **str** |  | [optional] 
-**identifier** | **str** | This is the uuid of the event. | 
 
 ## Example
 
@@ -23,7 +24,7 @@ json = "{}"
 # create an instance of SearchedWorkstreamPatternEngineVisionEvent from a JSON string
 searched_workstream_pattern_engine_vision_event_instance = SearchedWorkstreamPatternEngineVisionEvent.from_json(json)
 # print the JSON string representation of the object
-print SearchedWorkstreamPatternEngineVisionEvent.to_json()
+print(SearchedWorkstreamPatternEngineVisionEvent.to_json())
 
 # convert the object into a dict
 searched_workstream_pattern_engine_vision_event_dict = searched_workstream_pattern_engine_vision_event_instance.to_dict()

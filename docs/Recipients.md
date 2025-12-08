@@ -3,6 +3,7 @@
 This an iterable of People that are attached to a specific distribution ie, slack, maigun, ...etc
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **iterable** | [**List[PersonBasicType]**](PersonBasicType.md) |  | 
@@ -18,7 +19,7 @@ json = "{}"
 # create an instance of Recipients from a JSON string
 recipients_instance = Recipients.from_json(json)
 # print the JSON string representation of the object
-print Recipients.to_json()
+print(Recipients.to_json())
 
 # convert the object into a dict
 recipients_dict = recipients_instance.to_dict()

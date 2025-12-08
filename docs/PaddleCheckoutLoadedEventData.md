@@ -2,19 +2,20 @@
 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **str** |  | 
-**transaction_id** | **str** |  | 
-**status** | **str** |  | 
-**custom_data** | **object** |  | [optional] 
 **currency_code** | **str** |  | 
+**custom_data** | **object** |  | [optional] 
 **customer** | [**PaddleCheckoutCustomer**](PaddleCheckoutCustomer.md) |  | 
+**id** | **str** |  | 
 **items** | [**List[PaddleCheckoutItem]**](PaddleCheckoutItem.md) |  | 
-**totals** | [**PaddleCheckoutTotals**](PaddleCheckoutTotals.md) |  | 
 **payment** | [**PaddleCheckoutPayment**](PaddleCheckoutPayment.md) |  | 
-**settings** | [**PaddleCheckoutSettings**](PaddleCheckoutSettings.md) |  | 
 **recurring_totals** | [**PaddleCheckoutTotals**](PaddleCheckoutTotals.md) |  | 
+**settings** | [**PaddleCheckoutSettings**](PaddleCheckoutSettings.md) |  | 
+**status** | **str** |  | 
+**totals** | [**PaddleCheckoutTotals**](PaddleCheckoutTotals.md) |  | 
+**transaction_id** | **str** |  | 
 
 ## Example
 
@@ -26,7 +27,7 @@ json = "{}"
 # create an instance of PaddleCheckoutLoadedEventData from a JSON string
 paddle_checkout_loaded_event_data_instance = PaddleCheckoutLoadedEventData.from_json(json)
 # print the JSON string representation of the object
-print PaddleCheckoutLoadedEventData.to_json()
+print(PaddleCheckoutLoadedEventData.to_json())
 
 # convert the object into a dict
 paddle_checkout_loaded_event_data_dict = paddle_checkout_loaded_event_data_instance.to_dict()

@@ -3,16 +3,17 @@
 This is a cloud Backup. This is specific metadata needed inorder to retrieve a Backup.
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
-**id** | **str** |  | 
-**version** | **str** |  | 
-**timestamp** | **str** |  | 
 **bytes** | **float** |  | 
 **created** | [**GroupedTimestamp**](GroupedTimestamp.md) |  | 
 **device_name** | **str** |  | 
+**id** | **str** |  | 
 **platform** | [**PlatformEnum**](PlatformEnum.md) |  | 
+**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
+**timestamp** | **str** |  | 
+**version** | **str** |  | 
 
 ## Example
 
@@ -24,7 +25,7 @@ json = "{}"
 # create an instance of Backup from a JSON string
 backup_instance = Backup.from_json(json)
 # print the JSON string representation of the object
-print Backup.to_json()
+print(Backup.to_json())
 
 # convert the object into a dict
 backup_dict = backup_instance.to_dict()

@@ -1,20 +1,22 @@
 # QGPTQuestionInput
 
-This is the body input for the /code_gpt/question.  Note: - each relevant seed, must require at minimum a Seed or an id used from the /code_gpt/relevance endpoint or we will throw an error.
+This is the body input for the /code_gpt/question.  Note: - each relevant seed, must require at minimum a Seed or an id used from the /code_gpt/relevance endpoint or we will throw an error.  behavior: if this is provided and DEEP_STUDY then we will start the deep study flow. (NOTE: you can only have 1 deep study running at a time) 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
-**relevant** | [**RelevantQGPTSeeds**](RelevantQGPTSeeds.md) |  | 
-**query** | **str** | This is the user asked question. | 
 **application** | **str** | optional application id | [optional] 
-**model** | **str** | optional model id | [optional] 
+**behavior** | [**WorkstreamSummaryBehaviorEnum**](WorkstreamSummaryBehaviorEnum.md) |  | [optional] 
 **messages** | [**FlattenedConversationMessages**](FlattenedConversationMessages.md) |  | [optional] 
+**model** | **str** | optional model id | [optional] 
 **pipeline** | [**QGPTPromptPipeline**](QGPTPromptPipeline.md) |  | [optional] 
-**temporal** | [**TemporalRangeGrounding**](TemporalRangeGrounding.md) |  | [optional] 
+**query** | **str** | This is the user asked question. | 
+**relevant** | [**RelevantQGPTSeeds**](RelevantQGPTSeeds.md) |  | 
+**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 **sources** | [**FlattenedIdentifiedWorkstreamPatternEngineSources**](FlattenedIdentifiedWorkstreamPatternEngineSources.md) |  | [optional] 
 **summaries** | [**FlattenedWorkstreamSummaries**](FlattenedWorkstreamSummaries.md) |  | [optional] 
+**temporal** | [**TemporalRangeGrounding**](TemporalRangeGrounding.md) |  | [optional] 
 
 ## Example
 
@@ -26,7 +28,7 @@ json = "{}"
 # create an instance of QGPTQuestionInput from a JSON string
 qgpt_question_input_instance = QGPTQuestionInput.from_json(json)
 # print the JSON string representation of the object
-print QGPTQuestionInput.to_json()
+print(QGPTQuestionInput.to_json())
 
 # convert the object into a dict
 qgpt_question_input_dict = qgpt_question_input_instance.to_dict()

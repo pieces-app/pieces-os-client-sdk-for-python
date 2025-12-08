@@ -3,10 +3,11 @@
 A model that is passed to the context API at bootup
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 **application** | [**SeededTrackedApplication**](SeededTrackedApplication.md) |  | 
+**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 
 ## Example
 
@@ -18,7 +19,7 @@ json = "{}"
 # create an instance of SeededConnectorConnection from a JSON string
 seeded_connector_connection_instance = SeededConnectorConnection.from_json(json)
 # print the JSON string representation of the object
-print SeededConnectorConnection.to_json()
+print(SeededConnectorConnection.to_json())
 
 # convert the object into a dict
 seeded_connector_connection_dict = seeded_connector_connection_instance.to_dict()

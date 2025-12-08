@@ -3,11 +3,12 @@
 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 **id** | **str** |  | 
 **reference** | [**FlattenedDistribution**](FlattenedDistribution.md) |  | [optional] 
+**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 
 ## Example
 
@@ -19,7 +20,7 @@ json = "{}"
 # create an instance of ReferencedDistribution from a JSON string
 referenced_distribution_instance = ReferencedDistribution.from_json(json)
 # print the JSON string representation of the object
-print ReferencedDistribution.to_json()
+print(ReferencedDistribution.to_json())
 
 # convert the object into a dict
 referenced_distribution_dict = referenced_distribution_instance.to_dict()

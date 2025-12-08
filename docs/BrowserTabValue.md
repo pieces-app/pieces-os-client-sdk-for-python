@@ -3,14 +3,15 @@
 snippet: these are extracted code blocks selection: here is a copy/paste/selection  note: recommended that you pass in the md version of the webpage  note: please dont pass in all three html,md,text, just pass in 1.
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 **html** | [**TransferableString**](TransferableString.md) |  | [optional] 
 **md** | [**TransferableString**](TransferableString.md) |  | [optional] 
-**text** | [**TransferableString**](TransferableString.md) |  | [optional] 
-**snippet** | [**BrowserSelection**](BrowserSelection.md) |  | [optional] 
+**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 **selection** | [**BrowserSelection**](BrowserSelection.md) |  | [optional] 
+**snippet** | [**BrowserSelection**](BrowserSelection.md) |  | [optional] 
+**text** | [**TransferableString**](TransferableString.md) |  | [optional] 
 
 ## Example
 
@@ -22,7 +23,7 @@ json = "{}"
 # create an instance of BrowserTabValue from a JSON string
 browser_tab_value_instance = BrowserTabValue.from_json(json)
 # print the JSON string representation of the object
-print BrowserTabValue.to_json()
+print(BrowserTabValue.to_json())
 
 # convert the object into a dict
 browser_tab_value_dict = browser_tab_value_instance.to_dict()

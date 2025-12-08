@@ -3,10 +3,11 @@
 This is a specific Distribution for mailgun specific information.
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 **recipients** | [**Recipients**](Recipients.md) |  | 
+**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 
 ## Example
 
@@ -18,7 +19,7 @@ json = "{}"
 # create an instance of MailgunDistribution from a JSON string
 mailgun_distribution_instance = MailgunDistribution.from_json(json)
 # print the JSON string representation of the object
-print MailgunDistribution.to_json()
+print(MailgunDistribution.to_json())
 
 # convert the object into a dict
 mailgun_distribution_dict = mailgun_distribution_instance.to_dict()

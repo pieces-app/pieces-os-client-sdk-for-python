@@ -22,9 +22,8 @@ This take a local database and ensure that it is backed up to the cloud.
 ### Example
 
 * Api Key Authentication (application):
+
 ```python
-import time
-import os
 import pieces_os_client
 from pieces_os_client.models.backup import Backup
 from pieces_os_client.models.seeded_backup import SeededBackup
@@ -67,6 +66,7 @@ with pieces_os_client.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **seeded_backup** | [**SeededBackup**](SeededBackup.md)|  | [optional] 
@@ -85,12 +85,13 @@ Name | Type | Description  | Notes
  - **Accept**: application/json, text/plain
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
 **500** | Internal Server Error |  -  |
-**511** | Authentication Required, This means that you user needs to be authenticated with OS in order to perform this action |  -  |
 **505** | HTTP Version Not Supported, This means that your user needs to update their local os, or they cannot perform backup operations with the cloud |  -  |
+**511** | Authentication Required, This means that you user needs to be authenticated with OS in order to perform this action |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -106,9 +107,8 @@ NOTE: This is a streamed version of the /backups/create. and Since the Generator
 ### Example
 
 * Api Key Authentication (application):
+
 ```python
-import time
-import os
 import pieces_os_client
 from pieces_os_client.models.backup_streamed_progress import BackupStreamedProgress
 from pieces_os_client.models.seeded_backup import SeededBackup
@@ -151,6 +151,7 @@ with pieces_os_client.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **seeded_backup** | [**SeededBackup**](SeededBackup.md)|  | [optional] 
@@ -169,12 +170,13 @@ Name | Type | Description  | Notes
  - **Accept**: application/json, text/plain
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
 **500** | Internal Server Error |  -  |
-**511** | Authentication Required, This means that you user needs to be authenticated with OS in order to perform this action |  -  |
 **505** | HTTP Version Not Supported, This means that your user needs to update their local os, or they cannot perform backup operation with the cloud |  -  |
+**511** | Authentication Required, This means that you user needs to be authenticated with OS in order to perform this action |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -190,9 +192,8 @@ NOTE: This is a streamed version of the /backups/create. and Since the Generator
 ### Example
 
 * Api Key Authentication (application):
+
 ```python
-import time
-import os
 import pieces_os_client
 from pieces_os_client.models.backup_streamed_progress import BackupStreamedProgress
 from pieces_os_client.models.seeded_backup import SeededBackup
@@ -235,6 +236,7 @@ with pieces_os_client.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **seeded_backup** | [**SeededBackup**](SeededBackup.md)|  | [optional] 
@@ -253,12 +255,13 @@ Name | Type | Description  | Notes
  - **Accept**: application/json, text/plain
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
 **500** | Internal Server Error |  -  |
-**511** | Authentication Required, This means that you user needs to be authenticated with OS in order to perform this action |  -  |
 **505** | HTTP Version Not Supported, This means that your user needs to update their local os, or they cannot perform backup operation with the cloud |  -  |
+**511** | Authentication Required, This means that you user needs to be authenticated with OS in order to perform this action |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -272,9 +275,8 @@ This will delete a specific backup from the cloud.
 ### Example
 
 * Api Key Authentication (application):
+
 ```python
-import time
-import os
 import pieces_os_client
 from pieces_os_client.models.backup import Backup
 from pieces_os_client.rest import ApiException
@@ -315,6 +317,7 @@ with pieces_os_client.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **backup** | **str**| This is a identifier that is used to identify a specific backup.(version_timestamp) | 
@@ -334,12 +337,13 @@ void (empty response body)
  - **Accept**: text/plain
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **204** | No Content |  -  |
 **500** | Internal Server Error |  -  |
-**511** | Authentication Required, This means that you user needs to be authenticated with OS in order to perform this action |  -  |
 **505** | HTTP Version Not Supported, This means that your user needs to update their local os, or they cannot perform backup operation with the cloud |  -  |
+**511** | Authentication Required, This means that you user needs to be authenticated with OS in order to perform this action |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -355,9 +359,8 @@ This endpoint requires our user to be authenticated and connected to the cloud.
 ### Example
 
 * Api Key Authentication (application):
+
 ```python
-import time
-import os
 import pieces_os_client
 from pieces_os_client.models.backups import Backups
 from pieces_os_client.rest import ApiException
@@ -397,6 +400,7 @@ with pieces_os_client.ApiClient(configuration) as api_client:
 
 
 ### Parameters
+
 This endpoint does not need any parameter.
 
 ### Return type
@@ -413,12 +417,13 @@ This endpoint does not need any parameter.
  - **Accept**: application/json, text/plain
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
 **500** | Internal Server Error |  -  |
-**511** | Authentication Required, This means that you user needs to be authenticated with OS in order to perform this action |  -  |
 **505** | HTTP Version Not Supported, This means that your user needs to update their local os, or they cannot perform backup operations with the cloud |  -  |
+**511** | Authentication Required, This means that you user needs to be authenticated with OS in order to perform this action |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -432,9 +437,8 @@ This endpoint is a Websocket, that will list all the current websockets that are
 ### Example
 
 * Api Key Authentication (application):
+
 ```python
-import time
-import os
 import pieces_os_client
 from pieces_os_client.models.backups_streamed_progress import BackupsStreamedProgress
 from pieces_os_client.rest import ApiException
@@ -474,6 +478,7 @@ with pieces_os_client.ApiClient(configuration) as api_client:
 
 
 ### Parameters
+
 This endpoint does not need any parameter.
 
 ### Return type
@@ -490,6 +495,7 @@ This endpoint does not need any parameter.
  - **Accept**: application/json, text/plain
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |

@@ -3,10 +3,11 @@
 This is all the textually extracted materials from the QGPT stream
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 **message** | [**TextuallyExtractedMaterials**](TextuallyExtractedMaterials.md) |  | [optional] 
+**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 **workstream** | [**TextuallyExtractedMaterials**](TextuallyExtractedMaterials.md) |  | [optional] 
 
 ## Example
@@ -19,7 +20,7 @@ json = "{}"
 # create an instance of QGPTStreamedOutputExtractedTextualMaterials from a JSON string
 qgpt_streamed_output_extracted_textual_materials_instance = QGPTStreamedOutputExtractedTextualMaterials.from_json(json)
 # print the JSON string representation of the object
-print QGPTStreamedOutputExtractedTextualMaterials.to_json()
+print(QGPTStreamedOutputExtractedTextualMaterials.to_json())
 
 # convert the object into a dict
 qgpt_streamed_output_extracted_textual_materials_dict = qgpt_streamed_output_extracted_textual_materials_instance.to_dict()

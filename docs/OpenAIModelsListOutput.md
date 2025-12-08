@@ -3,10 +3,11 @@
 This is the output model for the /open_ai/models/list endpoint.
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 **models** | [**SeededModels**](SeededModels.md) |  | 
+**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 
 ## Example
 
@@ -18,7 +19,7 @@ json = "{}"
 # create an instance of OpenAIModelsListOutput from a JSON string
 open_ai_models_list_output_instance = OpenAIModelsListOutput.from_json(json)
 # print the JSON string representation of the object
-print OpenAIModelsListOutput.to_json()
+print(OpenAIModelsListOutput.to_json())
 
 # convert the object into a dict
 open_ai_models_list_output_dict = open_ai_models_list_output_instance.to_dict()

@@ -3,13 +3,14 @@
 A SeededUEAsset is the minimum data sent from UE required to create an asset within Pieces.  Fragment & file are both optional properties however we will throw an internal error if both fragment and file are passed through or if both are undefined.
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
-**name** | **str** | (optional) name is the name of the file | [optional] 
+**description** | **str** |  | [optional] 
 **ext** | [**ClassificationSpecificEnum**](ClassificationSpecificEnum.md) |  | [optional] 
 **format** | [**SeededFormat**](SeededFormat.md) |  | 
-**description** | **str** |  | [optional] 
+**name** | **str** | (optional) name is the name of the file | [optional] 
+**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 
 ## Example
 
@@ -21,7 +22,7 @@ json = "{}"
 # create an instance of SeededUltraSuiteAsset from a JSON string
 seeded_ultra_suite_asset_instance = SeededUltraSuiteAsset.from_json(json)
 # print the JSON string representation of the object
-print SeededUltraSuiteAsset.to_json()
+print(SeededUltraSuiteAsset.to_json())
 
 # convert the object into a dict
 seeded_ultra_suite_asset_dict = seeded_ultra_suite_asset_instance.to_dict()

@@ -3,10 +3,11 @@
 This is a list of the materials used in the workstream suggestions.  The feed will return a list of individual material that will be required to be fetched and re-referenced.(the materials that is.)  Considering if we want to have all the materaials just being referenced( ie ReferencedWebsite/ReferencedWorkstreamSummary/...xyz) && rebuilt
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 **iterable** | [**List[WorkstreamSuggestion]**](WorkstreamSuggestion.md) |  | 
+**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 **types** | [**List[WorkstreamSuggestionType]**](WorkstreamSuggestionType.md) | This is iterable &lt;WorkstreamSuggestionType&gt;[] that gives the type of each of the items in the iterable. I.E. types[0] is the suggestion type of the item at iterable[0]. | [optional] 
 
 ## Example
@@ -19,7 +20,7 @@ json = "{}"
 # create an instance of WorkstreamSuggestions from a JSON string
 workstream_suggestions_instance = WorkstreamSuggestions.from_json(json)
 # print the JSON string representation of the object
-print WorkstreamSuggestions.to_json()
+print(WorkstreamSuggestions.to_json())
 
 # convert the object into a dict
 workstream_suggestions_dict = workstream_suggestions_instance.to_dict()

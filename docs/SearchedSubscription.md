@@ -3,14 +3,15 @@
 TODO
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
-**subscription** | [**Subscription**](Subscription.md) |  | [optional] 
 **exact** | **bool** |  | 
-**similarity** | **float** |  | 
-**temporal** | **bool** |  | [optional] 
 **identifier** | **str** | This is the uuid of the source. | 
+**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
+**similarity** | **float** |  | 
+**subscription** | [**Subscription**](Subscription.md) |  | [optional] 
+**temporal** | **bool** |  | [optional] 
 
 ## Example
 
@@ -22,7 +23,7 @@ json = "{}"
 # create an instance of SearchedSubscription from a JSON string
 searched_subscription_instance = SearchedSubscription.from_json(json)
 # print the JSON string representation of the object
-print SearchedSubscription.to_json()
+print(SearchedSubscription.to_json())
 
 # convert the object into a dict
 searched_subscription_dict = searched_subscription_instance.to_dict()

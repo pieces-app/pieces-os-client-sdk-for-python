@@ -3,35 +3,36 @@
 This is used to map the types of the iterable to given booleans of their respective material types
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**var_schema** | **bool** |  | [optional] 
-**summary** | **bool** |  | [optional] 
-**asset** | **bool** |  | [optional] 
-**tag** | **bool** |  | [optional] 
-**website** | **bool** |  | [optional] 
 **anchor** | **bool** |  | [optional] 
-**conversation** | **bool** |  | [optional] 
-**person** | **bool** |  | [optional] 
-**seed** | **bool** |  | [optional] 
-**seeds** | **bool** |  | [optional] 
-**summaries** | **bool** |  | [optional] 
-**assets** | **bool** |  | [optional] 
-**tags** | **bool** |  | [optional] 
-**websites** | **bool** |  | [optional] 
 **anchors** | **bool** |  | [optional] 
-**conversations** | **bool** |  | [optional] 
-**persons** | **bool** |  | [optional] 
 **annotation** | **bool** |  | [optional] 
 **annotations** | **bool** |  | [optional] 
+**asset** | **bool** |  | [optional] 
+**assets** | **bool** |  | [optional] 
+**conversation** | **bool** |  | [optional] 
 **conversation_message** | **bool** |  | [optional] 
 **conversation_messages** | **bool** |  | [optional] 
+**conversations** | **bool** |  | [optional] 
 **hint** | **bool** |  | [optional] 
 **hints** | **bool** |  | [optional] 
+**person** | **bool** |  | [optional] 
+**persons** | **bool** |  | [optional] 
+**var_schema** | **bool** |  | [optional] 
+**seed** | **bool** |  | [optional] 
+**seeds** | **bool** |  | [optional] 
 **sensitive** | **bool** |  | [optional] 
 **sensitives** | **bool** |  | [optional] 
 **source** | **bool** |  | [optional] 
 **sources** | **bool** |  | [optional] 
+**summaries** | **bool** |  | [optional] 
+**summary** | **bool** |  | [optional] 
+**tag** | **bool** |  | [optional] 
+**tags** | **bool** |  | [optional] 
+**website** | **bool** |  | [optional] 
+**websites** | **bool** |  | [optional] 
 
 ## Example
 
@@ -43,7 +44,7 @@ json = "{}"
 # create an instance of WorkstreamSuggestionType from a JSON string
 workstream_suggestion_type_instance = WorkstreamSuggestionType.from_json(json)
 # print the JSON string representation of the object
-print WorkstreamSuggestionType.to_json()
+print(WorkstreamSuggestionType.to_json())
 
 # convert the object into a dict
 workstream_suggestion_type_dict = workstream_suggestion_type_instance.to_dict()

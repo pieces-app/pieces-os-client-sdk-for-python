@@ -3,13 +3,14 @@
 activation: can be active for forever w/ continous true, or it can be activated for the next couple hours  deactivation: here can be deactivated for forever w/ continuous true, or it can be deactivated for the next couple hours  Note: one or the other will be set and both are nullable.  degraded: this is a boolean that will let the products know if we will be operating in a degraded experience (this            means that there was hardware requirements that caused vector searching to fail, therefor we will need to operate           in a slower, and more memory consumption manner)
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 **activation** | [**AnonymousTemporalRange**](AnonymousTemporalRange.md) |  | [optional] 
 **deactivation** | [**AnonymousTemporalRange**](AnonymousTemporalRange.md) |  | [optional] 
 **degraded** | **bool** |  | [optional] 
 **migration** | [**MigrationProgress**](MigrationProgress.md) |  | [optional] 
+**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 
 ## Example
 
@@ -21,7 +22,7 @@ json = "{}"
 # create an instance of WorkstreamPatternEngineVisionStatus from a JSON string
 workstream_pattern_engine_vision_status_instance = WorkstreamPatternEngineVisionStatus.from_json(json)
 # print the JSON string representation of the object
-print WorkstreamPatternEngineVisionStatus.to_json()
+print(WorkstreamPatternEngineVisionStatus.to_json())
 
 # convert the object into a dict
 workstream_pattern_engine_vision_status_dict = workstream_pattern_engine_vision_status_instance.to_dict()

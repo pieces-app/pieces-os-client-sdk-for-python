@@ -3,10 +3,11 @@
 Plural model that represent many tabs
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 **iterable** | [**List[BrowserTabValue]**](BrowserTabValue.md) |  | 
+**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 
 ## Example
 
@@ -18,7 +19,7 @@ json = "{}"
 # create an instance of BrowserTabValues from a JSON string
 browser_tab_values_instance = BrowserTabValues.from_json(json)
 # print the JSON string representation of the object
-print BrowserTabValues.to_json()
+print(BrowserTabValues.to_json())
 
 # convert the object into a dict
 browser_tab_values_dict = browser_tab_values_instance.to_dict()

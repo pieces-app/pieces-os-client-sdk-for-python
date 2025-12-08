@@ -3,10 +3,11 @@
 This is used as the returnable for the /applications/external && /applications/external/related endpoints.  This will return an iterable of Deteched Application a detected Application is an application that is currently installed on your machine.  the /applications/external/related endpoint, will return a subset of the applications returned mainly applications that we detect are Pieces Applications that you have yet to install + names of applications where Pieces is coming soon.
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 **iterable** | [**List[DetectedExternalApplication]**](DetectedExternalApplication.md) |  | 
+**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 
 ## Example
 
@@ -18,7 +19,7 @@ json = "{}"
 # create an instance of DetectedExternalApplications from a JSON string
 detected_external_applications_instance = DetectedExternalApplications.from_json(json)
 # print the JSON string representation of the object
-print DetectedExternalApplications.to_json()
+print(DetectedExternalApplications.to_json())
 
 # convert the object into a dict
 detected_external_applications_dict = detected_external_applications_instance.to_dict()

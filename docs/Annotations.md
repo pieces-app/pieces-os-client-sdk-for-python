@@ -3,11 +3,12 @@
 This is the plural of Annotation
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
-**iterable** | [**List[Annotation]**](Annotation.md) |  | 
 **indices** | **Dict[str, int]** | This is a Map&lt;String, int&gt; where the the key is an annotation id. | [optional] 
+**iterable** | [**List[Annotation]**](Annotation.md) |  | 
+**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 **score** | [**Score**](Score.md) |  | [optional] 
 
 ## Example
@@ -20,7 +21,7 @@ json = "{}"
 # create an instance of Annotations from a JSON string
 annotations_instance = Annotations.from_json(json)
 # print the JSON string representation of the object
-print Annotations.to_json()
+print(Annotations.to_json())
 
 # convert the object into a dict
 annotations_dict = annotations_instance.to_dict()

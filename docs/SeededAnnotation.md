@@ -3,29 +3,30 @@
 This is the percursor to a fully referenced Annotation.
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
-**mechanism** | [**MechanismEnum**](MechanismEnum.md) |  | [optional] 
-**asset** | **str** |  | [optional] 
-**person** | **str** |  | [optional] 
-**type** | [**AnnotationTypeEnum**](AnnotationTypeEnum.md) |  | 
-**text** | **str** | This is the text of the annotation. | 
-**model** | **str** |  | [optional] 
-**pseudo** | **bool** |  | [optional] 
-**favorited** | **bool** |  | [optional] 
 **anchor** | **str** |  | [optional] 
-**conversation** | **str** |  | [optional] 
-**workstream_summary** | **str** |  | [optional] 
-**messages** | [**FlattenedConversationMessages**](FlattenedConversationMessages.md) |  | [optional] 
-**assets** | [**FlattenedAssets**](FlattenedAssets.md) |  | [optional] 
-**persons** | [**FlattenedPersons**](FlattenedPersons.md) |  | [optional] 
 **anchors** | [**FlattenedAnchors**](FlattenedAnchors.md) |  | [optional] 
+**asset** | **str** |  | [optional] 
+**assets** | [**FlattenedAssets**](FlattenedAssets.md) |  | [optional] 
+**conversation** | **str** |  | [optional] 
 **conversations** | [**FlattenedConversations**](FlattenedConversations.md) |  | [optional] 
-**websites** | [**FlattenedWebsites**](FlattenedWebsites.md) |  | [optional] 
-**tags** | [**FlattenedTags**](FlattenedTags.md) |  | [optional] 
+**favorited** | **bool** |  | [optional] 
+**mechanism** | [**MechanismEnum**](MechanismEnum.md) |  | [optional] 
+**messages** | [**FlattenedConversationMessages**](FlattenedConversationMessages.md) |  | [optional] 
+**model** | **str** |  | [optional] 
+**person** | **str** |  | [optional] 
+**persons** | [**FlattenedPersons**](FlattenedPersons.md) |  | [optional] 
+**pseudo** | **bool** |  | [optional] 
+**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 **summaries** | [**FlattenedWorkstreamSummaries**](FlattenedWorkstreamSummaries.md) |  | [optional] 
+**tags** | [**FlattenedTags**](FlattenedTags.md) |  | [optional] 
+**text** | **str** | This is the text of the annotation. | 
+**type** | [**AnnotationTypeEnum**](AnnotationTypeEnum.md) |  | 
+**websites** | [**FlattenedWebsites**](FlattenedWebsites.md) |  | [optional] 
 **workstream_events** | [**FlattenedWorkstreamEvents**](FlattenedWorkstreamEvents.md) |  | [optional] 
+**workstream_summary** | **str** |  | [optional] 
 
 ## Example
 
@@ -37,7 +38,7 @@ json = "{}"
 # create an instance of SeededAnnotation from a JSON string
 seeded_annotation_instance = SeededAnnotation.from_json(json)
 # print the JSON string representation of the object
-print SeededAnnotation.to_json()
+print(SeededAnnotation.to_json())
 
 # convert the object into a dict
 seeded_annotation_dict = seeded_annotation_instance.to_dict()

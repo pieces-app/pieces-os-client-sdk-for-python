@@ -3,10 +3,11 @@
 This is just an iterable of our individual share models.
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 **iterable** | [**List[FlattenedShare]**](FlattenedShare.md) |  | 
+**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 **score** | [**Score**](Score.md) |  | [optional] 
 
 ## Example
@@ -19,7 +20,7 @@ json = "{}"
 # create an instance of FlattenedShares from a JSON string
 flattened_shares_instance = FlattenedShares.from_json(json)
 # print the JSON string representation of the object
-print FlattenedShares.to_json()
+print(FlattenedShares.to_json())
 
 # convert the object into a dict
 flattened_shares_dict = flattened_shares_instance.to_dict()

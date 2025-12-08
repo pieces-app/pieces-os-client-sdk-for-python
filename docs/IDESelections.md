@@ -3,10 +3,11 @@
 Plural model that represent many selections in the browser
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 **iterable** | [**List[IDESelection]**](IDESelection.md) |  | 
+**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 
 ## Example
 
@@ -18,7 +19,7 @@ json = "{}"
 # create an instance of IDESelections from a JSON string
 ide_selections_instance = IDESelections.from_json(json)
 # print the JSON string representation of the object
-print IDESelections.to_json()
+print(IDESelections.to_json())
 
 # convert the object into a dict
 ide_selections_dict = ide_selections_instance.to_dict()

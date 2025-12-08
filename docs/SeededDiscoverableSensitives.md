@@ -2,11 +2,12 @@
 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
-**iterable** | [**List[SeededDiscoverableSensitive]**](SeededDiscoverableSensitive.md) |  | 
 **application** | **str** |  | 
+**iterable** | [**List[SeededDiscoverableSensitive]**](SeededDiscoverableSensitive.md) |  | 
+**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 
 ## Example
 
@@ -18,7 +19,7 @@ json = "{}"
 # create an instance of SeededDiscoverableSensitives from a JSON string
 seeded_discoverable_sensitives_instance = SeededDiscoverableSensitives.from_json(json)
 # print the JSON string representation of the object
-print SeededDiscoverableSensitives.to_json()
+print(SeededDiscoverableSensitives.to_json())
 
 # convert the object into a dict
 seeded_discoverable_sensitives_dict = seeded_discoverable_sensitives_instance.to_dict()

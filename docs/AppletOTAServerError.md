@@ -2,11 +2,12 @@
 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
-**error** | **str** |  | [optional] 
 **details** | **str** |  | [optional] 
+**error** | **str** |  | [optional] 
+**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 
 ## Example
 
@@ -18,7 +19,7 @@ json = "{}"
 # create an instance of AppletOTAServerError from a JSON string
 applet_ota_server_error_instance = AppletOTAServerError.from_json(json)
 # print the JSON string representation of the object
-print AppletOTAServerError.to_json()
+print(AppletOTAServerError.to_json())
 
 # convert the object into a dict
 applet_ota_server_error_dict = applet_ota_server_error_instance.to_dict()

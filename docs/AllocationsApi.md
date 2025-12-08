@@ -22,9 +22,8 @@ This will attempt to connect to a specific users cloud.(Required that the curren
 ### Example
 
 * Api Key Authentication (application):
+
 ```python
-import time
-import os
 import pieces_os_client
 from pieces_os_client.models.allocation_cloud import AllocationCloud
 from pieces_os_client.models.user_profile import UserProfile
@@ -67,6 +66,7 @@ with pieces_os_client.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **user_profile** | [**UserProfile**](UserProfile.md)|  | [optional] 
@@ -85,6 +85,7 @@ Name | Type | Description  | Notes
  - **Accept**: application/json, text/plain
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
@@ -103,9 +104,8 @@ This is unimplemented locally. This will create an allocation. ONLY used within 
 ### Example
 
 * Api Key Authentication (application):
+
 ```python
-import time
-import os
 import pieces_os_client
 from pieces_os_client.models.allocation_cloud import AllocationCloud
 from pieces_os_client.rest import ApiException
@@ -147,6 +147,7 @@ with pieces_os_client.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **allocation_cloud** | [**AllocationCloud**](AllocationCloud.md)|  | [optional] 
@@ -165,6 +166,7 @@ Name | Type | Description  | Notes
  - **Accept**: application/json, text/plain
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
@@ -182,9 +184,8 @@ This is unimplemented locally. This will delete an allocation. ONLY used within 
 ### Example
 
 * Api Key Authentication (application):
+
 ```python
-import time
-import os
 import pieces_os_client
 from pieces_os_client.models.allocation_cloud import AllocationCloud
 from pieces_os_client.rest import ApiException
@@ -226,6 +227,7 @@ with pieces_os_client.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **allocation_cloud** | [**AllocationCloud**](AllocationCloud.md)|  | [optional] 
@@ -244,6 +246,7 @@ Name | Type | Description  | Notes
  - **Accept**: text/plain
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
@@ -261,9 +264,8 @@ This will attempt to disconnect to a specific users cloud.
 ### Example
 
 * Api Key Authentication (application):
+
 ```python
-import time
-import os
 import pieces_os_client
 from pieces_os_client.models.allocation_cloud import AllocationCloud
 from pieces_os_client.rest import ApiException
@@ -305,6 +307,7 @@ with pieces_os_client.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **allocation_cloud** | [**AllocationCloud**](AllocationCloud.md)|  | [optional] 
@@ -323,6 +326,7 @@ Name | Type | Description  | Notes
  - **Accept**: text/plain
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK, this will return the uuid of the cloud that was disconnected! |  -  |
@@ -340,9 +344,8 @@ This will attempt to reconnect to a users cloud. This will ensure that we are co
 ### Example
 
 * Api Key Authentication (application):
+
 ```python
-import time
-import os
 import pieces_os_client
 from pieces_os_client.models.allocation_cloud import AllocationCloud
 from pieces_os_client.rest import ApiException
@@ -384,6 +387,7 @@ with pieces_os_client.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **allocation_cloud** | [**AllocationCloud**](AllocationCloud.md)|  | [optional] 
@@ -402,6 +406,7 @@ Name | Type | Description  | Notes
  - **Accept**: application/json, text/plain
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
@@ -420,9 +425,8 @@ This is going to get a snapshot of all of the connected allocations.
 ### Example
 
 * Api Key Authentication (application):
+
 ```python
-import time
-import os
 import pieces_os_client
 from pieces_os_client.models.allocations import Allocations
 from pieces_os_client.rest import ApiException
@@ -462,6 +466,7 @@ with pieces_os_client.ApiClient(configuration) as api_client:
 
 
 ### Parameters
+
 This endpoint does not need any parameter.
 
 ### Return type
@@ -478,6 +483,7 @@ This endpoint does not need any parameter.
  - **Accept**: application/json, text/plain
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |

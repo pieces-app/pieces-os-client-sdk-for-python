@@ -3,10 +3,11 @@
 This is a Model that will hold an iterable of SeededModels.
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 **iterable** | [**List[SeededModel]**](SeededModel.md) |  | 
+**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 
 ## Example
 
@@ -18,7 +19,7 @@ json = "{}"
 # create an instance of SeededModels from a JSON string
 seeded_models_instance = SeededModels.from_json(json)
 # print the JSON string representation of the object
-print SeededModels.to_json()
+print(SeededModels.to_json())
 
 # convert the object into a dict
 seeded_models_dict = seeded_models_instance.to_dict()

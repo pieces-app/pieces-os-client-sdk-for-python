@@ -3,6 +3,7 @@
 This is one of the 3 possible urls that will route to your cloud :).
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
@@ -19,7 +20,7 @@ json = "{}"
 # create an instance of AllocationCloudUrl from a JSON string
 allocation_cloud_url_instance = AllocationCloudUrl.from_json(json)
 # print the JSON string representation of the object
-print AllocationCloudUrl.to_json()
+print(AllocationCloudUrl.to_json())
 
 # convert the object into a dict
 allocation_cloud_url_dict = allocation_cloud_url_instance.to_dict()

@@ -3,10 +3,11 @@
 This is the plural Model used to return many searchedTags.
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 **iterable** | [**List[SearchedTag]**](SearchedTag.md) |  | 
+**var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
 
 ## Example
 
@@ -18,7 +19,7 @@ json = "{}"
 # create an instance of SearchedTags from a JSON string
 searched_tags_instance = SearchedTags.from_json(json)
 # print the JSON string representation of the object
-print SearchedTags.to_json()
+print(SearchedTags.to_json())
 
 # convert the object into a dict
 searched_tags_dict = searched_tags_instance.to_dict()

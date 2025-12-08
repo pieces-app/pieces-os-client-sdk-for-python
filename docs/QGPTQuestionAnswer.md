@@ -3,6 +3,7 @@
 This will be a simple model with a score and a text value that will represent the value returned for this answer.
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **var_schema** | [**EmbeddedModelSchema**](EmbeddedModelSchema.md) |  | [optional] 
@@ -19,7 +20,7 @@ json = "{}"
 # create an instance of QGPTQuestionAnswer from a JSON string
 qgpt_question_answer_instance = QGPTQuestionAnswer.from_json(json)
 # print the JSON string representation of the object
-print QGPTQuestionAnswer.to_json()
+print(QGPTQuestionAnswer.to_json())
 
 # convert the object into a dict
 qgpt_question_answer_dict = qgpt_question_answer_instance.to_dict()
