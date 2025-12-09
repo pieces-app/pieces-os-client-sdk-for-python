@@ -9,6 +9,7 @@ from pieces_os_client.models.annotations import Annotations
 from pieces_os_client.models.annotation import Annotation
 from pieces_os_client.models.linkify import Linkify
 from pieces_os_client.models.asset_reclassification import AssetReclassification
+from pieces_os_client.models.seed import Seed
 from pieces_os_client.models.shares import Shares
 
 from pieces_os_client.wrapper.basic_identifier import BasicAsset
@@ -185,7 +186,7 @@ class TestBasicAsset:
             assert shareable_link == "shareable_link"
 
     def test_share_with_seed(self):
-        mock_seed = MagicMock()
+        mock_seed = MagicMock(spec=Seed)
         mock_user_profile = MagicMock()
         mock_user_profile.allocation = True
 
