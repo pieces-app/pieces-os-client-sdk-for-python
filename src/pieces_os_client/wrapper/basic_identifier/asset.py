@@ -133,9 +133,10 @@ class BasicAsset(Basic):
 			NotImplementedError: If the asset is an image, reclassification is not supported.
 		"""
 		if isinstance(classification, str):
-			if classification not in ClassificationSpecificEnum:
+			try:
+				classification = ClassificationSpecificEnum(classification)
+			except ValueError:
 				raise ValueError(f"Classification must be one from {list(ClassificationSpecificEnum)}")
-			classification = ClassificationSpecificEnum(classification)
 
 		if not isinstance(classification, ClassificationSpecificEnum):
 			raise ValueError("Invalid classification")
