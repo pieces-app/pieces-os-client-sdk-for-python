@@ -38,3 +38,10 @@ class PrivacyEnum(str, Enum):
         return cls(json.loads(json_str))
 
 
+
+
+    @classmethod
+    def _missing_(cls, value):
+        # Called when `value` doesn't match any member
+        return cls.UNKNOWN
+
