@@ -61,7 +61,7 @@ class BasicRange(Basic):
 		RangeSnapshot.pieces_client.range_api.range_disassociate_conversation_grounding_temporal_range_workstreams(self.id, chat.id)
 
 	@staticmethod
-	def create(from_: Optional[datetime.datetime] = datetime.datetime.now() - datetime.timedelta(minutes=15), to: Optional[datetime.datetime] = datetime.datetime.now()) -> "BasicRange":
+	def create(from_: Optional[datetime.datetime] = None, to: Optional[datetime.datetime] = None) -> "BasicRange":
 		"""
 		Creates a new range based on a Range.
 
@@ -72,6 +72,10 @@ class BasicRange(Basic):
 		Returns:
 		- BasicRange: The created BasicRange instance.
 		"""
+		if from_ is None:
+			from_ = datetime.datetime.now() - datetime.timedelta(minutes=15)
+		if to is None:
+			to = datetime.datetime.now()
 		r = RangeSnapshot.pieces_client.ranges_api.ranges_create_new_range(
 			SeededRange(
 				var_from = GroupedTimestamp(value = from_) if from_ else None,
