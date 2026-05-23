@@ -1,10 +1,11 @@
 from concurrent.futures import ThreadPoolExecutor, as_completed
-from typing import TYPE_CHECKING, Callable, Optional,Dict, Union
+from typing import TYPE_CHECKING, Callable, Optional,Dict, Union, Tuple
 import platform
 import atexit
 import subprocess
 import urllib.request
 import urllib.error
+import urllib.parse
 import time
 import socket
 
@@ -67,9 +68,20 @@ if TYPE_CHECKING:
     from pieces_os_client.models.fragment_metadata import FragmentMetadata
     from pieces_os_client.models.model import Model
 
+_PORT_UNSET = "PORT_UNSET"
+_PORT_INVALID = "PORT_INVALID"
+_PORT_OUT_OF_RANGE = "PORT_OUT_OF_RANGE"
+_PORT_SCAN_FAILED = "PORT_SCAN_FAILED"
+_PORT_HEALTH_PROBE_FAILED = "PORT_HEALTH_PROBE_FAILED"
+_PORT_READY = "PORT_READY"
+
 class PiecesClient:
     def __init__(self, seeded_connector: Optional[SeededConnectorConnection] = None,**kwargs):
         self._port = ""
+        self._readiness_diagnostic = {
+            "code": _PORT_UNSET,
+            "message": "PiecesOS port is unset.",
+        }
         self.is_pos_stream_running = False
         self._reconnect_on_host_change = kwargs.get("reconnect_on_host_change", True)
         self.models:Dict[str, str] = {} # Maps model_name to the model_id
@@ -126,46 +138,158 @@ class PiecesClient:
 
     @port.setter
     def port(self, p: Union[str,None]):
-        if p != self._port and p is not None:
-            self.connect_apis("http://127.0.0.1:" + p)
-        self._port = p
+        normalized_port, diagnostic_code, diagnostic_message = self._normalize_port(p)
+        if normalized_port is None:
+            self._port = None
+            self._set_readiness_diagnostic(diagnostic_code, diagnostic_message, port=p)
+            return
+
+        if normalized_port != self._port:
+            host = self._host_from_port(normalized_port)
+            self.connect_apis(host)
+            self._set_readiness_diagnostic(
+                _PORT_READY,
+                "PiecesOS port is valid and APIs are configured.",
+                port=normalized_port,
+                host=host,
+            )
+        self._port = normalized_port
 
     @property
     def host(self) -> str:
-        if not self.port:
-            return "http://127.0.0.1:39300"
-        return "http://127.0.0.1:" + self.port
+        normalized_port, diagnostic_code, diagnostic_message = self._normalize_port(self.port)
+        if normalized_port is None:
+            self._set_readiness_diagnostic(diagnostic_code, diagnostic_message, port=self._port)
+            raise ValueError(self._format_readiness_diagnostic())
+        return self._host_from_port(normalized_port)
 
     @staticmethod
-    def _port_scanning() -> str:
-        def check_port(port: int) -> Optional[str]:
-            try:
-                # 1) Quick socket check
-                with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as sock:
-                    sock.settimeout(0.05)  # Short timeout for local checks
-                    if sock.connect_ex(('127.0.0.1', port)) != 0:
-                        return None  # If non-zero, the socket isn't open
+    def _normalize_port(p: Union[str,int,None]) -> Tuple[Optional[str], str, str]:
+        if p is None:
+            return None, _PORT_UNSET, "PiecesOS port is unset."
 
-                # 2) If socket is open, send a single HEAD request
-                url = f"http://127.0.0.1:{port}/.well-known/health"
-                request = urllib.request.Request(url, method='HEAD')
-                with urllib.request.urlopen(request, timeout=0.1) as response:
-                    if response.status == 200:
-                        return str(port)
-            except Exception:
-                pass
-            return None
+        raw_port = str(p).strip()
+        if not raw_port:
+            return None, _PORT_UNSET, "PiecesOS port is empty."
+
+        if raw_port.lower() in ("null", "none"):
+            return None, _PORT_INVALID, f"PiecesOS port is not a numeric value: {raw_port!r}."
+
+        if not raw_port.isdigit():
+            return None, _PORT_INVALID, f"PiecesOS port is not a numeric value: {raw_port!r}."
+
+        port_number = int(raw_port)
+        if port_number < 1 or port_number > 65535:
+            return None, _PORT_OUT_OF_RANGE, f"PiecesOS port is outside the valid TCP range: {raw_port}."
+
+        return str(port_number), _PORT_READY, "PiecesOS port is valid."
+
+    @staticmethod
+    def _host_from_port(port: str) -> str:
+        return "http://127.0.0.1:" + port
+
+    def _set_readiness_diagnostic(
+        self,
+        code: str,
+        message: str,
+        port: Union[str,int,None] = None,
+        host: Optional[str] = None,
+    ):
+        diagnostic = {
+            "code": code,
+            "message": message,
+        }
+        if port is not None:
+            diagnostic["port"] = str(port)
+        if host is not None:
+            diagnostic["host"] = host
+        self._readiness_diagnostic = diagnostic
+
+    def _format_readiness_diagnostic(self) -> str:
+        diagnostic = getattr(self, "_readiness_diagnostic", None) or {
+            "code": _PORT_UNSET,
+            "message": "PiecesOS port is unset.",
+        }
+        return f"{diagnostic.get('code', _PORT_UNSET)}: {diagnostic.get('message', 'PiecesOS readiness is unknown.')}"
+
+    @staticmethod
+    def _host_validation_error(host: str) -> Optional[str]:
+        if not isinstance(host, str) or not host:
+            return "Host should be a non-empty string."
+
+        parsed = urllib.parse.urlparse(host)
+        if parsed.scheme not in ("http", "https"):
+            return "Host should start with http or https."
+        if not parsed.netloc:
+            return "Host should include a network location."
+
+        host_with_port = parsed.netloc.rsplit("@", 1)[-1]
+        try:
+            port = parsed.port
+        except ValueError as exc:
+            return f"Host includes an invalid port: {exc}."
+
+        if host_with_port.endswith(":"):
+            return "Host includes an empty port."
+        if port == 0:
+            return "Host includes an out-of-range port: 0."
+
+        return None
+
+    @staticmethod
+    def _probe_pieces_os_port(port: int) -> Tuple[Optional[str], Optional[str], Optional[str]]:
+        try:
+            # 1) Quick socket check
+            with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as sock:
+                sock.settimeout(0.05)  # Short timeout for local checks
+                if sock.connect_ex(('127.0.0.1', port)) != 0:
+                    return None, None, None  # If non-zero, the socket isn't open
+        except Exception as exc:
+            return None, None, str(exc)
+
+        try:
+            # 2) If socket is open, send a single HEAD request
+            url = f"http://127.0.0.1:{port}/.well-known/health"
+            request = urllib.request.Request(url, method='HEAD')
+            with urllib.request.urlopen(request, timeout=0.1) as response:
+                if response.status == 200:
+                    return _PORT_READY, str(port), None
+                return _PORT_HEALTH_PROBE_FAILED, None, f"Health probe returned status {response.status}."
+        except Exception as exc:
+            return _PORT_HEALTH_PROBE_FAILED, None, str(exc)
+
+    def _port_scanning(self) -> str:
+        health_probe_failure = None
 
         # Scan ports 39300 to 39334 in parallel
         with ThreadPoolExecutor(max_workers=20) as executor:
-            futures = [executor.submit(check_port, p) for p in range(39300, 39334)]
+            futures = [executor.submit(self._probe_pieces_os_port, p) for p in range(39300, 39334)]
             for future in as_completed(futures):
-                result = future.result()
-                if result is not None:
+                diagnostic_code, result, diagnostic_message = future.result()
+                if diagnostic_code == _PORT_READY and result is not None:
+                    host = self._host_from_port(result)
+                    self._set_readiness_diagnostic(
+                        _PORT_READY,
+                        "PiecesOS health probe succeeded.",
+                        port=result,
+                        host=host,
+                    )
                     return result
+                if diagnostic_code == _PORT_HEALTH_PROBE_FAILED and health_probe_failure is None:
+                    health_probe_failure = diagnostic_message or "PiecesOS health probe failed."
 
         # If no port was found, raise an error
-        raise ValueError("PiecesOS is not running")
+        if health_probe_failure is not None:
+            self._set_readiness_diagnostic(
+                _PORT_HEALTH_PROBE_FAILED,
+                f"PiecesOS port was open, but the health probe failed: {health_probe_failure}",
+            )
+        else:
+            self._set_readiness_diagnostic(
+                _PORT_SCAN_FAILED,
+                "PiecesOS did not respond on ports 39300-39333.",
+            )
+        raise ValueError(self._format_readiness_diagnostic())
 
 
     @property
@@ -175,8 +299,10 @@ class PiecesClient:
 
 
     def connect_apis(self,host:str):
-        if not host.startswith("http"):
-            raise TypeError("Invalid host url\n Host should start with http or https")
+        host_validation_error = self._host_validation_error(host)
+        if host_validation_error is not None:
+            self._set_readiness_diagnostic(_PORT_INVALID, host_validation_error)
+            raise TypeError("Invalid host url\n " + host_validation_error)
 
         self.api_client = ApiClient(Configuration(host))
         self.conversation_message_api = ConversationMessageApi(self.api_client)
@@ -329,17 +455,39 @@ class PiecesClient:
         """
         for _ in range(maxium_retries):
             try:
-                request = urllib.request.Request(self.host + "/.well-known/health")
+                host = self.host
+                request = urllib.request.Request(host + "/.well-known/health")
                 with urllib.request.urlopen(request, timeout=0.1) as response:
-                    return response.status == 200
-            except:
+                    if response.status == 200:
+                        self._set_readiness_diagnostic(
+                            _PORT_READY,
+                            "PiecesOS health probe succeeded.",
+                            port=self.port,
+                            host=host,
+                        )
+                        return True
+                    self._set_readiness_diagnostic(
+                        _PORT_HEALTH_PROBE_FAILED,
+                        f"PiecesOS health probe returned status {response.status}.",
+                        port=self.port,
+                        host=host,
+                    )
+            except ValueError:
+                if maxium_retries != 1:
+                    time.sleep(0.5)
+            except Exception as exc:
+                self._set_readiness_diagnostic(
+                    _PORT_HEALTH_PROBE_FAILED,
+                    f"PiecesOS health probe failed: {exc}",
+                    port=self._port,
+                )
                 if maxium_retries != 1:
                     time.sleep(0.5)
         return False
 
     def _check_startup(self):
         if not self._startup():
-            raise ValueError("PiecesClient is not started successfully\nPerhaps Pieces OS is not running or the user is not logged in")
+            raise ValueError("PiecesClient is not started successfully\nPerhaps Pieces OS is not running or the user is not logged in\nReadiness diagnostic: " + self._format_readiness_diagnostic())
 
 
     def __str__(self) -> str:
